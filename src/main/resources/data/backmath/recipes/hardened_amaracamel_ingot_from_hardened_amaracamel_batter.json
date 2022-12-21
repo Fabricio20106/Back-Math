@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/hardened_amaracamel"
+    }
+  ],
+  "result": {
+    "item": "backmath:hardened_amaracamel_batter"
+  }
+}

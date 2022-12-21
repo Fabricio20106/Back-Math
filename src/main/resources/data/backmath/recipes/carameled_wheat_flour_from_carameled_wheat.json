@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:carameled_wheat"
+    },
+    {
+      "tag": "backmath:mortar_and_pestles"
+    }
+  ],
+  "result": {
+    "item": "backmath:carameled_wheat_flour"
+  }
+}

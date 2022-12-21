@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "side": "backmath:block/angelic_block",
+    "front": "backmath:block/crystallizer_front",
+    "top": "backmath:block/crystallizer_top_ingot"
+  }
+}

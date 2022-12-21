@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "side": "backmath:block/smooth_aljanstone",
+    "bottom": "backmath:block/smooth_aljanstone",
+    "top": "backmath:block/smooth_aljanstone"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "backmath:crystalline_birch_planks"
+    }
+  },
+  "result": {
+    "item": "backmath:crystalline_birch_trapdoor",
+    "count": 3
+  }
+}

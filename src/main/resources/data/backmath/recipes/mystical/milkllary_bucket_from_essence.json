@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "EFE",
+    " E "
+  ],
+  "key": {
+    "E": {
+      "item": "mysticalagriculture:milkllary_essence"
+    },
+    "F": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "backmath:milklary_bucket"
+  }
+}

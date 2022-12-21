@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:poison_rose"
+    }
+  ],
+  "result": {
+    "item": "backmath:poison_brown_dye"
+  }
+}

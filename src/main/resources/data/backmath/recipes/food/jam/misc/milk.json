@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:milk_bucket"
+    },
+    {
+      "item": "backmath:jam_pot"
+    },
+    {
+      "item": "backmath:jam_pot"
+    }
+  ],
+  "result": {
+    "item": "backmath:milk_pot",
+    "count": 2
+  }
+}

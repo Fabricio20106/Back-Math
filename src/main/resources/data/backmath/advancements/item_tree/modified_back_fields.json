@@ -1,0 +1,29 @@
+{
+  "parent": "backmath:item_tree/root",
+  "display": {
+    "icon": {
+      "item": "backmath:orange_oak_sapling"
+    },
+    "title": "Modified Back Fields",
+    "description": "Hills version of the Original Back Fields, found in the Overworld.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "backmath:modified_back_fields": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "backmath:modified_back_fields"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "backmath:modified_back_fields"
+    ]
+  ]
+}

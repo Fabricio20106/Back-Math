@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "variants:soul_carrot"
+    },
+    {
+      "item": "variants:warped_potato"
+    },
+    {
+      "item": "variants:crimson_wheat"
+    },
+    {
+      "item": "backmath:multi_singularity_frame"
+    }
+  ],
+  "result": {
+    "item": "backmath:vegetably_singularity_variants"
+  },
+  "conditions": [
+    {
+      "condition": "forge:mod_loaded",
+      "modid": "variants"
+    }
+  ]
+}

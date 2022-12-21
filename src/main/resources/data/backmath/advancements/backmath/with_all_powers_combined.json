@@ -1,0 +1,77 @@
+{
+  "parent": "backmath:backmath/mid_term",
+  "display": {
+    "icon": {
+      "item": "backmath:emotional_singularity"
+    },
+    "title": {
+      "translate": "advancements.backmath.with_all_powers_combined.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.with_all_powers_combined.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "criteria": {
+    "all_items_in_singularities_tag": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:singularities/emotional"
+          },
+          {
+            "item": "backmath:heat_singularity"
+          },
+          {
+            "tag": "forge:singularities/christianity"
+          },
+          {
+            "tag": "forge:singularities/milkllary"
+          },
+          {
+            "tag": "forge:singularities/meaty/fabricio"
+          },
+          {
+            "tag": "forge:singularities/meaty/sophie"
+          },
+          {
+            "tag": "forge:singularities/meaty/lucia"
+          },
+          {
+            "tag": "forge:singularities/meaty/minecraft"
+          },
+          {
+            "tag": "forge:singularities/frutifery/backmath"
+          },
+          {
+            "tag": "forge:singularities/frutifery/minecraft"
+          },
+          {
+            "tag": "forge:singularities/vegetably"
+          },
+          {
+            "tag": "forge:singularities/manga_mango"
+          },
+          {
+            "tag": "forge:singularities/mid_term"
+          },
+          {
+            "tag": "forge:singularities/obsidian_infused_mid_term"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "all_items_in_singularities_tag"
+    ]
+  ]
+}

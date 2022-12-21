@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X X",
+    "XXX",
+    "X X"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:rods/guava"
+    }
+  },
+  "result": {
+    "item": "backmath:guava_ladder",
+    "count": 3
+  }
+}

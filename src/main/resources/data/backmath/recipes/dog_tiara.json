@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LGL",
+    "G G"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:light_gray_wool"
+    },
+    "G": {
+      "item": "minecraft:brown_wool"
+    }
+  },
+  "result": {
+    "item": "backmath:dog_tiara"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "backmath:block/meal_cooker"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:hilary_bucket"
+    },
+    {
+      "item": "backmath:jam_pot"
+    },
+    {
+      "item": "backmath:jam_pot"
+    }
+  ],
+  "result": {
+    "item": "backmath:hilary_jam",
+    "count": 2
+  }
+}

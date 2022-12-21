@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:yellow_wool"
+    }
+  },
+  "result": {
+    "item": "backmath:talco_de_agua"
+  }
+}

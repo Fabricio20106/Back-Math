@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "backmath:jam_pot"
+    },
+    {
+      "fluid": "backmath:milklary_fluid",
+      "nbt": {},
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:milklary_jam"
+    }
+  ]
+}

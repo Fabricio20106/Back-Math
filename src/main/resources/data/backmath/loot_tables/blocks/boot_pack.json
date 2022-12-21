@@ -1,0 +1,59 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:leather_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:chainmail_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:golden_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:netherite_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:devil_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:angelic_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:bakugou_shoes"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:milkllary_boots"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:hardened_amaracamel_boots"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

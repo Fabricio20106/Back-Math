@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:lemon"
+    },
+    {
+      "item": "backmath:jam_pot"
+    }
+  ],
+  "result": {
+    "item": "backmath:lemon_jam"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "X",
+    "C"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:gems/mid_term"
+    },
+    "C": {
+      "tag": "forge:nuggets/mid_term"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_chain"
+  }
+}

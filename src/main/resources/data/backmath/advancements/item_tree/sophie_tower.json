@@ -1,0 +1,29 @@
+{
+  "parent": "backmath:item_tree/original_back_fields",
+  "display": {
+    "icon": {
+      "item": "minecraft:stone_bricks"
+    },
+    "title": "Sophie Tower",
+    "description": "Structure found in Original and Modified Back Fields.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "backmath:sophie_tower": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "feature": "backmath:sophie_tower"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "backmath:sophie_tower"
+    ]
+  ]
+}

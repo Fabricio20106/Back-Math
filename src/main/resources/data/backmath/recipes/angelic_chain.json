@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "X",
+    "C"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/angelic"
+    },
+    "C": {
+      "tag": "forge:nuggets/angelic"
+    }
+  },
+  "result": {
+    "item": "backmath:angelic_chain"
+  }
+}

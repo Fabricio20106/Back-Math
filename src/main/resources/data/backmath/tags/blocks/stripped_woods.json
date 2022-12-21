@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:stripped_oak_wood",
+    "minecraft:stripped_spruce_wood",
+    "minecraft:stripped_birch_wood",
+    "minecraft:stripped_jungle_wood",
+    "minecraft:stripped_acacia_wood",
+    "minecraft:stripped_dark_oak_wood",
+    "minecraft:stripped_crimson_hyphae",
+    "minecraft:stripped_warped_hyphae",
+    "backmath:stripped_aljanwood_wood",
+    "backmath:stripped_aljancap_wood",
+    "backmath:stripped_insomnian_wood",
+    "backmath:stripped_guava_wood"
+  ]
+}

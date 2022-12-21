@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/cooked_egg_bag",
+  "display": {
+    "icon": {
+      "item": "backmath:empty_cooked_egg_bag"
+    },
+    "title": "Empty Fried Egg Bag",
+    "description": "Given by Fried Egg Bags, it can be crafted with an fried egg to get the bag back.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:empty_cooked_egg_bag"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

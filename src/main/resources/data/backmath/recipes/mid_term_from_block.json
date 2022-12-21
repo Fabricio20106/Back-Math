@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/mid_term"
+    }
+  ],
+  "result": {
+    "item": "backmath:mid_term",
+    "count": 9
+  }
+}

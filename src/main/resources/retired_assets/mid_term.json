@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:temperature_singularity"
+    },
+    {
+      "item": "backmath:christian_mid_term_block"
+    },
+    {
+      "item": "backmath:milklary_bucket"
+    },
+    {
+      "item": "backmath:arcade_disc"
+    },
+    {
+      "item": "backmath:christian_mid_term_devil_alloy_block"
+    },
+    {
+      "item": "backmath:christian_mid_term_angelic_alloy_block"
+    },
+    {
+      "item": "backmath:devil_angelic_alloy_block"
+    },
+    {
+      "item": "backmath:liquefied_monster_bucket"
+    }
+  ],
+  "result": {
+    "item": "backmath:mid_term"
+  }
+}

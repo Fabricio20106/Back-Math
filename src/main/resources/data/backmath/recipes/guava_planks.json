@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "backmath:guava_logs"
+    }
+  ],
+  "result": {
+    "item": "backmath:guava_planks",
+    "count": 4
+  }
+}

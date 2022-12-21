@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:block/template_toy",
+  "textures": {
+    "toy": "backmath:block/alan_toy"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/archer_lucia",
+  "display": {
+    "icon": {
+      "item": "backmath:archer_lucia_vest"
+    },
+    "title": "Archer Lucia Vest",
+    "description": "Chestplate dropped by Archer Lucias.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:archer_lucia_vest"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

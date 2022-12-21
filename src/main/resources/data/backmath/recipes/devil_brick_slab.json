@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "backmath:devil_bricks"
+    }
+  },
+  "result": {
+    "item": "backmath:devil_brick_slab",
+    "count": 6
+  }
+}

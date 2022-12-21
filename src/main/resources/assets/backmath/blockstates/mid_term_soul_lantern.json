@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "backmath:block/mid_term_soul_lantern"
+    },
+    "hanging=true": {
+      "model": "backmath:block/mid_term_soul_lantern_hanging"
+    }
+  }
+}

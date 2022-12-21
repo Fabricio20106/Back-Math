@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "backmath:mid_term_sword"
+  },
+  "addition": {
+    "item": "backmath:obsidian_infused_mid_term_ingot"
+  },
+  "result": {
+    "item": "backmath:obsidian_infused_mid_term_sword"
+  }
+}

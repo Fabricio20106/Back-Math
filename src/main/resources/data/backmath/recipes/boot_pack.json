@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MGM",
+    "MMM"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:boots"
+    },
+    "M": {
+      "item": "minecraft:red_wool"
+    }
+  },
+  "result": {
+    "item": "backmath:boot_pack"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "backmath:block/lemon_oak_leaves"
+  }
+}

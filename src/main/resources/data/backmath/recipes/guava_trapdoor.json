@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "HHH"
+  ],
+  "key": {
+    "H": {
+      "item": "backmath:guava_planks"
+    }
+  },
+  "result": {
+    "item": "backmath:guava_trapdoor",
+    "count": 2
+  }
+}

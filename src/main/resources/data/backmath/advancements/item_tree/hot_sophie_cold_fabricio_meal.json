@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/hot_sophie",
+  "display": {
+    "icon": {
+      "item": "backmath:hot_sophie_cold_fabricio_meal"
+    },
+    "title": "Hot Sophie and Cold Fabricio Meal",
+    "description": "Obtained by crafting both in a Meal Cooker.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:hot_sophie_cold_fabricio_meal"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

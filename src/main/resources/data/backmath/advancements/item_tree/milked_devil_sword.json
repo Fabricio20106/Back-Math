@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/queen_sophie",
+  "display": {
+    "icon": {
+      "item": "backmath:milked_devil_sword"
+    },
+    "title": "Milked Devil Sword",
+    "description": "Milked sword dropped by Queen Sophie, gives a milk bucket every time you hit a mob.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:milked_devil_sword"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

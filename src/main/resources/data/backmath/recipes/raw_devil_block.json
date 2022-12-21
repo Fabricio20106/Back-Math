@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "backmath:raw_devil"
+    }
+  },
+  "result": {
+    "item": "backmath:raw_devil_block"
+  }
+}

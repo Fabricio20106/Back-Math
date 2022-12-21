@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "tag": "backmath:dusts/christian_mid_term"
+  },
+  "result": "backmath:christian_mid_term_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}

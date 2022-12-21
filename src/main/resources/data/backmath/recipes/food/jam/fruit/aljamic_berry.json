@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:aljamic_berry"
+    },
+    {
+      "item": "backmath:jam_pot"
+    }
+  ],
+  "result": {
+    "item": "backmath:aljamic_berry_jam"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/amaracamel_batter",
+  "display": {
+    "icon": {
+      "item": "backmath:hardened_amaracamel_batter"
+    },
+    "title": "Hardened Amaracamel Batter",
+    "description": "Can be used to make armor, nugget or a block.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:hardened_amaracamel_batter"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/queen_sophie_battle_pack",
+  "display": {
+    "icon": {
+      "item": "backmath:queen_sophie_battle_info"
+    },
+    "title": "Queen Sophie Battle Info",
+    "description": "Shows you useful information on how to fight Queen Sophie.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:queen_sophie_battle_info"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

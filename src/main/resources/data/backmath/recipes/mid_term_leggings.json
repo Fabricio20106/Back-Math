@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "A A",
+    "A A"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:gems/mid_term"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_leggings"
+  }
+}

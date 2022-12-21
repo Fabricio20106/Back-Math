@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:devil_slab",
+    "backmath:devil_brick_slab",
+    "backmath:angelic_brick_slab",
+    "backmath:crystalline_birch_slab",
+    "backmath:aljanstone_slab",
+    "backmath:aljanstone_brick_slab",
+    "backmath:cobbled_aljanstone_slab",
+    "backmath:smooth_aljanstone_slab",
+    "backmath:sleepingstone_slab",
+    "backmath:polished_sleepingstone_slab",
+    "backmath:sleepingstone_brick_slab",
+    "backmath:cubic_tabu_slab",
+    "backmath:tabu_mosaic_slab"
+  ]
+}

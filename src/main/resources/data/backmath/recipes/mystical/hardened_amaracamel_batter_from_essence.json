@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "E",
+    "E",
+    "E"
+  ],
+  "key": {
+    "E": {
+      "item": "mysticalagriculture:hardened_amaracamel_essence"
+    }
+  },
+  "result": {
+    "item": "backmath:hardened_amaracamel_batter",
+    "count": 3
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:grapes"
+    },
+    {
+      "item": "backmath:grapes"
+    },
+    {
+      "item": "backmath:grapes"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "item": "backmath:wine"
+  }
+}

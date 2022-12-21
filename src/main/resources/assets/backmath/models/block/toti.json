@@ -1,0 +1,6 @@
+{
+	"parent": "backmath:block/template_titoli",
+	"textures": {
+		"titoli": "backmath:block/toti"
+	}
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:gems/obsidian_infused_mid_term"
+    }
+  },
+  "result": {
+    "item": "backmath:obsidian_infused_mid_term_trapdoor",
+    "count": 2
+  }
+}

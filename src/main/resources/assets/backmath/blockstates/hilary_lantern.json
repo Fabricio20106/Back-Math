@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "backmath:block/hilary_lantern"
+    },
+    "hanging=true": {
+      "model": "backmath:block/hilary_lantern_hanging"
+    }
+  }
+}

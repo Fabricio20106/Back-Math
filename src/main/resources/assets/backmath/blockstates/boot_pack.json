@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "backmath:block/boot_pack",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "backmath:block/boot_pack"
+    },
+    "facing=south": {
+      "model": "backmath:block/boot_pack",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "backmath:block/boot_pack",
+      "y": 270
+    }
+  }
+}

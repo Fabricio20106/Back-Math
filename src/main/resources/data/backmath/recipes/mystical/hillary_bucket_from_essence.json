@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " E ",
+    "EFE",
+    " E "
+  ],
+  "key": {
+    "E": {
+      "item": "mysticalagriculture:hillary_essence"
+    },
+    "F": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "backmath:hilary_bucket"
+  }
+}

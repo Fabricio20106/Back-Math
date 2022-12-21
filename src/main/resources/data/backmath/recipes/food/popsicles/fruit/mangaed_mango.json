@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "#",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:packed_ice"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "backmath:mangaed_mango"
+    }
+  },
+  "result": {
+    "item": "backmath:manga_popsicle"
+  }
+}

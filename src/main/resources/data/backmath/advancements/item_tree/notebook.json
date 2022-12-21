@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/shy_fabricio",
+  "display": {
+    "icon": {
+      "item": "backmath:notebook"
+    },
+    "title": "Notebook",
+    "description": "Dropped rarely by shy Fabricios and can be cooked for consumption.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:notebook"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/aljameed"
+    }
+  ],
+  "result": {
+    "item": "backmath:aljameed_ingot",
+    "count": 9
+  }
+}

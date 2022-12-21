@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:obsidian_infused_mid_term_block"
+    }
+  ],
+  "result": {
+    "item": "backmath:obsidian_infused_mid_term_ingot",
+    "count": 9
+  }
+}

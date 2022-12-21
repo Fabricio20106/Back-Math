@@ -1,0 +1,51 @@
+{
+  "conditions": [
+    {
+      "type": "forge:not",
+      "value": {
+        "type": "forge:tag_empty",
+        "tag": "forge:ingots"
+      }
+    }
+  ],
+  "availability": {
+    "tier": 2,
+    "visible": true,
+    "gear_blacklist": []
+  },
+  "crafting_items": {
+    "main": {
+      "tag": "forge:ingots"
+    }
+  },
+  "name": {
+    "translate": "material.silentgear."
+  },
+  "stats": {
+    "main": {
+      "durability": 1.0,
+      "armor_durability": 1.0,
+      "enchantability": 1.0,
+      "harvest_level": 1.0,
+      "harvest_speed": 1.0,
+      "melee_damage": 1.0,
+      "magic_damage": 1.0,
+      "attack_speed": 1.0,
+      "armor": 1.0,
+      "armor_toughness": 0.0,
+      "magic_armor": 0.0,
+      "ranged_damage": 1.0,
+      "ranged_speed": 0.1,
+      "rarity": 1.0,
+      "silentgems:chargeability": 1.0
+    }
+  },
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:holy",
+        "level": 5
+      }
+    ]
+  }
+}

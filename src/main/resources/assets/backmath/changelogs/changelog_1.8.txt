@@ -1,0 +1,229 @@
+Back Math 1.8.0: Bountifully Expansive Update Changelog:
+
+New Items:
+
+* not yet added/won't be added
+
+- Added Cebolinha's Hair Strand
+    - A strand of Cebolinha's hair. If you take it, you can make 1 wish, if you take 5, you are entitled to 5 wishes. Found at 0x 0y 0z.
+- Added Stuffed Cookie Notebook and Fried Stuffed Cookie Notebook
+- Added Cut Guarana, Mango, Grapes, Lemon, Pineapple, Orange, Banana, Aljame, Jantiquified Aljame, Holy Jantiquified Aljame, Guava and Jabuticaba
+    - Would be quicker to eat but it regenerates less hunger and saturation.
+- Added Wine
+- Added Wine Bottle Cap, crafted with Cork Oak Planks
+- Added the ability to make a juice out of two fruits*
+    - Oh exponentiality...
+- Added Guava, Guava Juice, Guava Popsicle, Guava Jam, Bread with Guava Jam and Guava Stick (for wood type)
+- Added Jabuticaba, Jabuticabada, Jabuticaba Popsicle, Jabuticaba Jam and Bread with Jabuticaba Jam
+- Added Purple Guy Seeds and Crop
+- Added Hot Potato and Fried Dog
+    - Hot Potato would be like Hot Sophie.
+- Added Mortadella
+    - Crafted from raw porkchop and raw beef, add more porkchop to the recipe cuz: 70% beef and 30% pork.
+- Added Reaser
+    - Instead of you erasing things like a regular eraser, you CREATE new things.
+- Added Pink Gum Frying Pan
+    - The pan is entirely light pink, and when you hit a mob, the mob gets stuck in the pan (gets Slowness IV (4)) and takes constant damage (per tick).
+- Added Grape Vine, Guarana Bush, Pineapple Plant and Aljame Bush Seeds
+- Added Disgust, Peace and Patience Teas
+- Added Fat Rotten Gabi (Gabi Gordo Pobre)
+- Added Kero-Kero-Branded Butter Sword
+- Added Kero-Kero-Branded Banner Swords
+- Added Bread Sword
+- Added Alternate Mid-Hillary Ingot, Key and Nugget
+    - Blue (lapis-lazuli), yellow (gold) and purple (hillary).
+- Added Purple Guy Juice, Purple Guy Popsicle, Purple Guy Jam and Bread with Purple Guy Jam
+- Added Raw Feh, Grilled Feh, Minced Feh and Raw Minced Feh
+- Added Crystalline Birch tool set
+- Added Colored Glasses/Goggles
+- Added Warm Lucia
+- Added Lava and Powder Snow Pots
+- Added Detention for You and Spy Enderphie Spawn Eggs
+- Added Obsidiana Enderanner
+    - A 15/19 damage sword in normal/hard difficulties which applies blindness for 10 seconds.
+- Added Mug
+    - Made from three iron ingots and one iron nugget and can store a few drinkable fluids, like hillary, milkllary, water, milk etc.
+- Added Broken Sparey Sword
+    - Used as a crafting material for all spareys in Back Math.
+- Added Angelical Sparey
+- Added Angelical Sparey, Devil Sparey, Mid-Term Sparey, Obsidian Infused Mid-Term Sparey and Obsidian and Bedrock Infused Mid-Term Sparey tool sets
+- Added Pirate Chop
+    - A new pickaxe that can mine bedrock, so you can make a mid-term infused with obsidian and bedrock.
+- Added Obsidian and Bedrock Infused Mid-Term
+    - A new material that does WAYYYY MORE DAMAGE than an obsidian infused mid-term sparey. It would also come with an armor set, a tool set and a sparey. The sword alone would do 224 damage and has an attack speed of 16.5.
+    - It's Portuguese name would be "Meio-termo infundido com obsidiana e rocha-matriz".
+- Added Assassin Curtain sword
+    - Sword that deals 3 damage.
+- Added Obsidian Infused Mid-Term Warrior Helmet
+- Added Milkllary Warrior Helmet
+- Added Aljameed Bow, Aljameed Crossbow, Moonering Bow and Moonering Crossbow
+- Added Hardened Amaracamel, Obsidian Infused Mid-Term and Obsidian and Bedrock Infused Mid-Term Shields
+- Added Milked Queen Sophie's Summoner Staff
+- Added Insoflint and Aljansteel
+- Added Coke Bottle, Glass Bottle Bat and Crystallized Guarana Soda Ingot, Rod and a tool set
+    - Coke Bottle:
+    - A cup that looks like a bottle of guarana and comes full already.
+    - You can take this soda several times until it runs out, where you can turn this bottle upside-down and use it as a stick.
+    - The liquid contained can also be used in the crystallizer to make Crystallized Guarana Soda Bars.
+    - You can also make 4 soda sticks out of 2 soda bottles.
+    - With these bars and soda sticks you can make a crystallized soda tool set.
+- Added Cable Spaghetti
+    - Food that gives you haste II, speed II and strength II, but every 2 seconds you take shock/electrified damage. The food itself gives you 5 hunger points and 8 saturation points and it's crafted in the meal cooker. Or with the Creator Shops recipe data pack, on the Farmer's Delight oven.
+- Added Green Apple, Green Apple Juice, Green Apple Popsicle, Green Apple Jam and Bread with Green Apple Jam
+- Added Karol Conká Butter
+- Added Knives
+- Added Peach, Peach Juice, Peach Popsicle, Peach Jam and Bread with Peach Jam
+    - Peach description: "I got my peaches down in Georgia..."
+- Added Cracré crom Crocrolatre (Croffree writh Chrocrolatre)
+    - Nausea II for 15 seconds and every 2 seconds it drains the hunger bar by half. Its texture is a coffee with a chocolate popping out of it inside a mug (the same one in the aljame teacup texture).
+- Added Coffee Beans and Coffee Mug
+- Added Teeth Leggings and Paste Tooth
+    - When you wear the Teeth Leggings you'll get a diaper rash, and when it breaks, it drops a paste tooth (reverse toothpaste).
+    - Paste Tooth - I don't know what this thing's gonna do.
+- Added crystallized juice ingots, rods, helmets, chestplates, leggings, boots, swords, pickaxes, shovels, axes, hoes, shears, warrior helmets, milked swords and shields
+    - Using each different jam from different fruits will give you a crystallized *insert fruit* ingot, which you can craft armor, tools, warrior helmets, milked swords, shears and shields.
+    - So there are 13 different items, and there are... guarana, mango, mangaed mango, grapes, lemon, pineapple, banana, orange, jabuticaba, guava, aljame, peach, sweet berry, glow berry, melon, pumpkin, apple, golden apple and enchanted golden apple… and 19 different fruits, so I need to make 247 different item textures… oh I'm screwed.
+- Added Ice Creams from all BM fruits
+    - Now I'm even more screwed.
+- Plateforced Singularity Armors
+    - Made from: mid-term, obsidian Infused mid-term, obsidian and bedrock mid-term, milkllarity, mangibelarity, heat singularity, emotional singularity, singularity of christianity, all meat singularities, all vegetably singularities and all frutifery singularities.
+- Added Acai, Acai Juice, Acai Popsicle, Acai Jam and Bread with Acai Jam
+- Added Steak and Fried Egg Meal, Mutton and Fried Egg Meal, Chicken and Fried Egg Meal, Porkchop and Fried Egg Meal, Mushroom Meal, Fungi Meal, Aljanshroom Meal and Steak and Potato Meal
+- Added Plot Helmet, Chestplate, Leggings and Boots
+    - The strongest armor in the game, making you literally immortal. It also has no look.
+- Added Sesame and Sesame Seeds
+- Added Cupcakes
+- Added Strawberry, Strawberry Juice, Strawberry Popsicle, Strawberry Jam and Bread with Strawberry Jam
+- Added Dumb Dumb Disc
+- Added Glow Berry and Sweet Berry Chip Cookies
+- Added Strogonofof and Strogonopop
+- Added Loaf Bread and Grain Loaf Bread
+- Added French Bread
+- Added Bisnaga and Grain Bisnaga
+- Added Hamburger Bread and Sesame Hamburger Bread
+- Added Hot Dog Bread and Grain Hot Dog Bread
+- Added Cheese Bread
+- Added Brearygon (Bread + Porygon)
+    - All bread types can be crafted into a jam version
+    - Hamburger Bread and Sesame Hamburger Bread are craftable into a mortadella version
+- Added Hillary Fluid (item)
+- Added Milkllary Fluid (item)
+- Added Liquid Aljame (item)
+- Added Liquid Manga (item)
+- Added Liquefied Monster (item)
+- Added Sleepishwater (item)
+- Added Angelfish and Cooked Angelfish
+- Added Sky Fish and Cooked Sky Fish
+- Added Coffee Bucket
+- Added Aljamic Berry, Aljamic Berry Juice, Aljamic Berry Popsicle, Aljamic Berry Jam, Bread with Aljamic Berry Jam and Cut Aljamic Berry
+- Added Amaracamel Juice
+- Added Aljanwood Boat
+- Added Golden Halo
+- Added Jantiquified Moonering tools
+- Added the Chocoglue (Sophie Idea)
+- Added Persona Shard and Sword
+- Added Mob Persona Cards
+- Added Aljamic Glass Bottles and Sleepishwater Bottles
+- Added Patience, Peace, Disgust and Mood Teas
+- Added Insomnia Arrow
+
+New Blocks:
+
+- Added Guava Leaves, Sapling, Log, Wood, Stripped Log, Stripped Wood, Planks, Stairs, Slab, Fence, Fence Gate, Door, Trapdoor, Button, Pressure Plate, Potted Sapling and Ladder
+    - The cork oak tree will be like the large oak tree, but it's way taller, 20 blocks to be precise.
+- Added Golden Apple Leaves and Sapling
+- Added Enchanted Golden Apple Leaves and Sapling
+- Added Green Apple Leaves and Sapling
+- Added Grape Vines and Grape Vine Crop
+- Added Guarana Bush and Guarana Bush Crop
+- Added Pineapple Plant and Pineapple Plant Crop
+- Added Aljame Bush and Aljame Bush Crop
+- Added Bread Stalk
+- Added Coffee Fluid
+- Added Cork Oak Log, Stripped Log, Wood, Stripped Wood, Planks, Stairs, Slab, Fence, Fence Gate, Door, Trapdoor, Pressure Plate, Button, Sapling, Leaves, Stick + a tool set
+- Added Crystalline Birch Stripped Log and Stripped Wood (and maybe chest, trapped chest, boat, crafting table, sign and boat)
+- Added Fabricio, June and Lucia Chiseled Devil Blocks
+- Added Sophie, Fabricio, June, Lucia and Creeper Chiseled Angelic Blocks
+- Added Hillaried Stone
+    - Can be crafted into: bricks, smooth, chiseled, chiseled (bucket), pillar and tiled
+- Added Tabu. Can be crafted into:
+    - Glazed, Mosaic, Cubic and Pillar
+    - When you break this block, you'll get the "Lacrastes?" advancement, whose description is "Break the Tabu."
+    - The Tabu block has various variants that can be crafted, like the pillar and the glazed variants, for example.
+- Added Sleepingstone Pillar
+- Added Janticayte. Can be crafted into:
+    - Tools, Tiles, Polished, Pillar, Bricks, Lever and Shimmering (like mossy cobblestone, but it glows)
+- Added the Liquifier
+- Added the Fruit Extractor*
+- Added Mooner Flower
+- Added Angelic Roots
+- Added Friend/Wanderer/Adventurer Sophie Statue
+
+New Entities:
+
+- Added Detention for You
+- Added Spy Enderphie
+- Added Milked Queen Sophie Pet
+
+New Structures:
+
+- Added Wanderer Camp
+- Added Insomnia Sophie House
+
+Changes, Additions, Removals and etcetera:
+
+- Added "safeAljan" to the configs
+    - When you teleport to the Aljan through the aljan portal stand, the stand on the other side will already have a jantical in it.
+- Changed the order of items in the Back Math creative tabs
+- Aljanwood, Aljancap, Insomnian and Devil Fences now use the 1.19 inventory model
+- The Water Talc Powder instead of killing you with a super high leveled harming effect, it will now kill you using .attackEntityFrom(DamageSource, float)
+    - With this, the water talc also has a custom death message: "Player ate a water talc powder (while running from Enemy)"
+- The Cat Tiara texture is now leveled and shaded like the Dog Tiara texture
+- The Rainbow Pencil now deals 45 damage instead of 30
+- Hillary and Milkllary Bottles are now drinkable
+- Cooked Sophicio Mixture now reflects Fabricio2010's face instead of June's
+- Sleepish Skeletons now shoot insomnia arrows (poison and blindness)
+- Crafting a Milkllary Ingot in a Crystallizer with a Milkllary Bucket will now give you two ingots instead of one
+- Mid-Term armor is now unstable - it'll explode when one of the armor pieces breaks, which would kill the player with a "<player>'s mid-term armor exploded out of instability" death message.
+- Mid-Term items now have a light blue durability bar
+- The Sparey, Stacks, Spavel, Spaxe and Stoe now have a christian mid-term green durability bar
+- Changed "Back Math" advancements tab from the bottom texture of the mid-term block to the new glazed tabu block
+- Changed "Sophies Cursed Foods" advancements tab from the devil wool texture to the side texture of the new guava log
+- Renames:
+    - "Sophie Chiseled Devil Block" to "Chiseled Devil Block (Sophie)"
+    - All devil-colored blocks from "Devil" to "Red Yellow"
+    - "Water Powder" to "Water Talc Powder"
+    - Mid-Hillary Ingot, Key, Nugget and Chain to "⅔ Hillary Ingot/Key/Nugget/Chain"
+- Retextures:
+    - Devil Ingot, Christian Mid-Term Ingot and Grapes
+    - Cat Tiara
+    - Devil Door (+ item texture), Christian Mid-Term & Devil Alloy Block, Devil & Angelic Alloy Block, Chiseled Devil Block and Chiseled Devil Block (Sophie)
+    - Christian Mid-Term & Devil Alloy Ingot, Christian Mid-Term & Angelic Alloy Ingot and Devil & Angelic Alloy Ingot
+    - Christian Mid-Term Essence, Devil Essence and Devil Nugget
+    - Obsidian Infused Mid-Term Pickaxe, Shovel, Axe and Hoe
+    - Mid-Term Pickaxe
+    - Moonering Backstabber and USB Sticks
+- Added 13 new Queen Sophie Pet variants, those being:
+    - Blue Sophixolotl, Brazil Shirt, Creeper Hoodie, Empresary2, Enderphie, Entrepreneur, Maid, Modified, Original, Pajama, Savannah, Witcher and Yellow Sophixolotl
+- The Aljan is now A M P L I F I E D (caps lock and spaces intended)
+- Added a new Item Tree advancement tab
+- Back Math wooden sticks are now crafted diagonally so they don't conflict with the vanilla stick recipe
+- Aljan mobs now spawn using "EntitySpawnPlacementRegistry" instead of "MobSpawnInfo.Builder" directly in the biome
+- Added "Battle Platform" painting
+- GUI scale for the Alice, Alan and Innovator Toys were changed from 1,625 to 1,125, and the translation from 4,25 to 2,75
+- GUI scale for the Tyler Toy was changed from 1,625 to 1,125, and the translation from 4,25 to 2
+- GUI scale for the Malena Toy was changed from 1,625 to 1,125, and the translation from 4,25 to 1,5
+
+Bugfixes:
+
+- "Aaahh!", "Both Sides, Combined" and "Not Related to Hermitcraft" advancements weren't achievable since they pointed to
+   "backmath:the_aljan/adquire_aljanware" instead of "backmath:the_aljan/acquire_aljanware"
+- Queen Sophie Pets weren't tamable using Oranges, Bananas, Guavas, Jabuticabas and Aljamic Berries
+- Tyler and Malena toys can now catch fire
+- Placing orange oak saplings and banana jungle sapling in flower pots would cause pineapple oak sapling to appear instead
+
+Technical Changes:
+
+- Renamed "MangaMangoItem" to "MangaedMangoItem"
+- Renamed "ChoccyMilkItem" to "RegularDrinkItem"
+- Renamed "WildCarameledWheatBlock" to "WildCropBlock"

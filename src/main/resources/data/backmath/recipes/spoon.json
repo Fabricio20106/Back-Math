@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "G",
+    "G"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:ingots/angelic"
+    },
+    "G": {
+      "tag": "forge:nuggets/gold"
+    }
+  },
+  "result": {
+    "item": "backmath:spoon"
+  }
+}

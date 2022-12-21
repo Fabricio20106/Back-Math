@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " V ",
+    "XCX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:blaze_rod"
+    },
+    "V": {
+      "tag": "forge:gems/mid_term"
+    },
+    "C": {
+      "item": "backmath:mid_term_sword"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_greatsword"
+  }
+}

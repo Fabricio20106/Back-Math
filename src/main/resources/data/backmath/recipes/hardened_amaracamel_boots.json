@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "H H",
+    "H H"
+  ],
+  "key": {
+    "H": {
+      "tag": "backmath:materials/hardened_amaracamel"
+    }
+  },
+  "result": {
+    "item": "backmath:hardened_amaracamel_boots"
+  }
+}

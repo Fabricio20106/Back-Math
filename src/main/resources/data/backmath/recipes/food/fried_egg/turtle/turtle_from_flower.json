@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:turtle_fried_egg_flower"
+    }
+  ],
+  "result": {
+    "item": "backmath:turtle_fried_egg"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:the_aljan/aaahh",
+  "display": {
+    "icon": {
+      "item": "backmath:jantical"
+    },
+    "title": {
+      "translate": "advancements.backmath.the_aljan.both_sides_combined.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.the_aljan.both_sides_combined.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got_both_sides": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:gems/jantical"
+          },
+          {
+            "tag": "forge:singularities/mid_term"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got_both_sides"
+    ]
+  ]
+}

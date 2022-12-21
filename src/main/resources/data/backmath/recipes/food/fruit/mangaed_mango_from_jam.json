@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:mango"
+    },
+    {
+      "item": "backmath:manga_jam"
+    }
+  ],
+  "result": {
+    "item": "backmath:mangaed_mango"
+  }
+}

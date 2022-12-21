@@ -1,0 +1,100 @@
+{
+  "parent": "backmath:bmfoods/meal_cooker",
+  "display": {
+    "icon": {
+      "item": "backmath:hot_sophie_cold_fabricio_meal"
+    },
+    "title": {
+      "translate": "advancements.backmath.bm_foods.get_all_meals.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.bm_foods.get_all_meals.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_meal0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:fried_sophie_fried_egg_meal"
+          }
+        ]
+      }
+    },
+    "has_meal1": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:cooked_lucia_fried_egg_meal"
+          }
+        ]
+      }
+    },
+    "has_meal2": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:toasted_fabricio_fried_egg_meal"
+          }
+        ]
+      }
+    },
+    "has_meal3": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:hot_sophie_cold_fabricio_meal"
+          }
+        ]
+      }
+    },
+    "has_meal4": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:aljame_teacup"
+          }
+        ]
+      }
+    },
+    "has_meal5": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:fried_egg_bread"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_meal0"
+    ],
+    [
+      "has_meal1"
+    ],
+    [
+      "has_meal2"
+    ],
+    [
+      "has_meal3"
+    ],
+    [
+      "has_meal4"
+    ],
+    [
+      "has_meal5"
+    ]
+  ]
+}

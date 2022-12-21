@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:block/template_chain",
+  "textures": {
+    "chain": "backmath:block/angelic_chain"
+  }
+}

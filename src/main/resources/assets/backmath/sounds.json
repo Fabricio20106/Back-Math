@@ -1,0 +1,120 @@
+{
+  "record.nathan_evans.wellerman": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/nathan_evans/wellerman",
+        "stream": true
+      }
+    ]
+  },
+  "record.sia.snowman": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/sia/snowman",
+        "stream": true
+      }
+    ]
+  },
+  "record.ericwho.dadadada_da": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/ericwho/dadadada_da",
+        "stream": true
+      }
+    ]
+  },
+  "record.duncan_laurence.arcade": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/duncan_laurence/arcade",
+        "stream": true
+      }
+    ]
+  },
+  "record.hatsune_miku.zonibus": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/hatsune_miku/zonibus",
+        "stream": true
+      }
+    ]
+  },
+  "record.rihanna.umbrella": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/rihanna/umbrella",
+        "stream": true
+      }
+    ]
+  },
+  "record.elyotto.sugar_crash": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/elyotto/sugar_crash",
+        "stream": true
+      }
+    ]
+  },
+  "record.hatsune_miku.levan_polkka": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/hatsune_miku/levan_polkka",
+        "stream": true
+      }
+    ]
+  },
+  "record.rick_astley.never_gonna_give_you_up": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/rick_astley/never_gonna_give_you_up",
+        "stream": true
+      }
+    ]
+  },
+  "record.maneskin.beggin": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/maneskin/beggin",
+        "stream": true
+      }
+    ]
+  },
+  "record.justin_bieber.stay": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/justin_bieber/stay",
+        "stream": true
+      }
+    ]
+  },
+  "entity.friend_sophie.shoot": {
+    "category": "hostile",
+    "subtitle": "entity.friend_sophie.shoot",
+    "sounds": [
+      {
+        "name": "minecraft:entity/skeleton/shoot",
+        "stream": true
+      }
+    ]
+  },
+  "entity.queen_sophie.summon_spell": {
+    "category": "hostile",
+    "subtitle": "entity.queen_sophie.summon_spell",
+    "sounds": [
+      {
+        "name": "minecraft:mob/evocation_illar/cast1"
+      }
+    ]
+  }
+}

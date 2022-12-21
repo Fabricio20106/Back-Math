@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:item/devil_crossbow",
+  "textures": {
+    "layer0": "backmath:item/devil_crossbow_firework"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:singularities/vegetably/variants",
+    "backmath:vegetably_singularity"
+  ]
+}

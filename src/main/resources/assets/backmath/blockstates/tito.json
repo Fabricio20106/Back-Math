@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "backmath:block/tito",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "backmath:block/tito"
+    },
+    "facing=south": {
+      "model": "backmath:block/tito",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "backmath:block/tito",
+      "y": 270
+    }
+  }
+}

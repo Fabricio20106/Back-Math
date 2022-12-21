@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  E",
+    " F ",
+    "E  "
+  ],
+  "key": {
+    "E": {
+      "item": "mysticalagriculture:wood_essence"
+    },
+    "F": {
+      "item": "mysticalagriculture:nature_essence"
+    }
+  },
+  "result": {
+    "item": "backmath:mango_oak_sapling",
+    "count": 8
+  }
+}

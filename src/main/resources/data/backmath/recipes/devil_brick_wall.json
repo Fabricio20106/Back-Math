@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "backmath:devil_bricks"
+    }
+  },
+  "result": {
+    "item": "backmath:devil_brick_wall",
+    "count": 6
+  }
+}

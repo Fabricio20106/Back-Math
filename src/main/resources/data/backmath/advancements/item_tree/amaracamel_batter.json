@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/amaracamel_batter_bag",
+  "display": {
+    "icon": {
+      "item": "backmath:amaracamel_batter"
+    },
+    "title": "Amaracamel Batter",
+    "description": "Given by its bag, it can be eaten or hardened in a Smoker to make armor.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:amaracamel_batter"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

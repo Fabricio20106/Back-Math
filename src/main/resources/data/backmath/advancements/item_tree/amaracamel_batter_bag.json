@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/wanderer_sophie",
+  "display": {
+    "icon": {
+      "item": "backmath:amaracamel_batter_bag"
+    },
+    "title": "Amaracamel Batter Bag",
+    "description": "Dropped from Wanderer Sophies, when right-clicked gives the player amaracamel and an empty bag.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:amaracamel_batter_bag"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

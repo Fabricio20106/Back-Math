@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/devil"
+    }
+  },
+  "result": {
+    "item": "backmath:devil_door",
+    "count": 3
+  }
+}

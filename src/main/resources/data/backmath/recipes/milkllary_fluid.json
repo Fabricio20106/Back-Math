@@ -1,0 +1,21 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "fluid": "backmath:hilary_fluid",
+      "nbt": {},
+      "amount": 250
+    },
+    {
+      "fluidTag": "forge:milk",
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "fluid": "backmath:milklary_fluid",
+      "amount": 500
+    }
+  ],
+  "heatRequirement": "heated"
+}

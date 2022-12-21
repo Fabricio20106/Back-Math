@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:moonering_ore",
+    "backmath:sleepingstone_moonering_ore",
+    "backmath:raw_mooner",
+    "backmath:moonering_ore"
+  ]
+}

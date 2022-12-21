@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:item/angelic_crossbow",
+  "textures": {
+    "layer0": "backmath:item/angelic_crossbow_arrow"
+  }
+}

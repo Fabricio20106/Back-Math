@@ -1,0 +1,73 @@
+{
+  "parent": "minecraft:end/root",
+  "display": {
+    "icon": {
+      "item": "minecraft:diamond_boots",
+      "nbt": "{Damage:0,Enchantments:[{lvl:1s,id:\"minecraft:protection\"}]}"
+    },
+    "title": {
+      "translate": "advancements.end.adventurer_of_the_seven_voids.title"
+    },
+    "description": {
+      "translate": "advancements.end.adventurer_of_the_seven_voids.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "rewards": {
+      "experience": 100
+    }
+  },
+  "criteria": {
+    "minecraft:the_end": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "minecraft:the_end"
+        }
+      }
+    },
+    "minecraft:end_barrens": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "minecraft:end_barrens"
+        }
+      }
+    },
+    "minecraft:end_highlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "minecraft:end_highlands"
+        }
+      }
+    },
+    "minecraft:end_midlands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "minecraft:end_midlands"
+        }
+      }
+    },
+    "minecraft:small_end_islands": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "minecraft:small_end_islands"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "minecraft:the_end",
+      "minecraft:end_barrens",
+      "minecraft:end_highlands",
+      "minecraft:end_midlands",
+      "minecraft:small_end_islands"
+    ]
+  ]
+}

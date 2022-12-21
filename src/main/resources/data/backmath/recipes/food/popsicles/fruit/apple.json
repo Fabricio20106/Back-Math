@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C",
+    "#",
+    "X"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:packed_ice"
+    },
+    "X": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "minecraft:apple"
+    }
+  },
+  "result": {
+    "item": "backmath:apple_popsicle"
+  }
+}

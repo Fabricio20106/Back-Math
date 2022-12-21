@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "G"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:aljanwood_leaves"
+    },
+    "G": {
+      "tag": "forge:rods/aljanwood"
+    }
+  },
+  "result": {
+    "item": "backmath:aljanwood_sapling"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "G"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:insomnian_leaves"
+    },
+    "G": {
+      "tag": "forge:rods/insomnian"
+    }
+  },
+  "result": {
+    "item": "backmath:insomnian_sapling"
+  }
+}

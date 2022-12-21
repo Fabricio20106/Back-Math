@@ -1,0 +1,29 @@
+{
+  "parent": "backmath:item_tree/root",
+  "display": {
+    "icon": {
+      "item": "backmath:guarana_oak_sapling"
+    },
+    "title": "Original Back Fields",
+    "description": "Biome naturally found in the Overworld.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "backmath:original_back_fields": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "backmath:original_back_fields"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "backmath:original_back_fields"
+    ]
+  ]
+}

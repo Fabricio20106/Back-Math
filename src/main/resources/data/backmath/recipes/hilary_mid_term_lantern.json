@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "X#X",
+    "XXX"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:gems/mid_term"
+    },
+    "X": {
+      "item": "backmath:hilary_lantern"
+    }
+  },
+  "result": {
+    "item": "backmath:hilary_mid_term_lantern",
+    "count": 8
+  }
+}

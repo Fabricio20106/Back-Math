@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " X ",
+    "X#X",
+    " X "
+  ],
+  "key": {
+    "#": {
+      "item": "backmath:hilary_bucket"
+    },
+    "X": {
+      "item": "minecraft:glass_bottle"
+    }
+  },
+  "result": {
+    "item": "backmath:hilary_disinfectant",
+    "count": 4
+  }
+}

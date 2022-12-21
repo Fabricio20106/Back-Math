@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:block/template_wild_crop",
+  "textures": {
+    "crop": "backmath:block/wild_carameled_wheat"
+  }
+}

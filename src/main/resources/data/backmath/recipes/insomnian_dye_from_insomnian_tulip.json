@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:insomnian_tulip"
+    }
+  ],
+  "result": {
+    "item": "backmath:insomnian_dye"
+  }
+}

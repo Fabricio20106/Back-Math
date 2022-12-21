@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/wanderer_sophie",
+  "display": {
+    "icon": {
+      "item": "backmath:chocolate"
+    },
+    "title": "Chocolate",
+    "description": "Food dropped by Wanderer and Angry Sophies.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:chocolate"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

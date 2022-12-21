@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "jantical=false": {
+      "model": "backmath:block/aljan_portal_stand"
+    },
+    "jantical=true": {
+      "model": "backmath:block/aljan_portal_stand_filled"
+    }
+  }
+}

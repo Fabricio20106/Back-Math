@@ -1,0 +1,59 @@
+{
+  "parent": "backmath:backmath/root",
+  "display": {
+    "icon": {
+      "item": "backmath:mid_term"
+    },
+    "title": {
+      "translate": "advancements.backmath.mid_term.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.mid_term.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "rewards": {
+    "experience": 1200
+  },
+  "criteria": {
+    "mid_term_materials": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:singularities/emotional"
+          },
+          {
+            "item": "backmath:heat_singularity"
+          },
+          {
+            "tag": "forge:singularities/christianity"
+          },
+          {
+            "tag": "forge:singularities/milkllary"
+          },
+          {
+            "tag": "forge:singularities/meaty"
+          },
+          {
+            "tag": "forge:singularities/frutifery"
+          },
+          {
+            "tag": "forge:singularities/vegetably"
+          },
+          {
+            "tag": "forge:singularities/manga_mango"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mid_term_materials"
+    ]
+  ]
+}

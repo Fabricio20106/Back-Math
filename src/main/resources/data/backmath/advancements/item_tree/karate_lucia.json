@@ -1,0 +1,35 @@
+{
+  "parent": "backmath:item_tree/original_back_fields",
+  "display": {
+    "icon": {
+      "item": "backmath:karate_lucia_spawn_egg"
+    },
+    "title": "Karate Lucias",
+    "description": "They spawn in both Back Fields'.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_entity": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "backmath:karate_lucia"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_entity"
+    ]
+  ]
+}

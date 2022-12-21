@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/angry_sophie",
+  "display": {
+    "icon": {
+      "item": "backmath:queen_sophie_battle_pack"
+    },
+    "title": "Queen Sophie Battle Pack",
+    "description": "Dropped from Angry Sophies, when right-clicked gives the player the Queen Sophie spawn egg.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:queen_sophie_battle_pack"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XC",
+    " C"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:gems/mid_term"
+    },
+    "C": {
+      "item": "minecraft:blaze_rod"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_axe"
+  }
+}

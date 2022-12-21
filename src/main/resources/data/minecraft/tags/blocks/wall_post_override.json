@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:hillary_torch",
+    "backmath:charjan_wood_torch",
+    "backmath:charjan_aljanwood_torch",
+    "backmath:charjan_aljancap_torch",
+    "backmath:charjan_insomnian_torch"
+  ]
+}

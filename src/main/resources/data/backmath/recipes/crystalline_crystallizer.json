@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "IPI",
+    "AIA"
+  ],
+  "key": {
+    "P": {
+      "item": "backmath:crystallizer"
+    },
+    "B": {
+      "tag": "backmath:molds/empty"
+    },
+    "I": {
+      "tag": "forge:ingots/milkllary"
+    },
+    "A": {
+      "tag": "forge:gems/crystalline_angelic"
+    }
+  },
+  "result": {
+    "item": "backmath:crystalline_crystallizer"
+  }
+}

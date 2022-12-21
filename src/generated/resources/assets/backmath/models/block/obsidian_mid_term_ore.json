@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "backmath:block/obsidian_mid_term_ore"
+  }
+}

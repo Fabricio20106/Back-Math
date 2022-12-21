@@ -1,0 +1,300 @@
+{
+  "parent": "backmath:bmfoods/fruit_trees",
+  "display": {
+    "icon": {
+      "item": "backmath:lagusta"
+    },
+    "title": {
+      "translate": "advancements.backmath.bm_foods.backmathed_diet.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.bm_foods.backmathed_diet.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 100
+  },
+  "criteria": {
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:guarana"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:mango"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:grapes"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:lemon"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:pineapple"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:aljame"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:guarana_juice"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:mango_juice"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:grape_juice"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:lemon_juice"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:pineapple_juice"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:aljame_juice"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:manga_juice"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:guarana_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:mango_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:grape_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:lemon_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:pineapple_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:aljame_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:manga_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:water_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:hillary_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:milkllary_popsicle"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:guarana_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:mango_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:grape_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:lemon_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:pineapple_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:aljame_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:manga_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:hilary_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:milklary_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:sweet_berry_jam"
+        }
+      }
+    },
+    "example": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "backmath:glow_berry_jam"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "example"
+    ]
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/shy_fabricio",
+  "display": {
+    "icon": {
+      "item": "backmath:toti"
+    },
+    "title": "Toti",
+    "description": "Dropped by Shy Fabricios. Can be placed down for decoration.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:toti"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

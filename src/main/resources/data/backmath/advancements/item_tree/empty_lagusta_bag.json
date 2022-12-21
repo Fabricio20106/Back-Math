@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/lagusta_bag",
+  "display": {
+    "icon": {
+      "item": "backmath:empty_lagusta_bag"
+    },
+    "title": "Empty Lagusta Bag",
+    "description": "Given by its bag, can be crafted with a lagusta to make the bag back.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:empty_lagusta_bag"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

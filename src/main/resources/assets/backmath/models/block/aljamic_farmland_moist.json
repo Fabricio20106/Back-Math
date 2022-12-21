@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_farmland",
+  "textures": {
+    "dirt": "backmath:block/aljamic_dirt",
+    "top": "backmath:block/aljamic_farmland_moist"
+  }
+}

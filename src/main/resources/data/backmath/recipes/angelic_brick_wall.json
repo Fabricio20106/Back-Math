@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "backmath:angelic_bricks"
+    }
+  },
+  "result": {
+    "item": "backmath:angelic_brick_wall",
+    "count": 6
+  }
+}

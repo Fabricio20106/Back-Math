@@ -1,0 +1,35 @@
+{
+  "parent": "backmath:bmfoods/root",
+  "display": {
+    "icon": {
+      "item": "backmath:meal_cooker"
+    },
+    "title": {
+      "translate": "advancements.backmath.bm_foods.meal_cooker.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.bm_foods.meal_cooker.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "has_the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:meal_cooker"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_item"
+    ]
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "parent": "backmath:backmath/mid_term",
+  "display": {
+    "icon": {
+      "item": "backmath:mid_term_sword"
+    },
+    "title": {
+      "translate": "advancements.backmath.mid_term_tools.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.mid_term_tools.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "mt_tools": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:mid_term_sword"
+          },
+          {
+            "item": "backmath:mid_term_pickaxe"
+          },
+          {
+            "item": "backmath:mid_term_shovel"
+          },
+          {
+            "item": "backmath:mid_term_axe"
+          },
+          {
+            "item": "backmath:mid_term_hoe"
+          },
+          {
+            "item": "backmath:mid_term_shield"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mt_tools"
+    ]
+  ]
+}

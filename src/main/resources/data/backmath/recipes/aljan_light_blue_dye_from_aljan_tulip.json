@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:aljan_tulip"
+    }
+  ],
+  "result": {
+    "item": "backmath:aljan_light_blue_dye"
+  }
+}

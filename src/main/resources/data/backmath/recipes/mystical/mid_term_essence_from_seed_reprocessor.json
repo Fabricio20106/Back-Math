@@ -1,0 +1,16 @@
+{
+  "type": "mysticalagriculture:reprocessor",
+  "conditions": [
+    {
+      "type": "mysticalagriculture:crop_enabled",
+      "crop": "mysticalagriculture:mid_term"
+    }
+  ],
+  "input": {
+    "item": "mysticalagriculture:mid_term_seeds"
+  },
+  "result": {
+    "item": "mysticalagriculture:mid_term_essence",
+    "count": 2
+  }
+}

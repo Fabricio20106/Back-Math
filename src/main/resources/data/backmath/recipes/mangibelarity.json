@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:mangaed_mango"
+    },
+    {
+      "item": "backmath:multi_singularity_frame"
+    }
+  ],
+  "result": {
+    "item": "backmath:mangibelarity"
+  }
+}

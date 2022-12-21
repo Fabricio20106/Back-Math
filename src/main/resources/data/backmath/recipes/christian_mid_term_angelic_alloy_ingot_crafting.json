@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:christian_mid_term_ingot"
+    },
+    {
+      "item": "backmath:angelic_ingot"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    }
+  ],
+  "result": {
+    "item": "backmath:christian_mid_term_angelic_alloy_ingot"
+  }
+}

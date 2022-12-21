@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/original_back_fields",
+  "display": {
+    "icon": {
+      "item": "backmath:guarana_oak_sapling"
+    },
+    "title": "Guarana Trees",
+    "description": "Fruit tree found in Original Back Fields'.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:guarana"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

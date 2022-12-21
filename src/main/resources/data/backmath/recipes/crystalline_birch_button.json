@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:crystalline_birch_planks"
+    }
+  ],
+  "result": {
+    "item": "backmath:crystalline_birch_button"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "parent": "backmath:bmfoods/root",
+  "display": {
+    "icon": {
+      "item": "backmath:sophie"
+    },
+    "title": {
+      "translate": "advancements.backmath.bm_foods.sophie.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.bm_foods.sophie.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "got_raw_sophie": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:sophie"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "got_raw_sophie"
+    ]
+  ]
+}

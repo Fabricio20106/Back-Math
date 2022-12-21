@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:queen_sophie_spawn_egg"
+    },
+    {
+      "item": "backmath:queen_sophie_battle_info"
+    }
+  ],
+  "result": {
+    "item": "backmath:queen_sophie_battle_pack"
+  }
+}

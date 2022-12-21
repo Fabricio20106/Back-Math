@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "item": "backmath:chocolate"
+    }
+  ],
+  "result": {
+    "item": "backmath:honeyed_bread"
+  }
+}

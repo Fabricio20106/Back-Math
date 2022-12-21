@@ -1,0 +1,53 @@
+{
+  "parent": "backmath:backmath/mid_term_tools",
+  "display": {
+    "icon": {
+      "item": "backmath:obsidian_infused_mid_term_sparey"
+    },
+    "title": {
+      "translate": "advancements.backmath.true_overpower.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.true_overpower.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true,
+    "rewards": {
+      "experience": 2800
+    }
+  },
+  "criteria": {
+    "mt_tools": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:obsidian_infused_mid_term_sparey"
+          },
+          {
+            "item": "backmath:mid_term_warrior_helmet"
+          },
+          {
+            "item": "backmath:mid_term_breastplate"
+          },
+          {
+            "item": "backmath:mid_term_leggings"
+          },
+          {
+            "item": "backmath:mid_term_boots"
+          },
+          {
+            "item": "backmath:mid_term_shield"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "mt_tools"
+    ]
+  ]
+}

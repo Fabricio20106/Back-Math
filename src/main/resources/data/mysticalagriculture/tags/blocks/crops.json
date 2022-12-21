@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "mysticalagriculture:devil_crop",
+    "mysticalagriculture:angelic_crop",
+    "mysticalagriculture:mid_term_crop",
+    "mysticalagriculture:christian_mid_term_crop"
+  ]
+}

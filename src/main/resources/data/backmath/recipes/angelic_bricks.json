@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "AA"
+  ],
+  "key": {
+    "A": {
+      "item": "backmath:angelic_block"
+    }
+  },
+  "result": {
+    "item": "backmath:angelic_bricks",
+    "count": 4
+  }
+}

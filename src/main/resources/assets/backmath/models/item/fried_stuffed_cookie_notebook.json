@@ -1,0 +1,9 @@
+{
+  "parent": "backmath:item/template_stuffed_cookie_notebook",
+  "textures": {
+    "screen": "backmath:block/fried_stuffed_cookie_notebook_screen",
+    "bottom": "backmath:block/fried_stuffed_cookie_notebook_bottom",
+    "inner": "backmath:block/fried_stuffed_cookie_notebook_inner",
+    "keyboard": "backmath:block/fried_stuffed_cookie_notebook_keyboard"
+  }
+}

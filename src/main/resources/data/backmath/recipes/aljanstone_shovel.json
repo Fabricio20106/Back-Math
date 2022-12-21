@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "C",
+    "C"
+  ],
+  "key": {
+    "X": {
+      "tag": "backmath:aljanstone_crafting_materials"
+    },
+    "C": {
+      "tag": "forge:rods/aljanwood"
+    }
+  },
+  "result": {
+    "item": "backmath:aljanstone_shovel"
+  }
+}

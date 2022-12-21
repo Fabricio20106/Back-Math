@@ -1,0 +1,16 @@
+{
+  "type": "mysticalagriculture:reprocessor",
+  "conditions": [
+    {
+      "type": "mysticalagriculture:crop_enabled",
+      "crop": "mysticalagriculture:angelic"
+    }
+  ],
+  "input": {
+    "item": "mysticalagriculture:angelic_seeds"
+  },
+  "result": {
+    "item": "mysticalagriculture:angelic_essence",
+    "count": 2
+  }
+}

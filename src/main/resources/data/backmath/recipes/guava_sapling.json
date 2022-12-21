@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "H",
+    "S"
+  ],
+  "key": {
+    "H": {
+      "item": "backmath:guava_leaves"
+    },
+    "S": {
+      "tag": "forge:rods/guava"
+    }
+  },
+  "result": {
+    "item": "backmath:guava_sapling"
+  }
+}

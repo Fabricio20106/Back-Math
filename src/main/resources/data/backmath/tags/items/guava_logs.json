@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:guava_log",
+    "backmath:guava_wood",
+    "backmath:stripped_guava_log",
+    "backmath:stripped_guava_wood"
+  ]
+}

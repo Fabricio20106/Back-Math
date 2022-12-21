@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "EHE"
+  ],
+  "key": {
+    "E": {
+      "item": "minecraft:paper"
+    },
+    "H": {
+      "item": "mysticalagriculture:hardened_amaracamel_essence"
+    }
+  },
+  "result": {
+    "item": "backmath:empty_amaracamel_batter_bag"
+  }
+}

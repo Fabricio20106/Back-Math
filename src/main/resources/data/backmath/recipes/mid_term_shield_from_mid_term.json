@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WoW",
+    "WWW",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "tag": "forge:ingots/iron"
+    },
+    "o": {
+      "tag": "forge:gems/mid_term"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_shield"
+  }
+}

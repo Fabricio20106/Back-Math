@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XCX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:gems/mid_term"
+    },
+    "C": {
+      "item": "backmath:sparey"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_sparey"
+  }
+}

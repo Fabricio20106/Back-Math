@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:rods/angelic",
+    "#forge:rods/hillary",
+    "#forge:rods/devil",
+    "#forge:rods/crystalline_birch",
+    "#forge:rods/mid_term"
+  ]
+}

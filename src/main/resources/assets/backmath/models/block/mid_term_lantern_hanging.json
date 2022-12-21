@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:block/template_mid_term_hanging_lantern",
+  "textures": {
+    "lantern": "backmath:block/mid_term_lantern"
+  }
+}

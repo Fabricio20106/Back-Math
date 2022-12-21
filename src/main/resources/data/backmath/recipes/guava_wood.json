@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HH",
+    "HH"
+  ],
+  "key": {
+    "H": {
+      "item": "backmath:guava_log"
+    }
+  },
+  "result": {
+    "item": "backmath:guava_wood",
+    "count": 3
+  }
+}

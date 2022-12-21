@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "backmath:mid_term_boots"
+  },
+  "addition": {
+    "tag": "forge:ingots/obsidian_infused_mid_term"
+  },
+  "result": {
+    "item": "backmath:obsidian_infused_mid_term_boots"
+  }
+}

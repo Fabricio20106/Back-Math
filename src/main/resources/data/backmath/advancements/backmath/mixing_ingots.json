@@ -1,0 +1,57 @@
+{
+  "parent": "minecraft:end/dragon_breath",
+  "display": {
+    "icon": {
+      "item": "backmath:christian_mid_term_angelic_alloy_ingot"
+    },
+    "title": {
+      "translate": "advancements.backmath.mixing_ingots.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.mixing_ingots.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "devil_angelic_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:devil_angelic_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "christian_mid_term_devil_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:christian_mid_term_devil_alloy_ingot"
+          }
+        ]
+      }
+    },
+    "christian_mid_term_angelic_alloy_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:christian_mid_term_angelic_alloy_ingot"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "devil_angelic_alloy_ingot",
+      "christian_mid_term_devil_alloy_ingot",
+      "christian_mid_term_angelic_alloy_ingot"
+    ]
+  ]
+}

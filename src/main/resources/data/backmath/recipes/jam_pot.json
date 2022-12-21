@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "# #",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:glass"
+    },
+    "A": {
+      "item": "minecraft:terracotta"
+    }
+  },
+  "result": {
+    "item": "backmath:jam_pot",
+    "count": 3
+  }
+}

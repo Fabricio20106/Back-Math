@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A A",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "tag": "forge:gems/mid_term"
+    },
+    "B": {
+      "tag": "forge:storage_blocks/mid_term"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_breastplate"
+  }
+}

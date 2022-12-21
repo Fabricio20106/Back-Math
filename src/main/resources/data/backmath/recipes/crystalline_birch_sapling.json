@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "G"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:crystalline_birch_leaves"
+    },
+    "G": {
+      "tag": "forge:rods/crystalline_birch"
+    }
+  },
+  "result": {
+    "item": "backmath:crystalline_birch_sapling"
+  }
+}

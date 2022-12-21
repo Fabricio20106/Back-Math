@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:devil_fence_gate",
+    "backmath:crystalline_birch_fence_gate",
+    "backmath:aljanwood_fence_gate",
+    "backmath:aljancap_fence_gate",
+    "backmath:insomnian_fence_gate",
+    "backmath:guava_fence_gate"
+  ]
+}

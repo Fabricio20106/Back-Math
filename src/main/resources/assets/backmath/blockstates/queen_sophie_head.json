@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "backmath:block/queen_sophie_head_ground",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "backmath:block/queen_sophie_head_ground"
+    },
+    "facing=south": {
+      "model": "backmath:block/queen_sophie_head_ground",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "backmath:block/queen_sophie_head_ground",
+      "y": 270
+    }
+  }
+}

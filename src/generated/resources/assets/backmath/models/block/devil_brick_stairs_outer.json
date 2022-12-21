@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "side": "backmath:block/devil_bricks",
+    "bottom": "backmath:block/devil_bricks",
+    "top": "backmath:block/devil_bricks"
+  }
+}

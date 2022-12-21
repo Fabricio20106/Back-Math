@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/christian_mid_term"
+    },
+    {
+      "tag": "forge:ingots/angelic"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:christian_mid_term_angelic_alloy_ingot"
+    }
+  ],
+  "heatRequirement": "superheated"
+}

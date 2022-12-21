@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ores/devil",
+    "#forge:ores/mid_term",
+    "#forge:ores/angelic",
+    "#forge:ores/crystalline_angelic"
+  ]
+}

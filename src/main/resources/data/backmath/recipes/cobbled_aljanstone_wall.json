@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:cobbled_aljanstone"
+    }
+  },
+  "result": {
+    "item": "backmath:cobbled_aljanstone_wall",
+    "count": 6
+  }
+}

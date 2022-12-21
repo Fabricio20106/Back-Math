@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X",
+    "R"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:ingots/christian_mid_term"
+    },
+    "R": {
+      "tag": "forge:rods/mid_term"
+    }
+  },
+  "result": {
+    "item": "backmath:carewni"
+  }
+}

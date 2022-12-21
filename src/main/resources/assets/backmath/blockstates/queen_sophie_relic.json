@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "backmath:block/queen_sophie_relic_first_half"
+    },
+    "half=upper": {
+      "model": "backmath:block/queen_sophie_relic_second_half"
+    }
+  }
+}

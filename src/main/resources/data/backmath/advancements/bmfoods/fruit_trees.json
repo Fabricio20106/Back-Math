@@ -1,0 +1,59 @@
+{
+  "parent": "backmath:bmfoods/root",
+  "display": {
+    "icon": {
+      "item": "backmath:guarana_oak_sapling"
+    },
+    "title": {
+      "translate": "advancements.backmath.bm_foods.fruit_trees.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.bm_foods.fruit_trees.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "guarana_oak_sapling": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:guarana_oak_sapling"
+          },
+          {
+            "item": "backmath:mango_oak_sapling"
+          },
+          {
+            "item": "backmath:grape_vine_sapling"
+          },
+          {
+            "item": "backmath:aljame_birch_sapling"
+          },
+          {
+            "item": "backmath:lemon_oak_sapling"
+          },
+          {
+            "item": "backmath:pineapple_oak_sapling"
+          },
+          {
+            "item": "backmath:orange_oak_sapling"
+          },
+          {
+            "item": "backmath:banana_jungle_sapling"
+          },
+          {
+            "item": "backmath:guava_sapling"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "guarana_oak_sapling"
+    ]
+  ]
+}

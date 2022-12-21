@@ -1,0 +1,35 @@
+{
+  "parent": "backmath:item_tree/original_back_fields",
+  "display": {
+    "icon": {
+      "item": "backmath:archer_lucia_spawn_egg"
+    },
+    "title": "Archer Lucias",
+    "description": "They spawn in both Back Fields', they use their crossbows to attack you.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_entity": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "backmath:archer_lucia"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_entity"
+    ]
+  ]
+}

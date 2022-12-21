@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:hilary_jam"
+    },
+    {
+      "item": "backmath:milk_pot"
+    },
+    {
+      "item": "minecraft:bucket"
+    }
+  ],
+  "result": {
+    "item": "backmath:milklary_bucket"
+  }
+}

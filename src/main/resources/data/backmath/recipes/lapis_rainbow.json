@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  Y",
+    " O ",
+    "R  "
+  ],
+  "key": {
+    "R": {
+      "tag": "forge:ingots/devil"
+    },
+    "O": {
+      "tag": "forge:gems/mid_term"
+    },
+    "Y": {
+      "item": "minecraft:blaze_powder"
+    }
+  },
+  "result": {
+    "item": "backmath:lapis_rainbow"
+  }
+}

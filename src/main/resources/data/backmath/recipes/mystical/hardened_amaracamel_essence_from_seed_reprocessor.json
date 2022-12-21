@@ -1,0 +1,16 @@
+{
+  "type": "mysticalagriculture:reprocessor",
+  "conditions": [
+    {
+      "type": "mysticalagriculture:crop_enabled",
+      "crop": "mysticalagriculture:hardened_amaracamel"
+    }
+  ],
+  "input": {
+    "item": "mysticalagriculture:hardened_amaracamel_seeds"
+  },
+  "result": {
+    "item": "mysticalagriculture:hardened_amaracamel_essence",
+    "count": 2
+  }
+}

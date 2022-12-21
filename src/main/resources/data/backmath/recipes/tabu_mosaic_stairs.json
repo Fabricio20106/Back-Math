@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:tabu_mosaic"
+    }
+  },
+  "result": {
+    "item": "backmath:tabu_mosaic_stairs",
+    "count": 6
+  }
+}

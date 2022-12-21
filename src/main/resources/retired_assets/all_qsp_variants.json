@@ -1,0 +1,331 @@
+{
+  "parent": "backmath:backmath/sophie_leader",
+  "display": {
+    "icon": {
+      "item": "backmath:queen_sophie_relic"
+    },
+    "title": {
+      "translate": "advancements.backmath.qsp_daycare.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.qsp_daycare.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 50
+  },
+  "criteria": {
+    "textures/entity/queen_sophie_pet/qsp_current.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 0
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_alt.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 1
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_relic.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 2
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_shy_fabricio.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 3
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_original.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 4
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_modified.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 5
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_creeper.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 6
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_brazil_shirt.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 7
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_witcher.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": "10"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_worker.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 15
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_pajama.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 8
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_savannah.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 9
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_maid.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 11
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_empresary2.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 16
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_entrepreneur.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": "17"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_yellow_sophixolotl.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": "12"
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_blue_sophixolotl.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 13
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    },
+    "textures/entity/queen_sophie_pet/qsp_sv_enderphie.png": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "variant": 14
+            },
+            "entity": "this"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "textures/entity/queen_sophie_pet/qsp_current.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_alt.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_relic.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_shy_fabricio.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_original.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_modified.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_pajama.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_savannah.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_maid.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_worker.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_witcher.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_creeper.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_brazil_shirt.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_empresary2.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_entrepreneur.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_yellow_sophixolotl.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_blue_sophixolotl.png"
+    ],
+    [
+      "textures/entity/queen_sophie_pet/qsp_sv_enderphie.png"
+    ]
+  ]
+}

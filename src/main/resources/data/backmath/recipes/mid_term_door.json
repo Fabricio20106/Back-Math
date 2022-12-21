@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "tag": "forge:gems/mid_term"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_door",
+    "count": 2
+  }
+}

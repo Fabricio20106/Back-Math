@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:devil_stairs",
+    "backmath:devil_brick_stairs",
+    "backmath:angelic_brick_stairs",
+    "backmath:crystalline_birch_stairs",
+    "backmath:aljanstone_stairs",
+    "backmath:aljanstone_brick_stairs",
+    "backmath:cobbled_aljanstone_stairs",
+    "backmath:sleepingstone_stairs",
+    "backmath:sleepingstone_brick_stairs",
+    "backmath:polished_sleepingstone_stairs",
+    "backmath:cubic_tabu_stairs",
+    "backmath:tabu_mosaic_stairs"
+  ]
+}

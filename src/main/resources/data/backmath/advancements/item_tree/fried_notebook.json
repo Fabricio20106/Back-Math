@@ -1,0 +1,31 @@
+{
+  "parent": "backmath:item_tree/notebook",
+  "display": {
+    "icon": {
+      "item": "backmath:fried_notebook"
+    },
+    "title": "Fried Notebook",
+    "description": "Obtained by cooking a notebook.",
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "the_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:fried_notebook"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "the_item"
+    ]
+  ]
+}

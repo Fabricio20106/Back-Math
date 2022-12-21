@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XHX"
+  ],
+  "key": {
+    "X": {
+      "tag": "backmath:materials/hardened_amaracamel"
+    },
+    "H": {
+      "item": "backmath:hardened_amaracamel_helmet"
+    }
+  },
+  "result": {
+    "item": "backmath:hardened_amaracamel_warrior_helmet"
+  }
+}

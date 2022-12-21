@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:aljanwood_planks"
+    }
+  ],
+  "result": {
+    "item": "backmath:aljanwood_button"
+  }
+}

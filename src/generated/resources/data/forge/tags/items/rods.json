@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:rods/aljanwood",
+    "#forge:rods/aljancap",
+    "#forge:rods/insomnian",
+    "#forge:rods/aljameed",
+    "#forge:rods/guava"
+  ]
+}

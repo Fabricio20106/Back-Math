@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:liquid_manga_bucket"
+    },
+    {
+      "item": "backmath:jam_pot"
+    },
+    {
+      "item": "backmath:jam_pot"
+    }
+  ],
+  "result": {
+    "item": "backmath:manga_jam",
+    "count": 2
+  }
+}
