@@ -18,7 +18,7 @@ public class BMPlantFeatures {
             settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BANANA_JUNGLES);
         }
         if (event.getCategory() == Biome.Category.BEACH && BMConfigs.SERVER_CONFIGS.turtleFriedEggFlowersInBeaches.get()) {
-            settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACKMATH_BEACH_FLOWER_PATCH);
+            settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.TURTLE_FRIED_EGG_FLOWER_PATCH);
         }
     }
 }

@@ -6,8 +6,8 @@ import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 
 public class GlisteringArmorItem extends BMArmorItem {
-    public GlisteringArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builderIn) {
-        super(materialIn, slot, builderIn);
+    public GlisteringArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties properties) {
+        super(material, slot, properties);
     }
 
     @Override

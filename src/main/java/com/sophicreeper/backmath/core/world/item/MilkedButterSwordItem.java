@@ -10,17 +10,17 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.world.World;
 
 public class MilkedButterSwordItem extends SwordItem {
-    public MilkedButterSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
-        super(tier, attackDamageIn, attackSpeedIn, builderIn);
+    public MilkedButterSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Properties properties) {
+        super(tier, attackDamage, attackSpeed, properties);
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        if (entityLiving instanceof PlayerEntity) {
-            ((PlayerEntity) entityLiving).giveExperiencePoints(500);
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
+        if (livingEntity instanceof PlayerEntity) {
+            ((PlayerEntity) livingEntity).giveExperiencePoints(500);
         }
 
-        return super.onItemUseFinish(stack, worldIn, entityLiving);
+        return super.onItemUseFinish(stack, world, livingEntity);
     }
 
     @Override

@@ -11,8 +11,8 @@ import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 
 public class MilkedMidTermSwordItem extends SwordItem {
-    public MilkedMidTermSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
-        super(tier, attackDamageIn, attackSpeedIn, builderIn);
+    public MilkedMidTermSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Properties properties) {
+        super(tier, attackDamage, attackSpeed, properties);
     }
 
     @Override
@@ -31,11 +31,11 @@ public class MilkedMidTermSwordItem extends SwordItem {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        if (entityLiving instanceof PlayerEntity) {
-            ((PlayerEntity) entityLiving).giveExperiencePoints(500);
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
+        if (livingEntity instanceof PlayerEntity) {
+            ((PlayerEntity) livingEntity).giveExperiencePoints(500);
         }
-        return super.onItemUseFinish(stack, worldIn, entityLiving);
+        return super.onItemUseFinish(stack, world, livingEntity);
     }
 
     @Override

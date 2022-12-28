@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item.aljamicwars;
+package com.sophicreeper.backmath.core.world.item;
 
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
 import net.minecraft.item.BlockItem;
@@ -10,7 +10,7 @@ public class CharjanCoalBlockItem extends BlockItem {
     }
 
     @Override
-    public int getBurnTime(ItemStack itemStack) {
+    public int getBurnTime(ItemStack stack) {
         return 4800;
     }
 }

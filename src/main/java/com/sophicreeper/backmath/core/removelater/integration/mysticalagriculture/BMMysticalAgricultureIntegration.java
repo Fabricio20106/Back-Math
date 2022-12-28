@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item.integration.mysticalagriculture;
+package com.sophicreeper.backmath.core.removelater.integration.mysticalagriculture;
 
 /*@MysticalAgriculturePlugin*/
 public class BMMysticalAgricultureIntegration /*implements IMysticalAgriculturePlugin*/ {

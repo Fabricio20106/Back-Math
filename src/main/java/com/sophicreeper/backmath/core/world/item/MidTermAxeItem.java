@@ -3,29 +3,20 @@ package com.sophicreeper.backmath.core.world.item;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.world.World;
 
 public class MidTermAxeItem extends AxeItem {
-    public MidTermAxeItem(IItemTier tier, float attackDamageIn, float attackSpeedIn, Properties builderIn) {
-        super(tier, attackDamageIn, attackSpeedIn, builderIn);
+    public MidTermAxeItem(IItemTier tier, float attackDamage, float attackSpeed, Properties properties) {
+        super(tier, attackDamage, attackSpeed, properties);
     }
 
     @Override
     public boolean hasEffect(ItemStack stack) {
         return true;
-    }
-
-    @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        if (!worldIn.isRemote)
-            stack.damageItem(50, entityLiving, (idk) -> idk.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-        return stack;
     }
 
     @Override

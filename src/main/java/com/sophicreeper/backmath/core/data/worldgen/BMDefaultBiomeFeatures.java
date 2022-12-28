@@ -50,7 +50,7 @@ public class BMDefaultBiomeFeatures {
         settings.withStructure(StructureFeatures.VILLAGE_PLAINS);
 
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.HILLARY_LAKE);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACKMATH_FLOWER_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
         DefaultBiomeFeatures.withCavesAndCanyons(settings);
         DefaultBiomeFeatures.withLavaAndWaterLakes(settings);
         DefaultBiomeFeatures.withMonsterRoom(settings);

@@ -25,7 +25,7 @@ public class BMBlockModelGenerators extends BlockStateProvider {
     @Nonnull
     @Override
     public String getName() {
-        return "BackMath - Block States and Models";
+        return "Back Math - Block States and Models";
     }
 
     @Override
@@ -91,20 +91,17 @@ public class BMBlockModelGenerators extends BlockStateProvider {
                         modLoc("block/hillary_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
         simpleBlock(BMBlocks.RAW_ANGELIC_BLOCK.get());
         simpleBlock(BMBlocks.RAW_MID_TERM_BLOCK.get());
-        simpleBlock(BMBlocks.deepslate_angelic_ore.get());
+        simpleBlock(BMBlocks.DEEPSLATE_ANGELIC_ORE.get());
         simpleBlock(BMBlocks.DEEPSLATE_DEVIL_ORE.get());
         simpleBlock(BMBlocks.OBSIDIAN_INFUSED_MID_TERM.get());
         simpleBlock(BMBlocks.ALJAME_BIRCH_LEAVES.get());
         simpleBlock(BMBlocks.POTTED_ALJAME_BIRCH_SAPLING.get(), models().withExistingParent("potted_aljame_birch_sapling",
                 "block/flower_pot_cross").texture("plant", "block/aljame_birch_sapling"));
         simpleBlock(BMBlocks.ALJAME_BIRCH_SAPLING.get(), models().cross("aljame_birch_sapling", modLoc("block/aljame_birch_sapling")));
-
-        // lemon oak
         simpleBlock(BMBlocks.LEMON_OAK_LEAVES.get());
         simpleBlock(BMBlocks.POTTED_LEMON_OAK_SAPLING.get(), models().withExistingParent("potted_lemon_oak_sapling",
                 "block/flower_pot_cross").texture("plant", "block/lemon_oak_sapling"));
         simpleBlock(BMBlocks.LEMON_OAK_SAPLING.get(), models().cross("lemon_oak_sapling", modLoc("block/lemon_oak_sapling")));
-
         simpleBlock(BMBlocks.CRYSTALLINE_ANGELIC_ORE.get());
         doorBlock((DoorBlock) BMBlocks.ANGELIC_DOOR.get(), modLoc("block/angelic_door_bottom"), modLoc("block/angelic_door_top"));
         simpleBlock(BMBlocks.ANGELICAL_CASING.get());
@@ -280,7 +277,7 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         });
         simpleBlock(BMBlocks.WILD_CARAMELED_WHEAT.get(), models().withExistingParent("wild_carameled_wheat", "backmath:block/template_wild_crop").texture("crop", "block/wild_carameled_wheat"));
 
-        // BM 1.8.0:
+        // Back Math 1.8.0:
         horizontalBlock(BMBlocks.GLAZED_TABU.get(), modLoc("block/glazed_tabu"), modLoc("block/glazed_tabu"), modLoc("block/glazed_tabu"));
         simpleBlock(BMBlocks.CUBIC_TABU.get());
         stairsBlock((StairsBlock) BMBlocks.CUBIC_TABU_STAIRS.get(), modLoc("block/cubic_tabu"));

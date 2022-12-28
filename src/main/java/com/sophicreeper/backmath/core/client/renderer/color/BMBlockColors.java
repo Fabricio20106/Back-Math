@@ -10,9 +10,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class BMBlockColors extends BlockColors {
     public static BlockColors init() {
-        BlockColors blockcolors = new BlockColors();
-        blockcolors.register((state, reader, pos, color) -> reader != null && pos != null ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5D, 1.0D), BMBlocks.ALJAMIC_GRASS_BLOCK.get());
-        blockcolors.register((state, reader, pos, color) -> 0xFCB76B, BMBlocks.ALJAMIC_GRASS_BLOCK.get());
-        return blockcolors;
+        BlockColors blockColors = new BlockColors();
+        blockColors.register((state, reader, pos, color) -> reader != null && pos != null ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5D, 1.0D), BMBlocks.ALJAMIC_GRASS_BLOCK.get());
+        blockColors.register((state, reader, pos, color) -> 0xFCB76B, BMBlocks.ALJAMIC_GRASS_BLOCK.get());
+        return blockColors;
     }
 }

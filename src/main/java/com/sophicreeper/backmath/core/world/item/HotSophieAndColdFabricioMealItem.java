@@ -10,12 +10,12 @@ import net.minecraft.world.World;
 
 public class HotSophieAndColdFabricioMealItem extends Item {
     public HotSophieAndColdFabricioMealItem() {
-        super(new Properties().group(SophiesCursedFoods.COMIDA).maxStackSize(8).rarity(Rarity.UNCOMMON).food(new Food.Builder().hunger(2).saturation(9.5f).build()));
+        super(new Properties().group(SophiesCursedFoods.TAB).maxStackSize(8).rarity(Rarity.UNCOMMON).food(new Food.Builder().hunger(2).saturation(9.5f).build()));
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        entityLiving.attackEntityFrom(BMDamageSources.HOT_AND_COLD_MEAL, Float.MAX_VALUE);
-        return super.onItemUseFinish(stack, worldIn, entityLiving);
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
+        livingEntity.attackEntityFrom(BMDamageSources.HOT_AND_COLD_MEAL, Float.MAX_VALUE);
+        return super.onItemUseFinish(stack, world, livingEntity);
     }
 }

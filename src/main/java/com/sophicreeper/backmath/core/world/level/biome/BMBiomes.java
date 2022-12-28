@@ -18,9 +18,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class BMBiomes {
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, BackMath.MOD_ID);
 
-    public static final RegistryObject<Biome> ORIGINAL_BACK_FIELDS = BIOMES.register("original_back_fields", BMBiomes::backFieldsBiome);
+    public static final RegistryObject<Biome> ORIGINAL_BACK_FIELDS = BIOMES.register("original_back_fields", BMBiomes::originalBackFields);
     public static final RegistryObject<Biome> MODIFIED_BACK_FIELDS = BIOMES.register("modified_back_fields", BMBiomes::modifiedBackFields);
-    public static final RegistryObject<Biome> ANGELIC_WOODS = BIOMES.register("angelic_woods", BMBiomes::angelicWoodsBiome);
+    public static final RegistryObject<Biome> ANGELIC_WOODS = BIOMES.register("angelic_woods", BMBiomes::angelicWoods);
     public static final RegistryObject<Biome> ALJAN_WOODS = BIOMES.register("aljan_woods", BMBiomes::aljanWoods);
     public static final RegistryObject<Biome> CAPPED_HILLS = BIOMES.register("capped_hills", BMBiomes::cappedHills);
     public static final RegistryObject<Biome> INSOMNIAN_WOODS = BIOMES.register("insomnian_woods", BMBiomes::insomnianWoods);
@@ -30,7 +30,7 @@ public class BMBiomes {
     public static final RegistryObject<Biome> AMARACAMEL_STICKS = BIOMES.register("amaracamel_sticks", BMBiomes::amaracamelSticks);
     public static final RegistryObject<Biome> ALJAMIC_HIGHLANDS = BIOMES.register("aljamic_highlands", BMBiomes::aljamicHighlands);
 
-    private static Biome backFieldsBiome() {
+    private static Biome originalBackFields() {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
@@ -38,8 +38,8 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withGeneralBackFieldThings(settings, spawns);
 
         // 2x more flower patches and with the original back fields trees
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACKMATH_FLOWER_PATCH);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACKMATH_FLOWER_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
         BMDefaultBiomeFeatures.withOriginalBackFieldTrees(settings);
         DefaultBiomeFeatures.withOverworldOres(settings);
 
@@ -61,7 +61,7 @@ public class BMBiomes {
                 .withGrassColor(0x79C05A).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
-    private static Biome angelicWoodsBiome() {
+    private static Biome angelicWoods() {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
@@ -85,9 +85,9 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PATCH_SLEEPSHROOM);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.DISK_INSOGRAVEL);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.DISK_ALJAMIC_SAND);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_SAND_DISK);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_NORMAL);
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
@@ -105,9 +105,9 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PATCH_SLEEPSHROOM);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.DISK_INSOGRAVEL);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.DISK_ALJAMIC_SAND);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_SAND_DISK);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_DEEP);
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
@@ -125,9 +125,9 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PATCH_SLEEPSHROOM);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.DISK_INSOGRAVEL);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.DISK_ALJAMIC_SAND);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_SAND_DISK);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_DEEP);
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
@@ -146,8 +146,8 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANWOODS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PATCH_ALJANSHROOM);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.WILD_ALJAMIC_ONIONS_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_WAO_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2f).scale(0.5f).temperature(0.5F).downfall(0.8F).setEffects(
@@ -177,8 +177,8 @@ public class BMBiomes {
         DefaultBiomeFeatures.withForestGrass(settings);
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.INSOMNIANS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.INSOMNIAN_FLOWER_PATCH);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PATCH_SLEEPYSHROOM);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.INSOMNIAN_WOODS_FLOWER_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPYSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.4F).downfall(0.5F).setEffects(
@@ -196,8 +196,8 @@ public class BMBiomes {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.AMARACAMELER.get(), 50, 1, 2));
         }
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AMARACAP);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PATCH_ALJANSHROOM);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.WILD_CARAMELED_WHEAT_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AMARACAMEL_STICKS_WCW_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.SWAMP).depth(0.1f).scale(0.5f).temperature(0.4f).downfall(0.5f).setEffects(
@@ -213,7 +213,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANWOODS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PATCH_ALJANSHROOM);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(1.5f).scale(0.025f).temperature(0.3F).downfall(0.8F).setEffects(

@@ -10,11 +10,11 @@ import net.minecraft.world.World;
 
 public class PopsicleItem extends Item {
     public PopsicleItem(Food food) {
-        super(new Properties().group(SophiesCursedFoods.COMIDA).food(food));
+        super(new Properties().group(SophiesCursedFoods.TAB).food(food));
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity livingEntity) {
-        ItemStack stack1 = super.onItemUseFinish(stack, worldIn, livingEntity);
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
+        ItemStack stack1 = super.onItemUseFinish(stack, world, livingEntity);
         return livingEntity instanceof PlayerEntity && ((PlayerEntity) livingEntity).abilities.isCreativeMode ? stack1 : new ItemStack(Items.STICK);
     }
 }

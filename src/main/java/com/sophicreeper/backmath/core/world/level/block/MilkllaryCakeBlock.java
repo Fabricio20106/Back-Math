@@ -31,23 +31,23 @@ public class MilkllaryCakeBlock extends Block {
         this.setDefaultState(this.stateContainer.getBaseState().with(BITES, 0));
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
         return SHAPES[state.get(BITES)];
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        if (worldIn.isRemote) {
-            ItemStack itemstack = player.getHeldItem(handIn);
-            if (this.eatSlice(worldIn, pos, state, player).isSuccessOrConsume()) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+        if (world.isRemote) {
+            ItemStack heldItem = player.getHeldItem(hand);
+            if (this.eatSlice(world, pos, state, player).isSuccessOrConsume()) {
                 return ActionResultType.SUCCESS;
             }
 
-            if (itemstack.isEmpty()) {
+            if (heldItem.isEmpty()) {
                 return ActionResultType.CONSUME;
             }
         }
 
-        return this.eatSlice(worldIn, pos, state, player);
+        return this.eatSlice(world, pos, state, player);
     }
 
     private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
@@ -56,9 +56,9 @@ public class MilkllaryCakeBlock extends Block {
         } else {
             player.addStat(Stats.EAT_CAKE_SLICE);
             player.getFoodStats().addStats(5, 0.6F);
-            int i = state.get(BITES);
-            if (i < 6) {
-                world.setBlockState(pos, state.with(BITES, i + 1), 3);
+            int bitesState = state.get(BITES);
+            if (bitesState < 6) {
+                world.setBlockState(pos, state.with(BITES, bitesState + 1), 3);
             } else {
                 world.removeBlock(pos, false);
             }
@@ -73,19 +73,19 @@ public class MilkllaryCakeBlock extends Block {
      * returns its solidified counterpart.
      * Note that this method should ideally consider only the specific face passed in.
      */
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
-        return facing == Direction.DOWN && !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        return facing == Direction.DOWN && !state.isValidPosition(world, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        return worldIn.getBlockState(pos.down()).getMaterial().isSolid();
+    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
+        return world.getBlockState(pos.down()).getMaterial().isSolid();
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BITES);
     }
 
-    public int getComparatorInputOverride(BlockState blockState, World worldIn, BlockPos pos) {
+    public int getComparatorInputOverride(BlockState blockState, World world, BlockPos pos) {
         return (7 - blockState.get(BITES)) * 2;
     }
 
@@ -93,7 +93,7 @@ public class MilkllaryCakeBlock extends Block {
         return true;
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
         return false;
     }
 }

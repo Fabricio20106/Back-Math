@@ -8,8 +8,8 @@ import net.minecraft.item.WallOrFloorItem;
 import javax.annotation.Nullable;
 
 public class BMHeadItem extends WallOrFloorItem {
-    public BMHeadItem(Block floorBlock, Block wallBlockIn, Properties propertiesIn) {
-        super(floorBlock, wallBlockIn, propertiesIn);
+    public BMHeadItem(Block floorBlock, Block wallBlock, Properties properties) {
+        super(floorBlock, wallBlock, properties);
     }
 
     @Nullable

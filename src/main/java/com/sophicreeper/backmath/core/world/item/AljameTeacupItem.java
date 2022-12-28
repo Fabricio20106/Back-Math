@@ -28,7 +28,7 @@ public class AljameTeacupItem extends Item {
         return SoundEvents.ENTITY_GENERIC_DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        return DrinkHelper.startDrinking(worldIn, playerIn, handIn);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        return DrinkHelper.startDrinking(world, player, hand);
     }
 }

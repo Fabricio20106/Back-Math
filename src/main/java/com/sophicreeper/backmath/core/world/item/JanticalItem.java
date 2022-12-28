@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item.aljamicwars;
+package com.sophicreeper.backmath.core.world.item;
 
 import com.sophicreeper.backmath.core.world.level.block.AljanPortalStandBlock;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
@@ -23,9 +23,9 @@ public class JanticalItem extends Item {
             if (world.isRemote) {
                 return ActionResultType.SUCCESS;
             } else {
-                BlockState state1 = state.with(AljanPortalStandBlock.JANTICAL, true);
-                Block.nudgeEntitiesWithNewState(state, state1, world, pos);
-                world.setBlockState(pos, state1, 2);
+                BlockState withJanticalState = state.with(AljanPortalStandBlock.JANTICAL, true);
+                Block.nudgeEntitiesWithNewState(state, withJanticalState, world, pos);
+                world.setBlockState(pos, withJanticalState, 2);
                 world.updateComparatorOutputLevel(pos, BMBlocks.ALJAN_PORTAL_STAND.get());
                 context.getItem().shrink(1);
                 world.playEvent(1503, pos, 0);

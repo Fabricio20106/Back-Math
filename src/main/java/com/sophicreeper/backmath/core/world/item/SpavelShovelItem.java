@@ -13,7 +13,7 @@ import net.minecraft.potion.Effects;
 
 public class SpavelShovelItem extends ShovelItem {
     public SpavelShovelItem() {
-        super(BMStaticFields.SPAREY_SET, 1.5f, -3.0F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(BMStaticFields.SPAREY_SET, 1.5f, -3.0F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
     }
 
     @Override

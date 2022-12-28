@@ -25,9 +25,9 @@ public class QueenSophieSummonerStaffItem extends SpawnEggItem {
     private static final List<QueenSophieSummonerStaffItem> UNADDED_EGGS = Lists.newArrayList();
     private final Supplier<? extends EntityType<? extends Entity>> typeSupplier;
 
-    public QueenSophieSummonerStaffItem(Supplier<? extends EntityType<? extends Entity>> typeIn, int primaryColor, int secondaryColor, Properties properties) {
+    public QueenSophieSummonerStaffItem(Supplier<? extends EntityType<? extends Entity>> type, int primaryColor, int secondaryColor, Properties properties) {
         super(null, primaryColor, secondaryColor, properties);
-        this.typeSupplier = typeIn;
+        this.typeSupplier = type;
         UNADDED_EGGS.add(this);
     }
 
@@ -56,9 +56,9 @@ public class QueenSophieSummonerStaffItem extends SpawnEggItem {
     @Override
     public EntityType<?> getType(@Nullable CompoundNBT compoundNBT) {
         if (compoundNBT != null && compoundNBT.contains("EntityTag", 10)) {
-            CompoundNBT compoundnbt = compoundNBT.getCompound("EntityTag");
-            if (compoundnbt.contains("id", 8)) {
-                return EntityType.byKey(compoundnbt.getString("id")).orElse(this.typeSupplier.get());
+            CompoundNBT entityTagNBT = compoundNBT.getCompound("EntityTag");
+            if (entityTagNBT.contains("id", 8)) {
+                return EntityType.byKey(entityTagNBT.getString("id")).orElse(this.typeSupplier.get());
             }
         }
 
@@ -67,7 +67,7 @@ public class QueenSophieSummonerStaffItem extends SpawnEggItem {
 
     // Adds tooltips for this item:
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         // Supposed to be an empty space to represent an actual weapon, like a sword.
         tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
         // "When in main hand:".
@@ -76,6 +76,6 @@ public class QueenSophieSummonerStaffItem extends SpawnEggItem {
         tooltip.add(new TranslationTextComponent("tooltip.backmath.qsss_summon_damage"));
         // Terraria like tooltip, also says what food is used to tame her. Like parrots that don't like cookies, QSP's don't like aljame.
         tooltip.add(new TranslationTextComponent("tooltip.backmath.qsss_desc"));
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+        super.addInformation(stack, world, tooltip, flag);
     }
 }

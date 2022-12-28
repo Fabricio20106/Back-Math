@@ -12,7 +12,7 @@ import net.minecraft.potion.Effects;
 
 public class CustomSpareySwordItem extends SwordItem {
     public CustomSpareySwordItem(IItemTier tier, Rarity rarity) {
-        super(tier, 3, -2.4F, new Properties().isImmuneToFire().rarity(rarity).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(tier, 3, -2.4F, new Properties().isImmuneToFire().rarity(rarity).group(BMWeaponryTab.TAB));
     }
 
     @Override

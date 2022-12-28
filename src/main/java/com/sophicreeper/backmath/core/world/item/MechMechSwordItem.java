@@ -9,7 +9,7 @@ import net.minecraft.item.SwordItem;
 
 public class MechMechSwordItem extends SwordItem {
     public MechMechSwordItem() {
-        super(BMStaticFields.MECH_MECH_SET, 9, 2.0f, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(BMStaticFields.MECH_MECH_SET, 9, 2.0f, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
     }
 
     // When hitting an entity:

@@ -8,8 +8,8 @@ import net.minecraft.item.Items;
 import net.minecraft.item.SwordItem;
 
 public class MilkedSwordItem extends SwordItem {
-    public MilkedSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
-        super(tier, attackDamageIn, attackSpeedIn, builderIn);
+    public MilkedSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Properties builder) {
+        super(tier, attackDamage, attackSpeed, builder);
     }
 
     @Override

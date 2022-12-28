@@ -18,7 +18,7 @@ import net.minecraft.potion.Effects;
 
 public class DevilSpareySwordItem extends SwordItem {
     public DevilSpareySwordItem() {
-        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
     }
 
     // When hitting an entity:

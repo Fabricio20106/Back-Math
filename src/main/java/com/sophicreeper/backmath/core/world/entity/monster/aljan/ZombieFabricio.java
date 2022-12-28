@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
-import com.sophicreeper.backmath.core.world.entity.goal.BMZombieFabricioAttackGoal;
+import com.sophicreeper.backmath.core.world.entity.goal.ZombieFabricioAttackGoal;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
 import net.minecraft.block.BlockState;
@@ -37,7 +37,6 @@ import javax.annotation.Nullable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -57,7 +56,7 @@ public class ZombieFabricio extends MonsterEntity {
     }
 
     protected void applyEntityAI() {
-        this.goalSelector.addGoal(2, new BMZombieFabricioAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(2, new ZombieFabricioAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Malaika.class, true));

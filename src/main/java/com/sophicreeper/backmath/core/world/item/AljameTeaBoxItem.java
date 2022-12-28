@@ -13,10 +13,10 @@ public class AljameTeaBoxItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack stack = playerIn.getHeldItem(handIn);
-        playerIn.addItemStackToInventory(new ItemStack(AxolotlTest.ALJAME_TEA.get(), 4));
-        stack.shrink(1);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getHeldItem(hand);
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.ALJAME_TEA.get(), 4));
+        heldItem.shrink(1);
+        return super.onItemRightClick(world, player, hand);
     }
 }

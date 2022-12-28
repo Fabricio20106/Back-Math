@@ -97,24 +97,5 @@
         "stream": true
       }
     ]
-  },
-  "entity.friend_sophie.shoot": {
-    "category": "hostile",
-    "subtitle": "entity.friend_sophie.shoot",
-    "sounds": [
-      {
-        "name": "minecraft:entity/skeleton/shoot",
-        "stream": true
-      }
-    ]
-  },
-  "entity.queen_sophie.summon_spell": {
-    "category": "hostile",
-    "subtitle": "entity.queen_sophie.summon_spell",
-    "sounds": [
-      {
-        "name": "minecraft:mob/evocation_illar/cast1"
-      }
-    ]
   }
 }

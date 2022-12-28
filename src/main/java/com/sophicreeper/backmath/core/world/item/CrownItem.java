@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import javax.annotation.Nullable;
 
 public class CrownItem extends Item {
-    public CrownItem(Properties builder) {
-        super(builder);
+    public CrownItem(Properties properties) {
+        super(properties);
     }
 
     @Nullable

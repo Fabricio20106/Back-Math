@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item;
+package com.sophicreeper.backmath.core.removelater;
 
 import com.sophicreeper.backmath.core.client.BackMath;
 import net.minecraft.client.util.ITooltipFlag;
@@ -18,10 +18,10 @@ public class DescriptiveFoodItem extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".when_eaten").mergeStyle(TextFormatting.DARK_GREEN));
         tooltip.add(new TranslationTextComponent("foodtip." + BackMath.MOD_ID + "." + this.getTranslationKey() + ".nutrition").mergeStyle(TextFormatting.DARK_GREEN));
         tooltip.add(new TranslationTextComponent("foodtip." + BackMath.MOD_ID + this.getTranslationKey() + ".saturationMod").mergeStyle(TextFormatting.DARK_GREEN));
-        super.addInformation(stack, worldIn, tooltip, flagIn);
+        super.addInformation(stack, world, tooltip, flag);
     }
 }

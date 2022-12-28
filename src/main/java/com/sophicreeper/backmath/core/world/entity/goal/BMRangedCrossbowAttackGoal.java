@@ -23,10 +23,10 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
     private int attackDelay;
     private int updatePackDelay;
 
-    public BMRangedCrossbowAttackGoal(T mob, double speedModified, float attackRadiusSqr) {
+    public BMRangedCrossbowAttackGoal(T mob, double speedModified, float attackRadiusSquared) {
         this.mob = mob;
         this.speedModified = speedModified;
-        this.attackRadiusSqr = attackRadiusSqr * attackRadiusSqr;
+        this.attackRadiusSqr = attackRadiusSquared * attackRadiusSquared;
         this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     }
 
@@ -63,9 +63,9 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
      * Keep ticking a continuous task that has already been started
      */
     public void tick() {
-        LivingEntity livingentity = this.mob.getAttackTarget();
-        if (livingentity != null) {
-            boolean flag = this.mob.getEntitySenses().canSee(livingentity);
+        LivingEntity livingEntity = this.mob.getAttackTarget();
+        if (livingEntity != null) {
+            boolean flag = this.mob.getEntitySenses().canSee(livingEntity);
             boolean flag1 = this.seeTime > 0;
             if (flag != flag1) {
                 this.seeTime = 0;
@@ -77,12 +77,12 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                 --this.seeTime;
             }
 
-            double d0 = this.mob.getDistanceSq(livingentity);
+            double d0 = this.mob.getDistanceSq(livingEntity);
             boolean flag2 = (d0 > (double) this.attackRadiusSqr || this.seeTime < 5) && this.attackDelay == 0;
             if (flag2) {
                 --this.updatePackDelay;
                 if (this.updatePackDelay <= 0) {
-                    this.mob.getNavigator().tryMoveToEntityLiving(livingentity, this.func_220747_j() ? this.speedModified : this.speedModified * 0.5D);
+                    this.mob.getNavigator().tryMoveToEntityLiving(livingEntity, this.func_220747_j() ? this.speedModified : this.speedModified * 0.5D);
                     this.updatePackDelay = pathfinding_delay_range.getRandomWithinRange(this.mob.getRNG());
                 }
             } else {
@@ -90,7 +90,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                 this.mob.getNavigator().clearPath();
             }
 
-            this.mob.getLookController().setLookPositionWithEntity(livingentity, 30.0F, 30.0F);
+            this.mob.getLookController().setLookPositionWithEntity(livingEntity, 30.0F, 30.0F);
             if (this.crossbowState == BMRangedCrossbowAttackGoal.CrossbowState.UNCHARGED) {
                 if (!flag2) {
                     this.mob.setActiveHand(ProjectileHelper.getHandWith(this.mob, AxolotlTest.ANGELIC_CROSSBOW.get()));
@@ -103,8 +103,8 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                 }
 
                 int i = this.mob.getItemInUseMaxCount();
-                ItemStack itemstack = this.mob.getActiveItemStack();
-                if (i >= CrossbowItem.getChargeTime(itemstack)) {
+                ItemStack activeStack = this.mob.getActiveItemStack();
+                if (i >= CrossbowItem.getChargeTime(activeStack)) {
                     this.mob.stopActiveHand();
                     this.crossbowState = BMRangedCrossbowAttackGoal.CrossbowState.CHARGED;
                     this.attackDelay = 20 + this.mob.getRNG().nextInt(20);
@@ -116,9 +116,9 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                     this.crossbowState = BMRangedCrossbowAttackGoal.CrossbowState.READY_TO_ATTACK;
                 }
             } else if (this.crossbowState == BMRangedCrossbowAttackGoal.CrossbowState.READY_TO_ATTACK && flag) {
-                this.mob.attackEntityWithRangedAttack(livingentity, 1.0F);
-                ItemStack itemstack1 = this.mob.getHeldItem(ProjectileHelper.getHandWith(this.mob, AxolotlTest.ANGELIC_CROSSBOW.get()));
-                CrossbowItem.setCharged(itemstack1, false);
+                this.mob.attackEntityWithRangedAttack(livingEntity, 1.0F);
+                ItemStack projectileStack = this.mob.getHeldItem(ProjectileHelper.getHandWith(this.mob, AxolotlTest.ANGELIC_CROSSBOW.get()));
+                CrossbowItem.setCharged(projectileStack, false);
                 this.crossbowState = BMRangedCrossbowAttackGoal.CrossbowState.UNCHARGED;
             }
 

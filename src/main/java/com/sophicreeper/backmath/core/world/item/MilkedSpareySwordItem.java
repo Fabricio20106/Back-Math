@@ -12,7 +12,7 @@ import net.minecraft.potion.Effects;
 
 public class MilkedSpareySwordItem extends MilkedSwordItem {
     public MilkedSpareySwordItem() {
-        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
     }
 
     @Override

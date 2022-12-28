@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.goal;
 
+import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -21,16 +22,16 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
     private boolean strafingBackwards;
     private int strafingTime = -1;
 
-    public BMRangedBowAttackGoal(T mob, double moveSpeedAmpIn, int attackCooldownIn, float maxAttackDistanceIn) {
+    public BMRangedBowAttackGoal(T mob, double moveSpeedAmplifier, int attackCooldown, float maxAttackDistance) {
         this.entity = mob;
-        this.moveSpeedAmp = moveSpeedAmpIn;
-        this.attackCooldown = attackCooldownIn;
-        this.maxAttackDistance = maxAttackDistanceIn * maxAttackDistanceIn;
+        this.moveSpeedAmp = moveSpeedAmplifier;
+        this.attackCooldown = attackCooldown;
+        this.maxAttackDistance = maxAttackDistance * maxAttackDistance;
         this.setMutexFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     }
 
-    public void setAttackCooldown(int attackCooldownIn) {
-        this.attackCooldown = attackCooldownIn;
+    public void setAttackCooldown(int attackCooldown) {
+        this.attackCooldown = attackCooldown;
     }
 
     /**
@@ -75,10 +76,10 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
      * Keep ticking a continuous task that has already been started
      */
     public void tick() {
-        LivingEntity livingentity = this.entity.getAttackTarget();
-        if (livingentity != null) {
-            double d0 = this.entity.getDistanceSq(livingentity.getPosX(), livingentity.getPosY(), livingentity.getPosZ());
-            boolean flag = this.entity.getEntitySenses().canSee(livingentity);
+        LivingEntity livingEntity = this.entity.getAttackTarget();
+        if (livingEntity != null) {
+            double d0 = this.entity.getDistanceSq(livingEntity.getPosX(), livingEntity.getPosY(), livingEntity.getPosZ());
+            boolean flag = this.entity.getEntitySenses().canSee(livingEntity);
             boolean flag1 = this.seeTime > 0;
             if (flag != flag1) {
                 this.seeTime = 0;
@@ -94,7 +95,7 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
                 this.entity.getNavigator().clearPath();
                 ++this.strafingTime;
             } else {
-                this.entity.getNavigator().tryMoveToEntityLiving(livingentity, this.moveSpeedAmp);
+                this.entity.getNavigator().tryMoveToEntityLiving(livingEntity, this.moveSpeedAmp);
                 this.strafingTime = -1;
             }
 
@@ -118,9 +119,9 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
                 }
 
                 this.entity.getMoveHelper().strafe(this.strafingBackwards ? -0.5F : 0.5F, this.strafingClockwise ? 0.5F : -0.5F);
-                this.entity.faceEntity(livingentity, 30.0F, 30.0F);
+                this.entity.faceEntity(livingEntity, 30.0F, 30.0F);
             } else {
-                this.entity.getLookController().setLookPositionWithEntity(livingentity, 30.0F, 30.0F);
+                this.entity.getLookController().setLookPositionWithEntity(livingEntity, 30.0F, 30.0F);
             }
 
             if (this.entity.isHandActive()) {
@@ -130,12 +131,12 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
                     int i = this.entity.getItemInUseMaxCount();
                     if (i >= 20) {
                         this.entity.resetActiveHand();
-                        this.entity.attackEntityWithRangedAttack(livingentity, BowItem.getArrowVelocity(i));
+                        this.entity.attackEntityWithRangedAttack(livingEntity, BowItem.getArrowVelocity(i));
                         this.attackTime = this.attackCooldown;
                     }
                 }
             } else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-                this.entity.setActiveHand(ProjectileHelper.getHandWith(this.entity, Items.BOW));
+                this.entity.setActiveHand(ProjectileHelper.getHandWith(this.entity, AxolotlTest.ANGELIC_BOW.get()));
             }
         }
     }

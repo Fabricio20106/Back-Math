@@ -19,7 +19,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
 
     @Override
     public String getName() {
-        return "BackMath - Item Tags";
+        return "Back Math - Item Tags";
     }
 
     @Override

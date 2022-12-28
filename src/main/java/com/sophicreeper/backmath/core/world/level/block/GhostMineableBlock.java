@@ -27,7 +27,7 @@ public class GhostMineableBlock extends Block {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader worldIn, BlockPos pos) {
+    public float getAmbientOcclusionLightValue(BlockState state, IBlockReader world, BlockPos pos) {
         return 1.0F;
     }
 
@@ -35,7 +35,7 @@ public class GhostMineableBlock extends Block {
         return true;
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
-        return type == PathType.AIR && !this.canCollide || super.allowsMovement(state, worldIn, pos, type);
+    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
+        return type == PathType.AIR && !this.canCollide || super.allowsMovement(state, world, pos, type);
     }
 }

@@ -16,6 +16,7 @@ public class BMCarverGeneration {
             settings.withCarver(GenerationStage.Carving.AIR, BMConfiguredCarvers.ALJAN_CAVE);
             settings.withCarver(GenerationStage.Carving.AIR, BMConfiguredCarvers.ALJAN_CANYON);
         }
+
         if (Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())) {
             settings.withCarver(GenerationStage.Carving.LIQUID, BMConfiguredCarvers.UNDERWATER_ALJAN_CAVE);
         }

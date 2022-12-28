@@ -3,9 +3,9 @@ package com.sophicreeper.backmath.core.world.item.glistering;
 import com.sophicreeper.backmath.core.world.item.BMShieldItem;
 import net.minecraft.item.ItemStack;
 
-public class MidTermShieldItem extends BMShieldItem {
-    public MidTermShieldItem(Properties builder) {
-        super(builder);
+public class GlisteringBMShieldItem extends BMShieldItem {
+    public GlisteringBMShieldItem(Properties properties) {
+        super(properties);
     }
 
     @Override

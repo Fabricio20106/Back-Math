@@ -156,20 +156,20 @@ public class BMFeatures {
             .withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(8))));
 
     // Flowers.
-    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> IMMUTABLE_LIST_BACKMATH_FLOWERS = ImmutableList.of(
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> BACK_FIELD_FLOWERS_IL = ImmutableList.of(
             () -> Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.FRIED_EGG_FLOWER), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()),
             () -> Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.RED_YELLOW_FLOWER.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build())
     );
 
-    public static final ConfiguredFeature<?, ?> BACKMATH_FLOWER_PATCH = register("backmath_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
-            new SingleRandomFeature(IMMUTABLE_LIST_BACKMATH_FLOWERS)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.VEGETATION_PLACEMENT)
+    public static final ConfiguredFeature<?, ?> BACK_FIELD_FLOWER_PATCH = register("backmath_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
+            new SingleRandomFeature(BACK_FIELD_FLOWERS_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.VEGETATION_PLACEMENT)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
-    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> KINDA_OF_LIST_TURTLE_FRIED_EGG_FLOWER = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> TURTLE_FRIED_EGG_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.TURTLE_FRIED_EGG_FLOWER), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
-    public static final ConfiguredFeature<?, ?> BACKMATH_BEACH_FLOWER_PATCH = register("backmath_beach_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(new
-            SingleRandomFeature(KINDA_OF_LIST_TURTLE_FRIED_EGG_FLOWER)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.
+    public static final ConfiguredFeature<?, ?> TURTLE_FRIED_EGG_FLOWER_PATCH = register("backmath_beach_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(new
+            SingleRandomFeature(TURTLE_FRIED_EGG_FLOWER_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.
             VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
     /**
@@ -177,33 +177,33 @@ public class BMFeatures {
      */
 
     // Vegetation patches.
-    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> IMMUTABLE_LIST_ALJAN_FLOWERS = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ALJAN_WOODS_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ALJAN_TULIP.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
     public static final ConfiguredFeature<?, ?> ALJAN_WOODS_FLOWER_PATCH = register("aljan_woods_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
-            new SingleRandomFeature(IMMUTABLE_LIST_ALJAN_FLOWERS)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.VEGETATION_PLACEMENT)
+            new SingleRandomFeature(ALJAN_WOODS_FLOWER_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.VEGETATION_PLACEMENT)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
-    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> IMMUTABLE_LIST_CAPPED_HILLS_FLOWERS = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> CAPPED_HILLS_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.POISON_ROSE.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
     public static final ConfiguredFeature<?, ?> CAPPED_HILLS_FLOWER_PATCH = register("capped_hills_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
-            new SingleRandomFeature(IMMUTABLE_LIST_CAPPED_HILLS_FLOWERS)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.VEGETATION_PLACEMENT)
+            new SingleRandomFeature(CAPPED_HILLS_FLOWER_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.VEGETATION_PLACEMENT)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
-    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> IMMUTABLE_LIST_INSOMNIAN_FLOWERS = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> INSOMNIAN_WOODS_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.GRASS.getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()), () -> Feature.RANDOM_PATCH.withConfiguration(
                     new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.INSOMNIAN_TULIP.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
-    public static final ConfiguredFeature<?, ?> INSOMNIAN_FLOWER_PATCH = register("insomnian_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
-            new SingleRandomFeature(IMMUTABLE_LIST_INSOMNIAN_FLOWERS)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
+    public static final ConfiguredFeature<?, ?> INSOMNIAN_WOODS_FLOWER_PATCH = register("insomnian_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
+            new SingleRandomFeature(INSOMNIAN_WOODS_FLOWER_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
             .withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
-    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> IMMUTABLE_LIST_AMARACAMEL_STICKS_WCW = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> AMARACAMEL_STICKS_WCW_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.WILD_CARAMELED_WHEAT.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
-    public static final ConfiguredFeature<?, ?> WILD_CARAMELED_WHEAT_PATCH = register("wild_carameled_wheat_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
-            new SingleRandomFeature(IMMUTABLE_LIST_AMARACAMEL_STICKS_WCW)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
+    public static final ConfiguredFeature<?, ?> AMARACAMEL_STICKS_WCW_PATCH = register("wild_carameled_wheat_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
+            new SingleRandomFeature(AMARACAMEL_STICKS_WCW_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
             .withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
     // Underground block blobs.
@@ -264,17 +264,17 @@ public class BMFeatures {
                     .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
 
     // Mushroom patches. They aren't actually being generated because they can't be placed on grass block at plain sunlight.
-    public static final ConfiguredFeature<?, ?> PATCH_ALJANSHROOM = register("patch_aljanshroom", Feature.RANDOM_PATCH.withConfiguration(
+    public static final ConfiguredFeature<?, ?> ALJANSHROOM_PATCH = register("patch_aljanshroom", Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ALJANSHROOM.get().getDefaultState()), SimpleBlockPlacer.PLACER).tries(64).func_227317_b_().build()));
 
-    public static final ConfiguredFeature<?, ?> PATCH_SLEEPSHROOM = register("patch_sleepshroom", Feature.RANDOM_PATCH.withConfiguration(
+    public static final ConfiguredFeature<?, ?> SLEEPSHROOM_PATCH = register("patch_sleepshroom", Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.SLEEPSHROOM.get().getDefaultState()), SimpleBlockPlacer.PLACER).tries(64).func_227317_b_().build()));
 
-    public static final ConfiguredFeature<?, ?> PATCH_SLEEPYSHROOM = register("patch_sleepyshroom", Feature.RANDOM_PATCH.withConfiguration(
+    public static final ConfiguredFeature<?, ?> SLEEPYSHROOM_PATCH = register("patch_sleepyshroom", Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.SLEEPYSHROOM.get().getDefaultState()), SimpleBlockPlacer.PLACER).tries(64).func_227317_b_().build()));
 
     // Ocean block patches (like clay), and they're actually called "disks".
-    public static final ConfiguredFeature<?, ?> DISK_INSOGRAVEL = register("disk_insogravel", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.INSOGRAVEL.get().getDefaultState(),
+    public static final ConfiguredFeature<?, ?> INSOGRAVEL_DISK = register("disk_insogravel", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.INSOGRAVEL.get().getDefaultState(),
             FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), BMBlocks.INSOGRAVEL.get().getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
 
     // Used in world generation to make trees generate randomly, and not in every 4-chunk borders.
@@ -328,14 +328,14 @@ public class BMFeatures {
             .withChance(0.2f), GUAVA_TREE.withChance(0.1f)), GUAVA_TREE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(
                     new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
 
-    public static final ConfiguredFeature<?, ?> DISK_ALJAMIC_SAND = register("disk_aljamic_sand", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.ALJAMIC_SAND.get().getDefaultState(),
+    public static final ConfiguredFeature<?, ?> ALJAMIC_SAND_DISK = register("disk_aljamic_sand", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.ALJAMIC_SAND.get().getDefaultState(),
             FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), BMBlocks.ALJAMIC_SAND.get().getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
 
-    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> IMMUTABLE_LIST_ALJAN_WOODS_WCW = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ALJAN_WOODS_WAO_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.WILD_ALJAMIC_ONIONS.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
-    public static final ConfiguredFeature<?, ?> WILD_ALJAMIC_ONIONS_PATCH = register("wild_aljamic_onions_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
-                    new SingleRandomFeature(IMMUTABLE_LIST_ALJAN_WOODS_WCW)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
+    public static final ConfiguredFeature<?, ?> ALJAN_WOODS_WAO_PATCH = register("wild_aljamic_onions_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
+                    new SingleRandomFeature(ALJAN_WOODS_WAO_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
             .withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
     /**

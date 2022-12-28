@@ -12,7 +12,7 @@ public class TurtleFriedEggFlowerBlock extends FlowerBlock {
         super(Effects.WATER_BREATHING, 12, properties);
     }
 
-    protected boolean isValidGround(BlockState state, IBlockReader worldIn, BlockPos pos) {
-        return super.isValidGround(state, worldIn, pos) || state.isIn(BlockTags.SAND);
+    protected boolean isValidGround(BlockState state, IBlockReader world, BlockPos pos) {
+        return super.isValidGround(state, world, pos) || state.isIn(BlockTags.SAND);
     }
 }

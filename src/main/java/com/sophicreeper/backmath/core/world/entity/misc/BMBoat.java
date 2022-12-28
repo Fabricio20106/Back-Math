@@ -40,19 +40,19 @@ public class BMBoat extends BoatEntity {
     @Override
     protected void registerData() {
         super.registerData();
-        this.dataManager.register(WOOD_TYPE, "redwood");
+        this.dataManager.register(WOOD_TYPE, "aljanwood");
     }
 
     @Override
-    protected void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        compound.putString("Type", this.getWoodType());
+    protected void readAdditional(CompoundNBT compoundNBT) {
+        super.readAdditional(compoundNBT);
+        compoundNBT.putString("Type", this.getWoodType());
     }
 
     @Override
-    protected void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putString("Type", this.getWoodType());
+    protected void writeAdditional(CompoundNBT compoundNBT) {
+        super.writeAdditional(compoundNBT);
+        compoundNBT.putString("Type", this.getWoodType());
     }
 
     public String getWoodType() {

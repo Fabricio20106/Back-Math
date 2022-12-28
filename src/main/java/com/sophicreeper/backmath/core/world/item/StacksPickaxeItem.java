@@ -13,7 +13,7 @@ import net.minecraft.potion.Effects;
 
 public class StacksPickaxeItem extends PickaxeItem {
     public StacksPickaxeItem() {
-        super(BMStaticFields.SPAREY_SET, 1, -2.8F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(BMStaticFields.SPAREY_SET, 1, -2.8F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
     }
 
     @Override

@@ -17,8 +17,6 @@ public class BMSounds {
     public static SoundEvent RECORD_RICK_ASTLEY_NEVER_GONNA_GIVE_YOU_UP;
     public static SoundEvent RECORD_MANESKIN_BEGGIN;
     public static SoundEvent RECORD_JUSTIN_BIEBER_STAY;
-    public static SoundEvent ENTITY_WANDERER_SOPHIE_SHOOT;
-    public static SoundEvent ENTITY_QUEEN_SOPHIE_SUMMON_SPELL;
 
     public static void registerSounds() {
         RECORD_NATHAN_EVANS_WELLERMAN = registerSound("record.nathan_evans.wellerman");
@@ -32,8 +30,6 @@ public class BMSounds {
         RECORD_RICK_ASTLEY_NEVER_GONNA_GIVE_YOU_UP = registerSound("record.rick_astley.never_gonna_give_you_up");
         RECORD_MANESKIN_BEGGIN = registerSound("record.maneskin.beggin");
         RECORD_JUSTIN_BIEBER_STAY = registerSound("record.justin_bieber.stay");
-        ENTITY_WANDERER_SOPHIE_SHOOT = registerSound("entity.friend_sophie.shoot");
-        ENTITY_QUEEN_SOPHIE_SUMMON_SPELL = registerSound("entity.queen_sophie.summon_spell");
     }
 
     private static SoundEvent registerSound(String name) {

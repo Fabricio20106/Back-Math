@@ -39,8 +39,8 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
             ArcherInsomniaSophie.this.setAggroed(true);
         }
     };
-    public ArcherInsomniaSophie(EntityType<ArcherInsomniaSophie> type, World worldIn) {
-        super(type, worldIn);
+    public ArcherInsomniaSophie(EntityType<ArcherInsomniaSophie> type, World world) {
+        super(type, world);
         this.setCombatTask();
         this.experienceValue = 3 + this.world.rand.nextInt(6);
     }
@@ -48,10 +48,9 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     public void updateRidden() {
         super.updateRidden();
         if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity creatureentity = (CreatureEntity)this.getRidingEntity();
-            this.renderYawOffset = creatureentity.renderYawOffset;
+            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
+            this.renderYawOffset = entity.renderYawOffset;
         }
-
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
@@ -61,26 +60,26 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
-        this.setEnchantmentBasedOnDifficulty(difficultyIn);
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        this.setEnchantmentBasedOnDifficulty(difficulty);
         this.setCombatTask();
-        return spawnDataIn;
+        return spawnData;
     }
 
     public void setCombatTask() {
         if (this.world != null && !this.world.isRemote) {
             this.goalSelector.removeGoal(this.aiAttackOnCollide);
             this.goalSelector.removeGoal(this.aiArrowAttack);
-            ItemStack stack = this.getHeldItem(ProjectileHelper.getHandWith(this, AxolotlTest.ANGELIC_BOW.get()));
-            if (stack.getItem() instanceof BowItem) {
-                int i = 20;
+            ItemStack bowStack = this.getHeldItem(ProjectileHelper.getHandWith(this, AxolotlTest.ANGELIC_BOW.get()));
+            if (bowStack.getItem() instanceof BowItem) {
+                int attackCooldown = 20;
                 if (this.world.getDifficulty() != Difficulty.HARD) {
-                    i = 40;
+                    attackCooldown = 40;
                 }
 
-                this.aiArrowAttack.setAttackCooldown(i);
+                this.aiArrowAttack.setAttackCooldown(attackCooldown);
                 this.goalSelector.addGoal(4, this.aiArrowAttack);
             } else {
                 this.goalSelector.addGoal(4, this.aiAttackOnCollide);

@@ -47,8 +47,8 @@ public class AljamicFarmlandBlock extends Block {
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldReader, BlockPos pos) {
-        BlockState upperBlock = worldReader.getBlockState(pos.up());
-        return !upperBlock.getMaterial().isSolid() || upperBlock.getBlock() instanceof FenceGateBlock || upperBlock.getBlock() instanceof MovingPistonBlock;
+        BlockState aboveBlock = worldReader.getBlockState(pos.up());
+        return !aboveBlock.getMaterial().isSolid() || aboveBlock.getBlock() instanceof FenceGateBlock || aboveBlock.getBlock() instanceof MovingPistonBlock;
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
@@ -59,69 +59,68 @@ public class AljamicFarmlandBlock extends Block {
         return true;
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
 
-    public void tick(BlockState state, ServerWorld worldIn, BlockPos pos, Random rand) {
-        if (!state.isValidPosition(worldIn, pos)) {
-            turnToAljamicDirt(state, worldIn, pos);
+    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+        if (!state.isValidPosition(world, pos)) {
+            turnToAljamicDirt(state, world, pos);
         }
     }
 
     /**
      * Performs a random tick on a block.
      */
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        int i = state.get(MOISTURE);
-        if (!hasWater(worldIn, pos) && !worldIn.isRainingAt(pos.up())) {
-            if (i > 0) {
-                worldIn.setBlockState(pos, state.with(MOISTURE, i - 1), 2);
-            } else if (!hasCrops(worldIn, pos)) {
-                turnToAljamicDirt(state, worldIn, pos);
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        int moistureState = state.get(MOISTURE);
+        if (!hasWater(world, pos) && !world.isRainingAt(pos.up())) {
+            if (moistureState > 0) {
+                world.setBlockState(pos, state.with(MOISTURE, moistureState - 1), 2);
+            } else if (!hasCrops(world, pos)) {
+                turnToAljamicDirt(state, world, pos);
             }
-        } else if (i < 7) {
-            worldIn.setBlockState(pos, state.with(MOISTURE, 7), 2);
+        } else if (moistureState < 7) {
+            world.setBlockState(pos, state.with(MOISTURE, 7), 2);
         }
-
     }
 
     /**
      * Block's chance to react to a living entity falling on it.
      */
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) {
-        if (!worldIn.isRemote && ForgeHooks.onFarmlandTrample(worldIn, pos, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), fallDistance, entityIn)) { // Forge: Move logic to Entity#canTrample
+    public void onFallenUpon(World worldIn, BlockPos pos, Entity entity, float fallDistance) {
+        if (!worldIn.isRemote && ForgeHooks.onFarmlandTrample(worldIn, pos, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), fallDistance, entity)) { // Forge: Move logic to Entity#canTrample
             turnToAljamicDirt(worldIn.getBlockState(pos), worldIn, pos);
         }
 
-        super.onFallenUpon(worldIn, pos, entityIn, fallDistance);
+        super.onFallenUpon(worldIn, pos, entity, fallDistance);
     }
 
-    public static void turnToAljamicDirt(BlockState state, World worldIn, BlockPos pos) {
-        worldIn.setBlockState(pos, nudgeEntitiesWithNewState(state, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), worldIn, pos));
+    public static void turnToAljamicDirt(BlockState state, World world, BlockPos pos) {
+        world.setBlockState(pos, nudgeEntitiesWithNewState(state, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), world, pos));
     }
 
-    private boolean hasCrops(IBlockReader worldIn, BlockPos pos) {
-        BlockState plant = worldIn.getBlockState(pos.up());
-        BlockState state = worldIn.getBlockState(pos);
-        return plant.getBlock() instanceof IPlantable && state.canSustainPlant(worldIn, pos, Direction.UP, (IPlantable) plant.getBlock());
+    private boolean hasCrops(IBlockReader world, BlockPos pos) {
+        BlockState plant = world.getBlockState(pos.up());
+        BlockState state = world.getBlockState(pos);
+        return plant.getBlock() instanceof IPlantable && state.canSustainPlant(world, pos, Direction.UP, (IPlantable) plant.getBlock());
     }
 
-    private static boolean hasWater(IWorldReader worldIn, BlockPos pos) {
-        for(BlockPos blockpos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4))) {
-            if (worldIn.getFluidState(blockpos).isTagged(FluidTags.WATER)) {
+    private static boolean hasWater(IWorldReader world, BlockPos pos) {
+        for(BlockPos blockPos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4))) {
+            if (world.getFluidState(blockPos).isTagged(FluidTags.WATER)) {
                 return true;
             }
         }
 
-        return FarmlandWaterManager.hasBlockWaterTicket(worldIn, pos);
+        return FarmlandWaterManager.hasBlockWaterTicket(world, pos);
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(MOISTURE);
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader worldIn, BlockPos pos, PathType type) {
+    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
         return false;
     }
 }

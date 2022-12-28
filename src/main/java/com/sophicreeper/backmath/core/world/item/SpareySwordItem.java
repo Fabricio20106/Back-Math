@@ -13,7 +13,7 @@ import net.minecraft.potion.Effects;
 
 public class SpareySwordItem extends SwordItem {
     public SpareySwordItem() {
-        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
     }
 
     // When you hit an entity

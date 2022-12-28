@@ -13,7 +13,7 @@ import net.minecraft.potion.Effects;
 
 public class StoeHoeItem extends HoeItem {
     public StoeHoeItem() {
-        super(BMStaticFields.SPAREY_SET, -2, -1.0F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(BMStaticFields.SPAREY_SET, -2, -1.0F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.core.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class BMServerConfigs {
-    // world gen
+    // World generation
     public final ForgeConfigSpec.BooleanValue midTermOreGen;
     public final ForgeConfigSpec.BooleanValue devilOreGen;
     public final ForgeConfigSpec.BooleanValue angelicOreGen;
@@ -16,17 +16,17 @@ public class BMServerConfigs {
     public final ForgeConfigSpec.BooleanValue aljamicCopperGen;
     public final ForgeConfigSpec.BooleanValue aljamicTinGen;
 
-    // plants
+    // Plants
     public final ForgeConfigSpec.BooleanValue grapeVinesInTaigas;
     public final ForgeConfigSpec.BooleanValue bananaJunglesInJungles;
     public final ForgeConfigSpec.BooleanValue turtleFriedEggFlowersInBeaches;
 
-    // biome gen
+    // Biome generation
     public final ForgeConfigSpec.BooleanValue originalBackFieldsGen;
     public final ForgeConfigSpec.BooleanValue modifiedBackFieldsGen;
     public final ForgeConfigSpec.BooleanValue angelicWoodsGen;
 
-    // mob spawns
+    // Mob spawning
     public final ForgeConfigSpec.BooleanValue wandererSophieSpawn;
     public final ForgeConfigSpec.BooleanValue archerLuciaSpawn;
     public final ForgeConfigSpec.BooleanValue karateLuciaSpawn;
@@ -41,7 +41,7 @@ public class BMServerConfigs {
     public final ForgeConfigSpec.BooleanValue aljamicBonesSpawn;
     public final ForgeConfigSpec.BooleanValue sleepishSkeletonSpawn;
 
-    // gameplay
+    // Gameplay Aspects
     public final ForgeConfigSpec.BooleanValue safeAljan;
 
     public BMServerConfigs(ForgeConfigSpec.Builder builder) {
@@ -79,7 +79,7 @@ public class BMServerConfigs {
         this.archerLuciaSpawn = builder.comment("Allow archer Lucias to spawn in back fields?").define("archerLuciaSpawn", true);
         this.karateLuciaSpawn = builder.comment("Allow karate Lucias to spawn in back fields?").define("karateLuciaSpawn", true);
         this.insomniaSophieSpawn = builder.comment("Allow insomnia Sophies to spawn in back fields?").define("insomniaSophieSpawn", true);
-        this.archerInsomniaSophieSpawn = builder.comment("Allow archer insomnia Sophies to spawn in back fields?").define("archerInsomniaSophieSpawn", false);
+        this.archerInsomniaSophieSpawn = builder.comment("Allow archer insomnia Sophies to spawn in back fields?").define("archerInsomniaSophieSpawn", true);
         builder.comment("The Aljan mobs below");
         this.insomniaZombieSpawn = builder.comment("Allow insomnia zombies to spawn in the aljan?").define("insomniaZombieSpawn", true);
         this.zombieFabricioSpawn = builder.comment("Allow zombie Fabricios to spawn in the aljan?").define("zombieFabricioSpawn", true);

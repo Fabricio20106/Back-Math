@@ -5,8 +5,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 
 public class GlisteringBlockItem extends BlockItem {
-    public GlisteringBlockItem(Block blockIn, Properties builder) {
-        super(blockIn, builder);
+    public GlisteringBlockItem(Block block, Properties properties) {
+        super(block, properties);
     }
 
     @Override

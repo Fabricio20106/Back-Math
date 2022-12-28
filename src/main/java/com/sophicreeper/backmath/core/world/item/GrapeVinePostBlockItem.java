@@ -10,7 +10,7 @@ public class GrapeVinePostBlockItem extends BlockItem {
     }
 
     @Override
-    public int getBurnTime(ItemStack itemStack) {
+    public int getBurnTime(ItemStack stack) {
         return 150;
     }
 }

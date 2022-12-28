@@ -13,7 +13,7 @@ import net.minecraft.potion.Effects;
 
 public class SpaxeAxeItem extends AxeItem {
     public SpaxeAxeItem() {
-        super(BMStaticFields.SPAREY_SET, 6.0f, -3.1F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(BMStaticFields.SPAREY_SET, 6.0f, -3.1F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
     }
 
     @Override

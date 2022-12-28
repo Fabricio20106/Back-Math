@@ -73,16 +73,16 @@ public class WarriorSophie extends CreatureEntity {
             this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.MILKLLARY_BOOTS.get()));
             this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.MILKLLARY_SWORD.get()));
         } else if (i == 1) {
-            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.angelic_warrior_helmet.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.angelic_chestplate.get()));
-            this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.angelic_leggings.get()));
-            this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.angelic_boots.get()));
+            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_WARRIOR_HELMET.get()));
+            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()));
+            this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.ANGELIC_LEGGINGS.get()));
+            this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.ANGELIC_BOOTS.get()));
             this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
         } else {
-            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.devil_warrior_helmet.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.devil_chestplate.get()));
-            this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.devil_leggings.get()));
-            this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.devil_boots.get()));
+            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.DEVIL_WARRIOR_HELMET.get()));
+            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()));
+            this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.DEVIL_LEGGINGS.get()));
+            this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.DEVIL_BOOTS.get()));
             this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.DEVIL_SWORD.get()));
         }
         super.setEquipmentBasedOnDifficulty(difficulty);

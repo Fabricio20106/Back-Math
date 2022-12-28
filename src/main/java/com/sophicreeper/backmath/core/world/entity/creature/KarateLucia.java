@@ -22,16 +22,16 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class KarateLucia extends CreatureEntity {
-    public KarateLucia(EntityType<KarateLucia> type, World worldIn) {
-        super(type, worldIn);
+    public KarateLucia(EntityType<KarateLucia> type, World world) {
+        super(type, world);
     }
 
     @Override
-    public boolean isOnSameTeam(Entity entityIn) {
-        if (super.isOnSameTeam(entityIn)) {
+    public boolean isOnSameTeam(Entity entity) {
+        if (super.isOnSameTeam(entity)) {
             return true;
-        } else if (entityIn instanceof ArcherLucia || entityIn instanceof WandererSophie || entityIn instanceof KarateLucia || entityIn instanceof InsomniaSophie) {
-            return this.getTeam() == null && entityIn.getTeam() == null;
+        } else if (entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie) {
+            return this.getTeam() == null && entity.getTeam() == null;
         } else {
             return false;
         }
@@ -70,20 +70,20 @@ public class KarateLucia extends CreatureEntity {
                 .createMutableAttribute(Attributes.ARMOR, 3.0d);
     }
 
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
         return 1.62F;
     }
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        this.setEnchantmentBasedOnDifficulty(difficultyIn);
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
-        return spawnDataIn;
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.setEnchantmentBasedOnDifficulty(difficulty);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        return spawnData;
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficultyIn) {
-        super.setEquipmentBasedOnDifficulty(difficultyIn);
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+        super.setEquipmentBasedOnDifficulty(difficulty);
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.KARATE_TRAINING_STICK.get()));
         this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.YELLOW_KARATE_BAND.get()));
     }

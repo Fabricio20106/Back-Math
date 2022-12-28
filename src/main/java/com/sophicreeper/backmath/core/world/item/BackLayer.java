@@ -4,7 +4,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
 public class BackLayer extends ItemGroup {
-    public static final BackLayer BACK_MATH = new BackLayer("back_math");
+    public static final BackLayer TAB = new BackLayer("back_math");
 
     public BackLayer(String label) {
         super(label);

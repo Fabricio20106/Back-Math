@@ -21,10 +21,10 @@ public class BMShieldItem extends ShieldItem {
     }
 
     @Override
-    public void addInformation(ItemStack itemStack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag tooltipFlag) {}
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag tooltipFlag) {}
 
     @Override
-    public String getTranslationKey(ItemStack itemStack) {
+    public String getTranslationKey(ItemStack stack) {
         return this.getTranslationKey();
     }
 }

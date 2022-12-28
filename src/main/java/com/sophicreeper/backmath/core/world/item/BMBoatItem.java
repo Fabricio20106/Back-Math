@@ -27,16 +27,16 @@ public class BMBoatItem extends BoatItem {
         this.woodType = woodType;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack heldItem = playerIn.getHeldItem(handIn);
-        RayTraceResult fluidRayTrace = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.ANY);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getHeldItem(hand);
+        RayTraceResult fluidRayTrace = rayTrace(world, player, RayTraceContext.FluidMode.ANY);
         if (fluidRayTrace.getType() == RayTraceResult.Type.MISS) {
             return ActionResult.resultPass(heldItem);
         } else {
-            Vector3d vector3d = playerIn.getLook(1.0F);
-            List<Entity> list = worldIn.getEntitiesInAABBexcluding(playerIn, playerIn.getBoundingBox().expand(vector3d.scale(5.0D)).grow(1.0D), field_219989_a);
+            Vector3d vector3D = player.getLook(1.0F);
+            List<Entity> list = world.getEntitiesInAABBexcluding(player, player.getBoundingBox().expand(vector3D.scale(5.0D)).grow(1.0D), field_219989_a);
             if (!list.isEmpty()) {
-                Vector3d vector3D1 = playerIn.getEyePosition(1.0F);
+                Vector3d vector3D1 = player.getEyePosition(1.0F);
 
                 for(Entity entity : list) {
                     AxisAlignedBB axisAlignedBB = entity.getBoundingBox().grow(entity.getCollisionBorderSize());
@@ -47,21 +47,21 @@ public class BMBoatItem extends BoatItem {
             }
 
             if (fluidRayTrace.getType() == RayTraceResult.Type.BLOCK) {
-                BMBoat bmBoat = new BMBoat(worldIn, fluidRayTrace.getHitVec().x, fluidRayTrace.getHitVec().y, fluidRayTrace.getHitVec().z);
-                bmBoat.setWoodType(woodType);
-                bmBoat.rotationYaw = playerIn.rotationYaw;
-                if (!worldIn.hasNoCollisions(bmBoat, bmBoat.getBoundingBox().grow(-0.1D))) {
+                BMBoat backMathBoat = new BMBoat(world, fluidRayTrace.getHitVec().x, fluidRayTrace.getHitVec().y, fluidRayTrace.getHitVec().z);
+                backMathBoat.setWoodType(woodType);
+                backMathBoat.rotationYaw = player.rotationYaw;
+                if (!world.hasNoCollisions(backMathBoat, backMathBoat.getBoundingBox().grow(-0.1D))) {
                     return ActionResult.resultFail(heldItem);
                 } else {
-                    if (!worldIn.isRemote) {
-                        worldIn.addEntity(bmBoat);
-                        if (!playerIn.abilities.isCreativeMode) {
+                    if (!world.isRemote) {
+                        world.addEntity(backMathBoat);
+                        if (!player.abilities.isCreativeMode) {
                             heldItem.shrink(1);
                         }
                     }
 
-                    playerIn.addStat(Stats.ITEM_USED.get(this));
-                    return ActionResult.func_233538_a_(heldItem, worldIn.isRemote());
+                    player.addStat(Stats.ITEM_USED.get(this));
+                    return ActionResult.func_233538_a_(heldItem, world.isRemote());
                 }
             } else {
                 return ActionResult.resultPass(heldItem);

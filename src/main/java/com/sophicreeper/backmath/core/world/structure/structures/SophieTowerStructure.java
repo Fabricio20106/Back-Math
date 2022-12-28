@@ -48,8 +48,7 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
     @Override
     protected boolean func_230363_a_(ChunkGenerator chunkGenerator, BiomeProvider biomeProvider, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig featureConfig) {
         BlockPos centerOfChunk = new BlockPos((chunkX << 4) + 7, 0, (chunkZ << 4) + 7);
-        int landHeight = chunkGenerator.getHeight(centerOfChunk.getX(), centerOfChunk.getZ(),
-                Heightmap.Type.WORLD_SURFACE_WG);
+        int landHeight = chunkGenerator.getHeight(centerOfChunk.getX(), centerOfChunk.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 
         IBlockReader columnOfBlocks = chunkGenerator.func_230348_a_(centerOfChunk.getX(), centerOfChunk.getZ());
         BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.up(landHeight));
@@ -92,10 +91,12 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
 
             this.recalculateStructureSize();
 
-            LogManager.getLogger().log(Level.DEBUG, "BMDebug: Sophie Tower at " +
-                    this.components.get(0).getBoundingBox().minX + " " +
-                    this.components.get(0).getBoundingBox().minY + " " +
-                    this.components.get(0).getBoundingBox().minZ);
+            if (BackMath.logDebugMessages) {
+                LogManager.getLogger().log(Level.DEBUG, "Back Math: Sophie Tower located at " +
+                        this.components.get(0).getBoundingBox().minX + " " +
+                        this.components.get(0).getBoundingBox().minY + " " +
+                        this.components.get(0).getBoundingBox().minZ);
+            }
         }
     }
 }

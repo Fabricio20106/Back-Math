@@ -98,8 +98,8 @@ public class AljamicBones extends AbstractSkeletonEntity {
     }
 
     @Nullable
-    public static Item getBackMathArmorByChance(EquipmentSlotType slotIn, int chance) {
-        switch(slotIn) {
+    public static Item getBackMathArmorByChance(EquipmentSlotType slot, int chance) {
+        switch(slot) {
             case HEAD:
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();
@@ -153,17 +153,16 @@ public class AljamicBones extends AbstractSkeletonEntity {
         }
     }
 
-    public static boolean canSpawnABOn(EntityType<AljamicBones> aljamicBones, IServerWorld iServerWorld, SpawnReason reason, BlockPos pos, Random randomIn) {
-        if (iServerWorld.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(iServerWorld, pos, randomIn) && BMConfigs.SERVER_CONFIGS.aljamicBonesSpawn.get()) {
-            if (
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get())) {
-                canSpawnOn(aljamicBones, iServerWorld, reason, pos, randomIn);
+    public static boolean canSpawnABOn(EntityType<AljamicBones> aljamicBones, IServerWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(world, pos, rand) && BMConfigs.SERVER_CONFIGS.aljamicBonesSpawn.get()) {
+            if (Objects.equals(world.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get())) {
+                canSpawnOn(aljamicBones, world, reason, pos, rand);
             }
         }
         return false;

@@ -28,7 +28,7 @@ public class ToyBlock extends HorizontalBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
         ToyType type = this.type;
         if (state.get(FACING) == Direction.EAST && type == ToyType.ALICE_OR_ALAN || state.get(FACING) == Direction.WEST && type == ToyType.ALICE_OR_ALAN) {
             return ToyShapes.SHAPE_ALAN_OR_ALICE_EW;
@@ -52,7 +52,6 @@ public class ToyBlock extends HorizontalBlock {
             return ToyShapes.SHAPE_TYLER_NS;
         }
 
-        //return super.getShape(state, worldIn, pos, context);
         return ToyShapes.DEFAULT_SHAPE;
     }
 
@@ -60,12 +59,12 @@ public class ToyBlock extends HorizontalBlock {
         return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.toRotation(state.get(FACING)));
     }
 
     @Override

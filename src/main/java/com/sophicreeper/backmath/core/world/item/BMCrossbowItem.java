@@ -5,10 +5,10 @@ import net.minecraft.item.ItemStack;
 
 public class BMCrossbowItem extends CrossbowItem {
     public BMCrossbowItem() {
-        super(new Properties().maxDamage(520).group(BMWeaponryTab.WEAPONRY_TAB));
+        super(new Properties().maxDamage(520).group(BMWeaponryTab.TAB));
     }
 
-    public boolean isCrossbow(ItemStack itemStack) {
-        return itemStack.getItem() == AxolotlTest.ANGELIC_CROSSBOW.get() || itemStack.getItem() == AxolotlTest.DEVIL_CROSSBOW.get();
+    public boolean isCrossbow(ItemStack stack) {
+        return stack.getItem() == AxolotlTest.ANGELIC_CROSSBOW.get() || stack.getItem() == AxolotlTest.DEVIL_CROSSBOW.get();
     }
 }

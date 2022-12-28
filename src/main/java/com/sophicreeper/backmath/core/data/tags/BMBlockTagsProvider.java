@@ -18,7 +18,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     public String getName() {
-        return "BackMath - Block Tags";
+        return "Back Math - Block Tags";
     }
 
     @Override

@@ -15,14 +15,14 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 public final class BMDataGenerator {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        DataGenerator dataGen = event.getGenerator();
+        DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
-        dataGen.addProvider(new BMBlockModelGenerators(dataGen, fileHelper));
-        dataGen.addProvider(new BMItemModelGenerators(dataGen, fileHelper));
+        generator.addProvider(new BMBlockModelGenerators(generator, fileHelper));
+        generator.addProvider(new BMItemModelGenerators(generator, fileHelper));
 
-        BMBlockTagsProvider bmBlockTags = new BMBlockTagsProvider(dataGen, fileHelper);
-        dataGen.addProvider(bmBlockTags);
-        dataGen.addProvider(new BMItemTagsProvider(dataGen, bmBlockTags, fileHelper));
+        BMBlockTagsProvider bmBlockTags = new BMBlockTagsProvider(generator, fileHelper);
+        generator.addProvider(bmBlockTags);
+        generator.addProvider(new BMItemTagsProvider(generator, bmBlockTags, fileHelper));
     }
 }

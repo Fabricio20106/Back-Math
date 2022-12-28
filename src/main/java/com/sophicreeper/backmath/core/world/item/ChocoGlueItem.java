@@ -6,6 +6,4 @@ public class ChocoGlueItem extends Item {
     public ChocoGlueItem(Properties properties) {
         super(properties);
     }
-
-
 }

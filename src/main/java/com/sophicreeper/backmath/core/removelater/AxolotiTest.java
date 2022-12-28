@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item.unused;
+package com.sophicreeper.backmath.core.removelater;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 

@@ -52,14 +52,14 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
         if (state.get(JANTICAL)) {
-            if (!worldIn.isRemote()) {
+            if (!world.isRemote()) {
                 if (!player.isCrouching()) {
-                    MinecraftServer server = worldIn.getServer();
+                    MinecraftServer server = world.getServer();
 
                     if (server != null) {
-                        if (worldIn.getDimensionKey() == BMDimensions.THE_ALJAN) {
+                        if (world.getDimensionKey() == BMDimensions.THE_ALJAN) {
                             ServerWorld overworld = server.getWorld(World.OVERWORLD);
                             if (overworld != null) {
                                 player.changeDimension(overworld, new TheAljanTeleporter(pos, false));
@@ -76,19 +76,19 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
             }
         }
 
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.onBlockActivated(state, world, pos, player, hand, hit);
     }
 
     public FluidState getFluidState(BlockState state) {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
     }
 
-    public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState state1, IWorld world, BlockPos pos, BlockPos pos1) {
+    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
         if (state.get(WATERLOGGED)) {
-            world.getPendingFluidTicks().scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
-        return super.updatePostPlacement(state, direction, state1, world, pos, pos1);
+        return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
     }
 
     @Nullable

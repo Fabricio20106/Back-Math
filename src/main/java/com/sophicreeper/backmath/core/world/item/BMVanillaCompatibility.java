@@ -24,10 +24,6 @@ public class BMVanillaCompatibility {
         flammable(BMBlocks.INSOMNIAN_LEAVES.get(), 30, 60);
         flammable(BMBlocks.DEVIL_WOOL.get(), 30, 60);
         flammable(BMBlocks.DEVIL_CARPET.get(), 60, 20);
-        flammable(BMBlocks.ALJAN_LIGHT_BLUE_WOOL.get(), 30, 60);
-        flammable(BMBlocks.ALJAN_LIGHT_BLUE_CARPET.get(), 60, 20);
-        flammable(BMBlocks.POISON_BROWN_WOOL.get(), 30, 60);
-        flammable(BMBlocks.POISON_BROWN_CARPET.get(), 60, 20);
         flammable(BMBlocks.RED_YELLOW_FLOWER.get(), 60, 100);
         flammable(BMBlocks.FRIED_EGG_FLOWER.get(), 60, 100);
         flammable(BMBlocks.TURTLE_FRIED_EGG_FLOWER.get(), 60, 100);
@@ -50,7 +46,7 @@ public class BMVanillaCompatibility {
         tillable(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
         tillable(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
 
-        // BM 1.8.0:
+        // Back Math 1.8.0:
         flammable(BMBlocks.GUAVA_PLANKS.get(), 5, 20);
         flammable(BMBlocks.GUAVA_STAIRS.get(), 5, 20);
         flammable(BMBlocks.GUAVA_SLAB.get(), 5, 20);
@@ -83,8 +79,8 @@ public class BMVanillaCompatibility {
         fireBlock.setFireInfo(block, encouragement, flammability);
     }
 
-    private static void tillable(Block block, BlockState state) {
+    private static void tillable(Block block, BlockState farmland) {
         HoeItem.HOE_LOOKUP = Maps.newHashMap(HoeItem.HOE_LOOKUP);
-        HoeItem.HOE_LOOKUP.put(block, state);
+        HoeItem.HOE_LOOKUP.put(block, farmland);
     }
 }

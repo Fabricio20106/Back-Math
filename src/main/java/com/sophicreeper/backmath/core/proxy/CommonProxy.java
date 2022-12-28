@@ -1,6 +1,5 @@
 package com.sophicreeper.backmath.core.proxy;
 
-import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.sounds.BMSounds;
 import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
@@ -19,7 +18,6 @@ import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.item.BMStats;
 import com.sophicreeper.backmath.core.world.item.BMVanillaCompatibility;
 import com.sophicreeper.backmath.core.world.item.alchemy.BMPotions;
-import com.sophicreeper.backmath.core.world.item.integration.mysticalagriculture.BMMysticalAgricultureIntegration;
 import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
 import com.sophicreeper.backmath.core.world.level.material.BMFluids;
@@ -28,51 +26,40 @@ import com.sophicreeper.backmath.core.world.surfacebuilders.BMSurfaceBuilders;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.item.Item;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class CommonProxy {
-    public static final DeferredRegister<Item> MYSTICAL_ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BackMath.MOD_ID);
-
     CommonProxy() {
-        IEventBus bmEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        BMBlocks.BLOCKS.register(bmEventBus);
-        AxolotlTest.ITEMS.register(bmEventBus);
-        BMEntities.ENTITIES.register(bmEventBus);
-        if (ModList.get().isLoaded("variants")) {
-            AxolotlTest.VARIANTS_COMPAT_ITEMS.register(bmEventBus);
-        }
-        if (ModList.get().isLoaded("mysticalagriculture")) {
-            //BMMysticalAgricultureIntegration.classLoad();
-            MYSTICAL_ITEMS.register(bmEventBus);
-        }
-        BMFluids.FLUIDS.register(bmEventBus);
-        BMWorldCarvers.WORLD_CARVERS.register(bmEventBus);
-        BMBiomes.BIOMES.register(bmEventBus);
-        BMMotives.MOTIVES.register(bmEventBus);
-        BMPotions.POTIONS.register(bmEventBus);
-        BMStructures.STRUCTURES.register(bmEventBus);
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        BMBlocks.BLOCKS.register(eventBus);
+        AxolotlTest.ITEMS.register(eventBus);
+        BMEntities.ENTITIES.register(eventBus);
+        BMFluids.FLUIDS.register(eventBus);
+        BMWorldCarvers.WORLD_CARVERS.register(eventBus);
+        BMBiomes.BIOMES.register(eventBus);
+        BMMotives.MOTIVES.register(eventBus);
+        BMPotions.POTIONS.register(eventBus);
+        BMStructures.STRUCTURES.register(eventBus);
         BMStats.init();
         BMSounds.registerSounds();
 
-        bmEventBus.addListener(this::commonSetup);
+        eventBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        RegistryKey<Biome> backFieldsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.ORIGINAL_BACK_FIELDS.getId());
+        RegistryKey<Biome> originalBackFieldsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.ORIGINAL_BACK_FIELDS.getId());
         RegistryKey<Biome> modifiedBackFieldsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.MODIFIED_BACK_FIELDS.getId());
         RegistryKey<Biome> angelicWoodsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.ANGELIC_WOODS.getId());
+
         if (BMConfigs.SERVER_CONFIGS.originalBackFieldsGen.get()) {
-            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(backFieldsKey, 15));
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(originalBackFieldsKey, 15));
         }
         if (BMConfigs.SERVER_CONFIGS.modifiedBackFieldsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(modifiedBackFieldsKey, 10));
@@ -81,7 +68,7 @@ public class CommonProxy {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(angelicWoodsKey, 12));
         }
 
-        // Entity Spawning
+        // Entity spawning, but it doesn't work
         EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_ZOMBIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, InsomniaZombie::canSpawnIZOn);
         EntitySpawnPlacementRegistry.register(BMEntities.ZOMBIE_FABRICIO.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
@@ -95,6 +82,7 @@ public class CommonProxy {
         EntitySpawnPlacementRegistry.register(BMEntities.MALAIKA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                 Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, Malaika::canSpawnMalaikaOn);
 
+        // Entity attributes
         GlobalEntityTypeAttributes.put(BMEntities.WANDERER_SOPHIE.get(), WandererSophie.createWandererSophieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ARCHER_LUCIA.get(), ArcherLucia.createArcherLuciaAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ANGRY_SOPHIE.get(), AngrySophie.createAngrySophieAttributes().create());
@@ -112,6 +100,8 @@ public class CommonProxy {
         GlobalEntityTypeAttributes.put(BMEntities.JANTICLE.get(), Janticle.createJanticleAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ALJAMIC_BONES.get(), AljamicBones.createAljamicBonesAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.SLEEPISH_SKELETON.get(), SleepishSkeleton.createSleepishSkeletonAttributes().create());
+
+        // Miscellaneous things to load
         BMPotions.addPotionRecipes();
         BMDimensions.init();
         BMConfiguredCarvers.register();

@@ -1,15 +1,15 @@
 package com.sophicreeper.backmath.core.world.entity.goal;
 
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.InsomniaZombie;
+import com.sophicreeper.backmath.core.world.entity.monster.aljan.ZombieFabricio;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
-public class BMInsomniaZombieAttackGoal extends MeleeAttackGoal {
-    private final InsomniaZombie zombie;
+public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
+    private final ZombieFabricio zombie;
     private int raiseArmTicks;
 
-    public BMInsomniaZombieAttackGoal(InsomniaZombie insomniaZombie, double p_i46803_2_, boolean p_i46803_4_) {
-        super(insomniaZombie, p_i46803_2_, p_i46803_4_);
-        this.zombie = insomniaZombie;
+    public ZombieFabricioAttackGoal(ZombieFabricio zombieFabricio, double speed, boolean useLongMemory) {
+        super(zombieFabricio, speed, useLongMemory);
+        this.zombie = zombieFabricio;
     }
 
     public void startExecuting() {

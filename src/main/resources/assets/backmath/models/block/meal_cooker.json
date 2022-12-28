@@ -86,10 +86,10 @@
       "from": [3, 23, 3],
       "to": [13, 23, 13],
       "faces": {
-        "north": {"uv": [0, 0, 10, 0], "texture": "#missing"},
-        "east": {"uv": [0, 0, 10, 0], "texture": "#missing"},
-        "south": {"uv": [0, 0, 10, 0], "texture": "#missing"},
-        "west": {"uv": [0, 0, 10, 0], "texture": "#missing"},
+        "north": {"uv": [0, 0, 10, 0], "texture": "#mc_pasta"},
+        "east": {"uv": [0, 0, 10, 0], "texture": "#mc_pasta"},
+        "south": {"uv": [0, 0, 10, 0], "texture": "#mc_pasta"},
+        "west": {"uv": [0, 0, 10, 0], "texture": "#mc_pasta"},
         "up": {"uv": [0, 0, 10, 10], "texture": "#mc_pasta"},
         "down": {"uv": [0, 0, 10, 10], "texture": "#mc_pasta"}
       }

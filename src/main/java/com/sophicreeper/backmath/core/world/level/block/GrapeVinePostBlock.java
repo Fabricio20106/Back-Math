@@ -31,13 +31,13 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
     public static final VoxelShape SHAPE_NS = Block.makeCuboidShape(0.0d, 0.0d, 7.0d, 16.0d, 16.0d, 9.0d);
     public static final VoxelShape SHAPE_EW = Block.makeCuboidShape(7.0d, 0.0d, 0.0d, 9.0d, 16.0d, 16.0d);
 
-    public GrapeVinePostBlock(Properties props) {
-        super(props);
+    public GrapeVinePostBlock(Properties properties) {
+        super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(AGE, 0).with(FACING, Direction.NORTH));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
         if (state.get(FACING) == Direction.NORTH || state.get(FACING) == Direction.SOUTH) {
             return SHAPE_NS;
         } else {
@@ -49,27 +49,27 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
         return state.get(AGE) < 3;
     }
 
-    public void randomTick(BlockState state, ServerWorld worldIn, BlockPos pos, Random random) {
-        int i = state.get(AGE);
-        if (i < 3 && worldIn.getLightSubtracted(pos.up(), 0) >= 9 && ForgeHooks.onCropsGrowPre(worldIn, pos, state, random.nextInt(5) == 0)) {
-            worldIn.setBlockState(pos, state.with(AGE, i + 1), 2);
-            ForgeHooks.onCropsGrowPost(worldIn, pos, state);
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+        int ageState = state.get(AGE);
+        if (ageState < 3 && world.getLightSubtracted(pos.up(), 0) >= 9 && ForgeHooks.onCropsGrowPre(world, pos, state, rand.nextInt(5) == 0)) {
+            world.setBlockState(pos, state.with(AGE, ageState + 1), 2);
+            ForgeHooks.onCropsGrowPost(world, pos, state);
         }
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
-        int i = state.get(AGE);
-        boolean flag = i == 3;
-        if (!flag && player.getHeldItem(handIn).getItem() == Items.BONE_MEAL) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+        int ageState = state.get(AGE);
+        boolean flag = ageState == 3;
+        if (!flag && player.getHeldItem(hand).getItem() == Items.BONE_MEAL) {
             return ActionResultType.PASS;
-        } else if (i > 1) {
-            int j = 1 + worldIn.rand.nextInt(2);
-            spawnAsEntity(worldIn, pos, new ItemStack(AxolotlTest.GRAPES.get(), j + (flag ? 1 : 0)));
-            worldIn.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.rand.nextFloat() * 0.4F);
-            worldIn.setBlockState(pos, state.with(AGE, 1), 2);
-            return ActionResultType.func_233537_a_(worldIn.isRemote);
+        } else if (ageState > 1) {
+            int j = 1 + world.rand.nextInt(2);
+            spawnAsEntity(world, pos, new ItemStack(AxolotlTest.GRAPES.get(), j + (flag ? 1 : 0)));
+            world.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + world.rand.nextFloat() * 0.4F);
+            world.setBlockState(pos, state.with(AGE, 1), 2);
+            return ActionResultType.func_233537_a_(world.isRemote);
         } else {
-            return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+            return super.onBlockActivated(state, world, pos, player, hand, hit);
         }
     }
 
@@ -77,28 +77,28 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
         return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.with(HORIZONTAL_FACING, rotation.rotate(state.get(HORIZONTAL_FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.toRotation(state.get(HORIZONTAL_FACING)));
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(AGE, FACING);
     }
 
-    public boolean canGrow(IBlockReader worldIn, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean canGrow(IBlockReader world, BlockPos pos, BlockState state, boolean isClient) {
         return state.get(AGE) < 3;
     }
 
-    public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, BlockState state) {
+    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, BlockState state) {
         return true;
     }
 
-    public void grow(ServerWorld worldIn, Random rand, BlockPos pos, BlockState state) {
+    public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
         int i = Math.min(3, state.get(AGE) + 1);
-        worldIn.setBlockState(pos, state.with(AGE, i), 2);
+        world.setBlockState(pos, state.with(AGE, i), 2);
     }
 }

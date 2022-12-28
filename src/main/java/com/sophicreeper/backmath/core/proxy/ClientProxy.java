@@ -41,7 +41,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        // Block and Fluid Render Types. Cutout and translucent.
+        // Block and fluid render lookups
         RenderTypeLookup.setRenderLayer(BMBlocks.FRIED_EGG_FLOWER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGELIC_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGELIC_DOOR.get(), RenderType.getCutout());
@@ -103,7 +103,6 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJANWOOD_LADDER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJANWOOD_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJANWOOD_DOOR.get(), RenderType.getCutout());
-        //RenderTypeLookup.setRenderLayer(BMBlocks.GRAPE_VINES.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.OAK_GRAPE_VINE_POST.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.SPRUCE_GRAPE_VINE_POST.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.BIRCH_GRAPE_VINE_POST.get(), RenderType.getCutout());
@@ -183,7 +182,7 @@ public class ClientProxy extends CommonProxy {
             BMBlockColors.init();
         });
 
-        // Entity and Tile Entity Renderers
+        // Entity renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ARCHER_LUCIA.get(), ArcherLuciaRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ANGRY_SOPHIE.get(), AngrySophieRenderer::new);
@@ -203,7 +202,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.SLEEPISH_SKELETON.get(), SleepishSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.BACKMATH_BOAT.get(), BMBoatRenderer::new);
 
-        // Item Properties. Blocking, Pull, Pulling etc...
+        // Item properties
         registerProperty(AxolotlTest.MID_TERM_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity) ->
                 livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == itemStack ? 1.0F : 0.0F);
         registerProperty(AxolotlTest.ANGELIC_SHIELD.get(), new ResourceLocation("blocking"), (itemStack, clientWorld, livingEntity) ->
@@ -241,9 +240,9 @@ public class ClientProxy extends CommonProxy {
             ModelResourceLocation variantMRL = BlockModelShapes.getModelLocation(blockState);
             IBakedModel existingModel = event.getModelRegistry().get(variantMRL);
             if (existingModel == null) {
-                LOGGER.warn("BM1.7.0: Did not find the expected vanilla baked model(s) for insomnian_tulip in registry");
+                LOGGER.warn("Back Math: Did not find the expected vanilla baked model(s) for insomnian_tulip in registry");
             } else if (existingModel instanceof LightBakedModel) {
-                LOGGER.warn("BM1.7.0: Tried to replace LightBakedModel twice");
+                LOGGER.warn("Back Math: Tried to replace LightBakedModel twice");
             } else {
                 LightBakedModel lightBakedModel = new LightBakedModel();
                 event.getModelRegistry().put(variantMRL, lightBakedModel);

@@ -7,7 +7,7 @@ import net.minecraft.world.World;
 
 public class EnchantedGoldenApplePopsicleItem extends Item {
     public EnchantedGoldenApplePopsicleItem(Food food) {
-        super(new Properties().group(SophiesCursedFoods.COMIDA).rarity(Rarity.EPIC).food(food));
+        super(new Properties().group(SophiesCursedFoods.TAB).rarity(Rarity.EPIC).food(food));
     }
 
     @Override
@@ -15,8 +15,8 @@ public class EnchantedGoldenApplePopsicleItem extends Item {
         return true;
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity livingEntity) {
-        ItemStack stack1 = super.onItemUseFinish(stack, worldIn, livingEntity);
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
+        ItemStack stack1 = super.onItemUseFinish(stack, world, livingEntity);
         return livingEntity instanceof PlayerEntity && ((PlayerEntity) livingEntity).abilities.isCreativeMode ? stack1 : new ItemStack(Items.STICK);
     }
 }

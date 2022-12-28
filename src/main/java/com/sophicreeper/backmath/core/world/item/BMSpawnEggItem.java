@@ -20,9 +20,9 @@ public class BMSpawnEggItem extends SpawnEggItem {
     private static final List<BMSpawnEggItem> UNADDED_EGGS = Lists.newArrayList();
     private final Supplier<? extends EntityType<? extends Entity>> typeSupplier;
 
-    public BMSpawnEggItem(Supplier<? extends EntityType<? extends Entity>> typeIn, int primaryColor, int secondaryColor, Properties properties) {
+    public BMSpawnEggItem(Supplier<? extends EntityType<? extends Entity>> type, int primaryColor, int secondaryColor, Properties properties) {
         super(null, primaryColor, secondaryColor, properties);
-        this.typeSupplier = typeIn;
+        this.typeSupplier = type;
         UNADDED_EGGS.add(this);
     }
 
@@ -51,9 +51,9 @@ public class BMSpawnEggItem extends SpawnEggItem {
     @Override
     public EntityType<?> getType(@Nullable CompoundNBT compoundNBT) {
         if (compoundNBT != null && compoundNBT.contains("EntityTag", 10)) {
-            CompoundNBT compoundnbt = compoundNBT.getCompound("EntityTag");
-            if (compoundnbt.contains("id", 8)) {
-                return EntityType.byKey(compoundnbt.getString("id")).orElse(this.typeSupplier.get());
+            CompoundNBT entityTagNBT = compoundNBT.getCompound("EntityTag");
+            if (entityTagNBT.contains("id", 8)) {
+                return EntityType.byKey(entityTagNBT.getString("id")).orElse(this.typeSupplier.get());
             }
         }
 

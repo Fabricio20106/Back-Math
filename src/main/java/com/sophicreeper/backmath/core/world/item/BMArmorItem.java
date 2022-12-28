@@ -5,7 +5,7 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 
 public class BMArmorItem extends ArmorItem {
-    public BMArmorItem(IArmorMaterial materialIn, EquipmentSlotType slot, Properties builderIn) {
-        super(materialIn, slot, builderIn);
+    public BMArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties properties) {
+        super(material, slot, properties);
     }
 }

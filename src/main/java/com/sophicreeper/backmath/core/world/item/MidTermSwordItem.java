@@ -12,19 +12,13 @@ import net.minecraft.potion.Effects;
 import net.minecraft.world.World;
 
 public class MidTermSwordItem extends SwordItem {
-    public MidTermSwordItem(IItemTier tier, int attackDamageIn, float attackSpeedIn, Properties builderIn) {
-        super(tier, attackDamageIn, attackSpeedIn, builderIn);
+    public MidTermSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Properties properties) {
+        super(tier, attackDamage, attackSpeed, properties);
     }
 
     @Override
     public boolean hasEffect(ItemStack stack) {
         return true;
-    }
-
-    @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        if (!worldIn.isRemote) stack.damageItem(50, entityLiving, (idk) -> idk.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-        return stack;
     }
 
     @Override

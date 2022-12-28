@@ -79,10 +79,12 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
 
             this.recalculateStructureSize();
 
-            LogManager.getLogger().log(Level.DEBUG, "BMDebug: Fabricio Hideout Dungeon at " +
-                    this.components.get(0).getBoundingBox().minX + " " +
-                    this.components.get(0).getBoundingBox().minY + " " +
-                    this.components.get(0).getBoundingBox().minZ);
+            if (BackMath.logDebugMessages) {
+                LogManager.getLogger().log(Level.DEBUG, "Back Math: Fabricio's Hideout Dungeon located at " +
+                        this.components.get(0).getBoundingBox().minX + " " +
+                        this.components.get(0).getBoundingBox().minY + " " +
+                        this.components.get(0).getBoundingBox().minZ);
+            }
         }
     }
 }

@@ -36,11 +36,10 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Random;
 
 public class Amaracameler extends MobEntity implements IMob {
-    private static final DataParameter<Integer> SLIME_SIZE = EntityDataManager.createKey(Amaracameler.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> AMARACAMELER_SIZE = EntityDataManager.createKey(Amaracameler.class, DataSerializers.VARINT);
     public float squishAmount;
     public float squishFactor;
     public float prevSquishFactor;
@@ -65,11 +64,11 @@ public class Amaracameler extends MobEntity implements IMob {
 
     protected void registerData() {
         super.registerData();
-        this.dataManager.register(SLIME_SIZE, 1);
+        this.dataManager.register(AMARACAMELER_SIZE, 1);
     }
 
     protected void setSlimeSize(int size, boolean resetHealth) {
-        this.dataManager.set(SLIME_SIZE, size);
+        this.dataManager.set(AMARACAMELER_SIZE, size);
         this.recenterBoundingBox();
         this.recalculateSize();
         this.getAttribute(Attributes.MAX_HEALTH).setBaseValue(size * size);
@@ -86,27 +85,27 @@ public class Amaracameler extends MobEntity implements IMob {
      * Returns the size of the amaracameler.
      */
     public int getSlimeSize() {
-        return this.dataManager.get(SLIME_SIZE);
+        return this.dataManager.get(AMARACAMELER_SIZE);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putInt("Size", this.getSlimeSize() - 1);
-        compound.putBoolean("wasOnGround", this.wasOnGround);
+    public void writeAdditional(CompoundNBT compoundNBT) {
+        super.writeAdditional(compoundNBT);
+        compoundNBT.putInt("Size", this.getSlimeSize() - 1);
+        compoundNBT.putBoolean("wasOnGround", this.wasOnGround);
     }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditional(CompoundNBT compound) {
-        int i = compound.getInt("Size");
-        if (i < 0) {
-            i = 0;
+    public void readAdditional(CompoundNBT compoundNBT) {
+        int sizeNBT = compoundNBT.getInt("Size");
+        if (sizeNBT < 0) {
+            sizeNBT = 0;
         }
 
-        this.setSlimeSize(i + 1, false);
-        super.readAdditional(compound);
-        this.wasOnGround = compound.getBoolean("wasOnGround");
+        this.setSlimeSize(sizeNBT + 1, false);
+        super.readAdditional(compoundNBT);
+        this.wasOnGround = compoundNBT.getBoolean("wasOnGround");
     }
 
     public boolean isSmallSlime() {
@@ -170,7 +169,7 @@ public class Amaracameler extends MobEntity implements IMob {
     }
 
     public void notifyDataManagerChange(DataParameter<?> key) {
-        if (SLIME_SIZE.equals(key)) {
+        if (AMARACAMELER_SIZE.equals(key)) {
             this.recalculateSize();
             this.rotationYaw = this.rotationYawHead;
             this.renderYawOffset = this.rotationYawHead;
@@ -190,7 +189,7 @@ public class Amaracameler extends MobEntity implements IMob {
     public void remove(boolean keepData) {
         int i = this.getSlimeSize();
         if (!this.world.isRemote && i > 1 && this.getShouldBeDead() && !this.removed) {
-            ITextComponent itextcomponent = this.getCustomName();
+            ITextComponent component = this.getCustomName();
             boolean flag = this.isAIDisabled();
             float f = (float)i / 4.0F;
             int j = i / 2;
@@ -204,7 +203,7 @@ public class Amaracameler extends MobEntity implements IMob {
                     amaracameler.enablePersistence();
                 }
 
-                amaracameler.setCustomName(itextcomponent);
+                amaracameler.setCustomName(component);
                 amaracameler.setNoAI(flag);
                 amaracameler.setInvulnerable(this.isInvulnerable());
                 amaracameler.setSlimeSize(j, true);
@@ -219,37 +218,36 @@ public class Amaracameler extends MobEntity implements IMob {
     /**
      * Applies a velocity to the entities, to push them away from eachother.
      */
-    public void applyEntityCollision(Entity entityIn) {
-        super.applyEntityCollision(entityIn);
-        if (entityIn instanceof IronGolemEntity && this.canDamagePlayer()) {
-            this.dealDamage((LivingEntity)entityIn);
+    public void applyEntityCollision(Entity entity) {
+        super.applyEntityCollision(entity);
+        if (entity instanceof IronGolemEntity && this.canDamagePlayer()) {
+            this.dealDamage((LivingEntity)entity);
         }
-
     }
 
     /**
      * Called by a player entity when they collide with an entity
      */
-    public void onCollideWithPlayer(PlayerEntity entityIn) {
+    public void onCollideWithPlayer(PlayerEntity player) {
         if (this.canDamagePlayer()) {
-            this.dealDamage(entityIn);
+            this.dealDamage(player);
         }
 
     }
 
-    protected void dealDamage(LivingEntity entityIn) {
+    protected void dealDamage(LivingEntity livingEntity) {
         if (this.isAlive()) {
             int i = this.getSlimeSize();
-            if (this.getDistanceSq(entityIn) < 0.6D * (double)i * 0.6D * (double)i && this.canEntityBeSeen(entityIn) && entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), this.func_225512_er_())) {
+            if (this.getDistanceSq(livingEntity) < 0.6D * (double)i * 0.6D * (double)i && this.canEntityBeSeen(livingEntity) && livingEntity.attackEntityFrom(DamageSource.causeMobDamage(this), this.func_225512_er_())) {
                 this.playSound(SoundEvents.ENTITY_SLIME_ATTACK, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-                this.applyEnchantments(this, entityIn);
+                this.applyEnchantments(this, livingEntity);
             }
         }
 
     }
 
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
-        return 0.625F * sizeIn.height;
+    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
+        return 0.625F * entitySize.height;
     }
 
     /**
@@ -263,7 +261,7 @@ public class Amaracameler extends MobEntity implements IMob {
         return (float)this.getAttributeValue(Attributes.ATTACK_DAMAGE);
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
+    protected SoundEvent getHurtSound(DamageSource damageSource) {
         return this.isSmallSlime() ? SoundEvents.ENTITY_SLIME_HURT_SMALL : SoundEvents.ENTITY_SLIME_HURT;
     }
 
@@ -279,13 +277,13 @@ public class Amaracameler extends MobEntity implements IMob {
         return this.getSlimeSize() == 1 ? this.getType().getLootTable() : LootTables.EMPTY;
     }
 
-    public static boolean canSpawnAmaracamelerOn(EntityType<Amaracameler> amaracamelerEntityType, IWorld iWorld, SpawnReason reason, BlockPos pos, Random randomIn) {
-        if (iWorld.getDifficulty() != Difficulty.PEACEFUL) {
-            if (Objects.equals(iWorld.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) && iWorld.getLight(pos) <= randomIn.nextInt(8) && BMConfigs.SERVER_CONFIGS.amaracamelerSpawn.get()) {
-                return canSpawnOn(amaracamelerEntityType, iWorld, reason, pos, randomIn);
+    public static boolean canSpawnAmaracamelerOn(EntityType<Amaracameler> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random rand) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL) {
+            if (Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) && world.getLight(pos) <= rand.nextInt(8) && BMConfigs.SERVER_CONFIGS.amaracamelerSpawn.get()) {
+                return canSpawnOn(entityType, world, spawnReason, pos, rand);
             }
 
-            if (!(iWorld instanceof ISeedReader)) {
+            if (!(world instanceof ISeedReader)) {
                 return false;
             }
         }
@@ -319,21 +317,21 @@ public class Amaracameler extends MobEntity implements IMob {
      * Causes this entity to do an upwards motion (jumping).
      */
     protected void jump() {
-        Vector3d vector3d = this.getMotion();
-        this.setMotion(vector3d.x, this.getJumpUpwardsMotion(), vector3d.z);
+        Vector3d vector3D = this.getMotion();
+        this.setMotion(vector3D.x, this.getJumpUpwardsMotion(), vector3D.z);
         this.isAirBorne = true;
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         int i = this.rand.nextInt(3);
-        if (i < 2 && this.rand.nextFloat() < 0.5F * difficultyIn.getClampedAdditionalDifficulty()) {
+        if (i < 2 && this.rand.nextFloat() < 0.5F * difficulty.getClampedAdditionalDifficulty()) {
             ++i;
         }
 
         int j = 1 << i;
         this.setSlimeSize(j, true);
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
     private float func_234304_m_() {
@@ -345,8 +343,8 @@ public class Amaracameler extends MobEntity implements IMob {
         return this.isSmallSlime() ? SoundEvents.ENTITY_SLIME_JUMP_SMALL : SoundEvents.ENTITY_SLIME_JUMP;
     }
 
-    public EntitySize getSize(Pose poseIn) {
-        return super.getSize(poseIn).scale(0.255F * (float)this.getSlimeSize());
+    public EntitySize getSize(Pose pose) {
+        return super.getSize(pose).scale(0.255F * (float)this.getSlimeSize());
     }
 
     /**
@@ -359,8 +357,8 @@ public class Amaracameler extends MobEntity implements IMob {
         private final Amaracameler amaracameler;
         private int growTieredTimer;
 
-        public AttackGoal(Amaracameler amaracamelerIn) {
-            this.amaracameler = amaracamelerIn;
+        public AttackGoal(Amaracameler amaracameler) {
+            this.amaracameler = amaracameler;
             this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK));
         }
 
@@ -417,8 +415,8 @@ public class Amaracameler extends MobEntity implements IMob {
         private float chosenDegrees;
         private int nextRandomizeTime;
 
-        public FaceRandomGoal(Amaracameler amaracamelerIn) {
-            this.amaracameler = amaracamelerIn;
+        public FaceRandomGoal(Amaracameler amaracameler) {
+            this.amaracameler = amaracameler;
             this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK));
         }
 
@@ -446,10 +444,10 @@ public class Amaracameler extends MobEntity implements IMob {
     static class FloatGoal extends Goal {
         private final Amaracameler amaracameler;
 
-        public FloatGoal(Amaracameler amaracamelerIn) {
-            this.amaracameler = amaracamelerIn;
+        public FloatGoal(Amaracameler amaracameler) {
+            this.amaracameler = amaracameler;
             this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
-            amaracamelerIn.getNavigator().setCanSwim(true);
+            amaracameler.getNavigator().setCanSwim(true);
         }
 
         /**
@@ -475,8 +473,8 @@ public class Amaracameler extends MobEntity implements IMob {
     static class HopGoal extends Goal {
         private final Amaracameler amaracameler;
 
-        public HopGoal(Amaracameler amaracamelerIn) {
-            this.amaracameler = amaracamelerIn;
+        public HopGoal(Amaracameler amaracameler) {
+            this.amaracameler = amaracameler;
             this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
         }
 
@@ -502,19 +500,19 @@ public class Amaracameler extends MobEntity implements IMob {
         private final Amaracameler amaracameler;
         private boolean isAggressive;
 
-        public MoveHelperController(Amaracameler amaracamelerIn) {
-            super(amaracamelerIn);
-            this.amaracameler = amaracamelerIn;
-            this.yRot = 180.0F * amaracamelerIn.rotationYaw / (float)Math.PI;
+        public MoveHelperController(Amaracameler amaracameler) {
+            super(amaracameler);
+            this.amaracameler = amaracameler;
+            this.yRot = 180.0F * amaracameler.rotationYaw / (float)Math.PI;
         }
 
-        public void setDirection(float yRotIn, boolean aggressive) {
-            this.yRot = yRotIn;
+        public void setDirection(float yRotation, boolean aggressive) {
+            this.yRot = yRotation;
             this.isAggressive = aggressive;
         }
 
-        public void setSpeed(double speedIn) {
-            this.speed = speedIn;
+        public void setSpeed(double speed) {
+            this.speed = speed;
             this.action = MovementController.Action.MOVE_TO;
         }
 

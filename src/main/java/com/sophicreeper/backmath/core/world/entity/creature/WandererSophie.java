@@ -28,8 +28,8 @@ import javax.annotation.Nullable;
 public class WandererSophie extends CreatureEntity {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(WandererSophie.class, DataSerializers.VARINT);
 
-    public WandererSophie(EntityType<WandererSophie> type, World worldIn) {
-        super(type, worldIn);
+    public WandererSophie(EntityType<WandererSophie> type, World world) {
+        super(type, world);
     }
 
     @Override
@@ -38,29 +38,29 @@ public class WandererSophie extends CreatureEntity {
         this.dataManager.register(VARIANT, 0);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putInt("Variant", this.getVariant());
+    public void writeAdditional(CompoundNBT compoundNBT) {
+        super.writeAdditional(compoundNBT);
+        compoundNBT.putInt("Variant", this.getVariant());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        this.setVariant(compound.getInt("Variant"));
+    public void readAdditional(CompoundNBT compoundNBT) {
+        super.readAdditional(compoundNBT);
+        this.setVariant(compoundNBT.getInt("Variant"));
     }
 
     public int getVariant() {
         return MathHelper.clamp(this.dataManager.get(VARIANT), 0, 11);
     }
 
-    public void setVariant(int variantIn) {
-        this.dataManager.set(VARIANT, variantIn);
+    public void setVariant(int variant) {
+        this.dataManager.set(VARIANT, variant);
     }
 
-    public boolean isOnSameTeam(Entity entityIn) {
-        if (super.isOnSameTeam(entityIn)) {
+    public boolean isOnSameTeam(Entity entity) {
+        if (super.isOnSameTeam(entity)) {
             return true;
-        } else if (entityIn instanceof ArcherLucia || entityIn instanceof WandererSophie || entityIn instanceof KarateLucia || entityIn instanceof InsomniaSophie) {
-            return this.getTeam() == null && entityIn.getTeam() == null;
+        } else if (entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie) {
+            return this.getTeam() == null && entity.getTeam() == null;
         } else {
             return false;
         }
@@ -106,12 +106,12 @@ public class WandererSophie extends CreatureEntity {
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        spawnDataIn = super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.onInitialSpawn(world, difficulty, reason, spawnData, dataTag);
         this.setVariant(this.rand.nextInt(12));
-        this.setEnchantmentBasedOnDifficulty(difficultyIn);
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
-        return spawnDataIn;
+        this.setEnchantmentBasedOnDifficulty(difficulty);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        return spawnData;
     }
 
     /**
@@ -130,11 +130,11 @@ public class WandererSophie extends CreatureEntity {
             // variable 1: Angelic Sword, Angelic Chestplate and Toti
             this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
             this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.CAT_TIARA.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.angelic_chestplate.get()));
+            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()));
         } else if (i == 1) {
             // variable 2: Devil Sword and Devil Chestplate (not including the new tito)
             this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.DEVIL_SWORD.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.devil_chestplate.get()));
+            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()));
             this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(AxolotlTest.TITO.get()));
         } else {
             // variable 3: Cat Tiara and Butter Sword

@@ -26,12 +26,12 @@ public class BMFoods {
             () -> new EffectInstance(Effects.FIRE_RESISTANCE, 6000, 0), 1.0F).effect(
             () -> new EffectInstance(Effects.ABSORPTION, 2400, 3), 1.0F).setAlwaysEdible().build();
 
-    // BM 1.8.0:
-    // foods
+    // Back Math 1.8.0:
+    // Foods
     public static final Food GUAVA = new Food.Builder().hunger(5).saturation(0.5f).build();
     public static final Food JABUTICABA = new Food.Builder().hunger(3).saturation(0.4f).build();
 
-    // cut fruits
+    // Cut Fruits
     public static final Food HALVED_APPLE = new Food.Builder().hunger(2).saturation(0.15f).fastToEat().build();
     public static final Food HALVED_CARROT = new Food.Builder().hunger(1).saturation(0.3f).fastToEat().build();
     public static final Food HALVED_SWEET_BERRIES = new Food.Builder().hunger(1).saturation(0.05f).fastToEat().build();

@@ -26,9 +26,9 @@ public class BMArmors implements IArmorMaterial {
     private final float knockbackResistance;
     private final LazyValue<Ingredient> repairIngredient;
 
-    public BMArmors(String name, int maxDamageFactor, int[] damageReductionAmountArray, int enchantmentValue, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
+    public BMArmors(String name, int attackDamage, int[] damageReductionAmountArray, int enchantmentValue, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
         this.name = name;
-        this.maxDamageFactor = maxDamageFactor;
+        this.maxDamageFactor = attackDamage;
         this.damageReductionAmountArray = damageReductionAmountArray;
         this.enchantmentValue = enchantmentValue;
         this.equipSound = equipSound;
@@ -37,12 +37,12 @@ public class BMArmors implements IArmorMaterial {
         this.repairIngredient = new LazyValue<>(repairIngredient);
     }
 
-    public int getDurability(EquipmentSlotType slotIn) {
-        return MAX_DAMAGE_ARRAY[slotIn.getIndex()] * this.maxDamageFactor;
+    public int getDurability(EquipmentSlotType slot) {
+        return MAX_DAMAGE_ARRAY[slot.getIndex()] * this.maxDamageFactor;
     }
 
-    public int getDamageReductionAmount(EquipmentSlotType slotIn) {
-        return this.damageReductionAmountArray[slotIn.getIndex()];
+    public int getDamageReductionAmount(EquipmentSlotType slot) {
+        return this.damageReductionAmountArray[slot.getIndex()];
     }
 
     public int getEnchantability() {

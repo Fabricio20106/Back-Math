@@ -18,21 +18,21 @@ import javax.annotation.Nullable;
 
 public class ToddyItem extends Item {
     public ToddyItem() {
-        super(new Properties().group(SophiesCursedFoods.COMIDA).maxStackSize(1).food(BMFoods.TODDY));
+        super(new Properties().group(SophiesCursedFoods.TAB).maxStackSize(1).food(BMFoods.TODDY));
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        if (entityLiving instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity)entityLiving;
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
+        if (livingEntity instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
 
-        if (entityLiving instanceof PlayerEntity && !((PlayerEntity)entityLiving).abilities.isCreativeMode) {
+        if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
             stack.shrink(1);
         }
-        return super.onItemUseFinish(stack, worldIn, entityLiving);
+        return super.onItemUseFinish(stack, world, livingEntity);
     }
 
     @Override
@@ -56,12 +56,12 @@ public class ToddyItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity player, Hand handIn) {
-        return DrinkHelper.startDrinking(worldIn, player, handIn);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        return DrinkHelper.startDrinking(world, player, hand);
     }
 
     @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT nbt) {
+    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT compoundNBT) {
         return new FluidBucketWrapper(stack);
     }
 }

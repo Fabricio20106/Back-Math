@@ -40,7 +40,7 @@ public class MealCookerBlock extends HorizontalBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
         ItemStack MainHand = player.getHeldItem(Hand.MAIN_HAND);
         ItemStack OffHand = player.getHeldItem(Hand.OFF_HAND);
 
@@ -83,6 +83,6 @@ public class MealCookerBlock extends HorizontalBlock {
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
             player.addItemStackToInventory(new ItemStack(AxolotlTest.PASTA.get()));
         }
-        return super.onBlockActivated(state, worldIn, pos, player, handIn, hit);
+        return super.onBlockActivated(state, world, pos, player, hand, hit);
     }
 }

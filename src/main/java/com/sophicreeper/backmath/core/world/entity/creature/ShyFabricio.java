@@ -27,20 +27,20 @@ public class ShyFabricio extends CreatureEntity {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
         this.goalSelector.addGoal(2, new TemptGoal(this, 1.1D, Ingredient.fromItems(AxolotlTest.HONEYED_BREAD.get()), true));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, PlayerEntity.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, AngrySophie.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, WandererSophie.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, WarriorSophie.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, ArcherLucia.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, KarateLucia.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, InsomniaSophie.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, ArcherInsomniaSophie.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, InsomniaZombie.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, ZombieFabricio.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, AljamicBones.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, SleepishSkeleton.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, Amaracameler.class, 24.0F, 2.1D, 1.6D));
-        this.goalSelector.addGoal(2, new ShyFabricio.AvoidEntityGoal<>(this, Janticle.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, PlayerEntity.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, AngrySophie.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, WandererSophie.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, WarriorSophie.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, ArcherLucia.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, KarateLucia.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, InsomniaSophie.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, ArcherInsomniaSophie.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, InsomniaZombie.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, ZombieFabricio.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, AljamicBones.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, SleepishSkeleton.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, Amaracameler.class, 24.0F, 2.1D, 1.6D));
+        this.goalSelector.addGoal(2, new ShyFabricioAvoidEntityGoal<>(this, Janticle.class, 24.0F, 2.1D, 1.6D));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(4, new LookAtGoal(this, ShyFabricio.class, 6.0F));
@@ -55,21 +55,21 @@ public class ShyFabricio extends CreatureEntity {
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
         return 1.62F;
     }
 
-    static class AvoidEntityGoal<T extends LivingEntity> extends net.minecraft.entity.ai.goal.AvoidEntityGoal<T> {
-        public AvoidEntityGoal(ShyFabricio fab, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_) {
-            super(fab, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
+    static class ShyFabricioAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
+        public ShyFabricioAvoidEntityGoal(ShyFabricio shyFabricio, Class<T> p_i46403_2_, float p_i46403_3_, double p_i46403_4_, double p_i46403_6_) {
+            super(shyFabricio, p_i46403_2_, p_i46403_3_, p_i46403_4_, p_i46403_6_);
         }
     }
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
-        this.setEnchantmentBasedOnDifficulty(difficultyIn);
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        this.setEnchantmentBasedOnDifficulty(difficulty);
+        return super.onInitialSpawn(world, difficulty, reason, spawnData, dataTag);
     }
 }

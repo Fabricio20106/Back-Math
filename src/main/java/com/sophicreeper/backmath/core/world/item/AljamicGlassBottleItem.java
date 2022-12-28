@@ -19,27 +19,27 @@ public class AljamicGlassBottleItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack heldItem = playerIn.getHeldItem(handIn);
-        RayTraceResult rayTraceResult = rayTrace(worldIn, playerIn, RayTraceContext.FluidMode.SOURCE_ONLY);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getHeldItem(hand);
+        RayTraceResult rayTraceResult = rayTrace(world, player, RayTraceContext.FluidMode.SOURCE_ONLY);
         if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK) {
             BlockPos rayTraceBlockPos = ((BlockRayTraceResult) rayTraceResult).getPos();
-            if (!worldIn.isBlockModifiable(playerIn, rayTraceBlockPos)) {
+            if (!world.isBlockModifiable(player, rayTraceBlockPos)) {
                 return ActionResult.resultPass(heldItem);
             }
 
-            if (worldIn.getFluidState(rayTraceBlockPos) == BMFluids.SLEEPISHWATER.get().getDefaultState()) {
-                worldIn.playSound(playerIn, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                return ActionResult.func_233538_a_(getBottleStack(heldItem, playerIn), worldIn.isRemote());
+            if (world.getFluidState(rayTraceBlockPos) == BMFluids.SLEEPISHWATER.get().getDefaultState()) {
+                world.playSound(player, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                return ActionResult.func_233538_a_(getBottleStack(heldItem, player), world.isRemote());
             }
         }
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+        return super.onItemRightClick(world, player, hand);
     }
 
-    protected ItemStack turnBottleIntoItem(ItemStack bottleStack, PlayerEntity player, ItemStack stack) {
+    /*protected ItemStack turnBottleIntoItem(ItemStack bottleStack, PlayerEntity player, ItemStack stack) {
         player.addStat(Stats.ITEM_USED.get(this));
         return DrinkHelper.fill(bottleStack, player, stack);
-    }
+    }*/
 
     protected ItemStack getBottleStack(ItemStack bottleStack, PlayerEntity player) {
         ItemStack stack = player.getHeldItem(Hand.MAIN_HAND);

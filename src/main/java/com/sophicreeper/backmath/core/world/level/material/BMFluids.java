@@ -19,46 +19,49 @@ import static com.sophicreeper.backmath.core.util.BMResourceLocations.*;
 public class BMFluids {
     public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, BackMath.MOD_ID);
 
+    // Hillary
     public static final RegistryObject<FlowingFluid> HILLARY = FLUIDS.register("hilary_fluid", () ->
-            new ForgeFlowingFluid.Source(BMFluids.hilary_properties));
+            new ForgeFlowingFluid.Source(BMFluids.HILLARY_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_HILLARY = FLUIDS.register("hilary_flowing", () ->
-            new ForgeFlowingFluid.Flowing(BMFluids.hilary_properties));
-    public static final RegistryObject<FlowingFluid> MILKLLARY = FLUIDS.register("milklary_fluid", () ->
-            new ForgeFlowingFluid.Source(BMFluids.milklary_properties));
-    public static final RegistryObject<FlowingFluid> FLOWING_MILKLLARY = FLUIDS.register("milklary_flowing", () ->
-            new ForgeFlowingFluid.Flowing(BMFluids.milklary_properties));
+            new ForgeFlowingFluid.Flowing(BMFluids.HILLARY_PROPERTIES));
 
-    // liquid aljame
+    // Milkllary
+    public static final RegistryObject<FlowingFluid> MILKLLARY = FLUIDS.register("milklary_fluid", () ->
+            new ForgeFlowingFluid.Source(BMFluids.MILKLLARY_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> FLOWING_MILKLLARY = FLUIDS.register("milklary_flowing", () ->
+            new ForgeFlowingFluid.Flowing(BMFluids.MILKLLARY_PROPERTIES));
+
+    // Liquid Aljame
     public static final RegistryObject<FlowingFluid> LIQUID_ALJAME = FLUIDS.register("liquid_aljame", () ->
             new ForgeFlowingFluid.Source(BMFluids.LIQUID_ALJAME_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_LIQUID_ALJAME = FLUIDS.register("flowing_liquid_aljame", () ->
             new ForgeFlowingFluid.Flowing(BMFluids.LIQUID_ALJAME_PROPERTIES));
 
-    // liquid manga
+    // Liquid Manga
     public static final RegistryObject<FlowingFluid> LIQUID_MANGA = FLUIDS.register("liquid_manga", () ->
             new ForgeFlowingFluid.Source(BMFluids.LIQUID_MANGA_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_LIQUID_MANGA = FLUIDS.register("flowing_liquid_manga", () ->
             new ForgeFlowingFluid.Flowing(BMFluids.LIQUID_MANGA_PROPERTIES));
 
-    // liquefied monster
+    // Liquefied Monster
     public static final RegistryObject<FlowingFluid> LIQUEFIED_MONSTER = FLUIDS.register("liquefied_monster", () ->
             new ForgeFlowingFluid.Source(BMFluids.LIQUEFIED_MONSTER_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_LIQUEFIED_MONSTER = FLUIDS.register("flowing_liquefied_monster", () ->
             new ForgeFlowingFluid.Flowing(BMFluids.LIQUEFIED_MONSTER_PROPERTIES));
 
-    // sleepishwater
+    // Sleepishwater
     public static final RegistryObject<FlowingFluid> SLEEPISHWATER = FLUIDS.register("sleepishwater", () ->
             new ForgeFlowingFluid.Source(BMFluids.SLEEPISHWATER_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_SLEEPISHWATER = FLUIDS.register("flowing_sleepishwater", () ->
             new ForgeFlowingFluid.Flowing(BMFluids.SLEEPISHWATER_PROPERTIES));
 
-    // Hillary, Milkllary and Liquid Aljame Properties
-    public static final ForgeFlowingFluid.Properties milklary_properties = new ForgeFlowingFluid.Properties(MILKLLARY, FLOWING_MILKLLARY,
-            FluidAttributes.builder(MILKLARY_STILL_RL, MILKLARY_FLOWING_RL).rarity(Rarity.COMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(MILKLARY_OVERLAY_RL))
+    // Hillary, Milkllary, Liquid Aljame, Liquid Manga, Liquefied Monster and Sleepishwater Properties
+    public static final ForgeFlowingFluid.Properties MILKLLARY_PROPERTIES = new ForgeFlowingFluid.Properties(MILKLLARY, FLOWING_MILKLLARY,
+            FluidAttributes.builder(MILKLLARY_STILL_RL, MILKLLARY_FLOWING_RL).rarity(Rarity.COMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(MILKLLARY_OVERLAY_RL))
             .block(BMBlocks.MILKLLARY).bucket(AxolotlTest.MILKLLARY_BUCKET);
 
-    public static final ForgeFlowingFluid.Properties hilary_properties = new ForgeFlowingFluid.Properties(HILLARY, FLOWING_HILLARY,
-            FluidAttributes.builder(HILARY_STILL_RL, HILARY_FLOWING_RL).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(HILARY_OVERLAY_RL))
+    public static final ForgeFlowingFluid.Properties HILLARY_PROPERTIES = new ForgeFlowingFluid.Properties(HILLARY, FLOWING_HILLARY,
+            FluidAttributes.builder(HILLARY_STILL_RL, HILLARY_FLOWING_RL).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(HILLARY_OVERLAY_RL))
             .canMultiply().block(BMBlocks.HILLARY).bucket(AxolotlTest.HILLARY_BUCKET);
 
     public static final ForgeFlowingFluid.Properties LIQUID_ALJAME_PROPERTIES = new ForgeFlowingFluid.Properties(LIQUID_ALJAME, FLOWING_LIQUID_ALJAME,

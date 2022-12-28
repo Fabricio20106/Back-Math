@@ -13,11 +13,11 @@ public class LagustaBagItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack stack = playerIn.getHeldItem(handIn);
-        playerIn.addItemStackToInventory(new ItemStack(AxolotlTest.EMPTY_LAGUSTA_BAG.get()));
-        playerIn.addItemStackToInventory(new ItemStack(AxolotlTest.LAGUSTA.get()));
-        stack.shrink(1);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getHeldItem(hand);
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.EMPTY_LAGUSTA_BAG.get()));
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.LAGUSTA.get()));
+        heldItem.shrink(1);
+        return super.onItemRightClick(world, player, hand);
     }
 }

@@ -12,17 +12,17 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
-public class TitoliBlock extends HorizontalBlock {
+public class EmotionalSquidBlock extends HorizontalBlock {
     public static final VoxelShape SHAPE = Block.makeCuboidShape(4.0d, 0.0d, 4.0d, 12.0d, 6.0d, 12.0d);
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
-    public TitoliBlock() {
+    public EmotionalSquidBlock() {
         super(AbstractBlock.Properties.from(Blocks.WHITE_WOOL));
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
         return SHAPE;
     }
 
@@ -35,12 +35,12 @@ public class TitoliBlock extends HorizontalBlock {
         return SHAPE;
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(FACING, rot.rotate(state.get(FACING)));
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(FACING)));
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.toRotation(state.get(FACING)));
     }
 
     @Override

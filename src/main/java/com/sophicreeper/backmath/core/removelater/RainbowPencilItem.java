@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item;
+package com.sophicreeper.backmath.core.removelater;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
@@ -28,8 +28,8 @@ public class RainbowPencilItem extends BlockItem implements IVanishable {
         super(block, properties);
         this.attackDamage = (float)attackDamage + tier.getAttackDamage();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Rainbow Pencil modifier", this.attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Rainbow Pencil modifier", attackSpeed, AttributeModifier.Operation.ADDITION));
         this.attributeModifiers = builder.build();
     }
 

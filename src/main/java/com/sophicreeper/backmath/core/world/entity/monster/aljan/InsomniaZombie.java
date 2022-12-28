@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
-import com.sophicreeper.backmath.core.world.entity.goal.BMInsomniaZombieAttackGoal;
+import com.sophicreeper.backmath.core.world.entity.goal.InsomniaZombieAttackGoal;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
 import net.minecraft.block.BlockState;
@@ -35,7 +35,6 @@ import javax.annotation.Nullable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -55,7 +54,7 @@ public class InsomniaZombie extends MonsterEntity {
     }
 
     protected void applyEntityAI() {
-        this.goalSelector.addGoal(2, new BMInsomniaZombieAttackGoal(this, 1.0D, false));
+        this.goalSelector.addGoal(2, new InsomniaZombieAttackGoal(this, 1.0D, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Malaika.class, true));
@@ -121,11 +120,11 @@ public class InsomniaZombie extends MonsterEntity {
         if (this.isAlive()) {
             boolean flag = this.shouldBurnInDay() && this.isInDaylight();
             if (flag) {
-                ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-                if (!itemstack.isEmpty()) {
-                    if (itemstack.isDamageable()) {
-                        itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
-                        if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
+                ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+                if (!headStack.isEmpty()) {
+                    if (headStack.isDamageable()) {
+                        headStack.setDamage(headStack.getDamage() + this.rand.nextInt(2));
+                        if (headStack.getDamage() >= headStack.getMaxDamage()) {
                             this.sendBreakAnimation(EquipmentSlotType.HEAD);
                             this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
                         }
@@ -159,18 +158,18 @@ public class InsomniaZombie extends MonsterEntity {
         return flag;
     }
 
-    public static boolean canSpawnIZOn(EntityType<InsomniaZombie> insomniaZombie, IServerWorld iServerWorld, SpawnReason reason, BlockPos pos, Random randomIn) {
-        if (iServerWorld.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(iServerWorld, pos, randomIn) && canSpawnOn(insomniaZombie, iServerWorld, reason, pos, randomIn) &&
+    public static boolean canSpawnIZOn(EntityType<InsomniaZombie> insomniaZombie, IServerWorld world, SpawnReason spawnReason, BlockPos pos, Random rand) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(world, pos, rand) && canSpawnOn(insomniaZombie, world, spawnReason, pos, rand) &&
                 BMConfigs.SERVER_CONFIGS.insomniaZombieSpawn.get()) {
             if (
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get())) {
-                canSpawnOn(insomniaZombie, iServerWorld, reason, pos, randomIn);
+                    Objects.equals(world.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
+                            Objects.equals(world.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
+                            Objects.equals(world.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get())) {
+                canSpawnOn(insomniaZombie, world, spawnReason, pos, rand);
             }
         }
         return false;
@@ -239,8 +238,8 @@ public class InsomniaZombie extends MonsterEntity {
     }
 
     @Nullable
-    public static Item getBackMathArmorByChance(EquipmentSlotType slotIn, int chance) {
-        switch(slotIn) {
+    public static Item getBackMathArmorByChance(EquipmentSlotType slot, int chance) {
+        switch(slot) {
             case HEAD:
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();
@@ -307,17 +306,17 @@ public class InsomniaZombie extends MonsterEntity {
 
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putBoolean("CanBreakDoors", this.isBreakDoorsTaskSet());
+    public void writeAdditional(CompoundNBT compoundNBT) {
+        super.writeAdditional(compoundNBT);
+        compoundNBT.putBoolean("CanBreakDoors", this.isBreakDoorsTaskSet());
     }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        this.setBreakDoorsAItask(compound.getBoolean("CanBreakDoors"));
+    public void readAdditional(CompoundNBT compoundNBT) {
+        super.readAdditional(compoundNBT);
+        this.setBreakDoorsAItask(compoundNBT.getBoolean("CanBreakDoors"));
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
@@ -325,8 +324,8 @@ public class InsomniaZombie extends MonsterEntity {
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld iServerWorld, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        spawnDataIn = super.onInitialSpawn(iServerWorld, difficulty, spawnReason, spawnDataIn, dataTag);
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
         float f = difficulty.getClampedAdditionalDifficulty();
         this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * f);
 
@@ -345,7 +344,7 @@ public class InsomniaZombie extends MonsterEntity {
         }
 
         this.applyAttributeBonuses(f);
-        return spawnDataIn;
+        return spawnData;
     }
 
     protected void applyAttributeBonuses(float difficulty) {
@@ -369,8 +368,8 @@ public class InsomniaZombie extends MonsterEntity {
         return -0.45D;
     }
 
-    protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
-        super.dropSpecialItems(source, looting, recentlyHitIn);
+    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
         Entity entity = source.getTrueSource();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity)entity;

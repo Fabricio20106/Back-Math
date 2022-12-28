@@ -1172,10 +1172,8 @@
   "messages.backmath.take_armor_off.jam": "§4WARNING: §r§8This jam replaces your armor slots with the Bakugou armor set, so take your armor off before eating!",
   "messages.backmath.take_armor_off.jam_bread": "§4WARNING: §r§8This bread with jam replaces your armor slots with the Bakugou armor set, so take your armor off before eating!",
   "messages.backmath.take_armor_off.popsicle": "§4WARNING: §r§8This popsicle replaces your armor slots with the Bakugou armor set, so take your armor off before eating!",
-  "messages.backmath.take_armor_off.manga_mango": "§4WARNING: §r§8This mangaed mango replaces your armor slots with the Bakugou armor set, so take your armor off before eating!",
+  "messages.backmath.take_armor_off.mangaed_mango": "§4WARNING: §r§8This mangaed mango replaces your armor slots with the Bakugou armor set, so take your armor off before eating!",
   "messages.backmath.can_be_placed": "§oCan be Placed",
-
-  "subtitles.queen_sophie.summon_spell": "Queen Sophie summons Sophies",
 
   "tooltip.backmath.empty": " ",
   "tooltip.backmath.when.in_main_hand": "§7When in Main Hand:",

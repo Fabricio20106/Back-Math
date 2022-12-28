@@ -4,8 +4,8 @@ import com.sophicreeper.backmath.core.world.item.CrownItem;
 import net.minecraft.item.ItemStack;
 
 public class GlisteringCrownItem extends CrownItem {
-    public GlisteringCrownItem(Properties builder) {
-        super(builder);
+    public GlisteringCrownItem(Properties properties) {
+        super(properties);
     }
 
     @Override

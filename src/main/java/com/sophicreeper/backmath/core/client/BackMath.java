@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 public class BackMath {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "backmath";
+    public static final boolean logDebugMessages = false;
 
     public final CommonProxy proxy;
 
@@ -30,28 +31,4 @@ public class BackMath {
     public static ResourceLocation resourceLoc(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
-
-    /*@SubscribeEvent
-    public void missingItemMappings(final RegistryEvent.MissingMappings<Item> event) {
-        RegistrationHelper.handleMissingMappings(event, MOD_ID, item -> {
-            switch (item) {
-                case "levan_polkka_disc":
-                    return AxolotlTest.IEVAN_POLKKA_DISC.get();
-                default:
-                    return null;
-            }
-        });
-    }
-
-    @SubscribeEvent
-    public static void missingBiomeMappings(final RegistryEvent.MissingMappings<Biome> event) {
-        RegistrationHelper.handleMissingMappings(event, MOD_ID, item -> {
-            switch (item) {
-                case "back_field":
-                    return BMBiomes.ORIGINAL_BACK_FIELDS.get();
-                default:
-                    return null;
-            }
-        });
-    }*/
 }

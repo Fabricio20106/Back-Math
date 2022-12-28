@@ -67,13 +67,13 @@ public class Malaika extends CreatureEntity {
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
         return 1.62f;
     }
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT compoundNBT) {
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
         return spawnData;
@@ -173,15 +173,15 @@ public class Malaika extends CreatureEntity {
         }
     }
 
-    public static boolean canSpawnMalaikaOn(EntityType<Malaika> malaika, IServerWorld iServerWorld, SpawnReason reason, BlockPos pos, Random randomIn) {
-        if (Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
-                Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
-                Objects.equals(iServerWorld.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
-                Objects.equals(iServerWorld.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
-                Objects.equals(iServerWorld.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
-                Objects.equals(iServerWorld.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
-                Objects.equals(iServerWorld.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get()) && BMConfigs.SERVER_CONFIGS.malaikaSpawn.get()) {
-            canSpawnOn(malaika, iServerWorld, reason, pos, randomIn);
+    public static boolean canSpawnMalaikaOn(EntityType<Malaika> malaika, IServerWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        if (Objects.equals(world.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
+                Objects.equals(world.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
+                Objects.equals(world.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
+                Objects.equals(world.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
+                Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
+                Objects.equals(world.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
+                Objects.equals(world.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get()) && BMConfigs.SERVER_CONFIGS.malaikaSpawn.get()) {
+            canSpawnOn(malaika, world, reason, pos, rand);
         }
         return false;
     }

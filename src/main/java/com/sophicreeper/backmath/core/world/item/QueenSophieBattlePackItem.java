@@ -9,15 +9,15 @@ import net.minecraft.world.World;
 
 public class QueenSophieBattlePackItem extends Item {
     public QueenSophieBattlePackItem() {
-        super(new Properties().isImmuneToFire().group(SophiesCursedFoods.COMIDA));
+        super(new Properties().isImmuneToFire().group(SophiesCursedFoods.TAB));
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        ItemStack stack = playerIn.getHeldItem(handIn);
-        playerIn.addItemStackToInventory(new ItemStack(AxolotlTest.QUEEN_SOPHIE_SPAWN_EGG.get()));
-        playerIn.addItemStackToInventory(new ItemStack(AxolotlTest.QUEEN_SOPHIE_BATTLE_INFO.get()));
-        stack.shrink(1);
-        return super.onItemRightClick(worldIn, playerIn, handIn);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getHeldItem(hand);
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.QUEEN_SOPHIE_SPAWN_EGG.get()));
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.QUEEN_SOPHIE_BATTLE_INFO.get()));
+        heldItem.shrink(1);
+        return super.onItemRightClick(world, player, hand);
     }
 }

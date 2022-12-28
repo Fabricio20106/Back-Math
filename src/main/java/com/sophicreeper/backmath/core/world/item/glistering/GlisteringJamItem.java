@@ -17,26 +17,26 @@ public class GlisteringJamItem extends Item {
         super(properties);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, LivingEntity entityLiving) {
-        super.onItemUseFinish(stack, worldIn, entityLiving);
-        if (entityLiving instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverplayerentity = (ServerPlayerEntity)entityLiving;
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverplayerentity, stack);
-            serverplayerentity.addStat(Stats.ITEM_USED.get(this));
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
+        super.onItemUseFinish(stack, world, livingEntity);
+        if (livingEntity instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
+            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
+            serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
 
-        if (entityLiving instanceof PlayerEntity && !((PlayerEntity)entityLiving).abilities.isCreativeMode) {
+        if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
             stack.shrink(1);
         }
 
         if (stack.isEmpty()) {
             return new ItemStack(AxolotlTest.JAM_POT.get());
         } else {
-            if (entityLiving instanceof PlayerEntity && !((PlayerEntity)entityLiving).abilities.isCreativeMode) {
-                ItemStack itemstack = new ItemStack(AxolotlTest.JAM_POT.get());
-                PlayerEntity playerentity = (PlayerEntity)entityLiving;
-                if (!playerentity.inventory.addItemStackToInventory(itemstack)) {
-                    playerentity.dropItem(itemstack, false);
+            if (livingEntity instanceof PlayerEntity && !((PlayerEntity)livingEntity).abilities.isCreativeMode) {
+                ItemStack jamPot = new ItemStack(AxolotlTest.JAM_POT.get());
+                PlayerEntity player = (PlayerEntity) livingEntity;
+                if (!player.inventory.addItemStackToInventory(jamPot)) {
+                    player.dropItem(jamPot, false);
                 }
             }
             return stack;
@@ -64,7 +64,7 @@ public class GlisteringJamItem extends Item {
         return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
-        return DrinkHelper.startDrinking(worldIn, playerIn, handIn);
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+        return DrinkHelper.startDrinking(world, player, hand);
     }
 }
