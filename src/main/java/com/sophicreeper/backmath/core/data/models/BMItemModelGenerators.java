@@ -20,7 +20,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
     @Nonnull
     @Override
     public String getName() {
-        return "BackMath - Item Models";
+        return "Back Math - Item Models";
     }
 
     @Override
@@ -852,6 +852,28 @@ public class BMItemModelGenerators extends ItemModelProvider {
         blockWithCustomFile(generated, "aljamic_glass_pane", "aljamic_glass");
         block(generated, "wild_aljamic_onions");
         compat("glue");
+        standard(handheld, "pink_gum_frying_pan");
+        compat("obsidian_ingot");
+        compat("molten_mid_term_bucket");
+        compat("crystallized_guarana_ingot");
+        compat("crystallized_mango_ingot");
+        compat("crystallized_mangaed_mango_ingot");
+        compat("crystallized_grape_ingot");
+        compat("crystallized_lemon_ingot");
+        compat("crystallized_pineapple_ingot");
+        compat("crystallized_orange_ingot");
+        compat("crystallized_banana_ingot");
+        compat("crystallized_guava_ingot");
+        compat("crystallized_jabuticaba_ingot");
+        compat("crystallized_aljamic_berry_ingot");
+        compat("crystallized_aljame_ingot");
+        compat("crystallized_apple_ingot");
+        compat("crystallized_golden_apple_ingot");
+        getBuilder("crystallized_enchanted_golden_apple_ingot").parent(generated).texture("layer0", "item/crystallized_golden_apple_ingot");
+        compat("crystallized_melon_ingot");
+        compat("crystallized_pumpkin_ingot");
+        compat("crystallized_sweet_berry_ingot");
+        compat("crystallized_glow_berry_ingot");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

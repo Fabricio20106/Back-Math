@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.core.world.item;
 
 import com.sophicreeper.backmath.core.world.entity.BMDamageSources;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
@@ -21,6 +23,13 @@ public class MidTermArmorItem extends ArmorItem {
             world.createExplosion(player, BMDamageSources.MID_TERM_ARMOR_INSTABILITY, null, player.getPosX(), player.getPosY(), player.getPosZ(), 8, false, Explosion.Mode.DESTROY);
         }
         super.onArmorTick(stack, world, player);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+        LivingEntity livingEntity = (LivingEntity) entity;
+        stack.damageItem(1, livingEntity, (entity1) -> entity1.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        super.inventoryTick(stack, world, entity, itemSlot, isSelected);
     }
 
     @Override

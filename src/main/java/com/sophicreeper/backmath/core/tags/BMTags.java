@@ -27,6 +27,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> INGOTS_ALJAMIC_TIN = forge("ingots/aljamic_tin");
         public static final ITag.INamedTag<Item> INGOTS_COPPER = forge("ingots/copper");
         public static final ITag.INamedTag<Item> INGOTS_TIN = forge("ingots/tin");
+        public static final ITag.INamedTag<Item> INGOTS_OBSIDIAN = forge("ingots/obsidian");
 
         public static final ITag.INamedTag<Item> NUGGETS_CHRISTIAN_MID_TERM = forge("nuggets/christian_mid_term");
         public static final ITag.INamedTag<Item> NUGGETS_MID_TERM = forge("nuggets/mid_term");

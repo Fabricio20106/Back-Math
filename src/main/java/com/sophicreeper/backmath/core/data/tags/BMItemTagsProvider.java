@@ -96,6 +96,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.INGOTS_COPPER).add(AxolotlTest.ALJAMIC_COPPER_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_TIN).add(AxolotlTest.ALJAMIC_TIN_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_HARDENED_AMARACAMEL).add(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get());
+        this.getOrCreateBuilder(BMTags.Items.INGOTS_OBSIDIAN).add(AxolotlTest.OBSIDIAN_INGOT.get());
 
         this.getOrCreateBuilder(BMTags.Items.ORES_ALJAMEED).add(AxolotlTest.RAW_ALJAMEED.get()).add(AxolotlTest.ALJAMEED_ORE.get());
         this.getOrCreateBuilder(BMTags.Items.ORES_MOONERING).add(AxolotlTest.RAW_MOONER.get()).add(AxolotlTest.MOONERING_ORE.get());
@@ -197,6 +198,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_COPPER);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_TIN);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_HARDENED_AMARACAMEL);
+        this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_OBSIDIAN);
 
         this.getOrCreateBuilder(Tags.Items.RODS).addTag(BMTags.Items.RODS_ALJANWOOD).addTag(BMTags.Items.RODS_ALJANCAP).addTag(BMTags.Items.RODS_INSOMNIAN).addTag(BMTags.Items.RODS_ALJAMEED).addTag(BMTags.Items.RODS_GUAVA);
         this.getOrCreateBuilder(ItemTags.COALS).add(AxolotlTest.CHARJAN_COAL.get());

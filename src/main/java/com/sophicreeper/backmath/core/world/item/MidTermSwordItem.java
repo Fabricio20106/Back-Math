@@ -32,6 +32,13 @@ public class MidTermSwordItem extends SwordItem {
     }
 
     @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+        LivingEntity livingEntity = (LivingEntity) entity;
+        stack.damageItem(1, livingEntity, (entity1) -> entity1.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        super.inventoryTick(stack, world, entity, itemSlot, isSelected);
+    }
+
+    @Override
     public int getRGBDurabilityForDisplay(ItemStack stack) {
         return 0x1dc2d1;
     }

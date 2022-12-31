@@ -1,17 +1,10 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    " # ",
-    "#A#",
-    " # "
-  ],
-  "key": {
-    "#": {
-      "tag": "forge:gems/jantical"
-    },
-    "A": {
-      "item": "backmath:moonering_axe"
-    }
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "backmath:moonering_axe"
+  },
+  "addition": {
+    "tag": "forge:gems/jantical"
   },
   "result": {
     "item": "backmath:jantiquified_moonering_axe"
