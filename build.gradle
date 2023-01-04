@@ -131,7 +131,7 @@ repositories {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "Back Math 1.8.0",
+            "Specification-Title": "Back Math",
             "Specification-Vendor": "Sophicreeper",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
