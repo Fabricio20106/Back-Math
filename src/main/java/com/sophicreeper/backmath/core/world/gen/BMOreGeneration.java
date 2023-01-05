@@ -52,7 +52,7 @@ public class BMOreGeneration {
             generateOre(event.getGeneration(), AIR_FILLER, BMBlocks.CRYSTALLINE_ANGELIC_ORE.get().getDefaultState(), 5, 192, 255, 5);
         }
 
-        if (event.getCategory().equals(Biome.Category.NETHER) && BMConfigs.SERVER_CONFIGS.devilOreGen.get()) {
+        if (event.getCategory().equals(Biome.Category.NETHER) && BMConfigs.SERVER_CONFIGS.netherDevilOreGen.get()) {
             generateOre(event.getGeneration(), BASE_STONE_NETHER, BMBlocks.NETHER_DEVIL_ORE.get().getDefaultState(), 6, 6, 117, 20);
         }
 

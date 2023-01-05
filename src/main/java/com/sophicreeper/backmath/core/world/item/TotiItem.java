@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.core.world.item;
 
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
-import com.sophicreeper.backmath.core.util.Keys;
+import com.sophicreeper.backmath.core.util.BMKeys;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItem;
@@ -29,7 +29,7 @@ public class TotiItem extends BlockItem {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack heldItem = player.getHeldItem(hand);
-        if (!world.isRemote && Keys.isHoldingShift()) {
+        if (!world.isRemote && BMKeys.isHoldingShift()) {
             player.addItemStackToInventory(new ItemStack(AxolotlTest.TITO.get()));
             heldItem.shrink(1);
         }

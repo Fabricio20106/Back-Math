@@ -6,7 +6,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.lwjgl.glfw.GLFW;
 
-public class Keys {
+public class BMKeys {
     private static final long MINECRAFT_WINDOW = Minecraft.getInstance().getMainWindow().getHandle();
 
     @OnlyIn(Dist.CLIENT)

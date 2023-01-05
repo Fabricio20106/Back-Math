@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
+@Deprecated
 public class DescriptiveFoodItem extends Item {
     public DescriptiveFoodItem(Properties properties) {
         super(properties);

@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.core.removelater;
 
+@Deprecated
 public class CrystallizerOldBlock /*extends HorizontalBlock*/ {
     //public static final DirectionProperty facing = HorizontalBlock.HORIZONTAL_FACING;
 

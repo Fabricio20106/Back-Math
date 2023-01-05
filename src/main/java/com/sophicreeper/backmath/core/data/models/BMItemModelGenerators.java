@@ -251,6 +251,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("aljamic_sand");
         withExistingParent("aljamic_glass");
         withExistingParent("jantical_block");
+        withExistingParent("guava_grape_vine_post", modLoc("block/grape_vine_posts/guava"));
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -363,6 +364,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         block(generated, "aljame_birch_sapling");
         standard(handheldThirtyTwo, "mid_term_greatsword");
 
+        // Back Math 1.5 items
         compat("christian_mid_term_angelic_alloy_ingot");
         compat("christian_mid_term_devil_alloy_ingot");
         compat("devil_angelic_alloy_ingot");
@@ -388,7 +390,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("raw_angelic");
         compat("raw_mid_term");
 
-        // 1.6 items
+        // Back Math 1.6 items
         compat("bakugou_hair");
         compat("bakugou_blouse");
         compat("bakugou_pants");
@@ -530,7 +532,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("warrior_sophie_spawn_egg");
         compat("queen_sophie_pet_spawn_egg");
 
-        // bm 1.6.1
+        // Back Math 1.6.1 items
         compat("apple_juice");
         compat("apple_jam");
         compat("apple_popsicle");
@@ -568,7 +570,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         standard(generated, "milkllary_boots");
         standard(handheld, "mid_term_rod");
 
-        // 1.7 content
+        // Back Math 1.7 content
         standard(generated, "aljameed_ingot");
         standard(generated, "moonering_ingot");
         standard(generated, "raw_aljameed");
@@ -619,7 +621,6 @@ public class BMItemModelGenerators extends ItemModelProvider {
         standard(handheld, "moonering_shovel");
         standard(handheld, "moonering_axe");
         standard(handheld, "moonering_hoe");
-        //withNewFruitByproducts("purple_guy");
         compat("sweet_berry_juice");
         compat("glow_berry_juice");
         compat("sweet_berry_popsicle");
@@ -777,7 +778,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("aljamic_bones_spawn_egg");
         compat("sleepish_skeleton_spawn_egg");
 
-        // bm 1.8.0
+        // Back Math 1.8.0
         compat("guava");
         compat("guava_juice");
         compat("guava_popsicle");

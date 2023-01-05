@@ -149,6 +149,7 @@
   "biome.backmath.sleepish_ocean": "Sleepish Ocean",
   "biome.backmath.deep_sleepish_ocean": "Deep Sleepish Ocean",
   "biome.backmath.aljamic_highlands": "Aljamic Highlands",
+  "biome.backmath.amaracamel_sticks": "Amaracamel Sticks",
   "biome.backmath.d_e_e_p_e_r_sleepish_ocean": "D E E P E R Sleepish Ocean",
 
   "block.backmath.acacia_grape_vine_post": "Acacia Grape Vine Post",
@@ -485,6 +486,7 @@
   "block.backmath.jantical_block": "Block of Jantical",
   "block.backmath.wild_aljamic_onions": "Wild Aljamic Onions",
   "block.backmath.queen_sophie_pet_relic": "Queen Sophie Pet Relic",
+  "block.backmath.guava_grape_vine_post": "Guava Grape Vine Post",
 
   "crop.backmath.angelic": "Angelic",
   "crop.backmath.christian_mid_term": "Christian Mid-Term",
@@ -524,6 +526,7 @@
   "entity.backmath.malaika": "Malaika",
   "entity.backmath.janticle": "Janticle",
   "entity.backmath.backmath_boat": "Back Math Boat",
+  "entity.backmath.insomnia_arrow": "Insomnia Arrow",
 
   "fluid.backmath.hilary_flowing": "Flowing Hillary",
   "fluid.backmath.milklary_flowing": "Flowing Milkllary",

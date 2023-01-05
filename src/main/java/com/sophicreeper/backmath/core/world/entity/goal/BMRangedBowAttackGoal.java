@@ -7,7 +7,6 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.BowItem;
-import net.minecraft.item.Items;
 
 import java.util.EnumSet;
 
@@ -78,20 +77,20 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
     public void tick() {
         LivingEntity livingEntity = this.entity.getAttackTarget();
         if (livingEntity != null) {
-            double d0 = this.entity.getDistanceSq(livingEntity.getPosX(), livingEntity.getPosY(), livingEntity.getPosZ());
-            boolean flag = this.entity.getEntitySenses().canSee(livingEntity);
-            boolean flag1 = this.seeTime > 0;
-            if (flag != flag1) {
+            double mobDistanceSqr = this.entity.getDistanceSq(livingEntity.getPosX(), livingEntity.getPosY(), livingEntity.getPosZ());
+            boolean canMobSeeOther = this.entity.getEntitySenses().canSee(livingEntity);
+            boolean seeTimeFlag = this.seeTime > 0;
+            if (canMobSeeOther != seeTimeFlag) {
                 this.seeTime = 0;
             }
 
-            if (flag) {
+            if (canMobSeeOther) {
                 ++this.seeTime;
             } else {
                 --this.seeTime;
             }
 
-            if (!(d0 > (double)this.maxAttackDistance) && this.seeTime >= 20) {
+            if (!(mobDistanceSqr > (double) this.maxAttackDistance) && this.seeTime >= 20) {
                 this.entity.getNavigator().clearPath();
                 ++this.strafingTime;
             } else {
@@ -112,9 +111,9 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
             }
 
             if (this.strafingTime > -1) {
-                if (d0 > (double)(this.maxAttackDistance * 0.75F)) {
+                if (mobDistanceSqr > (double) (this.maxAttackDistance * 0.75F)) {
                     this.strafingBackwards = false;
-                } else if (d0 < (double)(this.maxAttackDistance * 0.25F)) {
+                } else if (mobDistanceSqr < (double) (this.maxAttackDistance * 0.25F)) {
                     this.strafingBackwards = true;
                 }
 
@@ -125,9 +124,9 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
             }
 
             if (this.entity.isHandActive()) {
-                if (!flag && this.seeTime < -60) {
+                if (!canMobSeeOther && this.seeTime < -60) {
                     this.entity.resetActiveHand();
-                } else if (flag) {
+                } else if (canMobSeeOther) {
                     int i = this.entity.getItemInUseMaxCount();
                     if (i >= 20) {
                         this.entity.resetActiveHand();

@@ -4,11 +4,12 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class BMServerConfigs {
     // World generation
-    public final ForgeConfigSpec.BooleanValue midTermOreGen;
     public final ForgeConfigSpec.BooleanValue devilOreGen;
+    public final ForgeConfigSpec.BooleanValue netherDevilOreGen;
     public final ForgeConfigSpec.BooleanValue angelicOreGen;
     public final ForgeConfigSpec.BooleanValue abundantAngelicOreGen;
     public final ForgeConfigSpec.BooleanValue crystallineAngelicOreGen;
+    public final ForgeConfigSpec.BooleanValue midTermOreGen;
     public final ForgeConfigSpec.BooleanValue aljameedOreGen;
     public final ForgeConfigSpec.BooleanValue mooneringOreGen;
     public final ForgeConfigSpec.BooleanValue janticOreGen;
@@ -46,8 +47,9 @@ public class BMServerConfigs {
 
     public BMServerConfigs(ForgeConfigSpec.Builder builder) {
         builder.comment("Welcome to the Back Math configurations file. Created in 08th and 09th of April of 2022 and made working on 21st and 22nd of April of 2022.");
-        builder.push("oregen");
-        this.devilOreGen = builder.comment("Allow devil ore generation in both overworld and the nether?").define("devilOreGen", true);
+        builder.push("oreGeneration");
+        this.devilOreGen = builder.comment("Allow devil ore generation in the Overworld?").define("devilOreGen", true);
+        this.netherDevilOreGen = builder.comment("Allow nether devil ore generation in the Nether?").define("netherDevilOreGen", true);
         this.angelicOreGen = builder.comment("Allow angelic ore generation?").define("angelicOreGen", true);
         this.abundantAngelicOreGen = builder.comment("Allow abundant angelic ore generation in the Angelic Woods?").define("abundantAngelicOreGen", true);
         this.crystallineAngelicOreGen = builder.comment("Allow crystalline angelic ore generation in the Angelic Woods?").define("crystallineAngelicOreGen", true);
@@ -60,19 +62,19 @@ public class BMServerConfigs {
         this.aljamicTinGen = builder.comment("Allow aljamic tin ore to generate in the aljan?").define("aljamicTinOreGen", true);
         builder.pop();
 
-        builder.push("featuregen");
+        builder.push("featureGeneration");
         this.grapeVinesInTaigas = builder.comment("Allow grape vines to generate in any biome categorized as a taiga?").define("grapeVinesInTaiga", true);
         this.bananaJunglesInJungles = builder.comment("Allow banana jungles to generate in any biome categorized as a jungle?").define("bananaJunglesInJungles", true);
         this.turtleFriedEggFlowersInBeaches = builder.comment("Allow turtle fried egg flowers to generate in any biome categorized as a beach?").define("turtleFriedEggFlowersInBeaches", true);
         builder.pop();
 
-        builder.push("biomegen");
+        builder.push("biomeGeneration");
         this.originalBackFieldsGen = builder.comment("Allow the original back fields to generate?").define("originalBackFieldsGen", true);
         this.modifiedBackFieldsGen = builder.comment("Allow the modified back fields to generate?").define("modifiedBackFieldsGen", true);
         this.angelicWoodsGen = builder.comment("Allow angelic wood forests to generate?").define("angelicWoodsGen", true);
         builder.pop();
 
-        builder.push("mobspawns");
+        builder.push("mobSpawning");
         this.wandererSophieSpawn = builder.comment("Allow wanderer Sophies to spawn in back fields?").define("wandererSophieSpawn", true);
         this.angrySophieSpawn = builder.comment("Allow angry Sophies to spawn in back fields?").define("angrySophieSpawn", true);
         this.shyFabricioSpawn = builder.comment("Allow shy Fabricios to spawn in back fields?").define("shyFabricioSpawn", true);
@@ -80,7 +82,7 @@ public class BMServerConfigs {
         this.karateLuciaSpawn = builder.comment("Allow karate Lucias to spawn in back fields?").define("karateLuciaSpawn", true);
         this.insomniaSophieSpawn = builder.comment("Allow insomnia Sophies to spawn in back fields?").define("insomniaSophieSpawn", true);
         this.archerInsomniaSophieSpawn = builder.comment("Allow archer insomnia Sophies to spawn in back fields?").define("archerInsomniaSophieSpawn", true);
-        builder.comment("The Aljan mobs below");
+        builder.comment("Aljan mobs:");
         this.insomniaZombieSpawn = builder.comment("Allow insomnia zombies to spawn in the aljan?").define("insomniaZombieSpawn", true);
         this.zombieFabricioSpawn = builder.comment("Allow zombie Fabricios to spawn in the aljan?").define("zombieFabricioSpawn", true);
         this.aljamicBonesSpawn = builder.comment("Allow aljamic boneses to spawn in the aljan?").define("aljamicBonesSpawn", true);

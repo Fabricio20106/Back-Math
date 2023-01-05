@@ -5,7 +5,7 @@ import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
 public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
     private final ZombieFabricio zombie;
-    private int raiseArmTicks;
+    private int raisedArmTicks;
 
     public ZombieFabricioAttackGoal(ZombieFabricio zombieFabricio, double speed, boolean useLongMemory) {
         super(zombieFabricio, speed, useLongMemory);
@@ -14,7 +14,7 @@ public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
 
     public void startExecuting() {
         super.startExecuting();
-        this.raiseArmTicks = 0;
+        this.raisedArmTicks = 0;
     }
 
     public void resetTask() {
@@ -24,7 +24,7 @@ public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
 
     public void tick() {
         super.tick();
-        ++this.raiseArmTicks;
-        this.zombie.setAggroed(this.raiseArmTicks >= 5 && this.func_234041_j_() < this.func_234042_k_() / 2);
+        ++this.raisedArmTicks;
+        this.zombie.setAggroed(this.raisedArmTicks >= 5 && this.func_234041_j_() < this.func_234042_k_() / 2);
     }
 }

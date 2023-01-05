@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -28,8 +29,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class InsomniaSophie extends MonsterEntity {
-    public InsomniaSophie(EntityType<InsomniaSophie> type, World worldIn) {
-        super(type, worldIn);
+    public InsomniaSophie(EntityType<InsomniaSophie> type, World world) {
+        super(type, world);
         this.experienceValue = 3 + this.world.rand.nextInt(6);
     }
 
@@ -65,22 +66,27 @@ public class InsomniaSophie extends MonsterEntity {
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
     }
 
-    public boolean isOnSameTeam(Entity entityIn) {
-        if (super.isOnSameTeam(entityIn)) {
+    public boolean isOnSameTeam(Entity entity) {
+        if (super.isOnSameTeam(entity)) {
             return true;
-        } else if (entityIn instanceof ArcherLucia || entityIn instanceof WandererSophie || entityIn instanceof KarateLucia || entityIn instanceof InsomniaSophie) {
-            return this.getTeam() == null && entityIn.getTeam() == null;
+        } else if (entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie) {
+            return this.getTeam() == null && entity.getTeam() == null;
         } else {
             return false;
         }
     }
 
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.INSOMNIA_SOPHIE_SPAWN_EGG.get());
+    }
+
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        this.setEnchantmentBasedOnDifficulty(difficultyIn);
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
-        return spawnDataIn;
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.setEnchantmentBasedOnDifficulty(difficulty);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        return spawnData;
     }
 
     @Override
@@ -94,8 +100,8 @@ public class InsomniaSophie extends MonsterEntity {
             return false;
         } else {
             if (entity instanceof LivingEntity && !(entity instanceof InsomniaSophie || entity instanceof ArcherInsomniaSophie)) {
-                ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.POISON, 200));
-                ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 600));
+                ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.POISON, 200));
+                ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 600));
             }
             return true;
         }

@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -67,7 +68,7 @@ public class Malaika extends CreatureEntity {
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62f;
     }
 
@@ -77,6 +78,11 @@ public class Malaika extends CreatureEntity {
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
         return spawnData;
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.MALAIKA_SPAWN_EGG.get());
     }
 
     protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
@@ -118,8 +124,8 @@ public class Malaika extends CreatureEntity {
     }
 
     @Nullable
-    public static Item getBackMathArmorByChance(EquipmentSlotType slotIn, int chance) {
-        switch(slotIn) {
+    public static Item getBackMathArmorByChance(EquipmentSlotType armorSlot, int chance) {
+        switch(armorSlot) {
             case HEAD:
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();

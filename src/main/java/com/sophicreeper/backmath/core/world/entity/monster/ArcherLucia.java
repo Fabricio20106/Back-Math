@@ -29,6 +29,7 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -73,27 +74,27 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        ListNBT listnbt = new ListNBT();
+    public void writeAdditional(CompoundNBT compoundNBT) {
+        super.writeAdditional(compoundNBT);
+        ListNBT inventoryNBTList = new ListNBT();
 
         for(int i = 0; i < this.inventory.getSizeInventory(); ++i) {
-            ItemStack itemstack = this.inventory.getStackInSlot(i);
-            if (!itemstack.isEmpty()) {
-                listnbt.add(itemstack.write(new CompoundNBT()));
+            ItemStack stack = this.inventory.getStackInSlot(i);
+            if (!stack.isEmpty()) {
+                inventoryNBTList.add(stack.write(new CompoundNBT()));
             }
         }
-        compound.put("Inventory", listnbt);
+        compoundNBT.put("Inventory", inventoryNBTList);
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        ListNBT listnbt = compound.getList("Inventory", 10);
+    public void readAdditional(CompoundNBT compoundNBT) {
+        super.readAdditional(compoundNBT);
+        ListNBT inventoryNBTList = compoundNBT.getList("Inventory", 10);
 
-        for(int i = 0; i < listnbt.size(); ++i) {
-            ItemStack itemstack = ItemStack.read(listnbt.getCompound(i));
-            if (!itemstack.isEmpty()) {
-                this.inventory.addItem(itemstack);
+        for(int i = 0; i < inventoryNBTList.size(); ++i) {
+            ItemStack stack = ItemStack.read(inventoryNBTList.getCompound(i));
+            if (!stack.isEmpty()) {
+                this.inventory.addItem(stack);
             }
         }
         this.setCanPickUpLoot(true);
@@ -103,8 +104,8 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
     public ItemStack findAmmo(ItemStack shootable) {
         if (shootable.getItem() instanceof ShootableItem) {
             Predicate<ItemStack> predicate = ((ShootableItem) shootable.getItem()).getAmmoPredicate();
-            ItemStack itemstack = ShootableItem.getHeldAmmo(this, predicate);
-            return itemstack.isEmpty() ? new ItemStack(Items.ARROW) : itemstack;
+            ItemStack ammoStack = ShootableItem.getHeldAmmo(this, predicate);
+            return ammoStack.isEmpty() ? new ItemStack(Items.ARROW) : ammoStack;
         } else {
             return ItemStack.EMPTY;
         }
@@ -114,28 +115,28 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
         this.idleTime = 0;
     }
 
-    public void setCharging(boolean p_213671_1_) {
-        this.dataManager.set(IS_CHARGING_CROSSBOW, p_213671_1_);
+    public void setCharging(boolean isCharging) {
+        this.dataManager.set(IS_CHARGING_CROSSBOW, isCharging);
     }
 
-    protected void func_241844_w(float p_241844_1_) {
-        super.func_241844_w(p_241844_1_);
+    protected void func_241844_w(float f) {
+        super.func_241844_w(f);
         if (this.rand.nextInt(300) == 0) {
-            ItemStack itemstack = this.getHeldItemMainhand();
-            if (itemstack.getItem() == AxolotlTest.ANGELIC_CROSSBOW.get()) {
-                Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(itemstack);
-                map.putIfAbsent(Enchantments.PIERCING, 1);
-                EnchantmentHelper.setEnchantments(map, itemstack);
-                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, itemstack);
+            ItemStack heldStack = this.getHeldItemMainhand();
+            if (heldStack.getItem() == AxolotlTest.ANGELIC_CROSSBOW.get()) {
+                Map<Enchantment, Integer> crossbowEnchantsMap = EnchantmentHelper.getEnchantments(heldStack);
+                crossbowEnchantsMap.putIfAbsent(Enchantments.PIERCING, 1);
+                EnchantmentHelper.setEnchantments(crossbowEnchantsMap, heldStack);
+                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, heldStack);
             }
         }
     }
 
-    public boolean isOnSameTeam(Entity entityIn) {
-        if (super.isOnSameTeam(entityIn)) {
+    public boolean isOnSameTeam(Entity entity) {
+        if (super.isOnSameTeam(entity)) {
             return true;
-        } else if (entityIn instanceof ArcherLucia || entityIn instanceof WandererSophie || entityIn instanceof KarateLucia || entityIn instanceof InsomniaSophie) {
-            return this.getTeam() == null && entityIn.getTeam() == null;
+        } else if (entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie) {
+            return this.getTeam() == null && entity.getTeam() == null;
         } else {
             return false;
         }
@@ -150,27 +151,32 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62F;
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.ARCHER_LUCIA_SPAWN_EGG.get());
     }
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld iServerWorld, DifficultyInstance difficultyInstance, SpawnReason spawnReason, @Nullable ILivingEntityData iLivingEntityData, @Nullable CompoundNBT compoundNBT) {
-        this.setEquipmentBasedOnDifficulty(difficultyInstance);
-        this.setEnchantmentBasedOnDifficulty(difficultyInstance);
-        return super.onInitialSpawn(iServerWorld, difficultyInstance, spawnReason, iLivingEntityData, compoundNBT);
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        this.setEnchantmentBasedOnDifficulty(difficulty);
+        return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficultyInstance) {
-        super.setEquipmentBasedOnDifficulty(difficultyInstance);
+    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+        super.setEquipmentBasedOnDifficulty(difficulty);
         this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ARCHER_LUCIA_HOOD.get()));
         this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ARCHER_LUCIA_VEST.get()));
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_CROSSBOW.get()));
     }
 
     @Override
-    public boolean canBeLeashedTo(PlayerEntity playerEntity) {
+    public boolean canBeLeashedTo(PlayerEntity player) {
         return true;
     }
 
@@ -178,16 +184,16 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
         return shootableItem == AxolotlTest.ANGELIC_CROSSBOW.get();
     }
 
-    public void setItemStackToSlot(EquipmentSlotType equipmentSlotType, ItemStack itemStack) {
-        super.setItemStackToSlot(equipmentSlotType, itemStack);
+    public void setItemStackToSlot(EquipmentSlotType slot, ItemStack stack) {
+        super.setItemStackToSlot(slot, stack);
     }
 
-    public void attackEntityWithRangedAttack(LivingEntity livingEntity, float p_82196_2_) {
+    public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
         this.func_234281_b_(this, 1.6F);
     }
 
-    public void func_230284_a_(LivingEntity livingEntity, ItemStack itemStack, ProjectileEntity projectileEntity, float p_230284_4_) {
-        this.func_234279_a_(this, livingEntity, projectileEntity, p_230284_4_, 1.6F);
+    public void func_230284_a_(LivingEntity livingEntity, ItemStack stack, ProjectileEntity arrow, float p_230284_4_) {
+        this.func_234279_a_(this, livingEntity, arrow, p_230284_4_, 1.6F);
     }
 
     protected void updateEquipmentIfNeeded(ItemEntity itemEntity) {
@@ -212,13 +218,13 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
         return item instanceof BMArmorItem;
     }
 
-    public boolean replaceItemInInventory(int inventorySlot, ItemStack itemStackIn) {
-        if (super.replaceItemInInventory(inventorySlot, itemStackIn)) {
+    public boolean replaceItemInInventory(int inventorySlot, ItemStack stack) {
+        if (super.replaceItemInInventory(inventorySlot, stack)) {
             return true;
         } else {
             int i = inventorySlot - 300;
             if (i >= 0 && i < this.inventory.getSizeInventory()) {
-                this.inventory.setInventorySlotContents(i, itemStackIn);
+                this.inventory.setInventorySlotContents(i, stack);
                 return true;
             } else {
                 return false;

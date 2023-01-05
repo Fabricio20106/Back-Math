@@ -28,6 +28,7 @@ import net.minecraft.util.GroundPathHelper;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -120,22 +121,22 @@ public class ZombieFabricio extends MonsterEntity {
      */
     public void livingTick() {
         if (this.isAlive()) {
-            boolean flag = this.shouldBurnInDay() && this.isInDaylight();
-            if (flag) {
-                ItemStack itemstack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-                if (!itemstack.isEmpty()) {
-                    if (itemstack.isDamageable()) {
-                        itemstack.setDamage(itemstack.getDamage() + this.rand.nextInt(2));
-                        if (itemstack.getDamage() >= itemstack.getMaxDamage()) {
+            boolean canBurn = this.shouldBurnInDay() && this.isInDaylight();
+            if (canBurn) {
+                ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+                if (!headStack.isEmpty()) {
+                    if (headStack.isDamageable()) {
+                        headStack.setDamage(headStack.getDamage() + this.rand.nextInt(2));
+                        if (headStack.getDamage() >= headStack.getMaxDamage()) {
                             this.sendBreakAnimation(EquipmentSlotType.HEAD);
                             this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
                         }
                     }
 
-                    flag = false;
+                    canBurn = false;
                 }
 
-                if (flag) {
+                if (canBurn) {
                     this.setFire(8);
                 }
             }
@@ -151,26 +152,25 @@ public class ZombieFabricio extends MonsterEntity {
     public boolean attackEntityAsMob(Entity entity) {
         boolean flag = super.attackEntityAsMob(entity);
         if (flag) {
-            float f = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
-            if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < f * 0.3F) {
-                entity.setFire(2 * (int) f);
+            float locationDifficulty = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
+            if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < locationDifficulty * 0.3F) {
+                entity.setFire(2 * (int) locationDifficulty);
             }
         }
 
         return flag;
     }
 
-    public static boolean canSpawnZFOn(EntityType<ZombieFabricio> zombieFabricio, IServerWorld iServerWorld, SpawnReason reason, BlockPos pos, Random randomIn) {
-        if (iServerWorld.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(iServerWorld, pos, randomIn) && BMConfigs.SERVER_CONFIGS.zombieFabricioSpawn.get()) {
-            if (
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
-                            Objects.equals(iServerWorld.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get())) {
-                canSpawnOn(zombieFabricio, iServerWorld, reason, pos, randomIn);
+    public static boolean canSpawnZombieFabricioOn(EntityType<ZombieFabricio> zombieFabricio, IServerWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        if (world.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(world, pos, rand) && BMConfigs.SERVER_CONFIGS.zombieFabricioSpawn.get()) {
+            if (Objects.equals(world.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
+                    Objects.equals(world.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get())) {
+                canSpawnOn(zombieFabricio, world, reason, pos, rand);
             }
         }
         return false;
@@ -200,6 +200,11 @@ public class ZombieFabricio extends MonsterEntity {
         return CreatureAttribute.UNDEAD;
     }
 
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.ZOMBIE_FABRICIO_SPAWN_EGG.get());
+    }
+
     protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
         if (this.rand.nextFloat() < 0.15F * difficulty.getClampedAdditionalDifficulty()) {
             int i = this.rand.nextInt(2);
@@ -218,18 +223,18 @@ public class ZombieFabricio extends MonsterEntity {
 
             boolean flag = true;
 
-            for(EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
-                if (equipmentSlotType.getSlotType() == EquipmentSlotType.Group.ARMOR) {
-                    ItemStack stack = this.getItemStackFromSlot(equipmentSlotType);
+            for(EquipmentSlotType equipmentSlots : EquipmentSlotType.values()) {
+                if (equipmentSlots.getSlotType() == EquipmentSlotType.Group.ARMOR) {
+                    ItemStack armorSlotStacks = this.getItemStackFromSlot(equipmentSlots);
                     if (!flag && this.rand.nextFloat() < f) {
                         break;
                     }
 
                     flag = false;
-                    if (stack.isEmpty()) {
-                        Item item = getBackMathArmorByChance(equipmentSlotType, i);
+                    if (armorSlotStacks.isEmpty()) {
+                        Item item = getBackMathArmorByChance(equipmentSlots, i);
                         if (item != null) {
-                            this.setItemStackToSlot(equipmentSlotType, new ItemStack(item));
+                            this.setItemStackToSlot(equipmentSlots, new ItemStack(item));
                         }
                     }
                 }
@@ -239,8 +244,8 @@ public class ZombieFabricio extends MonsterEntity {
     }
 
     @Nullable
-    public static Item getBackMathArmorByChance(EquipmentSlotType slotIn, int chance) {
-        switch(slotIn) {
+    public static Item getBackMathArmorByChance(EquipmentSlotType slot, int chance) {
+        switch(slot) {
             case HEAD:
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();
@@ -307,30 +312,30 @@ public class ZombieFabricio extends MonsterEntity {
 
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putBoolean("CanBreakDoors", this.isBreakDoorsTaskSet());
+    public void writeAdditional(CompoundNBT compoundNBT) {
+        super.writeAdditional(compoundNBT);
+        compoundNBT.putBoolean("CanBreakDoors", this.isBreakDoorsTaskSet());
     }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        this.setBreakDoorsAITask(compound.getBoolean("CanBreakDoors"));
+    public void readAdditional(CompoundNBT compoundNBT) {
+        super.readAdditional(compoundNBT);
+        this.setBreakDoorsAITask(compoundNBT.getBoolean("CanBreakDoors"));
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.74F;
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld iServerWorld, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        spawnDataIn = super.onInitialSpawn(iServerWorld, difficulty, spawnReason, spawnDataIn, dataTag);
-        float f = difficulty.getClampedAdditionalDifficulty();
-        this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * f);
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+        spawnDataIn = super.onInitialSpawn(world, difficulty, spawnReason, spawnDataIn, dataTag);
+        float clampedAdditionalDifficulty = difficulty.getClampedAdditionalDifficulty();
+        this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * clampedAdditionalDifficulty);
 
-        this.setBreakDoorsAITask(this.canBreakDoors() && this.rand.nextFloat() < f * 0.1F);
+        this.setBreakDoorsAITask(this.canBreakDoors() && this.rand.nextFloat() < clampedAdditionalDifficulty * 0.1F);
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
 
@@ -344,7 +349,7 @@ public class ZombieFabricio extends MonsterEntity {
             }
         }
 
-        this.applyAttributeBonuses(f);
+        this.applyAttributeBonuses(clampedAdditionalDifficulty);
         return spawnDataIn;
     }
 
@@ -352,11 +357,11 @@ public class ZombieFabricio extends MonsterEntity {
         this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));
         double d0 = this.rand.nextDouble() * 1.5D * (double)difficulty;
         if (d0 > 1.0D) {
-            this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random zombie-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random zombie Fabricio-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
 
         if (this.rand.nextFloat() < difficulty * 0.05F) {
-            this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader zombie bonus", this.rand.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader zombie Fabricio bonus", this.rand.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
             this.setBreakDoorsAITask(this.canBreakDoors());
         }
 
@@ -369,16 +374,17 @@ public class ZombieFabricio extends MonsterEntity {
         return -0.45D;
     }
 
-    protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
-        super.dropSpecialItems(source, looting, recentlyHitIn);
+    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
         Entity entity = source.getTrueSource();
         if (entity instanceof CreeperEntity) {
-            CreeperEntity creeper = (CreeperEntity)entity;
+            CreeperEntity creeper = (CreeperEntity) entity;
+            // If it is a charged creeper
             if (creeper.ableToCauseSkullDrop()) {
-                ItemStack stack = this.getSkullDrop();
-                if (!stack.isEmpty()) {
+                ItemStack skullStack = this.getSkullDrop();
+                if (!skullStack.isEmpty()) {
                     creeper.incrementDroppedSkulls();
-                    this.entityDropItem(stack);
+                    this.entityDropItem(skullStack);
                 }
             }
         }

@@ -4,7 +4,7 @@ import com.sophicreeper.backmath.core.world.item.BMStats;
 import com.sophicreeper.backmath.core.world.level.block.state.properties.Molds;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
-import com.sophicreeper.backmath.core.util.Keys;
+import com.sophicreeper.backmath.core.util.BMKeys;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -58,7 +58,7 @@ public class CrystallizerBlock extends HorizontalBlock {
             world.setBlockState(pos, BMBlocks.CRYSTALLIZER.get().getDefaultState().with(MOLD, Molds.ROD).with(HORIZONTAL_FACING, direction1));
             player.addStat(BMStats.CHANGE_CRYSTALLIZER_MOLD);
         }
-        if (Keys.isHoldingShift()) {
+        if (BMKeys.isHoldingShift()) {
             world.setBlockState(pos, BMBlocks.CRYSTALLIZER.get().getDefaultState().with(MOLD, Molds.EMPTY).with(HORIZONTAL_FACING, direction1));
             player.addStat(BMStats.CHANGE_CRYSTALLIZER_MOLD);
         }

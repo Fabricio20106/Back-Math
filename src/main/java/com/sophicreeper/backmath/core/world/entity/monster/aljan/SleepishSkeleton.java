@@ -25,6 +25,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -78,9 +79,14 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
         if (!super.attackEntityAsMob(entity)) {
             return false;
         } else {
-            ((LivingEntity)entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 600));
+            ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 600));
             return true;
         }
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.SLEEPISH_SKELETON_SPAWN_EGG.get());
     }
 
     protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
@@ -177,7 +183,7 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
         }
     }
 
-    public static boolean canSpawnSSOn(EntityType<SleepishSkeleton> sleepishSkeleton, IServerWorld iServerWorld, SpawnReason reason, BlockPos pos, Random randomIn) {
+    public static boolean canSpawnSleepishSkeletonOn(EntityType<SleepishSkeleton> sleepishSkeleton, IServerWorld iServerWorld, SpawnReason reason, BlockPos pos, Random randomIn) {
         if (iServerWorld.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(iServerWorld, pos, randomIn) && BMConfigs.SERVER_CONFIGS.sleepishSkeletonSpawn.get()) {
             if (Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
                     Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||

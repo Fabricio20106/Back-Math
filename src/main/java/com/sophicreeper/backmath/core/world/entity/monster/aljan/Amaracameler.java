@@ -29,6 +29,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.*;
@@ -130,7 +131,7 @@ public class Amaracameler extends MobEntity implements IMob {
         if (this.onGround && !this.wasOnGround) {
             int i = this.getSlimeSize();
 
-            if (spawnCustomParticles()) i = 0; // don't spawn particles if it's handled by the implementation itself
+            if (spawnCustomParticles()) i = 0; // Don't spawn particles if it's handled by the implementation itself
             for(int j = 0; j < i * 8; ++j) {
                 float f = this.rand.nextFloat() * ((float)Math.PI * 2F);
                 float f1 = this.rand.nextFloat() * 0.5F + 0.5F;
@@ -232,7 +233,6 @@ public class Amaracameler extends MobEntity implements IMob {
         if (this.canDamagePlayer()) {
             this.dealDamage(player);
         }
-
     }
 
     protected void dealDamage(LivingEntity livingEntity) {
@@ -243,11 +243,10 @@ public class Amaracameler extends MobEntity implements IMob {
                 this.applyEnchantments(this, livingEntity);
             }
         }
-
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
-        return 0.625F * entitySize.height;
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 0.625F * size.height;
     }
 
     /**
@@ -299,7 +298,7 @@ public class Amaracameler extends MobEntity implements IMob {
     }
 
     /**
-     * The speed it takes to move the entityliving's rotationPitch through the faceEntity method. This is only currently
+     * The speed it takes to move the livingEntity's rotationPitch through the faceEntity method. This is only currently
      * use in wolves.
      */
     public int getVerticalFaceSpeed() {
@@ -351,7 +350,14 @@ public class Amaracameler extends MobEntity implements IMob {
      * Called when the amaracameler spawns particles on landing, see onUpdate.
      * Return true to prevent the spawning of the default particles.
      */
-    protected boolean spawnCustomParticles() { return false; }
+    protected boolean spawnCustomParticles() {
+        return false;
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.AMARACAMELER_SPAWN_EGG.get());
+    }
 
     static class AttackGoal extends Goal {
         private final Amaracameler amaracameler;

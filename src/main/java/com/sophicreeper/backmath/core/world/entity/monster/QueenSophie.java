@@ -26,6 +26,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.BossInfo;
 import net.minecraft.world.DifficultyInstance;
@@ -40,8 +41,8 @@ public class QueenSophie extends MonsterEntity {
     private static final DataParameter<Byte> SPELL = EntityDataManager.createKey(QueenSophie.class, DataSerializers.BYTE);
     protected int spellTicks;
 
-    public QueenSophie(EntityType<QueenSophie> type, World worldIn) {
-        super(type, worldIn);
+    public QueenSophie(EntityType<QueenSophie> type, World world) {
+        super(type, world);
         this.setHealth(this.getMaxHealth());
         this.getNavigator().setCanSwim(true);
         this.experienceValue = 150;
@@ -52,14 +53,14 @@ public class QueenSophie extends MonsterEntity {
         this.dataManager.register(SPELL, (byte) 0);
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        this.spellTicks = compound.getInt("SpellTicks");
+    public void readAdditional(CompoundNBT compoundNBT) {
+        super.readAdditional(compoundNBT);
+        this.spellTicks = compoundNBT.getInt("SpellTicks");
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putInt("SpellTicks", this.spellTicks);
+    public void writeAdditional(CompoundNBT compoundNBT) {
+        super.writeAdditional(compoundNBT);
+        compoundNBT.putInt("SpellTicks", this.spellTicks);
     }
 
     public boolean isSpellcasting() {
@@ -70,18 +71,18 @@ public class QueenSophie extends MonsterEntity {
         }
     }
 
-    public void setSpellType(QueenSophie.BMSpellType spellType) {
-        this.dataManager.set(SPELL, (byte) spellType.id);
+    public void setSpellType(QueenSophieSpells spells) {
+        this.dataManager.set(SPELL, (byte) spells.id);
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.2d));
-        this.goalSelector.addGoal(2, new SummonWarriorSpellGoal());
-        this.goalSelector.addGoal(2, new SummonArchersSpellGoal());
-        this.goalSelector.addGoal(2, new SummonInsomniaSpellGoal());
-        this.goalSelector.addGoal(3, new EquipArmorAndHealSpellGoal());
+        this.goalSelector.addGoal(2, new SummonWarriorSophiesGoal());
+        this.goalSelector.addGoal(2, new SummonArcherInsomniaSophiesGoal());
+        this.goalSelector.addGoal(2, new SummonInsomniaSophiesGoal());
+        this.goalSelector.addGoal(3, new EquipArmorAndHealGoal());
         this.goalSelector.addGoal(4, new PanicGoal(this, 0.40f));
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(5, new LookAtGoal(this, WarriorSophie.class, 6.0F));
@@ -126,7 +127,7 @@ public class QueenSophie extends MonsterEntity {
         return false;
     }
 
-    public boolean addPotionEffect(EffectInstance effectInstanceIn) {
+    public boolean addPotionEffect(EffectInstance effectInstance) {
         return false;
     }
 
@@ -135,11 +136,11 @@ public class QueenSophie extends MonsterEntity {
         this.bossInfo.setName(this.getDisplayName());
     }
 
-    protected void dropSpecialItems(DamageSource source, int looting, boolean recentlyHitIn) {
-        super.dropSpecialItems(source, looting, recentlyHitIn);
-        ItemEntity item = this.entityDropItem(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get());
-        if (item != null) {
-            item.setNoDespawn();
+    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
+        ItemEntity qsssStack = this.entityDropItem(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get());
+        if (qsssStack != null) {
+            qsssStack.setNoDespawn();
         }
     }
 
@@ -178,29 +179,22 @@ public class QueenSophie extends MonsterEntity {
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get()));
     }
 
-    public enum BMSpellType {
-        NONE(0, 0.0D, 0.0D, 0.0D),
-        SUMMON_WARRIOR_SOPHIES(1, 0.7D, 0.7D, 0.8D),
-        SUMMON_ARCHER_LUCIAS(2, 0.7D, 0.7D, 0.8D),
-        SUMMON_INSOMNIA_SOPHIES(3, 0.7D, 0.7D, 0.8D),
-        EQUIP_MID_TERM_BREASTPLATE_AND_HEAL(4, 0.7d, 0.7d, 0.7d);
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.QUEEN_SOPHIE_SPAWN_EGG.get());
+    }
+
+    public enum QueenSophieSpells {
+        NONE(0),
+        SUMMON_WARRIOR_SOPHIES(1),
+        SUMMON_ARCHER_LUCIAS(2),
+        SUMMON_INSOMNIA_SOPHIES(3),
+        EQUIP_MID_TERM_BREASTPLATE_AND_HEAL(4);
 
         private final int id;
 
-        BMSpellType(int idIn, double xParticleSpeed, double yParticleSpeed, double zParticleSpeed) {
-            this.id = idIn;
-            double[] particleSpeed = new double[]{
-                    xParticleSpeed, yParticleSpeed, zParticleSpeed
-            };
-        }
-
-        public static QueenSophie.BMSpellType getFromId(int idIn) {
-            for(QueenSophie.BMSpellType spellType : values()) {
-                if (idIn == spellType.id) {
-                    return spellType;
-                }
-            }
-            return NONE;
+        QueenSophieSpells(int id) {
+            this.id = id;
         }
     }
 
@@ -215,8 +209,8 @@ public class QueenSophie extends MonsterEntity {
         protected UseSpellGoal() {}
 
         public boolean shouldExecute() {
-            LivingEntity livingentity = QueenSophie.this.getAttackTarget();
-            if (livingentity != null && livingentity.isAlive()) {
+            LivingEntity queenSophieTarget = QueenSophie.this.getAttackTarget();
+            if (queenSophieTarget != null && queenSophieTarget.isAlive()) {
                 if (QueenSophie.this.isSpellcasting()) {
                     return false;
                 } else {
@@ -228,8 +222,8 @@ public class QueenSophie extends MonsterEntity {
         }
 
         public boolean shouldContinueExecuting() {
-            LivingEntity livingEntity = QueenSophie.this.getAttackTarget();
-            return livingEntity != null && livingEntity.isAlive() && this.spellWarmup > 0;
+            LivingEntity queenSophieTarget = QueenSophie.this.getAttackTarget();
+            return queenSophieTarget != null && queenSophieTarget.isAlive() && this.spellWarmup > 0;
         }
 
         public void startExecuting() {
@@ -266,18 +260,13 @@ public class QueenSophie extends MonsterEntity {
             return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
         }
 
-        protected abstract QueenSophie.BMSpellType getSpellType();
+        protected abstract QueenSophieSpells getSpellType();
     }
 
-    class SummonWarriorSpellGoal extends QueenSophie.UseSpellGoal {
-        private final EntityPredicate entityPredicate = new EntityPredicate()
-                .setDistance(16.0D)
-                .setLineOfSiteRequired()
-                .setUseInvisibilityCheck()
-                .allowInvulnerable()
-                .allowFriendlyFire();
+    class SummonWarriorSophiesGoal extends UseSpellGoal {
+        private final EntityPredicate entityPredicate = new EntityPredicate().setDistance(16.0D).setLineOfSiteRequired().setUseInvisibilityCheck().allowInvulnerable().allowFriendlyFire();
 
-        private SummonWarriorSpellGoal() {}
+        private SummonWarriorSophiesGoal() {}
 
         public boolean shouldExecute() {
             if (!super.shouldExecute()) {
@@ -312,12 +301,12 @@ public class QueenSophie extends MonsterEntity {
             return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
         }
 
-        protected QueenSophie.BMSpellType getSpellType() {
-            return BMSpellType.SUMMON_WARRIOR_SOPHIES;
+        protected QueenSophieSpells getSpellType() {
+            return QueenSophieSpells.SUMMON_WARRIOR_SOPHIES;
         }
     }
 
-    class SummonInsomniaSpellGoal extends QueenSophie.UseSpellGoal {
+    class SummonInsomniaSophiesGoal extends UseSpellGoal {
         private final EntityPredicate entityPredicate = new EntityPredicate()
                 .setDistance(16.0D)
                 .setLineOfSiteRequired()
@@ -325,7 +314,7 @@ public class QueenSophie extends MonsterEntity {
                 .allowInvulnerable()
                 .allowFriendlyFire();
 
-        private SummonInsomniaSpellGoal() {}
+        private SummonInsomniaSophiesGoal() {}
 
         public boolean shouldExecute() {
             if (!super.shouldExecute()) {
@@ -360,12 +349,12 @@ public class QueenSophie extends MonsterEntity {
             return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
         }
 
-        protected QueenSophie.BMSpellType getSpellType() {
-            return BMSpellType.SUMMON_INSOMNIA_SOPHIES;
+        protected QueenSophieSpells getSpellType() {
+            return QueenSophieSpells.SUMMON_INSOMNIA_SOPHIES;
         }
     }
 
-    class SummonArchersSpellGoal extends QueenSophie.UseSpellGoal {
+    class SummonArcherInsomniaSophiesGoal extends UseSpellGoal {
         private final EntityPredicate entityPredicate = new EntityPredicate()
                 .setDistance(16.0D)
                 .setLineOfSiteRequired()
@@ -373,13 +362,13 @@ public class QueenSophie extends MonsterEntity {
                 .allowInvulnerable()
                 .allowFriendlyFire();
 
-        private SummonArchersSpellGoal() {}
+        private SummonArcherInsomniaSophiesGoal() {}
 
         public boolean shouldExecute() {
             if (!super.shouldExecute()) {
                 return false;
             } else {
-                int i = QueenSophie.this.world.getTargettableEntitiesWithinAABB(ArcherLucia.class, this.entityPredicate, QueenSophie.this, QueenSophie.this.getBoundingBox().grow(16.0D)).size();
+                int i = QueenSophie.this.world.getTargettableEntitiesWithinAABB(ArcherInsomniaSophie.class, this.entityPredicate, QueenSophie.this, QueenSophie.this.getBoundingBox().grow(16.0D)).size();
                 return QueenSophie.this.rand.nextInt(8) + 1 > i;
             }
         }
@@ -397,10 +386,10 @@ public class QueenSophie extends MonsterEntity {
 
             for(int i = 0; i < 3; ++i) {
                 BlockPos pos = QueenSophie.this.getPosition().add(-2 + QueenSophie.this.rand.nextInt(5), 1, -2 + QueenSophie.this.rand.nextInt(5));
-                ArcherLucia archerLucia = BMEntities.ARCHER_LUCIA.get().create(QueenSophie.this.world);
-                archerLucia.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
-                archerLucia.onInitialSpawn(serverWorld, QueenSophie.this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
-                serverWorld.func_242417_l(archerLucia);
+                ArcherInsomniaSophie archerInsomniaSophie = BMEntities.ARCHER_INSOMNIA_SOPHIE.get().create(QueenSophie.this.world);
+                archerInsomniaSophie.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
+                archerInsomniaSophie.onInitialSpawn(serverWorld, QueenSophie.this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
+                serverWorld.func_242417_l(archerInsomniaSophie);
             }
         }
 
@@ -408,13 +397,13 @@ public class QueenSophie extends MonsterEntity {
             return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
         }
 
-        protected QueenSophie.BMSpellType getSpellType() {
-            return BMSpellType.SUMMON_ARCHER_LUCIAS;
+        protected QueenSophieSpells getSpellType() {
+            return QueenSophieSpells.SUMMON_ARCHER_LUCIAS;
         }
     }
 
-    class EquipArmorAndHealSpellGoal extends QueenSophie.UseSpellGoal {
-        private EquipArmorAndHealSpellGoal() {}
+    class EquipArmorAndHealGoal extends UseSpellGoal {
+        private EquipArmorAndHealGoal() {}
 
         public boolean shouldExecute() {
             return super.shouldExecute();
@@ -437,8 +426,8 @@ public class QueenSophie extends MonsterEntity {
             return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
         }
 
-        protected QueenSophie.BMSpellType getSpellType() {
-            return BMSpellType.EQUIP_MID_TERM_BREASTPLATE_AND_HEAL;
+        protected QueenSophieSpells getSpellType() {
+            return QueenSophieSpells.EQUIP_MID_TERM_BREASTPLATE_AND_HEAL;
         }
     }
 }

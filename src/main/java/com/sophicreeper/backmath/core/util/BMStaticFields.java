@@ -32,8 +32,8 @@ public class BMStaticFields {
     public static final BMArmors WARRIOR_ALJAMEED_ARMOR = new BMArmors.WarriorAljameedHelmet();
     public static final BMArmors WARRIOR_MOONERING_ARMOR = new BMArmors.WarriorMooneringHelmet();
 
-    public static final BMTools MANTEIGA_SET = new BMTools.Butter();
-    public static final BMTools TALCO_SET = new BMTools.Talcum();
+    public static final BMTools BUTTER_SET = new BMTools.Butter();
+    public static final BMTools TALC_SET = new BMTools.Talcum();
     public static final BMTools RAINBOW_SET = new BMTools.RainbowPencil();
     public static final BMTools OLIVE_SET = new BMTools.Olive();
     public static final BMTools DEVIL_SET = new BMTools.Devil();

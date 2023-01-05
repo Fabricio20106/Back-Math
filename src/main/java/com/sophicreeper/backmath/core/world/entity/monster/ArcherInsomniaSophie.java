@@ -20,6 +20,7 @@ import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -34,11 +35,13 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
             super.resetTask();
             ArcherInsomniaSophie.this.setAggroed(false);
         }
+
         public void startExecuting() {
             super.startExecuting();
             ArcherInsomniaSophie.this.setAggroed(true);
         }
     };
+
     public ArcherInsomniaSophie(EntityType<ArcherInsomniaSophie> type, World world) {
         super(type, world);
         this.setCombatTask();
@@ -56,6 +59,11 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_BOW.get()));
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.ARCHER_INSOMNIA_SOPHIE_SPAWN_EGG.get());
     }
 
     @Nullable
@@ -109,14 +117,17 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     }
 
     public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
-        ItemStack stack = this.findAmmo(this.getHeldItem(ProjectileHelper.getHandWith(this, AxolotlTest.ANGELIC_BOW.get())));
-        AbstractArrowEntity arrow = this.fireArrow(stack, distanceFactor);
+        ItemStack ammoStack = this.findAmmo(this.getHeldItem(ProjectileHelper.getHandWith(this, AxolotlTest.ANGELIC_BOW.get())));
+        AbstractArrowEntity arrow = this.fireArrow(ammoStack, distanceFactor);
+
         if (this.getHeldItemMainhand().getItem() instanceof BowItem) arrow = ((BowItem) this.getHeldItemMainhand().getItem()).customArrow(arrow);
+
         double d0 = target.getPosX() - this.getPosX();
         double d1 = target.getPosYHeight(0.3333333333333333D) - arrow.getPosY();
         double d2 = target.getPosZ() - this.getPosZ();
         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
         arrow.shoot(d0, d1 + d3 * (double) 0.2F, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+
         this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.world.addEntity(arrow);
     }
@@ -130,6 +141,10 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     }
 
     public static AttributeModifierMap.MutableAttribute createMobAttributes() {
-        return MonsterEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0f).createMutableAttribute(Attributes.MAX_HEALTH, 28.0f).createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0f).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
+        return MonsterEntity.func_233666_p_()
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0f)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 28.0f)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0f)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
     }
 }

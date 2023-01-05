@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.core.world.level.block.machine;
 
-import com.sophicreeper.backmath.core.util.Keys;
+import com.sophicreeper.backmath.core.util.BMKeys;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.item.BMStats;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
@@ -56,7 +56,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.ROD));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        if (Keys.isHoldingShift()) {
+        if (BMKeys.isHoldingShift()) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.EMPTY));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }

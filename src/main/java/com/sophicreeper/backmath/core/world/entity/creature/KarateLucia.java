@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -70,7 +71,7 @@ public class KarateLucia extends CreatureEntity {
                 .createMutableAttribute(Attributes.ARMOR, 3.0d);
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62F;
     }
 
@@ -80,6 +81,11 @@ public class KarateLucia extends CreatureEntity {
         this.setEnchantmentBasedOnDifficulty(difficulty);
         this.setEquipmentBasedOnDifficulty(difficulty);
         return spawnData;
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.KARATE_LUCIA_SPAWN_EGG.get());
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {

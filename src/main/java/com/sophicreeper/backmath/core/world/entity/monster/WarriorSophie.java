@@ -16,6 +16,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -23,8 +24,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class WarriorSophie extends CreatureEntity {
-    public WarriorSophie(EntityType<WarriorSophie> type, World worldIn) {
-        super(type, worldIn);
+    public WarriorSophie(EntityType<WarriorSophie> type, World world) {
+        super(type, world);
     }
 
     @Override
@@ -55,12 +56,17 @@ public class WarriorSophie extends CreatureEntity {
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25f);
     }
 
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.WARRIOR_SOPHIE_SPAWN_EGG.get());
+    }
+
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
-        this.setEquipmentBasedOnDifficulty(difficultyIn);
-        this.setEnchantmentBasedOnDifficulty(difficultyIn);
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        this.setEnchantmentBasedOnDifficulty(difficulty);
+        return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
     @Override

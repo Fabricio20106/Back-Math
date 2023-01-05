@@ -19,6 +19,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -58,6 +59,10 @@ public class AljamicBones extends AbstractSkeletonEntity {
         return SoundEvents.ENTITY_SKELETON_STEP;
     }
 
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.ALJAMIC_BONES_SPAWN_EGG.get());
+    }
 
     protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
         if (this.rand.nextFloat() < 0.15F * difficulty.getClampedAdditionalDifficulty()) {
@@ -153,7 +158,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
         }
     }
 
-    public static boolean canSpawnABOn(EntityType<AljamicBones> aljamicBones, IServerWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+    public static boolean canSpawnAljamicBonesOn(EntityType<AljamicBones> aljamicBones, IServerWorld world, SpawnReason reason, BlockPos pos, Random rand) {
         if (world.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(world, pos, rand) && BMConfigs.SERVER_CONFIGS.aljamicBonesSpawn.get()) {
             if (Objects.equals(world.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
                     Objects.equals(world.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||

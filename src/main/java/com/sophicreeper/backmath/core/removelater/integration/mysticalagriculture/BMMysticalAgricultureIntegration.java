@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.core.removelater.integration.mysticalagriculture;
 
 /*@MysticalAgriculturePlugin*/
+@Deprecated
 public class BMMysticalAgricultureIntegration /*implements IMysticalAgriculturePlugin*/ {
     /*public BMMysticalAgricultureIntegration() {}
 

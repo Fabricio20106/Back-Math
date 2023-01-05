@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.util.Keys;
+import com.sophicreeper.backmath.core.util.BMKeys;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItem;
@@ -20,8 +20,8 @@ public class CrystallizerItem extends BlockItem {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        if (!Keys.isHoldingShift()) tooltip.add(new TranslationTextComponent("messages.backmath.hold_shift"));
-        if (Keys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc"));
+        if (!BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("messages.backmath.hold_shift"));
+        if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc"));
         super.addInformation(stack, world, tooltip, flag);
     }
 }

@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -53,7 +54,13 @@ public class AngrySophie extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createAngrySophieAttributes() {
-        return MonsterEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 45.0D).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F).createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0D).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
+        return MonsterEntity.func_233666_p_()
+                // She had 75 health at first (I think) now it's 45, but I think it still a lot.
+                .createMutableAttribute(Attributes.MAX_HEALTH, 45.0D)
+                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0D)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
     @Override
@@ -61,7 +68,7 @@ public class AngrySophie extends MonsterEntity {
         return 10;
     }
 
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62F;
     }
 
@@ -70,12 +77,17 @@ public class AngrySophie extends MonsterEntity {
         return CreatureAttribute.UNDEFINED;
     }
 
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.ANGRY_SOPHIE_SPAWN_EGG.get());
+    }
+
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld p_213386_1_, DifficultyInstance p_213386_2_, SpawnReason p_213386_3_, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT p_213386_5_) {
-        spawnDataIn = super.onInitialSpawn(p_213386_1_, p_213386_2_, p_213386_3_, spawnDataIn, p_213386_5_);
-        this.setEquipmentBasedOnDifficulty(p_213386_2_);
-        return super.onInitialSpawn(p_213386_1_, p_213386_2_, p_213386_3_, spawnDataIn, p_213386_5_);
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+        this.setEquipmentBasedOnDifficulty(difficulty);
+        return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
     @Override

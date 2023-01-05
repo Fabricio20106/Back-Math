@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.level.block.AbstractWildCropBlock;
 import net.minecraft.util.IItemProvider;
 
 public class WildAljamicOnionsBlock extends AbstractWildCropBlock {

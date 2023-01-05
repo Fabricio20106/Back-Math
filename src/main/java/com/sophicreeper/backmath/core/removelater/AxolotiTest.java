@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 /**
  * Here's an old version of {@link AxolotlTest} that was merged by Github.
  * */
+@Deprecated
 public class AxolotiTest {
     /*public static final DeferredRegister<Item> items = DeferredRegister.create(ForgeRegistries.ITEMS, BackMath.mod_id);
 

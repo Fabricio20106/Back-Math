@@ -8,6 +8,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
+@Deprecated
 public class AmaracamelBatterBagItem extends Item {
     public AmaracamelBatterBagItem(Properties properties) {
         super(properties);

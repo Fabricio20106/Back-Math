@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.ProbabilityConfig;
 public class AljanCanyonCarver extends CanyonWorldCarver {
     public AljanCanyonCarver(Codec<ProbabilityConfig> codec) {
         super(codec);
-        this.carvableBlocks = ImmutableSet.of(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJANSTONE.get(), BMBlocks.SLEEPINGSTONE.get(), BMBlocks.INSOGRAVEL.get(), Blocks.GRASS_BLOCK);
+        this.carvableBlocks = ImmutableSet.of(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJANSTONE.get(), BMBlocks.SLEEPINGSTONE.get(), BMBlocks.INSOGRAVEL.get(), BMBlocks.ALJAMIC_SAND.get(), Blocks.GRASS_BLOCK);
         this.carvableFluids = ImmutableSet.of(Fluids.WATER, BMFluids.SLEEPISHWATER.get());
     }
 }

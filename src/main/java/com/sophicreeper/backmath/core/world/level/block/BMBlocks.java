@@ -358,6 +358,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> GUAVA_PRESSURE_PLATE = BLOCKS.register("guava_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.from(Blocks.CRIMSON_PLANKS).sound(SoundType.WOOD).hardnessAndResistance(1.5f, 4)));
     public static final RegistryObject<Block> GUAVA_BUTTON = BLOCKS.register("guava_button", () -> new WoodButtonBlock(AbstractBlock.Properties.from(Blocks.CRIMSON_PLANKS).sound(SoundType.WOOD).hardnessAndResistance(1.5f, 4)));
     public static final RegistryObject<Block> GUAVA_DOOR = BLOCKS.register("guava_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.CRIMSON_PLANKS).sound(SoundType.WOOD).hardnessAndResistance(1.5f, 4)));
+    public static final RegistryObject<Block> GUAVA_GRAPE_VINE_POST = BLOCKS.register("guava_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(BMBlocks.GUAVA_PLANKS.get()).tickRandomly().hardnessAndResistance(1.5f, 4).sound(SoundType.SWEET_BERRY_BUSH)));
     public static final RegistryObject<Block> GUAVA_TRAPDOOR = BLOCKS.register("guava_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(Blocks.CRIMSON_PLANKS).sound(SoundType.WOOD).hardnessAndResistance(1.5f, 4)));
     public static final RegistryObject<Block> GUAVA_LADDER = BLOCKS.register("guava_ladder", () -> new LadderBlock(AbstractBlock.Properties.from(Blocks.LADDER).hardnessAndResistance(1.5f, 4)));
 

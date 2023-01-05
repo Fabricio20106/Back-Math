@@ -52,8 +52,8 @@ public class QueenSophiePet extends TameableEntity {
     private static final Set<Item> TAME_ITEMS = Sets.newHashSet(AxolotlTest.GUARANA.get(), AxolotlTest.MANGO.get(), AxolotlTest.GRAPES.get(), AxolotlTest.LEMON.get(), AxolotlTest.PINEAPPLE.get(), AxolotlTest.ORANGE.get(), AxolotlTest.BANANA.get(), AxolotlTest.GUAVA.get(), AxolotlTest.JABUTICABA.get(), AxolotlTest.ALJAMIC_BERRY.get());
     public static final Item DEADLY_ITEM = AxolotlTest.ALJAME.get();
 
-    public QueenSophiePet(EntityType<QueenSophiePet> type, World worldIn) {
-        super(type, worldIn);
+    public QueenSophiePet(EntityType<QueenSophiePet> type, World world) {
+        super(type, world);
         this.moveController = new FlyingMovementController(this, 10, false);
         this.setPathPriority(PathNodeType.DANGER_FIRE, -1.0F);
         this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
@@ -95,20 +95,20 @@ public class QueenSophiePet extends TameableEntity {
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         this.setVariant(this.rand.nextInt(18));
-        if (spawnDataIn == null) {
-            spawnDataIn = new AgeableEntity.AgeableData(false);
+        if (spawnData == null) {
+            spawnData = new AgeableEntity.AgeableData(false);
         }
 
-        return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
+        return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
     public boolean onLivingFall(float distance, float damageMultiplier) {
         return false;
     }
 
-    protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {}
+    protected void updateFallState(double y, boolean isOnGround, BlockState state, BlockPos pos) {}
 
     public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
         ItemStack heldItem = player.getHeldItem(hand);
@@ -149,8 +149,8 @@ public class QueenSophiePet extends TameableEntity {
         }
     }
 
-    protected PathNavigator createNavigator(World worldIn) {
-        FlyingPathNavigator flyingPathNavigator = new FlyingPathNavigator(this, worldIn);
+    protected PathNavigator createNavigator(World world) {
+        FlyingPathNavigator flyingPathNavigator = new FlyingPathNavigator(this, world);
         flyingPathNavigator.setCanOpenDoors(true);
         flyingPathNavigator.setCanSwim(true);
         flyingPathNavigator.setCanEnterDoors(true);
@@ -158,7 +158,7 @@ public class QueenSophiePet extends TameableEntity {
     }
 
     @Override
-    protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 0.81f;
     }
 
@@ -184,8 +184,8 @@ public class QueenSophiePet extends TameableEntity {
         return MathHelper.clamp(this.dataManager.get(VARIANT), 0, 17);
     }
 
-    public void setVariant(int variantIn) {
-        this.dataManager.set(VARIANT, variantIn);
+    public void setVariant(int variant) {
+        this.dataManager.set(VARIANT, variant);
     }
 
     protected void registerData() {
@@ -193,14 +193,14 @@ public class QueenSophiePet extends TameableEntity {
         this.dataManager.register(VARIANT, 0);
     }
 
-    public void writeAdditional(CompoundNBT compound) {
-        super.writeAdditional(compound);
-        compound.putInt("Variant", this.getVariant());
+    public void writeAdditional(CompoundNBT compoundNBT) {
+        super.writeAdditional(compoundNBT);
+        compoundNBT.putInt("Variant", this.getVariant());
     }
 
-    public void readAdditional(CompoundNBT compound) {
-        super.readAdditional(compound);
-        this.setVariant(compound.getInt("Variant"));
+    public void readAdditional(CompoundNBT compoundNBT) {
+        super.readAdditional(compoundNBT);
+        this.setVariant(compoundNBT.getInt("Variant"));
     }
 
     public boolean isFlying() {

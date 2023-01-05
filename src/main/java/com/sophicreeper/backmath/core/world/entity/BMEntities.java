@@ -6,12 +6,12 @@ import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
 import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
 import com.sophicreeper.backmath.core.world.entity.misc.BMBoat;
+import com.sophicreeper.backmath.core.world.entity.misc.InsomniaArrow;
 import com.sophicreeper.backmath.core.world.entity.monster.*;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
 import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -74,4 +74,7 @@ public class BMEntities {
     // BM 1.8.0: Bountifully Expansive Creatures and Enemies
     public static final RegistryObject<EntityType<BMBoat>> BACKMATH_BOAT = ENTITIES.register("backmath_boat", () ->
             EntityType.Builder.<BMBoat>create(BMBoat::new, EntityClassification.MISC).size(1.375f, 0.5f).build(BackMath.resourceLoc("backmath_boat").toString()));
+
+    public static final RegistryObject<EntityType<InsomniaArrow>> INSOMNIA_ARROW = ENTITIES.register("insomnia_arrow", () ->
+            EntityType.Builder.<InsomniaArrow>create(InsomniaArrow::new, EntityClassification.MISC).size(0.5F, 0.5F).build("insomnia_arrow"));
 }
