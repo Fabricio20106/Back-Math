@@ -97,5 +97,41 @@
         "stream": true
       }
     ]
+  },
+  "record.sophicreeper.the_flying_arm": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/sophicreeper/the_flying_arm",
+        "stream": true
+      }
+    ]
+  },
+  "record.sophicreeper.sophies_dramatic_entrance_1": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/sophicreeper/sophies_dramatic_entrance1",
+        "stream": true
+      }
+    ]
+  },
+  "record.sophicreeper.sophies_dramatic_entrance_2": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/sophicreeper/sophies_dramatic_entrance2",
+        "stream": true
+      }
+    ]
+  },
+  "record.sophicreeper.sophies_dramatic_entrance_3": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "backmath:record/sophicreeper/sophies_dramatic_entrance3",
+        "stream": true
+      }
+    ]
   }
 }

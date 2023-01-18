@@ -17,6 +17,10 @@ public class BMSounds {
     public static SoundEvent RECORD_RICK_ASTLEY_NEVER_GONNA_GIVE_YOU_UP;
     public static SoundEvent RECORD_MANESKIN_BEGGIN;
     public static SoundEvent RECORD_JUSTIN_BIEBER_STAY;
+    public static SoundEvent RECORD_SOPHICREEPER_THE_FLYING_ARM;
+    public static SoundEvent RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_1;
+    public static SoundEvent RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_2;
+    public static SoundEvent RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_3;
 
     public static void registerSounds() {
         RECORD_NATHAN_EVANS_WELLERMAN = registerSound("record.nathan_evans.wellerman");
@@ -30,6 +34,10 @@ public class BMSounds {
         RECORD_RICK_ASTLEY_NEVER_GONNA_GIVE_YOU_UP = registerSound("record.rick_astley.never_gonna_give_you_up");
         RECORD_MANESKIN_BEGGIN = registerSound("record.maneskin.beggin");
         RECORD_JUSTIN_BIEBER_STAY = registerSound("record.justin_bieber.stay");
+        RECORD_SOPHICREEPER_THE_FLYING_ARM = registerSound("record.sophicreeper.the_flying_arm");
+        RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_1 = registerSound("record.sophicreeper.sophies_dramatic_entrance.1");
+        RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_2 = registerSound("record.sophicreeper.sophies_dramatic_entrance.2");
+        RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_3 = registerSound("record.sophicreeper.sophies_dramatic_entrance.3");
     }
 
     private static SoundEvent registerSound(String name) {

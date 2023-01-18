@@ -83,6 +83,12 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_PLANKS.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_DOOR.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_STAIRS.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_SLAB.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_FENCE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_FENCE_GATE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_PRESSURE_PLATE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_BUTTON.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.MID_TERM_LANTERN.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.MID_TERM_SOUL_LANTERN.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_TURTLE_FRIED_EGG_FLOWER.get(), RenderType.getCutout());

@@ -126,6 +126,9 @@ New Items:
 - Added Aljamic Glass Bottles and Sleepishwater Bottles
 - Added Patience, Peace, Disgust and Mood Teas
 - Added Insomnia Arrow
+- Added Guava and Crystalline Birch Mortar and Pestles
+- Added The Flying Arm Disc
+- Added Sophie's Dramatic Entrance Discs No.1, No.2 and No.3
 
 New Blocks:
 
@@ -203,12 +206,13 @@ Changes, Additions, Removals and etcetera:
     - Obsidian Infused Mid-Term Pickaxe, Shovel, Axe and Hoe
     - Mid-Term Pickaxe
     - Moonering Backstabber and USB Sticks
+    - Water Jam, Water Popsicle, Bread with Water Jam and Bread with Zé Droplet
 - Added 13 new Queen Sophie Pet variants, those being:
     - Blue Sophixolotl, Brazil Shirt, Creeper Hoodie, Empresary2, Enderphie, Entrepreneur, Maid, Modified, Original, Pajama, Savannah, Witcher and Yellow Sophixolotl
 - The Aljan is now A M P L I F I E D (caps lock and spaces intended)
 - Added a new Item Tree advancement tab
 - Back Math wooden sticks are now crafted diagonally so they don't conflict with the vanilla stick recipe
-- Aljan mobs now spawn using "EntitySpawnPlacementRegistry" instead of "MobSpawnInfo.Builder" directly in the biome
+- Aljan mobs now spawn using "EntitySpawnPlacementRegistry" instead of "MobSpawnInfo.Builder" directly in the biome (it's broken)
 - Added "Battle Platform" painting
 - GUI scale for the Alice, Alan and Innovator Toys were changed from 1,625 to 1,125, and the translation from 4,25 to 2,75
 - GUI scale for the Tyler Toy was changed from 1,625 to 1,125, and the translation from 4,25 to 2
@@ -219,6 +223,8 @@ Changes, Additions, Removals and etcetera:
 - Jantiquified Moonering tools are now crafted at the Smithing Table instead of the Crafting Table
     - This change was made so the regular moonering tools kept their enchantments and durability
 - Buckets are now craftable with Aljameed Ingots
+- Diamond Nuggets are now called and "Diamond Shard" and look like other shards
+- Crystalline Birch Stars, Slabs, Fences, Fence Gates, Pressure Plates and Buttons are now transparent
 
 Bugfixes:
 
@@ -232,7 +238,7 @@ Bugfixes:
 - Aljamic Grass Blocks are now colored based on the biome they're in
 - Grape Vine Posts don't grow over time
 - Sleepingstone ores drop nothing when mined
-- Amaracamel Sticks biome name is unlocalized, it appears as "biome.backmath.amaracamel_sticks" in the F3 menu or in any minimap mod
+- Amaracamel Sticks biome name is unlocalized, it appears as "biome.backmath.amaracamel_sticks" in any minimap mod or other ways the biome name appears
 - Jantic Ore and Sleepingstone Jantic Ore isn't near the Block of Jantical in the creative tab
 
 Technical Changes:

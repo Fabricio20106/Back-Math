@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "backmath:item/the_flying_arm_disc"
+  }
+}

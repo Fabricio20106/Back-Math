@@ -238,12 +238,12 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
         return this.getDefaultState().with(HORIZONTAL_FACING, context.getPlacementHorizontalFacing().getOpposite());
     }
 
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.with(HORIZONTAL_FACING, rot.rotate(state.get(HORIZONTAL_FACING)));
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.with(HORIZONTAL_FACING, rotation.rotate(state.get(HORIZONTAL_FACING)));
     }
 
-    public BlockState mirror(BlockState state, Mirror mirrorIn) {
-        return state.rotate(mirrorIn.toRotation(state.get(HORIZONTAL_FACING)));
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.toRotation(state.get(HORIZONTAL_FACING)));
     }
 
     @Override

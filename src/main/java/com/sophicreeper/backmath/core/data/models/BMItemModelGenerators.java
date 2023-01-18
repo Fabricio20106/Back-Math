@@ -875,6 +875,14 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("crystallized_pumpkin_ingot");
         compat("crystallized_sweet_berry_ingot");
         compat("crystallized_glow_berry_ingot");
+        compat("lava_pot");
+        compat("powder_snow_pot");
+        compat("crystalline_birch_mortar_and_pestle");
+        compat("guava_mortar_and_pestle");
+        compat("the_flying_arm_disc");
+        getBuilder("sophies_dramatic_entrance_1_disc").parent(generated).texture("layer0", "item/sophies_dramatic_entrance_disc");
+        getBuilder("sophies_dramatic_entrance_2_disc").parent(generated).texture("layer0", "item/sophies_dramatic_entrance_disc");
+        getBuilder("sophies_dramatic_entrance_3_disc").parent(generated).texture("layer0", "item/sophies_dramatic_entrance_disc");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

@@ -540,6 +540,10 @@ public class AxolotlTest {
     public static final RegistryObject<Item> NEVER_GONNA_GIVE_YOU_UP_DISC = ITEMS.register("rick_roll_disc", () -> new MusicDiscItem(11, () -> BMSounds.RECORD_RICK_ASTLEY_NEVER_GONNA_GIVE_YOU_UP, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
     public static final RegistryObject<Item> BEGGIN_DISC = ITEMS.register("beggin_disc", () -> new MusicDiscItem(12, () -> BMSounds.RECORD_MANESKIN_BEGGIN, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
     public static final RegistryObject<Item> STAY_DISC = ITEMS.register("stay_disc", () -> new MusicDiscItem(13, () -> BMSounds.RECORD_JUSTIN_BIEBER_STAY, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
+    public static final RegistryObject<Item> THE_FLYING_ARM_DISC = ITEMS.register("the_flying_arm_disc", () -> new MusicDiscItem(14, () -> BMSounds.RECORD_SOPHICREEPER_THE_FLYING_ARM, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
+    public static final RegistryObject<Item> SOPHIES_DRAMATIC_ENTRANCE_1_DISC = ITEMS.register("sophies_dramatic_entrance_1_disc", () -> new MusicDiscItem(15, () -> BMSounds.RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_1, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
+    public static final RegistryObject<Item> SOPHIES_DRAMATIC_ENTRANCE_2_DISC = ITEMS.register("sophies_dramatic_entrance_2_disc", () -> new MusicDiscItem(15, () -> BMSounds.RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_2, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
+    public static final RegistryObject<Item> SOPHIES_DRAMATIC_ENTRANCE_3_DISC = ITEMS.register("sophies_dramatic_entrance_3_disc", () -> new MusicDiscItem(15, () -> BMSounds.RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_3, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
 
     // BackMath Weaponry
     public static final RegistryObject<Item> DEVIL_WARRIOR_HELMET = ITEMS.register("devil_warrior_helmet", () -> new BMArmorItem(WARRIOR_DEVIL_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().group(BMWeaponryTab.TAB)));
@@ -733,9 +737,10 @@ public class AxolotlTest {
     public static final RegistryObject<Item> ANGELIC_CROSSBOW = ITEMS.register("angelic_crossbow", BMCrossbowItem::new);
     public static final RegistryObject<Item> CHOCOGLUE = ITEMS.register("chocoglue", () -> new ChocoGlueItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> PINK_GUM_FRYING_PAN = ITEMS.register("pink_gum_frying_pan", () -> new PinkGumFryingPanItem(new Item.Properties().maxDamage(1024).group(BMWeaponryTab.TAB)));
-    // make InsomniaArrowItem and InsomniaArrowEntity classes, future Fabrício
     public static final RegistryObject<Item> INSOMNIA_ARROW = ITEMS.register("insomnia_arrow", () -> new InsomniaArrowItem(new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MORTAR_AND_PESTLE = ITEMS.register("mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> CRYSTALLINE_BIRCH_MORTAR_AND_PESTLE = ITEMS.register("crystalline_birch_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> GUAVA_MORTAR_AND_PESTLE = ITEMS.register("guava_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANWOOD_MORTAR_AND_PESTLE = ITEMS.register("aljanwood_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANCAP_MORTAR_AND_PESTLE = ITEMS.register("aljancap_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_MORTAR_AND_PESTLE = ITEMS.register("insomnian_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
@@ -838,6 +843,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> ALJAME_JAM = ITEMS.register("aljame_jam", () -> new JamItem(new Item.Properties().group(SophiesCursedFoods.TAB).food(BMFoods.ALJAME)));
     public static final RegistryObject<Item> WATER_JAM = ITEMS.register("water_jam", () -> new JamItem(new Item.Properties().group(SophiesCursedFoods.TAB).containerItem(AxolotlTest.JAM_POT.get()).food(Foods.SWEET_BERRIES)));
     public static final RegistryObject<Item> MILK_POT = ITEMS.register("milk_pot", () -> new JamItem(new Item.Properties().containerItem(AxolotlTest.JAM_POT.get()).group(SophiesCursedFoods.TAB)));
+    public static final RegistryObject<Item> LAVA_POT = ITEMS.register("lava_pot", () -> new JamItem(new Item.Properties().containerItem(AxolotlTest.JAM_POT.get()).group(SophiesCursedFoods.TAB)));
+    public static final RegistryObject<Item> POWDER_SNOW_POT = ITEMS.register("powder_snow_pot", () -> new JamItem(new Item.Properties().containerItem(AxolotlTest.JAM_POT.get()).group(SophiesCursedFoods.TAB)));
     public static final RegistryObject<Item> HILLARY_JAM = ITEMS.register("hilary_jam", () -> new JamItem(new Item.Properties().group(SophiesCursedFoods.TAB).containerItem(AxolotlTest.JAM_POT.get()).food(Foods.APPLE)));
     public static final RegistryObject<Item> MILKLLARY_JAM = ITEMS.register("milklary_jam", () -> new JamItem(new Item.Properties().group(SophiesCursedFoods.TAB).containerItem(AxolotlTest.JAM_POT.get()).food(Foods.BAKED_POTATO)));
     public static final RegistryObject<Item> APPLE_JAM = ITEMS.register("apple_jam", () -> new JamItem(new Item.Properties().containerItem(AxolotlTest.JAM_POT.get()).group(SophiesCursedFoods.TAB).food(Foods.APPLE)));
