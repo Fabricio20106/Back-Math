@@ -29,6 +29,7 @@ public class BMBiomes {
     public static final RegistryObject<Biome> D_E_E_P_E_R_SLEEPISH_OCEAN = BIOMES.register("d_e_e_p_e_r_sleepish_ocean", BMBiomes::deeperSleepishOcean);
     public static final RegistryObject<Biome> AMARACAMEL_STICKS = BIOMES.register("amaracamel_sticks", BMBiomes::amaracamelSticks);
     public static final RegistryObject<Biome> ALJAMIC_HIGHLANDS = BIOMES.register("aljamic_highlands", BMBiomes::aljamicHighlands);
+    public static final RegistryObject<Biome> ALJAMIC_ORCHARD = BIOMES.register("aljamic_orchard", BMBiomes::aljamicOrchard);
 
     private static Biome originalBackFields() {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
@@ -210,14 +211,29 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
         DefaultBiomeFeatures.withForestGrass(settings);
+        DefaultBiomeFeatures.withFrozenTopLayer(settings);
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANWOODS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(1.5f).scale(0.025f).temperature(0.3F).downfall(0.8F).setEffects(
+        return new Biome.Builder().precipitation(Biome.RainType.SNOW).category(Biome.Category.FOREST).depth(1.5f).scale(0.025f).temperature(-0.3F).downfall(0.8F).setEffects(
                         new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xFCB76B).withGrassColor(0xd4eaea).build())
+                .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+    }
+
+    private static Biome aljamicOrchard() {
+        BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(BMSurfaceBuilders.ALJAN);
+        MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
+
+        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANWOODS_ORCHARD);
+        settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
+
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
+                new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0x78bfbf).withGrassColor(0x78bfbf).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 }

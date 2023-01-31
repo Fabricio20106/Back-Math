@@ -338,6 +338,10 @@ public class BMFeatures {
                     new SingleRandomFeature(ALJAN_WOODS_WAO_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
             .withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
+    public static final ConfiguredFeature<?, ?> ALJANWOODS_ORCHARD = register("aljanwoods_orchard", Feature.RANDOM_SELECTOR.withConfiguration(
+                    new MultipleRandomFeatureConfig(ImmutableList.of(FANCY_ALJANWOOD.withChance(0.2F), ALJANWOOD.withChance(0.1F)), ALJANWOOD))
+            .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 0))));
+
     /**
      BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
      */
