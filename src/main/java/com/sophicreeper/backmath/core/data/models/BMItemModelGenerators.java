@@ -883,6 +883,38 @@ public class BMItemModelGenerators extends ItemModelProvider {
         getBuilder("sophies_dramatic_entrance_1_disc").parent(generated).texture("layer0", "item/sophies_dramatic_entrance_disc");
         getBuilder("sophies_dramatic_entrance_2_disc").parent(generated).texture("layer0", "item/sophies_dramatic_entrance_disc");
         getBuilder("sophies_dramatic_entrance_3_disc").parent(generated).texture("layer0", "item/sophies_dramatic_entrance_disc");
+        standard(handheld, "wooden_knife");
+        standard(handheld, "stone_knife");
+        standard(handheld, "iron_knife");
+        standard(handheld, "golden_knife");
+        standard(handheld, "diamond_knife");
+        standard(handheld, "netherite_knife");
+        standard(handheld, "devil_knife");
+        standard(handheld, "angelic_knife");
+        standard(handheld, "mid_term_knife");
+        standard(handheld, "obsidian_infused_mid_term_knife");
+        standard(handheld, "milkllary_knife");
+        standard(handheld, "olive_knife");
+        standard(handheld, "cork_oak_knife");
+        standard(handheld, "aljanwood_knife");
+        standard(handheld, "aljancap_knife");
+        standard(handheld, "insomnian_knife");
+        standard(handheld, "aljanstone_knife");
+        standard(handheld, "aljameed_knife");
+        standard(handheld, "moonering_knife");
+        standard(handheld, "jantiquified_moonering_knife");
+        compat("bread_with_pao");
+        compat("aljamic_aljame_juice");
+        compat("aljamic_aljamic_berry_juice");
+        compat("green_apple");
+        compat("green_apple_juice");
+        compat("green_apple_jam");
+        compat("green_apple_popsicle");
+        compat("green_apple_jam_bread");
+        compat("cut_green_apple");
+        compat("cut_apple");
+        compat("cut_golden_apple");
+        getBuilder("cut_enchanted_golden_apple").parent(generated).texture("layer0", "item/cut_golden_apple");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

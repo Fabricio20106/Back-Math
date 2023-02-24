@@ -26,7 +26,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 0
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 0
             },
             "entity": "this"
           }
@@ -40,7 +41,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 1
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 1
             },
             "entity": "this"
           }
@@ -54,7 +56,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 2
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 2
             },
             "entity": "this"
           }
@@ -68,7 +71,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 3
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 3
             },
             "entity": "this"
           }
@@ -82,7 +86,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 4
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 4
             },
             "entity": "this"
           }
@@ -96,7 +101,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 5
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 5
             },
             "entity": "this"
           }
@@ -110,7 +116,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 6
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 6
             },
             "entity": "this"
           }
@@ -124,7 +131,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 7
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 7
             },
             "entity": "this"
           }
@@ -138,7 +146,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": "10"
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 10
             },
             "entity": "this"
           }
@@ -152,7 +161,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 15
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 15
             },
             "entity": "this"
           }
@@ -166,7 +176,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 8
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 8
             },
             "entity": "this"
           }
@@ -180,7 +191,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 9
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 9
             },
             "entity": "this"
           }
@@ -194,7 +206,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 11
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 11
             },
             "entity": "this"
           }
@@ -208,7 +221,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 16
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 16
             },
             "entity": "this"
           }
@@ -222,7 +236,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": "17"
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 17
             },
             "entity": "this"
           }
@@ -236,7 +251,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": "12"
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 12
             },
             "entity": "this"
           }
@@ -250,7 +266,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 13
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 13
             },
             "entity": "this"
           }
@@ -264,7 +281,8 @@
           {
             "condition": "minecraft:entity_properties",
             "predicate": {
-              "variant": 14
+              "type": "backmath:queen_sophie_pet",
+              "Variant": 14
             },
             "entity": "this"
           }
