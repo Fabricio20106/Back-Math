@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HH",
+    "HH"
+  ],
+  "key": {
+    "H": {
+      "item": "backmath:goldenwood_log"
+    }
+  },
+  "result": {
+    "item": "backmath:goldenwood_wood",
+    "count": 3
+  }
+}

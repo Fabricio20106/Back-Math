@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "backmath:block/goldenwood_log",
+    "end": "backmath:block/goldenwood_log"
+  }
+}

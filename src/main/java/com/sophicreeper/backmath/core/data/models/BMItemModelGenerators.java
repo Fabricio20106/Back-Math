@@ -252,6 +252,22 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("aljamic_glass");
         withExistingParent("jantical_block");
         withExistingParent("guava_grape_vine_post", modLoc("block/grape_vine_posts/guava"));
+        withExistingParent("aljansteel_block");
+        withExistingParent("goldenwood_leaves");
+        withExistingParent("enchanted_goldenwood_leaves");
+        withExistingParent("goldenwood_log");
+        withExistingParent("goldenwood_wood");
+        withExistingParent("stripped_goldenwood_log");
+        withExistingParent("stripped_goldenwood_wood");
+        withExistingParent("goldenwood_planks");
+        withExistingParent("goldenwood_stairs");
+        withExistingParent("goldenwood_slab");
+        withExistingParent("goldenwood_fence", modLoc("block/goldenwood_fence_inventory"));
+        withExistingParent("goldenwood_fence_gate");
+        withExistingParent("goldenwood_pressure_plate");
+        withExistingParent("goldenwood_button", modLoc("block/goldenwood_button_inventory"));
+        withExistingParent("goldenwood_trapdoor", modLoc("block/goldenwood_trapdoor_bottom"));
+        withExistingParent("goldenwood_grape_vine_post", modLoc("block/grape_vine_posts/goldenwood"));
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -915,6 +931,27 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("cut_apple");
         compat("cut_golden_apple");
         getBuilder("cut_enchanted_golden_apple").parent(generated).texture("layer0", "item/cut_golden_apple");
+        standard(handheld, "aljansteel_blade");
+        getBuilder("milked_aljansteel_blade").parent(modelFile).texture("layer0", "item/aljansteel_blade").texture("layer1", "item/milked_aljameed_blade_base");
+        standard(handheld, "aljansteel_pick");
+        standard(handheld, "aljansteel_shovel");
+        standard(handheld, "aljansteel_axe");
+        standard(handheld, "aljansteel_hoe");
+        standard(handheld, "aljansteel_knife");
+        compat("aljansteel_shears");
+        compat("aljansteel_ingot");
+        compat("aljansteel_nugget");
+        compat("aljansteel_blend");
+        compat("jantiquified_moonering_shears");
+        compat("aljansteel_chain");
+        compat("pumpkin_slice");
+        compat("cut_sweet_berries");
+        compat("cut_glow_berries");
+        block(generated, "goldenwood_sapling");
+        block(generated, "enchanted_goldenwood_sapling");
+        compat("goldenwood_door");
+        compat("goldenwood_mortar_and_pestle");
+        standard(handheld, "goldenwood_knife");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

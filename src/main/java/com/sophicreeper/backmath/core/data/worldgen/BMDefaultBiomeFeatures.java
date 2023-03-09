@@ -108,4 +108,9 @@ public class BMDefaultBiomeFeatures {
             spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(BMEntities.MALAIKA.get(), 12, 2, 5));
         }
     }
+
+    public static void withAljanMobs(MobSpawnInfo.Builder spawns) {
+        withAljanHostileMobs(spawns);
+        withAljanPassiveMobs(spawns);
+    }
 }

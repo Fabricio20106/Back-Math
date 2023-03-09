@@ -2,10 +2,14 @@ package com.sophicreeper.backmath.core.world.item;
 
 import com.google.common.collect.ImmutableSet;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolItem;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.*;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
 import java.util.Set;
@@ -31,5 +35,46 @@ public class KnifeItem extends ToolItem {
     @Override
     public boolean hasContainerItem(ItemStack stack) {
         return true;
+    }
+
+    @Override
+    public ActionResultType onItemUse(ItemUseContext context) {
+        BlockPos pos = context.getPos();
+        World world = context.getWorld();
+        BlockState state = world.getBlockState(pos);
+        PlayerEntity player = context.getPlayer();
+        ItemStack stack = context.getItem();
+        if (state.getBlock() == Blocks.PUMPKIN) {
+            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 9));
+            world.destroyBlock(pos, false, player);
+            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        }
+        if (state.getBlock() == Blocks.CARVED_PUMPKIN) {
+            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
+            world.destroyBlock(pos, false, player);
+            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        }
+        if (state.getBlock() == Blocks.JACK_O_LANTERN) {
+            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
+            Block.spawnAsEntity(world, pos, new ItemStack(Items.TORCH));
+            world.destroyBlock(pos, false, player);
+            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        }
+        if (state.getBlock() == Blocks.PUMPKIN) {
+            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 9));
+            world.destroyBlock(pos, false, player);
+            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        }
+        if (state.getBlock() == Blocks.MELON) {
+            Block.spawnAsEntity(world, pos, new ItemStack(Items.MELON_SLICE, 9));
+            world.destroyBlock(pos, false, player);
+            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        }
+        if (state.getBlock() == Blocks.HAY_BLOCK) {
+            Block.spawnAsEntity(world, pos, new ItemStack(Items.WHEAT, 9));
+            world.destroyBlock(pos, false, player);
+            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        }
+        return super.onItemUse(context);
     }
 }

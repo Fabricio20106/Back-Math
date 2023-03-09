@@ -54,6 +54,7 @@ public class BMStaticFields {
     public static final BMTools INSOMNIAN_SET = new BMTools.Insomnian();
     public static final BMTools ALJANSTONE_SET = new BMTools.Aljanstone();
     public static final BMTools ALJAMEED_SET = new BMTools.Aljameed();
+    public static final BMTools ALJANSTEEL_SET = new BMTools.Aljansteel();
     public static final BMTools MOONERING_SET = new BMTools.Moonering();
     public static final BMTools JANTIQUIFIED_MOONERING_SET = new BMTools.JantiquifiedMoonering();
 }

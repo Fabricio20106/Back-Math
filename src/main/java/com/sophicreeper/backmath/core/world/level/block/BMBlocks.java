@@ -362,6 +362,28 @@ public class BMBlocks {
     public static final RegistryObject<Block> GUAVA_TRAPDOOR = BLOCKS.register("guava_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(Blocks.CRIMSON_PLANKS).sound(SoundType.WOOD).hardnessAndResistance(1.5f, 4)));
     public static final RegistryObject<Block> GUAVA_LADDER = BLOCKS.register("guava_ladder", () -> new LadderBlock(AbstractBlock.Properties.from(Blocks.LADDER).hardnessAndResistance(1.5f, 4)));
 
+    // Goldenwood
+    public static final RegistryObject<Block> GOLDENWOOD_LEAVES = BLOCKS.register("goldenwood_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> ENCHANTED_GOLDENWOOD_LEAVES = BLOCKS.register("enchanted_goldenwood_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> GOLDENWOOD_SAPLING = BLOCKS.register("goldenwood_sapling", () -> new SaplingBlock(new GoldenwoodGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> ENCHANTED_GOLDENWOOD_SAPLING = BLOCKS.register("enchanted_goldenwood_sapling", () -> new SaplingBlock(new EnchantedGoldenwoodGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> POTTED_GOLDENWOOD_SAPLING = BLOCKS.register("potted_goldenwood_sapling", () -> new FlowerPotBlock(BMBlocks.GOLDENWOOD_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
+    public static final RegistryObject<Block> POTTED_ENCHANTED_GOLDENWOOD_SAPLING = BLOCKS.register("potted_enchanted_goldenwood_sapling", () -> new FlowerPotBlock(BMBlocks.ENCHANTED_GOLDENWOOD_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
+    public static final RegistryObject<Block> GOLDENWOOD_LOG = BLOCKS.register("goldenwood_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.OAK_LOG)));
+    public static final RegistryObject<Block> GOLDENWOOD_WOOD = BLOCKS.register("goldenwood_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_GOLDENWOOD_LOG = BLOCKS.register("stripped_goldenwood_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_LOG)));
+    public static final RegistryObject<Block> STRIPPED_GOLDENWOOD_WOOD = BLOCKS.register("stripped_goldenwood_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> GOLDENWOOD_PLANKS = BLOCKS.register("goldenwood_planks", () -> new Block(AbstractBlock.Properties.from(Blocks.OAK_PLANKS)));
+    public static final RegistryObject<Block> GOLDENWOOD_STAIRS = BLOCKS.register("goldenwood_stairs", () -> new StairsBlock(() -> BMBlocks.GOLDENWOOD_PLANKS.get().getDefaultState(), AbstractBlock.Properties.from(Blocks.OAK_STAIRS)));
+    public static final RegistryObject<Block> GOLDENWOOD_SLAB = BLOCKS.register("goldenwood_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.OAK_SLAB)));
+    public static final RegistryObject<Block> GOLDENWOOD_FENCE = BLOCKS.register("goldenwood_fence", () -> new FenceBlock(AbstractBlock.Properties.from(Blocks.OAK_FENCE)));
+    public static final RegistryObject<Block> GOLDENWOOD_FENCE_GATE = BLOCKS.register("goldenwood_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.from(Blocks.OAK_FENCE_GATE)));
+    public static final RegistryObject<Block> GOLDENWOOD_PRESSURE_PLATE = BLOCKS.register("goldenwood_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.from(Blocks.OAK_PRESSURE_PLATE)));
+    public static final RegistryObject<Block> GOLDENWOOD_BUTTON = BLOCKS.register("goldenwood_button", () -> new WoodButtonBlock(AbstractBlock.Properties.from(Blocks.OAK_BUTTON)));
+    public static final RegistryObject<Block> GOLDENWOOD_DOOR = BLOCKS.register("goldenwood_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.OAK_DOOR)));
+    public static final RegistryObject<Block> GOLDENWOOD_TRAPDOOR = BLOCKS.register("goldenwood_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(Blocks.OAK_TRAPDOOR)));
+    public static final RegistryObject<Block> GOLDENWOOD_GRAPE_VINE_POST = BLOCKS.register("goldenwood_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(BMBlocks.OAK_GRAPE_VINE_POST.get())));
+
     // Other Stuff
     public static final RegistryObject<Block> MANGAED_MANGO_OAK_LEAVES = BLOCKS.register("mangaed_mango_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> MID_HILLARY_BLOCK = BLOCKS.register("mid_hillary_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
@@ -376,6 +398,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJAMIC_DIRT_PATH = BLOCKS.register("aljamic_dirt_path", () -> new AljamicDirtPathBlock(AbstractBlock.Properties.from(Blocks.GRASS_PATH)));
     public static final RegistryObject<Block> JANTICAL_BLOCK = BLOCKS.register("jantical_block", () -> new Block(AbstractBlock.Properties.from(Blocks.DIAMOND_BLOCK)));
     public static final RegistryObject<Block> WILD_ALJAMIC_ONIONS = BLOCKS.register("wild_aljamic_onions", () -> new WildAljamicOnionsBlock(AbstractBlock.Properties.from(Blocks.CARROTS)));
+    public static final RegistryObject<Block> ALJANSTEEL_CHAIN = BLOCKS.register("aljansteel_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN)));
+    public static final RegistryObject<Block> ALJANSTEEL_BLOCK = BLOCKS.register("aljansteel_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
 
     private static RotatedPillarBlock createLogBlock(MaterialColor topColor, MaterialColor barkColor) {
         return new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, (state) -> state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topColor : barkColor).hardnessAndResistance(2.0F).sound(SoundType.WOOD));

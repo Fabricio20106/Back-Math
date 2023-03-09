@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:goldenwood_planks"
+    }
+  ],
+  "result": {
+    "item": "backmath:goldenwood_button"
+  }
+}

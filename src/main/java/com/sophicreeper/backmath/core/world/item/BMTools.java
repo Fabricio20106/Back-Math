@@ -146,6 +146,11 @@ public class BMTools implements IItemTier {
             super(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.fromTag(BMTags.Items.INGOTS_ALJAMEED));
         }
     }
+    public static class Aljansteel extends BMTools {
+        public Aljansteel() {
+            super(3, 500, 6.5F, 3, 16, () -> Ingredient.fromTag(BMTags.Items.INGOTS_ALJANSTEEL));
+        }
+    }
     public static class Moonering extends BMTools {
         public Moonering() {
             super(3, 1561, 8.0F, 3.0F, 10, () -> Ingredient.fromTag(BMTags.Items.INGOTS_MOONERING));

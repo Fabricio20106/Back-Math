@@ -125,6 +125,16 @@
           }
         ]
       }
+    },
+    "has_juice11": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:green_apple_juice"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -160,6 +170,9 @@
     ],
     [
       "has_juice10"
+    ],
+    [
+      "has_juice11"
     ]
   ]
 }

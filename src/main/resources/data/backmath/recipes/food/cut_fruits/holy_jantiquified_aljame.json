@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:holy_jantiquified_aljame"
+    },
+    {
+      "tag": "backmath:knives"
+    }
+  ],
+  "result": {
+    "item": "backmath:cut_holy_jantiquified_aljame"
+  }
+}

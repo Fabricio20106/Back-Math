@@ -145,6 +145,16 @@
           }
         ]
       }
+    },
+    "has_fruit13": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:green_apple"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -186,6 +196,9 @@
     ],
     [
       "has_fruit12"
+    ],
+    [
+      "has_fruit13"
     ]
   ]
 }

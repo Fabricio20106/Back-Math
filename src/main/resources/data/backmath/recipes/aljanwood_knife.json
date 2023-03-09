@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W",
+    "Y "
+  ],
+  "key": {
+    "W": {
+      "item": "backmath:aljanwood_planks"
+    },
+    "Y": {
+      "tag": "forge:rods/aljanwood"
+    }
+  },
+  "result": {
+    "item": "backmath:aljanwood_knife"
+  }
+}

@@ -33,6 +33,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_DEVIL_ANGELIC).add(AxolotlTest.DEVIL_ANGELIC_ALLOY_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_ALJAMEED).add(AxolotlTest.ALJAMEED_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_ALJANSTEEL).add(AxolotlTest.ALJANSTEEL_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_MOONERING).add(AxolotlTest.MOONERING_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_CHARJAN_COAL).add(AxolotlTest.CHARJAN_COAL_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_HARDENED_AMARACAMEL).add(AxolotlTest.HARDENED_AMARACAMEL_BLOCK.get());
@@ -63,6 +64,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_DEVIL_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_ALJAMEED);
+        this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_ALJANSTEEL);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_MOONERING);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_CHARJAN_COAL);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_HARDENED_AMARACAMEL);
@@ -90,6 +92,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_MID_HILLARY).add(AxolotlTest.MID_HILLARY_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_ALJAMEED).add(AxolotlTest.ALJAMEED_INGOT.get());
+        this.getOrCreateBuilder(BMTags.Items.INGOTS_ALJANSTEEL).add(AxolotlTest.ALJANSTEEL_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_MOONERING).add(AxolotlTest.MOONERING_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_ALJAMIC_COPPER).add(AxolotlTest.ALJAMIC_COPPER_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_ALJAMIC_TIN).add(AxolotlTest.ALJAMIC_TIN_INGOT.get());
@@ -102,11 +105,18 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.ORES_MOONERING).add(AxolotlTest.RAW_MOONER.get()).add(AxolotlTest.MOONERING_ORE.get());
         this.getOrCreateBuilder(BMTags.Items.ORES_JANTICAL).add(AxolotlTest.JANTIC_ORE.get());
 
+        this.getOrCreateBuilder(BMTags.Items.DUSTS_DEVIL).add(AxolotlTest.DEVIL_DUST.get());
+        this.getOrCreateBuilder(BMTags.Items.DUSTS_ANGELIC).add(AxolotlTest.ANGELIC_DUST.get());
+        this.getOrCreateBuilder(BMTags.Items.DUSTS_CHRISTIAN_MID_TERM).add(AxolotlTest.CHRISTIAN_MID_TERM_DUST.get());
+        this.getOrCreateBuilder(BMTags.Items.DUSTS_MID_TERM).add(AxolotlTest.MID_TERM_DUST.get());
+        this.getOrCreateBuilder(BMTags.Items.DUSTS_HILLARY).add(AxolotlTest.HILLARY_AGGLOMERATIO.get());
+        this.getOrCreateBuilder(BMTags.Items.DUSTS_MILKLLARY).add(AxolotlTest.MILKLLARY_AGGLOMERATIO.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_CHRISTIAN_MID_TERM_ANGELIC).add(AxolotlTest.CHRISTIAN_MID_TERM_ANGELIC_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_CHRISTIAN_MID_TERM_DEVIL).add(AxolotlTest.CHRISTIAN_MID_TERM_DEVIL_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_DEVIL_ANGELIC).add(AxolotlTest.DEVIL_ANGELIC_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_OBSIDIAN_INFUSED_MID_TERM).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_ALJAMEED).add(AxolotlTest.ALJAMEED_DUST.get());
+        this.getOrCreateBuilder(BMTags.Items.DUSTS_ALJANSTEEL).add(AxolotlTest.ALJANSTEEL_BLEND.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_MOONERING).add(AxolotlTest.MOONERING_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_WATER).add(AxolotlTest.WATER_TALC_POWDER.get());
 
@@ -133,17 +143,11 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.SINGULARITIES_MEATY_LUCIA).add(AxolotlTest.MEATY_SINGULARITY_LUCIA.get());
         this.getOrCreateBuilder(BMTags.Items.SINGULARITIES_MEATY_MINECRAFT).add(AxolotlTest.MEATY_SINGULARITY_MINECRAFT.get());
 
-        this.getOrCreateBuilder(BMTags.Items.DUSTS_DEVIL).add(AxolotlTest.DEVIL_DUST.get());
-        this.getOrCreateBuilder(BMTags.Items.DUSTS_ANGELIC).add(AxolotlTest.ANGELIC_DUST.get());
-        this.getOrCreateBuilder(BMTags.Items.DUSTS_CHRISTIAN_MID_TERM).add(AxolotlTest.CHRISTIAN_MID_TERM_DUST.get());
-        this.getOrCreateBuilder(BMTags.Items.DUSTS_MID_TERM).add(AxolotlTest.MID_TERM_DUST.get());
-        this.getOrCreateBuilder(BMTags.Items.DUSTS_HILLARY).add(AxolotlTest.HILLARY_AGGLOMERATIO.get());
-        this.getOrCreateBuilder(BMTags.Items.DUSTS_MILKLLARY).add(AxolotlTest.MILKLLARY_AGGLOMERATIO.get());
-
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_CHRISTIAN_MID_TERM).add(AxolotlTest.CHRISTIAN_MID_TERM_NUGGET.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_MID_TERM).add(AxolotlTest.MID_TERM_NUGGET.get()).add(AxolotlTest.MID_TERM_SHARD.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_OBSIDIAN_INFUSED_MID_TERM).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_NUGGET.get()).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHARD.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_ALJAMEED).add(AxolotlTest.ALJAMEED_NUGGET.get());
+        this.getOrCreateBuilder(BMTags.Items.NUGGETS_ALJANSTEEL).add(AxolotlTest.ALJANSTEEL_NUGGET.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_MOONERING).add(AxolotlTest.MOONERING_NUGGET.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_HARDENED_AMARACAMEL).add(AxolotlTest.HARDENED_AMARACAMEL_NUGGET.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_MILKLLARY).add(AxolotlTest.MILKLLARY_NUGGET.get());
@@ -174,7 +178,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 AxolotlTest.PINEAPPLE_POPSICLE.get(), AxolotlTest.HILLARY_POPSICLE.get(), AxolotlTest.MILKLLARY_POPSICLE.get(), AxolotlTest.WATER_POPSICLE.get(),
                 AxolotlTest.APPLE_POPSICLE.get(), AxolotlTest.MELON_POPSICLE.get(), AxolotlTest.GOLDEN_APPLE_POPSICLE.get()).add(AxolotlTest.MANGA_POPSICLE.get(),
                 AxolotlTest.SWEET_BERRY_POPSICLE.get(), AxolotlTest.GLOW_BERRY_POPSICLE.get(), AxolotlTest.PUMPKIN_POPSICLE.get(), AxolotlTest.ENCHANTED_GOLDEN_APPLE_POPSICLE.get(),
-                AxolotlTest.GUAVA_POPSICLE.get(), AxolotlTest.JABUTICABA_POPSICLE.get(), AxolotlTest.ALJAMIC_BERRY_POPSICLE.get());
+                AxolotlTest.GUAVA_POPSICLE.get(), AxolotlTest.JABUTICABA_POPSICLE.get(), AxolotlTest.ALJAMIC_BERRY_POPSICLE.get(), AxolotlTest.GREEN_APPLE_POPSICLE.get());
 
         this.getOrCreateBuilder(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC).add(AxolotlTest.CRYSTALLINE_ANGELIC.get());
         this.getOrCreateBuilder(BMTags.Items.GEMS_OBSIDIAN_INFUSED_MID_TERM).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get());
@@ -193,6 +197,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_MID_HILLARY);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_MOONERING);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_ALJAMEED);
+        this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_ALJANSTEEL);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_ALJAMIC_COPPER);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_ALJAMIC_TIN);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_COPPER);
@@ -216,11 +221,12 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_DEVIL_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_OBSIDIAN_INFUSED_MID_TERM);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_ALJAMEED);
+        this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_ALJANSTEEL);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_MOONERING);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_WATER);
 
         this.getOrCreateBuilder(Tags.Items.NUGGETS).addTag(BMTags.Items.NUGGETS_CHRISTIAN_MID_TERM).addTag(BMTags.Items.NUGGETS_MID_TERM).addTag(BMTags.Items.NUGGETS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.NUGGETS_ALJAMEED)
                 .addTag(BMTags.Items.NUGGETS_MOONERING).addTag(BMTags.Items.NUGGETS_HARDENED_AMARACAMEL).addTag(BMTags.Items.NUGGETS_MILKLLARY).addTag(BMTags.Items.NUGGETS_MID_HILLARY).addTag(BMTags.Items.NUGGETS_MILKLLARITY)
-                .addTag(BMTags.Items.NUGGETS_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.NUGGETS_JANTICAL);
+                .addTag(BMTags.Items.NUGGETS_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.NUGGETS_JANTICAL).addTag(BMTags.Items.NUGGETS_ALJANSTEEL);
     }
 }

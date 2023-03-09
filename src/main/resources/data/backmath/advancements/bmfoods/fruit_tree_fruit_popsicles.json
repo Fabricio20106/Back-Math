@@ -185,6 +185,16 @@
           }
         ]
       }
+    },
+    "has_popsicle17": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:green_apple_popsicle"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -238,6 +248,9 @@
     ],
     [
       "has_popsicle16"
+    ],
+    [
+      "has_popsicle17"
     ]
   ]
 }

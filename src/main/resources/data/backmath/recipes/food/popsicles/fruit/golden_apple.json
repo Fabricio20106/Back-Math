@@ -13,7 +13,7 @@
       "item": "minecraft:stick"
     },
     "C": {
-      "item": "minecraft:golden_apple"
+      "item": "backmath:cut_golden_apple"
     }
   },
   "result": {

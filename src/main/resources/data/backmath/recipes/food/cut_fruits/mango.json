@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:mango"
+    },
+    {
+      "tag": "backmath:knives"
+    }
+  ],
+  "result": {
+    "item": "backmath:cut_mango"
+  }
+}

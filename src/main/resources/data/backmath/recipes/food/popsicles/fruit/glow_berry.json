@@ -1,15 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
+    "C",
     "#",
     "X"
   ],
   "key": {
     "#": {
-      "item": "backmath:glow_berry_juice"
+      "item": "minecraft:packed_ice"
     },
     "X": {
       "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "backmath:cut_glow_berries"
     }
   },
   "result": {

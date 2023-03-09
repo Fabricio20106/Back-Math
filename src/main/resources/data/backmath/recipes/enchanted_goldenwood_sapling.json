@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GAG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "minecraft:enchanted_golden_apple"
+    },
+    "A": {
+      "tag": "minecraft:saplings"
+    }
+  },
+  "result": {
+    "item": "backmath:enchanted_goldenwood_sapling"
+  }
+}

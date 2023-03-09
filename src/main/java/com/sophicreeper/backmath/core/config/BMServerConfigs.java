@@ -41,6 +41,7 @@ public class BMServerConfigs {
     public final ForgeConfigSpec.BooleanValue malaikaSpawn;
     public final ForgeConfigSpec.BooleanValue aljamicBonesSpawn;
     public final ForgeConfigSpec.BooleanValue sleepishSkeletonSpawn;
+    public final ForgeConfigSpec.BooleanValue groundMobSpawningBackFields;
 
     // Gameplay Aspects
     public final ForgeConfigSpec.BooleanValue safeAljan;
@@ -85,10 +86,12 @@ public class BMServerConfigs {
         builder.comment("Aljan mobs:");
         this.insomniaZombieSpawn = builder.comment("Allow insomnia zombies to spawn in the aljan?").define("insomniaZombieSpawn", true);
         this.zombieFabricioSpawn = builder.comment("Allow zombie Fabricios to spawn in the aljan?").define("zombieFabricioSpawn", true);
-        this.aljamicBonesSpawn = builder.comment("Allow aljamic boneses to spawn in the aljan?").define("aljamicBonesSpawn", true);
-        this.sleepishSkeletonSpawn = builder.comment("Allow sleepish skeletons to spawn in the aljan?").define("sleepihSkeletonSpawn", true);
+        this.aljamicBonesSpawn = builder.comment("Allow aljamic bones' to spawn in the aljan?").define("aljamicBonesSpawn", true);
+        this.sleepishSkeletonSpawn = builder.comment("Allow sleepish skeletons to spawn in the aljan?").define("sleepishSkeletonSpawn", true);
         this.amaracamelerSpawn = builder.comment("Allow amaracamelers to spawn in amaracamel sticks?").define("amaracamelerSpawn", true);
         this.malaikaSpawn = builder.comment("Allow malaikas to spawn in the aljan?").define("malaikaSpawn", true);
+        builder.comment("Mob Spawning.");
+        this.groundMobSpawningBackFields = builder.comment("Make it so that Back Fields mobs spawn in the ground and not on top of leaves. Disable for old behaviour.").define("groundMobSpawning.backFields", true);
         builder.pop();
 
         builder.push("gameplayAspects");

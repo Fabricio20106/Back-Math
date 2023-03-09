@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:block/fence_inventory",
+  "textures": {
+    "texture": "backmath:block/goldenwood_planks"
+  }
+}

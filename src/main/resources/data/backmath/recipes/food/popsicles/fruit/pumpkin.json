@@ -13,7 +13,7 @@
       "item": "minecraft:stick"
     },
     "C": {
-      "item": "minecraft:pumpkin"
+      "item": "backmath:pumpkin_slice"
     }
   },
   "result": {

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:goldenwood_log",
+    "backmath:goldenwood_wood",
+    "backmath:stripped_goldenwood_log",
+    "backmath:stripped_goldenwood_wood"
+  ]
+}

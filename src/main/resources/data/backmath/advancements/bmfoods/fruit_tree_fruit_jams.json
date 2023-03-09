@@ -205,6 +205,16 @@
           }
         ]
       }
+    },
+    "has_jam19": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:green_apple_jam"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -264,6 +274,9 @@
     ],
     [
       "has_jam18"
+    ],
+    [
+      "has_jam19"
     ]
   ]
 }

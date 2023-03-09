@@ -33,9 +33,18 @@ public class BMFoods {
 
     // Cut Fruits
     public static final Food HALVED_APPLE = new Food.Builder().hunger(2).saturation(0.15f).fastToEat().build();
+    public static final Food HALVED_GOLDEN_APPLE = new Food.Builder().hunger(2).saturation(0.6f).effect(
+            () -> new EffectInstance(Effects.REGENERATION, 50, 0), 1).effect(
+            () -> new EffectInstance(Effects.ABSORPTION, 1200, 0), 1).setAlwaysEdible().fastToEat().build();
+    public static final Food HALVED_ENCHANTED_GOLDEN_APPLE = new Food.Builder().hunger(2).saturation(0.6f).effect(
+            () -> new EffectInstance(Effects.REGENERATION, 200, 0), 1).effect(
+            () -> new EffectInstance(Effects.ABSORPTION, 1200, 1), 1).effect(
+            () -> new EffectInstance(Effects.RESISTANCE, 3000, 0), 1).effect(
+            () -> new EffectInstance(Effects.FIRE_RESISTANCE, 1200, 1), 1).setAlwaysEdible().fastToEat().build();
     public static final Food HALVED_CARROT = new Food.Builder().hunger(1).saturation(0.3f).fastToEat().build();
     public static final Food HALVED_SWEET_BERRIES = new Food.Builder().hunger(1).saturation(0.05f).fastToEat().build();
     public static final Food HALVED_BAKED_POTATO = new Food.Builder().hunger(2).saturation(0.3f).fastToEat().build();
+    public static final Food HALVED_HONEY_BOTTLE = new Food.Builder().hunger(3).saturation(0.05f).fastToEat().build();
     public static final Food HALVED_ALJAME = new Food.Builder().hunger(2).saturation(1.75f).effect(() ->
             new EffectInstance(Effects.POISON, 100), 1.0f).effect(() ->
             new EffectInstance(Effects.BLINDNESS, 600), 1.0f).fastToEat().build();

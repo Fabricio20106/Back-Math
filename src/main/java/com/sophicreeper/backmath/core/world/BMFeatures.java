@@ -275,7 +275,8 @@ public class BMFeatures {
 
     // Ocean block patches (like clay), and they're actually called "disks".
     public static final ConfiguredFeature<?, ?> INSOGRAVEL_DISK = register("disk_insogravel", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.INSOGRAVEL.get().getDefaultState(),
-            FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), BMBlocks.INSOGRAVEL.get().getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
+            FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), BMBlocks.INSOGRAVEL.get().getDefaultState())))
+            .withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
 
     // Used in world generation to make trees generate randomly, and not in every 4-chunk borders.
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> INSOMNIAN = register("insomnian",
@@ -329,7 +330,8 @@ public class BMFeatures {
                     new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
 
     public static final ConfiguredFeature<?, ?> ALJAMIC_SAND_DISK = register("disk_aljamic_sand", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.ALJAMIC_SAND.get().getDefaultState(),
-            FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), BMBlocks.ALJAMIC_SAND.get().getDefaultState()))).withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
+            FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), BMBlocks.ALJAMIC_SAND.get().getDefaultState())))
+            .withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));
 
     private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ALJAN_WOODS_WAO_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.WILD_ALJAMIC_ONIONS.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
@@ -341,6 +343,22 @@ public class BMFeatures {
     public static final ConfiguredFeature<?, ?> ALJANWOODS_ORCHARD = register("aljanwoods_orchard", Feature.RANDOM_SELECTOR.withConfiguration(
                     new MultipleRandomFeatureConfig(ImmutableList.of(FANCY_ALJANWOOD.withChance(0.2F), ALJANWOOD.withChance(0.1F)), ALJANWOOD))
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 0))));
+
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> FANCY_GOLDENWOOD = register("fancy_goldenwood",
+            Feature.TREE.withConfiguration(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.GOLDENWOOD_LOG.get().getDefaultState()),
+                    new SimpleBlockStateProvider(BMBlocks.GOLDENWOOD_LEAVES.get().getDefaultState()),
+                    new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4),
+                    new FancyTrunkPlacer(3, 11, 0),
+                    new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))
+                    .setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()));
+
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> FANCY_ENCHANTED_GOLDENWOOD = register("fancy_enchanted_goldenwood",
+            Feature.TREE.withConfiguration(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.GOLDENWOOD_LOG.get().getDefaultState()),
+                    new SimpleBlockStateProvider(BMBlocks.ENCHANTED_GOLDENWOOD_LEAVES.get().getDefaultState()),
+                    new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4),
+                    new FancyTrunkPlacer(3, 11, 0),
+                    new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))
+                    .setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()));
 
     /**
      BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE

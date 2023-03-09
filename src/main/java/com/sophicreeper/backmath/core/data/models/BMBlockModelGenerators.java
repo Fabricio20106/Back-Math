@@ -312,6 +312,24 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         paneBlock((PaneBlock) BMBlocks.ALJAMIC_GLASS_PANE.get(), modLoc("block/aljamic_glass"), modLoc("block/aljamic_glass_pane_top"));
         simpleBlock(BMBlocks.JANTICAL_BLOCK.get());
         simpleBlock(BMBlocks.WILD_ALJAMIC_ONIONS.get(), models().withExistingParent("wild_aljamic_onions", "backmath:block/template_wild_crop").texture("crop", "block/wild_aljamic_onions"));
+
+        simpleBlock(BMBlocks.GOLDENWOOD_LEAVES.get());
+        simpleBlock(BMBlocks.ENCHANTED_GOLDENWOOD_LEAVES.get());
+        simpleBlock(BMBlocks.GOLDENWOOD_SAPLING.get(), models().cross("goldenwood_sapling", modLoc("block/goldenwood_sapling")));
+        simpleBlock(BMBlocks.ENCHANTED_GOLDENWOOD_SAPLING.get(), models().cross("enchanted_goldenwood_sapling", modLoc("block/enchanted_goldenwood_sapling")));
+        simpleBlock(BMBlocks.POTTED_GOLDENWOOD_SAPLING.get(), models().withExistingParent("potted_goldenwood_sapling", "block/flower_pot_cross").texture("plant", "block/goldenwood_sapling"));
+        simpleBlock(BMBlocks.POTTED_ENCHANTED_GOLDENWOOD_SAPLING.get(), models().withExistingParent("potted_enchanted_goldenwood_sapling", "block/flower_pot_cross").texture("plant", "block/enchanted_goldenwood_sapling"));
+        axisBlock((RotatedPillarBlock) BMBlocks.GOLDENWOOD_LOG.get(), modLoc("block/goldenwood_log"), modLoc("block/goldenwood_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.GOLDENWOOD_WOOD.get(), modLoc("block/goldenwood_log"), modLoc("block/goldenwood_log"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_GOLDENWOOD_LOG.get(), modLoc("block/stripped_goldenwood_log"), modLoc("block/stripped_goldenwood_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_GOLDENWOOD_WOOD.get(), modLoc("block/stripped_goldenwood_log"), modLoc("block/stripped_goldenwood_log"));
+        simpleBlock(BMBlocks.GOLDENWOOD_PLANKS.get());
+        stairsBlock((StairsBlock) BMBlocks.GOLDENWOOD_STAIRS.get(), modLoc("block/goldenwood_planks"));
+        slabBlock((SlabBlock) BMBlocks.GOLDENWOOD_SLAB.get(), modLoc("block/goldenwood_planks"), modLoc("block/goldenwood_planks"));
+        fenceBlock((FenceBlock) BMBlocks.GOLDENWOOD_FENCE.get(), modLoc("block/goldenwood_planks"));
+        fenceGateBlock((FenceGateBlock) BMBlocks.GOLDENWOOD_FENCE_GATE.get(), modLoc("block/goldenwood_planks"));
+        doorBlock((DoorBlock) BMBlocks.GOLDENWOOD_DOOR.get(), modLoc("block/goldenwood_door_bottom"), modLoc("block/goldenwood_door_top"));
+        trapdoorBlock((TrapDoorBlock) BMBlocks.GOLDENWOOD_TRAPDOOR.get(), modLoc("block/goldenwood_trapdoor"), true);
     }
 
     public ModelBuilder<BlockModelBuilder> wallTorch(String name, ResourceLocation torch) {
@@ -320,15 +338,6 @@ public class BMBlockModelGenerators extends BlockStateProvider {
 
     // Methods below were taken from my other mod "Variants"
 
-    /**
-     * Determines a value on {@link PotatoBlock}/{@link CarrotBlock} "AGE" {@link IntegerProperty} field for data generation.
-     *
-     * @param age A link to {@link PotatoBlock}/{@link CarrotBlock} on the "AGE" {@link IntegerProperty} field.
-     * If the parameter "age" returns 6, then in returns 3,
-     * if the parameter "age" returns 3, then in returns 2,
-     * if the parameter "age" returns 1, then in returns 1,
-     * else it returns 0.
-     */
     public static int cropAgeToIndexPotato(int age) {
         if (age > 6) return 3;
         if (age > 3) return 2;
@@ -336,15 +345,6 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         return 0;
     }
 
-    /**
-     * Determines a value on {@link CropsBlock} "AGE" {@link IntegerProperty} field for data generation.
-     *
-     * @param age A link to {@link CropsBlock} on the "AGE" {@link IntegerProperty} field.
-     * If the parameter "age" returns 7, then in returns 7,
-     * if the parameter "age" returns 6, then in returns 6,
-     * if the parameter "age" returns 5, then in returns 5,
-     * and so on till it returns 0.
-     */
     public static int cropAgeToIndexWheat(int age) {
         if (age == 7) return 7;
         if (age == 6) return 6;

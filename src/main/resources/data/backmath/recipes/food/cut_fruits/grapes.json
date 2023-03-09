@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:grapes"
+    },
+    {
+      "tag": "backmath:knives"
+    }
+  ],
+  "result": {
+    "item": "backmath:cut_grapes"
+  }
+}

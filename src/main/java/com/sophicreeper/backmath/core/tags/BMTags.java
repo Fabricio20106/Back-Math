@@ -22,6 +22,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> INGOTS_MILKLLARY = forge("ingots/milkllary");
         public static final ITag.INamedTag<Item> INGOTS_MID_HILLARY = forge("ingots/mid_hillary");
         public static final ITag.INamedTag<Item> INGOTS_ALJAMEED = forge("ingots/aljameed");
+        public static final ITag.INamedTag<Item> INGOTS_ALJANSTEEL = forge("ingots/aljansteel");
         public static final ITag.INamedTag<Item> INGOTS_MOONERING = forge("ingots/moonering");
         public static final ITag.INamedTag<Item> INGOTS_ALJAMIC_COPPER = forge("ingots/aljamic_copper");
         public static final ITag.INamedTag<Item> INGOTS_ALJAMIC_TIN = forge("ingots/aljamic_tin");
@@ -33,6 +34,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> NUGGETS_MID_TERM = forge("nuggets/mid_term");
         public static final ITag.INamedTag<Item> NUGGETS_OBSIDIAN_INFUSED_MID_TERM = forge("nuggets/obsidian_infused_mid_term");
         public static final ITag.INamedTag<Item> NUGGETS_ALJAMEED = forge("nuggets/aljameed");
+        public static final ITag.INamedTag<Item> NUGGETS_ALJANSTEEL = forge("nuggets/aljansteel");
         public static final ITag.INamedTag<Item> NUGGETS_MOONERING = forge("nuggets/moonering");
         public static final ITag.INamedTag<Item> NUGGETS_MILKLLARY = forge("nuggets/milkllary");
         public static final ITag.INamedTag<Item> NUGGETS_MID_HILLARY = forge("nuggets/mid_hillary");
@@ -50,6 +52,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> DUSTS_MID_TERM = forge("dusts/mid_term");
         public static final ITag.INamedTag<Item> DUSTS_OBSIDIAN_INFUSED_MID_TERM = forge("dusts/obsidian_infused_mid_term");
         public static final ITag.INamedTag<Item> DUSTS_ALJAMEED = forge("dusts/aljameed");
+        public static final ITag.INamedTag<Item> DUSTS_ALJANSTEEL = forge("dusts/aljansteel");
         public static final ITag.INamedTag<Item> DUSTS_MOONERING = forge("dusts/moonering");
         public static final ITag.INamedTag<Item> DUSTS_WATER = forge("dusts/water");
         public static final ITag.INamedTag<Item> DUSTS_HILLARY = forge("dusts/hillary");
@@ -115,6 +118,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_HARDENED_AMARACAMEL = forge("storage_blocks/hardened_amaracamel");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_CHARJAN_COAL = forge("storage_blocks/charjan_coal");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_ALJAMEED = forge("storage_blocks/aljameed");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_ALJANSTEEL = forge("storage_blocks/aljansteel");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_ALJAMEED = forge("storage_blocks/raw_aljameed");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_MOONERING = forge("storage_blocks/moonering");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_MOONERING = forge("storage_blocks/raw_moonering");
@@ -155,6 +159,7 @@ public class BMTags {
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_HARDENED_AMARACAMEL = forgeBlock("storage_blocks/hardened_amaracamel");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHARJAN_COAL = forgeBlock("storage_blocks/charjan_coal");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ALJAMEED = forgeBlock("storage_blocks/aljameed");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ALJANSTEEL = forgeBlock("storage_blocks/aljansteel");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ALJAMEED = forgeBlock("storage_blocks/raw_aljameed");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MOONERING = forgeBlock("storage_blocks/moonering");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_MOONERING = forgeBlock("storage_blocks/raw_moonering");

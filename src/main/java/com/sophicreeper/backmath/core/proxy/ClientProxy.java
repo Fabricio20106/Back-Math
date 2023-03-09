@@ -173,6 +173,16 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_SOPHIE_PET_RELIC.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.WILD_ALJAMIC_ONIONS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.GUAVA_GRAPE_VINE_POST.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.ALJANSTEEL_CHAIN.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_GOLDENWOOD_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.ENCHANTED_GOLDENWOOD_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_ENCHANTED_GOLDENWOOD_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_LEAVES.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.ENCHANTED_GOLDENWOOD_LEAVES.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_DOOR.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_TRAPDOOR.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_GRAPE_VINE_POST.get(), RenderType.getCutout());
 
         // Entity renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);

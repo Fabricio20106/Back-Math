@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:pumpkin"
+    },
+    {
+      "tag": "backmath:knives"
+    }
+  ],
+  "result": {
+    "item": "backmath:pumpkin_slice",
+    "count": 9
+  }
+}

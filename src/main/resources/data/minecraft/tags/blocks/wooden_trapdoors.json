@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "backmath:aljanwood_trapdoor",
-    "backmath:guava_trapdoor"
+    "backmath:guava_trapdoor",
+    "backmath:goldenwood_trapdoor"
   ]
 }

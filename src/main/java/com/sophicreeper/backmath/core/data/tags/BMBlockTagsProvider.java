@@ -32,6 +32,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_DEVIL_ANGELIC).add(BMBlocks.DEVIL_ANGELIC_ALLOY_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM).add(BMBlocks.OBSIDIAN_INFUSED_MID_TERM_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_ALJAMEED).add(BMBlocks.ALJAMEED_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_ALJANSTEEL).add(BMBlocks.ALJANSTEEL_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_MOONERING).add(BMBlocks.MOONERING_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_CHARJAN_COAL).add(BMBlocks.CHARJAN_COAL_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_HARDENED_AMARACAMEL).add(BMBlocks.HARDENED_AMARACAMEL_BLOCK.get());
@@ -61,6 +62,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_DEVIL_ANGELIC);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_ALJAMEED);
+        this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_ALJANSTEEL);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_MOONERING);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_CHARJAN_COAL);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_HARDENED_AMARACAMEL);
@@ -83,6 +85,6 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(Tags.Blocks.ORES).addTag(BMTags.Blocks.ORES_TIN);
 
         this.getOrCreateBuilder(BlockTags.GUARDED_BY_PIGLINS).add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get()).add(BMBlocks.QUEEN_SOPHIE_RELIC.get()).add(BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get())
-                .add(BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get());
+                .add(BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.QUEEN_SOPHIE_PET_RELIC.get());
     }
 }

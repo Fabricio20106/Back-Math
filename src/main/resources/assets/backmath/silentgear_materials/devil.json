@@ -5,7 +5,8 @@
       "color": "#F00B00"
     },
     {
-      "texture": "silentgear:_highlight"
+      "texture": "silentgear:_highlight",
+      "color": "#ffa200"
     }
   ],
   "main/armor": [
@@ -14,7 +15,8 @@
       "color": "#F00B00"
     },
     {
-      "texture": "silentgear:_highlight"
+      "texture": "silentgear:_highlight",
+      "color": "#ffa200"
     }
   ]
 }

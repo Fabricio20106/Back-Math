@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  S",
+    "WFW",
+    " W "
+  ],
+  "key": {
+    "W": {
+      "item": "backmath:goldenwood_planks"
+    },
+    "F": {
+      "item": "minecraft:flint"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "backmath:goldenwood_mortar_and_pestle"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " W",
+    "Y "
+  ],
+  "key": {
+    "W": {
+      "tag": "forge:ingots/mid_term"
+    },
+    "Y": {
+      "tag": "forge:rods/blaze"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_knife"
+  }
+}

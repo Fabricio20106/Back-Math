@@ -8,6 +8,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.FireBlock;
 import net.minecraft.item.AxeItem;
 import net.minecraft.item.HoeItem;
+import net.minecraft.item.ShovelItem;
 
 public class BMVanillaCompatibility {
     public static void registerCompatibilities() {
@@ -62,11 +63,32 @@ public class BMVanillaCompatibility {
         flammable(BMBlocks.GUAVA_WOOD.get(), 5, 5);
         flammable(BMBlocks.STRIPPED_GUAVA_WOOD.get(), 5, 5);
         flammable(BMBlocks.GUAVA_LEAVES.get(), 30, 60);
+        flammable(BMBlocks.GOLDENWOOD_PLANKS.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_STAIRS.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_SLAB.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_FENCE.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_FENCE_GATE.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_TRAPDOOR.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_DOOR.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_BUTTON.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_PRESSURE_PLATE.get(), 5, 20);
+        flammable(BMBlocks.GOLDENWOOD_LOG.get(), 5, 5);
+        flammable(BMBlocks.STRIPPED_GOLDENWOOD_LOG.get(), 5, 5);
+        flammable(BMBlocks.GOLDENWOOD_WOOD.get(), 5, 5);
+        flammable(BMBlocks.STRIPPED_GOLDENWOOD_WOOD.get(), 5, 5);
+        flammable(BMBlocks.GOLDENWOOD_LEAVES.get(), 30, 60);
+        flammable(BMBlocks.ENCHANTED_GOLDENWOOD_LEAVES.get(), 30, 60);
         flammable(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get(), 30, 60);
         flammable(BMBlocks.LEANDRO_TOY.get(), 60, 20);
         flammable(BMBlocks.TEENAGER_ALICE_TOY.get(), 60, 20);
         strippable(BMBlocks.GUAVA_LOG.get(), BMBlocks.STRIPPED_GUAVA_LOG.get());
         strippable(BMBlocks.GUAVA_WOOD.get(), BMBlocks.STRIPPED_GUAVA_WOOD.get());
+        strippable(BMBlocks.GOLDENWOOD_LOG.get(), BMBlocks.STRIPPED_GOLDENWOOD_LOG.get());
+        strippable(BMBlocks.GOLDENWOOD_WOOD.get(), BMBlocks.STRIPPED_GOLDENWOOD_WOOD.get());
+        tillable(BMBlocks.ALJAMIC_DIRT_PATH.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
+        makePath(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
+        makePath(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
+        makePath(BMBlocks.ALJAMIC_FARMLAND.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
     }
 
     public static void strippable(Block log, Block strippedLog) {
@@ -82,5 +104,10 @@ public class BMVanillaCompatibility {
     private static void tillable(Block block, BlockState farmland) {
         HoeItem.HOE_LOOKUP = Maps.newHashMap(HoeItem.HOE_LOOKUP);
         HoeItem.HOE_LOOKUP.put(block, farmland);
+    }
+
+    private static void makePath(Block block, BlockState path) {
+        ShovelItem.SHOVEL_LOOKUP = Maps.newHashMap(ShovelItem.SHOVEL_LOOKUP);
+        ShovelItem.SHOVEL_LOOKUP.put(block, path);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "backmath:goldenwood_logs"
+    }
+  ],
+  "result": {
+    "item": "backmath:goldenwood_planks",
+    "count": 4
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:dusts/aljameed"
+    },
+    {
+      "tag": "forge:dusts/aljameed"
+    },
+    {
+      "item": "backmath:charjan_coal"
+    }
+  ],
+  "result": {
+    "item": "backmath:aljansteel_blend",
+    "count": 3
+  }
+}
