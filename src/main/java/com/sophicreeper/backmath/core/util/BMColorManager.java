@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.core.util;
 import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
+import net.minecraft.world.FoliageColors;
 import net.minecraft.world.GrassColors;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
@@ -17,12 +18,15 @@ public class BMColorManager {
     @SubscribeEvent
     public static void registerBlockColorHandlers(final ColorHandlerEvent.Block event) {
         event.getBlockColors().register((x, reader, pos, u) -> reader != null && pos != null
-                ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5d, 1.0d), BMBlocks.ALJAMIC_GRASS_BLOCK.get());
+                ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5d, 1.0d), BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.AVONDALIC_NYLIUM.get());
+
+        event.getBlockColors().register((x, reader, pos, u) -> reader != null && pos != null
+                ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault(), BMBlocks.JABUTICABA_LEAVES.get());
     }
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerItemColorHandlers(final ColorHandlerEvent.Item event) {
-        event.getItemColors().register((stack, color) -> GrassColors.get(0.5d, 1.0d), AxolotlTest.ALJAMIC_GRASS_BLOCK.get());
+        event.getItemColors().register((stack, color) -> GrassColors.get(0.5d, 1.0d), AxolotlTest.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.JABUTICABA_LEAVES.get());
     }
 }

@@ -82,6 +82,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> RODS_ALJANWOOD = forge("rods/aljanwood");
         public static final ITag.INamedTag<Item> RODS_ALJANCAP = forge("rods/aljancap");
         public static final ITag.INamedTag<Item> RODS_INSOMNIAN = forge("rods/insomnian");
+        public static final ITag.INamedTag<Item> RODS_AVONDALIC_WILLOW = forge("rods/avondalic_willow");
         public static final ITag.INamedTag<Item> RODS_ALJAMEED = forge("rods/aljameed");
 
         public static final ITag.INamedTag<Item> SQUIDS = backMath("squids");

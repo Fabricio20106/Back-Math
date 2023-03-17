@@ -30,6 +30,7 @@ public class BMBiomes {
     public static final RegistryObject<Biome> AMARACAMEL_STICKS = BIOMES.register("amaracamel_sticks", BMBiomes::amaracamelSticks);
     public static final RegistryObject<Biome> ALJAMIC_HIGHLANDS = BIOMES.register("aljamic_highlands", BMBiomes::aljamicHighlands);
     public static final RegistryObject<Biome> ALJAMIC_ORCHARD = BIOMES.register("aljamic_orchard", BMBiomes::aljamicOrchard);
+    public static final RegistryObject<Biome> AVONDALIC_GROVE = BIOMES.register("avondalic_grove", BMBiomes::avondalicGrove);
 
     private static Biome originalBackFields() {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
@@ -246,6 +247,21 @@ public class BMBiomes {
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
                 new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0x78bfbf).withGrassColor(0x78bfbf).build())
+                .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+    }
+
+    private static Biome avondalicGrove() {
+        BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(BMSurfaceBuilders.AVONDALIC);
+        MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
+
+        DefaultBiomeFeatures.withForestGrass(settings);
+        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
+        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
+                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xb821a2).withGrassColor(0xb13b9d).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 }

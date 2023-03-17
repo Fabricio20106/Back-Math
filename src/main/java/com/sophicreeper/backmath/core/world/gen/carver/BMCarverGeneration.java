@@ -12,7 +12,8 @@ public class BMCarverGeneration {
         BiomeGenerationSettingsBuilder settings = event.getGeneration();
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
-                event.getName()) || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())) {
+                event.getName()) || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
+                || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName())) {
             settings.withCarver(GenerationStage.Carving.AIR, BMConfiguredCarvers.ALJAN_CAVE);
             settings.withCarver(GenerationStage.Carving.AIR, BMConfiguredCarvers.ALJAN_CANYON);
         }

@@ -330,6 +330,34 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         fenceGateBlock((FenceGateBlock) BMBlocks.GOLDENWOOD_FENCE_GATE.get(), modLoc("block/goldenwood_planks"));
         doorBlock((DoorBlock) BMBlocks.GOLDENWOOD_DOOR.get(), modLoc("block/goldenwood_door_bottom"), modLoc("block/goldenwood_door_top"));
         trapdoorBlock((TrapDoorBlock) BMBlocks.GOLDENWOOD_TRAPDOOR.get(), modLoc("block/goldenwood_trapdoor"), true);
+
+        simpleBlock(BMBlocks.AVONDALIC_WILLOW_LEAVES.get());
+        axisBlock((RotatedPillarBlock) BMBlocks.AVONDALIC_WILLOW_LOG.get(), modLoc("block/avondalic_willow_log"), modLoc("block/avondalic_willow_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.AVONDALIC_WILLOW_WOOD.get(), modLoc("block/avondalic_willow_log"), modLoc("block/avondalic_willow_log"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_AVONDALIC_WILLOW_LOG.get(), modLoc("block/stripped_avondalic_willow_log"), modLoc("block/stripped_avondalic_willow_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_AVONDALIC_WILLOW_WOOD.get(), modLoc("block/stripped_avondalic_willow_log"), modLoc("block/stripped_avondalic_willow_log"));
+        simpleBlock(BMBlocks.AVONDALIC_WILLOW_PLANKS.get());
+        stairsBlock((StairsBlock) BMBlocks.AVONDALIC_WILLOW_STAIRS.get(), modLoc("block/avondalic_willow_planks"));
+        slabBlock((SlabBlock) BMBlocks.AVONDALIC_WILLOW_SLAB.get(), modLoc("block/avondalic_willow_planks"), modLoc("block/avondalic_willow_planks"));
+        fenceBlock((FenceBlock) BMBlocks.AVONDALIC_WILLOW_FENCE.get(), modLoc("block/avondalic_willow_planks"));
+        fenceGateBlock((FenceGateBlock) BMBlocks.AVONDALIC_WILLOW_FENCE_GATE.get(), modLoc("block/avondalic_willow_planks"));
+        doorBlock((DoorBlock) BMBlocks.AVONDALIC_WILLOW_DOOR.get(), modLoc("block/avondalic_willow_door_bottom"), modLoc("block/avondalic_willow_door_top"));
+
+        simpleBlock(BMBlocks.JABUTICABA_LEAVES.get(), models().withExistingParent("jabuticaba_leaves", "minecraft:block/leaves").texture("all", "backmath:block/jabuticaba_leaves"));
+        simpleBlock(BMBlocks.JABUTICABA_SAPLING.get(), models().cross("jabuticaba_sapling", modLoc("block/jabuticaba_sapling")));
+        simpleBlock(BMBlocks.POTTED_JABUTICABA_SAPLING.get(), models().withExistingParent("potted_jabuticaba_sapling", "block/flower_pot_cross").texture("plant", "block/jabuticaba_sapling"));
+        axisBlock((RotatedPillarBlock) BMBlocks.JABUTICABA_LOG.get(), modLoc("block/jabuticaba_log"), modLoc("block/jabuticaba_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.JABUTICABA_WOOD.get(), modLoc("block/jabuticaba_log"), modLoc("block/jabuticaba_log"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_JABUTICABA_LOG.get(), modLoc("block/stripped_jabuticaba_log"), modLoc("block/stripped_jabuticaba_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_JABUTICABA_WOOD.get(), modLoc("block/stripped_jabuticaba_log"), modLoc("block/stripped_jabuticaba_log"));
+        simpleBlock(BMBlocks.JABUTICABA_PLANKS.get());
+        stairsBlock((StairsBlock) BMBlocks.JABUTICABA_STAIRS.get(), modLoc("block/jabuticaba_planks"));
+        slabBlock((SlabBlock) BMBlocks.JABUTICABA_SLAB.get(), modLoc("block/jabuticaba_planks"), modLoc("block/jabuticaba_planks"));
+        fenceBlock((FenceBlock) BMBlocks.JABUTICABA_FENCE.get(), modLoc("block/jabuticaba_planks"));
+        fenceGateBlock((FenceGateBlock) BMBlocks.JABUTICABA_FENCE_GATE.get(), modLoc("block/jabuticaba_planks"));
+
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get(), modLoc("block/stripped_crystalline_birch_log"), modLoc("block/stripped_crystalline_birch_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get(), modLoc("block/stripped_crystalline_birch_log"), modLoc("block/stripped_crystalline_birch_log"));
     }
 
     public ModelBuilder<BlockModelBuilder> wallTorch(String name, ResourceLocation torch) {

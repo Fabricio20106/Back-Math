@@ -23,6 +23,8 @@ public class AxolotlTest {
     // Crystalline Birch wood
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_LOG = ITEMS.register("crystalline_birch_log", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_LOG.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_WOOD = ITEMS.register("crystalline_birch_wood", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> STRIPPED_CRYSTALLINE_BIRCH_LOG = ITEMS.register("stripped_crystalline_birch_log", () -> new BlockItem(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> STRIPPED_CRYSTALLINE_BIRCH_WOOD = ITEMS.register("stripped_crystalline_birch_wood", () -> new BlockItem(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_LEAVES = ITEMS.register("crystalline_birch_leaves", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_SAPLING = ITEMS.register("crystalline_birch_sapling", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_PLANKS = ITEMS.register("crystalline_birch_planks", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_PLANKS.get(), new Item.Properties().group(BMBlockTab.TAB)));
@@ -53,6 +55,22 @@ public class AxolotlTest {
     public static final RegistryObject<Item> GUAVA_PRESSURE_PLATE = ITEMS.register("guava_pressure_plate", () -> new BlockItem(BMBlocks.GUAVA_PRESSURE_PLATE.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> GUAVA_BUTTON = ITEMS.register("guava_button", () -> new BlockItem(BMBlocks.GUAVA_BUTTON.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> GUAVA_LADDER = ITEMS.register("guava_ladder", () -> new BlockItem(BMBlocks.GUAVA_LADDER.get(), new Item.Properties().group(BMBlockTab.TAB)));
+
+    // Jabuticaba wood
+    public static final RegistryObject<Item> JABUTICABA_LOG = ITEMS.register("jabuticaba_log", () -> new BlockItem(BMBlocks.JABUTICABA_LOG.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_WOOD = ITEMS.register("jabuticaba_wood", () -> new BlockItem(BMBlocks.JABUTICABA_WOOD.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> STRIPPED_JABUTICABA_LOG = ITEMS.register("stripped_jabuticaba_log", () -> new BlockItem(BMBlocks.STRIPPED_JABUTICABA_LOG.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> STRIPPED_JABUTICABA_WOOD = ITEMS.register("stripped_jabuticaba_wood", () -> new BlockItem(BMBlocks.STRIPPED_JABUTICABA_WOOD.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_LEAVES = ITEMS.register("jabuticaba_leaves", () -> new BlockItem(BMBlocks.JABUTICABA_LEAVES.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_SAPLING = ITEMS.register("jabuticaba_sapling", () -> new BlockItem(BMBlocks.JABUTICABA_SAPLING.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_PLANKS = ITEMS.register("jabuticaba_planks", () -> new BlockItem(BMBlocks.JABUTICABA_PLANKS.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_STAIRS = ITEMS.register("jabuticaba_stairs", () -> new BlockItem(BMBlocks.JABUTICABA_STAIRS.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_SLAB = ITEMS.register("jabuticaba_slab", () -> new BlockItem(BMBlocks.JABUTICABA_SLAB.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_FENCE = ITEMS.register("jabuticaba_fence", () -> new BlockItem(BMBlocks.JABUTICABA_FENCE.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_FENCE_GATE = ITEMS.register("jabuticaba_fence_gate", () -> new BlockItem(BMBlocks.JABUTICABA_FENCE_GATE.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_GRAPE_VINE_POST = ITEMS.register("jabuticaba_grape_vine_post", () -> new BlockItem(BMBlocks.JABUTICABA_GRAPE_VINE_POST.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_PRESSURE_PLATE = ITEMS.register("jabuticaba_pressure_plate", () -> new BlockItem(BMBlocks.JABUTICABA_PRESSURE_PLATE.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> JABUTICABA_BUTTON = ITEMS.register("jabuticaba_button", () -> new BlockItem(BMBlocks.JABUTICABA_BUTTON.get(), new Item.Properties().group(BMBlockTab.TAB)));
 
     // Goldenwood wood
     public static final RegistryObject<Item> GOLDENWOOD_LOG = ITEMS.register("goldenwood_log", () -> new BlockItem(BMBlocks.GOLDENWOOD_LOG.get(), new Item.Properties().rarity(Rarity.RARE).group(BMBlockTab.TAB)));
@@ -131,6 +149,23 @@ public class AxolotlTest {
     public static final RegistryObject<Item> INSOMNIAN_LADDER = ITEMS.register("insomnian_ladder", () -> new BlockItem(BMBlocks.INSOMNIAN_LADDER.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CHARJAN_INSOMNIAN_TORCH = ITEMS.register("charjan_insomnian_torch", () -> new WallOrFloorItem(BMBlocks.CHARJAN_INSOMNIAN_TORCH.get(), BMBlocks.CHARJAN_INSOMNIAN_WALL_TORCH.get(), new Item.Properties().group(BMBlockTab.TAB)));
 
+    // Avondalic Willow wood
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_LOG = ITEMS.register("avondalic_willow_log", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_LOG.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_WOOD = ITEMS.register("avondalic_willow_wood", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_WOOD.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> STRIPPED_AVONDALIC_WILLOW_LOG = ITEMS.register("stripped_avondalic_willow_log", () -> new BlockItem(BMBlocks.STRIPPED_AVONDALIC_WILLOW_LOG.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> STRIPPED_AVONDALIC_WILLOW_WOOD = ITEMS.register("stripped_avondalic_willow_wood", () -> new BlockItem(BMBlocks.STRIPPED_AVONDALIC_WILLOW_WOOD.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_LEAVES = ITEMS.register("avondalic_willow_leaves", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_LEAVES.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    //public static final RegistryObject<Item> AVONDALIC_WILLOW_SAPLING = ITEMS.register("avondalic_willow_sapling", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_SAPLING.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_PLANKS = ITEMS.register("avondalic_willow_planks", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_PLANKS.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_STAIRS = ITEMS.register("avondalic_willow_stairs", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_STAIRS.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_SLAB = ITEMS.register("avondalic_willow_slab", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_SLAB.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_FENCE = ITEMS.register("avondalic_willow_fence", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_FENCE.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_FENCE_GATE = ITEMS.register("avondalic_willow_fence_gate", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_FENCE_GATE.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_GRAPE_VINE_POST = ITEMS.register("avondalic_willow_grape_vine_post", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_GRAPE_VINE_POST.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_DOOR = ITEMS.register("avondalic_willow_door", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_DOOR.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_PRESSURE_PLATE = ITEMS.register("avondalic_willow_pressure_plate", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_PRESSURE_PLATE.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_BUTTON = ITEMS.register("avondalic_willow_button", () -> new BlockItem(BMBlocks.AVONDALIC_WILLOW_BUTTON.get(), new Item.Properties().group(BMBlockTab.TAB)));
+
     // Tabu
     public static final RegistryObject<Item> GLAZED_TABU = ITEMS.register("glazed_tabu", () -> new BlockItem(BMBlocks.GLAZED_TABU.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CUBIC_TABU = ITEMS.register("cubic_tabu", () -> new BlockItem(BMBlocks.CUBIC_TABU.get(), new Item.Properties().group(BMBlockTab.TAB)));
@@ -169,6 +204,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> CHISELED_ALJANSTONE_LUCIA = ITEMS.register("chiseled_aljanstone_lucia", () -> new BlockItem(BMBlocks.CHISELED_ALJANSTONE_LUCIA.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CHISELED_ALJANSTONE_CREEPER = ITEMS.register("chiseled_aljanstone_creeper", () -> new BlockItem(BMBlocks.CHISELED_ALJANSTONE_CREEPER.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJAMIC_GRASS_BLOCK = ITEMS.register("aljamic_grass_block", () -> new BlockItem(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_NYLIUM = ITEMS.register("avondalic_nylium", () -> new BlockItem(BMBlocks.AVONDALIC_NYLIUM.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJAMIC_DIRT = ITEMS.register("aljamic_dirt", () -> new BlockItem(BMBlocks.ALJAMIC_DIRT.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJAMIC_DIRT_PATH = ITEMS.register("aljamic_dirt_path", () -> new BlockItem(BMBlocks.ALJAMIC_DIRT_PATH.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJAMIC_FARMLAND = ITEMS.register("aljamic_farmland", () -> new BlockItem(BMBlocks.ALJAMIC_FARMLAND.get(), new Item.Properties().group(BMBlockTab.TAB)));
@@ -473,6 +509,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> ALJANWOOD_STICK = ITEMS.register("aljanwood_stick", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> ALJANCAP_STICK = ITEMS.register("aljancap_stick", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_STICK = ITEMS.register("insomnian_stick", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_STICK = ITEMS.register("avondalic_willow_stick", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> DEVIL_ROD = ITEMS.register("devil_rod", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> ANGELIC_ROD = ITEMS.register("angelic_rod", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> HILLARY_ROD = ITEMS.register("hillary_rod", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
@@ -725,6 +762,11 @@ public class AxolotlTest {
     public static final RegistryObject<Item> INSOMNIAN_SHOVEL = ITEMS.register("insomnian_shovel", () -> new ShovelItem(INSOMNIAN_SET, 1.5F, -3.0F, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_AXE = ITEMS.register("insomnian_axe", () -> new AxeItem(INSOMNIAN_SET, 6.0F, -3.2F, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_HOE = ITEMS.register("insomnian_hoe", () -> new HoeItem(INSOMNIAN_SET, 0, -3.0F, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_SWORD = ITEMS.register("avondalic_willow_sword", () -> new SwordItem(AVONDALIC_WILLOW_SET, 3, -2.4F, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_PICKAXE = ITEMS.register("avondalic_willow_pickaxe", () -> new PickaxeItem(AVONDALIC_WILLOW_SET, 1, -2.8F, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_SHOVEL = ITEMS.register("avondalic_willow_shovel", () -> new ShovelItem(AVONDALIC_WILLOW_SET, 1.5F, -3.0F, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_AXE = ITEMS.register("avondalic_willow_axe", () -> new AxeItem(AVONDALIC_WILLOW_SET, 6.0F, -3.2F, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_HOE = ITEMS.register("avondalic_willow_hoe", () -> new HoeItem(AVONDALIC_WILLOW_SET, 0, -3.0F, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANSTONE_SWORD = ITEMS.register("aljanstone_sword", () -> new SwordItem(ALJANSTONE_SET, 3, -2.4F, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANSTONE_PICKAXE = ITEMS.register("aljanstone_pickaxe", () -> new PickaxeItem(ALJANSTONE_SET, 1, -2.8F, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANSTONE_SHOVEL = ITEMS.register("aljanstone_shovel", () -> new ShovelItem(ALJANSTONE_SET, 1.5F, -3.0F, new Item.Properties().group(BMWeaponryTab.TAB)));
@@ -763,10 +805,14 @@ public class AxolotlTest {
     public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_KNIFE = ITEMS.register("obsidian_infused_mid_term_knife", () -> new GlisteringKnifeItem(2, -1.6f, OBSIDIAN_INFUSED_MID_TERM_SET, new Item.Properties().isImmuneToFire().rarity(Rarity.EPIC).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MILKLLARY_KNIFE = ITEMS.register("milkllary_knife", () -> new KnifeItem(2, -1.6f, MILKLLARY_SET, new Item.Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> OLIVE_KNIFE = ITEMS.register("olive_knife", () -> new KnifeItem(2, -1.6f, OLIVE_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> CRYSTALLINE_BIRCH_KNIFE = ITEMS.register("crystalline_birch_knife", () -> new KnifeItem(2, -1.6f, CRYSTALLINE_BIRCH_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> GUAVA_KNIFE = ITEMS.register("guava_knife", () -> new KnifeItem(2, -1.6f, GUAVA_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> CORK_OAK_KNIFE = ITEMS.register("cork_oak_knife", () -> new KnifeItem(2, -1.6f, CORK_OAK_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> GOLDENWOOD_KNIFE = ITEMS.register("goldenwood_knife", () -> new KnifeItem(2, -1.6f, CORK_OAK_SET, new Item.Properties().rarity(Rarity.RARE).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANWOOD_KNIFE = ITEMS.register("aljanwood_knife", () -> new KnifeItem(2, -1.6f, ALJANWOOD_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANCAP_KNIFE = ITEMS.register("aljancap_knife", () -> new KnifeItem(2, -1.6f, ALJANCAP_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_KNIFE = ITEMS.register("insomnian_knife", () -> new KnifeItem(2, -1.6f, INSOMNIAN_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_KNIFE = ITEMS.register("avondalic_willow_knife", () -> new KnifeItem(2, -1.6f, AVONDALIC_WILLOW_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANSTONE_KNIFE = ITEMS.register("aljanstone_knife", () -> new KnifeItem(2, -1.6f, ALJANSTONE_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJAMEED_KNIFE = ITEMS.register("aljameed_knife", () -> new KnifeItem(2, -1.6f, ALJAMEED_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANSTEEL_KNIFE = ITEMS.register("aljansteel_knife", () -> new KnifeItem(2, -1.6f, ALJANSTEEL_SET, new Item.Properties().group(BMWeaponryTab.TAB)));
@@ -785,9 +831,9 @@ public class AxolotlTest {
     public static final RegistryObject<Item> QUEEN_SOPHIE_SUMMONER_STAFF = ITEMS.register("queen_sophie_summoner_staff", () -> new QueenSophieSummonerStaffItem(BMEntities.QUEEN_SOPHIE_PET, 0xffffff, 0xffffff, new Item.Properties().group(BMWeaponryTab.TAB).rarity(Rarity.EPIC).maxStackSize(1).isImmuneToFire()));
     public static final RegistryObject<Item> WATER_TALC_POWDER = ITEMS.register("talco_de_agua", () -> new WaterTalcPowderItem(TALC_SET, 0, -2.4F, new Item.Properties().food(new Food.Builder().hunger(4).saturation(0.3F).build()).group(BMWeaponryTab.TAB).maxStackSize(1)));
     public static final RegistryObject<Item> ALJAMIC_FLINT_AND_ALJANSTEEL = ITEMS.register("aljamic_flint_and_aljansteel", () -> new FlintAndSteelItem(new Item.Properties().maxDamage(250).group(BMWeaponryTab.TAB)));
-    public static final RegistryObject<Item> DEVIL_BOW = ITEMS.register("devil_bow", () -> new BowItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(720)));
-    public static final RegistryObject<Item> ANGELIC_BOW = ITEMS.register("angelic_bow", () -> new BowItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(840)));
-    public static final RegistryObject<Item> DEVIL_CROSSBOW = ITEMS.register("devil_crossbow", BMCrossbowItem::new);
+    public static final RegistryObject<Item> DEVIL_BOW = ITEMS.register("devil_bow", () -> new DevilBowItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(720)));
+    public static final RegistryObject<Item> ANGELIC_BOW = ITEMS.register("angelic_bow", () -> new BMBowItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(840)));
+    public static final RegistryObject<Item> DEVIL_CROSSBOW = ITEMS.register("devil_crossbow", () -> new DevilCrossbowItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(520)));
     public static final RegistryObject<Item> ANGELIC_CROSSBOW = ITEMS.register("angelic_crossbow", BMCrossbowItem::new);
     public static final RegistryObject<Item> CHOCOGLUE = ITEMS.register("chocoglue", () -> new ChocoGlueItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> PINK_GUM_FRYING_PAN = ITEMS.register("pink_gum_frying_pan", () -> new PinkGumFryingPanItem(new Item.Properties().maxDamage(1024).group(BMWeaponryTab.TAB)));
@@ -799,6 +845,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> ALJANWOOD_MORTAR_AND_PESTLE = ITEMS.register("aljanwood_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ALJANCAP_MORTAR_AND_PESTLE = ITEMS.register("aljancap_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_MORTAR_AND_PESTLE = ITEMS.register("insomnian_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> AVONDALIC_WILLOW_MORTAR_AND_PESTLE = ITEMS.register("avondalic_willow_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> DEVIL_SHEARS = ITEMS.register("devil_shears", () -> new ShearsItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(250)));
     public static final RegistryObject<Item> ANGELIC_SHEARS = ITEMS.register("angelic_shears", () -> new ShearsItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(250)));
     public static final RegistryObject<Item> MID_TERM_SHEARS = ITEMS.register("mid_term_shears", () -> new MidTermShears(new Item.Properties().group(BMWeaponryTab.TAB).isImmuneToFire().rarity(Rarity.RARE).maxDamage(4062)));

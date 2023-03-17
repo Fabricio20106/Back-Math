@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:avondalic_willow_planks"
+    }
+  ],
+  "result": {
+    "item": "backmath:avondalic_willow_button"
+  }
+}

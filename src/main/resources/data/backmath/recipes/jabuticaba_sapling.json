@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "G"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:jabuticaba_leaves"
+    },
+    "G": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "backmath:jabuticaba_sapling"
+  }
+}

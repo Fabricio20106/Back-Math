@@ -121,6 +121,31 @@ public class BMTools implements IItemTier {
             super(0, 59, 2.0f, 0.0f, 15, () -> Ingredient.EMPTY);
         }
     }
+    public static class Guava extends BMTools {
+        public Guava() {
+            super(0, 59, 2.0f, 0.0f, 15, () -> Ingredient.fromItems(AxolotlTest.GUAVA_PLANKS.get()));
+        }
+    }
+    public static class Jabuticaba extends BMTools {
+        public Jabuticaba() {
+            super(0, 59, 2.0f, 0.0f, 15, () -> Ingredient.EMPTY);
+        }
+    }
+    public static class Goldenwood extends BMTools {
+        public Goldenwood() {
+            super(0, 59, 2.0f, 0.0f, 15, () -> Ingredient.EMPTY);
+        }
+    }
+    public static class AvondalicWillow extends BMTools {
+        public AvondalicWillow() {
+            super(0, 61, 2.2f, 0.4f, 16, () -> Ingredient.EMPTY);
+        }
+    }
+    public static class CrystallineBirch extends BMTools {
+        public CrystallineBirch() {
+            super(0, 59, 2.0f, 0.0f, 15, () -> Ingredient.fromItems(AxolotlTest.CRYSTALLINE_BIRCH_PLANKS.get()));
+        }
+    }
     public static class Aljanwood extends BMTools {
         public Aljanwood() {
             super(0, 59, 2.0f, 0.0f, 15, () -> Ingredient.fromItems(AxolotlTest.ALJANWOOD_PLANKS.get()));

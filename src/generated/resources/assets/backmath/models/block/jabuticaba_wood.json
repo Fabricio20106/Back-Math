@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "backmath:block/jabuticaba_log",
+    "end": "backmath:block/jabuticaba_log"
+  }
+}

@@ -75,6 +75,22 @@
           "biome": "backmath:aljamic_highlands"
         }
       }
+    },
+    "backmath:aljamic_orchard": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "backmath:aljamic_orchard"
+        }
+      }
+    },
+    "backmath:avondalic_grove": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "location": {
+          "biome": "backmath:avondalic_grove"
+        }
+      }
     }
   },
   "requirements": [
@@ -98,6 +114,12 @@
     ],
     [
       "backmath:aljamic_highlands"
+    ],
+    [
+      "backmath:aljamic_orchard"
+    ],
+    [
+      "backmath:avondalic_grove"
     ]
   ]
 }

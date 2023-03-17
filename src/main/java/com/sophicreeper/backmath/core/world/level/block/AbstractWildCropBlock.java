@@ -13,7 +13,7 @@ public abstract class AbstractWildCropBlock extends BushBlock {
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader reader, BlockPos pos) {
-        return state.isIn(BMBlocks.ALJAMIC_GRASS_BLOCK.get()) || state.isIn(BMBlocks.ALJAMIC_DIRT.get()) || state.isIn(BMBlocks.ALJAMIC_FARMLAND.get());
+        return state.isIn(BMBlocks.ALJAMIC_GRASS_BLOCK.get()) || state.isIn(BMBlocks.ALJAMIC_DIRT.get()) || state.isIn(BMBlocks.ALJAMIC_FARMLAND.get()) || state.isIn(BMBlocks.AVONDALIC_NYLIUM.get());
     }
 
     public abstract IItemProvider getSeedItem();

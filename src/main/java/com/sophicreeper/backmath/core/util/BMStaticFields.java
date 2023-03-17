@@ -49,9 +49,14 @@ public class BMStaticFields {
     public static final BMTools PERSONA_SWORD = new BMTools.Persona();
 
     public static final BMTools CORK_OAK_SET = new BMTools.CorkOak();
+    public static final BMTools CRYSTALLINE_BIRCH_SET = new BMTools.CrystallineBirch();
+    public static final BMTools GUAVA_SET = new BMTools.Guava();
+    public static final BMTools JABUTICABA_SET = new BMTools.Jabuticaba();
+    public static final BMTools GOLDENWOOD_SET = new BMTools.Goldenwood();
     public static final BMTools ALJANWOOD_SET = new BMTools.Aljanwood();
     public static final BMTools ALJANCAP_SET = new BMTools.Aljancap();
     public static final BMTools INSOMNIAN_SET = new BMTools.Insomnian();
+    public static final BMTools AVONDALIC_WILLOW_SET = new BMTools.AvondalicWillow();
     public static final BMTools ALJANSTONE_SET = new BMTools.Aljanstone();
     public static final BMTools ALJAMEED_SET = new BMTools.Aljameed();
     public static final BMTools ALJANSTEEL_SET = new BMTools.Aljansteel();

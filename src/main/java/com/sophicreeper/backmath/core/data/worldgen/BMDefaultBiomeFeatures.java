@@ -15,7 +15,7 @@ public class BMDefaultBiomeFeatures {
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAME_BIRCHES);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.GUARANA_OAKS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.MANGO_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.MANGAED_MANGO_OAKS);
+        //settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.MANGAED_MANGO_OAKS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.OAKS);
     }
 
@@ -25,6 +25,7 @@ public class BMDefaultBiomeFeatures {
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PINEAPPLE_OAKS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ORANGE_OAKS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.GUAVA_TREES);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.JABUTICABA_TREES);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.OAKS);
     }
 

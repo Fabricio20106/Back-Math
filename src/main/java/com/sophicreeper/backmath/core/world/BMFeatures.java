@@ -12,15 +12,15 @@ import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
-import net.minecraft.world.gen.foliageplacer.DarkOakFoliagePlacer;
-import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
+import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
+import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.DarkOakTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.GiantTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 
 import java.util.OptionalInt;
@@ -359,6 +359,52 @@ public class BMFeatures {
                     new FancyTrunkPlacer(3, 11, 0),
                     new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))
                     .setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build()));
+
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> JABUTICABA_TREE = register("jabuticaba_tree", Feature.TREE.withConfiguration(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(
+            BMBlocks.JABUTICABA_LOG.get().getDefaultState()), new SimpleBlockStateProvider(BMBlocks.JABUTICABA_LEAVES.get().getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2),
+            FeatureSpread.func_242252_a(0), 3), new StraightTrunkPlacer(10, 5, 10), new TwoLayerFeature(1, 0,
+            1)).setIgnoreVines().build()));
+
+    public static final ConfiguredFeature<?, ?> JABUTICABA_TREES = register("jabuticaba_trees", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(JABUTICABA_TREE
+            .withChance(0.2f), JABUTICABA_TREE.withChance(0.1f)), JABUTICABA_TREE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(
+            new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
+
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVONDALIC_WILLOW = register("avondalic_willow", Feature.TREE.withConfiguration(
+            new BaseTreeFeatureConfig.Builder(
+                    new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LOG.get().getDefaultState()),
+                    new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LEAVES.get().getDefaultState()),
+                    new SpruceFoliagePlacer(
+                            FeatureSpread.func_242253_a(2, 1),
+                            FeatureSpread.func_242253_a(0, 2),
+                            FeatureSpread.func_242253_a(1, 1)),
+                    new StraightTrunkPlacer(5, 2, 1),
+                    new TwoLayerFeature(2, 0, 2)).setIgnoreVines().build()));
+
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MEGA_AVONDALIC_WILLOW = register("mega_avondalic_willow", Feature.TREE.withConfiguration(
+            new BaseTreeFeatureConfig.Builder(
+                    new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LOG.get().getDefaultState()),
+                    new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LEAVES.get().getDefaultState()),
+                    new MegaPineFoliagePlacer(
+                            FeatureSpread.func_242252_a(0),
+                            FeatureSpread.func_242252_a(0),
+                            FeatureSpread.func_242253_a(3, 4)),
+                    new GiantTrunkPlacer(6, 2, 14),
+                    new TwoLayerFeature(1, 1, 2)).build()));
+
+    /*public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MEGA_AVONDALIC_WILLOW = register("mega_avondalic_willow", Feature.TREE.withConfiguration(
+            new BaseTreeFeatureConfig.Builder(
+                    new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LOG.get().getDefaultState()),
+                    new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LEAVES.get().getDefaultState()),
+                    new MegaPineFoliagePlacer(
+                            FeatureSpread.func_242252_a(0),
+                            FeatureSpread.func_242252_a(0),
+                            FeatureSpread.func_242253_a(3, 4)),
+                    new GiantTrunkPlacer(13, 2, 14),
+                    new TwoLayerFeature(1, 1, 2)).build()));*/
+
+    public static final ConfiguredFeature<?, ?> AVONDALIC_WILLOWS = register("avondalic_willows", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
+            MEGA_AVONDALIC_WILLOW.withChance(0.85641026f), AVONDALIC_WILLOW.withChance(0.99f)), AVONDALIC_WILLOW)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+            .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
 
     /**
      BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE

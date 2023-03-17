@@ -25,7 +25,7 @@ public class UnderwaterAljanCaveCarver extends UnderwaterCaveWorldCarver {
 
     public UnderwaterAljanCaveCarver(Codec<ProbabilityConfig> codec) {
         super(codec);
-        this.carvableBlocks = ImmutableSet.of(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJANSTONE.get(), BMBlocks.SLEEPINGSTONE.get(), BMBlocks.INSOGRAVEL.get(), BMBlocks.ALJAMIC_SAND.get(), Blocks.GRASS_BLOCK);
+        this.carvableBlocks = ImmutableSet.of(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJANSTONE.get(), BMBlocks.SLEEPINGSTONE.get(), BMBlocks.INSOGRAVEL.get(), BMBlocks.ALJAMIC_SAND.get(), Blocks.GRASS_BLOCK);
     }
 
     protected boolean carveBlock(IChunk iChunk, Function<BlockPos, Biome> blockPosBiomeFunction, BitSet bitSet, Random random, BlockPos.Mutable mutable, BlockPos.Mutable mutable1, BlockPos.Mutable mutable2, int p_230358_8_, int p_230358_9_, int p_230358_10_, int p_230358_11_, int p_230358_12_, int p_230358_13_, int p_230358_14_, int p_230358_15_, MutableBoolean mutableBoolean) {

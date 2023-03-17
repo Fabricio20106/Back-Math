@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom",
+  "textures": {
+    "bottom": "backmath:block/avondalic_willow_door_bottom",
+    "top": "backmath:block/avondalic_willow_door_top"
+  }
+}

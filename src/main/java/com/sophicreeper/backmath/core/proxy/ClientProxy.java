@@ -183,6 +183,18 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_DOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_GRAPE_VINE_POST.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.JABUTICABA_LEAVES.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.JABUTICABA_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_JABUTICABA_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.JABUTICABA_GRAPE_VINE_POST.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.AVONDALIC_WILLOW_GRAPE_VINE_POST.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.AVONDALIC_WILLOW_DOOR.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.AVONDALIC_NYLIUM.get(), RenderType.getCutoutMipped());
+        RenderTypeLookup.setRenderLayer(BMBlocks.AVONDALIC_WILLOW_LEAVES.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_LOG.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get(), RenderType.getTranslucent());
 
         // Entity renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);

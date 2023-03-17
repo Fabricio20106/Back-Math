@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "backmath:block/jabuticaba_sapling"
+  }
+}

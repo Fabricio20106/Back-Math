@@ -268,6 +268,35 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("goldenwood_button", modLoc("block/goldenwood_button_inventory"));
         withExistingParent("goldenwood_trapdoor", modLoc("block/goldenwood_trapdoor_bottom"));
         withExistingParent("goldenwood_grape_vine_post", modLoc("block/grape_vine_posts/goldenwood"));
+        withExistingParent("jabuticaba_leaves");
+        withExistingParent("jabuticaba_log");
+        withExistingParent("jabuticaba_wood");
+        withExistingParent("stripped_jabuticaba_log");
+        withExistingParent("stripped_jabuticaba_wood");
+        withExistingParent("jabuticaba_planks");
+        withExistingParent("jabuticaba_stairs");
+        withExistingParent("jabuticaba_slab");
+        withExistingParent("jabuticaba_fence", modLoc("block/jabuticaba_fence_inventory"));
+        withExistingParent("jabuticaba_fence_gate");
+        withExistingParent("jabuticaba_pressure_plate");
+        withExistingParent("jabuticaba_button", modLoc("block/jabuticaba_button_inventory"));
+        withExistingParent("jabuticaba_grape_vine_post", modLoc("block/grape_vine_posts/jabuticaba"));
+        withExistingParent("avondalic_nylium");
+        withExistingParent("avondalic_willow_log");
+        withExistingParent("avondalic_willow_wood");
+        withExistingParent("stripped_avondalic_willow_log");
+        withExistingParent("stripped_avondalic_willow_wood");
+        withExistingParent("avondalic_willow_planks");
+        withExistingParent("avondalic_willow_stairs");
+        withExistingParent("avondalic_willow_slab");
+        withExistingParent("avondalic_willow_fence", modLoc("block/avondalic_willow_fence_inventory"));
+        withExistingParent("avondalic_willow_fence_gate");
+        withExistingParent("avondalic_willow_pressure_plate");
+        withExistingParent("avondalic_willow_button", modLoc("block/avondalic_willow_button_inventory"));
+        withExistingParent("avondalic_willow_grape_vine_post", modLoc("block/grape_vine_posts/avondalic_willow"));
+        withExistingParent("stripped_crystalline_birch_log");
+        withExistingParent("stripped_crystalline_birch_wood");
+        withExistingParent("avondalic_willow_leaves");
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -952,6 +981,19 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("goldenwood_door");
         compat("goldenwood_mortar_and_pestle");
         standard(handheld, "goldenwood_knife");
+        standard(handheld, "guava_knife");
+        standard(handheld, "crystalline_birch_knife");
+        standard(handheld, "avondalic_willow_knife");
+        standard(handheld, "avondalic_willow_sword");
+        standard(handheld, "avondalic_willow_pickaxe");
+        standard(handheld, "avondalic_willow_shovel");
+        standard(handheld, "avondalic_willow_axe");
+        standard(handheld, "avondalic_willow_hoe");
+        standard(handheld, "avondalic_willow_stick");
+        compat("avondalic_willow_mortar_and_pestle");
+        compat("avondalic_willow_door");
+        compat("avondalic_willow_boat");
+        block(generated, "jabuticaba_sapling");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

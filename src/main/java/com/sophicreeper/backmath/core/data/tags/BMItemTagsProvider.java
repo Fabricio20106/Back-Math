@@ -160,6 +160,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.RODS_ALJANCAP).add(AxolotlTest.ALJANCAP_STICK.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_ALJANWOOD).add(AxolotlTest.ALJANWOOD_STICK.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_INSOMNIAN).add(AxolotlTest.INSOMNIAN_STICK.get());
+        this.getOrCreateBuilder(BMTags.Items.RODS_AVONDALIC_WILLOW).add(AxolotlTest.AVONDALIC_WILLOW_STICK.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_ALJAMEED).add(AxolotlTest.ALJAMEED_BONE.get());
 
         this.getOrCreateBuilder(BMTags.Items.SQUIDS).add(AxolotlTest.TITO.get()).add(AxolotlTest.TOTI.get());
@@ -205,7 +206,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_HARDENED_AMARACAMEL);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_OBSIDIAN);
 
-        this.getOrCreateBuilder(Tags.Items.RODS).addTag(BMTags.Items.RODS_ALJANWOOD).addTag(BMTags.Items.RODS_ALJANCAP).addTag(BMTags.Items.RODS_INSOMNIAN).addTag(BMTags.Items.RODS_ALJAMEED).addTag(BMTags.Items.RODS_GUAVA);
+        this.getOrCreateBuilder(Tags.Items.RODS).addTag(BMTags.Items.RODS_ALJANWOOD).addTag(BMTags.Items.RODS_ALJANCAP).addTag(BMTags.Items.RODS_INSOMNIAN).addTag(BMTags.Items.RODS_ALJAMEED).addTag(BMTags.Items.RODS_GUAVA).addTag(BMTags.Items.RODS_AVONDALIC_WILLOW);
         this.getOrCreateBuilder(ItemTags.COALS).add(AxolotlTest.CHARJAN_COAL.get());
 
         this.getOrCreateBuilder(Tags.Items.GEMS).addTag(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.GEMS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.GEMS_JANTICAL).addTag(BMTags.Items.GEMS_PERSONA);
