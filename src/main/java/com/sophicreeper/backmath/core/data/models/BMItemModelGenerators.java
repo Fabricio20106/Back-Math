@@ -994,6 +994,29 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("avondalic_willow_door");
         compat("avondalic_willow_boat");
         block(generated, "jabuticaba_sapling");
+        sword("crystalline_birch_sword");
+        standard(handheld, "crystalline_birch_pickaxe");
+        standard(handheld, "crystalline_birch_shovel");
+        standard(handheld, "crystalline_birch_axe");
+        standard(handheld, "crystalline_birch_hoe");
+        sword("goldenwood_sword");
+        standard(handheld, "goldenwood_pickaxe");
+        standard(handheld, "goldenwood_shovel");
+        standard(handheld, "goldenwood_axe");
+        standard(handheld, "goldenwood_hoe");
+        sword("guava_sword");
+        standard(handheld, "guava_pickaxe");
+        standard(handheld, "guava_shovel");
+        standard(handheld, "guava_axe");
+        standard(handheld, "guava_hoe");
+        sword("jabuticaba_sword");
+        standard(handheld, "jabuticaba_pickaxe");
+        standard(handheld, "jabuticaba_shovel");
+        standard(handheld, "jabuticaba_axe");
+        standard(handheld, "jabuticaba_hoe");
+        standard(handheld, "jabuticaba_knife");
+        compat("jabuticaba_mortar_and_pestle");
+        compat("jabuticaba_door");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {
