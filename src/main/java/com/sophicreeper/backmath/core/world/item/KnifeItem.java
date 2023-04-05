@@ -60,11 +60,6 @@ public class KnifeItem extends ToolItem {
             world.destroyBlock(pos, false, player);
             stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         }
-        if (state.getBlock() == Blocks.PUMPKIN) {
-            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 9));
-            world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
-        }
         if (state.getBlock() == Blocks.MELON) {
             Block.spawnAsEntity(world, pos, new ItemStack(Items.MELON_SLICE, 9));
             world.destroyBlock(pos, false, player);

@@ -120,24 +120,24 @@ public class BMBlocks {
     public static final RegistryObject<Block> DEVIL_BRICK_WALL = BLOCKS.register("devil_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(DEVIL_BLOCK.get())));
     public static final RegistryObject<Block> ANGELIC_BUTTON = BLOCKS.register("angelic_button", () -> new StoneButtonBlock(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));
     public static final RegistryObject<Block> ANGELIC_PRESSURE_PLATE = BLOCKS.register("angelic_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_LOG = BLOCKS.register("crystalline_birch_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.BIRCH_LOG)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_WOOD = BLOCKS.register("crystalline_birch_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.BIRCH_WOOD)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_PLANKS = BLOCKS.register("crystalline_birch_planks", () -> new GhostMineableBlock(AbstractBlock.Properties.from(Blocks.BIRCH_PLANKS)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_DOOR = BLOCKS.register("crystalline_birch_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.BIRCH_DOOR)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_TRAPDOOR = BLOCKS.register("crystalline_birch_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(Blocks.BIRCH_TRAPDOOR)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_LEAVES = BLOCKS.register("crystalline_birch_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.BIRCH_LEAVES)));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_LOG = BLOCKS.register("crystalline_birch_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.BIRCH_LOG).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_WOOD = BLOCKS.register("crystalline_birch_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.BIRCH_WOOD).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_PLANKS = BLOCKS.register("crystalline_birch_planks", () -> new GhostMineableBlock(AbstractBlock.Properties.from(Blocks.BIRCH_PLANKS).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_DOOR = BLOCKS.register("crystalline_birch_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.BIRCH_DOOR).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_TRAPDOOR = BLOCKS.register("crystalline_birch_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(Blocks.BIRCH_TRAPDOOR).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_LEAVES = BLOCKS.register("crystalline_birch_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.BIRCH_LEAVES).notSolid()));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_SAPLING = BLOCKS.register("crystalline_birch_sapling", () -> new SaplingBlock(new CrystallineBirchGrower(), AbstractBlock.Properties.from(Blocks.BIRCH_SAPLING)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_SLAB = BLOCKS.register("crystalline_birch_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.BIRCH_SLAB)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_STAIRS = BLOCKS.register("crystalline_birch_stairs", () -> new StairsBlock(Blocks.BIRCH_STAIRS.getDefaultState(), AbstractBlock.Properties.from(Blocks.BIRCH_STAIRS)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_FENCE = BLOCKS.register("crystalline_birch_fence", () -> new FenceBlock(AbstractBlock.Properties.from(Blocks.BIRCH_FENCE)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_FENCE_GATE = BLOCKS.register("crystalline_birch_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.from(Blocks.BIRCH_FENCE_GATE)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_BUTTON = BLOCKS.register("crystalline_birch_button", () -> new WoodButtonBlock(AbstractBlock.Properties.from(Blocks.BIRCH_BUTTON)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_PRESSURE_PLATE = BLOCKS.register("crystalline_birch_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.from(Blocks.BIRCH_PRESSURE_PLATE)));
-    public static final RegistryObject<Block> ANGELIC_BRICKS = BLOCKS.register("angelic_bricks", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));
-    public static final RegistryObject<Block> ANGELIC_BRICK_SLAB = BLOCKS.register("angelic_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));
-    public static final RegistryObject<Block> ANGELIC_BRICK_STAIRS = BLOCKS.register("angelic_brick_stairs", () -> new StairsBlock(Blocks.GOLD_BLOCK.getDefaultState(), AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));
-    public static final RegistryObject<Block> ANGELIC_BRICK_WALL = BLOCKS.register("angelic_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));
-    public static final RegistryObject<Block> CRACKED_ANGELIC_BRICKS = BLOCKS.register("cracked_angelic_bricks", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_SLAB = BLOCKS.register("crystalline_birch_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.BIRCH_SLAB).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_STAIRS = BLOCKS.register("crystalline_birch_stairs", () -> new StairsBlock(Blocks.BIRCH_STAIRS.getDefaultState(), AbstractBlock.Properties.from(Blocks.BIRCH_STAIRS).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_FENCE = BLOCKS.register("crystalline_birch_fence", () -> new FenceBlock(AbstractBlock.Properties.from(Blocks.BIRCH_FENCE).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_FENCE_GATE = BLOCKS.register("crystalline_birch_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.from(Blocks.BIRCH_FENCE_GATE).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_BUTTON = BLOCKS.register("crystalline_birch_button", () -> new WoodButtonBlock(AbstractBlock.Properties.from(Blocks.BIRCH_BUTTON).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_PRESSURE_PLATE = BLOCKS.register("crystalline_birch_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.from(Blocks.BIRCH_PRESSURE_PLATE).notSolid()));
+    public static final RegistryObject<Block> ANGELIC_BRICKS = BLOCKS.register("angelic_bricks", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).notSolid()));
+    public static final RegistryObject<Block> ANGELIC_BRICK_SLAB = BLOCKS.register("angelic_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).notSolid()));
+    public static final RegistryObject<Block> ANGELIC_BRICK_STAIRS = BLOCKS.register("angelic_brick_stairs", () -> new StairsBlock(Blocks.GOLD_BLOCK.getDefaultState(), AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).notSolid()));
+    public static final RegistryObject<Block> ANGELIC_BRICK_WALL = BLOCKS.register("angelic_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).notSolid()));
+    public static final RegistryObject<Block> CRACKED_ANGELIC_BRICKS = BLOCKS.register("cracked_angelic_bricks", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).notSolid()));
     public static final RegistryObject<Block> TITO = BLOCKS.register("tito", EmotionalSquidBlock::new);
     public static final RegistryObject<Block> TOTI = BLOCKS.register("toti", EmotionalSquidBlock::new);
     public static final RegistryObject<Block> ORANGE_OAK_LEAVES = BLOCKS.register("orange_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES)));
@@ -338,6 +338,10 @@ public class BMBlocks {
     public static final RegistryObject<Block> TABU_PILLAR = BLOCKS.register("tabu_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
 
     // Hillaried Stone
+    public static final RegistryObject<Block> HILLARIED_STONE = BLOCKS.register("hillaried_stone", () -> new Block(AbstractBlock.Properties.from(Blocks.STONE)));
+    public static final RegistryObject<Block> HILLARIED_STONE_STAIRS = BLOCKS.register("hillaried_stone_stairs", () -> new StairsBlock(BMBlocks.HILLARIED_STONE.get().getDefaultState(), AbstractBlock.Properties.from(Blocks.STONE_STAIRS)));
+    public static final RegistryObject<Block> HILLARIED_STONE_SLAB = BLOCKS.register("hillaried_stone_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.STONE_SLAB)));
+    public static final RegistryObject<Block> HILLARIED_STONE_WALL = BLOCKS.register("hillaried_stone_wall", () -> new WallBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICK_WALL)));
     public static final RegistryObject<Block> CHISELED_HILLARIED_STONE = BLOCKS.register("chiseled_hillaried_stone", () -> new Block(AbstractBlock.Properties.from(Blocks.CHISELED_STONE_BRICKS)));
     public static final RegistryObject<Block> CHISELED_HILLARIED_STONE_BUCKET = BLOCKS.register("chiseled_hillaried_stone_bucket", () -> new Block(AbstractBlock.Properties.from(Blocks.CHISELED_STONE_BRICKS)));
     public static final RegistryObject<Block> HILLARIED_STONE_PILLAR = BLOCKS.register("hillaried_stone_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
@@ -377,8 +381,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> JABUTICABA_FENCE_GATE = BLOCKS.register("jabuticaba_fence_gate", () -> new FenceGateBlock(AbstractBlock.Properties.from(Blocks.OAK_FENCE_GATE)));
     public static final RegistryObject<Block> JABUTICABA_PRESSURE_PLATE = BLOCKS.register("jabuticaba_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.from(Blocks.OAK_PRESSURE_PLATE)));
     public static final RegistryObject<Block> JABUTICABA_BUTTON = BLOCKS.register("jabuticaba_button", () -> new WoodButtonBlock(AbstractBlock.Properties.from(Blocks.OAK_BUTTON)));
-    //public static final RegistryObject<Block> JABUTICABA_DOOR = BLOCKS.register("jabuticaba_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.OAK_DOOR)));
-    //public static final RegistryObject<Block> JABUTICABA_TRAPDOOR = BLOCKS.register("jabuticaba_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(Blocks.OAK_TRAPDOOR)));
+    public static final RegistryObject<Block> JABUTICABA_DOOR = BLOCKS.register("jabuticaba_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.OAK_DOOR)));
+    public static final RegistryObject<Block> JABUTICABA_TRAPDOOR = BLOCKS.register("jabuticaba_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(Blocks.OAK_TRAPDOOR)));
     public static final RegistryObject<Block> JABUTICABA_GRAPE_VINE_POST = BLOCKS.register("jabuticaba_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(BMBlocks.OAK_GRAPE_VINE_POST.get())));
 
     // Goldenwood
@@ -409,6 +413,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> LEANDRO_TOY = BLOCKS.register("leandro_toy", () -> new ToyBlock(ToyBlock.ToyType.LEANDRO));
     public static final RegistryObject<Block> TEENAGER_ALICE_TOY = BLOCKS.register("teenager_alice_toy", () -> new ToyBlock(ToyBlock.ToyType.TEENAGER_ALICE));
     public static final RegistryObject<Block> QUEEN_SOPHIE_PET_RELIC = BLOCKS.register("queen_sophie_pet_relic", QueenSophiePetRelicBlock::new);
+    public static final RegistryObject<Block> CHOCOLATE_NAKED_CAKE = BLOCKS.register("chocolate_naked_cake", () -> new ChocolateNakedCakeBlock(AbstractBlock.Properties.from(Blocks.CAKE)));
 
     // The Aljan
     public static final RegistryObject<Block> ALJAMIC_SAND = BLOCKS.register("aljamic_sand", () -> new SandBlock(0xd4eaea, AbstractBlock.Properties.from(Blocks.SAND)));
@@ -419,8 +424,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> WILD_ALJAMIC_ONIONS = BLOCKS.register("wild_aljamic_onions", () -> new WildAljamicOnionsBlock(AbstractBlock.Properties.from(Blocks.CARROTS)));
     public static final RegistryObject<Block> ALJANSTEEL_CHAIN = BLOCKS.register("aljansteel_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN)));
     public static final RegistryObject<Block> ALJANSTEEL_BLOCK = BLOCKS.register("aljansteel_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
-    public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_LOG = BLOCKS.register("stripped_crystalline_birch_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_LOG)));
-    public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_WOOD = BLOCKS.register("stripped_crystalline_birch_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_WOOD)));
+    public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_LOG = BLOCKS.register("stripped_crystalline_birch_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_LOG).notSolid()));
+    public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_WOOD = BLOCKS.register("stripped_crystalline_birch_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_WOOD).notSolid()));
 
     // Avondalic Willow
     public static final RegistryObject<Block> AVONDALIC_NYLIUM = BLOCKS.register("avondalic_nylium", () -> new AljamicGrassBlock(AbstractBlock.Properties.from(Blocks.GRASS_BLOCK).harvestTool(ToolType.SHOVEL)));

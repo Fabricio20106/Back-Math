@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.core.world;
 
 import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.core.client.BackMath;
+import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.core.world.gen.BMOreGeneration;
 import com.sophicreeper.backmath.core.world.gen.BMPlantFeatures;
 import com.sophicreeper.backmath.core.world.gen.BMStructureGeneration;
@@ -11,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.DebugChunkGenerator;
 import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
@@ -29,6 +31,16 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = BackMath.MOD_ID)
 public class BMWorldEvents {
+    @SubscribeEvent
+    public static void generateCarvers(final WorldEvent.Load event) {
+        if (event.getWorld() instanceof ServerWorld) {
+            ServerWorld serverWorld = (ServerWorld) event.getWorld();
+            if (serverWorld.getChunkProvider().generator instanceof DebugChunkGenerator && serverWorld.getDimensionKey().equals(BMDimensions.THE_ALJAN)) {
+                BMCarverGeneration.canGenerate = false;
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void biomeLoadEvent(final BiomeLoadingEvent event) {
         BMOreGeneration.generateOres(event);
@@ -53,7 +65,7 @@ public class BMWorldEvents {
                     return;
                 }
             } catch (Exception e) {
-                LogManager.getLogger().error("Was unable to check if " + serverWorld.getDimensionKey().getLocation() + " is using Terraforged's ChunkGenerator.");
+                LogManager.getLogger().error("Back Math: Was unable to check if " + serverWorld.getDimensionKey().getLocation() + " is using Terraforged's ChunkGenerator.");
             }
 
             // Prevent spawning our structure in Vanilla's superflat world

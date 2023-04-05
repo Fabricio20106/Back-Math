@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "backmath:block/template_fruit_leaves",
   "textures": {
-    "all": "backmath:block/banana_jungle_leaves"
+    "leaf": "backmath:block/jungle_fruit_leaves",
+    "fruit": "backmath:block/banana_fruit_leaves"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "HHH"
+  ],
+  "key": {
+    "H": {
+      "item": "backmath:hillaried_stone"
+    }
+  },
+  "result": {
+    "item": "backmath:hillaried_stone_wall",
+    "count": 6
+  }
+}

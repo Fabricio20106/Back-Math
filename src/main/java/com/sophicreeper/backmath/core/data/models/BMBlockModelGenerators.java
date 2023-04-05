@@ -50,9 +50,12 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         simpleBlock(BMBlocks.FRIED_EGG_FLOWER.get(), models().cross("cooked_egg_flower", modLoc("block/cooked_egg_flower")));
         simpleBlock(BMBlocks.RED_YELLOW_FLOWER.get(), models().cross("red_yellow_flower", modLoc("block/red_yellow_flower")));
         trapdoorBlock((TrapDoorBlock) BMBlocks.ANGELIC_TRAPDOOR.get(), modLoc("block/angelic_trapdoor"), true);
-        simpleBlock(BMBlocks.GUARANA_OAK_LEAVES.get());
-        simpleBlock(BMBlocks.MANGO_OAK_LEAVES.get());
-        simpleBlock(BMBlocks.GRAPE_VINE_LEAVES.get());
+        simpleBlock(BMBlocks.GUARANA_OAK_LEAVES.get(), models().withExistingParent("guarana_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/oak_fruit_leaves").texture("fruit", "backmath:block/guarana_fruit_leaves"));
+        simpleBlock(BMBlocks.MANGO_OAK_LEAVES.get(), models().withExistingParent("mango_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/oak_fruit_leaves").texture("fruit", "backmath:block/mango_fruit_leaves"));
+        simpleBlock(BMBlocks.GRAPE_VINE_LEAVES.get(), models().withExistingParent("grape_vine_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/spruce_fruit_leaves").texture("fruit", "backmath:block/grape_fruit_leaves"));
         simpleBlock(BMBlocks.GUARANA_OAK_SAPLING.get(), models().cross("guarana_oak_sapling", modLoc("block/guarana_oak_sapling")));
         simpleBlock(BMBlocks.MANGO_OAK_SAPLING.get(), models().cross("mango_oak_sapling", modLoc("block/mango_oak_sapling")));
         simpleBlock(BMBlocks.GRAPE_VINE_SAPLING.get(), models().cross("grape_vine_sapling", modLoc("block/grape_vine_sapling")));
@@ -94,11 +97,13 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         simpleBlock(BMBlocks.DEEPSLATE_ANGELIC_ORE.get());
         simpleBlock(BMBlocks.DEEPSLATE_DEVIL_ORE.get());
         simpleBlock(BMBlocks.OBSIDIAN_INFUSED_MID_TERM.get());
-        simpleBlock(BMBlocks.ALJAME_BIRCH_LEAVES.get());
+        simpleBlock(BMBlocks.ALJAME_BIRCH_LEAVES.get(), models().withExistingParent("aljame_birch_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/birch_fruit_leaves").texture("fruit", "backmath:block/aljame_fruit_leaves"));
         simpleBlock(BMBlocks.POTTED_ALJAME_BIRCH_SAPLING.get(), models().withExistingParent("potted_aljame_birch_sapling",
                 "block/flower_pot_cross").texture("plant", "block/aljame_birch_sapling"));
         simpleBlock(BMBlocks.ALJAME_BIRCH_SAPLING.get(), models().cross("aljame_birch_sapling", modLoc("block/aljame_birch_sapling")));
-        simpleBlock(BMBlocks.LEMON_OAK_LEAVES.get());
+        simpleBlock(BMBlocks.LEMON_OAK_LEAVES.get(), models().withExistingParent("lemon_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/oak_fruit_leaves").texture("fruit", "backmath:block/lemon_fruit_leaves"));
         simpleBlock(BMBlocks.POTTED_LEMON_OAK_SAPLING.get(), models().withExistingParent("potted_lemon_oak_sapling",
                 "block/flower_pot_cross").texture("plant", "block/lemon_oak_sapling"));
         simpleBlock(BMBlocks.LEMON_OAK_SAPLING.get(), models().cross("lemon_oak_sapling", modLoc("block/lemon_oak_sapling")));
@@ -109,7 +114,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         stairsBlock((StairsBlock) BMBlocks.DEVIL_BRICK_STAIRS.get(), modLoc("block/devil_bricks"));
         slabBlock((SlabBlock) BMBlocks.DEVIL_BRICK_SLAB.get(), modLoc("block/devil_bricks"), modLoc("block/devil_bricks"));
         wallBlock((WallBlock) BMBlocks.DEVIL_BRICK_WALL.get(), modLoc("block/devil_bricks"));
-        simpleBlock(BMBlocks.PINEAPPLE_OAK_LEAVES.get());
+        simpleBlock(BMBlocks.PINEAPPLE_OAK_LEAVES.get(), models().withExistingParent("pineapple_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/oak_fruit_leaves").texture("fruit", "backmath:block/pineapple_fruit_leaves"));
         simpleBlock(BMBlocks.PINEAPPLE_OAK_SAPLING.get(), models().cross("pineapple_oak_sapling", modLoc("block/pineapple_oak_sapling")));
         simpleBlock(BMBlocks.POTTED_PINEAPPLE_OAK_SAPLING.get(), models().withExistingParent("potted_pineapple_oak_sapling",
                 "block/flower_pot_cross").texture("plant", "block/pineapple_oak_sapling"));
@@ -238,8 +244,10 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         simpleBlock(BMBlocks.CHISELED_SLEEPINGSTONE_CREEPER.get());
         simpleBlock(BMBlocks.SLEEPYSHROOM.get(), models().cross("sleepyshroom", modLoc("block/sleepyshroom")));
         simpleBlock(BMBlocks.POTTED_SLEEPYSHROOM.get(), models().withExistingParent("potted_sleepyshroom", "block/flower_pot_cross").texture("plant", "block/sleepyshroom"));
-        simpleBlock(BMBlocks.ORANGE_OAK_LEAVES.get());
-        simpleBlock(BMBlocks.BANANA_JUNGLE_LEAVES.get());
+        simpleBlock(BMBlocks.ORANGE_OAK_LEAVES.get(), models().withExistingParent("orange_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/oak_fruit_leaves").texture("fruit", "backmath:block/orange_fruit_leaves"));
+        simpleBlock(BMBlocks.BANANA_JUNGLE_LEAVES.get(), models().withExistingParent("banana_jungle_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/jungle_fruit_leaves").texture("fruit", "backmath:block/banana_fruit_leaves"));
         simpleBlock(BMBlocks.ORANGE_OAK_SAPLING.get(), models().cross("orange_oak_sapling", modLoc("block/orange_oak_sapling")));
         simpleBlock(BMBlocks.BANANA_JUNGLE_SAPLING.get(), models().cross("banana_jungle_sapling", modLoc("block/banana_jungle_sapling")));
         simpleBlock(BMBlocks.POTTED_ORANGE_OAK_SAPLING.get(), models().withExistingParent("potted_orange_oak_sapling", "block/flower_pot_cross").texture("plant", "block/orange_oak_sapling"));
@@ -268,12 +276,12 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         simpleBlock(BMBlocks.SLEEPINGSTONE_ALJAMIC_TIN_ORE.get());
 
         getVariantBuilder(BMBlocks.ALJAMIC_ONIONS.get()).forAllStates(state -> {
-            int i = cropAgeToIndexPotato(state.get(CropsBlock.AGE));
-            return ConfiguredModel.builder().modelFile(models().crop("aljamic_onions_stage" + i, modLoc("block/aljamic_onions_stage" + i))).build();
+            int cropAgeIndex = cropAgeToIndexPotato(state.get(CropsBlock.AGE));
+            return ConfiguredModel.builder().modelFile(models().crop("aljamic_onions_stage" + cropAgeIndex, modLoc("block/aljamic_onions_stage" + cropAgeIndex))).build();
         });
         getVariantBuilder(BMBlocks.CARAMELED_WHEAT.get()).forAllStates(state -> {
-            int i = cropAgeToIndexWheat(state.get(CropsBlock.AGE));
-            return ConfiguredModel.builder().modelFile(models().crop("carameled_wheat_stage" + i, modLoc("block/carameled_wheat_stage" + i))).build();
+            int cropAgeIndex = cropAgeToIndexWheat(state.get(CropsBlock.AGE));
+            return ConfiguredModel.builder().modelFile(models().crop("carameled_wheat_stage" + cropAgeIndex, modLoc("block/carameled_wheat_stage" + cropAgeIndex))).build();
         });
         simpleBlock(BMBlocks.WILD_CARAMELED_WHEAT.get(), models().withExistingParent("wild_carameled_wheat", "backmath:block/template_wild_crop").texture("crop", "block/wild_carameled_wheat"));
 
@@ -287,6 +295,10 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         slabBlock((SlabBlock) BMBlocks.TABU_MOSAIC_SLAB.get(), modLoc("block/tabu_mosaic"), modLoc("block/tabu_mosaic"));
         axisBlock((RotatedPillarBlock) BMBlocks.TABU_PILLAR.get(), modLoc("block/tabu_pillar"), modLoc("block/tabu_pillar_top"));
 
+        simpleBlock(BMBlocks.HILLARIED_STONE.get());
+        stairsBlock((StairsBlock) BMBlocks.HILLARIED_STONE_STAIRS.get(), modLoc("block/hillaried_stone"));
+        slabBlock((SlabBlock) BMBlocks.HILLARIED_STONE_SLAB.get(), modLoc("block/hillaried_stone"), modLoc("block/hillaried_stone"));
+        wallBlock((WallBlock) BMBlocks.HILLARIED_STONE_WALL.get(), modLoc("block/hillaried_stone"));
         simpleBlock(BMBlocks.CHISELED_HILLARIED_STONE.get());
         simpleBlock(BMBlocks.CHISELED_HILLARIED_STONE_BUCKET.get());
         axisBlock((RotatedPillarBlock) BMBlocks.HILLARIED_STONE_PILLAR.get(), modLoc("block/hillaried_stone_pillar"), modLoc("block/hillaried_stone_pillar_top"));
@@ -306,7 +318,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         doorBlock((DoorBlock) BMBlocks.GUAVA_DOOR.get(), modLoc("block/guava_door_bottom"), modLoc("block/guava_door_top"));
         trapdoorBlock((TrapDoorBlock) BMBlocks.GUAVA_TRAPDOOR.get(), modLoc("block/guava_trapdoor"), true);
 
-        simpleBlock(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get());
+        simpleBlock(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get(), models().withExistingParent("mangaed_mango_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
+                "backmath:block/oak_fruit_leaves").texture("fruit", "backmath:block/mangaed_mango_fruit_leaves"));
         simpleBlock(BMBlocks.ALJAMIC_SAND.get());
         simpleBlock(BMBlocks.ALJAMIC_GLASS.get());
         paneBlock((PaneBlock) BMBlocks.ALJAMIC_GLASS_PANE.get(), modLoc("block/aljamic_glass"), modLoc("block/aljamic_glass_pane_top"));
@@ -355,6 +368,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         slabBlock((SlabBlock) BMBlocks.JABUTICABA_SLAB.get(), modLoc("block/jabuticaba_planks"), modLoc("block/jabuticaba_planks"));
         fenceBlock((FenceBlock) BMBlocks.JABUTICABA_FENCE.get(), modLoc("block/jabuticaba_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.JABUTICABA_FENCE_GATE.get(), modLoc("block/jabuticaba_planks"));
+        doorBlock((DoorBlock) BMBlocks.JABUTICABA_DOOR.get(), modLoc("block/jabuticaba_door_bottom"), modLoc("block/jabuticaba_door_top"));
+        trapdoorBlock((TrapDoorBlock) BMBlocks.JABUTICABA_TRAPDOOR.get(), modLoc("block/jabuticaba_trapdoor"), true);
 
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get(), modLoc("block/stripped_crystalline_birch_log"), modLoc("block/stripped_crystalline_birch_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get(), modLoc("block/stripped_crystalline_birch_log"), modLoc("block/stripped_crystalline_birch_log"));

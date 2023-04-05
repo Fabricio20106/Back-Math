@@ -53,31 +53,19 @@
       "seed": 7465759204,
       "altitude_noise": {
         "firstOctave": -7,
-        "amplitudes": [
-          1,
-          1
-        ]
+        "amplitudes": [1, 1]
       },
       "temperature_noise": {
         "firstOctave": -7,
-        "amplitudes": [
-          1,
-          1
-        ]
+        "amplitudes": [1, 1]
       },
       "humidity_noise": {
         "firstOctave": -7,
-        "amplitudes": [
-          1,
-          1
-        ]
+        "amplitudes": [1, 1]
       },
       "weirdness_noise": {
         "firstOctave": -7,
-        "amplitudes": [
-          1,
-          1
-        ]
+        "amplitudes": [1, 1]
       },
       "biomes": [
         {

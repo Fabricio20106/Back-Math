@@ -45,6 +45,8 @@ public class BMServerConfigs {
 
     // Gameplay Aspects
     public final ForgeConfigSpec.BooleanValue safeAljan;
+    public final ForgeConfigSpec.BooleanValue peaceTeaInvisibilityToggle;
+    public final ForgeConfigSpec.BooleanValue peaceTeaGlowingToggle;
 
     public BMServerConfigs(ForgeConfigSpec.Builder builder) {
         builder.comment("Welcome to the Back Math configurations file. Created in 08th and 09th of April of 2022 and made working on 21st and 22nd of April of 2022.");
@@ -96,6 +98,8 @@ public class BMServerConfigs {
 
         builder.push("gameplayAspects");
         this.safeAljan = builder.comment("When you teleport to the Aljan through the Aljan Portal Stand, the stand on the other side will already have a jantical in it.").define("safeAljan", false);
+        this.peaceTeaInvisibilityToggle = builder.comment("Makes peace teas give the affected mob Invisibility.").define("peaceTea.invisibilityToggle", false);
+        this.peaceTeaGlowingToggle = builder.comment("Makes peace teas give the affected mob Glowing.").define("peaceTea.glowingToggle", false);
         builder.pop();
     }
 }

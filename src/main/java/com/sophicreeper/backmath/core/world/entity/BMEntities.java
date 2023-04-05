@@ -6,6 +6,7 @@ import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
 import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
 import com.sophicreeper.backmath.core.world.entity.misc.BMBoat;
+import com.sophicreeper.backmath.core.world.entity.misc.ChocoGlueProjEntity;
 import com.sophicreeper.backmath.core.world.entity.misc.InsomniaArrow;
 import com.sophicreeper.backmath.core.world.entity.monster.*;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
@@ -77,4 +78,7 @@ public class BMEntities {
 
     public static final RegistryObject<EntityType<InsomniaArrow>> INSOMNIA_ARROW = ENTITIES.register("insomnia_arrow", () ->
             EntityType.Builder.<InsomniaArrow>create(InsomniaArrow::new, EntityClassification.MISC).size(0.5F, 0.5F).build("insomnia_arrow"));
+
+    public static final RegistryObject<EntityType<ChocoGlueProjEntity>> CHOCOGLUE_PROJ = ENTITIES.register("chocoglue_proj", () ->
+            EntityType.Builder.<ChocoGlueProjEntity>create(ChocoGlueProjEntity::new, EntityClassification.MISC).size(0.25f, 0.25f).build("chocoglue_proj"));
 }

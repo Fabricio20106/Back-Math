@@ -78,7 +78,10 @@ public class BMTags {
         public static final ITag.INamedTag<Item> SINGULARITIES_HEAT = forge("singularities/heat");
         public static final ITag.INamedTag<Item> SINGULARITIES_MANGA_MANGO = forge("singularities/manga_mango");
 
+        public static final ITag.INamedTag<Item> RODS_GOLDENWOOD = forge("rods/goldenwood");
         public static final ITag.INamedTag<Item> RODS_GUAVA = forge("rods/guava");
+        public static final ITag.INamedTag<Item> RODS_JABUTICABA = forge("rods/jabuticaba");
+        public static final ITag.INamedTag<Item> RODS_CORK_OAK = forge("rods/cork_oak");
         public static final ITag.INamedTag<Item> RODS_ALJANWOOD = forge("rods/aljanwood");
         public static final ITag.INamedTag<Item> RODS_ALJANCAP = forge("rods/aljancap");
         public static final ITag.INamedTag<Item> RODS_INSOMNIAN = forge("rods/insomnian");

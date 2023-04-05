@@ -86,8 +86,8 @@ public class BMVanillaCompatibility {
         flammable(BMBlocks.JABUTICABA_SLAB.get(), 5, 20);
         flammable(BMBlocks.JABUTICABA_FENCE.get(), 5, 20);
         flammable(BMBlocks.JABUTICABA_FENCE_GATE.get(), 5, 20);
-        //flammable(BMBlocks.JABUTICABA_TRAPDOOR.get(), 5, 20);
-        //flammable(BMBlocks.JABUTICABA_DOOR.get(), 5, 20);
+        flammable(BMBlocks.JABUTICABA_TRAPDOOR.get(), 5, 20);
+        flammable(BMBlocks.JABUTICABA_DOOR.get(), 5, 20);
         flammable(BMBlocks.JABUTICABA_BUTTON.get(), 5, 20);
         flammable(BMBlocks.JABUTICABA_PRESSURE_PLATE.get(), 5, 20);
         //flammable(BMBlocks.JABUTICABA_LADDER.get(), 5, 20);

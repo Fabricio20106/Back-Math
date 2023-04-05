@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.core.proxy;
 import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.sounds.BMSounds;
 import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
+import com.sophicreeper.backmath.core.world.effect.BMEffects;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
 import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
@@ -43,6 +44,7 @@ public class CommonProxy {
         BMBlocks.BLOCKS.register(eventBus);
         AxolotlTest.ITEMS.register(eventBus);
         BMEntities.ENTITIES.register(eventBus);
+        BMEffects.EFFECTS.register(eventBus);
         BMFluids.FLUIDS.register(eventBus);
         BMWorldCarvers.WORLD_CARVERS.register(eventBus);
         BMBiomes.BIOMES.register(eventBus);

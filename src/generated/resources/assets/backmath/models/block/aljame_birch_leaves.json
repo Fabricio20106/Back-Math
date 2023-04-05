@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "backmath:block/template_fruit_leaves",
   "textures": {
-    "all": "backmath:block/aljame_birch_leaves"
+    "leaf": "backmath:block/birch_fruit_leaves",
+    "fruit": "backmath:block/aljame_fruit_leaves"
   }
 }

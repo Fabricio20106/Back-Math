@@ -66,6 +66,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.DEVIL_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGRY_SOPHIE_HEAD.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGRY_SOPHIE_WALL_HEAD.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.ALJAME_BIRCH_LEAVES.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJAME_BIRCH_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_ALJAME_BIRCH_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMFluids.LIQUID_MANGA.get(), RenderType.getTranslucent());
@@ -195,6 +196,8 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.AVONDALIC_WILLOW_LEAVES.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_LOG.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.JABUTICABA_DOOR.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.JABUTICABA_TRAPDOOR.get(), RenderType.getTranslucent());
 
         // Entity renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);

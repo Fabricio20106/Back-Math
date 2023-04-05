@@ -156,7 +156,10 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_CRYSTALLINE_ANGELIC).add(AxolotlTest.CRYSTALLINE_ANGELIC_SHARD.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_JANTICAL).add(AxolotlTest.JANTICAL_SHARD.get());
 
+        this.getOrCreateBuilder(BMTags.Items.RODS_GOLDENWOOD).add(AxolotlTest.GOLDENWOOD_STICK.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_GUAVA).add(AxolotlTest.GUAVA_STICK.get());
+        this.getOrCreateBuilder(BMTags.Items.RODS_JABUTICABA).add(AxolotlTest.JABUTICABA_STICK.get());
+        this.getOrCreateBuilder(BMTags.Items.RODS_CORK_OAK).add(AxolotlTest.CORK_OAK_STICK.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_ALJANCAP).add(AxolotlTest.ALJANCAP_STICK.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_ALJANWOOD).add(AxolotlTest.ALJANWOOD_STICK.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_INSOMNIAN).add(AxolotlTest.INSOMNIAN_STICK.get());
@@ -206,7 +209,9 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_HARDENED_AMARACAMEL);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_OBSIDIAN);
 
-        this.getOrCreateBuilder(Tags.Items.RODS).addTag(BMTags.Items.RODS_ALJANWOOD).addTag(BMTags.Items.RODS_ALJANCAP).addTag(BMTags.Items.RODS_INSOMNIAN).addTag(BMTags.Items.RODS_ALJAMEED).addTag(BMTags.Items.RODS_GUAVA).addTag(BMTags.Items.RODS_AVONDALIC_WILLOW);
+        this.getOrCreateBuilder(Tags.Items.RODS).addTag(BMTags.Items.RODS_ALJANWOOD).addTag(BMTags.Items.RODS_ALJANCAP).addTag(BMTags.Items.RODS_INSOMNIAN).addTag(BMTags.Items.RODS_ALJAMEED).addTag(BMTags.Items.RODS_GUAVA).addTag(BMTags.Items.RODS_AVONDALIC_WILLOW)
+                .addTag(BMTags.Items.RODS_GOLDENWOOD).addTag(BMTags.Items.RODS_JABUTICABA).addTag(BMTags.Items.RODS_CORK_OAK);
+
         this.getOrCreateBuilder(ItemTags.COALS).add(AxolotlTest.CHARJAN_COAL.get());
 
         this.getOrCreateBuilder(Tags.Items.GEMS).addTag(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.GEMS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.GEMS_JANTICAL).addTag(BMTags.Items.GEMS_PERSONA);

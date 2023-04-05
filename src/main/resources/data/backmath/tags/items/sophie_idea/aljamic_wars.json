@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "backmath:pine_jelly"
+    "backmath:pine_jelly",
+    "backmath:patience_tea",
+    "backmath:peace_tea",
+    "backmath:disgust_tea",
+    "backmath:mood_tea"
   ]
 }

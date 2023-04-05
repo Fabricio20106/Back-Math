@@ -297,6 +297,12 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("stripped_crystalline_birch_log");
         withExistingParent("stripped_crystalline_birch_wood");
         withExistingParent("avondalic_willow_leaves");
+        withExistingParent("jabuticaba_trapdoor", modLoc("block/jabuticaba_trapdoor_bottom"));
+        withExistingParent("hillaried_stone");
+        withExistingParent("hillaried_stone_stairs");
+        withExistingParent("hillaried_stone_slab");
+        withExistingParent("hillaried_stone_wall", modLoc("block/hillaried_stone_wall_inventory"));
+        withExistingParent("chocolate_naked_cake");
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -984,7 +990,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         standard(handheld, "guava_knife");
         standard(handheld, "crystalline_birch_knife");
         standard(handheld, "avondalic_willow_knife");
-        standard(handheld, "avondalic_willow_sword");
+        sword("avondalic_willow_sword");
         standard(handheld, "avondalic_willow_pickaxe");
         standard(handheld, "avondalic_willow_shovel");
         standard(handheld, "avondalic_willow_axe");
@@ -1017,6 +1023,13 @@ public class BMItemModelGenerators extends ItemModelProvider {
         standard(handheld, "jabuticaba_knife");
         compat("jabuticaba_mortar_and_pestle");
         compat("jabuticaba_door");
+        standard(handheld, "jabuticaba_stick");
+        standard(handheld, "cork_oak_stick");
+        standard(handheld, "goldenwood_stick");
+        compat("patience_tea");
+        compat("peace_tea");
+        compat("disgust_tea");
+        compat("mood_tea");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

@@ -76,7 +76,7 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.CRYSTALLINE_BIRCHES);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(1.5f).scale(0.025f).temperature(0.7F).downfall(0.8F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x77BAE8).setWaterFogColor(0x77BAE8).setFogColor(0xb9d1ff).withSkyColor(0x82a8ff).setMoodSound(MoodSoundAmbience.
+                new BiomeAmbience.Builder().setWaterColor(0x77BAE8).setWaterFogColor(0x77BAE8).setFogColor(0xb9d1ff).withFoliageColor(0xffec4f).withSkyColor(0x82a8ff).setMoodSound(MoodSoundAmbience.
                                 DEFAULT_CAVE).withGrassColor(0xd4eaea).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -257,6 +257,10 @@ public class BMBiomes {
         DefaultBiomeFeatures.withForestGrass(settings);
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
