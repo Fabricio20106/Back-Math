@@ -88,7 +88,6 @@ public class BMTags {
         public static final ITag.INamedTag<Item> RODS_AVONDALIC_WILLOW = forge("rods/avondalic_willow");
         public static final ITag.INamedTag<Item> RODS_ALJAMEED = forge("rods/aljameed");
 
-        public static final ITag.INamedTag<Item> SQUIDS = backMath("squids");
         public static final ITag.INamedTag<Item> MOLDS = backMath("molds");
         public static final ITag.INamedTag<Item> MOLDS_SINGULARITY = backMath("molds/singularity");
         public static final ITag.INamedTag<Item> MOLDS_CRYSTALLIZED = backMath("molds/crystallized");
@@ -98,6 +97,8 @@ public class BMTags {
         public static final ITag.INamedTag<Item> MOLDS_CRYSTALLINE_EMPTY = backMath("molds/crystalline_empty");
         public static final ITag.INamedTag<Item> MOLDS_CRYSTALLINE_GEM = backMath("molds/crystalline_gem");
         public static final ITag.INamedTag<Item> MOLDS_ROD = backMath("molds/rod");
+
+        public static final ITag.INamedTag<Item> SQUIDS = backMath("squids");
         public static final ITag.INamedTag<Item> POPSICLES = backMath("popsicles");
         public static final ITag.INamedTag<Item> ALJANSTONE_CRAFTING_MATERIALS = backMath("aljanstone_crafting_materials");
 
@@ -147,44 +148,44 @@ public class BMTags {
     }
 
     public static class Blocks {
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DEVIL = forgeBlock("storage_blocks/devil");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_DEVIL = forgeBlock("storage_blocks/raw_devil");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ANGELIC = forgeBlock("storage_blocks/angelic");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ANGELIC = forgeBlock("storage_blocks/raw_angelic");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHRISTIAN_MID_TERM = forgeBlock("storage_blocks/christian_mid_term");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DEVIL_ANGELIC = forgeBlock("storage_blocks/devil_angelic");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHRISTIAN_MID_TERM_ANGELIC = forgeBlock("storage_blocks/christian_mid_term_angelic");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHRISTIAN_MID_TERM_DEVIL = forgeBlock("storage_blocks/christian_mid_term_devil");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MID_TERM = forgeBlock("storage_blocks/mid_term");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_MID_TERM = forgeBlock("storage_blocks/raw_mid_term");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM = forgeBlock("storage_blocks/obsidian_infused_mid_term");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CRYSTALLINE_ANGELIC = forgeBlock("storage_blocks/crystalline_angelic");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MILKLLARY = forgeBlock("storage_blocks/milkllary");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_HARDENED_AMARACAMEL = forgeBlock("storage_blocks/hardened_amaracamel");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHARJAN_COAL = forgeBlock("storage_blocks/charjan_coal");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ALJAMEED = forgeBlock("storage_blocks/aljameed");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ALJANSTEEL = forgeBlock("storage_blocks/aljansteel");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ALJAMEED = forgeBlock("storage_blocks/raw_aljameed");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MOONERING = forgeBlock("storage_blocks/moonering");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_MOONERING = forgeBlock("storage_blocks/raw_moonering");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MID_HILLARY = forgeBlock("storage_blocks/mid_hillary");
-        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_JANTICAL = forgeBlock("storage_blocks/jantical");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DEVIL = forge("storage_blocks/devil");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_DEVIL = forge("storage_blocks/raw_devil");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ANGELIC = forge("storage_blocks/angelic");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ANGELIC = forge("storage_blocks/raw_angelic");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHRISTIAN_MID_TERM = forge("storage_blocks/christian_mid_term");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DEVIL_ANGELIC = forge("storage_blocks/devil_angelic");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHRISTIAN_MID_TERM_ANGELIC = forge("storage_blocks/christian_mid_term_angelic");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHRISTIAN_MID_TERM_DEVIL = forge("storage_blocks/christian_mid_term_devil");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MID_TERM = forge("storage_blocks/mid_term");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_MID_TERM = forge("storage_blocks/raw_mid_term");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM = forge("storage_blocks/obsidian_infused_mid_term");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CRYSTALLINE_ANGELIC = forge("storage_blocks/crystalline_angelic");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MILKLLARY = forge("storage_blocks/milkllary");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_HARDENED_AMARACAMEL = forge("storage_blocks/hardened_amaracamel");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHARJAN_COAL = forge("storage_blocks/charjan_coal");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ALJAMEED = forge("storage_blocks/aljameed");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_ALJANSTEEL = forge("storage_blocks/aljansteel");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ALJAMEED = forge("storage_blocks/raw_aljameed");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MOONERING = forge("storage_blocks/moonering");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_MOONERING = forge("storage_blocks/raw_moonering");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MID_HILLARY = forge("storage_blocks/mid_hillary");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_JANTICAL = forge("storage_blocks/jantical");
 
-        public static final ITag.INamedTag<Block> ORES_ALJAMEED = forgeBlock("ores/aljameed");
-        public static final ITag.INamedTag<Block> ORES_MOONERING = forgeBlock("ores/moonering");
-        public static final ITag.INamedTag<Block> ORES_JANTICAL = forgeBlock("ores/jantical");
-        public static final ITag.INamedTag<Block> ORES_ALJAMIC_COPPER = forgeBlock("ores/aljamic_copper");
-        public static final ITag.INamedTag<Block> ORES_ALJAMIC_TIN = forgeBlock("ores/aljamic_tin");
-        public static final ITag.INamedTag<Block> ORES_COPPER = forgeBlock("ores/copper");
-        public static final ITag.INamedTag<Block> ORES_TIN = forgeBlock("ores/tin");
+        public static final ITag.INamedTag<Block> ORES_ALJAMEED = forge("ores/aljameed");
+        public static final ITag.INamedTag<Block> ORES_MOONERING = forge("ores/moonering");
+        public static final ITag.INamedTag<Block> ORES_JANTICAL = forge("ores/jantical");
+        public static final ITag.INamedTag<Block> ORES_ALJAMIC_COPPER = forge("ores/aljamic_copper");
+        public static final ITag.INamedTag<Block> ORES_ALJAMIC_TIN = forge("ores/aljamic_tin");
+        public static final ITag.INamedTag<Block> ORES_COPPER = forge("ores/copper");
+        public static final ITag.INamedTag<Block> ORES_TIN = forge("ores/tin");
 
-        public static final ITag.INamedTag<Block> BASE_STONE_ALJAN = modBlock("base_stone_aljan");
+        public static final ITag.INamedTag<Block> BASE_STONE_ALJAN = backMath("base_stone_aljan");
 
-        private static ITag.INamedTag<Block> forgeBlock(String path) {
+        private static ITag.INamedTag<Block> forge(String path) {
             return BlockTags.makeWrapperTag(new ResourceLocation("forge", path).toString());
         }
 
-        private static ITag.INamedTag<Block> modBlock(String path) {
+        private static ITag.INamedTag<Block> backMath(String path) {
             return BlockTags.makeWrapperTag(BackMath.resourceLoc(path).toString());
         }
 

@@ -1,13 +1,10 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.util.BMStaticFields;
+import com.sophicreeper.backmath.core.util.BMSetFields;
 import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
-import com.sophicreeper.backmath.core.world.entity.monster.ArcherLucia;
-import com.sophicreeper.backmath.core.world.entity.monster.InsomniaSophie;
-import com.sophicreeper.backmath.core.world.entity.monster.QueenSophie;
-import com.sophicreeper.backmath.core.world.entity.monster.WarriorSophie;
+import com.sophicreeper.backmath.core.world.entity.monster.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -18,13 +15,14 @@ import net.minecraft.potion.Effects;
 
 public class DevilSpareySwordItem extends SwordItem {
     public DevilSpareySwordItem() {
-        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
+        super(BMSetFields.SPAREY_SET, 3, -2.4F, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
     }
 
     // When hitting an entity:
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity hitTarget) {
-        if (hitTarget instanceof WandererSophie || hitTarget instanceof InsomniaSophie || hitTarget instanceof KarateLucia || hitTarget instanceof ArcherLucia || hitTarget instanceof ShyFabricio || hitTarget instanceof WarriorSophie) {
+        if (hitTarget instanceof WandererSophie || hitTarget instanceof InsomniaSophie || hitTarget instanceof KarateLucia || hitTarget instanceof ArcherLucia || hitTarget instanceof ShyFabricio ||
+                hitTarget instanceof WarriorSophie || hitTarget instanceof ArcherInsomniaSophie) {
             player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 50, 2));
             // If the sword user hits one of these:
             // - Wanderer Sophie, Insomnia Sophie, Karate Lucia, Archer Lucia, Shy Fabricio or Warrior Sophie

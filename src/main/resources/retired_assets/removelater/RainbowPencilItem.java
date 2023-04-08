@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.removelater;
+package retired_assets.removelater;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;

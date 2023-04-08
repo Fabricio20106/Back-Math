@@ -35,14 +35,6 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.FRIED_EGG_FLOWER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGELIC_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGELIC_DOOR.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMFluids.HILLARY.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_MILKLLARY.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BMFluids.LIQUID_ALJAME.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_LIQUID_ALJAME.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BMFluids.SLEEPISHWATER.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_SLEEPISHWATER.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.GUARANA_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.MANGO_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.GUARANA_OAK_LEAVES.get(), RenderType.getCutout());
@@ -69,8 +61,6 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJAME_BIRCH_LEAVES.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJAME_BIRCH_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_ALJAME_BIRCH_SAPLING.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMFluids.LIQUID_MANGA.get(), RenderType.getTranslucent());
-        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_LIQUID_MANGA.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_ANGELIC_ORE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.LEMON_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_LEMON_OAK_SAPLING.get(), RenderType.getCutout());
@@ -198,6 +188,16 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.JABUTICABA_DOOR.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.JABUTICABA_TRAPDOOR.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.HILLARY.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_MILKLLARY.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.LIQUID_ALJAME.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_LIQUID_ALJAME.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.SLEEPISHWATER.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_SLEEPISHWATER.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.LIQUID_MANGA.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_LIQUID_MANGA.get(), RenderType.getTranslucent());
 
         // Entity renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);

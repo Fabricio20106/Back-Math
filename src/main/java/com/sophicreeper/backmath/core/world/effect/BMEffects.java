@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class BMEffects {
     public static final DeferredRegister<Effect> EFFECTS = DeferredRegister.create(ForgeRegistries.POTIONS, BackMath.MOD_ID);
 
-    public static final RegistryObject<Effect> PATIENCE_TEA = EFFECTS.register("patience_tea", PatienceTeaEffect::new);
-    public static final RegistryObject<Effect> DISGUST_TEA = EFFECTS.register("disgust_tea", DisgustTeaEffect::new);
-    public static final RegistryObject<Effect> MOOD_TEA = EFFECTS.register("mood_tea", MoodTeaEffect::new);
+    public static final RegistryObject<Effect> PATIENCE = EFFECTS.register("patience", PatienceTeaEffect::new);
+    public static final RegistryObject<Effect> DISGUST = EFFECTS.register("disgust", DisgustTeaEffect::new);
+    public static final RegistryObject<Effect> MOOD = EFFECTS.register("mood", MoodTeaEffect::new);
 }

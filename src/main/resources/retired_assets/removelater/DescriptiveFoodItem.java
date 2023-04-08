@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.removelater;
+package retired_assets.removelater;
 
 import com.sophicreeper.backmath.core.client.BackMath;
 import net.minecraft.client.util.ITooltipFlag;

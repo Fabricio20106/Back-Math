@@ -33,6 +33,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
@@ -49,7 +50,8 @@ public class QueenSophiePet extends TameableEntity {
         EntityType<?> type = p_213440_0_.getType();
         return type == BMEntities.ANGRY_SOPHIE.get() || type == BMEntities.SHY_FABRICIO.get();
     };
-    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(AxolotlTest.GUARANA.get(), AxolotlTest.MANGO.get(), AxolotlTest.GRAPES.get(), AxolotlTest.LEMON.get(), AxolotlTest.PINEAPPLE.get(), AxolotlTest.ORANGE.get(), AxolotlTest.BANANA.get(), AxolotlTest.GUAVA.get(), AxolotlTest.JABUTICABA.get(), AxolotlTest.ALJAMIC_BERRY.get(), AxolotlTest.GREEN_APPLE.get());
+    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(AxolotlTest.GUARANA.get(), AxolotlTest.MANGO.get(), AxolotlTest.GRAPES.get(), AxolotlTest.LEMON.get(), AxolotlTest.PINEAPPLE.get(),
+            AxolotlTest.ORANGE.get(), AxolotlTest.BANANA.get(), AxolotlTest.GUAVA.get(), AxolotlTest.JABUTICABA.get(), AxolotlTest.ALJAMIC_BERRY.get(), AxolotlTest.GREEN_APPLE.get());
     public static final Item DEADLY_ITEM = AxolotlTest.ALJAME.get();
 
     public QueenSophiePet(EntityType<QueenSophiePet> type, World world) {
@@ -178,6 +180,11 @@ public class QueenSophiePet extends TameableEntity {
     @Override
     public QueenSophiePet func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
         return null;
+    }
+
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target) {
+        return new ItemStack(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get());
     }
 
     public int getVariant() {

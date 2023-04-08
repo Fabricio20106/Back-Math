@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.util.BMStaticFields;
+import com.sophicreeper.backmath.core.util.BMSetFields;
 import com.sophicreeper.backmath.core.world.entity.monster.AngrySophie;
 import com.sophicreeper.backmath.core.world.entity.monster.QueenSophie;
 import net.minecraft.entity.Entity;
@@ -13,7 +13,7 @@ import net.minecraft.potion.Effects;
 
 public class SpareySwordItem extends SwordItem {
     public SpareySwordItem() {
-        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
+        super(BMSetFields.SPAREY_SET, 3, -2.4F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
     }
 
     // When you hit an entity

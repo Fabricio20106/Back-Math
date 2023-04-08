@@ -18,7 +18,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import static com.sophicreeper.backmath.core.util.BMStaticFields.*;
+import static com.sophicreeper.backmath.core.util.BMSetFields.*;
 
 public class AxolotlTest {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BackMath.MOD_ID);

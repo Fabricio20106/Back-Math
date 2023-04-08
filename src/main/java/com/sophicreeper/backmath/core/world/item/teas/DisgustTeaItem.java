@@ -3,7 +3,6 @@ package com.sophicreeper.backmath.core.world.item.teas;
 import com.sophicreeper.backmath.core.world.effect.BMEffects;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -33,7 +32,11 @@ public class DisgustTeaItem extends Item {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
-        livEntity.addPotionEffect(new EffectInstance(BMEffects.DISGUST_TEA.get(), 600));
+        livEntity.addPotionEffect(new EffectInstance(BMEffects.DISGUST.get(), 600));
+
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            stack.shrink(1);
+        }
         return ActionResultType.SUCCESS;
     }
 
@@ -44,8 +47,11 @@ public class DisgustTeaItem extends Item {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
-        livEntity.addPotionEffect(new EffectInstance(BMEffects.DISGUST_TEA.get(), 600));
-        stack.shrink(1);
+        livEntity.addPotionEffect(new EffectInstance(BMEffects.DISGUST.get(), 600));
+
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            stack.shrink(1);
+        }
         return super.onItemUseFinish(stack, world, livEntity);
     }
 
@@ -71,7 +77,8 @@ public class DisgustTeaItem extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".quote").mergeStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
         super.addInformation(stack, world, tooltip, flag);
     }
 }

@@ -152,7 +152,7 @@
   "biome.backmath.deep_sleepish_ocean": "Deep Sleepish Ocean",
   "biome.backmath.aljamic_highlands": "Aljamic Highlands",
   "biome.backmath.amaracamel_sticks": "Amaracamel Sticks",
-  "biome.backmath.d_e_e_p_e_r_sleepish_ocean": "D E E P E R Sleepish Ocean",
+  "biome.backmath.deeper_sleepish_ocean": "D E E P E R Sleepish Ocean",
   "biome.backmath.aljamic_orchard": "Aljamic Orchard",
   "biome.backmath.avondalic_grove": "Avondalic Grove",
 
@@ -577,6 +577,9 @@
   "death.attack.chocoglued.player": "%1$s was chocoglued while running from %2$s",
 
   "effect.backmath.insomnia": "Insomnia",
+  "effect.backmath.patience": "Patience",
+  "effect.backmath.disgust": "Disgust",
+  "effect.backmath.mood": "Mood",
 
   "entity.backmath.angry_sophie": "Angry Sophie",
   "entity.backmath.archer_lucia": "Archer Lucia",
@@ -599,10 +602,6 @@
   "entity.backmath.backmath_boat": "Back Math Boat",
   "entity.backmath.insomnia_arrow": "Insomnia Arrow",
   "entity.backmath.chocoglue_proj": "Chocoglue Projectile",
-
-  "effect.backmath.patience_tea": "Patience",
-  "effect.backmath.disgust_tea": "Disgust",
-  "effect.backmath.mood_tea": "Mood",
 
   "fluid.backmath.hilary_flowing": "Flowing Hillary",
   "fluid.backmath.milklary_flowing": "Flowing Milkllary",
@@ -1343,13 +1342,18 @@
   "item.backmath.jabuticaba_knife": "Jabuticaba Knife",
   "item.backmath.jabuticaba_mortar_and_pestle": "Jabuticaba Mortar and Pestle",
   "item.backmath.patience_tea": "Patience Tea",
-  "item.backmath.patience_tea.desc": "\"Patience tea leaves you out of patience and if you get close to a mob you K1LL them.\" - Original idea quote by Sophie",
+  "item.backmath.patience_tea.quote": "\"Patience tea leaves you out of patience and if you get close to a mob you K1LL them.\" - Original idea quote by Sophie",
+  "item.backmath.patience_tea.desc": "Gives you 30 seconds of Patience effect, which deals the same damage as the Harming effect but at twice per second. Can be given to any mob by (shift) right-clicking.",
   "item.backmath.peace_tea": "Peace Tea",
-  "item.backmath.peace_tea.desc": "\"You get so blessed that if you get close to an animal, it DIE- just kidding, it gets so blessed that it gets all the effects and never dies EVER AGAIN.\" - Original idea quote by Sophie",
+  "item.backmath.peace_tea.quote": "\"You get so blessed that if you get close to an animal, it DIE- just kidding, it gets so blessed that it gets all the effects and never dies EVER AGAIN.\" - Original idea quote by Sophie",
+  "item.backmath.peace_tea.desc": "Gives you all beneficial effects from vanilla and Mood effect for 5 minutes. Can be given to any mob by (shift) right-clicking.",
   "item.backmath.disgust_tea": "Disgust Tea",
-  "item.backmath.disgust_tea.desc": "\"When you drink this tea you get disgusted/nausea from everything you eat.\" - Original idea quote by Sophie",
+  "item.backmath.disgust_tea.quote": "\"When you drink this tea you get disgusted/nausea from everything you eat.\" - Original idea quote by Sophie",
+  "item.backmath.disgust_tea.desc": "Gives you Disgust effect for 30 seconds, which is supposed to give Nausea effect for 15 seconds after you eat anything. Can be given to any mob by (shift) right-clicking.",
   "item.backmath.mood_tea": "Mood Tea",
-  "item.backmath.mood_tea.desc": "\"The Mood tea works as follows. It acts just like Minecraft milk. It takes away bad effects: poison, weakness.\" - Original idea quote by Sophie",
+  "item.backmath.mood_tea.quote": "\"The Mood tea works as follows. It acts just like Minecraft milk. It takes away bad effects: poison, weakness.\" - Original idea quote by Sophie",
+  "item.backmath.mood_tea.desc": "Gives you Mood effect for 5 minutes, which removes any neutral or harmful effect from you twice per second. Can be given to any mob by (shift) right-clicking.",
+  "item.backmath.mood_tea.bug": "Though there's a bug that when the effect removes effects that apply attributes to the player, such as Slowness or Weakness, the effect itself is removed but not the attribute/effect on the player, so you stay slow/weak without the effect applied. Only way to remove is to remove the Mood effect, give yourself Weakness or Slowness and then drink milk or wait for it to end.",
 
   "item.minecraft.potion.effect.insomnia": "Potion of Insomnia",
   "item.minecraft.potion.effect.long_insomnia": "Potion of Insomnia",

@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.util.BMStaticFields;
+import com.sophicreeper.backmath.core.util.BMSetFields;
 import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
@@ -17,7 +17,7 @@ import net.minecraft.potion.Effects;
 
 public class MilkedDevilSpareySwordItem extends MilkedSwordItem {
     public MilkedDevilSpareySwordItem() {
-        super(BMStaticFields.SPAREY_SET, 3, -2.4F, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
+        super(BMSetFields.SPAREY_SET, 3, -2.4F, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.util.BMStaticFields;
+import com.sophicreeper.backmath.core.util.BMSetFields;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -9,7 +9,7 @@ import net.minecraft.item.SwordItem;
 
 public class MechMechSwordItem extends SwordItem {
     public MechMechSwordItem() {
-        super(BMStaticFields.MECH_MECH_SET, 9, 2.0f, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
+        super(BMSetFields.MECH_MECH_SWORD, 9, 2.0f, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
     }
 
     // When hitting an entity:

@@ -32,7 +32,11 @@ public class PatienceTeaItem extends Item {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
-        livEntity.addPotionEffect(new EffectInstance(BMEffects.PATIENCE_TEA.get(), 600));
+        livEntity.addPotionEffect(new EffectInstance(BMEffects.PATIENCE.get(), 600));
+
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            stack.shrink(1);
+        }
         return ActionResultType.SUCCESS;
     }
 
@@ -43,8 +47,11 @@ public class PatienceTeaItem extends Item {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
-        livEntity.addPotionEffect(new EffectInstance(BMEffects.PATIENCE_TEA.get(), 600));
-        stack.shrink(1);
+        livEntity.addPotionEffect(new EffectInstance(BMEffects.PATIENCE.get(), 600));
+
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            stack.shrink(1);
+        }
         return super.onItemUseFinish(stack, world, livEntity);
     }
 
@@ -70,7 +77,8 @@ public class PatienceTeaItem extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".quote").mergeStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
         super.addInformation(stack, world, tooltip, flag);
     }
 }

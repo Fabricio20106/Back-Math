@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.removelater;
+package retired_assets.removelater;
 
 @Deprecated
 public class AgeableTwoTallPlantBlock /*extends DoublePlantBlock implements IGrowable*/ {

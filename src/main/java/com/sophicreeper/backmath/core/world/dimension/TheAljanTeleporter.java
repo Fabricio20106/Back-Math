@@ -18,15 +18,16 @@ public class TheAljanTeleporter implements ITeleporter {
     public static BlockPos thisPos = BlockPos.ZERO;
     public static boolean insideDimension = true;
 
-    public TheAljanTeleporter(BlockPos pos, boolean insideDim) {
+    public TheAljanTeleporter(BlockPos pos, boolean insideDimension) {
         thisPos = pos;
-        insideDimension = insideDim;
+        TheAljanTeleporter.insideDimension = insideDimension;
     }
 
     @Override
     public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destinationWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
         entity = repositionEntity.apply(false);
-        double y = 61;
+        // Used to be 61.
+        double y = 63;
 
         if (!insideDimension) {
             y = thisPos.getY();

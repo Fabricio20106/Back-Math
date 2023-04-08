@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.util.BMStaticFields;
+import com.sophicreeper.backmath.core.util.BMSetFields;
 import com.sophicreeper.backmath.core.world.entity.monster.AngrySophie;
 import com.sophicreeper.backmath.core.world.entity.monster.QueenSophie;
 import net.minecraft.entity.Entity;
@@ -13,7 +13,7 @@ import net.minecraft.potion.Effects;
 
 public class SpaxeAxeItem extends AxeItem {
     public SpaxeAxeItem() {
-        super(BMStaticFields.SPAREY_SET, 6.0f, -3.1F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
+        super(BMSetFields.SPAREY_SET, 6.0f, -3.1F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
     }
 
     @Override

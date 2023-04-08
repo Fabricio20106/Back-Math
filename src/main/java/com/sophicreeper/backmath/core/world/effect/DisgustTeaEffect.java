@@ -13,7 +13,7 @@ public class DisgustTeaEffect extends Effect {
     }
 
     @Override
-    public void performEffect(LivingEntity livEntity, int effectAmplifier) {
+    public void performEffect(LivingEntity livEntity, int amplifier) {
         if (livEntity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) livEntity;
             int hunger = player.getFoodStats().getFoodLevel();

@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.removelater.integration.mysticalagriculture;
+package retired_assets.removelater.integration.mysticalagriculture;
 
 /*@MysticalAgriculturePlugin*/
 @Deprecated

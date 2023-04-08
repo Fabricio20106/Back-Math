@@ -13,6 +13,7 @@ public class BMSurfaceBuilders {
     public static final BlockState ALJAMIC_GRASS = BMBlocks.ALJAMIC_GRASS_BLOCK.get().getDefaultState();
     public static final BlockState AVONDALIC_NYLIUM = BMBlocks.AVONDALIC_NYLIUM.get().getDefaultState();
     public static final BlockState ALJAMIC_DIRT = BMBlocks.ALJAMIC_DIRT.get().getDefaultState();
+
     public static final SurfaceBuilderConfig ALJAMIC_GRASS_CONFIG = new SurfaceBuilderConfig(ALJAMIC_GRASS, ALJAMIC_DIRT, ALJAMIC_DIRT);
     public static final SurfaceBuilderConfig AVONDALIC_NYLIUM_CONFIG = new SurfaceBuilderConfig(AVONDALIC_NYLIUM, ALJAMIC_DIRT, ALJAMIC_DIRT);
 

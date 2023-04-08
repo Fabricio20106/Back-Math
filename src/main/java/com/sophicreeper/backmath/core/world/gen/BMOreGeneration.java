@@ -27,9 +27,9 @@ public class BMOreGeneration {
     public static final RuleTest END_STONE_FILLER = new BlockMatchRuleTest(Blocks.END_STONE);
     public static final RuleTest OBSIDIAN_FILLER = new BlockMatchRuleTest(Blocks.OBSIDIAN);
     public static final RuleTest AIR_FILLER = new BlockMatchRuleTest(Blocks.AIR);
+    public static final RuleTest ALJANSTONE_FILLER = new BlockMatchRuleTest(BMBlocks.ALJANSTONE.get());
+    public static final RuleTest SLEEPINGSTONE_FILLER = new BlockMatchRuleTest(BMBlocks.SLEEPINGSTONE.get());
     public static final RuleTest BASE_STONE_ALJAN = new TagMatchRuleTest(BMTags.Blocks.BASE_STONE_ALJAN);
-    public static final RuleTest ALJANSTONE_REPLACER = new BlockMatchRuleTest(BMBlocks.ALJANSTONE.get());
-    public static final RuleTest SLEEPINGSTONE_REPLACER = new BlockMatchRuleTest(BMBlocks.SLEEPINGSTONE.get());
 
     public static void generateOres(final BiomeLoadingEvent event) {
         if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND)) && BMConfigs.SERVER_CONFIGS.devilOreGen.get()) {
@@ -69,7 +69,7 @@ public class BMOreGeneration {
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.ALJAMIC_ORCHARD.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) &&
                 BMConfigs.SERVER_CONFIGS.aljameedOreGen.get()) {
-            generateOre(event.getGeneration(), ALJANSTONE_REPLACER, BMBlocks.ALJAMEED_ORE.get().getDefaultState(), 9, 10, 63, 20);
+            generateOre(event.getGeneration(), ALJANSTONE_FILLER, BMBlocks.ALJAMEED_ORE.get().getDefaultState(), 9, 10, 63, 20);
         }
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
@@ -77,32 +77,32 @@ public class BMOreGeneration {
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.ALJAMIC_ORCHARD.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) &&
                 BMConfigs.SERVER_CONFIGS.mooneringOreGen.get()) {
-            generateOre(event.getGeneration(), ALJANSTONE_REPLACER, BMBlocks.MOONERING_ORE.get().getDefaultState(), 8, 1, 16, 8);
+            generateOre(event.getGeneration(), ALJANSTONE_FILLER, BMBlocks.MOONERING_ORE.get().getDefaultState(), 8, 1, 16, 8);
         }
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.janticOreGen.get()) {
-            generateOre(event.getGeneration(), ALJANSTONE_REPLACER, BMBlocks.JANTIC_ORE.get().getDefaultState(), 7, 1, 28, 12);
+            generateOre(event.getGeneration(), ALJANSTONE_FILLER, BMBlocks.JANTIC_ORE.get().getDefaultState(), 7, 1, 28, 12);
         }
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.aljamicCopperGen.get()) {
-            generateOre(event.getGeneration(), ALJANSTONE_REPLACER, BMBlocks.ALJAMIC_COPPER_ORE.get().getDefaultState(), 7, 36, 132, 12);
+            generateOre(event.getGeneration(), ALJANSTONE_FILLER, BMBlocks.ALJAMIC_COPPER_ORE.get().getDefaultState(), 7, 36, 132, 12);
         }
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.aljamicTinGen.get()) {
-            generateOre(event.getGeneration(), ALJANSTONE_REPLACER, BMBlocks.ALJAMIC_TIN_ORE.get().getDefaultState(), 7, 36, 132, 12);
+            generateOre(event.getGeneration(), ALJANSTONE_FILLER, BMBlocks.ALJAMIC_TIN_ORE.get().getDefaultState(), 7, 36, 132, 12);
         }
 
         if (Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName()) || BMConfigs.SERVER_CONFIGS.aljamicHighlandsAbundantJanticOreGen.get()) {
-            generateOre(event.getGeneration(), ALJANSTONE_REPLACER, BMBlocks.JANTIC_ORE.get().getDefaultState(), 5, 70, 96, 3);
+            generateOre(event.getGeneration(), ALJANSTONE_FILLER, BMBlocks.JANTIC_ORE.get().getDefaultState(), 5, 70, 96, 3);
         }
     }
 
@@ -111,39 +111,39 @@ public class BMOreGeneration {
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.aljameedOreGen.get()) {
-            generateOre(event.getGeneration(), SLEEPINGSTONE_REPLACER, BMBlocks.SLEEPINGSTONE_ALJAMEED_ORE.get().getDefaultState(), 9, 10, 63, 20);
+            generateOre(event.getGeneration(), SLEEPINGSTONE_FILLER, BMBlocks.SLEEPINGSTONE_ALJAMEED_ORE.get().getDefaultState(), 9, 10, 63, 20);
         }
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.mooneringOreGen.get()) {
-            generateOre(event.getGeneration(), SLEEPINGSTONE_REPLACER, BMBlocks.SLEEPINGSTONE_MOONERING_ORE.get().getDefaultState(), 8, 1, 16, 8);
+            generateOre(event.getGeneration(), SLEEPINGSTONE_FILLER, BMBlocks.SLEEPINGSTONE_MOONERING_ORE.get().getDefaultState(), 8, 1, 16, 8);
         }
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.janticOreGen.get()) {
-            generateOre(event.getGeneration(), SLEEPINGSTONE_REPLACER, BMBlocks.SLEEPINGSTONE_JANTIC_ORE.get().getDefaultState(), 7, 1, 28, 12);
+            generateOre(event.getGeneration(), SLEEPINGSTONE_FILLER, BMBlocks.SLEEPINGSTONE_JANTIC_ORE.get().getDefaultState(), 7, 1, 28, 12);
         }
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.aljamicCopperGen.get()) {
-            generateOre(event.getGeneration(), SLEEPINGSTONE_REPLACER, BMBlocks.SLEEPINGSTONE_ALJAMIC_COPPER_ORE.get().getDefaultState(), 7, 36, 132, 12);
+            generateOre(event.getGeneration(), SLEEPINGSTONE_FILLER, BMBlocks.SLEEPINGSTONE_ALJAMIC_COPPER_ORE.get().getDefaultState(), 7, 36, 132, 12);
         }
 
         if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.aljamicTinGen.get()) {
-            generateOre(event.getGeneration(), SLEEPINGSTONE_REPLACER, BMBlocks.SLEEPINGSTONE_ALJAMIC_TIN_ORE.get().getDefaultState(), 7, 36, 132, 12);
+            generateOre(event.getGeneration(), SLEEPINGSTONE_FILLER, BMBlocks.SLEEPINGSTONE_ALJAMIC_TIN_ORE.get().getDefaultState(), 7, 36, 132, 12);
         }
 
         if (Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName()) || BMConfigs.SERVER_CONFIGS.aljamicHighlandsAbundantJanticOreGen.get()) {
-            generateOre(event.getGeneration(), SLEEPINGSTONE_REPLACER, BMBlocks.SLEEPINGSTONE_JANTIC_ORE.get().getDefaultState(), 5, 70, 96, 3);
+            generateOre(event.getGeneration(), SLEEPINGSTONE_FILLER, BMBlocks.SLEEPINGSTONE_JANTIC_ORE.get().getDefaultState(), 5, 70, 96, 3);
         }
     }
 

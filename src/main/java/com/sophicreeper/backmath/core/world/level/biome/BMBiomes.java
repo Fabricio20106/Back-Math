@@ -26,7 +26,7 @@ public class BMBiomes {
     public static final RegistryObject<Biome> INSOMNIAN_WOODS = BIOMES.register("insomnian_woods", BMBiomes::insomnianWoods);
     public static final RegistryObject<Biome> SLEEPISH_OCEAN = BIOMES.register("sleepish_ocean", BMBiomes::sleepishOcean);
     public static final RegistryObject<Biome> DEEP_SLEEPISH_OCEAN = BIOMES.register("deep_sleepish_ocean", BMBiomes::deepSleepishOcean);
-    public static final RegistryObject<Biome> D_E_E_P_E_R_SLEEPISH_OCEAN = BIOMES.register("d_e_e_p_e_r_sleepish_ocean", BMBiomes::deeperSleepishOcean);
+    public static final RegistryObject<Biome> DEEPER_SLEEPISH_OCEAN = BIOMES.register("deeper_sleepish_ocean", BMBiomes::deeperSleepishOcean);
     public static final RegistryObject<Biome> AMARACAMEL_STICKS = BIOMES.register("amaracamel_sticks", BMBiomes::amaracamelSticks);
     public static final RegistryObject<Biome> ALJAMIC_HIGHLANDS = BIOMES.register("aljamic_highlands", BMBiomes::aljamicHighlands);
     public static final RegistryObject<Biome> ALJAMIC_ORCHARD = BIOMES.register("aljamic_orchard", BMBiomes::aljamicOrchard);

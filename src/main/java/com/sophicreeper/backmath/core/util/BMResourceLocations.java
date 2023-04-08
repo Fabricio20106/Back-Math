@@ -6,13 +6,13 @@ import net.minecraft.util.ResourceLocation;
 public class BMResourceLocations {
     // Fluids
     // Hillary
-    public static final ResourceLocation HILLARY_STILL_RL = BackMath.resourceLoc("fluid/hilary_still");
-    public static final ResourceLocation HILLARY_FLOWING_RL = BackMath.resourceLoc("fluid/hilary_flowing");
-    public static final ResourceLocation HILLARY_OVERLAY_RL = BackMath.resourceLoc("fluid/hilary_overlay");
+    public static final ResourceLocation HILLARY_STILL = BackMath.resourceLoc("fluid/hilary_still");
+    public static final ResourceLocation FLOWING_HILLARY = BackMath.resourceLoc("fluid/hilary_flowing");
+    public static final ResourceLocation HILLARY_OVERLAY = BackMath.resourceLoc("fluid/hilary_overlay");
     // Milkllary
-    public static final ResourceLocation MILKLLARY_STILL_RL = BackMath.resourceLoc("fluid/milklary_still");
-    public static final ResourceLocation MILKLLARY_FLOWING_RL = BackMath.resourceLoc("fluid/milklary_flowing");
-    public static final ResourceLocation MILKLLARY_OVERLAY_RL = BackMath.resourceLoc("fluid/milklary_overlay");
+    public static final ResourceLocation MILKLLARY_STILL = BackMath.resourceLoc("fluid/milklary_still");
+    public static final ResourceLocation FLOWING_MILKLLARY = BackMath.resourceLoc("fluid/milklary_flowing");
+    public static final ResourceLocation MILKLLARY_OVERLAY = BackMath.resourceLoc("fluid/milklary_overlay");
     // Liquid Aljame
     public static final ResourceLocation LIQUID_ALJAME_STILL = BackMath.resourceLoc("fluid/liquid_aljame");
     public static final ResourceLocation FLOWING_LIQUID_ALJAME = BackMath.resourceLoc("fluid/flowing_liquid_aljame");

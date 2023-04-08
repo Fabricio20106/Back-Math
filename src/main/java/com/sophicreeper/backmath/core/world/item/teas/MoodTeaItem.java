@@ -32,8 +32,11 @@ public class MoodTeaItem extends Item {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
-        livEntity.addPotionEffect(new EffectInstance(BMEffects.MOOD_TEA.get(), 6000));
-        stack.shrink(1);
+        livEntity.addPotionEffect(new EffectInstance(BMEffects.MOOD.get(), 6000));
+
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            stack.shrink(1);
+        }
         return ActionResultType.SUCCESS;
     }
 
@@ -44,7 +47,11 @@ public class MoodTeaItem extends Item {
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
-        livEntity.addPotionEffect(new EffectInstance(BMEffects.MOOD_TEA.get(), 6000));
+        livEntity.addPotionEffect(new EffectInstance(BMEffects.MOOD.get(), 6000));
+
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            stack.shrink(1);
+        }
         return super.onItemUseFinish(stack, world, livEntity);
     }
 
@@ -70,7 +77,9 @@ public class MoodTeaItem extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".quote").mergeStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".bug").mergeStyle(TextFormatting.DARK_RED));
         super.addInformation(stack, world, tooltip, flag);
     }
 }

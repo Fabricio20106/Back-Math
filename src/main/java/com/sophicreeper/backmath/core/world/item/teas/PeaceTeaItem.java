@@ -50,7 +50,11 @@ public class PeaceTeaItem extends Item {
         livEntity.addPotionEffect(new EffectInstance(Effects.CONDUIT_POWER, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 6000));
-        stack.shrink(1);
+        livEntity.addPotionEffect(new EffectInstance(BMEffects.MOOD.get(), 6000));
+
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            stack.shrink(1);
+        }
         return ActionResultType.SUCCESS;
     }
 
@@ -80,6 +84,11 @@ public class PeaceTeaItem extends Item {
         livEntity.addPotionEffect(new EffectInstance(Effects.CONDUIT_POWER, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.DOLPHINS_GRACE, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.HERO_OF_THE_VILLAGE, 6000));
+        livEntity.addPotionEffect(new EffectInstance(BMEffects.MOOD.get(), 6000));
+
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            stack.shrink(1);
+        }
         return super.onItemUseFinish(stack, world, livEntity);
     }
 
@@ -105,7 +114,8 @@ public class PeaceTeaItem extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".quote").mergeStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
         super.addInformation(stack, world, tooltip, flag);
     }
 }

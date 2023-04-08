@@ -3,11 +3,14 @@
 // Paste this class into your mod and generate all required imports
 package com.sophicreeper.backmath.core.client.model.entity;
 
+import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
+import com.sophicreeper.backmath.core.world.entity.monster.QueenSophie;
 import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -48,7 +51,7 @@ public class QueenSophiePetModel extends BipedModel<QueenSophiePet> {
 		arms = new ModelRenderer(this);
 		arms.setRotationPoint(0.0F, -11.0F, 0.0F);
 		body.addChild(arms);
-		
+
 
 		arm1 = new ModelRenderer(this);
 		arm1.setRotationPoint(-2.5F, 0.0F, 0.0F);
@@ -63,7 +66,7 @@ public class QueenSophiePetModel extends BipedModel<QueenSophiePet> {
 		legs = new ModelRenderer(this);
 		legs.setRotationPoint(0.0F, -6.0F, 0.0F);
 		body.addChild(legs);
-		
+
 
 		leg1 = new ModelRenderer(this);
 		leg1.setRotationPoint(-1.0F, 0.0F, 0.0F);
@@ -78,12 +81,12 @@ public class QueenSophiePetModel extends BipedModel<QueenSophiePet> {
 		wings = new ModelRenderer(this);
 		wings.setRotationPoint(0.0F, -9.0F, 0.0F);
 		body.addChild(wings);
-		
+
 
 		wing1 = new ModelRenderer(this);
 		wing1.setRotationPoint(0.0F, 0.0F, 0.0F);
 		wings.addChild(wing1);
-		
+
 
 		wing1_r1 = new ModelRenderer(this);
 		wing1_r1.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -94,7 +97,7 @@ public class QueenSophiePetModel extends BipedModel<QueenSophiePet> {
 		wing2 = new ModelRenderer(this);
 		wing2.setRotationPoint(0.0F, 0.0F, 0.0F);
 		wings.addChild(wing2);
-		
+
 
 		wing2_r1 = new ModelRenderer(this);
 		wing2_r1.setRotationPoint(0.0F, 0.0F, 0.0F);
@@ -103,10 +106,66 @@ public class QueenSophiePetModel extends BipedModel<QueenSophiePet> {
 		wing2_r1.setTextureOffset(0, 26).addBox(0.0F, -3.0F, 1.0F, 7.0F, 6.0F, 0.0F, 0.0F, true);
 	}
 
+	@Override
+	protected Iterable<ModelRenderer> getHeadParts() {
+		return ImmutableList.of(this.head);
+	}
+
+	@Override
+	protected Iterable<ModelRenderer> getBodyParts() {
+		return ImmutableList.of(this.body, this.leg1, this.leg2, this.arm1, this.arm2, this.wing1, this.wing2);
+	}
+
 	/*@Override
 	public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
 		//previously the render function, render code was moved to a method below
 	}*/
+
+	/**
+	 * Sets this entity's model rotation angles
+	 */
+	public void setRotationAngles(QueenSophiePet queenSophie, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.head.rotateAngleY = netHeadYaw * 0.017453292f;
+		this.head.rotateAngleX = headPitch * 0.017453292f;
+
+		this.body.rotateAngleY = 0;
+
+		this.arm1.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + 3.1415927f) * 2 * limbSwingAmount * 0.5f;
+		this.arm2.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 2 * limbSwingAmount * 0.5f;
+		this.arm1.rotateAngleZ = 0;
+		this.arm2.rotateAngleZ = 0;
+		this.leg1.rotateAngleY = 0;
+		this.leg2.rotateAngleY = 0;
+		this.leg1.rotateAngleZ = 0;
+		this.leg2.rotateAngleZ = 0;
+
+		ModelRenderer modelRenderer;
+		if (this.isSitting) {
+			modelRenderer = this.arm1;
+			modelRenderer.rotateAngleX -= 0.62831855F;
+			modelRenderer = this.arm2;
+			modelRenderer.rotateAngleX -= 0.62831855F;
+			this.leg1.rotateAngleX = -1.4137167F;
+			this.leg1.rotateAngleY = 0.31415927F;
+			this.leg1.rotateAngleZ = 0.07853982F;
+			this.leg2.rotateAngleX = -1.4137167F;
+			this.leg2.rotateAngleY = -0.31415927F;
+			this.leg2.rotateAngleZ = -0.07853982F;
+		}
+
+		this.arm1.rotateAngleY = 0;
+		this.arm2.rotateAngleY = 0;
+
+		this.leg1.rotationPointZ = 0.1F;
+		this.leg2.rotationPointZ = 0.1F;
+		this.leg1.rotationPointY = 0;
+		this.leg2.rotationPointY = 0;
+		this.head.rotationPointY = 12;
+		this.body.rotationPointY = 24;
+		this.arm1.rotationPointY = 0;
+		this.arm2.rotationPointY = 0;
+		super.setRotationAngles(queenSophie, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+	}
 
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
