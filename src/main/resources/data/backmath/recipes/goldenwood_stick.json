@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W ",
+    " W"
+  ],
+  "key": {
+    "W": {
+      "item": "backmath:goldenwood_planks"
+    }
+  },
+  "result": {
+    "item": "backmath:goldenwood_stick",
+    "count": 4
+  }
+}

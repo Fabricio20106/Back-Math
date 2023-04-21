@@ -166,6 +166,11 @@ public class BMTools implements IItemTier {
             super(1, 131, 4.0F, 1.0F, 5, () -> Ingredient.fromTag(BMTags.Items.ALJANSTONE_CRAFTING_MATERIALS));
         }
     }
+    public static class Sleepingstone extends BMTools {
+        public Sleepingstone() {
+            super(1, 161, 4.5F, 1.0F, 5, () -> Ingredient.fromItems(AxolotlTest.SLEEPINGSTONE.get()));
+        }
+    }
     public static class Aljameed extends BMTools {
         public Aljameed() {
             super(2, 250, 6.0F, 2.0F, 14, () -> Ingredient.fromTag(BMTags.Items.INGOTS_ALJAMEED));

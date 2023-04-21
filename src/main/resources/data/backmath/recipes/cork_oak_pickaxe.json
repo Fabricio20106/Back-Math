@@ -7,10 +7,10 @@
   ],
   "key": {
     "C": {
-      "item": "backmath:cork_stopper"
+      "item": "backmath:cork_oak_planks"
     },
     "S": {
-      "tag": "forge:rods/wooden"
+      "tag": "forge:rods/cork_oak"
     }
   },
   "result": {

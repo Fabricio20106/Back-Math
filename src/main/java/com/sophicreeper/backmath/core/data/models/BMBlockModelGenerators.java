@@ -345,6 +345,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         trapdoorBlock((TrapDoorBlock) BMBlocks.GOLDENWOOD_TRAPDOOR.get(), modLoc("block/goldenwood_trapdoor"), true);
 
         simpleBlock(BMBlocks.AVONDALIC_WILLOW_LEAVES.get());
+        simpleBlock(BMBlocks.AVONDALIC_WILLOW_SAPLING.get(), models().cross("avondalic_willow_sapling", modLoc("block/avondalic_willow_sapling")));
+        simpleBlock(BMBlocks.POTTED_AVONDALIC_WILLOW_SAPLING.get(), models().withExistingParent("potted_avondalic_willow_sapling", "block/flower_pot_cross").texture("plant", "block/avondalic_willow_sapling"));
         axisBlock((RotatedPillarBlock) BMBlocks.AVONDALIC_WILLOW_LOG.get(), modLoc("block/avondalic_willow_log"), modLoc("block/avondalic_willow_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.AVONDALIC_WILLOW_WOOD.get(), modLoc("block/avondalic_willow_log"), modLoc("block/avondalic_willow_log"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_AVONDALIC_WILLOW_LOG.get(), modLoc("block/stripped_avondalic_willow_log"), modLoc("block/stripped_avondalic_willow_log_top"));
@@ -355,6 +357,7 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         fenceBlock((FenceBlock) BMBlocks.AVONDALIC_WILLOW_FENCE.get(), modLoc("block/avondalic_willow_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.AVONDALIC_WILLOW_FENCE_GATE.get(), modLoc("block/avondalic_willow_planks"));
         doorBlock((DoorBlock) BMBlocks.AVONDALIC_WILLOW_DOOR.get(), modLoc("block/avondalic_willow_door_bottom"), modLoc("block/avondalic_willow_door_top"));
+        trapdoorBlock((TrapDoorBlock) BMBlocks.AVONDALIC_WILLOW_TRAPDOOR.get(), modLoc("block/avondalic_willow_trapdoor"), true);
 
         simpleBlock(BMBlocks.JABUTICABA_LEAVES.get(), models().withExistingParent("jabuticaba_leaves", "minecraft:block/leaves").texture("all", "backmath:block/jabuticaba_leaves"));
         simpleBlock(BMBlocks.JABUTICABA_SAPLING.get(), models().cross("jabuticaba_sapling", modLoc("block/jabuticaba_sapling")));
@@ -373,6 +376,21 @@ public class BMBlockModelGenerators extends BlockStateProvider {
 
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get(), modLoc("block/stripped_crystalline_birch_log"), modLoc("block/stripped_crystalline_birch_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get(), modLoc("block/stripped_crystalline_birch_log"), modLoc("block/stripped_crystalline_birch_log"));
+
+        simpleBlock(BMBlocks.CORK_OAK_LEAVES.get(), models().withExistingParent("cork_oak_leaves", "minecraft:block/leaves").texture("all", "backmath:block/cork_oak_leaves"));
+        //simpleBlock(BMBlocks.CORK_OAK_SAPLING.get(), models().cross("cork_oak_sapling", modLoc("block/cork_oak_sapling")));
+        //simpleBlock(BMBlocks.POTTED_CORK_OAK_SAPLING.get(), models().withExistingParent("potted_cork_oak_sapling", "block/flower_pot_cross").texture("plant", "block/cork_oak_sapling"));
+        axisBlock((RotatedPillarBlock) BMBlocks.CORK_OAK_LOG.get(), modLoc("block/cork_oak_log"), modLoc("block/cork_oak_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.CORK_OAK_WOOD.get(), modLoc("block/cork_oak_log"), modLoc("block/cork_oak_log"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CORK_OAK_LOG.get(), modLoc("block/stripped_cork_oak_log"), modLoc("block/stripped_cork_oak_log_top"));
+        axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CORK_OAK_WOOD.get(), modLoc("block/stripped_cork_oak_log"), modLoc("block/stripped_cork_oak_log"));
+        simpleBlock(BMBlocks.CORK_OAK_PLANKS.get());
+        stairsBlock((StairsBlock) BMBlocks.CORK_OAK_STAIRS.get(), modLoc("block/cork_oak_planks"));
+        slabBlock((SlabBlock) BMBlocks.CORK_OAK_SLAB.get(), modLoc("block/cork_oak_planks"), modLoc("block/cork_oak_planks"));
+        fenceBlock((FenceBlock) BMBlocks.CORK_OAK_FENCE.get(), modLoc("block/cork_oak_planks"));
+        fenceGateBlock((FenceGateBlock) BMBlocks.CORK_OAK_FENCE_GATE.get(), modLoc("block/cork_oak_planks"));
+        doorBlock((DoorBlock) BMBlocks.CORK_OAK_DOOR.get(), modLoc("block/cork_oak_door_bottom"), modLoc("block/cork_oak_door_top"));
+        trapdoorBlock((TrapDoorBlock) BMBlocks.CORK_OAK_TRAPDOOR.get(), modLoc("block/cork_oak_trapdoor"), true);
     }
 
     public ModelBuilder<BlockModelBuilder> wallTorch(String name, ResourceLocation torch) {
@@ -380,7 +398,6 @@ public class BMBlockModelGenerators extends BlockStateProvider {
     }
 
     // Methods below were taken from my other mod "Variants"
-
     public static int cropAgeToIndexPotato(int age) {
         if (age > 6) return 3;
         if (age > 3) return 2;

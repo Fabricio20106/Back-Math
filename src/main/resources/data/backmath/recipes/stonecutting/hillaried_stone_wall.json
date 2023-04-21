@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "backmath:hillaried_stone"
+  },
+  "result": "backmath:hillaried_stone_wall",
+  "count": 1
+}

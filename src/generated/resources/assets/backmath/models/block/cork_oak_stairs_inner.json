@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "side": "backmath:block/cork_oak_planks",
+    "bottom": "backmath:block/cork_oak_planks",
+    "top": "backmath:block/cork_oak_planks"
+  }
+}

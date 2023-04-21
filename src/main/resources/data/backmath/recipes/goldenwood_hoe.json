@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    " Y",
+    " Y"
+  ],
+  "key": {
+    "W": {
+      "item": "backmath:goldenwood_planks"
+    },
+    "Y": {
+      "tag": "forge:rods/goldenwood"
+    }
+  },
+  "result": {
+    "item": "backmath:goldenwood_hoe"
+  }
+}

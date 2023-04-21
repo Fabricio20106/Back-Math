@@ -303,6 +303,22 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("hillaried_stone_slab");
         withExistingParent("hillaried_stone_wall", modLoc("block/hillaried_stone_wall_inventory"));
         withExistingParent("chocolate_naked_cake");
+        withExistingParent("avondalic_willow_trapdoor", modLoc("block/avondalic_willow_trapdoor_bottom"));
+        withExistingParent("cork_oak_log");
+        withExistingParent("cork_oak_wood");
+        withExistingParent("stripped_cork_oak_log");
+        withExistingParent("stripped_cork_oak_wood");
+        withExistingParent("cork_oak_planks");
+        withExistingParent("cork_oak_stairs");
+        withExistingParent("cork_oak_slab");
+        withExistingParent("cork_oak_fence", modLoc("block/cork_oak_fence_inventory"));
+        withExistingParent("cork_oak_fence_gate");
+        withExistingParent("cork_oak_pressure_plate");
+        withExistingParent("cork_oak_button", modLoc("block/cork_oak_button_inventory"));
+        withExistingParent("cork_oak_grape_vine_post", modLoc("block/grape_vine_posts/cork_oak"));
+        withExistingParent("cork_oak_trapdoor", modLoc("block/cork_oak_trapdoor_bottom"));
+        withExistingParent("cork_oak_leaves");
+        withExistingParent("crystalline_birch_grape_vine_post", modLoc("block/grape_vine_posts/crystalline_birch"));
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -1030,6 +1046,18 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("peace_tea");
         compat("disgust_tea");
         compat("mood_tea");
+        block(generated, "avondalic_willow_sapling");
+        block(generated, "avondalic_willow_ladder");
+        block(generated, "jabuticaba_ladder");
+        // block(generated, "goldenwood_ladder");
+        compat("cork_oak_door");
+        sword("sleepingstone_sword");
+        standard(handheld, "sleepingstone_pickaxe");
+        standard(handheld, "sleepingstone_shovel");
+        standard(handheld, "sleepingstone_axe");
+        standard(handheld, "sleepingstone_hoe");
+        standard(handheld, "sleepingstone_knife");
+        block(generated, "cork_oak_ladder");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

@@ -63,6 +63,7 @@ public class BMSetFields {
     public static final BMTools INSOMNIAN_SET = new BMTools.Insomnian();
     public static final BMTools AVONDALIC_WILLOW_SET = new BMTools.AvondalicWillow();
     public static final BMTools ALJANSTONE_SET = new BMTools.Aljanstone();
+    public static final BMTools SLEEPINGSTONE_SET = new BMTools.Sleepingstone();
     public static final BMTools ALJAMEED_SET = new BMTools.Aljameed();
     public static final BMTools ALJANSTEEL_SET = new BMTools.Aljansteel();
     public static final BMTools MOONERING_SET = new BMTools.Moonering();

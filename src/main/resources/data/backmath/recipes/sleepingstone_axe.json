@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CC",
+    "CS",
+    " S"
+  ],
+  "key": {
+    "C": {
+      "item": "backmath:sleepingstone"
+    },
+    "S": {
+      "tag": "forge:rods/aljanwood"
+    }
+  },
+  "result": {
+    "item": "backmath:sleepingstone_axe"
+  }
+}
