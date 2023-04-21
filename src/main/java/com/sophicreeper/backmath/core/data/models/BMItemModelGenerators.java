@@ -1058,6 +1058,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         standard(handheld, "sleepingstone_hoe");
         standard(handheld, "sleepingstone_knife");
         block(generated, "cork_oak_ladder");
+        block(generated, "mangaed_mango_oak_sapling");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

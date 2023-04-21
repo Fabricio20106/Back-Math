@@ -320,6 +320,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
 
         simpleBlock(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get(), models().withExistingParent("mangaed_mango_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
                 "backmath:block/oak_fruit_leaves").texture("fruit", "backmath:block/mangaed_mango_fruit_leaves"));
+        simpleBlock(BMBlocks.MANGAED_MANGO_OAK_SAPLING.get(), models().cross("mangaed_mango_oak_sapling", modLoc("block/mangaed_mango_oak_sapling")));
+        simpleBlock(BMBlocks.POTTED_MANGAED_MANGO_OAK_SAPLING.get(), models().withExistingParent("potted_mangaed_mango_oak_sapling", "block/flower_pot_cross").texture("plant", "block/mangaed_mango_oak_sapling"));
         simpleBlock(BMBlocks.ALJAMIC_SAND.get());
         simpleBlock(BMBlocks.ALJAMIC_GLASS.get());
         paneBlock((PaneBlock) BMBlocks.ALJAMIC_GLASS_PANE.get(), modLoc("block/aljamic_glass"), modLoc("block/aljamic_glass_pane_top"));

@@ -200,6 +200,8 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.CORK_OAK_GRAPE_VINE_POST.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.CORK_OAK_LADDER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_GRAPE_VINE_POST.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.MANGAED_MANGO_OAK_SAPLING.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_MANGAED_MANGO_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMFluids.HILLARY.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.getTranslucent());
