@@ -35,6 +35,16 @@
           }
         ]
       }
+    },
+    "ender_dragon_fried_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:ender_dragon_fried_egg"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -43,6 +53,9 @@
     ],
     [
       "fried_egg"
+    ],
+    [
+      "ender_dragon_fried_egg"
     ]
   ]
 }

@@ -1136,6 +1136,10 @@ public class AxolotlTest {
     public static final RegistryObject<Item> AMARACAMEL_BATTER = ITEMS.register("amaracamel_batter", () -> new Item(new Item.Properties().group(SophiesCursedFoods.TAB).food(BMFoods.AMARACAMEL)));
     public static final RegistryObject<Item> FRIED_EGG_BAG = ITEMS.register("cooked_egg_bag", () -> new FriedEggBagItem(new Item.Properties().group(SophiesCursedFoods.TAB)));
     public static final RegistryObject<Item> EMPTY_FRIED_EGG_BAG = ITEMS.register("empty_cooked_egg_bag", () -> new Item(new Item.Properties().group(SophiesCursedFoods.TAB)));
+    public static final RegistryObject<Item> TURTLE_FRIED_EGG_BAG = ITEMS.register("turtle_fried_egg_bag", () -> new TurtleFriedEggBagItem(new Item.Properties().group(SophiesCursedFoods.TAB)));
+    public static final RegistryObject<Item> EMPTY_TURTLE_FRIED_EGG_BAG = ITEMS.register("empty_turtle_fried_egg_bag", () -> new Item(new Item.Properties().group(SophiesCursedFoods.TAB)));
+    public static final RegistryObject<Item> ENDER_DRAGON_FRIED_EGG_BAG = ITEMS.register("ender_dragon_fried_egg_bag", () -> new EnderDragonFriedEggBagItem(new Item.Properties().group(SophiesCursedFoods.TAB)));
+    public static final RegistryObject<Item> EMPTY_ENDER_DRAGON_FRIED_EGG_BAG = ITEMS.register("empty_ender_dragon_fried_egg_bag", () -> new Item(new Item.Properties().group(SophiesCursedFoods.TAB)));
     public static final RegistryObject<Item> LAGUSTA_BAG = ITEMS.register("lagusta_bag", () -> new LagustaBagItem(new Item.Properties().group(SophiesCursedFoods.TAB)));
     public static final RegistryObject<Item> EMPTY_LAGUSTA_BAG = ITEMS.register("empty_lagusta_bag", () -> new Item(new Item.Properties().group(SophiesCursedFoods.TAB)));
     public static final RegistryObject<Item> LAGUSTA = ITEMS.register("lagusta", () -> new Item(new Item.Properties().group(SophiesCursedFoods.TAB).food(BMFoods.LAGUSTA)));

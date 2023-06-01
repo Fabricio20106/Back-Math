@@ -191,7 +191,7 @@ New Structures:
 - Added Wanderer Camp
 - Added Insomnia Sophie House
 
-New Advancements (12 new advancements):
+New Advancements (13 new advancements):
 - A Legendary Sapling: Obtain a goldenwood sapling.
 - Truly a Masterpiece: Obtain an enchanted goldenwood sapling.
 - ...How?: Somehow kill a Zombie Fabricio with a Charged Creeper to get its head.
@@ -202,8 +202,10 @@ New Advancements (12 new advancements):
 - Are You British?: Make all teas in Back Math.
 - Water in Dust Form?: Make a Water Talc Dust.
 - Some Sick Hats: Get your hands on Back Math's most sick hats
-  - Hats: Golden Halo, Aljamic Bone Helmet, Tiaras, pastle colored turtle helmets, yellow karate headband and golden crown.
+  - Hats: Golden Halo, Aljamic Bone Helmet, Tiaras, pastel colored turtle helmets, yellow karate headband and golden crown.
 - Swords, Personified: Obtain a Persona Sword.
+- Discful: Get all 11 Back Math music discs.
+- Recordful: Get all 13 of Minecrafts music discs.
 
 Changes, Additions, Removals and etcetera:
 
@@ -229,6 +231,7 @@ Changes, Additions, Removals and etcetera:
     - All devil-colored blocks from "Devil" to "Red Yellow"
     - "Water Powder" to "Water Talc Powder"
     - Mid-Hillary Ingot, Key, Nugget and Chain to "⅔ Hillary Ingot/Key/Nugget/Chain"
+    - "Spoon" to "Angelic Spoon"
 - Retextures:
     - Devil Ingot, Christian Mid-Term Ingot and Grapes
     - Cat Tiara
@@ -240,6 +243,7 @@ Changes, Additions, Removals and etcetera:
     - Moonering Backstabber and USB Sticks
     - Water Jam, Water Popsicle, Bread with Water Jam and Bread with Zé Droplet
     - Diamond Nugget (now Diamond Shard)
+    - Devil tools (sword, pickaxe, shovel, axe and hoe)
 - Added 13 new Queen Sophie Pet variants, those being:
     - Blue Sophixolotl, Brazil Shirt, Creeper Hoodie, Empresary2, Enderphie, Entrepreneur, Maid, Modified, Original, Pajama, Savannah, Witcher and Yellow Sophixolotl
 - Added a new Item Tree advancement tab
@@ -250,15 +254,15 @@ Changes, Additions, Removals and etcetera:
 - GUI scale for the Alice, Alan and Innovator Toys were changed from 1,625 to 1,125, and the translation from 4,25 to 2,75
 - GUI scale for the Tyler Toy was changed from 1,625 to 1,125, and the translation from 4,25 to 2
 - GUI scale for the Malena Toy was changed from 1,625 to 1,125, and the translation from 4,25 to 1,5
-- Queen Sophies now summon archer insomnia Sophies instead of archer Lucias to reflect intended behaviour
+- Queen Sophies now summon archer insomnia Sophies instead of archer Lucias to reflect their intended behaviour
 - Aljan caves can now cut through aljamic sand
 - You can now change the spawning of devil ore and nether devil ore separately
-- Jantiquified Moonering tools are now crafted at the Smithing Table instead of the Crafting Table
+- Jantiquified Moonering tools are now crafted at a Smithing Table instead of a Crafting Table
     - This change was made so the regular moonering tools kept their enchantments and durability
 - Buckets can now be crafted with Aljameed Ingots
-- Diamond Nuggets are now called and "Diamond Shard" and look like other shards
-- Crystalline Birch Logs, Woods, Stairs, Slabs, Fences, Fence Gates, Pressure Plates and Buttons are now transparent
-- Black Sulios now have a texture
+- Diamond Nuggets are now called and "Diamond Shard" and look like such
+- Crystalline Birch Logs, Woods, Stairs, Slabs, Fences, Fence Gates, Pressure Plates, Buttons, Saplings and Potted Saplings are now transparent
+- Black Sulios now has a texture
 - Aljan caves can now cut through avondalic nylium
 - New death messages:
     - "X foi de comes e bebes": obtained by drinking the Lemon Bucket (it takes 15 seconds to drink)
@@ -266,6 +270,8 @@ Changes, Additions, Removals and etcetera:
     - "X foi de base": also don't know
     - "X foi de "
 - Mobs standing on top of an Aljan Portal Stand will now be teleported over to the Aljan
+- Fixed formatting and spelling mistakes on Back Maths advancements
+- Candy Yellow and Pink Turtle Helmets now have crafting recipes
 
 Bugfixes:
 

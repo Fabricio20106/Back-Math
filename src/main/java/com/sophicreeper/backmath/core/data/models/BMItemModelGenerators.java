@@ -1059,6 +1059,10 @@ public class BMItemModelGenerators extends ItemModelProvider {
         standard(handheld, "sleepingstone_knife");
         block(generated, "cork_oak_ladder");
         block(generated, "mangaed_mango_oak_sapling");
+        compat("turtle_fried_egg_bag");
+        compat("empty_turtle_fried_egg_bag");
+        compat("ender_dragon_fried_egg_bag");
+        compat("empty_ender_dragon_fried_egg_bag");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

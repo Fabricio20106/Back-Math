@@ -1,5 +1,5 @@
 {
-  "parent": "backmath:backmath/root",
+  "parent": "backmath:backmath/oh_hey_toys",
   "display": {
     "icon": {
       "item": "backmath:leandro_toy"

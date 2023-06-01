@@ -1,5 +1,7 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
+import com.sophicreeper.backmath.core.config.BMConfigs;
+import com.sophicreeper.backmath.core.config.BMServerConfigs;
 import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.core.world.dimension.TheAljanTeleporter;
 import net.minecraft.block.Block;
@@ -54,24 +56,26 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        if (state.get(JANTICAL)) {
-            if (!world.isRemote()) {
-                if (!player.isCrouching()) {
-                    MinecraftServer server = world.getServer();
+        if (BMConfigs.SERVER_CONFIGS.standingAljanTeleport.get()) {
+            if (state.get(JANTICAL)) {
+                if (!world.isRemote()) {
+                    if (!player.isCrouching()) {
+                        MinecraftServer server = world.getServer();
 
-                    if (server != null) {
-                        if (world.getDimensionKey() == BMDimensions.THE_ALJAN) {
-                            ServerWorld overworld = server.getWorld(World.OVERWORLD);
-                            if (overworld != null) {
-                                player.changeDimension(overworld, new TheAljanTeleporter(pos, false));
+                        if (server != null) {
+                            if (world.getDimensionKey() == BMDimensions.THE_ALJAN) {
+                                ServerWorld overworld = server.getWorld(World.OVERWORLD);
+                                if (overworld != null) {
+                                    player.changeDimension(overworld, new TheAljanTeleporter(pos, false));
+                                }
+                            } else {
+                                ServerWorld theAljan = server.getWorld(BMDimensions.THE_ALJAN);
+                                if (theAljan != null) {
+                                    player.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
+                                }
                             }
-                        } else {
-                            ServerWorld theAljan = server.getWorld(BMDimensions.THE_ALJAN);
-                            if (theAljan != null) {
-                                player.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
-                            }
+                            return ActionResultType.SUCCESS;
                         }
-                        return ActionResultType.SUCCESS;
                     }
                 }
             }
@@ -82,6 +86,26 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (state.get(JANTICAL)) {
+            if (!world.isRemote()) {
+                MinecraftServer server = world.getServer();
+
+                if (server != null) {
+                    if (world.getDimensionKey() == BMDimensions.THE_ALJAN) {
+                        ServerWorld overworld = server.getWorld(World.OVERWORLD);
+                        if (overworld != null) {
+                            entity.changeDimension(overworld, new TheAljanTeleporter(pos, false));
+                        }
+                    } else {
+                        ServerWorld theAljan = server.getWorld(BMDimensions.THE_ALJAN);
+                        if (theAljan != null) {
+                            entity.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
+                        }
+                    }
+                }
+            }
+        }
+
         super.onEntityCollision(state, world, pos, entity);
     }
 

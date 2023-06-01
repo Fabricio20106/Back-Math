@@ -4,6 +4,8 @@
     "backmath:empty_amaracamel_batter_bag",
     "backmath:empty_cooked_egg_bag",
     "backmath:empty_lagusta_bag",
-    "backmath:empty_boot_pack"
+    "backmath:empty_boot_pack",
+    "backmath:empty_turtle_fried_egg_bag",
+    "backmath:empty_ender_dragon_fried_egg_bag"
   ]
 }

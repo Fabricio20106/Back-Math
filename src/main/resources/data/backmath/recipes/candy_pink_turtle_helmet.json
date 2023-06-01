@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:pink_dye"
+    },
+    {
+      "item": "minecraft:turtle_helmet"
+    }
+  ],
+  "result": {
+    "item": "backmath:candy_pink_turtle_helmet"
+  }
+}

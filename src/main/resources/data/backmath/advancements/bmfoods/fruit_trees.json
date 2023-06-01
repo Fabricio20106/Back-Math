@@ -13,10 +13,13 @@
     "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false
+    "hidden": false,
+    "rewards": {
+      "experience": 20
+    }
   },
   "criteria": {
-    "guarana_oak_sapling": {
+    "saplings": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -46,6 +49,9 @@
           },
           {
             "item": "backmath:guava_sapling"
+          },
+          {
+            "item": "backmath:jabuticaba_sapling"
           }
         ]
       }
@@ -53,7 +59,7 @@
   },
   "requirements": [
     [
-      "guarana_oak_sapling"
+      "saplings"
     ]
   ]
 }
