@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:bmfoods/fruit_tree_fruits",
+  "display": {
+    "icon": {
+      "item": "backmath:cut_enchanted_golden_apple"
+    },
+    "title": {
+      "translate": "advancements.backmath.double_powerfulness_or_half.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.double_powerfulness_or_half.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "rewards": {
+      "experience": 20
+    }
+  },
+  "criteria": {
+    "cut_enchanted_golden_apple": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:cut_enchanted_golden_apple"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cut_enchanted_golden_apple"
+    ]
+  ]
+}

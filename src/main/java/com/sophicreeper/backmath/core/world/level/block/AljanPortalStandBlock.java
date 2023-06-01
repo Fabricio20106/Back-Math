@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.core.world.dimension.TheAljanTeleporter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -77,6 +78,11 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
         }
 
         return super.onBlockActivated(state, world, pos, player, hand, hit);
+    }
+
+    @Override
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        super.onEntityCollision(state, world, pos, entity);
     }
 
     public FluidState getFluidState(BlockState state) {

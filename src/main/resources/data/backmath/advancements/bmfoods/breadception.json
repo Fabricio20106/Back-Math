@@ -1,0 +1,35 @@
+{
+  "parent": "backmath:bmfoods/root",
+  "display": {
+    "icon": {
+      "item": "backmath:bread_with_pao"
+    },
+    "title": {
+      "translate": "advancements.backmath.breadception.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.breadception.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "bread_with_pao": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:bread_with_pao"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "bread_with_pao"
+    ]
+  ]
+}

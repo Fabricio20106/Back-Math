@@ -191,6 +191,20 @@ New Structures:
 - Added Wanderer Camp
 - Added Insomnia Sophie House
 
+New Advancements (12 new advancements):
+- A Legendary Sapling: Obtain a goldenwood sapling.
+- Truly a Masterpiece: Obtain an enchanted goldenwood sapling.
+- ...How?: Somehow kill a Zombie Fabricio with a Charged Creeper to get its head.
+- Eggs of the Wild: Obtain a fried egg and a turtle fried egg.
+- Double Powerfulness, or half: Cut an Enchanted golden Apple in half with a knife.
+- Breadception: Get Bread with Pão (it's so damn good).
+- Fine, Gentlemen: Grab some wine and wear a Moa Hat.
+- Are You British?: Make all teas in Back Math.
+- Water in Dust Form?: Make a Water Talc Dust.
+- Some Sick Hats: Get your hands on Back Math's most sick hats
+  - Hats: Golden Halo, Aljamic Bone Helmet, Tiaras, pastle colored turtle helmets, yellow karate headband and golden crown.
+- Swords, Personified: Obtain a Persona Sword.
+
 Changes, Additions, Removals and etcetera:
 
 - Added "safeAljan" to the configs
@@ -251,6 +265,7 @@ Changes, Additions, Removals and etcetera:
     - "X foi de Americanas": I don't know yet
     - "X foi de base": also don't know
     - "X foi de "
+- Mobs standing on top of an Aljan Portal Stand will now be teleported over to the Aljan
 
 Bugfixes:
 
@@ -267,6 +282,8 @@ Bugfixes:
 - Amaracamel Sticks biome name is unlocalized, it appears as "biome.backmath.amaracamel_sticks" in any minimap mod or other ways the biome name appears
 - Jantic Ore and Sleepingstone Jantic Ore isn't near the Block of Jantical in the creative tab
 - Archer Insomnia Sophies can now shoot arrows
+- Grape Vine Posts no longer make fence gates not render their sides when placed besides it
+- Now all crystalline birch related blocks are transparent
 
 Technical Changes:
 

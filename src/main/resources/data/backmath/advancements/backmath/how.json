@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:the_aljan/literally_bluestone",
+  "display": {
+    "icon": {
+      "item": "backmath:zombie_fabricio_head"
+    },
+    "title": {
+      "translate": "advancements.backmath.how.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.how.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+    "rewards": {
+      "experience": 150
+    }
+  },
+  "criteria": {
+    "zombie_fabricio_head": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:zombie_fabricio_head"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "zombie_fabricio_head"
+    ]
+  ]
+}

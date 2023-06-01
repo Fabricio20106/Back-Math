@@ -1,0 +1,35 @@
+{
+  "parent": "backmath:bmfoods/root",
+  "display": {
+    "icon": {
+      "item": "backmath:wine"
+    },
+    "title": {
+      "translate": "advancements.backmath.fine_gentlemen.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.fine_gentlemen.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:wine"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "wine"
+    ]
+  ]
+}
