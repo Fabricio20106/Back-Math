@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.core.world.entity.monster;
 
 import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.item.BMArmorItem;
+import com.sophicreeper.backmath.core.world.item.armor.BMArmorItem;
 import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;

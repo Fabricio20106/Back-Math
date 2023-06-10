@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.core.util;
 
-import com.sophicreeper.backmath.core.world.item.BMArmors;
-import com.sophicreeper.backmath.core.world.item.BMTools;
+import com.sophicreeper.backmath.core.world.item.armor.BMArmors;
+import com.sophicreeper.backmath.core.world.item.tool.BMTools;
 
 public class BMSetFields {
     // Helmets

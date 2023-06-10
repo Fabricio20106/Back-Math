@@ -1,11 +1,26 @@
 package com.sophicreeper.backmath.core.world.item;
 
 import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.world.item.glistering.*;
+import com.sophicreeper.backmath.core.world.item.armor.*;
+import com.sophicreeper.backmath.core.world.item.food.*;
+import com.sophicreeper.backmath.core.world.item.food.jam.GlisteringJamItem;
+import com.sophicreeper.backmath.core.world.item.food.jam.JamItem;
+import com.sophicreeper.backmath.core.world.item.food.jam.MangaedMangoJamItem;
+import com.sophicreeper.backmath.core.world.item.food.drink.*;
+import com.sophicreeper.backmath.core.world.item.food.popsicle.EnchantedGoldenApplePopsicleItem;
+import com.sophicreeper.backmath.core.world.item.food.popsicle.GoldenApplePopsicleItem;
+import com.sophicreeper.backmath.core.world.item.food.popsicle.MangaedMangoPopsicleItem;
+import com.sophicreeper.backmath.core.world.item.food.popsicle.PopsicleItem;
 import com.sophicreeper.backmath.core.world.item.teas.DisgustTeaItem;
 import com.sophicreeper.backmath.core.world.item.teas.MoodTeaItem;
 import com.sophicreeper.backmath.core.world.item.teas.PatienceTeaItem;
 import com.sophicreeper.backmath.core.world.item.teas.PeaceTeaItem;
+import com.sophicreeper.backmath.core.world.item.tool.*;
+import com.sophicreeper.backmath.core.world.item.tool.midterm.*;
+import com.sophicreeper.backmath.core.world.item.weapon.*;
+import com.sophicreeper.backmath.core.world.item.weapon.milked.*;
+import com.sophicreeper.backmath.core.world.item.weapon.misc.*;
+import com.sophicreeper.backmath.core.world.item.weapon.sparey.*;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
 import com.sophicreeper.backmath.core.world.level.material.BMFluids;
@@ -903,7 +918,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> ALJAMIC_FLINT_AND_ALJANSTEEL = ITEMS.register("aljamic_flint_and_aljansteel", () -> new FlintAndSteelItem(new Item.Properties().maxDamage(250).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> DEVIL_BOW = ITEMS.register("devil_bow", () -> new DevilBowItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(720)));
     public static final RegistryObject<Item> ANGELIC_BOW = ITEMS.register("angelic_bow", () -> new BMBowItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(840)));
-    public static final RegistryObject<Item> DEVIL_CROSSBOW = ITEMS.register("devil_crossbow", () -> new DevilCrossbowItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(520)));
+    public static final RegistryObject<Item> DEVIL_CROSSBOW = ITEMS.register("devil_crossbow", BMCrossbowItem::new);
     public static final RegistryObject<Item> ANGELIC_CROSSBOW = ITEMS.register("angelic_crossbow", BMCrossbowItem::new);
     public static final RegistryObject<Item> CHOCOGLUE = ITEMS.register("chocoglue", () -> new ChocoGlueItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> PINK_GUM_FRYING_PAN = ITEMS.register("pink_gum_frying_pan", () -> new PinkGumFryingPanItem(new Item.Properties().maxDamage(1024).group(BMWeaponryTab.TAB)));
@@ -919,7 +934,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> AVONDALIC_WILLOW_MORTAR_AND_PESTLE = ITEMS.register("avondalic_willow_mortar_and_pestle", () -> new MortarAndPestleItem(new Item.Properties().maxDamage(384).group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> DEVIL_SHEARS = ITEMS.register("devil_shears", () -> new ShearsItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(250)));
     public static final RegistryObject<Item> ANGELIC_SHEARS = ITEMS.register("angelic_shears", () -> new ShearsItem(new Item.Properties().group(BMWeaponryTab.TAB).maxDamage(250)));
-    public static final RegistryObject<Item> MID_TERM_SHEARS = ITEMS.register("mid_term_shears", () -> new MidTermShears(new Item.Properties().group(BMWeaponryTab.TAB).isImmuneToFire().rarity(Rarity.RARE).maxDamage(4062)));
+    public static final RegistryObject<Item> MID_TERM_SHEARS = ITEMS.register("mid_term_shears", () -> new MidTermShearsItem(new Item.Properties().group(BMWeaponryTab.TAB).isImmuneToFire().rarity(Rarity.RARE).maxDamage(4062)));
     public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_SHEARS = ITEMS.register("obsidian_infused_mid_term_shears", () -> new GlisteringShearsItem(new Item.Properties().isImmuneToFire().group(BMWeaponryTab.TAB).rarity(Rarity.EPIC).maxDamage(4062)));
     public static final RegistryObject<Item> CHRISTIAN_MID_TERM_SHEARS = ITEMS.register("christian_mid_term_shears", () -> new ShearsItem(new Item.Properties().group(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON).maxDamage(250)));
     public static final RegistryObject<Item> MILKLLARY_SHEARS = ITEMS.register("milkllary_shears", () -> new ShearsItem(new Item.Properties().group(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON).maxDamage(450)));

@@ -173,7 +173,7 @@ public class BMFeatures {
             VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
     /**
-        BACKMATH 1.7: ALJAMIC WARS WORLD GENERATION BELOW
+        TODO: BACKMATH 1.7: ALJAMIC WARS WORLD GENERATION BELOW
      */
 
     // Vegetation patches.
@@ -300,11 +300,11 @@ public class BMFeatures {
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     /**
-     BACKMATH 1.7: ALJAMIC WARS CONTENTS ENDS HERE
+     TODO: BACKMATH 1.7: ALJAMIC WARS CONTENTS ENDS HERE
      */
 
     /**
-     BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT STARTS HERE
+     TODO: BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT STARTS HERE
      */
 
     // Trees
@@ -391,23 +391,31 @@ public class BMFeatures {
                     new GiantTrunkPlacer(6, 2, 14),
                     new TwoLayerFeature(1, 1, 2)).build()));
 
-    /*public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MEGA_AVONDALIC_WILLOW = register("mega_avondalic_willow", Feature.TREE.withConfiguration(
+    public static final ConfiguredFeature<?, ?> AVONDALIC_WILLOWS = register("avondalic_willows", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
+                    MEGA_AVONDALIC_WILLOW.withChance(0.85641026f), AVONDALIC_WILLOW.withChance(0.99f)), AVONDALIC_WILLOW)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+            .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
+
+    // JUNGLE_BUSH = register("jungle_bush", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Features.States.JUNGLE_LOG),
+    // new SimpleBlockStateProvider(Features.States.OAK_LEAVES), new BushFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(1), 2),
+    // new StraightTrunkPlacer(1, 0, 0), new TwoLayerFeature(0, 0, 0))).func_236702_a_(Type.MOTION_BLOCKING_NO_LEAVES).build()));
+
+    public static final ConfiguredFeature<?, ?> AVONDALIC_BUSH = register("avondalic_bush", Feature.TREE.withConfiguration(
             new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LOG.get().getDefaultState()),
                     new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LEAVES.get().getDefaultState()),
-                    new MegaPineFoliagePlacer(
-                            FeatureSpread.func_242252_a(0),
-                            FeatureSpread.func_242252_a(0),
-                            FeatureSpread.func_242253_a(3, 4)),
-                    new GiantTrunkPlacer(13, 2, 14),
-                    new TwoLayerFeature(1, 1, 2)).build()));*/
+                    new BushFoliagePlacer(
+                            FeatureSpread.func_242252_a(2),
+                            FeatureSpread.func_242252_a(1), 2),
+                    new StraightTrunkPlacer(1, 0, 0),
+                    new TwoLayerFeature(0, 0, 0))
+                    .func_236702_a_(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).build()));
 
-    public static final ConfiguredFeature<?, ?> AVONDALIC_WILLOWS = register("avondalic_willows", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
-            MEGA_AVONDALIC_WILLOW.withChance(0.85641026f), AVONDALIC_WILLOW.withChance(0.99f)), AVONDALIC_WILLOW)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
-            .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
+    public static final ConfiguredFeature<?, ?> AVONDALIC_BUSHES = register("avondalic_bushes", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(
+            ImmutableList.of(AVONDALIC_BUSH.withChance(0.2f), AVONDALIC_WILLOW.withChance(0.05f), Features.PATCH_GRASS_PLAIN.withChance(0.3f)), AVONDALIC_BUSH)).withPlacement(Features.Placements
+            .HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(50, 0.1f, 1))));
 
     /**
-     BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
+     TODO: BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
      */
 
     public static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {

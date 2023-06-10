@@ -86,11 +86,13 @@ public class BMBiomes {
 
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_BUSHES);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_NORMAL);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_SAND_DISK);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_NORMAL);
         DefaultBiomeFeatures.withForestGrass(settings);
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
@@ -99,7 +101,7 @@ public class BMBiomes {
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1.0F).scale(0.1F).temperature(0.5F).downfall(0.5F)
                 .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea)
-                        .withFoliageColor(0xFCB76B).withGrassColor(0x1d082e).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+                        .withFoliageColor(0xFCB76B).withGrassColor(0xcc3db4).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome deepSleepishOcean() {
@@ -110,9 +112,11 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_BUSHES);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_DEEP);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_SAND_DISK);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_DEEP);
         DefaultBiomeFeatures.withForestGrass(settings);
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
@@ -121,7 +125,7 @@ public class BMBiomes {
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1.8F).scale(0.1F).temperature(0.5F).downfall(0.5F)
                 .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea)
-                        .withFoliageColor(0xFCB76B).withGrassColor(0x1d082e).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+                        .withFoliageColor(0xFCB76B).withGrassColor(0x9c3a8b).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome deeperSleepishOcean() {
@@ -132,9 +136,11 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPSHROOM_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_BUSHES);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_DEEP);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_DISK);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_SAND_DISK);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_DEEP);
         DefaultBiomeFeatures.withForestGrass(settings);
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
