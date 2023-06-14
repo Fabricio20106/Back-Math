@@ -319,6 +319,18 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("cork_oak_trapdoor", modLoc("block/cork_oak_trapdoor_bottom"));
         withExistingParent("cork_oak_leaves");
         withExistingParent("crystalline_birch_grape_vine_post", modLoc("block/grape_vine_posts/crystalline_birch"));
+        withExistingParent("coldterm_bricks");
+        withExistingParent("coldterm_brick_stairs");
+        withExistingParent("coldterm_brick_slab");
+        withExistingParent("coldterm_brick_wall", modLoc("block/coldterm_brick_wall_inventory"));
+        withExistingParent("warmterm_bricks");
+        withExistingParent("warmterm_brick_stairs");
+        withExistingParent("warmterm_brick_slab");
+        withExistingParent("warmterm_brick_wall", modLoc("block/warmterm_brick_wall_inventory"));
+        withExistingParent("obsiditerm_bricks");
+        withExistingParent("obsiditerm_brick_stairs");
+        withExistingParent("obsiditerm_brick_slab");
+        withExistingParent("obsiditerm_brick_wall", modLoc("block/obsiditerm_brick_wall_inventory"));
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -1063,6 +1075,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("empty_turtle_fried_egg_bag");
         compat("ender_dragon_fried_egg_bag");
         compat("empty_ender_dragon_fried_egg_bag");
+        block(generated, "ender_dragon_fried_egg_flower");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

@@ -248,6 +248,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANWOODS_ORCHARD);
+        settings.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, BMFeatures.ALJANCAP_LEAF_PILE);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
@@ -271,7 +272,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
-                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xb821a2).withGrassColor(0xb13b9d).build())
+                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xb821a2).withGrassColor(0xcc3db4).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 }

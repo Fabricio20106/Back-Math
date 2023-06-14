@@ -14,6 +14,9 @@
     "backmath:sleepingstone_brick_slab",
     "backmath:cubic_tabu_slab",
     "backmath:tabu_mosaic_slab",
-    "backmath:hillaried_stone_slab"
+    "backmath:hillaried_stone_slab",
+    "backmath:coldterm_brick_slab",
+    "backmath:warmterm_brick_slab",
+    "backmath:obsiditerm_brick_slab"
   ]
 }

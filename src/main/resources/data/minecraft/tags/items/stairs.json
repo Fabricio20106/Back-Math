@@ -13,6 +13,9 @@
     "backmath:polished_sleepingstone_stairs",
     "backmath:cubic_tabu_stairs",
     "backmath:tabu_mosaic_stairs",
-    "backmath:hillaried_stone_stairs"
+    "backmath:hillaried_stone_stairs",
+    "backmath:coldterm_brick_stairs",
+    "backmath:warmterm_brick_stairs",
+    "backmath:obsiditerm_brick_stairs"
   ]
 }

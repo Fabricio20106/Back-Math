@@ -11,6 +11,7 @@ import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
@@ -413,6 +414,17 @@ public class BMFeatures {
     public static final ConfiguredFeature<?, ?> AVONDALIC_BUSHES = register("avondalic_bushes", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(
             ImmutableList.of(AVONDALIC_BUSH.withChance(0.2f), AVONDALIC_WILLOW.withChance(0.05f), Features.PATCH_GRASS_PLAIN.withChance(0.3f)), AVONDALIC_BUSH)).withPlacement(Features.Placements
             .HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(50, 0.1f, 1))));
+
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ENDER_DRAGON_FRIED_EGG_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get().getDefaultState()), new SimpleBlockPlacer()).tries(64)
+                    .func_227317_b_().build()));
+
+    public static final ConfiguredFeature<?, ?> ENDER_DRAGON_FRIED_EGG_FLOWER_PATCH = register("backmath_the_end_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(new
+            SingleRandomFeature(ENDER_DRAGON_FRIED_EGG_FLOWER_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.
+            VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
+
+    public static final ConfiguredFeature<?, ?> ALJANCAP_LEAF_PILE = register("aljancap_leaf_pile", Feature.BLOCK_PILE.withConfiguration(
+            new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider().addWeightedBlockstate(BMBlocks.ALJANCAP_LEAVES.get().getDefaultState(), 19))));
 
     /**
      TODO: BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE

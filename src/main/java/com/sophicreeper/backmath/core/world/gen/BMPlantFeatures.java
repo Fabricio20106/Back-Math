@@ -20,5 +20,8 @@ public class BMPlantFeatures {
         if (event.getCategory() == Biome.Category.BEACH && BMConfigs.SERVER_CONFIGS.turtleFriedEggFlowersInBeaches.get()) {
             settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.TURTLE_FRIED_EGG_FLOWER_PATCH);
         }
+        if (event.getCategory() == Biome.Category.THEEND && BMConfigs.SERVER_CONFIGS.enderDragonFriedEggFlowersInTheEnd.get()) {
+            settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ENDER_DRAGON_FRIED_EGG_FLOWER_PATCH);
+        }
     }
 }

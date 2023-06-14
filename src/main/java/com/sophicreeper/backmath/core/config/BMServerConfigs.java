@@ -21,6 +21,7 @@ public class BMServerConfigs {
     public final ForgeConfigSpec.BooleanValue grapeVinesInTaigas;
     public final ForgeConfigSpec.BooleanValue bananaJunglesInJungles;
     public final ForgeConfigSpec.BooleanValue turtleFriedEggFlowersInBeaches;
+    public final ForgeConfigSpec.BooleanValue enderDragonFriedEggFlowersInTheEnd;
 
     // Biome generation
     public final ForgeConfigSpec.BooleanValue originalBackFieldsGen;
@@ -72,6 +73,7 @@ public class BMServerConfigs {
         this.grapeVinesInTaigas = builder.comment("Allow grape vines to generate in any biome categorized as a taiga?").define("grapeVinesInTaiga", true);
         this.bananaJunglesInJungles = builder.comment("Allow banana jungles to generate in any biome categorized as a jungle?").define("bananaJunglesInJungles", true);
         this.turtleFriedEggFlowersInBeaches = builder.comment("Allow turtle fried egg flowers to generate in any biome categorized as a beach?").define("turtleFriedEggFlowersInBeaches", true);
+        this.enderDragonFriedEggFlowersInTheEnd = builder.comment("Allow ender dragon fried egg flowers to generate in any biome categorized as a the End?").define("enderDragonFriedEggFlowersInTheEnd", true);
         builder.pop();
 
         builder.push("biomeGeneration");

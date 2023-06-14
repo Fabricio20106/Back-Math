@@ -33,7 +33,7 @@ public class TheAljanTeleporter implements ITeleporter {
             y = thisPos.getY();
         }
 
-        BlockPos destinationPos = new BlockPos(thisPos.getX() + 2, y, thisPos.getZ());
+        BlockPos destinationPos = new BlockPos(thisPos.getX() + 2.5f, y, thisPos.getZ());
 
         int tries = 0;
         while ((destinationWorld.getBlockState(destinationPos).getMaterial() != Material.AIR) && !destinationWorld.getBlockState(destinationPos).isReplaceable(Fluids.WATER) &&

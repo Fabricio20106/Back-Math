@@ -8,8 +8,11 @@
     "backmath:cobbled_aljanstone_wall",
     "backmath:aljanstone_wall",
     "backmath:sleepingstone_wall",
-    "backmath:polished_sleepingstone_wall",
     "backmath:sleepingstone_brick_wall",
-    "backmath:hillaried_stone_wall"
+    "backmath:polished_sleepingstone_wall",
+    "backmath:hillaried_stone_wall",
+    "backmath:coldterm_brick_wall",
+    "backmath:warmterm_brick_wall",
+    "backmath:obsiditerm_brick_wall"
   ]
 }

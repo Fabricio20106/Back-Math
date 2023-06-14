@@ -440,6 +440,22 @@ public class BMBlocks {
     public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_LOG = BLOCKS.register("stripped_crystalline_birch_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_LOG).notSolid()));
     public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_WOOD = BLOCKS.register("stripped_crystalline_birch_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_WOOD).notSolid()));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_GRAPE_VINE_POST = BLOCKS.register("crystalline_birch_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(BMBlocks.OAK_GRAPE_VINE_POST.get()).notSolid()));
+    public static final RegistryObject<Block> ENDER_DRAGON_FRIED_EGG_FLOWER = BLOCKS.register("ender_dragon_fried_egg_flower", () -> new EDFEFlowerBlock(AbstractBlock.Properties.from(Blocks.POPPY)));
+    public static final RegistryObject<Block> POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER = BLOCKS.register("potted_ender_dragon_fried_egg_flower", () -> new FlowerPotBlock(ENDER_DRAGON_FRIED_EGG_FLOWER.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
+
+    // Coldterm, Warmterm and Obsiditerm Bricks
+    public static final RegistryObject<Block> COLDTERM_BRICKS = BLOCKS.register("coldterm_bricks", () -> new Block(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> COLDTERM_BRICK_STAIRS = BLOCKS.register("coldterm_brick_stairs", () -> new StairsBlock(BMBlocks.MID_TERM_BLOCK.get().getDefaultState(), AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> COLDTERM_BRICK_SLAB = BLOCKS.register("coldterm_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> COLDTERM_BRICK_WALL = BLOCKS.register("coldterm_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> WARMTERM_BRICKS = BLOCKS.register("warmterm_bricks", () -> new Block(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> WARMTERM_BRICK_STAIRS = BLOCKS.register("warmterm_brick_stairs", () -> new StairsBlock(BMBlocks.MID_TERM_BLOCK.get().getDefaultState(), AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> WARMTERM_BRICK_SLAB = BLOCKS.register("warmterm_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> WARMTERM_BRICK_WALL = BLOCKS.register("warmterm_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> OBSIDITERM_BRICKS = BLOCKS.register("obsiditerm_bricks", () -> new Block(AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
+    public static final RegistryObject<Block> OBSIDITERM_BRICK_STAIRS = BLOCKS.register("obsiditerm_brick_stairs", () -> new StairsBlock(Blocks.OBSIDIAN.getDefaultState(), AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
+    public static final RegistryObject<Block> OBSIDITERM_BRICK_SLAB = BLOCKS.register("obsiditerm_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
+    public static final RegistryObject<Block> OBSIDITERM_BRICK_WALL = BLOCKS.register("obsiditerm_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
 
     // The Aljan
     public static final RegistryObject<Block> ALJAMIC_SAND = BLOCKS.register("aljamic_sand", () -> new SandBlock(0xd4eaea, AbstractBlock.Properties.from(Blocks.SAND)));
