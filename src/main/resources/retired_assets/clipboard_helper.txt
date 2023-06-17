@@ -22,3 +22,13 @@
               ],
               "name": "backmath:jabuticaba_sapling"
             }
+
+    //public static final Feature<BlockStateProvidingFeatureConfig> ALJANSTONE_BOULDER_F = register("aljanstone_boulder", new BMBlockBlobFeature(BlockStateProvidingFeatureConfig
+    //        .field_236453_a_));
+
+    // Aljan Boulders
+    // public static final ConfiguredFeature<?, ?> ALJANSTONE_BOULDER = register("aljanstone_boulder", Feature.FOREST_ROCK.withConfiguration(new BlockStateFeatureConfig(
+    //        BMBlocks.ALJANSTONE.get().getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3);
+
+    public static final ConfiguredFeature<?, ?> COBBLED_ALJANSTONE_BOULDER = register("cobbled_aljanstone_boulder", Feature.FOREST_ROCK.withConfiguration(new BlockStateFeatureConfig(
+            BMBlocks.COBBLED_ALJANSTONE.get().getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3);

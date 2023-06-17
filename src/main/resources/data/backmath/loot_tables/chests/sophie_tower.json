@@ -15,6 +15,26 @@
         },
         {
           "type": "minecraft:item",
+          "weight": 5,
+          "name": "backmath:manga_juice"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 0.0,
+                "max": 1.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "backmath:queen_sophie_battle_pack"
+        },
+        {
+          "type": "minecraft:item",
           "weight": 15,
           "name": "backmath:honeyed_bread"
         },
@@ -23,7 +43,9 @@
           "weight": 2,
           "functions": [
             {
-              "function": "minecraft:enchant_randomly"
+              "function": "minecraft:enchant_with_levels",
+              "levels": 15,
+              "treasure": true
             }
           ],
           "name": "backmath:devil_sparey"
@@ -53,7 +75,9 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:enchant_randomly"
+              "function": "minecraft:enchant_with_levels",
+              "levels": 15,
+              "treasure": true
             }
           ],
           "name": "backmath:espada_de_manteiga"
@@ -63,7 +87,9 @@
           "weight": 15,
           "functions": [
             {
-              "function": "minecraft:enchant_randomly"
+              "function": "minecraft:enchant_with_levels",
+              "levels": 15,
+              "treasure": true
             }
           ],
           "name": "backmath:empada_de_ouro"
@@ -78,7 +104,9 @@
           "weight": 10,
           "functions": [
             {
-              "function": "minecraft:enchant_randomly"
+              "function": "minecraft:enchant_with_levels",
+              "levels": 15,
+              "treasure": true
             }
           ],
           "name": "backmath:angelic_crossbow"

@@ -6,50 +6,32 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "min": 0.0,
-                "max": 1.0
-              }
-            }
-          ],
           "name": "backmath:amaracamel_batter_bag"
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
+        },
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0.0,
-                "max": 2.0,
-                "type": "minecraft:uniform"
-              }
-            },
-            {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "min": 0.0,
-                "max": 1.0
-              }
-            }
-          ],
           "name": "backmath:cooked_egg_bag"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:turtle_fried_egg_bag"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "min": 0.0,
+            "max": 3.0,
+            "type": "minecraft:uniform"
+          }
+        },
+        {
+          "function": "minecraft:looting_enchant",
+          "count": {
+            "min": 0.0,
+            "max": 1.0
+          }
         }
       ]
     },
@@ -62,8 +44,8 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 1.0,
+                "min": 0.0,
+                "max": 3.0,
                 "type": "minecraft:uniform"
               }
             },
@@ -88,8 +70,27 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 3.0,
+                "min": 0.0,
+                "max": 2.0,
+                "type": "minecraft:uniform"
+              }
+            }
+          ],
+          "name": "backmath:honeyed_bread"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "min": 2.0,
+                "max": 5.0,
                 "type": "minecraft:uniform"
               }
             },

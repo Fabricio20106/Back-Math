@@ -15,6 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -94,5 +95,26 @@ public class AngrySophie extends MonsterEntity {
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
         this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_HELMET.get()));
+    }
+
+    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
+        Entity entity = source.getTrueSource();
+        if (entity instanceof CreeperEntity) {
+            CreeperEntity creeper = (CreeperEntity) entity;
+            // If it is a charged creeper
+            if (creeper.ableToCauseSkullDrop()) {
+                ItemStack skullStack = this.getSkullDrop();
+                if (!skullStack.isEmpty()) {
+                    creeper.incrementDroppedSkulls();
+                    this.entityDropItem(skullStack);
+                }
+            }
+        }
+
+    }
+
+    protected ItemStack getSkullDrop() {
+        return new ItemStack(AxolotlTest.ANGRY_SOPHIE_HEAD.get());
     }
 }

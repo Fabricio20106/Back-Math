@@ -6,6 +6,18 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "backmath:milked_olive_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:milked_empada_de_ouro"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:milked_espada_de_manteiga"
+        },
+        {
+          "type": "minecraft:item",
           "name": "backmath:milked_devil_sword"
         },
         {
@@ -14,11 +26,19 @@
         },
         {
           "type": "minecraft:item",
-          "name": "backmath:milked_espada_de_manteiga"
+          "name": "backmath:milked_iron_sword"
         },
         {
           "type": "minecraft:item",
-          "name": "backmath:milked_empada_de_ouro"
+          "name": "backmath:milked_wooden_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:milked_golden_sword"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:milked_devil_sparey"
         }
       ],
       "conditions": [
@@ -67,7 +87,7 @@
               "function": "minecraft:set_count",
               "count": {
                 "min": 3.0,
-                "max": 32.0,
+                "max": 6.0,
                 "type": "minecraft:uniform"
               }
             },

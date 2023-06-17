@@ -17,7 +17,6 @@ import net.minecraft.world.gen.foliageplacer.*;
 import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
 import net.minecraft.world.gen.placement.ChanceConfig;
 import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.DarkOakTrunkPlacer;
 import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
@@ -396,10 +395,6 @@ public class BMFeatures {
                     MEGA_AVONDALIC_WILLOW.withChance(0.85641026f), AVONDALIC_WILLOW.withChance(0.99f)), AVONDALIC_WILLOW)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
             .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
 
-    // JUNGLE_BUSH = register("jungle_bush", Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Features.States.JUNGLE_LOG),
-    // new SimpleBlockStateProvider(Features.States.OAK_LEAVES), new BushFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(1), 2),
-    // new StraightTrunkPlacer(1, 0, 0), new TwoLayerFeature(0, 0, 0))).func_236702_a_(Type.MOTION_BLOCKING_NO_LEAVES).build()));
-
     public static final ConfiguredFeature<?, ?> AVONDALIC_BUSH = register("avondalic_bush", Feature.TREE.withConfiguration(
             new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(BMBlocks.AVONDALIC_WILLOW_LOG.get().getDefaultState()),
@@ -425,6 +420,13 @@ public class BMFeatures {
 
     public static final ConfiguredFeature<?, ?> ALJANCAP_LEAF_PILE = register("aljancap_leaf_pile", Feature.BLOCK_PILE.withConfiguration(
             new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider().addWeightedBlockstate(BMBlocks.ALJANCAP_LEAVES.get().getDefaultState(), 19))));
+
+    /*public static final ConfiguredFeature<?, ?> ALJANSTONE_BOULDER = register("aljanstone_boulder", BMFeatureRegister.ALJANSTONE_BOULDER.get().withConfiguration(new BlockStateProvidingFeatureConfig(
+            new WeightedBlockStateProvider().addWeightedBlockstate(BMBlocks.ALJANSTONE.get().getDefaultState(), 7).addWeightedBlockstate(BMBlocks.COBBLED_ALJANSTONE.get()
+                    .getDefaultState(), 4))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3));
+
+    public static final ConfiguredFeature<?, ?> SLEEPINGSTONE_BOULDER = register("sleepingstone_boulder", Feature.FOREST_ROCK.withConfiguration(new BlockStateFeatureConfig(
+            BMBlocks.SLEEPINGSTONE.get().getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3);*/
 
     /**
      TODO: BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE

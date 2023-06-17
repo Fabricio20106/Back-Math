@@ -273,6 +273,46 @@ Changes, Additions, Removals and etcetera:
 - Fixed formatting and spelling mistakes on Back Maths advancements
 - Candy Yellow and Pink Turtle Helmets now have crafting recipes
 
+Loot Table Changes:
+- Angry Sophie:
+    - No longer drop Queen Sophie Battle Packs; Are now found in Sophie Tower Chests
+    - Now 0-3 chocolates drop instead of 1
+    - Devil Sparey drop chances are now 5% instead of 2,5%
+    - Now drops 2-5 raw sophies instead of 1-3
+    - Now can only drop head if killed by a charged creeper
+- Wanderer Sophie:
+    - Now drops 0-3 amaracamel batter bags, fried egg bags or turtle fried egg bags
+    - Now 0-3 chocolates drop instead of 1
+    - Can now drop 0-2 honeyed bread
+    - Now drops 2-5 raw sophies instead of 1-3
+- Insomnia Sophies and Archer Insomnia Sophies:
+    - Now drops 0-4 aljame tea boxes instead of 0-2
+    - Now drops 1-5 raw sophies instead of 1-3
+    - Now drops 0-6 aljames instead of 2-5
+- Queen Sophie:
+    - Now drops 3-6 raw sophies instead of 3-32
+    - Can now drop these milked swords:
+      - Olive Sword
+      - Iron Sword
+      - Wooden Sword
+      - Golden Sword
+      - Devil Sparey
+- Warrior Sophie:
+    - Now drops 1-5 raw sophies instead of 1-3
+    - Can now drop 1-2 apple juices, if killed by the player
+- Archer Lucia:
+    - Now drops 0-3 lagusta bags instead of 0-2
+    - Now drops 1-5 raw lucias instead of 1-3
+- Karate Lucia:
+    - Now drops 1-5 raw lucias instead of 1-3
+    - Can now drop 0-1 cookie pots
+- Shy Fabricio:
+    - Now drops 1-5 raw fabricios instead of 1-3
+    - Now drops 0-1 Toti instead of 1
+    - Can no longer drop devil and angelic ingots and milkllarities
+    - Jantical drop chances are now 7,5% instead of 0,5%
+    - Notebook drop chances were increased from 0,5% to 5%
+
 Bugfixes:
 
 - "Aaahh!", "Both Sides, Combined" and "Not Related to Hermitcraft" advancements weren't achievable since their parent was pointing to

@@ -1,13 +1,13 @@
 {
   "config": {
     "top_material": {
-      "Name": "minecraft:dirt"
+      "Name": "backmath:aljamic_grass_block"
     },
     "under_material": {
-      "Name": "minecraft:dirt"
+      "Name": "backmath:aljamic_dirt"
     },
     "underwater_material": {
-      "Name": "minecraft:dirt"
+      "Name": "backmath:aljamic_sand"
     }
   },
   "type": "backmath:aljan"
