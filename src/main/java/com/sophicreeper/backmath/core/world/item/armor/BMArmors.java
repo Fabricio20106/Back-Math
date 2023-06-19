@@ -27,9 +27,9 @@ public class BMArmors implements IArmorMaterial {
     private final float knockbackResistance;
     private final LazyValue<Ingredient> repairIngredient;
 
-    public BMArmors(String name, int attackDamage, int[] damageReductionAmountArray, int enchantmentValue, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
+    public BMArmors(String name, int damageFactor, int[] damageReductionAmountArray, int enchantmentValue, SoundEvent equipSound, float toughness, float knockbackResistance, Supplier<Ingredient> repairIngredient) {
         this.name = name;
-        this.maxDamageFactor = attackDamage;
+        this.maxDamageFactor = damageFactor;
         this.damageReductionAmountArray = damageReductionAmountArray;
         this.enchantmentValue = enchantmentValue;
         this.equipSound = equipSound;
@@ -189,6 +189,12 @@ public class BMArmors implements IArmorMaterial {
         public CandyPinkTurtle() {
             super("backmath:candy_pink_turtle", 25, new int[] {2, 5, 6, 2}, 9, SoundEvents.ITEM_ARMOR_EQUIP_TURTLE, 0.0f, 0.0f, () ->
                     Ingredient.EMPTY);
+        }
+    }
+    public static class GoldenPlated extends BMArmors {
+        public GoldenPlated() {
+            super("backmath:golden_plated", 17, new int[] {2, 6, 5, 2}, 15, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0,
+                    () -> Ingredient.fromTag(BMTags.Items.INGOTS_CHRISTIAN_MID_TERM));
         }
     }
 

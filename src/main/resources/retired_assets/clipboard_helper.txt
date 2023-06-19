@@ -32,3 +32,5 @@
 
     public static final ConfiguredFeature<?, ?> COBBLED_ALJANSTONE_BOULDER = register("cobbled_aljanstone_boulder", Feature.FOREST_ROCK.withConfiguration(new BlockStateFeatureConfig(
             BMBlocks.COBBLED_ALJANSTONE.get().getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3);
+
+// public static final RegistryObject<Item> GOLDEN_PLATED = ITEMS.register("peitoraldeouro", () -> new Item(new Item.Properties().group(BMWeaponryTab.TAB)));

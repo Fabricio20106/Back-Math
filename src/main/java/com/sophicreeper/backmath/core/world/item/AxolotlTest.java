@@ -728,7 +728,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> BAKUGOU_BLOUSE = ITEMS.register("bakugou_blouse", () -> new BMArmorItem(BAKUGOU_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> BAKUGOU_PANTS = ITEMS.register("bakugou_pants", () -> new BMArmorItem(BAKUGOU_ARMOR, EquipmentSlotType.LEGS, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> BAKUGOU_SHOES = ITEMS.register("bakugou_shoes", () -> new BMArmorItem(BAKUGOU_ARMOR, EquipmentSlotType.FEET, new Item.Properties().group(BMWeaponryTab.TAB)));
-    public static final RegistryObject<Item> GOLDEN_PLATED = ITEMS.register("peitoraldeouro", () -> new Item(new Item.Properties().group(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> GOLDEN_PLATED = ITEMS.register("peitoraldeouro", () -> new BMArmorItem(GOLDEN_PLATED_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> CANDY_YELLOW_TURTLE_HELMET = ITEMS.register("candy_yellow_turtle_helmet", () -> new BMArmorItem(CANDY_YELLOW_TURTLE_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> CANDY_PINK_TURTLE_HELMET = ITEMS.register("candy_pink_turtle_helmet", () -> new BMArmorItem(CANDY_PINK_TURTLE_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> CAT_TIARA = ITEMS.register("tiara_de_gato", () -> new BMArmorItem(CAT_TIARA_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().group(BMWeaponryTab.TAB)));

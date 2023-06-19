@@ -13,6 +13,9 @@ public class BMSetFields {
     public static final BMArmors ALJAMIC_BONE_ARMOR = new BMArmors.AljamicBone();
     public static final BMArmors GOLDEN_HALO_ARMOR = new BMArmors.GoldenHalo();
 
+    // Chestplates
+    public static final BMArmors GOLDEN_PLATED_ARMOR = new BMArmors.GoldenPlated();
+
     // (Mostly) Full armor sets
     public static final BMArmors ANGELIC_ARMOR = new BMArmors.Angelic();
     public static final BMArmors DEVIL_ARMOR = new BMArmors.Devil();
