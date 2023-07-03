@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.core.world.entity.goal.BMRangedBowAttackGoal;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
 import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
+import com.sophicreeper.backmath.core.world.item.weapon.BMBowItem;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -81,7 +82,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
             this.goalSelector.removeGoal(this.aiAttackOnCollide);
             this.goalSelector.removeGoal(this.aiArrowAttack);
             ItemStack bowStack = this.getHeldItem(ProjectileHelper.getHandWith(this, AxolotlTest.ANGELIC_BOW.get()));
-            if (bowStack.getItem() instanceof BowItem) {
+            if (bowStack.getItem() instanceof BMBowItem) {
                 int attackCooldown = 20;
                 if (this.world.getDifficulty() != Difficulty.HARD) {
                     attackCooldown = 40;
@@ -120,7 +121,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         ItemStack ammoStack = this.findAmmo(this.getHeldItem(ProjectileHelper.getHandWith(this, AxolotlTest.ANGELIC_BOW.get())));
         AbstractArrowEntity arrow = this.fireArrow(ammoStack, distanceFactor);
 
-        if (this.getHeldItemMainhand().getItem() instanceof BowItem) arrow = ((BowItem) this.getHeldItemMainhand().getItem()).customArrow(arrow);
+        if (this.getHeldItemMainhand().getItem() instanceof BMBowItem) arrow = ((BMBowItem) this.getHeldItemMainhand().getItem()).customArrow(arrow);
 
         double d0 = target.getPosX() - this.getPosX();
         double d1 = target.getPosYHeight(0.3333333333333333D) - arrow.getPosY();
@@ -137,7 +138,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     }
 
     public boolean func_230280_a_(ShootableItem shootableItem) {
-        return shootableItem instanceof BowItem;
+        return shootableItem instanceof BMBowItem || shootableItem instanceof BowItem;
     }
 
     public static AttributeModifierMap.MutableAttribute createMobAttributes() {

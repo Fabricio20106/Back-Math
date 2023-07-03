@@ -3,10 +3,8 @@ package com.sophicreeper.backmath.core.client.model.entity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.core.world.entity.monster.QueenSophie;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -88,8 +86,8 @@ public class QueenSophieModel extends BipedModel<QueenSophie> {
     /**
      * Sets this entity's model rotation angles
      */
-    public void setRotationAngles(QueenSophie queenSophie, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        /*this.bipedHead.rotateAngleY = netHeadYaw * 0.017453292f;
+    /*public void setRotationAngles(QueenSophie queenSophie, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        this.bipedHead.rotateAngleY = netHeadYaw * 0.017453292f;
         this.bipedHead.rotateAngleX = headPitch * 0.017453292f;
 
         this.bipedBody.rotateAngleY = 0;
@@ -128,9 +126,9 @@ public class QueenSophieModel extends BipedModel<QueenSophie> {
         this.bipedHead.rotationPointY = 24;
         this.bipedBody.rotationPointY = 24;
         this.bipedRightArm.rotationPointY = 24;
-        this.bipedLeftArm.rotationPointY = 24;*/
+        this.bipedLeftArm.rotationPointY = 24;
         super.setRotationAngles(queenSophie, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-    }
+    }*/
 
     @Override
     public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {

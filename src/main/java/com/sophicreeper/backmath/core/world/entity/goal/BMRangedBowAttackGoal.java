@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.core.world.entity.goal;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
+import com.sophicreeper.backmath.core.world.item.weapon.BMBowItem;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -130,7 +131,7 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
                     int i = this.entity.getItemInUseMaxCount();
                     if (i >= 20) {
                         this.entity.resetActiveHand();
-                        this.entity.attackEntityWithRangedAttack(livingEntity, BowItem.getArrowVelocity(i));
+                        this.entity.attackEntityWithRangedAttack(livingEntity, BMBowItem.getArrowVelocity(i));
                         this.attackTime = this.attackCooldown;
                     }
                 }

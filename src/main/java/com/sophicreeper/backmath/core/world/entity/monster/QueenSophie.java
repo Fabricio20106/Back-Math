@@ -17,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -37,7 +38,7 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 
 public class QueenSophie extends MonsterEntity {
-    private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS);
+    private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
     private static final DataParameter<Byte> SPELL = EntityDataManager.createKey(QueenSophie.class, DataSerializers.BYTE);
     protected int spellTicks;
 
@@ -45,7 +46,7 @@ public class QueenSophie extends MonsterEntity {
         super(type, world);
         this.setHealth(this.getMaxHealth());
         this.getNavigator().setCanSwim(true);
-        this.experienceValue = 150;
+        this.experienceValue = 450;
     }
 
     protected void registerData() {
@@ -83,10 +84,9 @@ public class QueenSophie extends MonsterEntity {
         this.goalSelector.addGoal(2, new SummonArcherInsomniaSophiesGoal());
         this.goalSelector.addGoal(2, new SummonInsomniaSophiesGoal());
         this.goalSelector.addGoal(3, new EquipArmorAndHealGoal());
-        this.goalSelector.addGoal(4, new PanicGoal(this, 0.40f));
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(5, new LookAtGoal(this, WarriorSophie.class, 6.0F));
-        this.goalSelector.addGoal(5, new LookAtGoal(this, ArcherLucia.class, 6.0F));
+        this.goalSelector.addGoal(5, new LookAtGoal(this, ArcherInsomniaSophie.class, 6.0F));
         this.goalSelector.addGoal(5, new LookAtGoal(this, InsomniaSophie.class, 6.0F));
         this.goalSelector.addGoal(6, new LookRandomlyGoal(this));
         this.applyMobAI();
@@ -96,7 +96,6 @@ public class QueenSophie extends MonsterEntity {
     protected void applyMobAI() {
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenSophie.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, true));
@@ -106,6 +105,7 @@ public class QueenSophie extends MonsterEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBones.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SleepishSkeleton.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
     }
 
     protected void updateAITasks() {
@@ -113,10 +113,10 @@ public class QueenSophie extends MonsterEntity {
         if (this.spellTicks > 0) {
             --this.spellTicks;
         }
-        if (this.ticksExisted % 10 == 0) {
+        if (this.ticksExisted % 20 == 0) {
             this.heal(2.0F);
         }
-        if (this.ticksExisted % 20 == 0) {
+        if (this.ticksExisted % 30 == 0) {
             this.heal(3.0F);
         }
 
@@ -138,9 +138,9 @@ public class QueenSophie extends MonsterEntity {
 
     protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
         super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
-        ItemEntity qsssStack = this.entityDropItem(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get());
-        if (qsssStack != null) {
-            qsssStack.setNoDespawn();
+        ItemEntity staffStack = this.entityDropItem(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get());
+        if (staffStack != null) {
+            staffStack.setNoDespawn();
         }
     }
 
@@ -166,11 +166,16 @@ public class QueenSophie extends MonsterEntity {
         return false;
     }
 
+    @Override
+    public boolean canDespawn(double distanceToClosestPlayer) {
+        return false;
+    }
+
     public static AttributeModifierMap.MutableAttribute createQueenSophieAttributes() {
         return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 8.0f)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 350.0f)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 100.0f)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 8)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 250)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 100)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.30f);
     }
 
@@ -189,7 +194,7 @@ public class QueenSophie extends MonsterEntity {
         SUMMON_WARRIOR_SOPHIES(1),
         SUMMON_ARCHER_LUCIAS(2),
         SUMMON_INSOMNIA_SOPHIES(3),
-        EQUIP_MID_TERM_BREASTPLATE_AND_HEAL(4);
+        EQUIP_DIAMOND_CHESTPLATE_AND_HEAL(4);
 
         private final int id;
 
@@ -257,7 +262,7 @@ public class QueenSophie extends MonsterEntity {
 
         @Nullable
         protected SoundEvent getSpellPrepareSound() {
-            return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
+            return SoundEvents.ENTITY_EVOKER_PREPARE_SUMMON;
         }
 
         protected abstract QueenSophieSpells getSpellType();
@@ -298,7 +303,7 @@ public class QueenSophie extends MonsterEntity {
         }
 
         protected SoundEvent getSpellPrepareSound() {
-            return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
+            return SoundEvents.ENTITY_EVOKER_PREPARE_SUMMON;
         }
 
         protected QueenSophieSpells getSpellType() {
@@ -346,7 +351,7 @@ public class QueenSophie extends MonsterEntity {
         }
 
         protected SoundEvent getSpellPrepareSound() {
-            return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
+            return SoundEvents.ENTITY_EVOKER_PREPARE_SUMMON;
         }
 
         protected QueenSophieSpells getSpellType() {
@@ -394,7 +399,7 @@ public class QueenSophie extends MonsterEntity {
         }
 
         protected SoundEvent getSpellPrepareSound() {
-            return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
+            return SoundEvents.ENTITY_EVOKER_PREPARE_SUMMON;
         }
 
         protected QueenSophieSpells getSpellType() {
@@ -418,16 +423,16 @@ public class QueenSophie extends MonsterEntity {
         }
 
         protected void castSpell() {
-            QueenSophie.this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.MID_TERM_BREASTPLATE.get()));
+            QueenSophie.this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
             QueenSophie.this.heal(25.0f);
         }
 
         protected SoundEvent getSpellPrepareSound() {
-            return SoundEvents.ENTITY_EVOKER_CAST_SPELL;
+            return SoundEvents.ENTITY_EVOKER_PREPARE_ATTACK;
         }
 
         protected QueenSophieSpells getSpellType() {
-            return QueenSophieSpells.EQUIP_MID_TERM_BREASTPLATE_AND_HEAL;
+            return QueenSophieSpells.EQUIP_DIAMOND_CHESTPLATE_AND_HEAL;
         }
     }
 }

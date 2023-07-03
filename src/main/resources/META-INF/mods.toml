@@ -12,7 +12,6 @@ loaderVersion="[35,36,)" #mandatory This is typically bumped every Minecraft ver
 #license="All rights reserved"
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="http://my.issue.tracker/" #optional
-
 license="MIT License"
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
