@@ -1061,7 +1061,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         block(generated, "avondalic_willow_sapling");
         block(generated, "avondalic_willow_ladder");
         block(generated, "jabuticaba_ladder");
-        // block(generated, "goldenwood_ladder");
+        block(generated, "goldenwood_ladder");
         compat("cork_oak_door");
         sword("sleepingstone_sword");
         standard(handheld, "sleepingstone_pickaxe");
@@ -1076,6 +1076,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("ender_dragon_fried_egg_bag");
         compat("empty_ender_dragon_fried_egg_bag");
         block(generated, "ender_dragon_fried_egg_flower");
+        block(generated, "crystalline_birch_ladder");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

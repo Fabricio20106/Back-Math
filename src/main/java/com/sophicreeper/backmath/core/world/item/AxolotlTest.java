@@ -56,6 +56,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_TRAPDOOR = ITEMS.register("crystalline_birch_trapdoor", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_TRAPDOOR.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_PRESSURE_PLATE = ITEMS.register("crystalline_birch_pressure_plate", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_PRESSURE_PLATE.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_BUTTON = ITEMS.register("crystalline_birch_button", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_BUTTON.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> CRYSTALLINE_BIRCH_LADDER = ITEMS.register("crystalline_birch_ladder", () -> new BlockItem(BMBlocks.CRYSTALLINE_BIRCH_LADDER.get(), new Item.Properties().group(BMBlockTab.TAB)));
 
     // Goldenwood wood
     public static final RegistryObject<Item> GOLDENWOOD_LOG = ITEMS.register("goldenwood_log", () -> new BlockItem(BMBlocks.GOLDENWOOD_LOG.get(), new Item.Properties().rarity(Rarity.RARE).group(BMBlockTab.TAB)));
@@ -76,6 +77,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> GOLDENWOOD_TRAPDOOR = ITEMS.register("goldenwood_trapdoor", () -> new BlockItem(BMBlocks.GOLDENWOOD_TRAPDOOR.get(), new Item.Properties().rarity(Rarity.RARE).group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> GOLDENWOOD_PRESSURE_PLATE = ITEMS.register("goldenwood_pressure_plate", () -> new BlockItem(BMBlocks.GOLDENWOOD_PRESSURE_PLATE.get(), new Item.Properties().rarity(Rarity.RARE).group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> GOLDENWOOD_BUTTON = ITEMS.register("goldenwood_button", () -> new BlockItem(BMBlocks.GOLDENWOOD_BUTTON.get(), new Item.Properties().rarity(Rarity.RARE).group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> GOLDENWOOD_LADDER = ITEMS.register("goldenwood_ladder", () -> new BlockItem(BMBlocks.GOLDENWOOD_LADDER.get(), new Item.Properties().rarity(Rarity.RARE).group(BMBlockTab.TAB)));
 
     // Guava wood
     public static final RegistryObject<Item> GUAVA_LOG = ITEMS.register("guava_log", () -> new BlockItem(BMBlocks.GUAVA_LOG.get(), new Item.Properties().group(BMBlockTab.TAB)));

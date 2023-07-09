@@ -33,11 +33,11 @@ public class BMOreGeneration {
 
     public static void generateOres(final BiomeLoadingEvent event) {
         if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND)) && BMConfigs.SERVER_CONFIGS.devilOreGen.get()) {
-            generateOre(event.getGeneration(), BASE_STONE_OVERWORLD, BMBlocks.DEVIL_ORE.get().getDefaultState(), 6, 10, 117, 20);
+            generateOre(event.getGeneration(), BASE_STONE_OVERWORLD, BMBlocks.DEVIL_ORE.get().getDefaultState(), 6, 10, 63, 20);
         }
 
         if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND)) && BMConfigs.SERVER_CONFIGS.angelicOreGen.get()) {
-            generateOre(event.getGeneration(), BASE_STONE_OVERWORLD, BMBlocks.ANGELIC_ORE.get().getDefaultState(), 6, 10, 117, 20);
+            generateOre(event.getGeneration(), BASE_STONE_OVERWORLD, BMBlocks.ANGELIC_ORE.get().getDefaultState(), 6, 10, 63, 20);
         }
 
         if (Objects.equals(BMBiomes.ANGELIC_WOODS.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.abundantAngelicOreGen.get()) {
