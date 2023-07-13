@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:melon"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:melon_slice",
+      "count": 9
+    }
+  ],
+  "processingTime": 50
+}

@@ -1,0 +1,17 @@
+{
+  "type": "create:emptying",
+  "ingredients": [
+    {
+      "item": "backmath:mangaed_mango"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:mango"
+    },
+    {
+      "fluid": "backmath:liquid_manga",
+      "amount": 500
+    }
+  ]
+}

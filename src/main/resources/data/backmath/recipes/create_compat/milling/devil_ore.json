@@ -1,0 +1,27 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "tag": "forge:ores/devil"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:crushed_devil_ore"
+    }
+  ],
+  "processingTime": 400,
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:ores/devil",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    },
+    {
+      "condition": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

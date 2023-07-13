@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:mango"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:cut_mango",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

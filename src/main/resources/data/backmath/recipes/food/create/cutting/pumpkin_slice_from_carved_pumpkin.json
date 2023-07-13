@@ -1,0 +1,20 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    [
+      {
+        "item": "minecraft:carved_pumpkin"
+      },
+      {
+        "item": "minecraft:jack_o_lantern"
+      }
+   ]
+  ],
+  "results": [
+    {
+      "item": "backmath:pumpkin_slice",
+      "count": 8
+    }
+  ],
+  "processingTime": 50
+}

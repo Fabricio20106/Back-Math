@@ -1,0 +1,26 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "backmath:ender_dragon_fried_egg_flower"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:ender_dragon_fried_egg"
+    },
+    {
+      "item": "minecraft:purple_dye",
+      "chance": 0.05
+    },
+    {
+      "item": "minecraft:end_stone",
+      "chance": 0.05
+    },
+    {
+      "item": "minecraft:black_dye",
+      "chance": 0.1
+    }
+  ],
+  "processingTime": 50
+}

@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:guava_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_guava_log"
+    }
+  ],
+  "processingTime": 50
+}

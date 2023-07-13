@@ -1,0 +1,27 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "tag": "forge:ores/angelic"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:crushed_angelic_ore"
+    }
+  ],
+  "processingTime": 400,
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:ores/angelic",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    },
+    {
+      "condition": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "backmath:charjan_coal"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:poison_brown_dye"
+    },
+    {
+      "item": "minecraft:brown_dye",
+      "count": 2,
+      "chance": 0.1
+    }
+  ],
+  "processingTime": 100
+}

@@ -1,0 +1,24 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "backmath:jam_pot"
+    },
+    {
+      "fluid": "minecraft:water",
+      "nbt": {},
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:water_jam"
+    }
+  ],
+  "conditions": [
+    {
+      "condition": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

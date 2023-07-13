@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:aljamic_berry"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:cut_aljamic_berry",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

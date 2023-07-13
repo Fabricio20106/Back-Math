@@ -1,0 +1,22 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "backmath:turtle_fried_egg_flower"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:turtle_fried_egg"
+    },
+    {
+      "item": "minecraft:lime_dye",
+      "chance": 0.05
+    },
+    {
+      "item": "minecraft:sand",
+      "chance": 0.125
+    }
+  ],
+  "processingTime": 50
+}

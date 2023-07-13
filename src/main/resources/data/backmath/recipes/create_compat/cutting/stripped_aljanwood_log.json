@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:stripped_aljanwood_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:aljanwood_planks",
+      "count": 6
+    }
+  ],
+  "processingTime": 50
+}

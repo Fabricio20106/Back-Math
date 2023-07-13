@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:sweet_berries"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:sweet_berries_slice",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:cork_oak_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_cork_oak_log"
+    }
+  ],
+  "processingTime": 50
+}

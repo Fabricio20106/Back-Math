@@ -1,0 +1,19 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "backmath:crushed_mid_term_ore"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:mid_term_shard",
+      "count": 10
+    },
+    {
+      "item": "backmath:mid_term_shard",
+      "count": 5,
+      "chance": 0.5
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:stripped_avondalic_willow_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:avondalic_willow_planks",
+      "count": 6
+    }
+  ],
+  "processingTime": 50
+}

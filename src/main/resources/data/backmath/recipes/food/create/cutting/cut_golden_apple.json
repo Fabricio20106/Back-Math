@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:golden_apple"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:cut_golden_apple",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

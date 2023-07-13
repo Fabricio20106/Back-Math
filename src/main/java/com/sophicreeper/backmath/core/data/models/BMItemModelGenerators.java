@@ -1077,6 +1077,10 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("empty_ender_dragon_fried_egg_bag");
         block(generated, "ender_dragon_fried_egg_flower");
         block(generated, "crystalline_birch_ladder");
+        compat("crushed_devil_ore");
+        compat("crushed_angelic_ore");
+        compat("crushed_mid_term_ore");
+        compat("crushed_christian_mid_term");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

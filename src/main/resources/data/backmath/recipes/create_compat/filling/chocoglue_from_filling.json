@@ -1,0 +1,24 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "backmath:glue"
+    },
+    {
+      "fluid": "create:chocolate",
+      "nbt": {},
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:chocoglue"
+    }
+  ],
+  "conditions": [
+    {
+      "condition": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

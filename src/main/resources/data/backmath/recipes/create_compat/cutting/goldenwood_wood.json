@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:goldenwood_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_goldenwood_wood"
+    }
+  ],
+  "processingTime": 50
+}

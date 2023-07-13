@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:insomnian_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_insomnian_wood"
+    }
+  ],
+  "processingTime": 50
+}

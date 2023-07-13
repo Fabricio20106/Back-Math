@@ -1,0 +1,24 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "backmath:chocolate"
+    },
+    {
+      "fluid": "create:honey",
+      "nbt": {},
+      "amount": 250
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:honeyed_bread"
+    }
+  ],
+  "conditions": [
+    {
+      "condition": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

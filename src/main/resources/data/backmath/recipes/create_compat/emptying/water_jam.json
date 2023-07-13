@@ -1,0 +1,17 @@
+{
+  "type": "create:emptying",
+  "ingredients": [
+    {
+      "item": "backmath:water_jam"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:jam_pot"
+    },
+    {
+      "fluid": "minecraft:water",
+      "amount": 500
+    }
+  ]
+}

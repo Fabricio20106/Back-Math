@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:aljanwood_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_aljanwood_log"
+    }
+  ],
+  "processingTime": 50
+}

@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:stripped_insomnian_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:insomnian_planks",
+      "count": 6
+    }
+  ],
+  "processingTime": 50
+}

@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:stripped_jabuticaba_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:jabuticaba_planks",
+      "count": 6
+    }
+  ],
+  "processingTime": 50
+}

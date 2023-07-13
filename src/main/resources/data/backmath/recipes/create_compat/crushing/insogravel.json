@@ -1,0 +1,22 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "backmath:insogravel"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:aljamic_sand"
+    },
+    {
+      "item": "backmath:insoflint",
+      "chance": 0.1
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "chance": 0.05
+    }
+  ],
+  "processingTime": 250
+}

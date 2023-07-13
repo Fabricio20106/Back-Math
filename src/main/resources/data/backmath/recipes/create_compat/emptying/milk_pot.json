@@ -1,0 +1,17 @@
+{
+  "type": "create:emptying",
+  "ingredients": [
+    {
+      "item": "backmath:milk_pot"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:jam_pot"
+    },
+    {
+      "fluid": "create:milk",
+      "amount": 500
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "backmath:cooked_egg_flower"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:cooked_egg"
+    },
+    {
+      "item": "minecraft:lime_dye",
+      "chance": 0.05
+    }
+  ],
+  "processingTime": 50
+}

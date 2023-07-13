@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "create:dough"
+    },
+    {
+      "tag": "forge:dyes/orange"
+    }
+  ],
+  "result": {
+    "item": "backmath:sticky_amaracamel_ball"
+  }
+}

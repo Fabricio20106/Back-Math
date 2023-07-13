@@ -1,0 +1,27 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "tag": "forge:ores/mid_term"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:crushed_mid_term_ore"
+    }
+  ],
+  "processingTime": 400,
+  "conditions": [
+    {
+      "value": {
+        "tag": "forge:ores/mid_term",
+        "type": "forge:tag_empty"
+      },
+      "type": "forge:not"
+    },
+    {
+      "condition": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ]
+}

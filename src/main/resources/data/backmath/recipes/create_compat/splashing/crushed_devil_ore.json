@@ -1,0 +1,19 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "backmath:crushed_devil_ore"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:devil_nugget",
+      "count": 10
+    },
+    {
+      "item": "backmath:devil_nugget",
+      "count": 5,
+      "chance": 0.5
+    }
+  ]
+}

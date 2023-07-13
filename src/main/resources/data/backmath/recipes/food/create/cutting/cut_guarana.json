@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:guarana"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:cut_guarana",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:crystalline_birch_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_crystalline_birch_wood"
+    }
+  ],
+  "processingTime": 50
+}

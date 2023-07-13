@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:crystalline_birch_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_crystalline_birch_log"
+    }
+  ],
+  "processingTime": 50
+}

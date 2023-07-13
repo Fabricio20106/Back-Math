@@ -1,0 +1,19 @@
+{
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "backmath:red_yellow_flower"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:devil_dye",
+      "count": 2
+    },
+    {
+      "item": "minecraft:green_dye",
+      "chance": 0.05
+    }
+  ],
+  "processingTime": 50
+}

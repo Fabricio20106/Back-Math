@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "cavesandcliffs:glow_berries"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:glow_berries_slice",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

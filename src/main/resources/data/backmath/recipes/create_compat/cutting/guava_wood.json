@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:guava_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_guava_wood"
+    }
+  ],
+  "processingTime": 50
+}

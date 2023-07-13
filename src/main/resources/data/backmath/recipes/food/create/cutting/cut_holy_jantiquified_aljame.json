@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:holy_jantiquified_aljame"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:cut_holy_jantiquified_aljame",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

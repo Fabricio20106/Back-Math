@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:avondalic_willow_log"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_avondalic_willow_log"
+    }
+  ],
+  "processingTime": 50
+}

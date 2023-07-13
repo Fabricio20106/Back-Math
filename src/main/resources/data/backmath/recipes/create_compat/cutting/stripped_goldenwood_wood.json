@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:stripped_goldenwood_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:goldenwood_planks",
+      "count": 6
+    }
+  ],
+  "processingTime": 50
+}

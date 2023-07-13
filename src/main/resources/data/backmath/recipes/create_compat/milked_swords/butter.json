@@ -1,0 +1,17 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "backmath:espada_de_manteiga"
+    },
+    {
+      "fluidTag": "forge:milk",
+      "amount": 1000
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:milked_espada_de_manteiga"
+    }
+  ]
+}

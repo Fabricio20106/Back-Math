@@ -1,0 +1,14 @@
+{
+  "type": "create:splashing",
+  "ingredients": [
+    {
+      "item": "backmath:aljamic_sand"
+    }
+  ],
+  "results": [
+    {
+      "item": "minecraft:clay_ball",
+      "chance": 0.25
+    }
+  ]
+}

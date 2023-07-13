@@ -485,6 +485,10 @@ public class AxolotlTest {
     public static final RegistryObject<Item> RAW_ALJAMIC_COPPER = ITEMS.register("raw_aljamic_copper", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> RAW_ALJAMIC_TIN = ITEMS.register("raw_aljamic_tin", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> RAW_MOONER = ITEMS.register("raw_mooner", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
+    public static final RegistryObject<Item> CRUSHED_DEVIL_ORE = ITEMS.register("crushed_devil_ore", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
+    public static final RegistryObject<Item> CRUSHED_ANGELIC_ORE = ITEMS.register("crushed_angelic_ore", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
+    public static final RegistryObject<Item> CRUSHED_MID_TERM_ORE = ITEMS.register("crushed_mid_term_ore", () -> new GlisteringItem(new Item.Properties().group(BackLayer.TAB).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> CRUSHED_CHRISTIAN_MID_TERM = ITEMS.register("crushed_christian_mid_term", () -> new Item(new Item.Properties().group(BackLayer.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> MILKLLARITY = ITEMS.register("milkllarity", () -> new Item(new Item.Properties().group(BackLayer.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> EMOTIONAL_SINGULARITY = ITEMS.register("emotional_singularity", () -> new Item(new Item.Properties().group(BackLayer.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> HEAT_SINGULARITY = ITEMS.register("heat_singularity", () -> new Item(new Item.Properties().group(BackLayer.TAB).rarity(Rarity.UNCOMMON)));

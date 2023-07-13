@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "backmath:aljancap_wood"
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:stripped_aljancap_wood"
+    }
+  ],
+  "processingTime": 50
+}
