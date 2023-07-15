@@ -331,6 +331,11 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("obsiditerm_brick_stairs");
         withExistingParent("obsiditerm_brick_slab");
         withExistingParent("obsiditerm_brick_wall", modLoc("block/obsiditerm_brick_wall_inventory"));
+        withExistingParent("mossy_angelic_brick_wall", modLoc("block/mossy_angelic_brick_wall_inventory"));
+        withExistingParent("mossy_angelic_bricks");
+        withExistingParent("mossy_angelic_brick_stairs");
+        withExistingParent("mossy_angelic_brick_slab");
+        withExistingParent("angelic_pillar");
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -1081,6 +1086,8 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("crushed_angelic_ore");
         compat("crushed_mid_term_ore");
         compat("crushed_christian_mid_term");
+        compat("crushed_aljameed_ore");
+        compat("crushed_moonering_ore");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

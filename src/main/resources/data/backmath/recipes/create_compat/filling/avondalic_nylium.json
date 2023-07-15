@@ -1,0 +1,18 @@
+{
+  "type": "create:filling",
+  "ingredients": [
+    {
+      "item": "backmath:aljamic_dirt"
+    },
+    {
+      "fluid": "backmath:sleepishwater",
+      "nbt": {},
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:avondalic_nylium"
+    }
+  ]
+}

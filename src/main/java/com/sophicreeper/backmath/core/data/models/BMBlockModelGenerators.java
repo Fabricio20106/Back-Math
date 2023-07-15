@@ -409,6 +409,12 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         stairsBlock((StairsBlock) BMBlocks.OBSIDITERM_BRICK_STAIRS.get(), modLoc("block/obsiditerm_bricks"));
         slabBlock((SlabBlock) BMBlocks.OBSIDITERM_BRICK_SLAB.get(), modLoc("block/obsiditerm_bricks"), modLoc("block/obsiditerm_bricks"));
         wallBlock((WallBlock) BMBlocks.OBSIDITERM_BRICK_WALL.get(), modLoc("block/obsiditerm_bricks"));
+
+        simpleBlock(BMBlocks.MOSSY_ANGELIC_BRICKS.get());
+        stairsBlock((StairsBlock) BMBlocks.MOSSY_ANGELIC_BRICK_STAIRS.get(), modLoc("block/mossy_angelic_bricks"));
+        slabBlock((SlabBlock) BMBlocks.MOSSY_ANGELIC_BRICK_SLAB.get(), modLoc("block/mossy_angelic_bricks"), modLoc("block/mossy_angelic_bricks"));
+        wallBlock((WallBlock) BMBlocks.MOSSY_ANGELIC_BRICK_WALL.get(), modLoc("block/mossy_angelic_bricks"));
+        axisBlock((RotatedPillarBlock) BMBlocks.ANGELIC_PILLAR.get(), modLoc("block/angelic_pillar"));
     }
 
     public ModelBuilder<BlockModelBuilder> wallTorch(String name, ResourceLocation torch) {

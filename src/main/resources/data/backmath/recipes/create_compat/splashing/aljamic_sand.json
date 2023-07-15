@@ -7,6 +7,11 @@
   ],
   "results": [
     {
+      "item": "backmath:moonering_nugget",
+      "count": 3,
+      "chance": 0.125
+    },
+    {
       "item": "minecraft:clay_ball",
       "chance": 0.25
     }

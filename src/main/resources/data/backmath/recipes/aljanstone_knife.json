@@ -9,7 +9,7 @@
       "tag": "backmath:aljanstone_crafting_materials"
     },
     "Y": {
-      "tag": "forge:rods/aljanwood"
+      "tag": "backmath:aljan_recipe_sticks"
     }
   },
   "result": {

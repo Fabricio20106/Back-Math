@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.core.world.item.teas;
 
 import com.sophicreeper.backmath.core.config.BMConfigs;
+import com.sophicreeper.backmath.core.util.BMKeys;
 import com.sophicreeper.backmath.core.world.effect.BMEffects;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -115,7 +116,8 @@ public class PeaceTeaItem extends Item {
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".quote").mergeStyle(TextFormatting.GRAY));
-        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
+        if (!BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("messages.backmath.hold_shift"));
+        if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
         super.addInformation(stack, world, tooltip, flag);
     }
 }
