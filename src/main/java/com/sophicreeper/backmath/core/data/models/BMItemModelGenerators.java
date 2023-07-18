@@ -1088,6 +1088,12 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("crushed_christian_mid_term");
         compat("crushed_aljameed_ore");
         compat("crushed_moonering_ore");
+        compat("obsidian_infused_mid_term_warrior_helmet");
+        compat("upgrade_token_flame");
+        compat("upgrade_token_crystallizer_upg");
+        compat("upgrade_token_base");
+        compat("queen_lucy_shirt_current");
+        compat("queen_lucy_shirt_alt");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

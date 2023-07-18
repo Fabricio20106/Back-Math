@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " MB",
+    "M B",
+    " MB"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:rods/mid_term"
+    },
+    "B": {
+      "item": "minecraft:blaze_powder"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_bow"
+  }
+}

@@ -31,3 +31,22 @@ Prior fixes:
 - Updates Rainbow Pencil texture
 - Aljanstone and sleepingstone tools can now be crafted with any aljan sticks
 - Angelic Bricks are no longer "solid" (solid means transparent blocks, like crystalline birch, so they don't transform grass into dirt and you can't see through the ground)
+- Config "standingAljanTeleport" is no longer on by default
+
+17/07/2023:
+- Added OIMT Warrior Helmet
+- Added Upgrade Tokens (Base, Flame, and Crystallizer Upgrade)
+  - Currently they don't do anything.
+- Added Queen Lucy Shirts
+  - Current shirt designs: current and Sophie's alternate
+- Changed the textures of Mid-Term armor, sword and singularity
+- Changed the textures of Obsidian Infused Mid-Term armor and sword
+- Added the Insomnia Charm texture, not the item
+- Added Mid-Term Bow
+  - Does not require you to stop holding to fire
+  - Sets fire for ten seconds
+  - Does ten additional damage
+  - Does not consume durability
+- All Back Math bow stats can now be changed through the config file
+  - Parameters: forced critical arrow, can be damaged, additional arrow damage, flame in ticks, and fire rate delay
+- Changed the Crystalline Crystallizer recipe to a smithing recipe, and now uses the Crystallizer Upgrade Token

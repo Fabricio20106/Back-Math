@@ -269,6 +269,15 @@ public class ClientProxy extends CommonProxy {
         registerProperty(AxolotlTest.DEVIL_CROSSBOW.get(), new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack && !CrossbowItem.isCharged(stack) ? 1 : 0);
         registerProperty(AxolotlTest.DEVIL_CROSSBOW.get(), new ResourceLocation("charged"), (stack, world, livingEntity) -> livingEntity != null && CrossbowItem.isCharged(stack) ? 1 : 0);
         registerProperty(AxolotlTest.DEVIL_CROSSBOW.get(), new ResourceLocation("firework"), (stack, world, livingEntity) -> livingEntity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1 : 0);
+
+        registerProperty(AxolotlTest.MID_TERM_BOW.get(), new ResourceLocation("pull"), (stack, world, livingEntity) -> {
+            if (livingEntity == null) {
+                return 0;
+            } else {
+                return livingEntity.getActiveItemStack() != stack ? 0 : (float) (stack.getUseDuration() - livingEntity.getItemInUseCount()) / 20;
+            }
+        });
+        registerProperty(AxolotlTest.MID_TERM_BOW.get(), new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1 : 0);
     }
 
     @SubscribeEvent

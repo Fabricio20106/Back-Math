@@ -1,27 +1,40 @@
 package com.sophicreeper.backmath.core.world.item.weapon;
 
+import com.sophicreeper.backmath.core.client.BackMath;
+import com.sophicreeper.backmath.core.config.BMConfigs;
+import com.sophicreeper.backmath.core.config.BMServerConfigs;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.item.*;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.*;
+import net.minecraft.util.text.ChatType;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.function.Predicate;
 
 public class BMBowItem extends ShootableItem {
-    public boolean isFieryBowClass = false;
+    private final boolean forcedCriticalArrow;
+    private final boolean canBeDamaged;
+    private final int additionalArrowDamage;
+    private final int flameInTicks;
+    private final int fireRateDelay;
 
-    public BMBowItem(Properties properties) {
+    public BMBowItem(boolean forcedCriticalArrow, boolean canBeDamaged, int additionalArrowDamage, int flameInTicks, int fireRateDelay, Properties properties) {
         super(properties);
+        this.forcedCriticalArrow = forcedCriticalArrow;
+        this.canBeDamaged = canBeDamaged;
+        this.additionalArrowDamage = additionalArrowDamage;
+        this.flameInTicks = flameInTicks;
+        this.fireRateDelay = fireRateDelay;
     }
 
     /**
@@ -43,6 +56,9 @@ public class BMBowItem extends ShootableItem {
                 }
 
                 float arrowsVelocity = getArrowVelocity(i);
+                if (fireRateDelay < 22) {
+                    arrowsVelocity = 1;
+                }
                 if (!((double) arrowsVelocity < 0.1D)) {
                     boolean flag1 = player.abilities.isCreativeMode || (arrowStack.getItem() instanceof ArrowItem && ((ArrowItem) arrowStack.getItem()).isInfinite(arrowStack, stack, player));
                     if (!world.isRemote) {
@@ -50,9 +66,9 @@ public class BMBowItem extends ShootableItem {
                         AbstractArrowEntity arrowEntity = arrowitem.createArrow(world, arrowStack, player);
                         arrowEntity = customArrow(arrowEntity);
                         // arrowsEntity.shootFromRotation
-                        arrowEntity.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0.0F, arrowsVelocity * 3.0F, 1.0F);
+                        arrowEntity.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0, arrowsVelocity * 3, 1);
 
-                        if (arrowsVelocity == 1) {
+                        if (arrowsVelocity == 1 || forcedCriticalArrow) {
                             // If the arrow's velocity is at one, it marks the arrow as a critical arrow.
                             arrowEntity.setIsCritical(true);
                         }
@@ -62,6 +78,10 @@ public class BMBowItem extends ShootableItem {
                             // Adds additional damage to the arrow (or Power) to the arrow.
                             arrowEntity.setDamage(arrowEntity.getDamage() + (double) powerPredicate * 0.5D + 0.5D);
                         }
+                        arrowEntity.setDamage(arrowEntity.getDamage() + additionalArrowDamage);
+                        if (BMConfigs.SERVER_CONFIGS.bowDamageCounter.get()) {
+                            sendMessage(player, new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".arrow_damage", arrowEntity.getDamage()));
+                        }
 
                         int punchPredicate = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
                         if (punchPredicate > 0) {
@@ -69,12 +89,17 @@ public class BMBowItem extends ShootableItem {
                             arrowEntity.setKnockbackStrength(punchPredicate);
                         }
 
-                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0 || this.isFieryBowClass) {
-                            // Sets the target on fire for 100 ticks (or 5 seconds).
+                        // Sets the target on fire.
+                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
+                            // Default: 100 ticks (5 seconds)
                             arrowEntity.setFire(100);
+                        } else if (flameInTicks > 0) {
+                             arrowEntity.setFire(flameInTicks);
                         }
 
-                        stack.damageItem(1, player, (livingEntity) -> livingEntity.sendBreakAnimation(player.getActiveHand()));
+                        if (canBeDamaged) {
+                            stack.damageItem(1, player, (livingEntity) -> livingEntity.sendBreakAnimation(player.getActiveHand()));
+                        }
 
                         if (flag1 || player.abilities.isCreativeMode && arrowStack.getItem().isIn(ItemTags.ARROWS)) {
                             arrowEntity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
@@ -98,17 +123,18 @@ public class BMBowItem extends ShootableItem {
     }
 
     public static float getArrowVelocity(int charge) {
-        float f = (float) charge / 20;
-        f = (f * f + f * 2) / 3;
-        if (f > 1) {
-            f = 1;
+        float trueCharge = (float) charge / 20;
+        trueCharge = (trueCharge * trueCharge + trueCharge * 2) / 3;
+        if (trueCharge > 1) {
+            trueCharge = 1;
         }
 
-        return f;
+        return trueCharge;
     }
 
+    // Default is 72.000
     public int getUseDuration(ItemStack stack) {
-        return 72000;
+        return fireRateDelay;
     }
 
     public UseAction getUseAction(ItemStack stack) {
@@ -128,6 +154,10 @@ public class BMBowItem extends ShootableItem {
             player.setActiveHand(hand);
             return ActionResult.resultConsume(heldItemStack);
         }
+    }
+
+    private static void sendMessage(PlayerEntity player, ITextComponent text) {
+        ((ServerPlayerEntity) player).func_241151_a_(text, ChatType.GAME_INFO, Util.DUMMY_UUID);
     }
 
     public Predicate<ItemStack> getInventoryAmmoPredicate() {

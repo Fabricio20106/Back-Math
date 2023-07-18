@@ -15,6 +15,8 @@ public class BMSetFields {
 
     // Chestplates
     public static final BMArmors GOLDEN_PLATED_ARMOR = new BMArmors.GoldenPlated();
+    public static final BMArmors QLS_CURRENT = new BMArmors.QueenLucyShirt("current");
+    public static final BMArmors QLS_ALT = new BMArmors.QueenLucyShirt("alt");
 
     // (Mostly) Full armor sets
     public static final BMArmors ANGELIC_ARMOR = new BMArmors.Angelic();
@@ -35,6 +37,7 @@ public class BMSetFields {
     public static final BMArmors WARRIOR_ANGELIC_ARMOR = new BMArmors.WarriorAngelicHelmet();
     public static final BMArmors WARRIOR_DEVIL_ARMOR = new BMArmors.WarriorDevilHelmet();
     public static final BMArmors WARRIOR_MID_TERM_ARMOR = new BMArmors.WarriorMidTermHelmet();
+    public static final BMArmors WARRIOR_OBSIDIAN_INFUSED_MID_TERM_ARMOR = new BMArmors.WarriorObsidianInfusedMidTermHelmet();
     public static final BMArmors WARRIOR_HARDENED_AMARACAMEL_ARMOR = new BMArmors.WarriorHardenedAmaracamelHelmet();
     public static final BMArmors WARRIOR_ALJAMEED_ARMOR = new BMArmors.WarriorAljameedHelmet();
     public static final BMArmors WARRIOR_MOONERING_ARMOR = new BMArmors.WarriorMooneringHelmet();

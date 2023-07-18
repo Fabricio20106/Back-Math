@@ -51,6 +51,24 @@ public class BMServerConfigs {
     public final ForgeConfigSpec.BooleanValue peaceTeaInvisibilityToggle;
     public final ForgeConfigSpec.BooleanValue peaceTeaGlowingToggle;
 
+    // Gameplay Aspects - Items
+    public final ForgeConfigSpec.BooleanValue bowDamageCounter;
+    public final ForgeConfigSpec.BooleanValue devilBowFCA;
+    public final ForgeConfigSpec.BooleanValue devilBowCBD;
+    public final ForgeConfigSpec.IntValue devilBowAAD;
+    public final ForgeConfigSpec.IntValue devilBowFIT;
+    public final ForgeConfigSpec.IntValue devilBowFRD;
+    public final ForgeConfigSpec.BooleanValue angelicBowFCA;
+    public final ForgeConfigSpec.BooleanValue angelicBowCBD;
+    public final ForgeConfigSpec.IntValue angelicBowAAD;
+    public final ForgeConfigSpec.IntValue angelicBowFIT;
+    public final ForgeConfigSpec.IntValue angelicBowFRD;
+    public final ForgeConfigSpec.BooleanValue midTermBowFCA;
+    public final ForgeConfigSpec.BooleanValue midTermBowCBD;
+    public final ForgeConfigSpec.IntValue midTermBowAAD;
+    public final ForgeConfigSpec.IntValue midTermBowFIT;
+    public final ForgeConfigSpec.IntValue midTermBowFRD;
+
     public BMServerConfigs(ForgeConfigSpec.Builder builder) {
         builder.comment("Welcome to the Back Math configuration file. Created on April 08th and 09th, 2022 and made working on April 21st and 22nd, 2022.");
         builder.push("oreGeneration");
@@ -107,6 +125,28 @@ public class BMServerConfigs {
         this.standingAljanTeleport = builder.comment("When turned on, you'll be able to stand besides the portal stand and be teleported over.").define("standingAljanTeleport", false);
         this.peaceTeaInvisibilityToggle = builder.comment("Makes peace teas give you or the affected mob Invisibility.").define("peaceTea.invisibilityToggle", false);
         this.peaceTeaGlowingToggle = builder.comment("Makes peace teas give you or the affected mob Glowing.").define("peaceTea.glowingToggle", false);
+        builder.comment("Back Math Bow Configurations:");
+        this.bowDamageCounter = builder.comment("Show a damage counter when firing an arrow?").define("bowDamageCounter", false);
+        builder.comment("Devil Bow:");
+        this.devilBowFCA = builder.comment("Should a devil bow force its arrow to be critical?").define("devilBow.fCA", false);
+        this.devilBowCBD = builder.comment("Should a devil bow not lose durability when firing arrows?").define("devilBow.cBD", true);
+        this.devilBowAAD = builder.comment("Should a devil bow deal additional damage? Zero for no additional damage.").defineInRange("devilBow.aAD", 0, 0, 32767);
+        this.devilBowFIT = builder.comment("For how many ticks should a devil bow set mobs on fire? Zero for no fire.").defineInRange("devilBow.fIT", 100, 0, 32767);
+        this.devilBowFRD = builder.comment("How long should a devil bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("devilBow.fRD", 72000, 0, 72000);
+
+        builder.comment("Angelic Bow:");
+        this.angelicBowFCA = builder.comment("Should a angelic bow force its arrow to be critical?").define("angelicBow.fCA", false);
+        this.angelicBowCBD = builder.comment("Should a angelic bow not lose durability when firing arrows?").define("angelicBow.cBD", true);
+        this.angelicBowAAD = builder.comment("Should a angelic bow deal additional damage? Zero for no additional damage.").defineInRange("angelicBow.aAD", 0, 0, 32767);
+        this.angelicBowFIT = builder.comment("For how many ticks should a angelic bow set mobs on fire? Zero for no fire.").defineInRange("angelicBow.fIT", 0, 0, 32767);
+        this.angelicBowFRD = builder.comment("How long should a angelic bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("angelicBow.fRD", 72000, 0, 72000);
+
+        builder.comment("Mid-Term Bow:");
+        this.midTermBowFCA = builder.comment("Should a mid-term bow force its arrow to be critical?").define("midTermBow.fCA", true);
+        this.midTermBowCBD = builder.comment("Should a mid-term bow not lose durability when firing arrows?").define("midTermBow.cBD", false);
+        this.midTermBowAAD = builder.comment("Should a mid-term bow deal additional damage? Zero for no additional damage.").defineInRange("midTermBow.aAD", 5, 0, 32767);
+        this.midTermBowFIT = builder.comment("For how many ticks should a mid-term bow set mobs on fire? Zero for no fire.").defineInRange("midTermBow.fIT", 200, 0, 32767);
+        this.midTermBowFRD = builder.comment("How long should a mid-term bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("midTermBow.fRD", 10, 1, 72000);
         builder.pop();
     }
 }
