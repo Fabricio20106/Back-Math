@@ -475,6 +475,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> TITO = ITEMS.register("tito", () -> new TitoItem(new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> TOTI = ITEMS.register("toti", () -> new TotiItem(new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ANGRY_SOPHIE_HEAD = ITEMS.register("angry_sophie_head", () -> new BMHeadItem(BMBlocks.ANGRY_SOPHIE_HEAD.get(), BMBlocks.ANGRY_SOPHIE_WALL_HEAD.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> INSOMNIA_SOPHIE_HEAD = ITEMS.register("insomnia_sophie_head", () -> new BMHeadItem(BMBlocks.INSOMNIA_SOPHIE_HEAD.get(), BMBlocks.INSOMNIA_SOPHIE_WALL_HEAD.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ZOMBIE_FABRICIO_HEAD = ITEMS.register("zombie_fabricio_head", () -> new BMHeadItem(BMBlocks.ZOMBIE_FABRICIO_HEAD.get(), BMBlocks.ZOMBIE_FABRICIO_WALL_HEAD.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> QUEEN_SOPHIE_HEAD = ITEMS.register("queen_sophie_head", () -> new BMHeadItem(BMBlocks.QUEEN_SOPHIE_HEAD.get(), BMBlocks.QUEEN_SOPHIE_WALL_HEAD.get(), new Item.Properties().group(BMBlockTab.TAB).rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> QUEEN_SOPHIE_RELIC = ITEMS.register("queen_sophie_relic", () -> new BlockItem(BMBlocks.QUEEN_SOPHIE_RELIC.get(), new Item.Properties().group(BMBlockTab.TAB).isImmuneToFire().rarity(Rarity.EPIC)));

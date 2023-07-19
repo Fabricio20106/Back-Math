@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
+		"particle": "backmath:block/queen_sophie_head_side",
 		"side": "backmath:block/queen_sophie_head_side",
 		"top": "backmath:block/queen_sophie_head_top",
-		"crown": "backmath:block/queen_sophie_head_crown",
-		"particle": "#side"
+		"crown": "backmath:block/queen_sophie_head_crown"
 	},
 	"elements": [
 		{
@@ -70,14 +70,20 @@
 		}
 	],
 	"display": {
+		"ground": {
+			"translation": [0, 3.75, 0],
+			"scale": [0.75, 0.75, 0.75]
+		},
 		"gui": {
 			"rotation": [30, -135, 0],
-			"translation": [0, 4.25, 0],
-			"scale": [1.225, 1.225, 1.225]
+			"translation": [0, 2.25, 0]
 		},
 		"head": {
 			"translation": [0, 7, 0],
 			"scale": [1.7, 1.7, 1.7]
+		},
+		"fixed": {
+			"translation": [0, 3.75, 1]
 		}
 	}
 }

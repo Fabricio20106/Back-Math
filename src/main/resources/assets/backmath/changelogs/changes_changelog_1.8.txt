@@ -3,11 +3,11 @@ Prior fixes:
 - Renamed queen Sophie to queen Lucy (+ queen Sophie pet)
 - The QLSS is now animated
 
-13/07/2023:
+13/07/2023 (Thursday):
 - Added crushed devil, angelic, mid-term and christian mid-term ores
 - Added many Create compatibility recipes
 
-15/07/2023:
+15/07/2023 (Saturday):
 - Added crushed aljameed and moonering ores
 - Fixed some Create compat recipes
   - Added new milked sword recipes
@@ -33,7 +33,7 @@ Prior fixes:
 - Angelic Bricks are no longer "solid" (solid means transparent blocks, like crystalline birch, so they don't transform grass into dirt and you can't see through the ground)
 - Config "standingAljanTeleport" is no longer on by default
 
-17/07/2023:
+17/07/2023 (Monday):
 - Added OIMT Warrior Helmet
 - Added Upgrade Tokens (Base, Flame, and Crystallizer Upgrade)
   - Currently they don't do anything.
@@ -47,6 +47,23 @@ Prior fixes:
   - Sets fire for ten seconds
   - Does ten additional damage
   - Does not consume durability
+  - Can be spammed to fire arrows quickly
 - All Back Math bow stats can now be changed through the config file
-  - Parameters: forced critical arrow, can be damaged, additional arrow damage, flame in ticks, and fire rate delay
+  - Parameters: forced critical arrow (FCA), can be damaged (CBD), additional arrow damage (AAD), flame in ticks (FIT), and fire rate delay (FRD)
 - Changed the Crystalline Crystallizer recipe to a smithing recipe, and now uses the Crystallizer Upgrade Token
+
+18/07/2023 (Tuesday):
+- Aljan mobs no longer spawn with gold armor
+- When aljan mobs spawn with Archer Fabricio gear, they also spawn with chainmail leggings and boots
+- BUG: Fabricio Hideout Dungeons still spawn in the Nether (and possibly the End as well)
+- Added the Insomnia Sophie Head, intended for Back Math 1.6.0
+- Aljanwood, aljancap, insomnian, avondalic willow and amaracap leaves now use the vanilla biome tinting system
+  - The biome foliage colors have been changed accordingly
+- Added the fried stuffed cookie notebook recipe
+- Slightly changed the mid-term material texture in Silent Gear
+- Renamed various recipes
+- Added some new recipes
+  - Grindstone using avondalic willow
+- Updated Back Math's Brazilian Portuguese translation
+  - Everything but most advancement are translated now
+- Swapped the ⅔ in the name of two-thirds hillary items to 2/3

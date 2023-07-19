@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractIllagerEntity;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
@@ -21,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -105,5 +107,25 @@ public class InsomniaSophie extends MonsterEntity {
             }
             return true;
         }
+    }
+
+    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
+        Entity entity = source.getTrueSource();
+        if (entity instanceof CreeperEntity) {
+            CreeperEntity creeper = (CreeperEntity) entity;
+            // If it is a charged creeper
+            if (creeper.ableToCauseSkullDrop()) {
+                ItemStack skullStack = this.getSkullDrop();
+                if (!skullStack.isEmpty()) {
+                    creeper.incrementDroppedSkulls();
+                    this.entityDropItem(skullStack);
+                }
+            }
+        }
+    }
+
+    protected ItemStack getSkullDrop() {
+        return new ItemStack(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get());
     }
 }

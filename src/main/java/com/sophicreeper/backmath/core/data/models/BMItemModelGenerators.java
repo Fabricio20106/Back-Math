@@ -336,6 +336,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("mossy_angelic_brick_stairs");
         withExistingParent("mossy_angelic_brick_slab");
         withExistingParent("angelic_pillar");
+        withExistingParent("insomnia_sophie_head");
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));

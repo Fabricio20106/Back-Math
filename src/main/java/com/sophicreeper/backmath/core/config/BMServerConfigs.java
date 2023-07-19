@@ -144,7 +144,7 @@ public class BMServerConfigs {
         builder.comment("Mid-Term Bow:");
         this.midTermBowFCA = builder.comment("Should a mid-term bow force its arrow to be critical?").define("midTermBow.fCA", true);
         this.midTermBowCBD = builder.comment("Should a mid-term bow not lose durability when firing arrows?").define("midTermBow.cBD", false);
-        this.midTermBowAAD = builder.comment("Should a mid-term bow deal additional damage? Zero for no additional damage.").defineInRange("midTermBow.aAD", 5, 0, 32767);
+        this.midTermBowAAD = builder.comment("Should a mid-term bow deal additional damage? Zero for no additional damage.").defineInRange("midTermBow.aAD", 0, 0, 32767);
         this.midTermBowFIT = builder.comment("For how many ticks should a mid-term bow set mobs on fire? Zero for no fire.").defineInRange("midTermBow.fIT", 200, 0, 32767);
         this.midTermBowFRD = builder.comment("How long should a mid-term bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("midTermBow.fRD", 10, 1, 72000);
         builder.pop();

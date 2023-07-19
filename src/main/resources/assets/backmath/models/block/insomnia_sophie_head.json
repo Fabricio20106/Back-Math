@@ -1,0 +1,9 @@
+{
+  "parent": "backmath:block/template_bm_head_ground",
+  "textures": {
+    "side": "backmath:block/insomnia_sophie_head_side",
+    "top": "backmath:block/insomnia_sophie_head_top",
+    "overlay_side": "backmath:block/empty_head_overlay",
+    "overlay_top": "backmath:block/empty_head_overlay"
+  }
+}

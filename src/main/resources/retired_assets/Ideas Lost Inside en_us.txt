@@ -1,0 +1,5 @@
+Ideas lost inside the "en_us.json" file:
+
+1. Insta-Mine Pickaxe (intended for Queen Lucy);
+2. Bloody Spear (intended for an alternate version of Queen Lucy, the SBG version).
+3. Aljan Portal Frame (scrapped, replaced with Aljan Portal Stand)

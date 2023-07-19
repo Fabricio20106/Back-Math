@@ -10,6 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
@@ -19,6 +20,7 @@ import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -147,5 +149,25 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
                 .createMutableAttribute(Attributes.MAX_HEALTH, 28.0f)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0f)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
+    }
+
+    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
+        Entity entity = source.getTrueSource();
+        if (entity instanceof CreeperEntity) {
+            CreeperEntity creeper = (CreeperEntity) entity;
+            // If it is a charged creeper
+            if (creeper.ableToCauseSkullDrop()) {
+                ItemStack skullStack = this.getSkullDrop();
+                if (!skullStack.isEmpty()) {
+                    creeper.incrementDroppedSkulls();
+                    this.entityDropItem(skullStack);
+                }
+            }
+        }
+    }
+
+    protected ItemStack getSkullDrop() {
+        return new ItemStack(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get());
     }
 }

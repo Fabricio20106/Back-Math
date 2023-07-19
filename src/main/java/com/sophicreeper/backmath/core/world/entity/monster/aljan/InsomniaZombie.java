@@ -1,11 +1,9 @@
 package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
 import com.sophicreeper.backmath.core.world.entity.goal.InsomniaZombieAttackGoal;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
@@ -30,13 +28,14 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.*;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
-import java.util.Objects;
-import java.util.Random;
 import java.util.function.Predicate;
 
 public class InsomniaZombie extends MonsterEntity {
@@ -159,22 +158,6 @@ public class InsomniaZombie extends MonsterEntity {
         return flag;
     }
 
-    public static boolean canSpawnInsomniaZombieOn(EntityType<InsomniaZombie> insomniaZombie, IServerWorld world, SpawnReason spawnReason, BlockPos pos, Random rand) {
-        if (world.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(world, pos, rand) /*&& canSpawnOn(insomniaZombie, world, spawnReason, pos, rand)*/ && BMConfigs.SERVER_CONFIGS.insomniaZombieSpawn.get()) {
-            if (world.getBiome(pos) == BMBiomes.ALJAN_WOODS.get() ||
-                    world.getBiome(pos) == BMBiomes.CAPPED_HILLS.get() ||
-                    world.getBiome(pos) == BMBiomes.INSOMNIAN_WOODS.get() ||
-                    world.getBiome(pos) == BMBiomes.AMARACAMEL_STICKS.get() ||
-                    world.getBiome(pos) == BMBiomes.ALJAMIC_HIGHLANDS.get() ||
-                    world.getBiome(pos) == BMBiomes.SLEEPISH_OCEAN.get() ||
-                    world.getBiome(pos) == BMBiomes.DEEP_SLEEPISH_OCEAN.get()) {
-                canSpawnOn(insomniaZombie, world, spawnReason, pos, rand);
-                return true;
-            }
-        }
-        return false;
-    }
-
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
     }
@@ -249,7 +232,7 @@ public class InsomniaZombie extends MonsterEntity {
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();
                 } else if (chance == 1) {
-                    return Items.GOLDEN_HELMET;
+                    return AxolotlTest.ARCHER_FABRICIO_HOOD.get();
                 } else if (chance == 2) {
                     return AxolotlTest.ARCHER_FABRICIO_HOOD.get();
                 } else if (chance == 3) {
@@ -261,7 +244,7 @@ public class InsomniaZombie extends MonsterEntity {
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_CHESTPLATE.get();
                 } else if (chance == 1) {
-                    return Items.GOLDEN_CHESTPLATE;
+                    return AxolotlTest.ARCHER_FABRICIO_VEST.get();
                 } else if (chance == 2) {
                     return AxolotlTest.ARCHER_FABRICIO_VEST.get();
                 } else if (chance == 3) {
@@ -273,9 +256,9 @@ public class InsomniaZombie extends MonsterEntity {
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_LEGGINGS.get();
                 } else if (chance == 1) {
-                    return Items.GOLDEN_LEGGINGS;
+                    return Items.AIR;
                 } else if (chance == 2) {
-                    return Items.CHAINMAIL_LEGGINGS;
+                    return Items.AIR;
                 } else if (chance == 3) {
                     return AxolotlTest.ALJAMEED_LEGGINGS.get();
                 } else if (chance == 4) {
@@ -285,9 +268,9 @@ public class InsomniaZombie extends MonsterEntity {
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_BOOTS.get();
                 } else if (chance == 1) {
-                    return Items.GOLDEN_BOOTS;
+                    return Items.AIR;
                 } else if (chance == 2) {
-                    return Items.CHAINMAIL_BOOTS;
+                    return Items.AIR;
                 } else if (chance == 3) {
                     return AxolotlTest.ALJAMEED_BOOTS.get();
                 } else if (chance == 4) {
@@ -308,7 +291,6 @@ public class InsomniaZombie extends MonsterEntity {
                 this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_SHOVEL.get()));
             }
         }
-
     }
 
     public void writeAdditional(CompoundNBT compoundNBT) {

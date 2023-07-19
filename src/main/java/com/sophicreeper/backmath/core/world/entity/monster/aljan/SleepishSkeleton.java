@@ -1,6 +1,5 @@
 package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
@@ -8,32 +7,31 @@ import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
 import com.sophicreeper.backmath.core.world.entity.monster.*;
 import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
-import java.util.Random;
 
 public class SleepishSkeleton extends AbstractSkeletonEntity {
     public SleepishSkeleton(EntityType<SleepishSkeleton> type, World world) {
@@ -134,7 +132,7 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();
                 } else if (chance == 1) {
-                    return Items.GOLDEN_HELMET;
+                    return AxolotlTest.ARCHER_FABRICIO_HOOD.get();
                 } else if (chance == 2) {
                     return AxolotlTest.ARCHER_FABRICIO_HOOD.get();
                 } else if (chance == 3) {
@@ -146,7 +144,7 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_CHESTPLATE.get();
                 } else if (chance == 1) {
-                    return Items.GOLDEN_CHESTPLATE;
+                    return AxolotlTest.ARCHER_FABRICIO_VEST.get();
                 } else if (chance == 2) {
                     return AxolotlTest.ARCHER_FABRICIO_VEST.get();
                 } else if (chance == 3) {
@@ -158,9 +156,9 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_LEGGINGS.get();
                 } else if (chance == 1) {
-                    return Items.GOLDEN_LEGGINGS;
+                    return Items.AIR;
                 } else if (chance == 2) {
-                    return Items.CHAINMAIL_LEGGINGS;
+                    return Items.AIR;
                 } else if (chance == 3) {
                     return AxolotlTest.ALJAMEED_LEGGINGS.get();
                 } else if (chance == 4) {
@@ -170,9 +168,9 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_BOOTS.get();
                 } else if (chance == 1) {
-                    return Items.GOLDEN_BOOTS;
+                    return Items.AIR;
                 } else if (chance == 2) {
-                    return Items.CHAINMAIL_BOOTS;
+                    return Items.AIR;
                 } else if (chance == 3) {
                     return AxolotlTest.ALJAMEED_BOOTS.get();
                 } else if (chance == 4) {
@@ -181,21 +179,6 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
             default:
                 return null;
         }
-    }
-
-    public static boolean canSpawnSleepishSkeletonOn(EntityType<SleepishSkeleton> sleepishSkeleton, IServerWorld iServerWorld, SpawnReason reason, BlockPos pos, Random randomIn) {
-        if (iServerWorld.getDifficulty() != Difficulty.PEACEFUL && isValidLightLevel(iServerWorld, pos, randomIn) && BMConfigs.SERVER_CONFIGS.sleepishSkeletonSpawn.get()) {
-            if (Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
-                    Objects.equals(iServerWorld.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get())) {
-                canSpawnOn(sleepishSkeleton, iServerWorld, reason, pos, randomIn);
-            }
-        }
-        return false;
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {

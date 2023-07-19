@@ -30,9 +30,9 @@ displayURL="https://github.com/Fabricio20106/BackMath-updated" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="backmath.png" #optional
 # A text field displayed in the mod UI
-credits="JuneTheWoods" #optional
+#credits="" #optional
 # A text field displayed in the mod UI
-authors="SophiCreeper" #optional
+authors="SophiCreeper and JuneTheWoods" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''Back Math just received a new update called "Bountifully Expansive", this update includes a bunch of new items, blocks and a few mobs, and for an almost complete changelog, see: assets/backmath/changelogs/changelog_1.8.0.txt'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.

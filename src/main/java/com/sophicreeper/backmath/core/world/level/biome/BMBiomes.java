@@ -101,7 +101,7 @@ public class BMBiomes {
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1.0F).scale(0.1F).temperature(0.5F).downfall(0.5F)
                 .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea)
-                        .withFoliageColor(0xFCB76B).withGrassColor(0xcc3db4).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+                        .withFoliageColor(0xd73fc1).withGrassColor(0xcc3db4).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome deepSleepishOcean() {
@@ -125,7 +125,7 @@ public class BMBiomes {
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1.8F).scale(0.1F).temperature(0.5F).downfall(0.5F)
                 .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea)
-                        .withFoliageColor(0xFCB76B).withGrassColor(0x9c3a8b).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+                        .withFoliageColor(0x68135c).withGrassColor(0x9c3a8b).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome deeperSleepishOcean() {
@@ -149,7 +149,7 @@ public class BMBiomes {
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-2.4F).scale(0.1F).temperature(0.5F).downfall(0.5F)
                 .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea)
-                        .withFoliageColor(0xFCB76B).withGrassColor(0x1d082e).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+                        .withFoliageColor(0x4e1045).withGrassColor(0x1d082e).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome aljanWoods() {
@@ -166,7 +166,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2f).scale(0.5f).temperature(0.5F).downfall(0.8F).setEffects(
-                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xFCB76B).withGrassColor(0xd4eaea).build())
+                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xffffff).withGrassColor(0xd4eaea).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -182,7 +182,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2f).scale(0.5f).temperature(0.5F).downfall(0.8F).setEffects(
-                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xFCB76B).withGrassColor(0x68a4a4).build())
+                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0x538989).withGrassColor(0x68a4a4).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -199,7 +199,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.4F).downfall(0.5F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xFCB76B).withGrassColor(0x526b9e).build())
+                new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xf0b87a).withGrassColor(0x526b9e).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -219,7 +219,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.SWAMP).depth(0.1f).scale(0.5f).temperature(0.4f).downfall(0.5f).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xFCB76B).withGrassColor(0xFCB76B).build())
+                new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xf0b87a).withGrassColor(0xFCB76B).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -237,7 +237,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.SNOW).category(Biome.Category.FOREST).depth(1.5f).scale(0.025f).temperature(-0.3F).downfall(0.8F).setEffects(
-                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xFCB76B).withGrassColor(0xd4eaea).build())
+                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xffffff).withGrassColor(0xd4eaea).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -253,7 +253,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0x78bfbf).withGrassColor(0x78bfbf).build())
+                new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0x7abdbd).withGrassColor(0x78bfbf).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -272,7 +272,7 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.withAljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
-                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xb821a2).withGrassColor(0xcc3db4).build())
+                        new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xd73fc1).withGrassColor(0xcc3db4).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 }

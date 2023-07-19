@@ -135,6 +135,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         slabBlock((SlabBlock) BMBlocks.CRYSTALLINE_BIRCH_SLAB.get(), modLoc("block/crystalline_birch_planks"), modLoc("block/crystalline_birch_planks"));
         fenceBlock((FenceBlock) BMBlocks.CRYSTALLINE_BIRCH_FENCE.get(), modLoc("block/crystalline_birch_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.CRYSTALLINE_BIRCH_FENCE_GATE.get(), modLoc("block/crystalline_birch_planks"));
+
+        // Todo: Back Math 1.7.0
         simpleBlock(BMBlocks.ALJANSTONE.get());
         simpleBlock(BMBlocks.ALJAMEED_ORE.get());
         simpleBlock(BMBlocks.ALJAMEED_BLOCK.get());
@@ -160,7 +162,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         axisBlock((RotatedPillarBlock) BMBlocks.ALJANWOOD_WOOD.get(), modLoc("block/aljanwood_log"), modLoc("block/aljanwood_log"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_ALJANWOOD_LOG.get(), modLoc("block/stripped_aljanwood_log"), modLoc("block/stripped_aljanwood_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_ALJANWOOD_WOOD.get(), modLoc("block/stripped_aljanwood_log"), modLoc("block/stripped_aljanwood_log"));
-        simpleBlock(BMBlocks.ALJANWOOD_LEAVES.get());
+        simpleBlock(BMBlocks.ALJANWOOD_LEAVES.get(), models().withExistingParent("aljanwood_leaves", mcLoc("block/leaves")).texture("all",
+                "minecraft:block/oak_leaves"));
         stairsBlock((StairsBlock) BMBlocks.ALJANWOOD_STAIRS.get(), aljanwoodPlanks);
         slabBlock((SlabBlock) BMBlocks.ALJANWOOD_SLAB.get(), aljanwoodPlanks, aljanwoodPlanks);
         trapdoorBlock((TrapDoorBlock) BMBlocks.ALJANWOOD_TRAPDOOR.get(), modLoc("block/aljanwood_trapdoor"), true);
@@ -210,7 +213,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         fenceGateBlock((FenceGateBlock) BMBlocks.ALJANWOOD_FENCE_GATE.get(), modLoc("block/aljanwood_planks"));
         axisBlock((RotatedPillarBlock) BMBlocks.INSOMNIAN_LOG.get(), modLoc("block/insomnian_log"), modLoc("block/insomnian_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.INSOMNIAN_WOOD.get(), modLoc("block/insomnian_log"), modLoc("block/insomnian_log"));
-        simpleBlock(BMBlocks.INSOMNIAN_LEAVES.get());
+        simpleBlock(BMBlocks.INSOMNIAN_LEAVES.get(), models().withExistingParent("insomnian_leaves", mcLoc("block/leaves")).texture("all",
+                "minecraft:block/oak_leaves"));
         simpleBlock(BMBlocks.INSOMNIAN_SAPLING.get(), models().cross("insomnian_sapling", modLoc("block/insomnian_sapling")));
         simpleBlock(BMBlocks.INSOMNIAN_PLANKS.get());
         stairsBlock((StairsBlock) BMBlocks.INSOMNIAN_STAIRS.get(), insomnianPlanks);
@@ -228,7 +232,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_ALJANCAP_LOG.get(), modLoc("block/stripped_aljancap_log"), modLoc("block/stripped_aljancap_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_ALJANCAP_WOOD.get(), modLoc("block/stripped_aljancap_log"), modLoc("block/stripped_aljancap_log"));
         simpleBlock(BMBlocks.JANTIC_ORE.get());
-        simpleBlock(BMBlocks.ALJANCAP_LEAVES.get());
+        simpleBlock(BMBlocks.ALJANCAP_LEAVES.get(), models().withExistingParent("aljancap_leaves", mcLoc("block/leaves")).texture("all",
+                "minecraft:block/oak_leaves"));
         simpleBlock(BMBlocks.ALJANCAP_SAPLING.get(), models().cross("aljancap_sapling", modLoc("block/aljancap_sapling")));
         simpleBlock(BMBlocks.POTTED_ALJANCAP_SAPLING.get(), models().withExistingParent("potted_aljancap_sapling", "block/flower_pot_cross").texture("plant", "block/aljancap_sapling"));
         simpleBlock(BMBlocks.ALJAMIC_DIRT.get());
@@ -265,7 +270,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         simpleBlock(BMBlocks.CHARJAN_INSOMNIAN_TORCH.get(), models().torch("charjan_insomnian_torch", modLoc("block/charjan_insomnian_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_INSOMNIAN_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_insomnian_wall_torch",
                 modLoc("block/charjan_insomnian_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
-        simpleBlock(BMBlocks.AMARACAP_LEAVES.get());
+        simpleBlock(BMBlocks.AMARACAP_LEAVES.get(), models().withExistingParent("amaracap_leaves", mcLoc("block/leaves")).texture("all",
+                "minecraft:block/acacia_leaves"));
         simpleBlock(BMBlocks.INSOGRAVEL.get());
         simpleBlock(BMBlocks.ALJAMIC_COPPER_ORE.get());
         simpleBlock(BMBlocks.ALJAMIC_TIN_ORE.get());
@@ -285,7 +291,7 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         });
         simpleBlock(BMBlocks.WILD_CARAMELED_WHEAT.get(), models().withExistingParent("wild_carameled_wheat", "backmath:block/template_wild_crop").texture("crop", "block/wild_carameled_wheat"));
 
-        // Back Math 1.8.0:
+        // TODO: Back Math 1.8.0:
         horizontalBlock(BMBlocks.GLAZED_TABU.get(), modLoc("block/glazed_tabu"), modLoc("block/glazed_tabu"), modLoc("block/glazed_tabu"));
         simpleBlock(BMBlocks.CUBIC_TABU.get());
         stairsBlock((StairsBlock) BMBlocks.CUBIC_TABU_STAIRS.get(), modLoc("block/cubic_tabu"));
@@ -349,7 +355,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         doorBlock((DoorBlock) BMBlocks.GOLDENWOOD_DOOR.get(), modLoc("block/goldenwood_door_bottom"), modLoc("block/goldenwood_door_top"));
         trapdoorBlock((TrapDoorBlock) BMBlocks.GOLDENWOOD_TRAPDOOR.get(), modLoc("block/goldenwood_trapdoor"), true);
 
-        simpleBlock(BMBlocks.AVONDALIC_WILLOW_LEAVES.get());
+        simpleBlock(BMBlocks.AVONDALIC_WILLOW_LEAVES.get(), models().withExistingParent("avondalic_willow_leaves", mcLoc("block/leaves")).texture("all",
+                "minecraft:block/acacia_leaves"));
         simpleBlock(BMBlocks.AVONDALIC_WILLOW_SAPLING.get(), models().cross("avondalic_willow_sapling", modLoc("block/avondalic_willow_sapling")));
         simpleBlock(BMBlocks.POTTED_AVONDALIC_WILLOW_SAPLING.get(), models().withExistingParent("potted_avondalic_willow_sapling", "block/flower_pot_cross").texture("plant", "block/avondalic_willow_sapling"));
         axisBlock((RotatedPillarBlock) BMBlocks.AVONDALIC_WILLOW_LOG.get(), modLoc("block/avondalic_willow_log"), modLoc("block/avondalic_willow_log_top"));
