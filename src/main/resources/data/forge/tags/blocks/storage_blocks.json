@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#forge:storage_blocks/devil",
-    "#forge:storage_blocks/mid_term",
-    "#forge:storage_blocks/angelic"
-  ]
-}

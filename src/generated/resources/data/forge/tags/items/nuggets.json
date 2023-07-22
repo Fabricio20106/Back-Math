@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "#forge:nuggets/devil",
+    "#forge:nuggets/angelic",
     "#forge:nuggets/christian_mid_term",
     "#forge:nuggets/mid_term",
     "#forge:nuggets/obsidian_infused_mid_term",

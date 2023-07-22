@@ -104,7 +104,7 @@ public class BMTools implements IItemTier {
     }
     public static class MechMech extends BMTools {
         public MechMech() {
-            super(3, 1561, 4.0F, 0.0F, 22, () -> Ingredient.fromItems(AxolotlTest.DIAMOND_NUGGET.get()));
+            super(3, 1561, 4.0F, 0.0F, 22, () -> Ingredient.fromItems(AxolotlTest.DIAMOND_SHARD.get()));
         }
     }
     public static class Carewni extends BMTools {

@@ -67,3 +67,12 @@ Prior fixes:
 - Updated Back Math's Brazilian Portuguese translation
   - Everything but most advancement are translated now
 - Swapped the ⅔ in the name of two-thirds hillary items to 2/3
+
+22/07/2023:
+- Moved all Back Math and Forge tags to the data generators.
+- Renamed the "forge:boots" tag to "forge:armors/boots"
+  - These two changes were made in preparation for a possible update to 1.20(.1).
+- Fixed some spelling mistakes on pt_br.json
+  - "pedradormedica" to "pedradormecida" on sleepingstone ores.
+  - "agglomeratio" and "agglomerario" to "aglomerado" on hillary and milkllary agglomeratios.
+  - Fixed capitalization on "Spath Sílios Drack", changed to "Spath cílios drack"

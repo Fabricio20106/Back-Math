@@ -4,7 +4,6 @@ import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
 import net.minecraft.block.*;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockModelBuilder;
@@ -96,7 +95,7 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         simpleBlock(BMBlocks.RAW_MID_TERM_BLOCK.get());
         simpleBlock(BMBlocks.DEEPSLATE_ANGELIC_ORE.get());
         simpleBlock(BMBlocks.DEEPSLATE_DEVIL_ORE.get());
-        simpleBlock(BMBlocks.OBSIDIAN_INFUSED_MID_TERM.get());
+        simpleBlock(BMBlocks.OBSIDIAN_MID_TERM_ORE.get());
         simpleBlock(BMBlocks.ALJAME_BIRCH_LEAVES.get(), models().withExistingParent("aljame_birch_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
                 "backmath:block/birch_fruit_leaves").texture("fruit", "backmath:block/aljame_fruit_leaves"));
         simpleBlock(BMBlocks.POTTED_ALJAME_BIRCH_SAPLING.get(), models().withExistingParent("potted_aljame_birch_sapling",

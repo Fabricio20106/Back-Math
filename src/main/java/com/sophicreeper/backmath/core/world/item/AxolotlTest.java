@@ -351,7 +351,7 @@ public class AxolotlTest {
 
     // Mid-Term block set
     public static final RegistryObject<Item> MID_TERM_ORE = ITEMS.register("mid_term_ore", () -> new GlisteringBlockItem(BMBlocks.MID_TERM_ORE.get(), new Item.Properties().rarity(Rarity.RARE).isImmuneToFire().group(BMBlockTab.TAB)));
-    public static final RegistryObject<Item> OBSIDIAN_MID_TERM_ORE = ITEMS.register("obsidian_mid_term_ore", () -> new GlisteringBlockItem(BMBlocks.OBSIDIAN_INFUSED_MID_TERM.get(), new Item.Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> OBSIDIAN_MID_TERM_ORE = ITEMS.register("obsidian_mid_term_ore", () -> new GlisteringBlockItem(BMBlocks.OBSIDIAN_MID_TERM_ORE.get(), new Item.Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> MID_TERM_BLOCK = ITEMS.register("mid_term_block", () -> new GlisteringBlockItem(BMBlocks.MID_TERM_BLOCK.get(), new Item.Properties().group(BMBlockTab.TAB).isImmuneToFire().rarity(Rarity.RARE)));
     public static final RegistryObject<Item> COLDTERM_BRICKS = ITEMS.register("coldterm_bricks", () -> new BlockItem(BMBlocks.COLDTERM_BRICKS.get(), new Item.Properties().group(BMBlockTab.TAB).isImmuneToFire().rarity(Rarity.RARE)));
     public static final RegistryObject<Item> COLDTERM_BRICK_STAIRS = ITEMS.register("coldterm_brick_stairs", () -> new BlockItem(BMBlocks.COLDTERM_BRICK_STAIRS.get(), new Item.Properties().group(BMBlockTab.TAB).isImmuneToFire().rarity(Rarity.RARE)));
@@ -524,7 +524,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_SHARD = ITEMS.register("obsidian_infused_mid_term_shard", () -> new GlisteringItem(new Item.Properties().group(BackLayer.TAB).isImmuneToFire().rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> CRYSTALLINE_ANGELIC_SHARD = ITEMS.register("crystalline_angelic_shard", () -> new Item(new Item.Properties().group(BackLayer.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> JANTICAL_SHARD = ITEMS.register("jantical_shard", () -> new Item(new Item.Properties().group(BackLayer.TAB).rarity(Rarity.UNCOMMON)));
-    public static final RegistryObject<Item> DIAMOND_NUGGET = ITEMS.register("diamond_nugget", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
+    public static final RegistryObject<Item> DIAMOND_SHARD = ITEMS.register("diamond_nugget", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> DEVIL_NUGGET = ITEMS.register("devil_nugget", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> ANGELIC_NUGGET = ITEMS.register("angelic_nugget", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> MILKLLARY_NUGGET = ITEMS.register("milkllary_nugget", () -> new Item(new Item.Properties().group(BackLayer.TAB).rarity(Rarity.UNCOMMON)));

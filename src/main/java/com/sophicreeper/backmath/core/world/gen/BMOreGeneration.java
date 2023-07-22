@@ -59,7 +59,7 @@ public class BMOreGeneration {
         // This is only going to generate if you change the config files for mid-term ore generation in the end.
         if (event.getCategory().equals(Biome.Category.THEEND) && BMConfigs.SERVER_CONFIGS.midTermOreGen.get()) {
             generateOre(event.getGeneration(), END_STONE_FILLER, BMBlocks.MID_TERM_ORE.get().getDefaultState(), 3, 6, 117, 4);
-            generateOre(event.getGeneration(), OBSIDIAN_FILLER, BMBlocks.OBSIDIAN_INFUSED_MID_TERM.get().getDefaultState(), 3, 0, 72, 3);
+            generateOre(event.getGeneration(), OBSIDIAN_FILLER, BMBlocks.OBSIDIAN_MID_TERM_ORE.get().getDefaultState(), 3, 0, 72, 3);
         }
     }
 

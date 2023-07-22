@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:guarana",
+    "backmath:mango",
+    "backmath:mangaed_mango",
+    "backmath:grapes",
+    "backmath:lemon",
+    "backmath:pineapple",
+    "backmath:orange",
+    "backmath:banana",
+    "backmath:green_apple",
+    "backmath:guava",
+    "backmath:jabuticaba",
+    "backmath:aljame",
+    "backmath:aljamic_berry",
+    "backmath:aljamic_onion",
+    "backmath:carameled_wheat"
+  ]
+}
