@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Features;
+import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -18,6 +19,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class BMBiomes {
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, BackMath.MOD_ID);
 
+    public static final RegistryObject<Biome> BACK_FIELD = BIOMES.register("back_field", BMBiomes::backField);
     public static final RegistryObject<Biome> ORIGINAL_BACK_FIELDS = BIOMES.register("original_back_fields", BMBiomes::originalBackFields);
     public static final RegistryObject<Biome> MODIFIED_BACK_FIELDS = BIOMES.register("modified_back_fields", BMBiomes::modifiedBackFields);
     public static final RegistryObject<Biome> ANGELIC_WOODS = BIOMES.register("angelic_woods", BMBiomes::angelicWoods);
@@ -31,6 +33,46 @@ public class BMBiomes {
     public static final RegistryObject<Biome> ALJAMIC_HIGHLANDS = BIOMES.register("aljamic_highlands", BMBiomes::aljamicHighlands);
     public static final RegistryObject<Biome> ALJAMIC_ORCHARD = BIOMES.register("aljamic_orchard", BMBiomes::aljamicOrchard);
     public static final RegistryObject<Biome> AVONDALIC_GROVE = BIOMES.register("avondalic_grove", BMBiomes::avondalicGrove);
+
+    // This is the actual original back fields, the back Field.
+    private static Biome backField() {
+        MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
+        BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
+
+        // Structures
+        DefaultBiomeFeatures.withStrongholdAndMineshaft(settings);
+        settings.withStructure(StructureFeatures.RUINED_PORTAL);
+        settings.withStructure(StructureFeatures.VILLAGE_PLAINS);
+
+        DefaultBiomeFeatures.withCavesAndCanyons(settings);
+        DefaultBiomeFeatures.withLavaAndWaterLakes(settings);
+        DefaultBiomeFeatures.withMonsterRoom(settings);
+
+        // Underground Ores / Disks
+        DefaultBiomeFeatures.withCommonOverworldBlocks(settings);
+        DefaultBiomeFeatures.withOverworldOres(settings);
+        DefaultBiomeFeatures.withDisks(settings);
+
+        // Passive and hostile mob spawns
+        DefaultBiomeFeatures.withBatsAndHostiles(spawns);
+        DefaultBiomeFeatures.withPassiveMobs(spawns);
+        BMDefaultBiomeFeatures.withBackFieldMobs(spawns);
+
+        // Vegetal Decoration
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.GUARANA_OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.MANGO_OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.HILLARY_LAKE);
+
+        DefaultBiomeFeatures.withForestGrass(settings);
+        DefaultBiomeFeatures.withSugarCaneAndPumpkins(settings);
+        DefaultBiomeFeatures.withLavaAndWaterSprings(settings);
+
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.2F).temperature(0.7F).downfall(0.8F).setEffects(new
+                BiomeAmbience.Builder().setWaterColor(0x3F76E4).setWaterFogColor(0x3F76E4).setFogColor(0xb9d1ff).withSkyColor(0x82a8ff).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE)
+                .withGrassColor(0x79C05A).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+    }
 
     private static Biome originalBackFields() {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);

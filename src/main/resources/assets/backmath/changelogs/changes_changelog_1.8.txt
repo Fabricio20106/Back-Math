@@ -68,7 +68,7 @@ Prior fixes:
   - Everything but most advancement are translated now
 - Swapped the ⅔ in the name of two-thirds hillary items to 2/3
 
-22/07/2023:
+22/07/2023 (Saturday):
 - Moved all Back Math and Forge tags to the data generators.
 - Renamed the "forge:boots" tag to "forge:armors/boots"
   - These two changes were made in preparation for a possible update to 1.20(.1).

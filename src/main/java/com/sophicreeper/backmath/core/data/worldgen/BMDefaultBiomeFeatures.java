@@ -29,18 +29,33 @@ public class BMDefaultBiomeFeatures {
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.OAKS);
     }
 
-    public static void withFriendlyBMMobs(MobSpawnInfo.Builder settings) {
+    public static void withFriendlyBMMobs(MobSpawnInfo.Builder spawns) {
         if (BMConfigs.SERVER_CONFIGS.wandererSophieSpawn.get()) {
-            settings.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.WANDERER_SOPHIE.get(), 8, 4, 4));
+            spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.WANDERER_SOPHIE.get(), 8, 4, 4));
         }
         if (BMConfigs.SERVER_CONFIGS.shyFabricioSpawn.get()) {
-            settings.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.SHY_FABRICIO.get(), 6, 1, 3));
+            spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.SHY_FABRICIO.get(), 6, 1, 3));
         }
         if (BMConfigs.SERVER_CONFIGS.archerLuciaSpawn.get()) {
-            settings.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.ARCHER_LUCIA.get(), 8, 4, 4));
+            spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.ARCHER_LUCIA.get(), 8, 4, 4));
         }
         if (BMConfigs.SERVER_CONFIGS.karateLuciaSpawn.get()) {
-            settings.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.KARATE_LUCIA.get(), 8, 1, 6));
+            spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.KARATE_LUCIA.get(), 8, 1, 6));
+        }
+    }
+
+    public static void withBackFieldMobs(MobSpawnInfo.Builder spawns) {
+        if (BMConfigs.SERVER_CONFIGS.wandererSophieSpawn.get()) {
+            spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.WANDERER_SOPHIE.get(), 8, 4, 4));
+        }
+        if (BMConfigs.SERVER_CONFIGS.shyFabricioSpawn.get()) {
+            spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.SHY_FABRICIO.get(), 6, 1, 3));
+        }
+        if (BMConfigs.SERVER_CONFIGS.archerLuciaSpawn.get()) {
+            spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.ARCHER_LUCIA.get(), 8, 4, 4));
+        }
+        if (BMConfigs.SERVER_CONFIGS.angrySophieSpawn.get()) {
+            spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.ANGRY_SOPHIE.get(), 100, 4, 4));
         }
     }
 
