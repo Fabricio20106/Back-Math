@@ -11,6 +11,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.AbstractIllagerEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
@@ -34,9 +35,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
 
@@ -57,14 +56,24 @@ public class QueenSophiePet extends TameableEntity {
     public QueenSophiePet(EntityType<QueenSophiePet> type, World world) {
         super(type, world);
         this.moveController = new FlyingMovementController(this, 10, false);
-        this.setPathPriority(PathNodeType.DANGER_FIRE, -1.0F);
-        this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
-        this.setPathPriority(PathNodeType.COCOA, -1.0F);
+        this.setPathPriority(PathNodeType.DANGER_FIRE, -1);
+        this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1);
+        this.setPathPriority(PathNodeType.COCOA, -1);
         this.setTamed(false);
     }
 
     public boolean isChild() {
         return false;
+    }
+
+    public void livingTick() {
+        this.updateArmSwingProgress();
+        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+                this.heal(1.0F);
+            }
+        }
+        super.livingTick();
     }
 
     @Override
@@ -81,6 +90,7 @@ public class QueenSophiePet extends TameableEntity {
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaSophie.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherInsomniaSophie.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WarriorSophie.class, false));
@@ -106,6 +116,14 @@ public class QueenSophiePet extends TameableEntity {
         return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
+    public void updateRidden() {
+        super.updateRidden();
+        if (this.getRidingEntity() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
+            this.renderYawOffset = entity.renderYawOffset;
+        }
+    }
+
     public boolean onLivingFall(float distance, float damageMultiplier) {
         return false;
     }
@@ -122,9 +140,9 @@ public class QueenSophiePet extends TameableEntity {
             if (!this.world.isRemote) {
                 if (this.rand.nextInt(10) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
                     this.setTamedBy(player);
-                    this.world.setEntityState(this, (byte)7);
+                    this.world.setEntityState(this, (byte) 7);
                 } else {
-                    this.world.setEntityState(this, (byte)6);
+                    this.world.setEntityState(this, (byte) 6);
                 }
             }
 
@@ -171,8 +189,8 @@ public class QueenSophiePet extends TameableEntity {
     public static AttributeModifierMap.MutableAttribute createQueenSophiePetAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3f)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 350.0f)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 17.0d)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 350)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 17)
                 .createMutableAttribute(Attributes.FLYING_SPEED, 0.4f);
     }
 

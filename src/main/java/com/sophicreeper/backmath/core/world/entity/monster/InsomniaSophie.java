@@ -40,13 +40,14 @@ public class InsomniaSophie extends MonsterEntity {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.6f));
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.6f, false));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.6f, true));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.6f));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombie.class, true));
@@ -57,7 +58,6 @@ public class InsomniaSophie extends MonsterEntity {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
     }
 
     public static AttributeModifierMap.MutableAttribute createInsomniaSophieAttributes() {
@@ -89,6 +89,14 @@ public class InsomniaSophie extends MonsterEntity {
         this.setEnchantmentBasedOnDifficulty(difficulty);
         this.setEquipmentBasedOnDifficulty(difficulty);
         return spawnData;
+    }
+
+    public void updateRidden() {
+        super.updateRidden();
+        if (this.getRidingEntity() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
+            this.renderYawOffset = entity.renderYawOffset;
+        }
     }
 
     @Override

@@ -29,9 +29,7 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.server.ServerBossInfo;
 import net.minecraft.world.server.ServerWorld;
 
@@ -123,6 +121,11 @@ public class QueenSophie extends MonsterEntity {
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
 
+    public void livingTick() {
+        this.updateArmSwingProgress();
+        super.livingTick();
+    }
+
     public boolean onLivingFall(float distance, float damageMultiplier) {
         return false;
     }
@@ -187,6 +190,14 @@ public class QueenSophie extends MonsterEntity {
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.QUEEN_SOPHIE_SPAWN_EGG.get());
+    }
+
+    public void updateRidden() {
+        super.updateRidden();
+        if (this.getRidingEntity() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
+            this.renderYawOffset = entity.renderYawOffset;
+        }
     }
 
     public enum QueenSophieSpells {

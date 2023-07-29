@@ -10,6 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.AbstractIllagerEntity;
 import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,8 +33,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 
 public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttackMob {
-    private final BMRangedBowAttackGoal<ArcherInsomniaSophie> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
-    private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) {
+    private final BMRangedBowAttackGoal<ArcherInsomniaSophie> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1, 20, 15);
+    private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2d, false) {
         public void resetTask() {
             super.resetTask();
             ArcherInsomniaSophie.this.setAggroed(false);
@@ -103,11 +104,12 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new BMRangedBowAttackGoal<>(this, 1.1D, 8, 8.0f));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(1, new BMRangedBowAttackGoal<>(this, 1.1d, 8, 8));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
+        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
@@ -126,12 +128,12 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         if (this.getHeldItemMainhand().getItem() instanceof BMBowItem) arrow = ((BMBowItem) this.getHeldItemMainhand().getItem()).customArrow(arrow);
 
         double d0 = target.getPosX() - this.getPosX();
-        double d1 = target.getPosYHeight(0.3333333333333333D) - arrow.getPosY();
+        double d1 = target.getPosYHeight(0.3333333333333333d) - arrow.getPosY();
         double d2 = target.getPosZ() - this.getPosZ();
         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-        arrow.shoot(d0, d1 + d3 * (double) 0.2F, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+        arrow.shoot(d0, d1 + d3 * (double) 0.2f, d2, 1.6f, (float) (14 - this.world.getDifficulty().getId() * 4));
 
-        this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1.0F, 1.0F / (this.getRNG().nextFloat() * 0.4F + 0.8F));
+        this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1, 1 / (this.getRNG().nextFloat() * 0.4f + 0.8f));
         this.world.addEntity(arrow);
     }
 
@@ -145,9 +147,9 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
 
     public static AttributeModifierMap.MutableAttribute createMobAttributes() {
         return MonsterEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0f)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 28.0f)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0f)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 28)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
     }
 

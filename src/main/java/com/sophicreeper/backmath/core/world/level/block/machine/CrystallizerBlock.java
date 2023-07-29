@@ -37,7 +37,7 @@ public class CrystallizerBlock extends HorizontalBlock {
         Direction direction = hit.getFace();
         Direction direction1 = direction.getAxis() == Direction.Axis.Y ? player.getHorizontalFacing().getOpposite() : direction;
 
-        // sets the specific molds for the crafting recipes below
+        // Sets the specific molds for the recipes below.
         if (MainHand.getItem() == AxolotlTest.INGOT_MOLD.get()) {
             world.setBlockState(pos, BMBlocks.CRYSTALLIZER.get().getDefaultState().with(MOLD, Molds.INGOT).with(HORIZONTAL_FACING, direction1));
             player.addStat(BMStats.CHANGE_CRYSTALLIZER_MOLD);
@@ -62,7 +62,7 @@ public class CrystallizerBlock extends HorizontalBlock {
             world.setBlockState(pos, BMBlocks.CRYSTALLIZER.get().getDefaultState().with(MOLD, Molds.EMPTY).with(HORIZONTAL_FACING, direction1));
             player.addStat(BMStats.CHANGE_CRYSTALLIZER_MOLD);
         }
-        // you can also use the Book of the Regular Molds to change the cycle through the molds
+        // You can also use the Book of the Regular Molds to cycle through the mold types.
         if (MainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get() && state.get(MOLD) == Molds.EMPTY) {
             world.setBlockState(pos, BMBlocks.CRYSTALLIZER.get().getDefaultState().with(MOLD, Molds.SINGULARITY).with(HORIZONTAL_FACING, direction1));
             player.addStat(BMStats.CHANGE_CRYSTALLIZER_MOLD);
@@ -88,8 +88,8 @@ public class CrystallizerBlock extends HorizontalBlock {
             player.addStat(BMStats.CHANGE_CRYSTALLIZER_MOLD);
         }
 
-        // the crafting recipes mentioned above
-        // when the mold is empty
+        // The aforementioned recipes.
+        // Mold: Empty.
         if (state.get(MOLD) == Molds.EMPTY) {
             if (MainHand.getItem() == AxolotlTest.ALJAME.get() && MainHand.getCount() == 4 && OffHand.getItem() == Items.BUCKET) {
                 world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -100,7 +100,7 @@ public class CrystallizerBlock extends HorizontalBlock {
         } else {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
-        // when the mold is the rod one
+        // Mold: Rod.
         if (state.get(MOLD) == Molds.ROD) {
             if (MainHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -111,7 +111,7 @@ public class CrystallizerBlock extends HorizontalBlock {
         } else {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
-        // when the mold is the singularity one
+        // Mold: Singularity.
         if (state.get(MOLD) == Molds.SINGULARITY) {
             if (MainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -140,7 +140,7 @@ public class CrystallizerBlock extends HorizontalBlock {
         } else {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
-        // when the mold is the ingot one
+        // Mold: Ingot.
         if (state.get(MOLD) == Molds.INGOT) {
             if (MainHand.getItem() == AxolotlTest.MID_TERM.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -182,7 +182,7 @@ public class CrystallizerBlock extends HorizontalBlock {
         } else {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
-        // when the mold is the mold one
+        // Mold: Mold.
         if (state.get(MOLD) == Molds.MOLD) {
             if (MainHand.getItem() == AxolotlTest.CRYSTALLINE_ANGELIC.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);

@@ -18,11 +18,10 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
@@ -37,6 +36,21 @@ public class WandererSophie extends CreatureEntity {
     protected void registerData() {
         super.registerData();
         this.dataManager.register(VARIANT, 0);
+    }
+
+    public void livingTick() {
+        this.updateArmSwingProgress();
+
+        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+                this.heal(1.0F);
+            }
+        }
+        super.livingTick();
+    }
+
+    public double getYOffset() {
+        return -0.35D;
     }
 
     public void writeAdditional(CompoundNBT compoundNBT) {
@@ -60,11 +74,8 @@ public class WandererSophie extends CreatureEntity {
     public boolean isOnSameTeam(Entity entity) {
         if (super.isOnSameTeam(entity)) {
             return true;
-        } else if (entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie) {
-            return this.getTeam() == null && entity.getTeam() == null;
-        } else {
-            return false;
-        }
+        } else return entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie;
+        //this.getTeam() == null && entity.getTeam() == null;
     }
 
     @Override
@@ -93,8 +104,9 @@ public class WandererSophie extends CreatureEntity {
 
     public static AttributeModifierMap.MutableAttribute createWandererSophieAttributes() {
         // Old wanderer Sophie health was 70.0D.
+        // Old new wanderer Sophie health was 35.0d.
         return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 35.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 20.0D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
@@ -115,18 +127,39 @@ public class WandererSophie extends CreatureEntity {
         return spawnData;
     }
 
+    public void updateRidden() {
+        super.updateRidden();
+        if (this.getRidingEntity() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
+            this.renderYawOffset = entity.renderYawOffset;
+        }
+    }
+
     /**
      * If this mob can be leashed to
      * @return If this mob can be leashed to
      */
+    // Old Back Math shenanigans.
     @Override
     public boolean canBeLeashedTo(PlayerEntity player) {
-        return true;
+        return false;
     }
 
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.WANDERER_SOPHIE_SPAWN_EGG.get());
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity) {
+        if (entity instanceof LivingEntity && !entity.isInvulnerableTo(DamageSource.IN_FIRE)) {
+            ItemStack devilSword = new ItemStack(AxolotlTest.DEVIL_SWORD.get());
+            if (this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).equals(devilSword)) {
+                LivingEntity livEntity = (LivingEntity) entity;
+                livEntity.setFire(5);
+            }
+        }
+        return super.attackEntityAsMob(entity);
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {

@@ -8,6 +8,7 @@ import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
 import com.sophicreeper.backmath.core.world.entity.goal.BMRangedCrossbowAttackGoal;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
+import com.sophicreeper.backmath.core.world.item.weapon.BMCrossbowItem;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -16,6 +17,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.monster.AbstractIllagerEntity;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -55,12 +57,13 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new BMRangedCrossbowAttackGoal<>(this, 1.1D, 8.0f));
-        this.goalSelector.addGoal(2, new RandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1D, Ingredient.fromItems(Items.APPLE), false));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(1, new BMRangedCrossbowAttackGoal<>(this, 1.1d, 12));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1d, Ingredient.fromItems(Items.APPLE), false));
+        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
@@ -111,6 +114,10 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
         }
     }
 
+    public double getYOffset() {
+        return -0.35D;
+    }
+
     public void func_230283_U__() {
         this.idleTime = 0;
     }
@@ -144,10 +151,10 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
 
     public static AttributeModifierMap.MutableAttribute createArcherLuciaAttributes() {
         return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 30.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 25)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
@@ -168,6 +175,14 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
         return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
+    public void updateRidden() {
+        super.updateRidden();
+        if (this.getRidingEntity() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
+            this.renderYawOffset = entity.renderYawOffset;
+        }
+    }
+
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
         this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ARCHER_LUCIA_HOOD.get()));
@@ -175,9 +190,10 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_CROSSBOW.get()));
     }
 
+    // Why were Back Math mobs leashable? (29/07/23)
     @Override
     public boolean canBeLeashedTo(PlayerEntity player) {
-        return true;
+        return false;
     }
 
     public boolean func_230280_a_(ShootableItem shootableItem) {
@@ -189,11 +205,11 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
     }
 
     public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
-        this.func_234281_b_(this, 1.6F);
+        this.func_234281_b_(this, 1.6f);
     }
 
-    public void func_230284_a_(LivingEntity livingEntity, ItemStack stack, ProjectileEntity arrow, float p_230284_4_) {
-        this.func_234279_a_(this, livingEntity, arrow, p_230284_4_, 1.6F);
+    public void func_230284_a_(LivingEntity livingEntity, ItemStack stack, ProjectileEntity arrow, float distanceFactor) {
+        this.func_234279_a_(this, livingEntity, arrow, distanceFactor, 1.6f);
     }
 
     protected void updateEquipmentIfNeeded(ItemEntity itemEntity) {
@@ -215,7 +231,7 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
     }
 
     private boolean pickupableItems(Item item) {
-        return item instanceof BMArmorItem;
+        return item instanceof BMArmorItem || item instanceof BMCrossbowItem;
     }
 
     public boolean replaceItemInInventory(int inventorySlot, ItemStack stack) {

@@ -35,7 +35,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
         ItemStack MainHand = player.getHeldItem(Hand.MAIN_HAND);
         ItemStack OffHand = player.getHeldItem(Hand.OFF_HAND);
 
-        // you can set the specific molds for the crafting recipes below using the respective mold items
+        // You can set the specific molds for the recipes below using their respective mold items.
         if (MainHand.getItem() == AxolotlTest.INGOT_MOLD.get()) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.INGOT));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
@@ -68,7 +68,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLINE_GEM));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        // or you can just cycle through it by using the Book of the Advanced Molds
+        // Or you can just cycle through it using the Book of the Advanced Molds.
         if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.EMPTY) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.SINGULARITY));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
@@ -101,7 +101,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.EMPTY));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        // but if you use the Book of the Regular Molds, it cannot change to higher tier molds
+        // But if you use the Book of the Regular Molds, it cannot change it to a higher tier mold.
         if (MainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.EMPTY) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.SINGULARITY));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
@@ -127,8 +127,8 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
 
-        // the crafting recipes mentioned above
-        // when the mold is empty
+        // The aforementioned recipes.
+        // Mold: Empty.
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.EMPTY) {
             if (MainHand.getItem() == AxolotlTest.ALJAME.get() && MainHand.getCount() == 4 && OffHand.getItem() == Items.BUCKET) {
                 world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -139,7 +139,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
         } else {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
-        // when the mold is the rod one
+        // Mold: Rod
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.ROD) {
             if (MainHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -150,7 +150,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
         } else {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
-        // when the mold is the singularity one
+        // Mold: Singularity.
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.SINGULARITY) {
             if (MainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -179,7 +179,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
         } else {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
-        // when the mold is the ingot one
+        // Mold: Ingot.
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.INGOT) {
             if (MainHand.getItem() == AxolotlTest.MID_TERM.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -221,7 +221,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
         } else {
             world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1.0f, 1.0f);
         }
-        // when the mold is the mold one
+        // Mold: Mold
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.MOLD) {
             if (MainHand.getItem() == AxolotlTest.CRYSTALLINE_ANGELIC.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);

@@ -1,25 +1,25 @@
 package com.sophicreeper.backmath.core.world.entity.monster;
 
+import com.sophicreeper.backmath.core.world.entity.monster.aljan.InsomniaZombie;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.Janticle;
+import com.sophicreeper.backmath.core.world.entity.monster.aljan.ZombieFabricio;
 import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.AbstractIllagerEntity;
+import net.minecraft.entity.monster.AbstractSkeletonEntity;
+import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
@@ -40,9 +40,14 @@ public class WarriorSophie extends CreatureEntity {
     }
 
     protected void applyMobAI() {
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombie.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieFabricio.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
@@ -56,9 +61,40 @@ public class WarriorSophie extends CreatureEntity {
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25f);
     }
 
+    public void livingTick() {
+        this.updateArmSwingProgress();
+
+        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+                this.heal(1.0F);
+            }
+        }
+        super.livingTick();
+    }
+
+    public double getYOffset() {
+        return -0.35D;
+    }
+
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.WARRIOR_SOPHIE_SPAWN_EGG.get());
+    }
+
+    @Override
+    public boolean attackEntityAsMob(Entity entity) {
+        if (!super.attackEntityAsMob(entity)) {
+            return false;
+        } else {
+            if (entity instanceof LivingEntity && !entity.isImmuneToFire()) {
+                ItemStack devilSword = new ItemStack(AxolotlTest.DEVIL_SWORD.get());
+                if (this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).equals(devilSword)) {
+                    LivingEntity livEntity = (LivingEntity) entity;
+                    livEntity.setFire(5);
+                }
+            }
+        }
+        return true;
     }
 
     @Nullable
@@ -67,6 +103,14 @@ public class WarriorSophie extends CreatureEntity {
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
         return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+    }
+
+    public void updateRidden() {
+        super.updateRidden();
+        if (this.getRidingEntity() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
+            this.renderYawOffset = entity.renderYawOffset;
+        }
     }
 
     @Override
