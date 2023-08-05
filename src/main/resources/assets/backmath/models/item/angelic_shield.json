@@ -1,7 +1,7 @@
 {
   "parent": "backmath:item/template_bm_shield",
   "textures": {
-    "shield": "backmath:entity/shield/angelic",
+    "shield": "backmath:item/shield/angelic",
     "particle": "backmath:block/angelic_block"
   }
 }

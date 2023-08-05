@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "backmath:block/hillary_wall_torch",
+      "y": 360
+    },
     "facing=north": {
       "model": "backmath:block/hillary_wall_torch",
       "y": 270
@@ -11,10 +15,6 @@
     "facing=west": {
       "model": "backmath:block/hillary_wall_torch",
       "y": 180
-    },
-    "facing=east": {
-      "model": "backmath:block/hillary_wall_torch",
-      "y": 360
     }
   }
 }

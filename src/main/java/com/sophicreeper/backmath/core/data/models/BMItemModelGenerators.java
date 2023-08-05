@@ -1,11 +1,20 @@
 package com.sophicreeper.backmath.core.data.models;
 
-/*public class BMItemModelGenerators extends ItemModelProvider {
+import com.sophicreeper.backmath.core.client.BackMath;
+import net.minecraft.data.PackOutput;
+import net.minecraftforge.client.model.generators.ItemModelBuilder;
+import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+import javax.annotation.Nonnull;
+
+public class BMItemModelGenerators extends ItemModelProvider {
     public final ModelFile modelFile = getExistingFile(mcLoc("item/handheld"));
     public final ModelFile modelFileGenerated = getExistingFile(mcLoc("item/generated"));
 
-    public BMItemModelGenerators(DataGenerator generator, ExistingFileHelper fileHelper) {
-        super(generator, BackMath.MOD_ID, fileHelper);
+    public BMItemModelGenerators(PackOutput output, ExistingFileHelper fileHelper) {
+        super(output, BackMath.MOD_ID, fileHelper);
     }
 
     @Nonnull
@@ -401,12 +410,13 @@ package com.sophicreeper.backmath.core.data.models;
         block(generated, "red_yellow_flower");
         standard(generated, "milk_pot");
         standard(handheld, "hillary_rod");
-        standard(generated, "devil_helmet");
+        standard(generated, "devil_helmet"); //TODO
         standard(generated, "devil_chestplate");
         standard(generated, "devil_leggings");
         standard(generated, "devil_boots");
         standard(generated, "mid_term_helmet");
         standard(generated, "mid_term_breastplate");
+        //armorPiece("mid_term_breastplate", "chestplate");
         standard(generated, "mid_term_leggings");
         standard(generated, "mid_term_boots");
         standard(generated, "devil_dye");
@@ -1128,4 +1138,24 @@ package com.sophicreeper.backmath.core.data.models;
         this.milkedSword(name, false);
         return getBuilder(name).parent(modelFile).texture("layer0", "item/" + name);
     }
-}*/
+
+    /*private ItemModelBuilder armorPiece(String armorPiece, String pieceType) {
+        trimmedArmorPiece(armorPiece, "amethyst", pieceType);
+        trimmedArmorPiece(armorPiece, "copper", pieceType);
+        trimmedArmorPiece(armorPiece, "diamond", pieceType);
+        trimmedArmorPiece(armorPiece, "emerald", pieceType);
+        trimmedArmorPiece(armorPiece, "gold", pieceType);
+        trimmedArmorPiece(armorPiece, "iron", pieceType);
+        trimmedArmorPiece(armorPiece, "lapis", pieceType);
+        trimmedArmorPiece(armorPiece, "netherite", pieceType);
+        trimmedArmorPiece(armorPiece, "quartz", pieceType);
+        trimmedArmorPiece(armorPiece, "redstone", pieceType);
+        return standard(modelFileGenerated, armorPiece);
+        //.override().predicate(BackMath.resourceLoc("item/" + armorPiece + "_quartz_trim"), 0.1f);
+    }
+
+    private ItemModelBuilder trimmedArmorPiece(String armorPiece, String trimMaterial, String pieceType) {
+        getBuilder(armorPiece).parent(modelFileGenerated).texture("layer0", "item/" + armorPiece);
+        return getBuilder(armorPiece).parent(modelFileGenerated).texture("layer1", "minecraft:trims/items/" + pieceType + "_trim_" + trimMaterial);
+    }*/
+}

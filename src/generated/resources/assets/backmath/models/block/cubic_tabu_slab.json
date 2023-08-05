@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/slab",
   "textures": {
-    "side": "backmath:block/cubic_tabu",
     "bottom": "backmath:block/cubic_tabu",
+    "side": "backmath:block/cubic_tabu",
     "top": "backmath:block/cubic_tabu"
   }
 }

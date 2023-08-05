@@ -1,7 +1,7 @@
 {
   "parent": "backmath:item/template_bm_shield",
   "textures": {
-    "shield": "backmath:entity/shield/mid_term",
-    "particle": "block/iron_block"
+    "shield": "backmath:item/shield/mid_term",
+    "particle": "backmath:block/mid_term_block_side"
   }
 }

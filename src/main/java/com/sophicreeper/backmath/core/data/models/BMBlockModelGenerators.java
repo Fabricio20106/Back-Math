@@ -1,8 +1,24 @@
 package com.sophicreeper.backmath.core.data.models;
 
-/*public class BMBlockModelGenerators extends BlockStateProvider {
-    public BMBlockModelGenerators(DataGenerator generator, ExistingFileHelper fileHelper) {
-        super(generator, BackMath.MOD_ID, fileHelper);
+import com.sophicreeper.backmath.core.client.BackMath;
+import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelBuilder;
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+import javax.annotation.Nonnull;
+
+import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
+
+public class BMBlockModelGenerators extends BlockStateProvider {
+    public BMBlockModelGenerators(PackOutput output, ExistingFileHelper fileHelper) {
+        super(output, BackMath.MOD_ID, fileHelper);
     }
 
     @Nonnull
@@ -24,7 +40,7 @@ package com.sophicreeper.backmath.core.data.models;
         simpleBlock(BMBlocks.CHISELED_DEVIL_BLOCK.get());
         simpleBlock(BMBlocks.CHISELED_DEVIL_BLOCK_SOPHIE.get());
         slabBlock((SlabBlock) BMBlocks.DEVIL_SLAB.get(), modLoc("block/devil_block"), modLoc("block/devil_block"));
-        stairsBlock((StairsBlock) BMBlocks.DEVIL_STAIRS.get(), modLoc("block/devil_block"));
+        stairsBlock((StairBlock) BMBlocks.DEVIL_STAIRS.get(), modLoc("block/devil_block"));
         fenceBlock((FenceBlock) BMBlocks.DEVIL_FENCE.get(), modLoc("block/devil_block"));
         fenceGateBlock((FenceGateBlock) BMBlocks.DEVIL_FENCE_GATE.get(), modLoc("block/devil_block"));
         trapdoorBlock((TrapDoorBlock) BMBlocks.DEVIL_TRAPDOOR.get(), modLoc("block/devil_block"), true);
@@ -56,7 +72,7 @@ package com.sophicreeper.backmath.core.data.models;
                 "block/flower_pot_cross").texture("plant", "block/grape_vine_sapling"));
         simpleBlock(BMBlocks.RAW_DEVIL_BLOCK.get());
         simpleBlock(BMBlocks.DEVIL_STAINED_GLASS.get());
-        paneBlock((PaneBlock) BMBlocks.DEVIL_STAINED_GLASS_PANE.get(), modLoc("block/devil_stained_glass"), modLoc("block/devil_stained_glass_pane_top"));
+        paneBlock((IronBarsBlock) BMBlocks.DEVIL_STAINED_GLASS_PANE.get(), modLoc("block/devil_stained_glass"), modLoc("block/devil_stained_glass_pane_top"));
         simpleBlock(BMBlocks.DEVIL_CONCRETE.get());
         simpleBlock(BMBlocks.DEVIL_CONCRETE_POWDER.get());
         simpleBlock(BMBlocks.DEVIL_WOOL.get());
@@ -74,7 +90,7 @@ package com.sophicreeper.backmath.core.data.models;
 
         simpleBlock(BMBlocks.HILLARY_TORCH.get(), models().torch("hillary_torch", modLoc("block/hillary_torch")));
         getVariantBuilder(BMBlocks.HILLARY_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("hillary_wall_torch",
-                        modLoc("block/hillary_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                        modLoc("block/hillary_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.RAW_ANGELIC_BLOCK.get());
         simpleBlock(BMBlocks.RAW_MID_TERM_BLOCK.get());
         simpleBlock(BMBlocks.DEEPSLATE_ANGELIC_ORE.get());
@@ -94,7 +110,7 @@ package com.sophicreeper.backmath.core.data.models;
         doorBlock((DoorBlock) BMBlocks.ANGELIC_DOOR.get(), modLoc("block/angelic_door_bottom"), modLoc("block/angelic_door_top"));
         simpleBlock(BMBlocks.ANGELICAL_CASING.get());
         simpleBlock(BMBlocks.DEVIL_BRICKS.get());
-        stairsBlock((StairsBlock) BMBlocks.DEVIL_BRICK_STAIRS.get(), modLoc("block/devil_bricks"));
+        stairsBlock((StairBlock) BMBlocks.DEVIL_BRICK_STAIRS.get(), modLoc("block/devil_bricks"));
         slabBlock((SlabBlock) BMBlocks.DEVIL_BRICK_SLAB.get(), modLoc("block/devil_bricks"), modLoc("block/devil_bricks"));
         wallBlock((WallBlock) BMBlocks.DEVIL_BRICK_WALL.get(), modLoc("block/devil_bricks"));
         simpleBlock(BMBlocks.PINEAPPLE_OAK_LEAVES.get(), models().withExistingParent("pineapple_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
@@ -111,10 +127,10 @@ package com.sophicreeper.backmath.core.data.models;
         doorBlock((DoorBlock) BMBlocks.CRYSTALLINE_BIRCH_DOOR.get(), modLoc("block/crystalline_birch_door_bottom"), modLoc("block/crystalline_birch_door_top"));
         simpleBlock(BMBlocks.ANGELIC_BRICKS.get());
         simpleBlock(BMBlocks.CRACKED_ANGELIC_BRICKS.get());
-        stairsBlock((StairsBlock) BMBlocks.ANGELIC_BRICK_STAIRS.get(), modLoc("block/angelic_bricks"));
+        stairsBlock((StairBlock) BMBlocks.ANGELIC_BRICK_STAIRS.get(), modLoc("block/angelic_bricks"));
         slabBlock((SlabBlock) BMBlocks.ANGELIC_BRICK_SLAB.get(), modLoc("block/angelic_bricks"), modLoc("block/angelic_bricks"));
         wallBlock((WallBlock) BMBlocks.ANGELIC_BRICK_WALL.get(), modLoc("block/angelic_bricks"));
-        stairsBlock((StairsBlock) BMBlocks.CRYSTALLINE_BIRCH_STAIRS.get(), modLoc("block/crystalline_birch_planks"));
+        stairsBlock((StairBlock) BMBlocks.CRYSTALLINE_BIRCH_STAIRS.get(), modLoc("block/crystalline_birch_planks"));
         slabBlock((SlabBlock) BMBlocks.CRYSTALLINE_BIRCH_SLAB.get(), modLoc("block/crystalline_birch_planks"), modLoc("block/crystalline_birch_planks"));
         fenceBlock((FenceBlock) BMBlocks.CRYSTALLINE_BIRCH_FENCE.get(), modLoc("block/crystalline_birch_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.CRYSTALLINE_BIRCH_FENCE_GATE.get(), modLoc("block/crystalline_birch_planks"));
@@ -129,16 +145,16 @@ package com.sophicreeper.backmath.core.data.models;
         simpleBlock(BMBlocks.RAW_MOONER_BLOCK.get());
         simpleBlock(BMBlocks.ALJANWOOD_PLANKS.get());
         simpleBlock(BMBlocks.ALJANCAP_PLANKS.get());
-        stairsBlock((StairsBlock) BMBlocks.ALJANSTONE_STAIRS.get(), aljanstone);
+        stairsBlock((StairBlock) BMBlocks.ALJANSTONE_STAIRS.get(), aljanstone);
         slabBlock((SlabBlock) BMBlocks.ALJANSTONE_SLAB.get(), aljanstone, aljanstone);
         simpleBlock(BMBlocks.ALJANSTONE_BRICKS.get());
-        stairsBlock((StairsBlock) BMBlocks.ALJANSTONE_BRICK_STAIRS.get(), aljanstoneBricks);
+        stairsBlock((StairBlock) BMBlocks.ALJANSTONE_BRICK_STAIRS.get(), aljanstoneBricks);
         slabBlock((SlabBlock) BMBlocks.ALJANSTONE_BRICK_SLAB.get(), aljanstoneBricks, aljanstoneBricks);
         wallBlock((WallBlock) BMBlocks.ALJANSTONE_BRICK_WALL.get(), aljanstoneBricks);
         simpleBlock(BMBlocks.SMOOTH_ALJANSTONE.get());
         slabBlock((SlabBlock) BMBlocks.SMOOTH_ALJANSTONE_SLAB.get(), modLoc("block/smooth_aljanstone"), modLoc("block/smooth_aljanstone"));
         simpleBlock(BMBlocks.COBBLED_ALJANSTONE.get());
-        stairsBlock((StairsBlock) BMBlocks.COBBLED_ALJANSTONE_STAIRS.get(), cobbledAljanstone);
+        stairsBlock((StairBlock) BMBlocks.COBBLED_ALJANSTONE_STAIRS.get(), cobbledAljanstone);
         slabBlock((SlabBlock) BMBlocks.COBBLED_ALJANSTONE_SLAB.get(), cobbledAljanstone, cobbledAljanstone);
         wallBlock((WallBlock) BMBlocks.COBBLED_ALJANSTONE_WALL.get(), cobbledAljanstone);
         axisBlock((RotatedPillarBlock) BMBlocks.ALJANWOOD_LOG.get(), modLoc("block/aljanwood_log"), modLoc("block/aljanwood_log_top"));
@@ -147,7 +163,7 @@ package com.sophicreeper.backmath.core.data.models;
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_ALJANWOOD_WOOD.get(), modLoc("block/stripped_aljanwood_log"), modLoc("block/stripped_aljanwood_log"));
         simpleBlock(BMBlocks.ALJANWOOD_LEAVES.get(), models().withExistingParent("aljanwood_leaves", mcLoc("block/leaves")).texture("all",
                 "minecraft:block/oak_leaves"));
-        stairsBlock((StairsBlock) BMBlocks.ALJANWOOD_STAIRS.get(), aljanwoodPlanks);
+        stairsBlock((StairBlock) BMBlocks.ALJANWOOD_STAIRS.get(), aljanwoodPlanks);
         slabBlock((SlabBlock) BMBlocks.ALJANWOOD_SLAB.get(), aljanwoodPlanks, aljanwoodPlanks);
         trapdoorBlock((TrapDoorBlock) BMBlocks.ALJANWOOD_TRAPDOOR.get(), modLoc("block/aljanwood_trapdoor"), true);
         simpleBlock(BMBlocks.ALJANWOOD_SAPLING.get(), models().cross("aljanwood_sapling", modLoc("block/aljanwood_sapling")));
@@ -182,13 +198,13 @@ package com.sophicreeper.backmath.core.data.models;
         slabBlock((SlabBlock) BMBlocks.SLEEPINGSTONE_SLAB.get(), modLoc("block/sleepingstone"), modLoc("block/sleepingstone"));
         slabBlock((SlabBlock) BMBlocks.SLEEPINGSTONE_BRICK_SLAB.get(), modLoc("block/sleepingstone_bricks"), modLoc("block/sleepingstone_bricks"));
         slabBlock((SlabBlock) BMBlocks.POLISHED_SLEEPINGSTONE_SLAB.get(), modLoc("block/polished_sleepingstone"), modLoc("block/polished_sleepingstone"));
-        stairsBlock((StairsBlock) BMBlocks.SLEEPINGSTONE_STAIRS.get(), modLoc("block/sleepingstone"));
-        stairsBlock((StairsBlock) BMBlocks.SLEEPINGSTONE_BRICK_STAIRS.get(), modLoc("block/sleepingstone_bricks"));
-        stairsBlock((StairsBlock) BMBlocks.POLISHED_SLEEPINGSTONE_STAIRS.get(), modLoc("block/polished_sleepingstone"));
+        stairsBlock((StairBlock) BMBlocks.SLEEPINGSTONE_STAIRS.get(), modLoc("block/sleepingstone"));
+        stairsBlock((StairBlock) BMBlocks.SLEEPINGSTONE_BRICK_STAIRS.get(), modLoc("block/sleepingstone_bricks"));
+        stairsBlock((StairBlock) BMBlocks.POLISHED_SLEEPINGSTONE_STAIRS.get(), modLoc("block/polished_sleepingstone"));
         wallBlock((WallBlock) BMBlocks.SLEEPINGSTONE_WALL.get(), modLoc("block/sleepingstone"));
         wallBlock((WallBlock) BMBlocks.SLEEPINGSTONE_BRICK_WALL.get(), modLoc("block/sleepingstone_bricks"));
         wallBlock((WallBlock) BMBlocks.POLISHED_SLEEPINGSTONE_WALL.get(), modLoc("block/polished_sleepingstone"));
-        stairsBlock((StairsBlock) BMBlocks.ALJANCAP_STAIRS.get(), modLoc("block/aljancap_planks"));
+        stairsBlock((StairBlock) BMBlocks.ALJANCAP_STAIRS.get(), modLoc("block/aljancap_planks"));
         slabBlock((SlabBlock) BMBlocks.ALJANCAP_SLAB.get(), modLoc("block/aljancap_planks"), modLoc("block/aljancap_planks"));
         fenceBlock((FenceBlock) BMBlocks.ALJANCAP_FENCE.get(), modLoc("block/aljancap_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.ALJANCAP_FENCE_GATE.get(), modLoc("block/aljancap_planks"));
@@ -200,7 +216,7 @@ package com.sophicreeper.backmath.core.data.models;
                 "minecraft:block/oak_leaves"));
         simpleBlock(BMBlocks.INSOMNIAN_SAPLING.get(), models().cross("insomnian_sapling", modLoc("block/insomnian_sapling")));
         simpleBlock(BMBlocks.INSOMNIAN_PLANKS.get());
-        stairsBlock((StairsBlock) BMBlocks.INSOMNIAN_STAIRS.get(), insomnianPlanks);
+        stairsBlock((StairBlock) BMBlocks.INSOMNIAN_STAIRS.get(), insomnianPlanks);
         slabBlock((SlabBlock) BMBlocks.INSOMNIAN_SLAB.get(), insomnianPlanks, insomnianPlanks);
         fenceBlock((FenceBlock) BMBlocks.INSOMNIAN_FENCE.get(), insomnianPlanks);
         fenceGateBlock((FenceGateBlock) BMBlocks.INSOMNIAN_FENCE_GATE.get(), insomnianPlanks);
@@ -243,16 +259,16 @@ package com.sophicreeper.backmath.core.data.models;
         simpleBlock(BMBlocks.CRYSTALLINE_ANGELIC_BLOCK.get());
         simpleBlock(BMBlocks.CHARJAN_WOOD_TORCH.get(), models().torch("charjan_wood_torch", modLoc("block/charjan_wood_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_WOOD_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_wood_wall_torch",
-                modLoc("block/charjan_wood_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                modLoc("block/charjan_wood_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.CHARJAN_ALJANWOOD_TORCH.get(), models().torch("charjan_aljanwood_torch", modLoc("block/charjan_aljanwood_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_ALJANWOOD_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_aljanwood_wall_torch",
-                modLoc("block/charjan_aljanwood_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                modLoc("block/charjan_aljanwood_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.CHARJAN_ALJANCAP_TORCH.get(), models().torch("charjan_aljancap_torch", modLoc("block/charjan_aljancap_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_ALJANCAP_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_aljancap_wall_torch",
-                modLoc("block/charjan_aljancap_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                modLoc("block/charjan_aljancap_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.CHARJAN_INSOMNIAN_TORCH.get(), models().torch("charjan_insomnian_torch", modLoc("block/charjan_insomnian_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_INSOMNIAN_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_insomnian_wall_torch",
-                modLoc("block/charjan_insomnian_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                modLoc("block/charjan_insomnian_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.AMARACAP_LEAVES.get(), models().withExistingParent("amaracap_leaves", mcLoc("block/leaves")).texture("all",
                 "minecraft:block/acacia_leaves"));
         simpleBlock(BMBlocks.INSOGRAVEL.get());
@@ -265,11 +281,11 @@ package com.sophicreeper.backmath.core.data.models;
         simpleBlock(BMBlocks.SLEEPINGSTONE_ALJAMIC_TIN_ORE.get());
 
         getVariantBuilder(BMBlocks.ALJAMIC_ONIONS.get()).forAllStates(state -> {
-            int cropAgeIndex = cropAgeToIndexPotato(state.get(CropsBlock.AGE));
+            int cropAgeIndex = cropAgeToIndexPotato(state.getValue(CropBlock.AGE));
             return ConfiguredModel.builder().modelFile(models().crop("aljamic_onions_stage" + cropAgeIndex, modLoc("block/aljamic_onions_stage" + cropAgeIndex))).build();
         });
         getVariantBuilder(BMBlocks.CARAMELED_WHEAT.get()).forAllStates(state -> {
-            int cropAgeIndex = cropAgeToIndexWheat(state.get(CropsBlock.AGE));
+            int cropAgeIndex = cropAgeToIndexWheat(state.getValue(CropBlock.AGE));
             return ConfiguredModel.builder().modelFile(models().crop("carameled_wheat_stage" + cropAgeIndex, modLoc("block/carameled_wheat_stage" + cropAgeIndex))).build();
         });
         simpleBlock(BMBlocks.WILD_CARAMELED_WHEAT.get(), models().withExistingParent("wild_carameled_wheat", "backmath:block/template_wild_crop").texture("crop", "block/wild_carameled_wheat"));
@@ -277,15 +293,15 @@ package com.sophicreeper.backmath.core.data.models;
         // TODO: Back Math 1.8.0:
         horizontalBlock(BMBlocks.GLAZED_TABU.get(), modLoc("block/glazed_tabu"), modLoc("block/glazed_tabu"), modLoc("block/glazed_tabu"));
         simpleBlock(BMBlocks.CUBIC_TABU.get());
-        stairsBlock((StairsBlock) BMBlocks.CUBIC_TABU_STAIRS.get(), modLoc("block/cubic_tabu"));
+        stairsBlock((StairBlock) BMBlocks.CUBIC_TABU_STAIRS.get(), modLoc("block/cubic_tabu"));
         slabBlock((SlabBlock) BMBlocks.CUBIC_TABU_SLAB.get(), modLoc("block/cubic_tabu"), modLoc("block/cubic_tabu"));
         simpleBlock(BMBlocks.TABU_MOSAIC.get());
-        stairsBlock((StairsBlock) BMBlocks.TABU_MOSAIC_STAIRS.get(), modLoc("block/tabu_mosaic"));
+        stairsBlock((StairBlock) BMBlocks.TABU_MOSAIC_STAIRS.get(), modLoc("block/tabu_mosaic"));
         slabBlock((SlabBlock) BMBlocks.TABU_MOSAIC_SLAB.get(), modLoc("block/tabu_mosaic"), modLoc("block/tabu_mosaic"));
         axisBlock((RotatedPillarBlock) BMBlocks.TABU_PILLAR.get(), modLoc("block/tabu_pillar"), modLoc("block/tabu_pillar_top"));
 
         simpleBlock(BMBlocks.HILLARIED_STONE.get());
-        stairsBlock((StairsBlock) BMBlocks.HILLARIED_STONE_STAIRS.get(), modLoc("block/hillaried_stone"));
+        stairsBlock((StairBlock) BMBlocks.HILLARIED_STONE_STAIRS.get(), modLoc("block/hillaried_stone"));
         slabBlock((SlabBlock) BMBlocks.HILLARIED_STONE_SLAB.get(), modLoc("block/hillaried_stone"), modLoc("block/hillaried_stone"));
         wallBlock((WallBlock) BMBlocks.HILLARIED_STONE_WALL.get(), modLoc("block/hillaried_stone"));
         simpleBlock(BMBlocks.CHISELED_HILLARIED_STONE.get());
@@ -300,7 +316,7 @@ package com.sophicreeper.backmath.core.data.models;
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_GUAVA_LOG.get(), modLoc("block/stripped_guava_log"), modLoc("block/stripped_guava_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_GUAVA_WOOD.get(), modLoc("block/stripped_guava_log"), modLoc("block/stripped_guava_log"));
         simpleBlock(BMBlocks.GUAVA_PLANKS.get());
-        stairsBlock((StairsBlock) BMBlocks.GUAVA_STAIRS.get(), modLoc("block/guava_planks"));
+        stairsBlock((StairBlock) BMBlocks.GUAVA_STAIRS.get(), modLoc("block/guava_planks"));
         slabBlock((SlabBlock) BMBlocks.GUAVA_SLAB.get(), modLoc("block/guava_planks"), modLoc("block/guava_planks"));
         fenceBlock((FenceBlock) BMBlocks.GUAVA_FENCE.get(), modLoc("block/guava_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.GUAVA_FENCE_GATE.get(), modLoc("block/guava_planks"));
@@ -313,7 +329,7 @@ package com.sophicreeper.backmath.core.data.models;
         simpleBlock(BMBlocks.POTTED_MANGAED_MANGO_OAK_SAPLING.get(), models().withExistingParent("potted_mangaed_mango_oak_sapling", "block/flower_pot_cross").texture("plant", "block/mangaed_mango_oak_sapling"));
         simpleBlock(BMBlocks.ALJAMIC_SAND.get());
         simpleBlock(BMBlocks.ALJAMIC_GLASS.get());
-        paneBlock((PaneBlock) BMBlocks.ALJAMIC_GLASS_PANE.get(), modLoc("block/aljamic_glass"), modLoc("block/aljamic_glass_pane_top"));
+        paneBlock((IronBarsBlock) BMBlocks.ALJAMIC_GLASS_PANE.get(), modLoc("block/aljamic_glass"), modLoc("block/aljamic_glass_pane_top"));
         simpleBlock(BMBlocks.JANTICAL_BLOCK.get());
         simpleBlock(BMBlocks.WILD_ALJAMIC_ONIONS.get(), models().withExistingParent("wild_aljamic_onions", "backmath:block/template_wild_crop").texture("crop", "block/wild_aljamic_onions"));
         simpleBlock(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get(), models().cross("ender_dragon_fried_egg_flower", modLoc("block/ender_dragon_fried_egg_flower")));
@@ -331,7 +347,7 @@ package com.sophicreeper.backmath.core.data.models;
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_GOLDENWOOD_LOG.get(), modLoc("block/stripped_goldenwood_log"), modLoc("block/stripped_goldenwood_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_GOLDENWOOD_WOOD.get(), modLoc("block/stripped_goldenwood_log"), modLoc("block/stripped_goldenwood_log"));
         simpleBlock(BMBlocks.GOLDENWOOD_PLANKS.get());
-        stairsBlock((StairsBlock) BMBlocks.GOLDENWOOD_STAIRS.get(), modLoc("block/goldenwood_planks"));
+        stairsBlock((StairBlock) BMBlocks.GOLDENWOOD_STAIRS.get(), modLoc("block/goldenwood_planks"));
         slabBlock((SlabBlock) BMBlocks.GOLDENWOOD_SLAB.get(), modLoc("block/goldenwood_planks"), modLoc("block/goldenwood_planks"));
         fenceBlock((FenceBlock) BMBlocks.GOLDENWOOD_FENCE.get(), modLoc("block/goldenwood_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.GOLDENWOOD_FENCE_GATE.get(), modLoc("block/goldenwood_planks"));
@@ -347,7 +363,7 @@ package com.sophicreeper.backmath.core.data.models;
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_AVONDALIC_WILLOW_LOG.get(), modLoc("block/stripped_avondalic_willow_log"), modLoc("block/stripped_avondalic_willow_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_AVONDALIC_WILLOW_WOOD.get(), modLoc("block/stripped_avondalic_willow_log"), modLoc("block/stripped_avondalic_willow_log"));
         simpleBlock(BMBlocks.AVONDALIC_WILLOW_PLANKS.get());
-        stairsBlock((StairsBlock) BMBlocks.AVONDALIC_WILLOW_STAIRS.get(), modLoc("block/avondalic_willow_planks"));
+        stairsBlock((StairBlock) BMBlocks.AVONDALIC_WILLOW_STAIRS.get(), modLoc("block/avondalic_willow_planks"));
         slabBlock((SlabBlock) BMBlocks.AVONDALIC_WILLOW_SLAB.get(), modLoc("block/avondalic_willow_planks"), modLoc("block/avondalic_willow_planks"));
         fenceBlock((FenceBlock) BMBlocks.AVONDALIC_WILLOW_FENCE.get(), modLoc("block/avondalic_willow_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.AVONDALIC_WILLOW_FENCE_GATE.get(), modLoc("block/avondalic_willow_planks"));
@@ -362,7 +378,7 @@ package com.sophicreeper.backmath.core.data.models;
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_JABUTICABA_LOG.get(), modLoc("block/stripped_jabuticaba_log"), modLoc("block/stripped_jabuticaba_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_JABUTICABA_WOOD.get(), modLoc("block/stripped_jabuticaba_log"), modLoc("block/stripped_jabuticaba_log"));
         simpleBlock(BMBlocks.JABUTICABA_PLANKS.get());
-        stairsBlock((StairsBlock) BMBlocks.JABUTICABA_STAIRS.get(), modLoc("block/jabuticaba_planks"));
+        stairsBlock((StairBlock) BMBlocks.JABUTICABA_STAIRS.get(), modLoc("block/jabuticaba_planks"));
         slabBlock((SlabBlock) BMBlocks.JABUTICABA_SLAB.get(), modLoc("block/jabuticaba_planks"), modLoc("block/jabuticaba_planks"));
         fenceBlock((FenceBlock) BMBlocks.JABUTICABA_FENCE.get(), modLoc("block/jabuticaba_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.JABUTICABA_FENCE_GATE.get(), modLoc("block/jabuticaba_planks"));
@@ -380,7 +396,7 @@ package com.sophicreeper.backmath.core.data.models;
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CORK_OAK_LOG.get(), modLoc("block/stripped_cork_oak_log"), modLoc("block/stripped_cork_oak_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CORK_OAK_WOOD.get(), modLoc("block/stripped_cork_oak_log"), modLoc("block/stripped_cork_oak_log"));
         simpleBlock(BMBlocks.CORK_OAK_PLANKS.get());
-        stairsBlock((StairsBlock) BMBlocks.CORK_OAK_STAIRS.get(), modLoc("block/cork_oak_planks"));
+        stairsBlock((StairBlock) BMBlocks.CORK_OAK_STAIRS.get(), modLoc("block/cork_oak_planks"));
         slabBlock((SlabBlock) BMBlocks.CORK_OAK_SLAB.get(), modLoc("block/cork_oak_planks"), modLoc("block/cork_oak_planks"));
         fenceBlock((FenceBlock) BMBlocks.CORK_OAK_FENCE.get(), modLoc("block/cork_oak_planks"));
         fenceGateBlock((FenceGateBlock) BMBlocks.CORK_OAK_FENCE_GATE.get(), modLoc("block/cork_oak_planks"));
@@ -388,20 +404,20 @@ package com.sophicreeper.backmath.core.data.models;
         trapdoorBlock((TrapDoorBlock) BMBlocks.CORK_OAK_TRAPDOOR.get(), modLoc("block/cork_oak_trapdoor"), true);
 
         simpleBlock(BMBlocks.COLDTERM_BRICKS.get());
-        stairsBlock((StairsBlock) BMBlocks.COLDTERM_BRICK_STAIRS.get(), modLoc("block/coldterm_bricks"));
+        stairsBlock((StairBlock) BMBlocks.COLDTERM_BRICK_STAIRS.get(), modLoc("block/coldterm_bricks"));
         slabBlock((SlabBlock) BMBlocks.COLDTERM_BRICK_SLAB.get(), modLoc("block/coldterm_bricks"), modLoc("block/coldterm_bricks"));
         wallBlock((WallBlock) BMBlocks.COLDTERM_BRICK_WALL.get(), modLoc("block/coldterm_bricks"));
         simpleBlock(BMBlocks.WARMTERM_BRICKS.get());
-        stairsBlock((StairsBlock) BMBlocks.WARMTERM_BRICK_STAIRS.get(), modLoc("block/warmterm_bricks"));
+        stairsBlock((StairBlock) BMBlocks.WARMTERM_BRICK_STAIRS.get(), modLoc("block/warmterm_bricks"));
         slabBlock((SlabBlock) BMBlocks.WARMTERM_BRICK_SLAB.get(), modLoc("block/warmterm_bricks"), modLoc("block/warmterm_bricks"));
         wallBlock((WallBlock) BMBlocks.WARMTERM_BRICK_WALL.get(), modLoc("block/warmterm_bricks"));
         simpleBlock(BMBlocks.OBSIDITERM_BRICKS.get());
-        stairsBlock((StairsBlock) BMBlocks.OBSIDITERM_BRICK_STAIRS.get(), modLoc("block/obsiditerm_bricks"));
+        stairsBlock((StairBlock) BMBlocks.OBSIDITERM_BRICK_STAIRS.get(), modLoc("block/obsiditerm_bricks"));
         slabBlock((SlabBlock) BMBlocks.OBSIDITERM_BRICK_SLAB.get(), modLoc("block/obsiditerm_bricks"), modLoc("block/obsiditerm_bricks"));
         wallBlock((WallBlock) BMBlocks.OBSIDITERM_BRICK_WALL.get(), modLoc("block/obsiditerm_bricks"));
 
         simpleBlock(BMBlocks.MOSSY_ANGELIC_BRICKS.get());
-        stairsBlock((StairsBlock) BMBlocks.MOSSY_ANGELIC_BRICK_STAIRS.get(), modLoc("block/mossy_angelic_bricks"));
+        stairsBlock((StairBlock) BMBlocks.MOSSY_ANGELIC_BRICK_STAIRS.get(), modLoc("block/mossy_angelic_bricks"));
         slabBlock((SlabBlock) BMBlocks.MOSSY_ANGELIC_BRICK_SLAB.get(), modLoc("block/mossy_angelic_bricks"), modLoc("block/mossy_angelic_bricks"));
         wallBlock((WallBlock) BMBlocks.MOSSY_ANGELIC_BRICK_WALL.get(), modLoc("block/mossy_angelic_bricks"));
         axisBlock((RotatedPillarBlock) BMBlocks.ANGELIC_PILLAR.get(), modLoc("block/angelic_pillar"));
@@ -429,4 +445,4 @@ package com.sophicreeper.backmath.core.data.models;
         if (age == 1) return 1;
         return 0;
     }
-}*/
+}

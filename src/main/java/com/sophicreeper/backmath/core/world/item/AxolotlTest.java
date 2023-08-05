@@ -476,12 +476,12 @@ public class AxolotlTest {
     public static final RegistryObject<Item> TEENAGER_ALICE_TOY = ITEMS.register("teenager_alice_toy", () -> new BlockItem(BMBlocks.TEENAGER_ALICE_TOY.get(), new Item.Properties()));
     public static final RegistryObject<Item> TITO = ITEMS.register("tito", () -> new TitoItem(new Item.Properties()));
     public static final RegistryObject<Item> TOTI = ITEMS.register("toti", () -> new TotiItem(new Item.Properties()));
-    public static final RegistryObject<Item> ANGRY_SOPHIE_HELMET = ITEMS.register("angry_sophie_head", () -> new BMHeadItem(BMBlocks.ANGRY_SOPHIE_HEAD.get(), BMBlocks.ANGRY_SOPHIE_WALL_HEAD.get(), new Item.Properties()));
+    public static final RegistryObject<Item> ANGRY_SOPHIE_HEAD = ITEMS.register("angry_sophie_head", () -> new BMHeadItem(BMBlocks.ANGRY_SOPHIE_HEAD.get(), BMBlocks.ANGRY_SOPHIE_WALL_HEAD.get(), new Item.Properties()));
     public static final RegistryObject<Item> INSOMNIA_SOPHIE_HEAD = ITEMS.register("insomnia_sophie_head", () -> new BMHeadItem(BMBlocks.INSOMNIA_SOPHIE_HEAD.get(), BMBlocks.INSOMNIA_SOPHIE_WALL_HEAD.get(), new Item.Properties()));
     public static final RegistryObject<Item> ZOMBIE_FABRICIO_HEAD = ITEMS.register("zombie_fabricio_head", () -> new BMHeadItem(BMBlocks.ZOMBIE_FABRICIO_HEAD.get(), BMBlocks.ZOMBIE_FABRICIO_WALL_HEAD.get(), new Item.Properties()));
-    public static final RegistryObject<Item> QUEEN_SOPHIE_HEAD = ITEMS.register("queen_sophie_head", () -> new BMHeadItem(BMBlocks.QUEEN_SOPHIE_HEAD.get(), BMBlocks.QUEEN_SOPHIE_WALL_HEAD.get(), new Item.Properties().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> QUEEN_SOPHIE_RELIC = ITEMS.register("queen_sophie_relic", () -> new BlockItem(BMBlocks.QUEEN_SOPHIE_RELIC.get(), new Item.Properties().fireResistant().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> QUEEN_SOPHIE_PET_RELIC = ITEMS.register("queen_sophie_pet_relic", () -> new BlockItem(BMBlocks.QUEEN_SOPHIE_PET_RELIC.get(), new Item.Properties().fireResistant().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> QUEEN_LUCY_HEAD = ITEMS.register("queen_sophie_head", () -> new BMHeadItem(BMBlocks.QUEEN_SOPHIE_HEAD.get(), BMBlocks.QUEEN_SOPHIE_WALL_HEAD.get(), new Item.Properties().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> QUEEN_LUCY_RELIC = ITEMS.register("queen_sophie_relic", () -> new BlockItem(BMBlocks.QUEEN_SOPHIE_RELIC.get(), new Item.Properties().fireResistant().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> QUEEN_LUCY_PET_RELIC = ITEMS.register("queen_sophie_pet_relic", () -> new BlockItem(BMBlocks.QUEEN_SOPHIE_PET_RELIC.get(), new Item.Properties().fireResistant().rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> CHARJAN_WOOD_TORCH = ITEMS.register("charjan_wood_torch", () -> new StandingAndWallBlockItem(BMBlocks.CHARJAN_WOOD_TORCH.get(), BMBlocks.CHARJAN_WOOD_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
 
     // New Back Layer

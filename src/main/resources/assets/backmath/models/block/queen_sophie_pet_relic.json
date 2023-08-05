@@ -3,9 +3,9 @@
   "parent": "block/block",
   "texture_size": [32, 32],
   "textures": {
-    "0": "backmath:entity/queen_sophie_pet/qsp_relic",
+    "0": "backmath:block/queen_sophie_pet_relic",
     "1": "block/gold_block",
-    "particle": "backmath:entity/queen_sophie_pet/qsp_relic"
+    "particle": "backmath:block/queen_sophie_pet_relic"
   },
   "elements": [
     {

@@ -1,7 +1,7 @@
 {
   "parent": "backmath:item/template_bm_shield",
   "textures": {
-    "shield": "backmath:entity/shield/aljameed",
+    "shield": "backmath:item/shield/aljameed",
     "particle": "backmath:block/aljameed_block"
   }
 }

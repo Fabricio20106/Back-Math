@@ -1,7 +1,7 @@
 {
   "parent": "backmath:item/template_bm_shield",
   "textures": {
-    "shield": "backmath:entity/shield/moonering",
+    "shield": "backmath:item/shield/moonering",
     "particle": "backmath:block/moonering_block"
   }
 }

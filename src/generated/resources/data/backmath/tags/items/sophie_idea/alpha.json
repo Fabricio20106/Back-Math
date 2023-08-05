@@ -1,5 +1,4 @@
 {
-  "replace": false,
   "values": [
     "backmath:peitoraldeouro",
     "backmath:empada_de_ouro",
@@ -9,7 +8,6 @@
     "backmath:lapis_rainbow",
     "backmath:talco_de_agua",
     "backmath:tiara_de_gato",
-    "backmath:hilary_bucket",
     "backmath:lagusta",
     "backmath:patty",
     "backmath:cheese_bread",

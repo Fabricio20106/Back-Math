@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "side": "backmath:block/angelic_pillar_side",
-    "end": "backmath:block/angelic_pillar_end"
+    "end": "backmath:block/angelic_pillar_end",
+    "side": "backmath:block/angelic_pillar_side"
   }
 }

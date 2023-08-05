@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/stairs",
   "textures": {
-    "side": "backmath:block/obsiditerm_bricks",
     "bottom": "backmath:block/obsiditerm_bricks",
+    "side": "backmath:block/obsiditerm_bricks",
     "top": "backmath:block/obsiditerm_bricks"
   }
 }

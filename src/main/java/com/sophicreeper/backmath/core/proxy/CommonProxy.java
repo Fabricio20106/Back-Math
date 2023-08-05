@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.core.world.effect.BMMobEffects;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
 import com.sophicreeper.backmath.core.world.entity.decoration.BMMotives;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
+import com.sophicreeper.backmath.core.world.item.BMCreativeTabs;
 import com.sophicreeper.backmath.core.world.item.alchemy.BMPotions;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class CommonProxy {
     CommonProxy() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        BMCreativeTabs.TABS.register(eventBus);
         BMBlocks.BLOCKS.register(eventBus);
         AxolotlTest.ITEMS.register(eventBus);
         BMEntities.ENTITIES.register(eventBus);

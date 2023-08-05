@@ -1,5 +1,9 @@
 {
   "variants": {
+    "facing=east": {
+      "model": "backmath:block/devil_glazed_terracotta",
+      "y": 90
+    },
     "facing=north": {
       "model": "backmath:block/devil_glazed_terracotta"
     },
@@ -10,10 +14,6 @@
     "facing=west": {
       "model": "backmath:block/devil_glazed_terracotta",
       "y": 270
-    },
-    "facing=east": {
-      "model": "backmath:block/devil_glazed_terracotta",
-      "y": 90
     }
   }
 }

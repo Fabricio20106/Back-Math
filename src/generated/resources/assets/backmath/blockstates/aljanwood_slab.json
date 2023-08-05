@@ -1,13 +1,13 @@
 {
   "variants": {
-    "type=top": {
-      "model": "backmath:block/aljanwood_slab_top"
-    },
     "type=bottom": {
       "model": "backmath:block/aljanwood_slab"
     },
     "type=double": {
       "model": "backmath:block/aljanwood_planks"
+    },
+    "type=top": {
+      "model": "backmath:block/aljanwood_slab_top"
     }
   }
 }

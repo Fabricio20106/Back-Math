@@ -1,12 +1,15 @@
 {
-  "type": "minecraft:smithing",
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "forge:ingots/gold"
+  },
   "base": {
     "item": "backmath:crystallizer"
   },
-  "addition": {
-    "item": "backmath:upgrade_token_crystallizer_upg"
-  },
   "result": {
     "item": "backmath:crystalline_crystallizer"
+  },
+  "template": {
+    "item": "backmath:upgrade_token_crystallizer_upg"
   }
 }
