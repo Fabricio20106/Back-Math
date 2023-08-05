@@ -1,28 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 
-import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-
-public class AljamicBones extends AbstractSkeletonEntity {
+/*public class AljamicBones extends AbstractSkeletonEntity {
     public AljamicBones(EntityType<AljamicBones> type, World world) {
         super(type, world);
     }
@@ -151,9 +129,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
         }
     }
 
-    /**
-     * Gives armor or weapon for entity based on given DifficultyInstance
-     */
+    // Gives armor or weapon for entity based on given DifficultyInstance
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
         this.setEquipmentBasedOnDifficultyCustom(difficulty);
@@ -164,4 +140,4 @@ public class AljamicBones extends AbstractSkeletonEntity {
         }
         this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ALJAMIC_BONE_HELMET.get()));
     }
-}
+}*/

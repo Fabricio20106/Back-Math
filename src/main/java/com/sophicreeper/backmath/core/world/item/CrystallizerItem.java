@@ -1,6 +1,5 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.util.BMKeys;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -19,8 +18,8 @@ public class CrystallizerItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
-        if (!BMKeys.isHoldingShift()) tooltip.add(Component.translatable("messages.backmath.hold_shift"));
-        if (BMKeys.isHoldingShift()) tooltip.add(Component.translatable(this.getDescriptionId() + ".desc"));
+        tooltip.add(Component.translatable("messages.backmath.hold_shift"));
+        tooltip.add(Component.translatable(this.getDescriptionId() + ".desc"));
         super.appendHoverText(stack, world, tooltip, flag);
     }
 }

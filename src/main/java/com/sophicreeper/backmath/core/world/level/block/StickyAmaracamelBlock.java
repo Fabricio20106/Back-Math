@@ -1,49 +1,50 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.BreakableBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.HalfTransparentBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
-public class StickyAmaracamelBlock extends BreakableBlock {
+public class StickyAmaracamelBlock extends HalfTransparentBlock {
     public StickyAmaracamelBlock(Properties properties) {
         super(properties);
     }
 
-    public void onFallenUpon(World world, BlockPos pos, Entity entity, float distance) {
+    public void fallOn(Level world, BlockState state,BlockPos pos, Entity entity, float distance) {
         if (entity.isSuppressingBounce()) {
-            super.onFallenUpon(world, pos, entity, distance);
+            super.fallOn(world, state, pos, entity, distance);
         } else {
-            entity.onLivingFall(distance, 0.0F);
+            entity.causeFallDamage(distance, 0, world.damageSources().fall());
         }
     }
 
-    public void onLanded(IBlockReader reader, Entity entity) {
+    public void updateEntityAfterFallOn(BlockGetter reader, Entity entity) {
         if (entity.isSuppressingBounce()) {
-            super.onLanded(reader, entity);
+            super.updateEntityAfterFallOn(reader, entity);
         } else {
             this.bounceEntity(entity);
         }
     }
 
     private void bounceEntity(Entity entity) {
-        Vector3d vector3D = entity.getMotion();
+        Vec3 vector3D = entity.getDeltaMovement();
         if (vector3D.y < 0.0) {
-            double lvt_3_1_ = entity instanceof LivingEntity ? 1.0 : 0.8;
-            entity.setMotion(vector3D.x, -vector3D.y * lvt_3_1_, vector3D.z);
+            double yDeltaBonus = entity instanceof LivingEntity ? 1 : 0.8;
+            entity.setDeltaMovement(vector3D.x, -vector3D.y * yDeltaBonus, vector3D.z);
         }
     }
 
-    public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-        double lvt_4_1_ = Math.abs(entity.getMotion().y);
-        if (lvt_4_1_ < 0.1 && !entity.isSteppingCarefully()) {
-            double lvt_6_1_ = 0.4 + lvt_4_1_ * 0.2;
-            entity.setMotion(entity.getMotion().mul(lvt_6_1_, 1.0, lvt_6_1_));
+    public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
+        double absOfDeltaYMov = Math.abs(entity.getDeltaMovement().y);
+        if (absOfDeltaYMov < 0.1 && !entity.isSteppingCarefully()) {
+            double d0 = 0.4 + absOfDeltaYMov * 0.2;
+            entity.setDeltaMovement(entity.getDeltaMovement().multiply(d0, 1, d0));
         }
 
-        super.onEntityWalk(world, pos, entity);
+        super.stepOn(world, pos, state, entity);
     }
 }

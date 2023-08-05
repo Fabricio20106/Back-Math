@@ -1,16 +1,6 @@
 package com.sophicreeper.backmath.core.world.feature;
 
-import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ISeedReader;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.feature.BlockStateProvidingFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-
-import java.util.Random;
-
-public class BMBlockBlobFeature extends Feature<BlockStateProvidingFeatureConfig> {
+/*public class BMBlockBlobFeature extends Feature<BlockStateProvidingFeatureConfig> {
     public BMBlockBlobFeature(Codec<BlockStateProvidingFeatureConfig> codec) {
         super(codec);
     }
@@ -47,4 +37,4 @@ public class BMBlockBlobFeature extends Feature<BlockStateProvidingFeatureConfig
             return true;
         }
     }
-}
+}*/

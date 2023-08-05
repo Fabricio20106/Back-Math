@@ -53,15 +53,15 @@ public class GlisteringJuiceItem extends Item {
         return UseAnim.DRINK;
     }
 
-    public SoundEvent getDrinkSound() {
+    public SoundEvent getDrinkingSound() {
         return SoundEvents.GENERIC_DRINK;
     }
 
-    public SoundEvent getEatSound() {
+    public SoundEvent getEatingSound() {
         return SoundEvents.GENERIC_DRINK;
     }
 
-    public InteractionResultHolder<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         return ItemUtils.startUsingInstantly(world, player, hand);
     }
 }

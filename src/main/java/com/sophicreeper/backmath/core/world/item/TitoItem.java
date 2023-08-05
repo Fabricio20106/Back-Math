@@ -28,7 +28,7 @@ public class TitoItem extends BlockItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         ItemStack heldItem = player.getItemInHand(hand);
-        if (!world.isClientSide && BMKeys.isHoldingShift()) {
+        if (!world.isClientSide) {
             player.addItem(new ItemStack(AxolotlTest.TOTI.get()));
             heldItem.shrink(1);
         }

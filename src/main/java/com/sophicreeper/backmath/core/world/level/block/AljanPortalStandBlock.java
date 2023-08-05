@@ -1,12 +1,7 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
-import com.sophicreeper.backmath.core.world.dimension.TheAljanTeleporter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -55,7 +50,7 @@ public class AljanPortalStandBlock extends Block implements SimpleWaterloggedBlo
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (state.getValue(JANTICAL)) {
+        /*if (state.getValue(JANTICAL)) {
             if (!world.isClientSide()) {
                 if (!player.isCrouching()) {
                     MinecraftServer server = world.getServer();
@@ -76,14 +71,14 @@ public class AljanPortalStandBlock extends Block implements SimpleWaterloggedBlo
                     }
                 }
             }
-        }
+        }*/
 
         return super.use(state, world, pos, player, hand, hit);
     }
 
     @Override
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
-        if (BMConfigs.SERVER_CONFIGS.standingAljanTeleport.get()) {
+        /*if (BMConfigs.SERVER_CONFIGS.standingAljanTeleport.get()) {
             if (state.getValue(JANTICAL)) {
                 if (!world.isClientSide()) {
                     MinecraftServer server = world.getServer();
@@ -103,7 +98,7 @@ public class AljanPortalStandBlock extends Block implements SimpleWaterloggedBlo
                     }
                 }
             }
-        }
+        }*/
 
         super.entityInside(state, world, pos, entity);
     }

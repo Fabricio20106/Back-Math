@@ -1,9 +1,6 @@
 package com.sophicreeper.backmath.core.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-import org.apache.commons.lang3.tuple.Pair;
-
-public class BMConfigs {
+/*public class BMConfigs {
     public static final BMServerConfigs SERVER_CONFIGS;
     public static final ForgeConfigSpec SERVER_SPEC;
 
@@ -15,4 +12,4 @@ public class BMConfigs {
     }
 
     public static void init() {}
-}
+}*/

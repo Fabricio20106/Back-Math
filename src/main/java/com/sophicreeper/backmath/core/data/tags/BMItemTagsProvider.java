@@ -1,19 +1,6 @@
 package com.sophicreeper.backmath.core.data.tags;
 
-import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.tags.BMTags;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.data.BlockTagsProvider;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.ItemTagsProvider;
-import net.minecraft.item.Items;
-import net.minecraft.tags.ItemTags;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
-
-import javax.annotation.Nullable;
-
-public class BMItemTagsProvider extends ItemTagsProvider {
+/*public class BMItemTagsProvider extends ItemTagsProvider {
     public BMItemTagsProvider(DataGenerator generator, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper fileHelper) {
         super(generator, blockTagsProvider, BackMath.MOD_ID, fileHelper);
     }
@@ -401,4 +388,4 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.MILKED_GOLDENWOOD_SWORD.get()).add(AxolotlTest.MILKED_GUAVA_SWORD.get()).add(AxolotlTest.MILKED_JABUTICABA_SWORD.get());
         this.getOrCreateBuilder(BMTags.Items.ALJAN_LOGS).addTag(BMTags.Items.ALJANWOOD_LOGS).addTag(BMTags.Items.ALJANCAP_LOGS).addTag(BMTags.Items.INSOMNIAN_LOGS).addTag(BMTags.Items.AVONDALIC_WILLOW_LOGS);
     }
-}
+}*/

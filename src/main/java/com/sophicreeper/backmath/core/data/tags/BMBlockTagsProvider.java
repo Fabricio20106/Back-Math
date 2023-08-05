@@ -1,18 +1,6 @@
 package com.sophicreeper.backmath.core.data.tags;
 
-import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.tags.BMTags;
-import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
-import net.minecraft.block.Blocks;
-import net.minecraft.data.BlockTagsProvider;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.tags.BlockTags;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.data.ExistingFileHelper;
-
-import javax.annotation.Nullable;
-
-public class BMBlockTagsProvider extends BlockTagsProvider {
+/*public class BMBlockTagsProvider extends BlockTagsProvider {
     public BMBlockTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper fileHelper) {
         super(generator, BackMath.MOD_ID, fileHelper);
     }
@@ -133,4 +121,4 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(BMTags.Blocks.BOUNTIFULLY_EXPANSIVE_IDEA).add(BMBlocks.CHOCOLATE_NAKED_CAKE.get());
         this.getOrCreateBuilder(BMTags.Blocks.SOPHIE_IDEA).addTag(BMTags.Blocks.BOUNTIFULLY_EXPANSIVE_IDEA);
     }
-}
+}*/

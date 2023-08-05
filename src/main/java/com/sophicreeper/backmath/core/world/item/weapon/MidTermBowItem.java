@@ -7,12 +7,10 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-import static com.sophicreeper.backmath.core.config.BMConfigs.SERVER_CONFIGS;
-
 public class MidTermBowItem extends BMBowItem {
     public MidTermBowItem(Properties properties) {
-        super(SERVER_CONFIGS.midTermBowFCA.get(), SERVER_CONFIGS.midTermBowCBD.get(), SERVER_CONFIGS.midTermBowAAD.get(), SERVER_CONFIGS.midTermBowFIT.get(),
-                SERVER_CONFIGS.midTermBowFRD.get(), properties);
+        super(true, false, 0, 200,
+                10, properties);
     }
 
     @Override

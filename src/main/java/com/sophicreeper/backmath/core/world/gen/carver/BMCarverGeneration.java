@@ -1,13 +1,6 @@
 package com.sophicreeper.backmath.core.world.gen.carver;
 
-import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-
-import java.util.Objects;
-
-public class BMCarverGeneration {
+/*public class BMCarverGeneration {
     public static boolean canGenerate = true;
 
     public static void generateCarvers(final BiomeLoadingEvent event) {
@@ -26,4 +19,4 @@ public class BMCarverGeneration {
             }
         }
     }
-}
+}*/

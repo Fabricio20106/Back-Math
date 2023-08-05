@@ -1,9 +1,6 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.world.level.material.BMFluids;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -32,10 +29,10 @@ public class AljamicGlassBottleItem extends Item {
                 return InteractionResultHolder.pass(heldItem);
             }
 
-            if (world.getFluidState(rayTraceBlockPos) == BMFluids.SLEEPISHWATER.get().getDefaultState()) {
+            /*if (world.getFluidState(rayTraceBlockPos) == BMFluids.SLEEPISHWATER.get().getDefaultState()) {
                 world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
                 return InteractionResultHolder.sidedSuccess(getBottleStack(heldItem, player), world.isClientSide());
-            }
+            }*/
         }
         return super.use(world, player, hand);
     }

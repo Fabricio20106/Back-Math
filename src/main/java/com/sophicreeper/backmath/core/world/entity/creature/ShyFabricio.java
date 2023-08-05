@@ -1,23 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.creature;
 
-import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-
-public class ShyFabricio extends CreatureEntity {
+/*public class ShyFabricio extends CreatureEntity {
     public ShyFabricio(EntityType<ShyFabricio> type, World world) {
         super(type, world);
     }
@@ -64,4 +47,4 @@ public class ShyFabricio extends CreatureEntity {
             super(shyFabricio, entityToAvoid, avoidDistance, farRunningSpeed, nearRunningSpeed);
         }
     }
-}
+}*/

@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.util.IItemProvider;
+import net.minecraft.world.level.ItemLike;
 
 public class WildCarameledWheatBlock extends AbstractWildCropBlock {
     public WildCarameledWheatBlock(Properties properties) {
@@ -9,7 +9,7 @@ public class WildCarameledWheatBlock extends AbstractWildCropBlock {
     }
 
     @Override
-    public IItemProvider getSeedItem() {
+    public ItemLike getSeedItem() {
         return AxolotlTest.CARAMELED_WHEAT_SEEDS.get();
     }
 }

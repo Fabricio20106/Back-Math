@@ -1,7 +1,5 @@
 package com.sophicreeper.backmath.core.world.item.teas;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.util.BMKeys;
 import com.sophicreeper.backmath.core.world.effect.BMMobEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -38,14 +36,12 @@ public class PeaceTeaItem extends Item {
         livEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 6000));
-        if (BMConfigs.SERVER_CONFIGS.peaceTeaInvisibilityToggle.get()) {
-            livEntity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 6000));
-        }
+        // CONFIG HERE
+        livEntity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.SATURATION, 6000));
-        if (BMConfigs.SERVER_CONFIGS.peaceTeaGlowingToggle.get()) {
-            livEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6000));
-        }
+        // CONFIG HERE
+        livEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.LUCK, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 6000));
@@ -72,14 +68,12 @@ public class PeaceTeaItem extends Item {
         livEntity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.WATER_BREATHING, 6000));
-        if (BMConfigs.SERVER_CONFIGS.peaceTeaInvisibilityToggle.get()) {
-            livEntity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 6000));
-        }
+        // CONFIG HERE
+        livEntity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.SATURATION, 6000));
-        if (BMConfigs.SERVER_CONFIGS.peaceTeaGlowingToggle.get()) {
-            livEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6000));
-        }
+        // CONFIG HERE
+        livEntity.addEffect(new MobEffectInstance(MobEffects.GLOWING, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.LUCK, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.SLOW_FALLING, 6000));
         livEntity.addEffect(new MobEffectInstance(MobEffects.CONDUIT_POWER, 6000));
@@ -116,8 +110,8 @@ public class PeaceTeaItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable(this.getDescriptionId() + ".quote").withStyle(ChatFormatting.GRAY));
-        if (!BMKeys.isHoldingShift()) tooltip.add(Component.translatable("messages.backmath.hold_shift"));
-        if (BMKeys.isHoldingShift()) tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+        tooltip.add(Component.translatable("messages.backmath.hold_shift"));
+        tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
         super.appendHoverText(stack, world, tooltip, flag);
     }
 }

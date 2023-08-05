@@ -1,0 +1,2 @@
+IForgeBlock.getToolModifiedState
+ --> Replacement for accesstransformer.cfg and the old BMVanillaCompatibility code.

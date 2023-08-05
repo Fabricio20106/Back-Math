@@ -1,28 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.creature;
 
-import com.sophicreeper.backmath.core.world.entity.monster.AngrySophie;
-import com.sophicreeper.backmath.core.world.entity.monster.ArcherLucia;
-import com.sophicreeper.backmath.core.world.entity.monster.InsomniaSophie;
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-
-public class KarateLucia extends CreatureEntity {
+/*public class KarateLucia extends CreatureEntity {
     public KarateLucia(EntityType<KarateLucia> type, World world) {
         super(type, world);
     }
@@ -93,4 +71,4 @@ public class KarateLucia extends CreatureEntity {
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.KARATE_TRAINING_STICK.get()));
         this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.YELLOW_KARATE_BAND.get()));
     }
-}
+}*/

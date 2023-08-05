@@ -1,19 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.goal;
 
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.ICrossbowUser;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.RangedInteger;
-
-import java.util.EnumSet;
-
-public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttackMob & ICrossbowUser> extends Goal {
+/*public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttackMob & ICrossbowUser> extends Goal {
     public static final RangedInteger PATHFINDING_DELAY_RANGE = new RangedInteger(20, 40);
     private final T mob;
     private CrossbowState crossbowState = CrossbowState.UNCHARGED;
@@ -58,9 +45,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
         }
     }
 
-    /**
-     * Keep ticking a continuous task that has already been started
-     */
+    // Keep ticking a continuous task that has already been started
     public void tick() {
         LivingEntity livingEntity = this.mob.getAttackTarget();
         if (livingEntity != null) {
@@ -133,4 +118,4 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
         CHARGED,
         READY_TO_ATTACK
     }
-}
+}*/

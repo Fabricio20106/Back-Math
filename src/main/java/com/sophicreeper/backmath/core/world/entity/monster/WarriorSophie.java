@@ -1,29 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster;
 
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.Janticle;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-
-public class WarriorSophie extends CreatureEntity {
+/*public class WarriorSophie extends CreatureEntity {
     public WarriorSophie(EntityType<WarriorSophie> type, World world) {
         super(type, world);
     }
@@ -93,4 +70,4 @@ public class WarriorSophie extends CreatureEntity {
         }
         super.setEquipmentBasedOnDifficulty(difficulty);
     }
-}
+}*/

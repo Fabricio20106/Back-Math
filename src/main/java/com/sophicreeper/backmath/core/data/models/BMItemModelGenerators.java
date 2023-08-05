@@ -1,15 +1,6 @@
 package com.sophicreeper.backmath.core.data.models;
 
-import com.sophicreeper.backmath.core.client.BackMath;
-import net.minecraft.data.DataGenerator;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-
-import javax.annotation.Nonnull;
-
-public class BMItemModelGenerators extends ItemModelProvider {
+/*public class BMItemModelGenerators extends ItemModelProvider {
     public final ModelFile modelFile = getExistingFile(mcLoc("item/handheld"));
     public final ModelFile modelFileGenerated = getExistingFile(mcLoc("item/generated"));
 
@@ -1137,4 +1128,4 @@ public class BMItemModelGenerators extends ItemModelProvider {
         this.milkedSword(name, false);
         return getBuilder(name).parent(modelFile).texture("layer0", "item/" + name);
     }
-}
+}*/

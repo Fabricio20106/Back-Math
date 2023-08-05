@@ -1,13 +1,6 @@
 package com.sophicreeper.backmath.core.world.gen;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.world.BMFeatures;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-
-public class BMPlantFeatures {
+/*public class BMPlantFeatures {
     public static void generatePlantsAndTrees(final BiomeLoadingEvent event) {
         BiomeGenerationSettingsBuilder settings = event.getGeneration();
 
@@ -37,5 +30,5 @@ public class BMPlantFeatures {
             settings.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, BMFeatures.SLEEPINGSTONE_BOULDER);
         }
         */
-    }
-}
+    //}
+//}

@@ -1,21 +1,21 @@
 package com.sophicreeper.backmath.core.world.level.block.grower;
 
-import com.sophicreeper.backmath.core.world.BMFeatures;
-import net.minecraft.block.trees.Tree;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.data.worldgen.features.TreeFeatures;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
-public class AljanwoodTreeGrower extends Tree {
+public class AljanwoodTreeGrower extends AbstractTreeGrower {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-        if (randomIn.nextInt(10) == 0) {
-            return BMFeatures.FANCY_ALJANWOOD;
+    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource rand, boolean beehive) {
+        if (rand.nextInt(10) == 0) {
+            return TreeFeatures.FANCY_OAK;
         } else {
-            return BMFeatures.ALJANWOOD;
+            return TreeFeatures.OAK;
         }
     }
 }

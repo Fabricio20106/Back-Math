@@ -1,17 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.goal;
 
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.item.weapon.BMBowItem;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.projectile.ProjectileHelper;
-import net.minecraft.item.BowItem;
-
-import java.util.EnumSet;
-
-public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> extends Goal {
+/*public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> extends Goal {
     private final T entity;
     private final double moveSpeedAmp;
     private int attackCooldown;
@@ -34,10 +23,8 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
         this.attackCooldown = attackCooldown;
     }
 
-    /**
-     * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-     * method as well.
-     */
+    // Returns whether execution should begin. You can also read and cache any state necessary for execution in this
+    // method as well.
     public boolean shouldExecute() {
         return this.entity.getAttackTarget() != null && this.isBowInMainhand();
     }
@@ -46,24 +33,18 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
         return this.entity.func_233634_a_(item -> item instanceof BowItem);
     }
 
-    /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
+    // Returns whether an in-progress EntityAIBase should continue executing
     public boolean shouldContinueExecuting() {
         return this.shouldExecute() || !this.entity.getNavigator().noPath() && this.isBowInMainhand();
     }
 
-    /**
-     * Execute a one shot task or start executing a continuous task
-     */
+     // Execute a one shot task or start executing a continuous task
     public void startExecuting() {
         super.startExecuting();
         this.entity.setAggroed(true);
     }
 
-    /**
-     * Reset the task's internal state. Called when this task is interrupted by another one
-     */
+     // Reset the task's internal state. Called when this task is interrupted by another one
     public void resetTask() {
         super.resetTask();
         this.entity.setAggroed(false);
@@ -72,9 +53,9 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
         this.entity.resetActiveHand();
     }
 
-    /**
-     * Keep ticking a continuous task that has already been started
-     */
+    //
+     // Keep ticking a continuous task that has already been started
+     //
     public void tick() {
         LivingEntity livingEntity = this.entity.getAttackTarget();
         if (livingEntity != null) {
@@ -140,4 +121,4 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
             }
         }
     }
-}
+}*/

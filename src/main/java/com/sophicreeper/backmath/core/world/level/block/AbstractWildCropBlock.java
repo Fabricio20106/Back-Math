@@ -1,25 +1,25 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BushBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 public abstract class AbstractWildCropBlock extends BushBlock {
     public AbstractWildCropBlock(Properties properties) {
         super(properties);
     }
 
-    protected boolean isValidGround(BlockState state, IBlockReader reader, BlockPos pos) {
-        return state.isIn(BMBlocks.ALJAMIC_GRASS_BLOCK.get()) || state.isIn(BMBlocks.ALJAMIC_DIRT.get()) || state.isIn(BMBlocks.ALJAMIC_FARMLAND.get()) || state.isIn(BMBlocks.AVONDALIC_NYLIUM.get());
+    protected boolean mayPlaceOn(BlockState state, BlockGetter reader, BlockPos pos) {
+        return state.is(BMBlocks.ALJAMIC_GRASS_BLOCK.get()) || state.is(BMBlocks.ALJAMIC_DIRT.get()) || state.is(BMBlocks.ALJAMIC_FARMLAND.get()) || state.is(BMBlocks.AVONDALIC_NYLIUM.get());
     }
 
-    public abstract IItemProvider getSeedItem();
+    public abstract ItemLike getSeedItem();
 
     @Override
-    public ItemStack getItem(IBlockReader reader, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(BlockGetter reader, BlockPos pos, BlockState state) {
         return new ItemStack(this.getSeedItem());
     }
 }

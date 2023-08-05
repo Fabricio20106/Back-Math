@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.core.world.item.weapon;
 
 import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.config.BMConfigs;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -9,7 +8,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -80,9 +78,7 @@ public class BMBowItem extends ProjectileWeaponItem implements Vanishable {
                             arrowEntity.setBaseDamage(arrowEntity.getBaseDamage() + (double) powerPredicate * 0.5D + 0.5D);
                         }
                         arrowEntity.setBaseDamage(arrowEntity.getBaseDamage() + additionalArrowDamage);
-                        if (BMConfigs.SERVER_CONFIGS.bowDamageCounter.get()) {
-                            sendMessage(player, Component.translatable("tooltip." + BackMath.MOD_ID + ".arrow_damage", arrowEntity.getBaseDamage()));
-                        }
+                        // sendMessage(player, Component.translatable("tooltip." + BackMath.MOD_ID + ".arrow_damage", arrowEntity.getBaseDamage()));
 
                         int punchPredicate = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack);
                         if (punchPredicate > 0) {

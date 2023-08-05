@@ -1,32 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.creature;
 
-import com.sophicreeper.backmath.core.world.entity.monster.AngrySophie;
-import com.sophicreeper.backmath.core.world.entity.monster.ArcherLucia;
-import com.sophicreeper.backmath.core.world.entity.monster.InsomniaSophie;
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-
-public class WandererSophie extends CreatureEntity {
+/*public class WandererSophie extends CreatureEntity {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(WandererSophie.class, DataSerializers.VARINT);
 
     public WandererSophie(EntityType<WandererSophie> type, World world) {
@@ -119,7 +93,7 @@ public class WandererSophie extends CreatureEntity {
      * If this mob can be leashed to
      * @return If this mob can be leashed to
      */
-    @Override
+    /*@Override
     public boolean canBeLeashedTo(PlayerEntity player) {
         return true;
     }
@@ -149,4 +123,4 @@ public class WandererSophie extends CreatureEntity {
             this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.BUTTER_SWORD.get()));
         }
     }
-}
+}*/

@@ -57,7 +57,7 @@ public class SleepishwaterBottleItem extends Item {
         return SoundEvents.GENERIC_DRINK;
     }
 
-    public InteractionResultHolder<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         return ItemUtils.startUsingInstantly(world, player, hand);
     }
 }

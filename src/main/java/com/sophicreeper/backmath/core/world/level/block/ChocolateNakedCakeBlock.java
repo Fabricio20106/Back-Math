@@ -1,25 +1,25 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.PathType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class ChocolateNakedCakeBlock extends Block {
     public ChocolateNakedCakeBlock(Properties properties) {
@@ -27,45 +27,45 @@ public class ChocolateNakedCakeBlock extends Block {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context) {
         return makeShape();
     }
 
     public VoxelShape makeShape(){
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.0625, 0, 0.0625, 0.9375, 0.75, 0.9375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.05625, 0.125, 0.05625, 0.94375, 0.25, 0.94375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.125, 0.75, 0.125, 0.875, 0.875, 0.875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.1875, 0.75, 0.1875, 0.8125, 0.88125, 0.8125), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.05625, 0.4375, 0.05625, 0.94375, 0.5625, 0.94375), IBooleanFunction.OR);
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.create(0.0625, 0, 0.0625, 0.9375, 0.75, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.05625, 0.125, 0.05625, 0.94375, 0.25, 0.94375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.125, 0.75, 0.125, 0.875, 0.875, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.1875, 0.75, 0.1875, 0.8125, 0.88125, 0.8125), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.05625, 0.4375, 0.05625, 0.94375, 0.5625, 0.94375), BooleanOp.OR);
 
         return shape;
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
-        if (world.isRemote) {
-            ItemStack heldItem = player.getHeldItem(hand);
-            if (this.eatWholeCake(world, pos, player).isSuccessOrConsume()) {
-                return ActionResultType.SUCCESS;
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult rayTraceResult) {
+        if (world.isClientSide) {
+            ItemStack heldItem = player.getItemInHand(hand);
+            if (this.eatWholeCake(world, pos, player).consumesAction()) {
+                return InteractionResult.SUCCESS;
             }
             if (heldItem.isEmpty()) {
-                return ActionResultType.CONSUME;
+                return InteractionResult.CONSUME;
             }
         }
         return this.eatWholeCake(world, pos, player);
     }
 
-    public ActionResultType eatWholeCake(IWorld world, BlockPos pos, PlayerEntity player) {
+    public InteractionResult eatWholeCake(LevelAccessor world, BlockPos pos, Player player) {
         if (!player.canEat(false)) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         } else {
-            player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(35, 4.2f);
+            player.awardStat(Stats.EAT_CAKE_SLICE);
+            player.getFoodData().eat(35, 4.2f);
             world.removeBlock(pos, false);
         }
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     /**
@@ -74,15 +74,15 @@ public class ChocolateNakedCakeBlock extends Block {
      * returns its solidified counterpart.
      * Note that this method should ideally consider only the specific face passed in.
      */
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        return facing == Direction.DOWN && !state.isValidPosition(world, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+        return facing == Direction.DOWN && !state.canSurvive(world, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
-        return world.getBlockState(pos.down()).getMaterial().isSolid();
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        return world.getBlockState(pos.below()).isSolid();
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, BlockGetter world, BlockPos pos, PathComputationType type) {
         return false;
     }
 }

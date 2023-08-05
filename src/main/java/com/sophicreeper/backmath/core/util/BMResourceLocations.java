@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.core.util;
 
 import com.sophicreeper.backmath.core.client.BackMath;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 
 public class BMResourceLocations {
     // Fluids

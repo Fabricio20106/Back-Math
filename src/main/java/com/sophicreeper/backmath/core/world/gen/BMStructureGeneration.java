@@ -1,17 +1,6 @@
 package com.sophicreeper.backmath.core.world.gen;
 
-import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
-import com.sophicreeper.backmath.core.world.structure.BMStructures;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.StructureFeature;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-
-import java.util.List;
-import java.util.Objects;
-import java.util.function.Supplier;
-
-public class BMStructureGeneration {
+/*public class BMStructureGeneration {
     public static void generateStructures(final BiomeLoadingEvent event) {
         List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
@@ -28,4 +17,4 @@ public class BMStructureGeneration {
             }
         }
     }
-}
+}*/

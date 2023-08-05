@@ -1,37 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 
-import com.sophicreeper.backmath.core.world.entity.BMEntities;
-import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
-import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
-import com.sophicreeper.backmath.core.world.entity.monster.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.Pose;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.FlyingMovementController;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.*;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.BlockParticleData;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.pathfinding.FlyingPathNavigator;
-import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-
-public class Janticle extends MonsterEntity {
+/*public class Janticle extends MonsterEntity {
     public Janticle(World world) {
         this(BMEntities.JANTICLE.get(), world);
     }
@@ -114,4 +83,4 @@ public class Janticle extends MonsterEntity {
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.JANTICLE_SPAWN_EGG.get());
     }
-}
+}*/

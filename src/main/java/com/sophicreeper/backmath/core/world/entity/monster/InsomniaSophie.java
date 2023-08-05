@@ -1,36 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster;
 
-import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.AbstractIllagerEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.SnowGolemEntity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-
-public class InsomniaSophie extends MonsterEntity {
+/*public class InsomniaSophie extends MonsterEntity {
     public InsomniaSophie(EntityType<InsomniaSophie> type, World world) {
         super(type, world);
         this.experienceValue = 3 + this.world.rand.nextInt(6);
@@ -128,4 +98,4 @@ public class InsomniaSophie extends MonsterEntity {
     protected ItemStack getSkullDrop() {
         return new ItemStack(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get());
     }
-}
+}*/

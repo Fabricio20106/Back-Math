@@ -1,33 +1,34 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.*;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-
-import java.util.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class AljamicDirtPathBlock extends Block {
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
+    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
     public AljamicDirtPathBlock(Properties builder) {
         super(builder);
     }
 
-    public boolean isTransparent(BlockState state) {
+    public boolean useShapeForLightOcclusion(BlockState state) {
         return true;
     }
 
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return !this.getDefaultState().isValidPosition(context.getWorld(), context.getPos()) ? Block.nudgeEntitiesWithNewState(this.getDefaultState(), BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), context.getWorld(), context.getPos()) : super.getStateForPlacement(context);
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return !this.defaultBlockState().canSurvive(context.getLevel(), context.getClickedPos()) ? Block.pushEntitiesUp(this.defaultBlockState(), BMBlocks.ALJAMIC_DIRT.get().defaultBlockState(), context.getLevel(), context.getClickedPos()) : super.getStateForPlacement(context);
     }
 
     /**
@@ -36,32 +37,32 @@ public class AljamicDirtPathBlock extends Block {
      * returns its solidified counterpart.
      * Note that this method should ideally consider only the specific face passed in.
      */
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        if (facing == Direction.UP && !state.isValidPosition(world, currentPos)) {
-            world.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.UP && !state.canSurvive(world, currentPos)) {
+            world.scheduleTick(currentPos, this, 1);
         }
 
-        return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
         turnToAljamicDirt(state, world, pos);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos) {
-        BlockState aboveBlock = worldIn.getBlockState(pos.up());
-        return !aboveBlock.getMaterial().isSolid() || aboveBlock.getBlock() instanceof FenceGateBlock;
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+        BlockState aboveBlock = worldIn.getBlockState(pos.above());
+        return !aboveBlock.isSolid() || aboveBlock.getBlock() instanceof FenceGateBlock;
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, BlockGetter world, BlockPos pos, PathComputationType type) {
         return false;
     }
 
-    public static void turnToAljamicDirt(BlockState state, World worldIn, BlockPos pos) {
-        worldIn.setBlockState(pos, nudgeEntitiesWithNewState(state, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), worldIn, pos));
+    public static void turnToAljamicDirt(BlockState state, Level world, BlockPos pos) {
+        world.setBlockAndUpdate(pos, pushEntitiesUp(state, BMBlocks.ALJAMIC_DIRT.get().defaultBlockState(), world, pos));
     }
 }

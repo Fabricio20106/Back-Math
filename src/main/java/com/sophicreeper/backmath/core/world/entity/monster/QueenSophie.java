@@ -1,43 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster;
 
-import com.sophicreeper.backmath.core.world.entity.BMEntities;
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.SnowGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
-
-import javax.annotation.Nullable;
-
-public class QueenSophie extends MonsterEntity {
+/*public class QueenSophie extends MonsterEntity {
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
     private static final DataParameter<Byte> SPELL = EntityDataManager.createKey(QueenSophie.class, DataSerializers.BYTE);
     protected int spellTicks;
@@ -144,19 +107,15 @@ public class QueenSophie extends MonsterEntity {
         }
     }
 
-    /**
-     * Add the given player to the list of players tracking this entity. For instance, a player may track a boss in order
-     * to view its associated boss bar.
-     */
+    // Add the given player to the list of players tracking this entity. For instance, a player may track a boss in order
+    // to view its associated boss bar.
     public void addTrackingPlayer(ServerPlayerEntity player) {
         super.addTrackingPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
-    /**
-     * Removes the given player from the list of players tracking this entity. See {@link Entity#addTrackingPlayer} for
-     * more information on tracking.
-     */
+    // Removes the given player from the list of players tracking this entity. See {@link Entity#addTrackingPlayer} for
+    // more information on tracking..
     public void removeTrackingPlayer(ServerPlayerEntity player) {
         super.removeTrackingPlayer(player);
         this.bossInfo.removePlayer(player);
@@ -435,4 +394,4 @@ public class QueenSophie extends MonsterEntity {
             return QueenSophieSpells.EQUIP_DIAMOND_CHESTPLATE_AND_HEAL;
         }
     }
-}
+}*/

@@ -1,26 +1,6 @@
 package com.sophicreeper.backmath.core.world.structure.structures;
 
-import com.sophicreeper.backmath.core.client.BackMath;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.jigsaw.JigsawManager;
-import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.structure.VillageConfig;
-import net.minecraft.world.gen.feature.template.TemplateManager;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-
-import java.util.Random;
-
-public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> {
+/*public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> {
     public static final Random rand = new Random();
 
     public FabricioHideoutDungeonStructure() {
@@ -43,7 +23,7 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
         return topBlock.getFluidState().isEmpty();
     }*/
 
-    @Override
+    /*@Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
         return FabricioHideoutDungeonStructure.Start::new;
     }
@@ -79,4 +59,4 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
             }
         }
     }
-}
+}*/

@@ -1,23 +1,22 @@
 package com.sophicreeper.backmath.core.world.level.block.grower;
 
-import com.sophicreeper.backmath.core.world.BMFeatures;
-import net.minecraft.block.trees.BigTree;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.data.worldgen.features.TreeFeatures;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.grower.AbstractMegaTreeGrower;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
-import java.util.Random;
-
-public class InsomnianTreeGrower extends BigTree {
+public class InsomnianTreeGrower extends AbstractMegaTreeGrower {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getHugeTreeFeature(Random rand) {
-        return BMFeatures.INSOMNIAN;
+    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredMegaFeature(RandomSource rand) {
+        return TreeFeatures.DARK_OAK;
     }
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
+    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource rand, boolean beehive) {
         return null;
     }
 }

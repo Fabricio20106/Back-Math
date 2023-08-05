@@ -60,7 +60,7 @@ public class CrystallineCrystallizerBlock extends HorizontalDirectionalBlock {
             world.setBlockAndUpdate(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().defaultBlockState().setValue(ADVANCED_MOLD, AdvancedMolds.ROD));
             //player.awardStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        if (BMKeys.isHoldingShift()) {
+        if (player.isShiftKeyDown()) {
             world.setBlockAndUpdate(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().defaultBlockState().setValue(ADVANCED_MOLD, AdvancedMolds.EMPTY));
             //player.awardStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }

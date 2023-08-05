@@ -1,11 +1,10 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.Janticle;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class JanticOreBlock extends Block {
     public JanticOreBlock(Properties properties) {
@@ -13,11 +12,11 @@ public class JanticOreBlock extends Block {
     }
 
     @Override
-    public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isRemote) {
-            Janticle janticle = new Janticle(world);
-            world.addEntity(janticle);
+    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+        if (!world.isClientSide) {
+            //Janticle janticle = new Janticle(world);
+            //world.addFreshEntity(janticle);
         }
-        super.onBlockHarvested(world, pos, state, player);
+        super.playerWillDestroy(world, pos, state, player);
     }
 }

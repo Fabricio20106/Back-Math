@@ -1,12 +1,6 @@
 package com.sophicreeper.backmath.core.world.gen.carver;
 
-import com.sophicreeper.backmath.core.client.BackMath;
-import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.gen.carver.ConfiguredCarver;
-import net.minecraft.world.gen.carver.ICarverConfig;
-import net.minecraft.world.gen.feature.ProbabilityConfig;
-
-public class BMConfiguredCarvers {
+/*public class BMConfiguredCarvers {
     public static final ConfiguredCarver<ProbabilityConfig> ALJAN_UNDERWATER_CAVE = register("aljan_underwater_cave", BMWorldCarvers.ALJAN_UNDERWATER_CAVE.get().func_242761_a(new ProbabilityConfig(0.06666667f)));
     public static final ConfiguredCarver<ProbabilityConfig> ALJAN_CAVE = register("aljan_cave", BMWorldCarvers.ALJAN_CAVE.get().func_242761_a(new ProbabilityConfig(0.14285715f)));
     public static final ConfiguredCarver<ProbabilityConfig> ALJAN_RAVINE = register("aljan_ravine", BMWorldCarvers.ALJAN_RAVINE.get().func_242761_a(new ProbabilityConfig(0.02f)));
@@ -16,4 +10,4 @@ public class BMConfiguredCarvers {
     }
 
     public static void register() {}
-}
+}*/

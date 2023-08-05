@@ -1,32 +1,6 @@
 package com.sophicreeper.backmath.core.world;
 
-import com.google.common.collect.ImmutableList;
-import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.world.gen.BMOreGeneration;
-import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.blockplacer.SimpleBlockPlacer;
-import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
-import net.minecraft.world.gen.blockstateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.foliageplacer.*;
-import net.minecraft.world.gen.placement.AtSurfaceWithExtraConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
-import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.treedecorator.LeaveVineTreeDecorator;
-import net.minecraft.world.gen.trunkplacer.DarkOakTrunkPlacer;
-import net.minecraft.world.gen.trunkplacer.FancyTrunkPlacer;
-import net.minecraft.world.gen.trunkplacer.GiantTrunkPlacer;
-import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
-
-import java.util.OptionalInt;
-import java.util.function.Supplier;
-
-public class BMFeatures {
+/*public class BMFeatures {
     // Trees.
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GUARANA_OAK = register("guarana_oak",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
@@ -177,7 +151,7 @@ public class BMFeatures {
      */
 
     // Vegetation patches.
-    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ALJAN_WOODS_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+    /*private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ALJAN_WOODS_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ALJAN_TULIP.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
     public static final ConfiguredFeature<?, ?> ALJAN_WOODS_FLOWER_PATCH = register("aljan_woods_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
@@ -308,7 +282,7 @@ public class BMFeatures {
      */
 
     // Trees
-    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MANGAED_MANGO_OAK = register("mangaed_mango_oak",
+    /*public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MANGAED_MANGO_OAK = register("mangaed_mango_oak",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
                     new SimpleBlockStateProvider(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get().getDefaultState()),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
@@ -432,7 +406,7 @@ public class BMFeatures {
      TODO: BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
      */
 
-    public static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
+    /*public static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, BackMath.resourceLoc(name), configuredFeature);
     }
 
@@ -452,4 +426,4 @@ public class BMFeatures {
         public static final BlockState ALJAME_BIRCH_LEAVES = BMBlocks.ALJAME_BIRCH_LEAVES.get().getDefaultState();
         public static final BlockState INSOMNIAN_LEAVES = BMBlocks.INSOMNIAN_LEAVES.get().getDefaultState();
     }
-}
+}*/

@@ -79,9 +79,9 @@ public class MoodTeaItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable(this.getDescriptionId() + ".quote").withStyle(ChatFormatting.GRAY));
-        if (!BMKeys.isHoldingShift()) tooltip.add(Component.translatable("messages.backmath.hold_shift"));
-        if (BMKeys.isHoldingShift()) tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
-        if (BMKeys.isHoldingShift()) tooltip.add(Component.translatable(this.getDescriptionId() + ".bug").withStyle(ChatFormatting.DARK_RED));
+        tooltip.add(Component.translatable("messages.backmath.hold_shift"));
+        tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+        tooltip.add(Component.translatable(this.getDescriptionId() + ".bug").withStyle(ChatFormatting.DARK_RED));
         super.appendHoverText(stack, world, tooltip, flag);
     }
 }

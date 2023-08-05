@@ -49,7 +49,7 @@ public class MangaedMangoJamBreadItem extends Item {
         return UseAnim.EAT;
     }
 
-    public InteractionResultHolder<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
         return ItemUtils.startUsingInstantly(world, player, hand);
     }
 

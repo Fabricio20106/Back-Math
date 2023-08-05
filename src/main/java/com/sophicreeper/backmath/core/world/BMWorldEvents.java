@@ -1,35 +1,6 @@
 package com.sophicreeper.backmath.core.world;
 
-import com.mojang.serialization.Codec;
-import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
-import com.sophicreeper.backmath.core.world.gen.BMOreGeneration;
-import com.sophicreeper.backmath.core.world.gen.BMPlantFeatures;
-import com.sophicreeper.backmath.core.world.gen.BMStructureGeneration;
-import com.sophicreeper.backmath.core.world.gen.carver.BMCarverGeneration;
-import com.sophicreeper.backmath.core.world.structure.BMStructures;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.DebugChunkGenerator;
-import net.minecraft.world.gen.FlatChunkGenerator;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.settings.DimensionStructuresSettings;
-import net.minecraft.world.gen.settings.StructureSeparationSettings;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import org.apache.logging.log4j.LogManager;
-
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-
-@Mod.EventBusSubscriber(modid = BackMath.MOD_ID)
+/*@Mod.EventBusSubscriber(modid = BackMath.MOD_ID)
 public class BMWorldEvents {
     @SubscribeEvent
     public static void generateCarvers(final WorldEvent.Load event) {
@@ -80,4 +51,4 @@ public class BMWorldEvents {
             serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
         }
     }
-}
+}*/

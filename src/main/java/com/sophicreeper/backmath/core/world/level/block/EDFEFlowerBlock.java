@@ -1,18 +1,18 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class EDFEFlowerBlock extends FlowerBlock {
     public EDFEFlowerBlock(Properties properties) {
-        super(Effects.LEVITATION, 10, properties);
+        super(MobEffects.LEVITATION, 10, properties);
     }
 
-    protected boolean isValidGround(BlockState state, IBlockReader world, BlockPos pos) {
-        return super.isValidGround(state, world, pos) || state.isIn(Blocks.END_STONE) || state.isIn(Blocks.END_STONE_BRICKS);
+    protected boolean mayPlaceOn(BlockState state, BlockGetter world, BlockPos pos) {
+        return super.mayPlaceOn(state, world, pos) || state.is(Blocks.END_STONE) || state.is(Blocks.END_STONE_BRICKS);
     }
 }

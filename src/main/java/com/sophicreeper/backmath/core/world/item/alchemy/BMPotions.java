@@ -45,19 +45,19 @@ public class BMPotions {
             this.output = PotionUtils.setPotion(new ItemStack(Items.POTION), outputIn);
         }
 
-        // checks the item where the water bottle would go
+        // Checks the item where the water bottle would go.
         @Override
         public boolean isInput(ItemStack input) {
             return PotionUtils.getPotion(input).equals(this.bottleInput);
         }
 
-        // checks the item where the nether wart would go
+        // Checks the item where the nether wart would go.
         @Override
         public boolean isIngredient(ItemStack ingredient) {
             return ingredient.getItem().equals(this.itemInput);
         }
 
-        // gets the output potion. Very important to call copy because ItemStacks are mutable
+        // Gets the output potion. Very important to call copy because ItemStacks are mutable.
         @Override
         public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
             if (isInput(input) && isIngredient(ingredient)) {

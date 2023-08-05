@@ -1,29 +1,6 @@
 package com.sophicreeper.backmath.core.world.gen;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.tags.BMTags;
-import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
-import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.minecraft.world.gen.feature.template.BlockMatchRuleTest;
-import net.minecraft.world.gen.feature.template.RuleTest;
-import net.minecraft.world.gen.feature.template.TagMatchRuleTest;
-import net.minecraft.world.gen.placement.Placement;
-import net.minecraft.world.gen.placement.TopSolidRangeConfig;
-import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
-import net.minecraftforge.event.world.BiomeLoadingEvent;
-
-import java.util.Objects;
-
-import static net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType.BASE_STONE_NETHER;
-import static net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD;
-
-public class BMOreGeneration {
+/*public class BMOreGeneration {
     public static final RuleTest END_STONE_FILLER = new BlockMatchRuleTest(Blocks.END_STONE);
     public static final RuleTest OBSIDIAN_FILLER = new BlockMatchRuleTest(Blocks.OBSIDIAN);
     public static final RuleTest AIR_FILLER = new BlockMatchRuleTest(Blocks.AIR);
@@ -151,4 +128,4 @@ public class BMOreGeneration {
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Feature.ORE.withConfiguration(new OreFeatureConfig(fillerType,
                 state, veinSize)).withPlacement(Placement.RANGE.configure(new TopSolidRangeConfig(minHeight, 0, maxHeight))).square().func_242731_b(amount));
     }
-}
+}*/

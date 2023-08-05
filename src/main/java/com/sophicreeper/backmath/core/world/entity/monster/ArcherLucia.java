@@ -1,44 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster;
 
-import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
-import com.sophicreeper.backmath.core.world.entity.goal.BMRangedCrossbowAttackGoal;
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.item.armor.BMArmorItem;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.monster.ZombieEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.inventory.Inventory;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.Map;
-import java.util.function.Predicate;
-
-public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
+/*public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
     private static final DataParameter<Boolean> IS_CHARGING_CROSSBOW = EntityDataManager.createKey(ArcherLucia.class, DataSerializers.BOOLEAN);
     private final Inventory inventory = new Inventory(5);
 
@@ -231,4 +193,4 @@ public class ArcherLucia extends CreatureEntity implements ICrossbowUser {
             }
         }
     }
-}
+}*/

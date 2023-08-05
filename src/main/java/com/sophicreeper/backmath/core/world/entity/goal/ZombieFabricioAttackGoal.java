@@ -1,9 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.goal;
 
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.ZombieFabricio;
-import net.minecraft.entity.ai.goal.MeleeAttackGoal;
-
-public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
+/*public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
     private final ZombieFabricio zombie;
     private int raisedArmTicks;
 
@@ -27,4 +24,4 @@ public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
         ++this.raisedArmTicks;
         this.zombie.setAggroed(this.raisedArmTicks >= 5 && this.func_234041_j_() < this.func_234042_k_() / 2);
     }
-}
+}*/

@@ -1,35 +1,6 @@
 package com.sophicreeper.backmath.core.world.structure.structures;
 
-import com.google.common.collect.ImmutableList;
-import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.world.entity.BMEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.SharedSeedRandom;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.util.registry.DynamicRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.biome.provider.BiomeProvider;
-import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.feature.jigsaw.JigsawManager;
-import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraft.world.gen.feature.structure.StructureStart;
-import net.minecraft.world.gen.feature.structure.VillageConfig;
-import net.minecraft.world.gen.feature.template.TemplateManager;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-
-import java.util.List;
-
-public class SophieTowerStructure extends Structure<NoFeatureConfig> {
+/*public class SophieTowerStructure extends Structure<NoFeatureConfig> {
     private static final List<MobSpawnInfo.Spawners> STRUCTURE_CREATURES = ImmutableList.of(
             new MobSpawnInfo.Spawners(BMEntities.WANDERER_SOPHIE.get(), 8, 4, 12),
             new MobSpawnInfo.Spawners(BMEntities.KARATE_LUCIA.get(), 6, 3, 8),
@@ -97,4 +68,4 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
             }
         }
     }
-}
+}*/

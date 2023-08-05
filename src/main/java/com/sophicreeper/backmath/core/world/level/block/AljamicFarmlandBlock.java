@@ -1,35 +1,40 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.piston.MovingPistonBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.FarmlandWaterManager;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 
-import java.util.Random;
+import javax.annotation.Nullable;
 
 public class AljamicFarmlandBlock extends Block {
-    public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE_0_7;
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
+    public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE;
+    protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
 
     public AljamicFarmlandBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(MOISTURE, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(MOISTURE, 0));
     }
 
     /**
@@ -38,77 +43,79 @@ public class AljamicFarmlandBlock extends Block {
      * returns its solidified counterpart.
      * Note that this method should ideally consider only the specific face passed in.
      */
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        if (facing == Direction.UP && !state.isValidPosition(world, currentPos)) {
-            world.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+        if (facing == Direction.UP && !state.canSurvive(world, currentPos)) {
+            world.scheduleTick(currentPos, this, 1);
         }
 
-        return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader worldReader, BlockPos pos) {
-        BlockState aboveBlock = worldReader.getBlockState(pos.up());
-        return !aboveBlock.getMaterial().isSolid() || aboveBlock.getBlock() instanceof FenceGateBlock || aboveBlock.getBlock() instanceof MovingPistonBlock;
+    public boolean canSurvive(BlockState state, LevelReader worldReader, BlockPos pos) {
+        BlockState aboveBlock = worldReader.getBlockState(pos.above());
+        return !aboveBlock.isSolid() || aboveBlock.getBlock() instanceof FenceGateBlock || aboveBlock.getBlock() instanceof MovingPistonBlock;
     }
 
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return !this.getDefaultState().isValidPosition(context.getWorld(), context.getPos()) ? BMBlocks.ALJAMIC_DIRT.get().getDefaultState() : super.getStateForPlacement(context);
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return !this.defaultBlockState().canSurvive(context.getLevel(), context.getClickedPos()) ? BMBlocks.ALJAMIC_DIRT.get().defaultBlockState() : super.getStateForPlacement(context);
     }
 
-    public boolean isTransparent(BlockState state) {
+    public boolean useShapeForLightOcclusion(BlockState state) {
         return true;
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random rand) {
-        if (!state.isValidPosition(world, pos)) {
-            turnToAljamicDirt(state, world, pos);
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource rand) {
+        if (!state.canSurvive(world, pos)) {
+            turnToAljamicDirt(null, state, world, pos);
         }
     }
 
     /**
      * Performs a random tick on a block.
      */
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int moistureState = state.get(MOISTURE);
-        if (!hasWater(world, pos) && !world.isRainingAt(pos.up())) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        int moistureState = state.getValue(MOISTURE);
+        if (!hasWater(world, pos) && !world.isRainingAt(pos.above())) {
             if (moistureState > 0) {
-                world.setBlockState(pos, state.with(MOISTURE, moistureState - 1), 2);
+                world.setBlock(pos, state.setValue(MOISTURE, moistureState - 1), 2);
             } else if (!hasCrops(world, pos)) {
-                turnToAljamicDirt(state, world, pos);
+                turnToAljamicDirt(null, state, world, pos);
             }
         } else if (moistureState < 7) {
-            world.setBlockState(pos, state.with(MOISTURE, 7), 2);
+            world.setBlock(pos, state.setValue(MOISTURE, 7), 2);
         }
     }
 
     /**
      * Block's chance to react to a living entity falling on it.
      */
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entity, float fallDistance) {
-        if (!worldIn.isRemote && ForgeHooks.onFarmlandTrample(worldIn, pos, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), fallDistance, entity)) { // Forge: Move logic to Entity#canTrample
-            turnToAljamicDirt(worldIn.getBlockState(pos), worldIn, pos);
+    public void fallOn(Level world, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+        if (!world.isClientSide && ForgeHooks.onFarmlandTrample(world, pos, BMBlocks.ALJAMIC_DIRT.get().defaultBlockState(), fallDistance, entity)) { // Forge: Move logic to Entity#canTrample
+            turnToAljamicDirt(entity, world.getBlockState(pos), world, pos);
         }
 
-        super.onFallenUpon(worldIn, pos, entity, fallDistance);
+        super.fallOn(world, state, pos, entity, fallDistance);
     }
 
-    public static void turnToAljamicDirt(BlockState state, World world, BlockPos pos) {
-        world.setBlockState(pos, nudgeEntitiesWithNewState(state, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), world, pos));
+    public static void turnToAljamicDirt(@Nullable Entity entity, BlockState state, Level world, BlockPos pos) {
+        BlockState aljamicDirt = pushEntitiesUp(state, BMBlocks.ALJAMIC_DIRT.get().defaultBlockState(), world, pos);
+        world.setBlockAndUpdate(pos, aljamicDirt);
+        world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(entity, aljamicDirt));
     }
 
-    private boolean hasCrops(IBlockReader world, BlockPos pos) {
-        BlockState plant = world.getBlockState(pos.up());
+    private boolean hasCrops(BlockGetter world, BlockPos pos) {
+        BlockState plant = world.getBlockState(pos.above());
         BlockState state = world.getBlockState(pos);
         return plant.getBlock() instanceof IPlantable && state.canSustainPlant(world, pos, Direction.UP, (IPlantable) plant.getBlock());
     }
 
-    private static boolean hasWater(IWorldReader world, BlockPos pos) {
-        for(BlockPos blockPos : BlockPos.getAllInBoxMutable(pos.add(-4, 0, -4), pos.add(4, 1, 4))) {
-            if (world.getFluidState(blockPos).isTagged(FluidTags.WATER)) {
+    private static boolean hasWater(LevelReader world, BlockPos pos) {
+        for(BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
+            if (world.getFluidState(blockPos).is(FluidTags.WATER)) {
                 return true;
             }
         }
@@ -116,11 +123,11 @@ public class AljamicFarmlandBlock extends Block {
         return FarmlandWaterManager.hasBlockWaterTicket(world, pos);
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(MOISTURE);
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, BlockGetter world, BlockPos pos, PathComputationType type) {
         return false;
     }
 }

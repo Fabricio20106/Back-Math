@@ -1,34 +1,34 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class QueenSophiePetRelicBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public QueenSophiePetRelicBlock() {
-        super(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).harvestLevel(2).setLightLevel(state -> 5));
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
+        super(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).lightLevel(state -> 5));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        switch (state.get(FACING)) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        switch (state.getValue(FACING)) {
             case SOUTH:
                 return qspRelicSouth();
             case EAST:
@@ -41,91 +41,91 @@ public class QueenSophiePetRelicBlock extends Block {
     }
 
     public VoxelShape qspRelicNorth() {
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.125, 0, 0.125, 0.875, 0.0625, 0.875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5, 0.0625, 0.4375, 0.625, 0.4375, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.0625, 0.4375, 0.5, 0.4375, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.4375, 0.4375, 0.625, 0.8125, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.3125, 0.4375, 0.4375, 0.375, 0.8125, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.625, 0.4375, 0.4375, 0.6875, 0.8125, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.8125, 0.375, 0.625, 1.0625, 0.625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.4375, 0.5625, 1.1875, 0.4375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.5625, 0.5625, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.4375, 0.4375, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5625, 1.0625, 0.4375, 0.5625, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.0625, 0.4375, 0.5625, 0.5, 0.8125, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5, 0.4375, 0.5625, 0.9375, 0.8125, 0.5625), IBooleanFunction.OR);
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.create(0.125, 0, 0.125, 0.875, 0.0625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5, 0.0625, 0.4375, 0.625, 0.4375, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.375, 0.0625, 0.4375, 0.5, 0.4375, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.375, 0.4375, 0.4375, 0.625, 0.8125, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.3125, 0.4375, 0.4375, 0.375, 0.8125, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.625, 0.4375, 0.4375, 0.6875, 0.8125, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.375, 0.8125, 0.375, 0.625, 1.0625, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.4375, 0.5625, 1.1875, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.5625, 0.5625, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.4375, 0.4375, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5625, 1.0625, 0.4375, 0.5625, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.0625, 0.4375, 0.5625, 0.5, 0.8125, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5, 0.4375, 0.5625, 0.9375, 0.8125, 0.5625), BooleanOp.OR);
         return shape;
     }
 
     public VoxelShape qspRelicSouth() {
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.125, 0, 0.125, 0.875, 0.0625, 0.875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.0625, 0.4375, 0.5, 0.4375, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5, 0.0625, 0.4375, 0.625, 0.4375, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.4375, 0.4375, 0.625, 0.8125, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.625, 0.4375, 0.4375, 0.6875, 0.8125, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.3125, 0.4375, 0.4375, 0.375, 0.8125, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.8125, 0.375, 0.625, 1.0625, 0.625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.5625, 0.5625, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.4375, 0.5625, 1.1875, 0.4375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5625, 1.0625, 0.4375, 0.5625, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.4375, 0.4375, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5, 0.4375, 0.4375, 0.9375, 0.8125, 0.4375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.0625, 0.4375, 0.4375, 0.5, 0.8125, 0.4375), IBooleanFunction.OR);
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.create(0.125, 0, 0.125, 0.875, 0.0625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.375, 0.0625, 0.4375, 0.5, 0.4375, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5, 0.0625, 0.4375, 0.625, 0.4375, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.375, 0.4375, 0.4375, 0.625, 0.8125, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.625, 0.4375, 0.4375, 0.6875, 0.8125, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.3125, 0.4375, 0.4375, 0.375, 0.8125, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.375, 0.8125, 0.375, 0.625, 1.0625, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.5625, 0.5625, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.4375, 0.5625, 1.1875, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5625, 1.0625, 0.4375, 0.5625, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.4375, 0.4375, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5, 0.4375, 0.4375, 0.9375, 0.8125, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.0625, 0.4375, 0.4375, 0.5, 0.8125, 0.4375), BooleanOp.OR);
         return shape;
     }
 
     public VoxelShape qspRelicEast() {
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.125, 0, 0.125, 0.875, 0.0625, 0.875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.0625, 0.5, 0.5625, 0.4375, 0.625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.0625, 0.375, 0.5625, 0.4375, 0.5), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.4375, 0.375, 0.5625, 0.8125, 0.625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.4375, 0.3125, 0.5625, 0.8125, 0.375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.4375, 0.625, 0.5625, 0.8125, 0.6875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.8125, 0.375, 0.625, 1.0625, 0.625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5625, 1.0625, 0.4375, 0.5625, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.4375, 0.4375, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.4375, 0.5625, 1.1875, 0.4375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.5625, 0.5625, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.4375, 0.0625, 0.4375, 0.8125, 0.5), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.4375, 0.5, 0.4375, 0.8125, 0.9375), IBooleanFunction.OR);
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.create(0.125, 0, 0.125, 0.875, 0.0625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.0625, 0.5, 0.5625, 0.4375, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.0625, 0.375, 0.5625, 0.4375, 0.5), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.4375, 0.375, 0.5625, 0.8125, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.4375, 0.3125, 0.5625, 0.8125, 0.375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.4375, 0.625, 0.5625, 0.8125, 0.6875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.375, 0.8125, 0.375, 0.625, 1.0625, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5625, 1.0625, 0.4375, 0.5625, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.4375, 0.4375, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.4375, 0.5625, 1.1875, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.5625, 0.5625, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.4375, 0.0625, 0.4375, 0.8125, 0.5), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.4375, 0.5, 0.4375, 0.8125, 0.9375), BooleanOp.OR);
         return shape;
     }
 
     public VoxelShape qspRelicWest() {
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.125, 0, 0.125, 0.875, 0.0625, 0.875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.0625, 0.375, 0.5625, 0.4375, 0.5), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.0625, 0.5, 0.5625, 0.4375, 0.625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.4375, 0.375, 0.5625, 0.8125, 0.625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.4375, 0.625, 0.5625, 0.8125, 0.6875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 0.4375, 0.3125, 0.5625, 0.8125, 0.375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.375, 0.8125, 0.375, 0.625, 1.0625, 0.625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.4375, 0.4375, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5625, 1.0625, 0.4375, 0.5625, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.5625, 0.5625, 1.1875, 0.5625), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.4375, 1.0625, 0.4375, 0.5625, 1.1875, 0.4375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5625, 0.4375, 0.5, 0.5625, 0.8125, 0.9375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.5625, 0.4375, 0.0625, 0.5625, 0.8125, 0.5), IBooleanFunction.OR);
+        VoxelShape shape = Shapes.empty();
+        shape = Shapes.join(shape, Shapes.create(0.125, 0, 0.125, 0.875, 0.0625, 0.875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.0625, 0.375, 0.5625, 0.4375, 0.5), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.0625, 0.5, 0.5625, 0.4375, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.4375, 0.375, 0.5625, 0.8125, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.4375, 0.625, 0.5625, 0.8125, 0.6875), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 0.4375, 0.3125, 0.5625, 0.8125, 0.375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.375, 0.8125, 0.375, 0.625, 1.0625, 0.625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.4375, 0.4375, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5625, 1.0625, 0.4375, 0.5625, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.5625, 0.5625, 1.1875, 0.5625), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.4375, 1.0625, 0.4375, 0.5625, 1.1875, 0.4375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5625, 0.4375, 0.5, 0.5625, 0.8125, 0.9375), BooleanOp.OR);
+        shape = Shapes.join(shape, Shapes.create(0.5625, 0.4375, 0.0625, 0.5625, 0.8125, 0.5), BooleanOp.OR);
         return shape;
     }
 
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
     public BlockState rotate(BlockState state, Rotation rotation) {
-        return state.with(FACING, rotation.rotate(state.get(FACING)));
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     public BlockState mirror(BlockState state, Mirror mirror) {
-        return state.rotate(mirror.toRotation(state.get(FACING)));
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 }

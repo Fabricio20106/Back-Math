@@ -1,39 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 
-import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
-import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
-import com.sophicreeper.backmath.core.world.entity.monster.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-
-public class SleepishSkeleton extends AbstractSkeletonEntity {
+/*public class SleepishSkeleton extends AbstractSkeletonEntity {
     public SleepishSkeleton(EntityType<SleepishSkeleton> type, World world) {
         super(type, world);
     }
@@ -195,4 +162,4 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
         }
         return arrowEntity;
     }
-}
+}*/

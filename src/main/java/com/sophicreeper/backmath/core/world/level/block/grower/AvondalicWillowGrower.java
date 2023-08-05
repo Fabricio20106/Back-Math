@@ -1,23 +1,23 @@
 package com.sophicreeper.backmath.core.world.level.block.grower;
 
-import com.sophicreeper.backmath.core.world.BMFeatures;
-import net.minecraft.block.trees.BigTree;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.data.worldgen.features.TreeFeatures;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.grower.AbstractMegaTreeGrower;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
-public class AvondalicWillowGrower extends BigTree {
+public class AvondalicWillowGrower extends AbstractMegaTreeGrower {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getHugeTreeFeature(Random rand) {
-        return BMFeatures.MEGA_AVONDALIC_WILLOW;
+    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredMegaFeature(RandomSource random) {
+        return TreeFeatures.MEGA_PINE;
     }
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean largeHive) {
-        return BMFeatures.AVONDALIC_WILLOW;
+    protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource rand, boolean beehive) {
+        return TreeFeatures.SPRUCE;
     }
 }

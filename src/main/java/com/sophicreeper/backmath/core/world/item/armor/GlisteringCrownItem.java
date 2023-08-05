@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.core.world.item.armor;
 
-import com.sophicreeper.backmath.core.world.item.armor.CrownItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class GlisteringCrownItem extends CrownItem {
     public GlisteringCrownItem(Properties properties) {
@@ -9,7 +8,7 @@ public class GlisteringCrownItem extends CrownItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

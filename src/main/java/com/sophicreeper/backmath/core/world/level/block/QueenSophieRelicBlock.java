@@ -1,12 +1,21 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
@@ -54,27 +63,27 @@ public class QueenSophieRelicBlock extends HorizontalDirectionalBlock {
         }
     }
 
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        DoubleBlockHalf halfState = state.get(HALF);
-        if (facing.getAxis() != Direction.Axis.Y || halfState == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.isIn(this) && facingState.get(HALF) != halfState) {
-            return halfState == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !state.isValidPosition(world, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor world, BlockPos currentPos, BlockPos facingPos) {
+        DoubleBlockHalf halfState = state.getValue(HALF);
+        if (facing.getAxis() != Direction.Axis.Y || halfState == DoubleBlockHalf.LOWER != (facing == Direction.UP) || facingState.is(this) && facingState.getValue(HALF) != halfState) {
+            return halfState == DoubleBlockHalf.LOWER && facing == Direction.DOWN && !state.canSurvive(world, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, world, currentPos, facingPos);
         } else {
-            return Blocks.AIR.getDefaultState();
+            return Blocks.AIR.defaultBlockState();
         }
     }
 
-    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
-        world.setBlockState(pos.up(), this.getDefaultState().with(HALF, DoubleBlockHalf.UPPER), 3);
+    public void getStateForPlacement(Level world, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack) {
+        world.setBlock(pos.above(), this.defaultBlockState().setValue(HALF, DoubleBlockHalf.UPPER), 3);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
-        if (state.get(HALF) != DoubleBlockHalf.UPPER) {
-            return super.isValidPosition(state, world, pos);
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        if (state.getValue(HALF) != DoubleBlockHalf.UPPER) {
+            return super.canSurvive(state, world, pos);
         } else {
-            BlockState belowState = world.getBlockState(pos.down());
+            BlockState belowState = world.getBlockState(pos.below());
             if (state.getBlock() != this)
-                return super.isValidPosition(state, world, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
-            return belowState.isIn(this) && belowState.get(HALF) == DoubleBlockHalf.LOWER;
+                return super.canSurvive(state, world, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+            return belowState.is(this) && belowState.getValue(HALF) == DoubleBlockHalf.LOWER;
         }
     }
 
@@ -82,39 +91,39 @@ public class QueenSophieRelicBlock extends HorizontalDirectionalBlock {
      * Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect
      * this block
      */
-    public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isRemote) {
+    public void playerWillDestroy(Level world, BlockPos pos, BlockState state, Player player) {
+        if (!world.isClientSide) {
             if (player.isCreative()) {
                 removeBottomHalf(world, pos, state, player);
             } else {
-                spawnDrops(state, world, pos, null, player, player.getHeldItemMainhand());
+                dropResources(state, world, pos, null, player, player.getMainHandItem());
             }
         }
 
-        super.onBlockHarvested(world, pos, state, player);
+        super.playerWillDestroy(world, pos, state, player);
     }
 
     /**
      * Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via
      * Block.removedByPlayer
      */
-    public void harvestBlock(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity blockEntity, ItemStack stack) {
-        super.harvestBlock(world, player, pos, Blocks.AIR.getDefaultState(), blockEntity, stack);
+    public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack stack) {
+        super.playerDestroy(world, player, pos, Blocks.AIR.defaultBlockState(), blockEntity, stack);
     }
 
-    protected static void removeBottomHalf(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        DoubleBlockHalf halfState = state.get(HALF);
+    protected static void removeBottomHalf(Level world, BlockPos pos, BlockState state, Player player) {
+        DoubleBlockHalf halfState = state.getValue(HALF);
         if (halfState == DoubleBlockHalf.UPPER) {
-            BlockPos belowPos = pos.down();
+            BlockPos belowPos = pos.below();
             BlockState belowState = world.getBlockState(belowPos);
-            if (belowState.getBlock() == state.getBlock() && belowState.get(HALF) == DoubleBlockHalf.LOWER) {
-                world.setBlockState(belowPos, Blocks.AIR.getDefaultState(), 35);
-                world.playEvent(player, 2001, belowPos, Block.getStateId(belowState));
+            if (belowState.getBlock() == state.getBlock() && belowState.getValue(HALF) == DoubleBlockHalf.LOWER) {
+                world.setBlock(belowPos, Blocks.AIR.defaultBlockState(), 35);
+                world.levelEvent(player, 2001, belowPos, Block.getId(belowState));
             }
         }
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HALF);
     }
 }

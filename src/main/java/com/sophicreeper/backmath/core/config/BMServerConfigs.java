@@ -1,8 +1,6 @@
 package com.sophicreeper.backmath.core.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
-
-public class BMServerConfigs {
+/*public class BMServerConfigs {
     // World generation
     public final ForgeConfigSpec.BooleanValue devilOreGen;
     public final ForgeConfigSpec.BooleanValue netherDevilOreGen;
@@ -149,4 +147,4 @@ public class BMServerConfigs {
         this.midTermBowFRD = builder.comment("How long should a mid-term bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("midTermBow.fRD", 10, 1, 72000);
         builder.pop();
     }
-}
+}*/

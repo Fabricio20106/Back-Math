@@ -1,16 +1,6 @@
 package com.sophicreeper.backmath.core.data.tags;
 
-import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.tags.BMTags;
-import com.sophicreeper.backmath.core.world.level.material.BMFluids;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.FluidTagsProvider;
-import net.minecraft.tags.FluidTags;
-import net.minecraftforge.common.data.ExistingFileHelper;
-
-import javax.annotation.Nullable;
-
-public class BMFluidTagsProvider extends FluidTagsProvider {
+/*public class BMFluidTagsProvider extends FluidTagsProvider {
     public BMFluidTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper fileHelper) {
         super(generator, BackMath.MOD_ID, fileHelper);
     }
@@ -27,4 +17,4 @@ public class BMFluidTagsProvider extends FluidTagsProvider {
         this.getOrCreateBuilder(FluidTags.WATER).addTag(BMTags.Fluids.HILLARY).addTag(BMTags.Fluids.MILKLLARY).addTag(BMTags.Fluids.LIQUID_ALJAME).addTag(BMTags.Fluids.LIQUID_MANGA)
                 .addTag(BMTags.Fluids.LIQUEFIED_MONSTER).addTag(BMTags.Fluids.SLEEPISHWATER);
     }
-}
+}*/

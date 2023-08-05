@@ -1,17 +1,7 @@
 package com.sophicreeper.backmath.core.data.worldgen;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.world.BMFeatures;
-import com.sophicreeper.backmath.core.world.entity.BMEntities;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.world.biome.BiomeGenerationSettings;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.biome.MobSpawnInfo;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.structure.StructureFeatures;
-
 public class BMDefaultBiomeFeatures {
-    public static void withOriginalBackFieldTrees(BiomeGenerationSettings.Builder settings) {
+    /*public static void withOriginalBackFieldTrees(BiomeGenerationSettings.Builder settings) {
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAME_BIRCHES);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.GUARANA_OAKS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.MANGO_OAKS);
@@ -128,5 +118,5 @@ public class BMDefaultBiomeFeatures {
     public static void withAljanMobs(MobSpawnInfo.Builder spawns) {
         withAljanHostileMobs(spawns);
         withAljanPassiveMobs(spawns);
-    }
+    }*/
 }

@@ -1,17 +1,7 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.google.common.collect.Maps;
-import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FireBlock;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.ShovelItem;
-
 public class BMVanillaCompatibility {
-    public static void registerCompatibilities() {
+    /*public static void registerCompatibilities() {
         flammable(BMBlocks.GUARANA_OAK_LEAVES.get(), 30, 60);
         flammable(BMBlocks.MANGO_OAK_LEAVES.get(), 30, 60);
         flammable(BMBlocks.GRAPE_VINE_LEAVES.get(), 30, 60);
@@ -44,8 +34,8 @@ public class BMVanillaCompatibility {
         strippable(BMBlocks.ALJANCAP_WOOD.get(), BMBlocks.STRIPPED_ALJANCAP_WOOD.get());
         strippable(BMBlocks.INSOMNIAN_LOG.get(), BMBlocks.STRIPPED_INSOMNIAN_LOG.get());
         strippable(BMBlocks.INSOMNIAN_WOOD.get(), BMBlocks.STRIPPED_INSOMNIAN_WOOD.get());
-        tillable(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
-        tillable(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
+        tillable(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJAMIC_FARMLAND.get().defaultBlockState());
+        tillable(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_FARMLAND.get().defaultBlockState());
 
         // Back Math 1.8.0:
         flammable(BMBlocks.GUAVA_PLANKS.get(), 5, 20);
@@ -138,31 +128,31 @@ public class BMVanillaCompatibility {
         strippable(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get(), BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get());
         strippable(BMBlocks.CORK_OAK_LOG.get(), BMBlocks.STRIPPED_CORK_OAK_LOG.get());
         strippable(BMBlocks.CORK_OAK_WOOD.get(), BMBlocks.STRIPPED_CORK_OAK_WOOD.get());
-        tillable(BMBlocks.ALJAMIC_DIRT_PATH.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
-        tillable(BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
-        makePath(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
-        makePath(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
-        makePath(BMBlocks.ALJAMIC_FARMLAND.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
-        makePath(BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
+        tillable(BMBlocks.ALJAMIC_DIRT_PATH.get(), BMBlocks.ALJAMIC_FARMLAND.get().defaultBlockState());
+        tillable(BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJAMIC_FARMLAND.get().defaultBlockState());
+        makePath(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().defaultBlockState());
+        makePath(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().defaultBlockState());
+        makePath(BMBlocks.ALJAMIC_FARMLAND.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().defaultBlockState());
+        makePath(BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().defaultBlockState());
     }
 
     public static void strippable(Block log, Block strippedLog) {
-        AxeItem.BLOCK_STRIPPING_MAP = Maps.newHashMap(AxeItem.BLOCK_STRIPPING_MAP);
-        AxeItem.BLOCK_STRIPPING_MAP.put(log, strippedLog);
+        AxeItem.STRIPPABLES = Maps.newHashMap(AxeItem.STRIPPABLES);
+        AxeItem.STRIPPABLES.put(log, strippedLog);
     }
 
     private static void flammable(Block block, int encouragement, int flammability) {
         FireBlock fireBlock = (FireBlock) Blocks.FIRE;
-        fireBlock.setFireInfo(block, encouragement, flammability);
+        fireBlock.setFlammable(block, encouragement, flammability);
     }
 
     private static void tillable(Block block, BlockState farmland) {
-        HoeItem.HOE_LOOKUP = Maps.newHashMap(HoeItem.HOE_LOOKUP);
-        HoeItem.HOE_LOOKUP.put(block, farmland);
+        HoeItem.TILLABLES = Maps.newHashMap(HoeItem.TILLABLES);
+        HoeItem.TILLABLES.put(block, farmland);
     }
 
     private static void makePath(Block block, BlockState path) {
-        ShovelItem.SHOVEL_LOOKUP = Maps.newHashMap(ShovelItem.SHOVEL_LOOKUP);
-        ShovelItem.SHOVEL_LOOKUP.put(block, path);
-    }
+        ShovelItem.FLATTENABLES = Maps.newHashMap(ShovelItem.FLATTENABLES);
+        ShovelItem.FLATTENABLES.put(block, path);
+    }*/
 }

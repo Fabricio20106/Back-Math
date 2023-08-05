@@ -1,46 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.controller.MovementController;
-import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
-import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootTables;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ItemParticleData;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-
-import javax.annotation.Nullable;
-import java.util.EnumSet;
-import java.util.Objects;
-import java.util.Random;
-
-public class Amaracameler extends MobEntity implements IMob {
+/*public class Amaracameler extends MobEntity implements IMob {
     private static final DataParameter<Integer> AMARACAMELER_SIZE = EntityDataManager.createKey(Amaracameler.class, DataSerializers.VARINT);
     public float squishAmount;
     public float squishFactor;
@@ -83,9 +43,9 @@ public class Amaracameler extends MobEntity implements IMob {
         this.experienceValue = size;
     }
 
-    /**
+    
      * Returns the size of the amaracameler.
-     */
+     
     public int getSlimeSize() {
         return this.dataManager.get(AMARACAMELER_SIZE);
     }
@@ -96,9 +56,9 @@ public class Amaracameler extends MobEntity implements IMob {
         compoundNBT.putBoolean("wasOnGround", this.wasOnGround);
     }
 
-    /**
+    
      * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
+     
     public void readAdditional(CompoundNBT compoundNBT) {
         int sizeNBT = compoundNBT.getInt("Size");
         if (sizeNBT < 0) {
@@ -122,9 +82,9 @@ public class Amaracameler extends MobEntity implements IMob {
         return this.getSlimeSize() > 0;
     }
 
-    /**
+    
      * Called to update the entity's position/logic.
-     */
+     
     public void tick() {
         this.squishFactor += (this.squishAmount - this.squishFactor) * 0.5F;
         this.prevSquishFactor = this.squishFactor;
@@ -155,9 +115,9 @@ public class Amaracameler extends MobEntity implements IMob {
         this.squishAmount *= 0.6F;
     }
 
-    /**
+    
      * Gets the amount of time the amaracameler needs to wait between jumps.
-     */
+     
     protected int getJumpDelay() {
         return this.rand.nextInt(20) + 10;
     }
@@ -217,9 +177,9 @@ public class Amaracameler extends MobEntity implements IMob {
         super.remove(keepData);
     }
 
-    /**
+    
      * Applies a velocity to the entities, to push them away from eachother.
-     */
+     
     public void applyEntityCollision(Entity entity) {
         super.applyEntityCollision(entity);
         if (entity instanceof IronGolemEntity && this.canDamagePlayer()) {
@@ -227,9 +187,9 @@ public class Amaracameler extends MobEntity implements IMob {
         }
     }
 
-    /**
+    
      * Called by a player entity when they collide with an entity
-     */
+     
     public void onCollideWithPlayer(PlayerEntity player) {
         if (this.canDamagePlayer()) {
             this.dealDamage(player);
@@ -250,9 +210,9 @@ public class Amaracameler extends MobEntity implements IMob {
         return 0.625F * size.height;
     }
 
-    /**
+    
      * Indicates weather the amaracameler is able to damage the player (based upon the amaracameler's size)
-     */
+     
     protected boolean canDamagePlayer() {
         return !this.isSmallSlime() && this.isServerWorld();
     }
@@ -291,31 +251,31 @@ public class Amaracameler extends MobEntity implements IMob {
         return false;
     }
 
-    /**
+    
      * Returns the volume for the sounds this mob makes.
-     */
+     
     protected float getSoundVolume() {
         return 0.4F * (float)this.getSlimeSize();
     }
 
-    /**
+    
      * The speed it takes to move the livingEntity's rotationPitch through the faceEntity method. This is only currently
      * use in wolves.
-     */
+     
     public int getVerticalFaceSpeed() {
         return 0;
     }
 
-    /**
+    
      * Returns true if the amaracameler makes a sound when it jumps (based upon the amaracameler's size)
-     */
+     
     protected boolean makesSoundOnJump() {
         return this.getSlimeSize() > 0;
     }
 
-    /**
+    
      * Causes this entity to do an upwards motion (jumping).
-     */
+     
     protected void jump() {
         Vector3d vector3D = this.getMotion();
         this.setMotion(vector3D.x, this.getJumpUpwardsMotion(), vector3D.z);
@@ -347,10 +307,10 @@ public class Amaracameler extends MobEntity implements IMob {
         return super.getSize(pose).scale(0.255F * (float)this.getSlimeSize());
     }
 
-    /**
+    
      * Called when the amaracameler spawns particles on landing, see onUpdate.
      * Return true to prevent the spawning of the default particles.
-     */
+     
     protected boolean spawnCustomParticles() {
         return false;
     }
@@ -369,10 +329,10 @@ public class Amaracameler extends MobEntity implements IMob {
             this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK));
         }
 
-        /**
+        
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
-         */
+         
         public boolean shouldExecute() {
             LivingEntity livingEntity = this.amaracameler.getAttackTarget();
             if (livingEntity == null) {
@@ -384,17 +344,17 @@ public class Amaracameler extends MobEntity implements IMob {
             }
         }
 
-        /**
+        
          * Execute a one shot task or start executing a continuous task
-         */
+         
         public void startExecuting() {
             this.growTieredTimer = 300;
             super.startExecuting();
         }
 
-        /**
+        
          * Returns whether an in-progress EntityAIBase should continue executing
-         */
+         
         public boolean shouldContinueExecuting() {
             LivingEntity livingEntity = this.amaracameler.getAttackTarget();
             if (livingEntity == null) {
@@ -408,9 +368,9 @@ public class Amaracameler extends MobEntity implements IMob {
             }
         }
 
-        /**
+        
          * Keep ticking a continuous task that has already been started
-         */
+         
         public void tick() {
             this.amaracameler.faceEntity(this.amaracameler.getAttackTarget(), 10.0F, 10.0F);
             ((Amaracameler.MoveHelperController) this.amaracameler.getMoveHelper()).setDirection(this.amaracameler.rotationYaw, this.amaracameler.canDamagePlayer());
@@ -427,17 +387,17 @@ public class Amaracameler extends MobEntity implements IMob {
             this.setMutexFlags(EnumSet.of(Goal.Flag.LOOK));
         }
 
-        /**
+        
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
-         */
+         
         public boolean shouldExecute() {
             return this.amaracameler.getAttackTarget() == null && (this.amaracameler.onGround || this.amaracameler.isInWater() || this.amaracameler.isInLava() || this.amaracameler.isPotionActive(Effects.LEVITATION)) && this.amaracameler.getMoveHelper() instanceof Amaracameler.MoveHelperController;
         }
 
-        /**
+        
          * Keep ticking a continuous task that has already been started
-         */
+         
         public void tick() {
             if (--this.nextRandomizeTime <= 0) {
                 this.nextRandomizeTime = 40 + this.amaracameler.getRNG().nextInt(60);
@@ -457,17 +417,17 @@ public class Amaracameler extends MobEntity implements IMob {
             amaracameler.getNavigator().setCanSwim(true);
         }
 
-        /**
+        
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
-         */
+         
         public boolean shouldExecute() {
             return (this.amaracameler.isInWater() || this.amaracameler.isInLava()) && this.amaracameler.getMoveHelper() instanceof Amaracameler.MoveHelperController;
         }
 
-        /**
+        
          * Keep ticking a continuous task that has already been started
-         */
+         
         public void tick() {
             if (this.amaracameler.getRNG().nextFloat() < 0.8F) {
                 this.amaracameler.getJumpController().setJumping();
@@ -485,17 +445,17 @@ public class Amaracameler extends MobEntity implements IMob {
             this.setMutexFlags(EnumSet.of(Goal.Flag.JUMP, Goal.Flag.MOVE));
         }
 
-        /**
+        
          * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
          * method as well.
-         */
+         
         public boolean shouldExecute() {
             return !this.amaracameler.isPassenger();
         }
 
-        /**
+        
          * Keep ticking a continuous task that has already been started
-         */
+         
         public void tick() {
             ((Amaracameler.MoveHelperController) this.amaracameler.getMoveHelper()).setSpeed(1.0D);
         }
@@ -555,4 +515,4 @@ public class Amaracameler extends MobEntity implements IMob {
             }
         }
     }
-}
+}*/

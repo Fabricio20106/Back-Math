@@ -1,43 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
-import com.sophicreeper.backmath.core.world.entity.goal.ZombieFabricioAttackGoal;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.ai.attributes.AttributeModifierMap;
-import net.minecraft.entity.ai.attributes.Attributes;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.pathfinding.GroundPathNavigator;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.GroundPathHelper;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.time.LocalDate;
-import java.time.temporal.ChronoField;
-import java.util.function.Predicate;
-
-public class ZombieFabricio extends MonsterEntity {
+/*public class ZombieFabricio extends MonsterEntity {
     private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (difficulty) -> difficulty == Difficulty.HARD;
     private final BreakDoorGoal breakDoor = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
     private boolean isBreakDoorsTaskSet;
@@ -77,7 +40,7 @@ public class ZombieFabricio extends MonsterEntity {
 
     /**
      * Sets or removes EntityAIBreakDoor task
-     */
+     
     public void setBreakDoorsAITask(boolean enabled) {
         if (this.canBreakDoors() && GroundPathHelper.isGroundNavigator(this)) {
             if (this.isBreakDoorsTaskSet != enabled) {
@@ -102,7 +65,7 @@ public class ZombieFabricio extends MonsterEntity {
 
     /**
      * Get the experience points the entity currently has.
-     */
+     
     protected int getExperiencePoints(PlayerEntity player) {
         if (this.isChild()) {
             this.experienceValue = (int)((float)this.experienceValue * 2.5F);
@@ -114,7 +77,7 @@ public class ZombieFabricio extends MonsterEntity {
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
-     */
+     
     public void livingTick() {
         if (this.isAlive()) {
             boolean canBurn = this.shouldBurnInDay() && this.isInDaylight();
@@ -299,7 +262,7 @@ public class ZombieFabricio extends MonsterEntity {
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
+     
     public void readAdditional(CompoundNBT compoundNBT) {
         super.readAdditional(compoundNBT);
         this.setBreakDoorsAITask(compoundNBT.getBoolean("CanBreakDoors"));
@@ -348,7 +311,7 @@ public class ZombieFabricio extends MonsterEntity {
 
     /**
      * Returns the Y Offset of this entity.
-     */
+     
     public double getYOffset() {
         return -0.45D;
     }
@@ -372,4 +335,4 @@ public class ZombieFabricio extends MonsterEntity {
     protected ItemStack getSkullDrop() {
         return new ItemStack(AxolotlTest.ZOMBIE_FABRICIO_HEAD.get());
     }
-}
+}*/
