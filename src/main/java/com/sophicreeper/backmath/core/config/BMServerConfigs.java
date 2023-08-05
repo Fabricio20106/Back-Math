@@ -48,14 +48,10 @@ public class BMServerConfigs {
     // Gameplay Aspects
     public final ForgeConfigSpec.BooleanValue safeAljan;
     public final ForgeConfigSpec.BooleanValue standingAljanTeleport;
-    public final ForgeConfigSpec.BooleanValue enableMobAIChanges;
-
-    // Gameplay Aspects - Items
-    // Peace Tea
     public final ForgeConfigSpec.BooleanValue peaceTeaInvisibilityToggle;
     public final ForgeConfigSpec.BooleanValue peaceTeaGlowingToggle;
 
-    // Bows
+    // Gameplay Aspects - Items
     public final ForgeConfigSpec.BooleanValue bowDamageCounter;
     public final ForgeConfigSpec.BooleanValue devilBowFCA;
     public final ForgeConfigSpec.BooleanValue devilBowCBD;
@@ -127,7 +123,6 @@ public class BMServerConfigs {
         builder.push("gameplayAspects");
         this.safeAljan = builder.comment("When you teleport to the Aljan through the Aljan Portal Stand, the stand on the other side will already have a jantical in it.").define("safeAljan", false);
         this.standingAljanTeleport = builder.comment("When turned on, you'll be able to stand besides the portal stand and be teleported over.").define("standingAljanTeleport", false);
-        this.enableMobAIChanges = builder.comment("Enable the new Back Math mob AI changes? Currently does nothing.").define("enableMobAIChanges", false);
         this.peaceTeaInvisibilityToggle = builder.comment("Makes peace teas give you or the affected mob Invisibility.").define("peaceTea.invisibilityToggle", false);
         this.peaceTeaGlowingToggle = builder.comment("Makes peace teas give you or the affected mob Glowing.").define("peaceTea.glowingToggle", false);
         builder.comment("Back Math Bow Configurations:");

@@ -1,37 +1,30 @@
 package com.sophicreeper.backmath.core.world.item.weapon.misc;
 
-import com.google.common.collect.Lists;
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.dispenser.DefaultDispenseItemBehavior;
-import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SpawnEggItem;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.Direction;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.function.Supplier;
 
 // The Queen Sophie's Summoner Staff is a copy of the BMSpawnEggItem class
-public class QueenSophieSummonerStaffItem extends SpawnEggItem {
-    private static final List<QueenSophieSummonerStaffItem> UNADDED_EGGS = Lists.newArrayList();
+public class QueenSophieSummonerStaffItem /*extends SpawnEggItem*/ extends Item {
+    /*private static final List<QueenSophieSummonerStaffItem> UNADDED_EGGS = Lists.newArrayList();
     private final Supplier<? extends EntityType<? extends Entity>> typeSupplier;
 
     public QueenSophieSummonerStaffItem(Supplier<? extends EntityType<? extends Entity>> type, int primaryColor, int secondaryColor, Properties properties) {
         super(null, primaryColor, secondaryColor, properties);
         this.typeSupplier = type;
         UNADDED_EGGS.add(this);
+    }*/
+
+    public QueenSophieSummonerStaffItem(Properties properties) {
+        super(properties);
     }
 
-    public static void initUnaddedEggs() {
+    /*public static void initUnaddedEggs() {
         DefaultDispenseItemBehavior dispenseItemBehavior = new DefaultDispenseItemBehavior() {
             @Override
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
@@ -63,19 +56,19 @@ public class QueenSophieSummonerStaffItem extends SpawnEggItem {
         }
 
         return this.typeSupplier.get();
-    }
+    }*/
 
     // Adds tooltips for this item:
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         // Supposed to be an empty space to represent an actual weapon, like a sword.
-        tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
+        tooltip.add(Component.translatable("tooltip.backmath.empty"));
         // "When in main hand:".
-        tooltip.add(new TranslationTextComponent("tooltip.backmath.when.in_main_hand"));
+        tooltip.add(Component.translatable("tooltip.backmath.when.in_main_hand"));
         // Queen Sophie pets deal 17 damage, the "summon" damage is inspired by Terraria.
-        tooltip.add(new TranslationTextComponent("tooltip.backmath.qsss_summon_damage"));
+        tooltip.add(Component.translatable("tooltip.backmath.qsss_summon_damage"));
         // Terraria like tooltip, also says what food is used to tame her. Like parrots that don't like cookies, QSP's don't like aljame.
-        tooltip.add(new TranslationTextComponent("tooltip.backmath.qsss_desc"));
-        super.addInformation(stack, world, tooltip, flag);
+        tooltip.add(Component.translatable("tooltip.backmath.qsss_desc"));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

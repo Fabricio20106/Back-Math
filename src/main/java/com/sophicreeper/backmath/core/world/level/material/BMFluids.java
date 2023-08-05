@@ -1,23 +1,7 @@
 package com.sophicreeper.backmath.core.world.level.material;
 
-import com.sophicreeper.backmath.core.util.BMResourceLocations;
-import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
-import net.minecraft.fluid.FlowingFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Rarity;
-import net.minecraft.util.SoundEvents;
-import net.minecraftforge.fluids.FluidAttributes;
-import net.minecraftforge.fluids.ForgeFlowingFluid;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import static com.sophicreeper.backmath.core.util.BMResourceLocations.*;
-
 public class BMFluids {
-    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, BackMath.MOD_ID);
+    /*public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, BackMath.MOD_ID);
 
     // Hillary
     public static final RegistryObject<FlowingFluid> HILLARY = FLUIDS.register("hilary_fluid", () ->
@@ -78,5 +62,5 @@ public class BMFluids {
 
     public static final ForgeFlowingFluid.Properties SLEEPISHWATER_PROPERTIES = new ForgeFlowingFluid.Properties(SLEEPISHWATER, FLOWING_SLEEPISHWATER,
             FluidAttributes.builder(SLEEPISHWATER_STILL, FLOWING_SLEEPISHWATER_RL).rarity(Rarity.COMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(SLEEPISHWATER_OVERLAY))
-            .canMultiply().block(BMBlocks.SLEEPISHWATER).bucket(AxolotlTest.SLEEPISHWATER_BUCKET);
+            .canMultiply().block(BMBlocks.SLEEPISHWATER).bucket(AxolotlTest.SLEEPISHWATER_BUCKET);*/
 }

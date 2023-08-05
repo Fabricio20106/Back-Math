@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.core.world.item.tool;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ShearsItem;
 
 public class GlisteringShearsItem extends ShearsItem {
     public GlisteringShearsItem(Properties properties) {
@@ -9,7 +9,7 @@ public class GlisteringShearsItem extends ShearsItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

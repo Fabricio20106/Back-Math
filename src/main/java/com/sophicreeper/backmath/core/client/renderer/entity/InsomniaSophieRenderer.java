@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.core.client.renderer.entity;
 
-import com.sophicreeper.backmath.core.client.model.entity.BMBipedModel;
 import com.sophicreeper.backmath.core.client.BackMath;
+import com.sophicreeper.backmath.core.client.model.entity.BMBipedModel;
 import com.sophicreeper.backmath.core.world.entity.monster.InsomniaSophie;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;

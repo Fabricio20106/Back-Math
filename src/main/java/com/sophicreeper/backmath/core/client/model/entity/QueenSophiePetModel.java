@@ -6,7 +6,6 @@ package com.sophicreeper.backmath.core.client.model.entity;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.core.world.entity.monster.QueenSophie;
 import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;

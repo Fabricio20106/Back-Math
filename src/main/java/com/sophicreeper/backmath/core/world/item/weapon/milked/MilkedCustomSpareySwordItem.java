@@ -1,38 +1,35 @@
 package com.sophicreeper.backmath.core.world.item.weapon.milked;
 
-import com.sophicreeper.backmath.core.world.entity.monster.AngrySophie;
-import com.sophicreeper.backmath.core.world.item.BMWeaponryTab;
-import com.sophicreeper.backmath.core.world.item.weapon.milked.MilkedSwordItem;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.Tier;
 
 public class MilkedCustomSpareySwordItem extends MilkedSwordItem {
-    public MilkedCustomSpareySwordItem(IItemTier tier, Rarity rarity) {
-        super(tier, 3, -2.4F, new Properties().isImmuneToFire().rarity(rarity).group(BMWeaponryTab.TAB));
+    public MilkedCustomSpareySwordItem(Tier tier, Rarity rarity) {
+        super(tier, 3, -2.4F, new Properties().fireResistant().rarity(rarity));
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (entity instanceof AngrySophie) {
-            player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 200, 1));
-        } else {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
-        }
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+        //if (entity instanceof AngrySophie) {
+        //    player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 200, 1));
+        //} else {
+        player.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 50, 2));
+        //}
         return super.onLeftClickEntity(stack, player, entity);
     }
 
-    @Override
-    public int getRGBDurabilityForDisplay(ItemStack stack) {
-        return 0x1dc2d1;
-    }
+    //@Override
+    //public int getRGBDurabilityForDisplay(ItemStack stack) {
+    //    return 0x1dc2d1;
+    //}
 }

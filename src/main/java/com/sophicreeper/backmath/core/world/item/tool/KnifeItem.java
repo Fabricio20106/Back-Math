@@ -1,32 +1,30 @@
 package com.sophicreeper.backmath.core.world.item.tool;
 
-import com.google.common.collect.ImmutableSet;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.Set;
-
-public class KnifeItem extends ToolItem {
-    private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.GRASS, Blocks.TALL_GRASS, Blocks.FERN, Blocks.LARGE_FERN, Blocks.SEAGRASS, Blocks.TALL_SEAGRASS, Blocks.KELP, Blocks.KELP_PLANT, Blocks.CRIMSON_ROOTS, Blocks.WARPED_ROOTS, Blocks.CRIMSON_FUNGUS, Blocks.WARPED_FUNGUS, Blocks.NETHER_SPROUTS, Blocks.WHEAT, Blocks.CARROTS, Blocks.POTATOES, Blocks.BEETROOTS, Blocks.NETHER_WART, Blocks.SWEET_BERRY_BUSH, Blocks.OAK_SAPLING, Blocks.SPRUCE_SAPLING, Blocks.BIRCH_SAPLING, Blocks.JUNGLE_SAPLING, Blocks.ACACIA_SAPLING, Blocks.DARK_OAK_SAPLING);
-    public static final ToolType KNIFE = ToolType.get("knife");
-
-    public KnifeItem(float attackDamage, float attackSpeed, IItemTier tier, Properties properties) {
-        super(attackDamage, attackSpeed, tier, EFFECTIVE_ON, properties.addToolType(KNIFE, tier.getHarvestLevel()));
+public class KnifeItem extends TieredItem {
+    public KnifeItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override
-    public ItemStack getContainerItem(ItemStack itemStack) {
+    public ItemStack getCraftingRemainingItem(ItemStack itemStack) {
         ItemStack container = itemStack.copy();
-        if (container.attemptDamageItem(1, random, null)) {
+        if (container.hurt(1, RandomSource.create(), null)) {
             return ItemStack.EMPTY;
         } else {
             return container;
@@ -34,43 +32,43 @@ public class KnifeItem extends ToolItem {
     }
 
     @Override
-    public boolean hasContainerItem(ItemStack stack) {
+    public boolean hasCraftingRemainingItem(ItemStack stack) {
         return true;
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        BlockPos pos = context.getPos();
-        World world = context.getWorld();
+    public InteractionResult useOn(UseOnContext context) {
+        BlockPos pos = context.getClickedPos();
+        Level world = context.getLevel();
         BlockState state = world.getBlockState(pos);
-        PlayerEntity player = context.getPlayer();
-        ItemStack stack = context.getItem();
+        Player player = context.getPlayer();
+        ItemStack stack = context.getItemInHand();
         if (state.getBlock() == Blocks.PUMPKIN) {
-            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 9));
+            Block.popResource(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 9));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            stack.hurtAndBreak(1, player, livEntity -> livEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
         if (state.getBlock() == Blocks.CARVED_PUMPKIN) {
-            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
+            Block.popResource(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            stack.hurtAndBreak(1, player, livEntity -> livEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
         if (state.getBlock() == Blocks.JACK_O_LANTERN) {
-            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
-            Block.spawnAsEntity(world, pos, new ItemStack(Items.TORCH));
+            Block.popResource(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
+            Block.popResource(world, pos, new ItemStack(Items.TORCH));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            stack.hurtAndBreak(1, player, livEntity -> livEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
         if (state.getBlock() == Blocks.MELON) {
-            Block.spawnAsEntity(world, pos, new ItemStack(Items.MELON_SLICE, 9));
+            Block.popResource(world, pos, new ItemStack(Items.MELON_SLICE, 9));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            stack.hurtAndBreak(1, player, livEntity -> livEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
         if (state.getBlock() == Blocks.HAY_BLOCK) {
-            Block.spawnAsEntity(world, pos, new ItemStack(Items.WHEAT, 9));
+            Block.popResource(world, pos, new ItemStack(Items.WHEAT, 9));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            stack.hurtAndBreak(1, player, livEntity -> livEntity.broadcastBreakEvent(EquipmentSlot.MAINHAND));
         }
-        return super.onItemUse(context);
+        return super.useOn(context);
     }
 }

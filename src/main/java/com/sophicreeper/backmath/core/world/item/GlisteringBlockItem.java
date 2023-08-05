@@ -1,8 +1,8 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 
 public class GlisteringBlockItem extends BlockItem {
     public GlisteringBlockItem(Block block, Properties properties) {
@@ -10,7 +10,7 @@ public class GlisteringBlockItem extends BlockItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

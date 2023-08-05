@@ -1,18 +1,18 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FlowerBlock;
-import net.minecraft.potion.Effects;
+import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockReader;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.FlowerBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class TurtleFriedEggFlowerBlock extends FlowerBlock {
     public TurtleFriedEggFlowerBlock(Properties properties) {
-        super(Effects.WATER_BREATHING, 12, properties);
+        super(MobEffects.WATER_BREATHING, 12, properties);
     }
 
-    protected boolean isValidGround(BlockState state, IBlockReader world, BlockPos pos) {
-        return super.isValidGround(state, world, pos) || state.isIn(BlockTags.SAND);
+    protected boolean mayPlaceOn(BlockState state, BlockGetter world, BlockPos pos) {
+        return super.mayPlaceOn(state, world, pos) || state.is(BlockTags.SAND);
     }
 }

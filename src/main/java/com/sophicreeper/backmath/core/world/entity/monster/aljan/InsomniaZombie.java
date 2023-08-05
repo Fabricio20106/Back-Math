@@ -1,12 +1,8 @@
 package com.sophicreeper.backmath.core.world.entity.monster.aljan;
 
-import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
 import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
 import com.sophicreeper.backmath.core.world.entity.goal.InsomniaZombieAttackGoal;
-import com.sophicreeper.backmath.core.world.entity.monster.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -64,14 +60,6 @@ public class InsomniaZombie extends MonsterEntity {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Malaika.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WandererSophie.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WarriorSophie.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaSophie.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherInsomniaSophie.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherLucia.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, KarateLucia.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenSophie.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }

@@ -1,12 +1,12 @@
 package com.sophicreeper.backmath.core.sounds;
 
 import com.sophicreeper.backmath.core.client.BackMath;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class BMSounds {
-    public static SoundEvent RECORD_NATHAN_EVANS_WELLERMAN;
+    /*public static SoundEvent RECORD_NATHAN_EVANS_WELLERMAN;
     public static SoundEvent RECORD_SIA_SNOWMAN;
     public static SoundEvent RECORD_ERICWHO1_DADADADA_DA;
     public static SoundEvent RECORD_DUNCAN_LAURENCE_ARCADE;
@@ -42,9 +42,9 @@ public class BMSounds {
 
     private static SoundEvent registerSound(String name) {
         ResourceLocation location = new ResourceLocation(BackMath.MOD_ID, name);
-        SoundEvent event = new SoundEvent(location);
-        event.setRegistryName(name);
+        SoundEvent event = new SoundEvent(location, 0, false);
+        event.(name);
         ForgeRegistries.SOUND_EVENTS.register(event);
         return event;
-    }
+    }*/
 }

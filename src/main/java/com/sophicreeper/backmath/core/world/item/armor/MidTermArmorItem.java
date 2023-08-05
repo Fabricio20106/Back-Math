@@ -1,27 +1,22 @@
 package com.sophicreeper.backmath.core.world.item.armor;
 
-import com.sophicreeper.backmath.core.world.entity.BMDamageSources;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class MidTermArmorItem extends ArmorItem {
-    public MidTermArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties properties) {
+    public MidTermArmorItem(ArmorMaterial material, ArmorItem.Type slot, Properties properties) {
         super(material, slot, properties);
     }
 
     // Needs more testing/changing to work.
     @Override
-    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-        if (stack.getMaxDamage() <= stack.getDamage()) {
+    public void onArmorTick(ItemStack stack, Level world, Player player) {
+        if (stack.getMaxDamage() <= stack.getDamageValue()) {
             stack.shrink(1);
-            world.createExplosion(player, BMDamageSources.MID_TERM_ARMOR_INSTABILITY, null, player.getPosX(), player.getPosY(), player.getPosZ(), 8, false, Explosion.Mode.DESTROY);
+            //world.explode(player, BMDamageSources.MID_TERM_ARMOR_INSTABILITY, null, player.getX(), player.getY(), player.getZ(), 8, false, Level.ExplosionInteraction.BLOCK);
         }
         super.onArmorTick(stack, world, player);
     }
@@ -35,12 +30,12 @@ public class MidTermArmorItem extends ArmorItem {
     }*/
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
-    @Override
-    public int getRGBDurabilityForDisplay(ItemStack stack) {
-        return 0x1dc2d1;
-    }
+    //@Override
+    //public int getRGBDurabilityForDisplay(ItemStack stack) {
+    //    return 0x1dc2d1;
+    //}
 }

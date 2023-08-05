@@ -1,23 +1,7 @@
 package com.sophicreeper.backmath.core.world.level.biome;
 
-import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.data.worldgen.BMDefaultBiomeFeatures;
-import com.sophicreeper.backmath.core.world.BMFeatures;
-import com.sophicreeper.backmath.core.world.entity.BMEntities;
-import com.sophicreeper.backmath.core.world.surfacebuilders.BMSurfaceBuilders;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.Features;
-import net.minecraft.world.gen.feature.structure.StructureFeatures;
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-
 public class BMBiomes {
-    public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, BackMath.MOD_ID);
+    /*public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, BackMath.MOD_ID);
 
     public static final RegistryObject<Biome> BACK_FIELD = BIOMES.register("back_field", BMBiomes::backField);
     public static final RegistryObject<Biome> ORIGINAL_BACK_FIELDS = BIOMES.register("original_back_fields", BMBiomes::originalBackFields);
@@ -316,5 +300,5 @@ public class BMBiomes {
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
                         new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xd73fc1).withGrassColor(0xcc3db4).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
-    }
+    }*/
 }

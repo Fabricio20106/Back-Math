@@ -1,17 +1,16 @@
 package com.sophicreeper.backmath.core.world.item.armor;
 
-import com.sophicreeper.backmath.core.world.item.armor.BMArmorItem;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.IArmorMaterial;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.ItemStack;
 
 public class GlisteringArmorItem extends BMArmorItem {
-    public GlisteringArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties properties) {
+    public GlisteringArmorItem(ArmorMaterial material, ArmorItem.Type slot, Properties properties) {
         super(material, slot, properties);
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

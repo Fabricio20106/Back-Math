@@ -1,25 +1,7 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import com.sophicreeper.backmath.core.world.entity.misc.BMBoat;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BoatItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EntityPredicates;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.World;
-
-import java.util.List;
-import java.util.function.Predicate;
-
-public class BMBoatItem extends BoatItem {
-    private static final Predicate<Entity> field_219989_a = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
+public class BMBoatItem /*extends BoatItem*/ {
+    /*private static final Predicate<Entity> field_219989_a = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
     private final String woodType;
 
     public BMBoatItem(Properties properties, String woodType) {
@@ -27,9 +9,9 @@ public class BMBoatItem extends BoatItem {
         this.woodType = woodType;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        RayTraceResult fluidRayTrace = rayTrace(world, player, RayTraceContext.FluidMode.ANY);
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        HitResult fluidRayTrace = rayTrace(world, player, RayTraceContext.FluidMode.ANY);
         if (fluidRayTrace.getType() == RayTraceResult.Type.MISS) {
             return ActionResult.resultPass(heldItem);
         } else {
@@ -67,5 +49,5 @@ public class BMBoatItem extends BoatItem {
                 return ActionResult.resultPass(heldItem);
             }
         }
-    }
+    }*/
 }

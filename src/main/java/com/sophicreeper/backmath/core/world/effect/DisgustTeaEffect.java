@@ -1,32 +1,32 @@
 package com.sophicreeper.backmath.core.world.effect;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectType;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 
-public class DisgustTeaEffect extends Effect {
+public class DisgustTeaEffect extends MobEffect {
     public DisgustTeaEffect() {
-        super(EffectType.NEUTRAL, 0xd2002b);
+        super(MobEffectCategory.NEUTRAL, 0xd2002b);
     }
 
     @Override
-    public void performEffect(LivingEntity livEntity, int amplifier) {
-        if (livEntity instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) livEntity;
-            int hunger = player.getFoodStats().getFoodLevel();
-            float saturation = player.getFoodStats().getSaturationLevel();
+    public void applyEffectTick(LivingEntity livEntity, int amplifier) {
+        if (livEntity instanceof Player) {
+            Player player = (Player) livEntity;
+            int hunger = player.getFoodData().getFoodLevel();
+            float saturation = player.getFoodData().getSaturationLevel();
 
-            if (player.getFoodStats().getFoodLevel() != hunger || player.getFoodStats().getSaturationLevel() != saturation) {
-                livEntity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 300));
+            if (player.getFoodData().getFoodLevel() != hunger || player.getFoodData().getSaturationLevel() != saturation) {
+                livEntity.addEffect(new MobEffectInstance(MobEffects.CONFUSION, 300));
             }
         }
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
 }

@@ -1,16 +1,21 @@
 package com.sophicreeper.backmath.core.world.item;
 
 import com.sophicreeper.backmath.core.world.level.material.BMFluids;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ClipContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 
 public class AljamicGlassBottleItem extends Item {
     public AljamicGlassBottleItem(Properties properties) {
@@ -18,30 +23,30 @@ public class AljamicGlassBottleItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        RayTraceResult rayTraceResult = rayTrace(world, player, RayTraceContext.FluidMode.SOURCE_ONLY);
-        if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK) {
-            BlockPos rayTraceBlockPos = ((BlockRayTraceResult) rayTraceResult).getPos();
-            if (!world.isBlockModifiable(player, rayTraceBlockPos)) {
-                return ActionResult.resultPass(heldItem);
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        HitResult rayTraceResult = getPlayerPOVHitResult(world, player, ClipContext.Fluid.SOURCE_ONLY);
+        if (rayTraceResult.getType() == HitResult.Type.BLOCK) {
+            BlockPos rayTraceBlockPos = ((BlockHitResult) rayTraceResult).getBlockPos();
+            if (!world.mayInteract(player, rayTraceBlockPos)) {
+                return InteractionResultHolder.pass(heldItem);
             }
 
             if (world.getFluidState(rayTraceBlockPos) == BMFluids.SLEEPISHWATER.get().getDefaultState()) {
-                world.playSound(player, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-                return ActionResult.func_233538_a_(getBottleStack(heldItem, player), world.isRemote());
+                world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundSource.NEUTRAL, 1.0F, 1.0F);
+                return InteractionResultHolder.sidedSuccess(getBottleStack(heldItem, player), world.isClientSide());
             }
         }
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 
-    /*protected ItemStack turnBottleIntoItem(ItemStack bottleStack, PlayerEntity player, ItemStack stack) {
-        player.addStat(Stats.ITEM_USED.get(this));
-        return DrinkHelper.fill(bottleStack, player, stack);
-    }*/
+    protected ItemStack turnBottleIntoItem(ItemStack bottleStack, Player player, ItemStack stack) {
+        player.awardStat(Stats.ITEM_USED.get(this));
+        return ItemUtils.createFilledResult(bottleStack, player, stack);
+    }
 
-    protected ItemStack getBottleStack(ItemStack bottleStack, PlayerEntity player) {
-        ItemStack stack = player.getHeldItem(Hand.MAIN_HAND);
+    protected ItemStack getBottleStack(ItemStack bottleStack, Player player) {
+        ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
         if (stack.getItem() == AxolotlTest.ALJAMIC_GLASS_BOTTLE.get()) {
             return new ItemStack(AxolotlTest.SLEEPISHWATER_BOTTLE.get());
         }

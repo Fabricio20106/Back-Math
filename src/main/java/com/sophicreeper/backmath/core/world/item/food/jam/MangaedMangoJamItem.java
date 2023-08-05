@@ -2,18 +2,21 @@ package com.sophicreeper.backmath.core.world.item.food.jam;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.UseAction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUtils;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -23,30 +26,30 @@ public class MangaedMangoJamItem extends JamItem {
         super(builder);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        super.onItemUseFinish(stack, world, livingEntity);
-        if (livingEntity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity livingEntity) {
+        super.finishUsingItem(stack, world, livingEntity);
+        if (livingEntity instanceof ServerPlayer) {
+            ServerPlayer serverPlayer = (ServerPlayer) livingEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.addStat(Stats.ITEM_USED.get(this));
-            serverPlayer.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.BAKUGOU_HAIR.get()));
-            serverPlayer.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.BAKUGOU_BLOUSE.get()));
-            serverPlayer.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.BAKUGOU_PANTS.get()));
-            serverPlayer.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.BAKUGOU_SHOES.get()));
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
+            serverPlayer.setItemSlot(EquipmentSlot.HEAD, new ItemStack(AxolotlTest.BAKUGOU_HAIR.get()));
+            serverPlayer.setItemSlot(EquipmentSlot.CHEST, new ItemStack(AxolotlTest.BAKUGOU_BLOUSE.get()));
+            serverPlayer.setItemSlot(EquipmentSlot.LEGS, new ItemStack(AxolotlTest.BAKUGOU_PANTS.get()));
+            serverPlayer.setItemSlot(EquipmentSlot.FEET, new ItemStack(AxolotlTest.BAKUGOU_SHOES.get()));
         }
 
-        if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
+        if (livingEntity instanceof Player && !((Player) livingEntity).getAbilities().instabuild) {
             stack.shrink(1);
         }
 
         if (stack.isEmpty()) {
             return new ItemStack(AxolotlTest.JAM_POT.get());
         } else {
-            if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
+            if (livingEntity instanceof Player && !((Player) livingEntity).getAbilities().instabuild) {
                 ItemStack jamPot = new ItemStack(AxolotlTest.JAM_POT.get());
-                PlayerEntity player = (PlayerEntity) livingEntity;
-                if (!player.inventory.addItemStackToInventory(jamPot)) {
-                    player.dropItem(jamPot, false);
+                Player player = (Player) livingEntity;
+                if (!player.getInventory().add(jamPot)) {
+                    player.drop(jamPot, false);
                 }
             }
             return stack;
@@ -57,25 +60,25 @@ public class MangaedMangoJamItem extends JamItem {
         return 40;
     }
 
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.EAT;
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.EAT;
     }
 
-    public SoundEvent getDrinkSound() {
-        return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
+    public SoundEvent getDrinkingSound() {
+        return SoundEvents.HONEY_DRINK;
     }
 
-    public SoundEvent getEatSound() {
-        return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
+    public SoundEvent getEatingSound() {
+        return SoundEvents.HONEY_DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        return DrinkHelper.startDrinking(world, player, hand);
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        return ItemUtils.startUsingInstantly(world, player, hand);
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent("messages.backmath.take_armor_off.jam"));
-        super.addInformation(stack, world, tooltip, flag);
+    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.translatable("messages.backmath.take_armor_off.jam"));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

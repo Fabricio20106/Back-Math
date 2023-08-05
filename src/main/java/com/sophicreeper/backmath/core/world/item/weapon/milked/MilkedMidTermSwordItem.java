@@ -1,45 +1,45 @@
 package com.sophicreeper.backmath.core.world.item.weapon.milked;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.world.World;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.level.Level;
 
 public class MilkedMidTermSwordItem extends SwordItem {
-    public MilkedMidTermSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Properties properties) {
+    public MilkedMidTermSwordItem(Tier tier, int attackDamage, float attackSpeed, Properties properties) {
         super(tier, attackDamage, attackSpeed, properties);
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livingEntity = (LivingEntity) entity;
-            livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 2));
         }
-        entity.setFire(10);
+        entity.setSecondsOnFire(10);
         return super.onLeftClickEntity(stack, player, entity);
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        if (livingEntity instanceof PlayerEntity) {
-            ((PlayerEntity) livingEntity).giveExperiencePoints(500);
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity livingEntity) {
+        if (livingEntity instanceof Player) {
+            ((Player) livingEntity).giveExperiencePoints(500);
         }
-        return super.onItemUseFinish(stack, world, livingEntity);
+        return super.finishUsingItem(stack, world, livingEntity);
     }
 
-    @Override
-    public int getRGBDurabilityForDisplay(ItemStack stack) {
-        return 0x1dc2d1;
-    }
+    //@Override
+    //public int getRGBDurabilityForDisplay(ItemStack stack) {
+    //    return 0x1dc2d1;
+    //}
 }

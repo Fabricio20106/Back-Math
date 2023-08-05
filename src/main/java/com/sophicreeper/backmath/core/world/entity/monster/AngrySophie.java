@@ -1,9 +1,9 @@
 package com.sophicreeper.backmath.core.world.entity.monster;
 
 import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -57,8 +57,7 @@ public class AngrySophie extends MonsterEntity {
     public static AttributeModifierMap.MutableAttribute createAngrySophieAttributes() {
         return MonsterEntity.func_233666_p_()
                 // She had 75 health at first (I think) now it's 45, but I think it still a lot.
-                // But now she'll have 28 health, because it was still too much.
-                .createMutableAttribute(Attributes.MAX_HEALTH, 28.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 45.0D)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
@@ -89,16 +88,7 @@ public class AngrySophie extends MonsterEntity {
     public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         spawnData = super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
         this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
         return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
-    }
-
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
-        }
     }
 
     @Override

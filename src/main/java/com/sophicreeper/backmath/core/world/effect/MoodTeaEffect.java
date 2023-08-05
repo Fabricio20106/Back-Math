@@ -1,21 +1,21 @@
 package com.sophicreeper.backmath.core.world.effect;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectType;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
 
-public class MoodTeaEffect extends Effect {
+public class MoodTeaEffect extends MobEffect {
     public MoodTeaEffect() {
-        super(EffectType.BENEFICIAL, 0xcee09f);
+        super(MobEffectCategory.BENEFICIAL, 0xcee09f);
     }
 
     @Override
-    public void performEffect(LivingEntity livEntity, int amplifier) {
-        livEntity.getActivePotionEffects().removeIf(effectInstance -> !effectInstance.getPotion().isBeneficial());
+    public void applyEffectTick(LivingEntity livEntity, int amplifier) {
+        livEntity.getActiveEffects().removeIf(effectInstance -> !effectInstance.getEffect().isBeneficial());
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % 10 == 0;
     }
 }

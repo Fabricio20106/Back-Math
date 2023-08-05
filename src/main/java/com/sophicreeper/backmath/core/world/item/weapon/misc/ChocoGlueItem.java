@@ -1,15 +1,15 @@
 package com.sophicreeper.backmath.core.world.item.weapon.misc;
 
 import com.sophicreeper.backmath.core.world.entity.misc.ChocoGlueProjEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class ChocoGlueItem extends Item {
     public ChocoGlueItem(Properties properties) {
@@ -17,22 +17,22 @@ public class ChocoGlueItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldStack = player.getHeldItem(hand);
-        world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL,
-                0.5f, 0.4f / (random.nextFloat() * 0.4f + 0.8f));
-        if (!world.isRemote) {
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack heldStack = player.getItemInHand(hand);
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.SNOWBALL_THROW, SoundSource.NEUTRAL,
+                0.5f, 0.4f / (world.getRandom().nextFloat() * 0.4f + 0.8f));
+        if (!world.isClientSide) {
             ChocoGlueProjEntity chocoGlueProj = new ChocoGlueProjEntity(world, player);
             chocoGlueProj.setItem(heldStack);
-            chocoGlueProj.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0, 1.5f, 1);
-            world.addEntity(chocoGlueProj);
+            chocoGlueProj.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, 1.5f, 1);
+            world.addFreshEntity(chocoGlueProj);
         }
 
-        player.addStat(Stats.ITEM_USED.get(this));
-        if (!player.abilities.isCreativeMode) {
+        player.awardStat(Stats.ITEM_USED.get(this));
+        if (!player.getAbilities().instabuild) {
             heldStack.shrink(1);
         }
 
-        return ActionResult.func_233538_a_(heldStack, world.isRemote());
+        return InteractionResultHolder.sidedSuccess(heldStack, world.isClientSide());
     }
 }

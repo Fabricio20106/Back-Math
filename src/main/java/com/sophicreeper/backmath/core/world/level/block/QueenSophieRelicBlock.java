@@ -1,58 +1,53 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.*;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.DoubleBlockHalf;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class QueenSophieRelicBlock extends HorizontalBlock {
+public class QueenSophieRelicBlock extends HorizontalDirectionalBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     public static final VoxelShape SHAPE_FIRST_HALF = Stream.of(
-            Block.makeCuboidShape(1, 0, 1, 15, 2, 15),
-            Block.makeCuboidShape(4, 2, 6, 8, 14, 10),
-            Block.makeCuboidShape(8, 2, 6, 12, 14, 10),
-            Block.makeCuboidShape(4, 14, 6, 12, 16, 10),
-            Block.makeCuboidShape(12, 14, 6, 15, 16, 10),
-            Block.makeCuboidShape(1, 14, 6, 4, 16, 10)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+            Block.box(1, 0, 1, 15, 2, 15),
+            Block.box(4, 2, 6, 8, 14, 10),
+            Block.box(8, 2, 6, 12, 14, 10),
+            Block.box(4, 14, 6, 12, 16, 10),
+            Block.box(12, 14, 6, 15, 16, 10),
+            Block.box(1, 14, 6, 4, 16, 10)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     public static final VoxelShape SHAPE_SECOND_HALF = Stream.of(
-            Block.makeCuboidShape(11, 18, 5, 11, 22, 11),
-            Block.makeCuboidShape(5, 18, 5, 5, 22, 11),
-            Block.makeCuboidShape(5, 18, 11, 11, 22, 11),
-            Block.makeCuboidShape(5, 18, 5, 11, 22, 5),
-            Block.makeCuboidShape(4, 10, 4, 12, 18, 12),
-            Block.makeCuboidShape(4, 0, 6, 12, 10, 10),
-            Block.makeCuboidShape(1, 0, 6, 4, 10, 10),
-            Block.makeCuboidShape(12, 0, 6, 15, 10, 10)
-    ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+            Block.box(11, 18, 5, 11, 22, 11),
+            Block.box(5, 18, 5, 5, 22, 11),
+            Block.box(5, 18, 11, 11, 22, 11),
+            Block.box(5, 18, 5, 11, 22, 5),
+            Block.box(4, 10, 4, 12, 18, 12),
+            Block.box(4, 0, 6, 12, 10, 10),
+            Block.box(1, 0, 6, 4, 10, 10),
+            Block.box(12, 0, 6, 15, 10, 10)
+    ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
     public QueenSophieRelicBlock() {
-        super(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).harvestLevel(2).setLightLevel(state -> 10));
-        this.setDefaultState(this.stateContainer.getBaseState().with(HALF, DoubleBlockHalf.LOWER));
+        super(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).lightLevel(state -> 10));
+        this.registerDefaultState(this.stateDefinition.any().setValue(HALF, DoubleBlockHalf.LOWER));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        if (state.get(HALF) == DoubleBlockHalf.LOWER) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
             return SHAPE_FIRST_HALF;
         } else {
             return SHAPE_SECOND_HALF;

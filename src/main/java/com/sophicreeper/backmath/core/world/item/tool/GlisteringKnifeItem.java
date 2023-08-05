@@ -1,15 +1,15 @@
 package com.sophicreeper.backmath.core.world.item.tool;
 
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
 
 public class GlisteringKnifeItem extends KnifeItem {
-    public GlisteringKnifeItem(float attackDamage, float attackSpeed, IItemTier tier, Properties properties) {
-        super(attackDamage, attackSpeed, tier, properties);
+    public GlisteringKnifeItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

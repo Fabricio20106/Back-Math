@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.core.world.entity.goal;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.item.weapon.BMCrossbowItem;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ICrossbowUser;
 import net.minecraft.entity.IRangedAttackMob;
@@ -36,7 +35,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
     }
 
     private boolean isHoldingCrossbow() {
-        return this.mob.func_233634_a_(item -> item instanceof BMCrossbowItem);
+        return this.mob.func_233634_a_(item -> item instanceof CrossbowItem);
     }
 
     public boolean shouldContinueExecuting() {
@@ -55,7 +54,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
         if (this.mob.isHandActive()) {
             this.mob.resetActiveHand();
             this.mob.setCharging(false);
-            BMCrossbowItem.setCharged(this.mob.getActiveItemStack(), false);
+            CrossbowItem.setCharged(this.mob.getActiveItemStack(), false);
         }
     }
 
@@ -82,7 +81,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
             if (flag) {
                 --this.updatePackDelay;
                 if (this.updatePackDelay <= 0) {
-                    this.mob.getNavigator().tryMoveToEntityLiving(livingEntity, this.isCrossbowUncharged() ? this.speedModified : this.speedModified * 0.5d);
+                    this.mob.getNavigator().tryMoveToEntityLiving(livingEntity, this.isCrossbowUncharged() ? this.speedModified : this.speedModified * 0.5D);
                     this.updatePackDelay = PATHFINDING_DELAY_RANGE.getRandomWithinRange(this.mob.getRNG());
                 }
             } else {
@@ -90,7 +89,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                 this.mob.getNavigator().clearPath();
             }
 
-            this.mob.getLookController().setLookPositionWithEntity(livingEntity, 30, 30);
+            this.mob.getLookController().setLookPositionWithEntity(livingEntity, 30.0F, 30.0F);
             if (this.crossbowState == CrossbowState.UNCHARGED) {
                 if (!flag) {
                     this.mob.setActiveHand(ProjectileHelper.getHandWith(this.mob, AxolotlTest.ANGELIC_CROSSBOW.get()));
@@ -116,9 +115,9 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                     this.crossbowState = CrossbowState.READY_TO_ATTACK;
                 }
             } else if (this.crossbowState == CrossbowState.READY_TO_ATTACK && canMobSeeOther) {
-                this.mob.attackEntityWithRangedAttack(livingEntity, 1);
+                this.mob.attackEntityWithRangedAttack(livingEntity, 1.0F);
                 ItemStack crossbowStack = this.mob.getHeldItem(ProjectileHelper.getHandWith(this.mob, AxolotlTest.ANGELIC_CROSSBOW.get()));
-                BMCrossbowItem.setCharged(crossbowStack, false);
+                CrossbowItem.setCharged(crossbowStack, false);
                 this.crossbowState = CrossbowState.UNCHARGED;
             }
         }

@@ -1,0 +1,39 @@
+Classes:
+
+IBlockReader ---> BlockGetter
+HorizontalBlock ---> HorizontalDirectionalBlock
+ISelectionContext ---> CollisionContext
+Random ---> RandomSource
+ActionResultType ---> InteractionResult
+
+Methods:
+setDefaultState ---> registerDefaultState
+state.get() ---> state.getValue()
+getLightSubtracted ---> getRawBrightness
+setBlockState ---> setBlock
+spawnAsEntity ---> popResource
+getStateForPlacement ---> createBlockStateDefinition
+
+Others:
+stateContainer ---> stateDefinition
+
+// Base for drinking items:
+    public int getUseDuration(ItemStack stack) {
+        return 32;
+    }
+
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.DRINK;
+    }
+
+    public SoundEvent getDrinkingSound() {
+        return SoundEvents.GENERIC_DRINK;
+    }
+
+    public SoundEvent getEatingSound() {
+        return SoundEvents.GENERIC_DRINK;
+    }
+
+    public InteractionResultHolder<ItemStack> onItemRightClick(Level world, Player player, InteractionHand hand) {
+        return ItemUtils.startUsingInstantly(world, player, hand);
+    }

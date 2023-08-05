@@ -1,28 +1,28 @@
 package com.sophicreeper.backmath.core.world.item.food;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.stats.Stats;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class HotSophieItem extends Item {
     public HotSophieItem(Properties properties) {
         super(properties);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        super.onItemUseFinish(stack, world, livingEntity);
-        if (livingEntity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity livingEntity) {
+        super.finishUsingItem(stack, world, livingEntity);
+        if (livingEntity instanceof ServerPlayer) {
+            ServerPlayer serverPlayer = (ServerPlayer) livingEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.addStat(Stats.ITEM_USED.get(this));
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        if (!world.isRemote) {
-            livingEntity.setFire(5);
+        if (!world.isClientSide) {
+            livingEntity.setSecondsOnFire(5);
         }
         return stack;
     }

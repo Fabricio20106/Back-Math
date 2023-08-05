@@ -1,18 +1,18 @@
 package com.sophicreeper.backmath.core.world.item.tool;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
 
 public class DevilKnifeItem extends KnifeItem {
-    public DevilKnifeItem(float attackDamage, float attackSpeed, IItemTier tier, Properties properties) {
-        super(attackDamage, attackSpeed, tier, properties);
+    public DevilKnifeItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        entity.setFire(5);
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+        entity.setSecondsOnFire(5);
         return super.onLeftClickEntity(stack, player, entity);
     }
 }

@@ -2,27 +2,31 @@ package com.sophicreeper.backmath.core.world.item.alchemy;
 
 import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.potion.*;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class BMPotions {
-    public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTION_TYPES, BackMath.MOD_ID);
+    public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(ForgeRegistries.POTIONS, BackMath.MOD_ID);
 
     public static final RegistryObject<Potion> INSOMNIA = POTIONS.register("insomnia", () ->
-            new Potion("insomnia", new EffectInstance(Effects.POISON, 200), new EffectInstance(Effects.BLINDNESS, 600)));
+            new Potion("insomnia", new MobEffectInstance(MobEffects.POISON, 200), new MobEffectInstance(MobEffects.BLINDNESS, 600)));
 
     public static final RegistryObject<Potion> LONG_INSOMNIA = POTIONS.register("long_insomnia", () ->
-            new Potion("insomnia", new EffectInstance(Effects.POISON, 400), new EffectInstance(Effects.BLINDNESS, 1200)));
+            new Potion("insomnia", new MobEffectInstance(MobEffects.POISON, 400), new MobEffectInstance(MobEffects.BLINDNESS, 1200)));
 
     public static final RegistryObject<Potion> DEEP_INSOMNIA = POTIONS.register("deep_insomnia", () ->
-            new Potion("insomnia", new EffectInstance(Effects.POISON, 800, 1), new EffectInstance(Effects.BLINDNESS, 2400, 1)));
+            new Potion("insomnia", new MobEffectInstance(MobEffects.POISON, 800, 1), new MobEffectInstance(MobEffects.BLINDNESS, 2400, 1)));
 
     public static void addPotionRecipes() {
         BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD, AxolotlTest.ALJAME.get(), INSOMNIA.get()));
@@ -38,13 +42,13 @@ public class BMPotions {
         public BetterBrewingRecipe(Potion bottleInputIn, Item itemInputIn, Potion outputIn){
             this.bottleInput = bottleInputIn;
             this.itemInput = itemInputIn;
-            this.output = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), outputIn);
+            this.output = PotionUtils.setPotion(new ItemStack(Items.POTION), outputIn);
         }
 
         // checks the item where the water bottle would go
         @Override
         public boolean isInput(ItemStack input) {
-            return PotionUtils.getPotionFromItem(input).equals(this.bottleInput);
+            return PotionUtils.getPotion(input).equals(this.bottleInput);
         }
 
         // checks the item where the nether wart would go

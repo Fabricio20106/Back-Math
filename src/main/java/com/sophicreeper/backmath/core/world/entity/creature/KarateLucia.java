@@ -16,7 +16,9 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.*;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -62,8 +64,7 @@ public class KarateLucia extends CreatureEntity {
     public static AttributeModifierMap.MutableAttribute createKarateLuciaAttributes() {
         return CreatureEntity.func_233666_p_()
                 // Old karate Lucia health was 50.0d.
-                // Old new karate Lucia health was 28.0d.
-                .createMutableAttribute(Attributes.MAX_HEALTH, 20.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 28.0D)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 32.0D)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F)
@@ -80,24 +81,6 @@ public class KarateLucia extends CreatureEntity {
         this.setEnchantmentBasedOnDifficulty(difficulty);
         this.setEquipmentBasedOnDifficulty(difficulty);
         return spawnData;
-    }
-
-    public void livingTick() {
-        this.updateArmSwingProgress();
-        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
-                this.heal(1.0F);
-            }
-        }
-        super.livingTick();
-    }
-
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
-        }
     }
 
     @Override

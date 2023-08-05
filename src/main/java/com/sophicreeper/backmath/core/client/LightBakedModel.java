@@ -1,29 +1,13 @@
 package com.sophicreeper.backmath.core.client;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.model.BakedQuad;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.client.renderer.model.ItemOverrideList;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.Direction;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.client.model.data.IModelData;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
-
-public class LightBakedModel implements IBakedModel {
-    private IBakedModel lightBakedModel;
+public class LightBakedModel/* implements BakedModel*/ {
+    /*private BakedModel lightBakedModel;
 
     @Override
     @Nonnull
-    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData) {
-        List<BakedQuad> quads = this.lightBakedModel.getQuads(state, side, rand, extraData);
-        if(MinecraftForgeClient.getRenderLayer() == RenderType.getTranslucent()) {
+    public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull RandomSource rand) {
+        List<BakedQuad> quads = this.lightBakedModel.getQuads(state, side, rand);
+        if(getRenderType() == RenderType.translucent()) {
             for(int i = 0; i < quads.size(); i++) {
                 BakedQuad quad = quads.get(i);
                 int[] vertexData = quad.getVertexData();
@@ -83,5 +67,5 @@ public class LightBakedModel implements IBakedModel {
     @Override
     public ItemCameraTransforms getItemCameraTransforms() {
         return lightBakedModel.getItemCameraTransforms();
-    }
+    }*/
 }

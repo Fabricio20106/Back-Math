@@ -1,42 +1,15 @@
 package com.sophicreeper.backmath.core.proxy;
 
-import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.sounds.BMSounds;
 import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
-import com.sophicreeper.backmath.core.world.effect.BMEffects;
+import com.sophicreeper.backmath.core.world.effect.BMMobEffects;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
-import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
-import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
-import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
-import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
 import com.sophicreeper.backmath.core.world.entity.decoration.BMMotives;
-import com.sophicreeper.backmath.core.world.entity.monster.*;
-import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
-import com.sophicreeper.backmath.core.world.gen.carver.BMConfiguredCarvers;
-import com.sophicreeper.backmath.core.world.gen.carver.BMWorldCarvers;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.item.BMStats;
-import com.sophicreeper.backmath.core.world.item.BMVanillaCompatibility;
 import com.sophicreeper.backmath.core.world.item.alchemy.BMPotions;
-import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
-import com.sophicreeper.backmath.core.world.level.material.BMFluids;
-import com.sophicreeper.backmath.core.world.structure.BMStructures;
-import com.sophicreeper.backmath.core.world.surfacebuilders.BMSurfaceBuilders;
-import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
-import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.SlimeEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.util.RegistryKey;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.Heightmap;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class CommonProxy {
     CommonProxy() {
@@ -44,23 +17,23 @@ public class CommonProxy {
         BMBlocks.BLOCKS.register(eventBus);
         AxolotlTest.ITEMS.register(eventBus);
         BMEntities.ENTITIES.register(eventBus);
-        BMEffects.EFFECTS.register(eventBus);
-        BMFluids.FLUIDS.register(eventBus);
-        BMWorldCarvers.WORLD_CARVERS.register(eventBus);
-        BMBiomes.BIOMES.register(eventBus);
+        BMMobEffects.MOB_EFFECTS.register(eventBus);
+        //BMFluids.FLUIDS.register(eventBus);
+        //BMWorldCarvers.WORLD_CARVERS.register(eventBus);
+        //BMBiomes.BIOMES.register(eventBus);
         BMMotives.MOTIVES.register(eventBus);
         BMPotions.POTIONS.register(eventBus);
-        BMStructures.STRUCTURES.register(eventBus);
-        BMStats.init();
-        BMSounds.registerSounds();
+        //BMStructures.STRUCTURES.register(eventBus);
+        //BMStats.init();
+        //BMSounds.registerSounds();
 
         eventBus.addListener(this::commonSetup);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        RegistryKey<Biome> originalBackFieldsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.ORIGINAL_BACK_FIELDS.getId());
-        RegistryKey<Biome> modifiedBackFieldsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.MODIFIED_BACK_FIELDS.getId());
-        RegistryKey<Biome> angelicWoodsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.ANGELIC_WOODS.getId());
+        /*ResourceKey<Biome> originalBackFieldsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.ORIGINAL_BACK_FIELDS.getId());
+        ResourceKey<Biome> modifiedBackFieldsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.MODIFIED_BACK_FIELDS.getId());
+        ResourceKey<Biome> angelicWoodsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.ANGELIC_WOODS.getId());
 
         if (BMConfigs.SERVER_CONFIGS.originalBackFieldsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(originalBackFieldsKey, 15));
@@ -70,9 +43,9 @@ public class CommonProxy {
         }
         if (BMConfigs.SERVER_CONFIGS.angelicWoodsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(angelicWoodsKey, 12));
-        }
+        }*/
 
-        event.enqueueWork(() -> {
+        /*event.enqueueWork(() -> {
             // Entity spawning, but it now works! I just needed both the old and this new code together instead of deleting the old code.
             if (BMConfigs.SERVER_CONFIGS.groundMobSpawningAljan.get()) {
                 EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_ZOMBIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
@@ -124,14 +97,14 @@ public class CommonProxy {
         GlobalEntityTypeAttributes.put(BMEntities.MALAIKA.get(), Malaika.createMalaikaAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.JANTICLE.get(), Janticle.createJanticleAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ALJAMIC_BONES.get(), AljamicBones.createAljamicBonesAttributes().create());
-        GlobalEntityTypeAttributes.put(BMEntities.SLEEPISH_SKELETON.get(), SleepishSkeleton.createSleepishSkeletonAttributes().create());
+        GlobalEntityTypeAttributes.put(BMEntities.SLEEPISH_SKELETON.get(), SleepishSkeleton.createSleepishSkeletonAttributes().create());*/
 
         // Other things to load
         BMPotions.addPotionRecipes();
         BMDimensions.init();
-        BMConfiguredCarvers.register();
-        BMVanillaCompatibility.registerCompatibilities();
-        BMSurfaceBuilders.init();
-        BMStructures.setupStructures();
+        //BMConfiguredCarvers.register();
+        //BMVanillaCompatibility.registerCompatibilities();
+        //BMSurfaceBuilders.init();
+        //BMStructures.setupStructures();
     }
 }

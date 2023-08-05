@@ -1,70 +1,69 @@
 package com.sophicreeper.backmath.core.world.level.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.PathType;
-import net.minecraft.state.IntegerProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class HillaryCakeBlock extends Block {
-    public static final IntegerProperty BITES = BlockStateProperties.BITES_0_6;
-    protected static final VoxelShape[] SHAPES = new VoxelShape[]{Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
+    public static final IntegerProperty BITES = BlockStateProperties.BITES;
+    protected static final VoxelShape[] SHAPES = new VoxelShape[]{Block.box(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.box(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
 
-    public HillaryCakeBlock(AbstractBlock.Properties properties) {
+    public HillaryCakeBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(BITES, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(BITES, 0));
     }
 
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        return SHAPES[state.get(BITES)];
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return SHAPES[state.getValue(BITES)];
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        if (world.isRemote) {
-            ItemStack heldItem = player.getHeldItem(hand);
-            if (this.eatSlice(world, pos, state, player).isSuccessOrConsume()) {
-                return ActionResultType.SUCCESS;
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (world.isClientSide) {
+            ItemStack heldItem = player.getItemInHand(hand);
+            if (this.eatSlice(world, pos, state, player).consumesAction()) {
+                return InteractionResult.SUCCESS;
             }
 
             if (heldItem.isEmpty()) {
-                return ActionResultType.CONSUME;
+                return InteractionResult.CONSUME;
             }
         }
 
         return this.eatSlice(world, pos, state, player);
     }
 
-    private ActionResultType eatSlice(IWorld world, BlockPos pos, BlockState state, PlayerEntity player) {
+    private InteractionResult eatSlice(LevelAccessor world, BlockPos pos, BlockState state, Player player) {
         if (!player.canEat(false)) {
-            return ActionResultType.PASS;
+            return InteractionResult.PASS;
         } else {
-            player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(4, 0.3F);
-            int bitesState = state.get(BITES);
+            player.awardStat(Stats.EAT_CAKE_SLICE);
+            player.getFoodData().eat(4, 0.3F);
+            int bitesState = state.getValue(BITES);
             if (bitesState < 6) {
-                world.setBlockState(pos, state.with(BITES, bitesState + 1), 3);
+                world.setBlock(pos, state.setValue(BITES, bitesState + 1), 3);
             } else {
                 world.removeBlock(pos, false);
             }
 
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
     }
 
@@ -74,27 +73,31 @@ public class HillaryCakeBlock extends Block {
      * returns its solidified counterpart.
      * Note that this method should ideally consider only the specific face passed in.
      */
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        return facing == Direction.DOWN && !state.isValidPosition(world, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+    public BlockState updateShape(BlockState p_51213_, Direction p_51214_, BlockState p_51215_, LevelAccessor p_51216_, BlockPos p_51217_, BlockPos p_51218_) {
+        return p_51214_ == Direction.DOWN && !p_51213_.canSurvive(p_51216_, p_51217_) ? Blocks.AIR.defaultBlockState() : super.updateShape(p_51213_, p_51214_, p_51215_, p_51216_, p_51217_, p_51218_);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
-        return world.getBlockState(pos.down()).getMaterial().isSolid();
+    public boolean canSurvive(BlockState p_51209_, LevelReader p_51210_, BlockPos p_51211_) {
+        return p_51210_.getBlockState(p_51211_.below()).isSolid();
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BITES);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_51220_) {
+        p_51220_.add(BITES);
     }
 
-    public int getComparatorInputOverride(BlockState state, World world, BlockPos pos) {
-        return (7 - state.get(BITES)) * 2;
+    public int getAnalogOutputSignal(BlockState p_51198_, Level p_51199_, BlockPos p_51200_) {
+        return getOutputSignal(p_51198_.getValue(BITES));
     }
 
-    public boolean hasComparatorInputOverride(BlockState state) {
+    public static int getOutputSignal(int p_152747_) {
+        return (7 - p_152747_) * 2;
+    }
+
+    public boolean hasAnalogOutputSignal(BlockState p_51191_) {
         return true;
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState p_51193_, BlockGetter p_51194_, BlockPos p_51195_, PathComputationType p_51196_) {
         return false;
     }
 }

@@ -1,8 +1,8 @@
 package com.sophicreeper.backmath.core.world.level.block.state.properties;
 
-import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.StringRepresentable;
 
-public enum Molds implements IStringSerializable {
+public enum Molds implements StringRepresentable {
     EMPTY("empty"),
     SINGULARITY("singularity"),
     CRYSTALLIZED("crystallized"),
@@ -20,7 +20,7 @@ public enum Molds implements IStringSerializable {
         return this.name;
     }
 
-    public String getString() {
+    public String getSerializedName() {
         return this.name;
     }
 }

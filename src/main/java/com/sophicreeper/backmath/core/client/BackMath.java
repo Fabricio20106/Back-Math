@@ -4,7 +4,7 @@ import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.proxy.ClientProxy;
 import com.sophicreeper.backmath.core.proxy.CommonProxy;
 import com.sophicreeper.backmath.core.proxy.ServerProxy;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;

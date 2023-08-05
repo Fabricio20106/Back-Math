@@ -2,26 +2,27 @@ package com.sophicreeper.backmath.core.world.item.weapon;
 
 import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.config.BMConfigs;
-import com.sophicreeper.backmath.core.config.BMServerConfigs;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.*;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.*;
-import net.minecraft.util.text.ChatType;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import java.util.function.Predicate;
 
-public class BMBowItem extends ShootableItem {
+public class BMBowItem extends ProjectileWeaponItem implements Vanishable {
     private final boolean forcedCriticalArrow;
     private final boolean canBeDamaged;
     private final int additionalArrowDamage;
@@ -40,11 +41,11 @@ public class BMBowItem extends ShootableItem {
     /**
      * Called when the player stops using an Item (stops holding the right mouse button).
      */
-    public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity livEntity, int timeLeft) {
-        if (livEntity instanceof PlayerEntity) {
-            PlayerEntity player = (PlayerEntity) livEntity;
-            boolean isInfinite = player.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
-            ItemStack arrowStack = player.findAmmo(stack);
+    public void releaseUsing(ItemStack stack, Level world, LivingEntity livEntity, int timeLeft) {
+        if (livEntity instanceof Player) {
+            Player player = (Player) livEntity;
+            boolean isInfinite = player.getAbilities().instabuild || EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, stack) > 0;
+            ItemStack arrowStack = player.getProjectile(stack);
 
             int i = this.getUseDuration(stack) - timeLeft;
             i = ForgeEventFactory.onArrowLoose(stack, world, player, i, !arrowStack.isEmpty() || isInfinite);
@@ -60,63 +61,63 @@ public class BMBowItem extends ShootableItem {
                     arrowsVelocity = 1;
                 }
                 if (!((double) arrowsVelocity < 0.1D)) {
-                    boolean flag1 = player.abilities.isCreativeMode || (arrowStack.getItem() instanceof ArrowItem && ((ArrowItem) arrowStack.getItem()).isInfinite(arrowStack, stack, player));
-                    if (!world.isRemote) {
+                    boolean flag1 = player.getAbilities().instabuild || (arrowStack.getItem() instanceof ArrowItem && ((ArrowItem) arrowStack.getItem()).isInfinite(arrowStack, stack, player));
+                    if (!world.isClientSide) {
                         ArrowItem arrowitem = (ArrowItem) (arrowStack.getItem() instanceof ArrowItem ? arrowStack.getItem() : Items.ARROW);
-                        AbstractArrowEntity arrowEntity = arrowitem.createArrow(world, arrowStack, player);
+                        AbstractArrow arrowEntity = arrowitem.createArrow(world, arrowStack, player);
                         arrowEntity = customArrow(arrowEntity);
                         // arrowsEntity.shootFromRotation
-                        arrowEntity.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0, arrowsVelocity * 3, 1);
+                        arrowEntity.shootFromRotation(player, player.getXRot(), player.getYRot(), 0, arrowsVelocity * 3, 1);
 
                         if (arrowsVelocity == 1 || forcedCriticalArrow) {
                             // If the arrow's velocity is at one, it marks the arrow as a critical arrow.
-                            arrowEntity.setIsCritical(true);
+                            arrowEntity.setCritArrow(true);
                         }
 
-                        int powerPredicate = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
+                        int powerPredicate = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, stack);
                         if (powerPredicate > 0) {
                             // Adds additional damage to the arrow (or Power) to the arrow.
-                            arrowEntity.setDamage(arrowEntity.getDamage() + (double) powerPredicate * 0.5D + 0.5D);
+                            arrowEntity.setBaseDamage(arrowEntity.getBaseDamage() + (double) powerPredicate * 0.5D + 0.5D);
                         }
-                        arrowEntity.setDamage(arrowEntity.getDamage() + additionalArrowDamage);
+                        arrowEntity.setBaseDamage(arrowEntity.getBaseDamage() + additionalArrowDamage);
                         if (BMConfigs.SERVER_CONFIGS.bowDamageCounter.get()) {
-                            sendMessage(player, new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".arrow_damage", arrowEntity.getDamage()));
+                            sendMessage(player, Component.translatable("tooltip." + BackMath.MOD_ID + ".arrow_damage", arrowEntity.getBaseDamage()));
                         }
 
-                        int punchPredicate = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
+                        int punchPredicate = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.PUNCH_ARROWS, stack);
                         if (punchPredicate > 0) {
                             // Sets the knockback strength of the arrow.
-                            arrowEntity.setKnockbackStrength(punchPredicate);
+                            arrowEntity.setKnockback(punchPredicate);
                         }
 
                         // Sets the target on fire.
-                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0) {
+                        if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FLAMING_ARROWS, stack) > 0) {
                             // Default: 100 ticks (5 seconds)
-                            arrowEntity.setFire(100);
+                            arrowEntity.setSecondsOnFire(100);
                         } else if (flameInTicks > 0) {
-                             arrowEntity.setFire(flameInTicks);
+                             arrowEntity.setSecondsOnFire(flameInTicks);
                         }
 
                         if (canBeDamaged) {
-                            stack.damageItem(1, player, (livingEntity) -> livingEntity.sendBreakAnimation(player.getActiveHand()));
+                            stack.hurtAndBreak(1, player, (livingEntity) -> livingEntity.broadcastBreakEvent(player.getUsedItemHand()));
                         }
 
-                        if (flag1 || player.abilities.isCreativeMode && arrowStack.getItem().isIn(ItemTags.ARROWS)) {
-                            arrowEntity.pickupStatus = AbstractArrowEntity.PickupStatus.CREATIVE_ONLY;
+                        if (flag1 || player.getAbilities().instabuild && arrowStack.is(ItemTags.ARROWS)) {
+                            arrowEntity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                         }
 
-                        world.addEntity(arrowEntity);
+                        world.addFreshEntity(arrowEntity);
                     }
 
-                    world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1, 1 / (random.nextFloat() * 0.4f + 1.2f) + arrowsVelocity * 0.5f);
-                    if (!flag1 && !player.abilities.isCreativeMode) {
+                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1, 1 / (world.getRandom().nextFloat() * 0.4f + 1.2f) + arrowsVelocity * 0.5f);
+                    if (!flag1 && !player.getAbilities().instabuild) {
                         arrowStack.shrink(1);
                         if (arrowStack.isEmpty()) {
-                            player.inventory.deleteStack(arrowStack);
+                            player.getInventory().removeItem(arrowStack);
                         }
                     }
 
-                    player.addStat(Stats.ITEM_USED.get(this));
+                    player.awardStat(Stats.ITEM_USED.get(this));
                 }
             }
         }
@@ -137,39 +138,39 @@ public class BMBowItem extends ShootableItem {
         return fireRateDelay;
     }
 
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.BOW;
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.BOW;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItemStack = player.getHeldItem(hand);
-        boolean flag = !player.findAmmo(heldItemStack).isEmpty();
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack heldItemStack = player.getItemInHand(hand);
+        boolean flag = !player.getProjectile(heldItemStack).isEmpty();
 
-        ActionResult<ItemStack> actionResult = ForgeEventFactory.onArrowNock(heldItemStack, world, player, hand, flag);
+        InteractionResultHolder<ItemStack> actionResult = ForgeEventFactory.onArrowNock(heldItemStack, world, player, hand, flag);
         if (actionResult != null) return actionResult;
 
-        if (!player.abilities.isCreativeMode && !flag) {
-            return ActionResult.resultFail(heldItemStack);
+        if (!player.getAbilities().instabuild && !flag) {
+            return InteractionResultHolder.fail(heldItemStack);
         } else {
-            player.setActiveHand(hand);
-            return ActionResult.resultConsume(heldItemStack);
+            player.startUsingItem(hand);
+            return InteractionResultHolder.consume(heldItemStack);
         }
     }
 
-    private static void sendMessage(PlayerEntity player, ITextComponent text) {
-        ((ServerPlayerEntity) player).func_241151_a_(text, ChatType.GAME_INFO, Util.DUMMY_UUID);
+    private static void sendMessage(Player player, Component text) {
+        ((ServerPlayer) player).sendSystemMessage(text, true);
     }
 
-    public Predicate<ItemStack> getInventoryAmmoPredicate() {
-        return ARROWS;
+    public Predicate<ItemStack> getAllSupportedProjectiles() {
+        return ARROW_ONLY;
     }
 
-    public AbstractArrowEntity customArrow(AbstractArrowEntity arrow) {
+    public AbstractArrow customArrow(AbstractArrow arrow) {
         return arrow;
     }
 
     // getDefaultProjectileRange
-    public int func_230305_d_() {
+    public int getDefaultProjectileRange() {
         return 15;
     }
 }

@@ -1,36 +1,36 @@
 package com.sophicreeper.backmath.core.world.item.tool.midterm;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.HoeItem;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.HoeItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Tier;
 
 public class MidTermHoeItem extends HoeItem {
-    public MidTermHoeItem(IItemTier tier, int attackDamage, float attackSpeed, Properties properties) {
+    public MidTermHoeItem(Tier tier, int attackDamage, float attackSpeed, Properties properties) {
         super(tier, attackDamage, attackSpeed, properties);
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livingEntity = (LivingEntity) entity;
-            livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 20, 2));
         }
-        entity.setFire(10);
+        entity.setSecondsOnFire(10);
         return super.onLeftClickEntity(stack, player, entity);
     }
 
-    @Override
-    public int getRGBDurabilityForDisplay(ItemStack stack) {
-        return 0x1dc2d1;
-    }
+    //@Override
+    //public int getRGBDurabilityForDisplay(ItemStack stack) {
+    //    return 0x1dc2d1;
+    //}
 }

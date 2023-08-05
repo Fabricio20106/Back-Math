@@ -2,44 +2,45 @@ package com.sophicreeper.backmath.core.world.entity.misc;
 
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.network.NetworkHooks;
 
-public class InsomniaArrow extends AbstractArrowEntity {
+public class InsomniaArrow extends AbstractArrow {
     private int poisonDuration = 200;
     private int blindnessDuration = 600;
 
-    public InsomniaArrow(EntityType<? extends AbstractArrowEntity> type, World world) {
+    public InsomniaArrow(EntityType<? extends AbstractArrow> type, Level world) {
         super(type, world);
     }
 
-    public InsomniaArrow(World world, LivingEntity shooter) {
+    public InsomniaArrow(Level world, LivingEntity shooter) {
         super(BMEntities.INSOMNIA_ARROW.get(), shooter, world);
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(AxolotlTest.INSOMNIA_ARROW.get());
     }
 
-    protected void arrowHit(LivingEntity livingEntity) {
-        super.arrowHit(livingEntity);
-        EffectInstance poison = new EffectInstance(Effects.POISON, this.poisonDuration, 0);
-        EffectInstance blindness = new EffectInstance(Effects.BLINDNESS, this.blindnessDuration, 0);
-        livingEntity.addPotionEffect(poison);
-        livingEntity.addPotionEffect(blindness);
+    protected void doPostHurtEffects(LivingEntity livingEntity) {
+        super.doPostHurtEffects(livingEntity);
+        MobEffectInstance poison = new MobEffectInstance(MobEffects.POISON, this.poisonDuration, 0);
+        MobEffectInstance blindness = new MobEffectInstance(MobEffects.BLINDNESS, this.blindnessDuration, 0);
+        livingEntity.addEffect(poison);
+        livingEntity.addEffect(blindness);
     }
 
-    public void writeAdditional(CompoundNBT compoundNBT) {
-        super.writeAdditional(compoundNBT);
+    public void addAdditionalSaveData(CompoundTag compoundNBT) {
+        super.addAdditionalSaveData(compoundNBT);
         if (compoundNBT.contains("PoisonDuration")) {
             this.poisonDuration = compoundNBT.getInt("PoisonDuration");
         }
@@ -48,21 +49,21 @@ public class InsomniaArrow extends AbstractArrowEntity {
         }
     }
 
-    public void readAdditional(CompoundNBT compoundNBT) {
-        super.readAdditional(compoundNBT);
+    public void readAdditionalSaveData(CompoundTag compoundNBT) {
+        super.readAdditionalSaveData(compoundNBT);
         compoundNBT.putInt("PoisonDuration", this.poisonDuration);
         compoundNBT.putInt("BlindnessDuration", this.blindnessDuration);
     }
 
     @Override
-    public void checkDespawn() {
-        if (this.timeInGround > 1200) {
-            this.remove();
+    public void tickDespawn() {
+        if (this.inGroundTime > 1200) {
+            this.discard();
         }
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

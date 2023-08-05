@@ -1,20 +1,20 @@
 package com.sophicreeper.backmath.core.world.item.weapon.milked;
 
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.SwordItem;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.Tier;
 
 public class MilkedSwordItem extends SwordItem {
-    public MilkedSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Properties builder) {
+    public MilkedSwordItem(Tier tier, int attackDamage, float attackSpeed, Properties builder) {
         super(tier, attackDamage, attackSpeed, builder);
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        player.addItemStackToInventory(new ItemStack(Items.MILK_BUCKET));
+    public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
+        player.addItem(new ItemStack(Items.MILK_BUCKET));
         return super.onLeftClickEntity(stack, player, entity);
     }
 }

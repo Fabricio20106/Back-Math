@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.core.world.item.tool;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 
 public class GlisteringBMShieldItem extends BMShieldItem {
     public GlisteringBMShieldItem(Properties properties) {
@@ -8,12 +8,12 @@ public class GlisteringBMShieldItem extends BMShieldItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
-    @Override
-    public int getRGBDurabilityForDisplay(ItemStack stack) {
-        return 0x1dc2d1;
-    }
+    //@Override
+    //public int getRGBDurabilityForDisplay(ItemStack stack) {
+    //    return 0x1dc2d1;
+    //}
 }

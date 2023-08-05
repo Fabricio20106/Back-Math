@@ -1,13 +1,12 @@
 package com.sophicreeper.backmath.core.world.item.food;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.world.World;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class FriedEggBagItem extends Item {
     public FriedEggBagItem(Properties properties) {
@@ -15,11 +14,11 @@ public class FriedEggBagItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.EMPTY_FRIED_EGG_BAG.get()));
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.FRIED_EGG.get()));
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        player.addItem(new ItemStack(AxolotlTest.EMPTY_FRIED_EGG_BAG.get()));
+        player.addItem(new ItemStack(AxolotlTest.FRIED_EGG.get()));
         heldItem.shrink(1);
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 }

@@ -1,20 +1,21 @@
 package com.sophicreeper.backmath.core.world.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.WallOrFloorItem;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.level.block.Block;
 
 import javax.annotation.Nullable;
 
-public class BMHeadItem extends WallOrFloorItem {
+public class BMHeadItem extends StandingAndWallBlockItem {
     public BMHeadItem(Block floorBlock, Block wallBlock, Properties properties) {
-        super(floorBlock, wallBlock, properties);
+        super(floorBlock, wallBlock, properties, Direction.DOWN);
     }
 
     @Nullable
     @Override
-    public EquipmentSlotType getEquipmentSlot(ItemStack stack) {
-        return EquipmentSlotType.HEAD;
+    public EquipmentSlot getEquipmentSlot(ItemStack stack) {
+        return EquipmentSlot.HEAD;
     }
 }
