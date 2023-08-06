@@ -705,7 +705,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> SOPHIES_DRAMATIC_ENTRANCE_2_DISC = ITEMS.register("sophies_dramatic_entrance_2_disc", () -> new MusicDiscItem(15, () -> BMSounds.RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_2, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
     public static final RegistryObject<Item> SOPHIES_DRAMATIC_ENTRANCE_3_DISC = ITEMS.register("sophies_dramatic_entrance_3_disc", () -> new MusicDiscItem(15, () -> BMSounds.RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_3, new Item.Properties().maxStackSize(1).rarity(Rarity.RARE).group(BackLayer.TAB)));
 
-    // BackMath Weaponry
+    // Back Math Weaponry
     public static final RegistryObject<Item> DEVIL_WARRIOR_HELMET = ITEMS.register("devil_warrior_helmet", () -> new BMArmorItem(WARRIOR_DEVIL_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> DEVIL_HELMET = ITEMS.register("devil_helmet", () -> new BMArmorItem(DEVIL_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().group(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> DEVIL_CHESTPLATE = ITEMS.register("devil_chestplate", () -> new BMArmorItem(DEVIL_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().group(BMWeaponryTab.TAB)));

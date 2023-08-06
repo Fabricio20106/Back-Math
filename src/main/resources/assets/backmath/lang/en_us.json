@@ -1501,10 +1501,10 @@
   "messages.backmath.take_armor_off.popsicle": "§4WARNING: §r§8This popsicle replaces your armor slots with the Bakugou armor set, so take your armor off before eating!",
   "messages.backmath.take_armor_off.mangaed_mango": "§4WARNING: §r§8This mangaed mango replaces your armor slots with the Bakugou armor set, so take your armor off before eating!",
   "messages.backmath.can_be_placed": "§o§7Can be placed",
-  "messages.backmath.terraforged_world_generator": "Back Math: Was unable to check if %s is using Terraforged's Chunk Generator",
+  "messages.backmath.terraforged_chunk_generator": "Back Math: Was unable to check if %s is using Terraforged's Chunk Generator",
   "messages.backmath.sophie_tower_location": "Back Math: Sophie Tower located at: /tp @s %s %s %s",
   "messages.backmath.fabricio_hideout_dungeon_location": "Back Math: Fabricio's Hideout Dungeon located at: /tp @s %s %s %s",
-  "messages.backmath.it_baked_model_not_found": "Back Math: Didn't find the expected vanilla baked model(s) for insomnian_tulip in registry",
+  "messages.backmath.it_baked_model_not_found": "Back Math: Did not find the expected vanilla baked model(s) for \"insomnian_tulip\" in registry",
   "messages.backmath.replace_light_baked_model": "Back Math: Tried to replace LightBakedModel twice",
   "messages.backmath.get_quads_error": "Back Math: IBakedModel::getQuads should never be called, only IForgeBakedModel::getQuads",
 

@@ -44,7 +44,7 @@ public class ChocoGlueProjEntity extends ProjectileItemEntity {
             IParticleData particleData = this.makeParticle();
 
             for (int i = 0; i < 8; ++i) {
-                this.world.addParticle(particleData, this.getPosX(), this.getPosY(), this.getPosZ(), 0.0, 0.0, 0.0);
+                this.world.addParticle(particleData, this.getPosX(), this.getPosY(), this.getPosZ(), 0, 0, 0);
             }
         }
     }

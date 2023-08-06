@@ -289,9 +289,9 @@ public class ClientProxy extends CommonProxy {
             ModelResourceLocation variantMRL = BlockModelShapes.getModelLocation(blockState);
             IBakedModel existingModel = event.getModelRegistry().get(variantMRL);
             if (existingModel == null) {
-                LOGGER.warn(new TranslationTextComponent("messages.backmath.it_baked_model_not_found").toString());
+                LOGGER.warn(new TranslationTextComponent("messages.backmath.it_baked_model_not_found").getString());
             } else if (existingModel instanceof LightBakedModel) {
-                LOGGER.warn(new TranslationTextComponent("messages.backmath.replace_light_baked_model").toString());
+                LOGGER.warn(new TranslationTextComponent("messages.backmath.replace_light_baked_model").getString());
             } else {
                 LightBakedModel lightBakedModel = new LightBakedModel();
                 event.getModelRegistry().put(variantMRL, lightBakedModel);

@@ -42,3 +42,4 @@
                 //        this.components.get(0).getBoundingBox().minZ);
 
 //LOGGER.warn("Back Math: Did not find the expected vanilla baked model(s) for insomnian_tulip in registry");
+// LogManager.getLogger().error("Back Math: Was unable to check if " + serverWorld.getDimensionKey().getLocation() + " is using Terraforged's ChunkGenerator.");

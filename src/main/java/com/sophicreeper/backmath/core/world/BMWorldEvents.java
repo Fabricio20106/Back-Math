@@ -70,16 +70,16 @@ public class BMWorldEvents {
                     return;
                 }
             } catch (Exception exception) {
-                //LogManager.getLogger().error("Back Math: Was unable to check if " + serverWorld.getDimensionKey().getLocation() + " is using Terraforged's ChunkGenerator.");
-                LogManager.getLogger().error(new TranslationTextComponent("messages.backmath.terraforged_world_generator", serverWorld.getDimensionKey().getLocation()).toString());
+                String message = new TranslationTextComponent("messages.backmath.terraforged_chunk_generator", serverWorld.getDimensionKey().getLocation()).getString();
+                LogManager.getLogger().error(message);
             }
 
-            // Prevent spawning our structure in Vanilla's superflat world
+            // Prevent spawning our structure in Vanilla's superflat world.
             if (serverWorld.getChunkProvider().generator instanceof FlatChunkGenerator && serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
                 return;
             }
 
-            // Adding our Structure to the Map
+            // Adding our structure to the Map.
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
             tempMap.putIfAbsent(BMStructures.SOPHIE_TOWER.get(), DimensionStructuresSettings.field_236191_b_.get(BMStructures.SOPHIE_TOWER.get()));
             tempMap.putIfAbsent(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get(), DimensionStructuresSettings.field_236191_b_.get(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get()));

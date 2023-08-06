@@ -82,3 +82,9 @@ Prior fixes:
   - Class "QueenSophieBattlePack" to "QueenLucyBattlePack".
   - Package "alchemy" to "potions".
   - Many other classes.
+- Added configs for tweaking generation of Sophie Towers and Fabricio's Hideout Dungeons.
+- Added configs for aljan carver generation.
+- Added config to log Back Math structure locations (This shows like: TranslatableTextComponent{key='key',args='args',siblings='siblings',style='style'}).
+
+06/08/2023 (Sunday):
+- Log Messages now appear as "messages.backmath.<message>" (Still broken though).

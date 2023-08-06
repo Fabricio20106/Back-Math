@@ -62,8 +62,8 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
             if (BMConfigs.SERVER_CONFIGS.logStructureLocationMessages.get()) {
                 LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("messages.backmath.fabricio_hideout_location",
                         this.components.get(0).getBoundingBox().minX,
-                        this.components.get(0).getBoundingBox().minY,
-                        this.components.get(0).getBoundingBox().minZ).toString());
+                        this.components.get(0).getBoundingBox().minY + BMConfigs.SERVER_CONFIGS.fabricioHideoutDungeonYOffset.get(),
+                        this.components.get(0).getBoundingBox().minZ).getString());
             }
         }
     }
