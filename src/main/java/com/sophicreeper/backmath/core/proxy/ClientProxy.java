@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -31,7 +32,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        // Block and fluid render lookups
+        // Block and Fluid Render Lookups
         RenderTypeLookup.setRenderLayer(BMBlocks.FRIED_EGG_FLOWER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGELIC_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGELIC_DOOR.get(), RenderType.getCutout());
@@ -64,9 +65,9 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_ANGELIC_ORE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.LEMON_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_LEMON_OAK_SAPLING.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_SOPHIE_RELIC.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_SOPHIE_HEAD.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_SOPHIE_WALL_HEAD.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_LUCY_RELIC.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_LUCY_HEAD.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_LUCY_WALL_HEAD.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.PINEAPPLE_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.PINEAPPLE_OAK_LEAVES.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_PINEAPPLE_OAK_SAPLING.get(), RenderType.getCutout());
@@ -219,7 +220,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMFluids.LIQUID_MANGA.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_LIQUID_MANGA.get(), RenderType.getTranslucent());
 
-        // Entity renderers
+        // Entity Renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ARCHER_LUCIA.get(), ArcherLuciaRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ANGRY_SOPHIE.get(), AngrySophieRenderer::new);
@@ -240,7 +241,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.BACKMATH_BOAT.get(), BMBoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ARROW.get(), InsomniaArrowRenderer::new);
 
-        // Item properties
+        // Item Properties
         registerProperty(AxolotlTest.DEVIL_SHIELD.get(), new ResourceLocation("blocking"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() &&
                 livingEntity.getActiveItemStack() == stack ? 1 : 0);
         registerProperty(AxolotlTest.ANGELIC_SHIELD.get(), new ResourceLocation("blocking"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() &&
@@ -288,9 +289,9 @@ public class ClientProxy extends CommonProxy {
             ModelResourceLocation variantMRL = BlockModelShapes.getModelLocation(blockState);
             IBakedModel existingModel = event.getModelRegistry().get(variantMRL);
             if (existingModel == null) {
-                LOGGER.warn("Back Math: Did not find the expected vanilla baked model(s) for insomnian_tulip in registry");
+                LOGGER.warn(new TranslationTextComponent("messages.backmath.it_baked_model_not_found").toString());
             } else if (existingModel instanceof LightBakedModel) {
-                LOGGER.warn("Back Math: Tried to replace LightBakedModel twice");
+                LOGGER.warn(new TranslationTextComponent("messages.backmath.replace_light_baked_model").toString());
             } else {
                 LightBakedModel lightBakedModel = new LightBakedModel();
                 event.getModelRegistry().put(variantMRL, lightBakedModel);

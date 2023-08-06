@@ -12,14 +12,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ArcherLuciaRenderer extends BipedRenderer<ArcherLucia, BMBipedModel<ArcherLucia>> {
-    public ArcherLuciaRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, new BMBipedModel<>(0.0F, 0.0F, 64, 32), 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0.0F, 64, 32), new BMBipedModel<>(1.0F, 0.0F, 64, 32)));
+    public ArcherLuciaRenderer(EntityRendererManager renderManager) {
+        super(renderManager, new BMBipedModel<>(0, 0, 64, 32), 0.5F);
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
     }
 
-    /**
-     * Returns the location of an entity's texture.
-     */
+    // Returns the location of an entity's texture.
     public ResourceLocation getEntityTexture(ArcherLucia archerLucia) {
         return BackMath.resourceLoc("textures/entity/archer_lucia.png");
     }

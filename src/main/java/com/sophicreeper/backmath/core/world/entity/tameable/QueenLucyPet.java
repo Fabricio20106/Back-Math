@@ -43,8 +43,8 @@ import javax.annotation.Nullable;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class QueenSophiePet extends TameableEntity {
-    private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(QueenSophiePet.class, DataSerializers.VARINT);
+public class QueenLucyPet extends TameableEntity {
+    private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(QueenLucyPet.class, DataSerializers.VARINT);
     public static final Predicate<LivingEntity> TARGETS = (p_213440_0_) -> {
         EntityType<?> type = p_213440_0_.getType();
         return type == BMEntities.ANGRY_SOPHIE.get() || type == BMEntities.SHY_FABRICIO.get();
@@ -53,7 +53,7 @@ public class QueenSophiePet extends TameableEntity {
             AxolotlTest.ORANGE.get(), AxolotlTest.BANANA.get(), AxolotlTest.GUAVA.get(), AxolotlTest.JABUTICABA.get(), AxolotlTest.ALJAMIC_BERRY.get(), AxolotlTest.GREEN_APPLE.get());
     public static final Item DEADLY_ITEM = AxolotlTest.ALJAME.get();
 
-    public QueenSophiePet(EntityType<QueenSophiePet> type, World world) {
+    public QueenLucyPet(EntityType<QueenLucyPet> type, World world) {
         super(type, world);
         this.moveController = new FlyingMovementController(this, 10, false);
         this.setPathPriority(PathNodeType.DANGER_FIRE, -1);
@@ -85,7 +85,7 @@ public class QueenSophiePet extends TameableEntity {
         this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2f, 10.0f, 2.0f, false));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1.0d));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0f));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, QueenSophie.class, 8.0f));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, QueenLucy.class, 8.0f));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
@@ -196,7 +196,7 @@ public class QueenSophiePet extends TameableEntity {
 
     @Nullable
     @Override
-    public QueenSophiePet func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
+    public QueenLucyPet func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
         return null;
     }
 

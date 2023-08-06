@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.core.world.level.block.machine;
 
 import com.sophicreeper.backmath.core.util.BMKeys;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.item.BMStats;
+import com.sophicreeper.backmath.core.util.BMStats;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
 import com.sophicreeper.backmath.core.world.level.block.state.properties.AdvancedMolds;
 import net.minecraft.block.*;
@@ -207,7 +207,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
             }
             if (MainHand.getItem() == AxolotlTest.MILKLLARY_INGOT.get() && OffHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
                 world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1.0f, 1.0f);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_HILLARY_INGOT.get()));
+                player.addItemStackToInventory(new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
                 player.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.BUCKET));

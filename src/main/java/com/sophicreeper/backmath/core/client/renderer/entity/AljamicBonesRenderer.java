@@ -16,8 +16,8 @@ public class AljamicBonesRenderer extends BipedRenderer<AbstractSkeletonEntity, 
     private static final ResourceLocation ALJAMIC_BONES_LOCATION = BackMath.resourceLoc("textures/entity/skeleton/aljamic_bones.png");
 
     public AljamicBonesRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, new SkeletonModel<>(), 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new SkeletonModel<>(0.5F, true), new SkeletonModel<>(1.0F, true)));
+        super(rendererManager, new SkeletonModel<>(), 0.5f);
+        this.addLayer(new BipedArmorLayer<>(this, new SkeletonModel<>(0.5f, true), new SkeletonModel<>(1, true)));
         this.addLayer(new ElytraLayer<>(this));
     }
 

@@ -32,7 +32,7 @@ public class DevilSpareySwordItem extends SwordItem {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200, 1));
             // Give user Weakness II for 10 secs.
         }
-        if (hitTarget instanceof QueenSophie) {
+        if (hitTarget instanceof QueenLucy) {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
             // Give sword user hitting Queen Sophie Weakness LXIII (63) for 30 secs.
         }

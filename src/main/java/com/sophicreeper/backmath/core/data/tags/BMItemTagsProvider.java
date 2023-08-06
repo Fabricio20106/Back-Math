@@ -96,7 +96,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.INGOTS_DEVIL_ANGELIC).add(AxolotlTest.DEVIL_ANGELIC_ALLOY_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_MILKLLARY).add(AxolotlTest.MILKLLARY_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get());
-        this.getOrCreateBuilder(BMTags.Items.INGOTS_MID_HILLARY).add(AxolotlTest.MID_HILLARY_INGOT.get());
+        this.getOrCreateBuilder(BMTags.Items.INGOTS_MID_HILLARY).add(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_ALJAMEED).add(AxolotlTest.ALJAMEED_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_ALJANSTEEL).add(AxolotlTest.ALJANSTEEL_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_MOONERING).add(AxolotlTest.MOONERING_INGOT.get());
@@ -159,7 +159,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_MOONERING).add(AxolotlTest.MOONERING_NUGGET.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_HARDENED_AMARACAMEL).add(AxolotlTest.HARDENED_AMARACAMEL_NUGGET.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_MILKLLARY).add(AxolotlTest.MILKLLARY_NUGGET.get());
-        this.getOrCreateBuilder(BMTags.Items.NUGGETS_MID_HILLARY).add(AxolotlTest.MID_HILLARY_NUGGET.get());
+        this.getOrCreateBuilder(BMTags.Items.NUGGETS_MID_HILLARY).add(AxolotlTest.TWO_THIRDS_HILLARY_NUGGET.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_MILKLLARITY).add(AxolotlTest.MILKLLARITY_SHARD.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_CRYSTALLINE_ANGELIC).add(AxolotlTest.CRYSTALLINE_ANGELIC_SHARD.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_JANTICAL).add(AxolotlTest.JANTICAL_SHARD.get());
@@ -384,7 +384,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.CUT_ENCHANTED_GOLDEN_APPLE.get()).add(Items.MELON_SLICE).add(AxolotlTest.PUMPKIN_SLICE.get()).add(AxolotlTest.CUT_SWEET_BERRIES.get())
                 .add(AxolotlTest.CUT_GLOW_BERRIES.get());
         this.getOrCreateBuilder(BMTags.Items.ITEM_SACS).add(AxolotlTest.AMARACAMEL_BATTER_BAG.get()).add(AxolotlTest.LAGUSTA_BAG.get()).add(AxolotlTest.FRIED_EGG_BAG.get())
-                .add(AxolotlTest.TURTLE_FRIED_EGG_BAG.get()).add(AxolotlTest.ENDER_DRAGON_FRIED_EGG_BAG.get()).add(AxolotlTest.ALJAME_TEA_BOX.get()).add(AxolotlTest.QUEEN_SOPHIE_BATTLE_PACK.get())
+                .add(AxolotlTest.TURTLE_FRIED_EGG_BAG.get()).add(AxolotlTest.ENDER_DRAGON_FRIED_EGG_BAG.get()).add(AxolotlTest.ALJAME_TEA_BOX.get()).add(AxolotlTest.QUEEN_LUCY_BATTLE_PACK.get())
                 .add(AxolotlTest.BOOT_PACK.get());
         this.getOrCreateBuilder(BMTags.Items.EMPTY_ITEM_SACS).add(AxolotlTest.EMPTY_AMARACAMEL_BATTER_BAG.get()).add(AxolotlTest.EMPTY_LAGUSTA_BAG.get()).add(AxolotlTest.EMPTY_FRIED_EGG_BAG.get())
                 .add(AxolotlTest.EMPTY_TURTLE_FRIED_EGG_BAG.get()).add(AxolotlTest.EMPTY_ENDER_DRAGON_FRIED_EGG_BAG.get()).add(AxolotlTest.EMPTY_BOOT_PACK.get());
@@ -393,7 +393,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.MILKED_SWORDS).addTag(BMTags.Items.MILKED_SPAREYS).add(AxolotlTest.MILKED_WOODEN_SWORD.get()).add(AxolotlTest.MILKED_STONE_SWORD.get())
                 .add(AxolotlTest.MILKED_IRON_SWORD.get()).add(AxolotlTest.MILKED_DIAMOND_SWORD.get()).add(AxolotlTest.MILKED_GOLDEN_SWORD.get()).add(AxolotlTest.MILKED_NETHERITE_SWORD.get())
                 .add(AxolotlTest.MILKED_DEVIL_SWORD.get()).add(AxolotlTest.MILKED_ANGELIC_SWORD.get()).add(AxolotlTest.MILKED_MID_TERM_SWORD.get()).add(AxolotlTest.MILKED_OBSIDIAN_INFUSED_MID_TERM_SWORD.get())
-                .add(AxolotlTest.MILKED_MILKLLARY_SWORD.get()).add(AxolotlTest.MILKED_OLIVE_SWORD.get()).add(AxolotlTest.MILKED_PERSONA_BLADE.get()).add(AxolotlTest.MILKED_BUTTER_SWORD.get())
+                .add(AxolotlTest.MILKEDLLARY_SWORD.get()).add(AxolotlTest.MILKED_OLIVE_SWORD.get()).add(AxolotlTest.MILKED_PERSONA_BLADE.get()).add(AxolotlTest.MILKED_BUTTER_SWORD.get())
                 .add(AxolotlTest.MILKED_GOLDEN_PATTY.get()).add(AxolotlTest.MILKED_ALJANWOOD_SWORD.get()).add(AxolotlTest.MILKED_ALJANCAP_SWORD.get()).add(AxolotlTest.MILKED_INSOMNIAN_SWORD.get())
                 .add(AxolotlTest.MILKED_AVONDALIC_WILLOW_SWORD.get()).add(AxolotlTest.MILKED_ALJANSTONE_SWORD.get()).add(AxolotlTest.MILKED_SLEEPINGSTONE_SWORD.get())
                 .add(AxolotlTest.MILKED_ALJAMEED_BLADE.get()).add(AxolotlTest.MILKED_ALJANSTEEL_BLADE.get()).add(AxolotlTest.MILKED_MOONERING_SWORD.get())

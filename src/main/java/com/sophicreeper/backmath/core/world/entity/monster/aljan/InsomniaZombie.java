@@ -6,7 +6,6 @@ import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
 import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
 import com.sophicreeper.backmath.core.world.entity.goal.InsomniaZombieAttackGoal;
 import com.sophicreeper.backmath.core.world.entity.monster.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -71,7 +70,7 @@ public class InsomniaZombie extends MonsterEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherLucia.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, KarateLucia.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenSophie.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucy.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }

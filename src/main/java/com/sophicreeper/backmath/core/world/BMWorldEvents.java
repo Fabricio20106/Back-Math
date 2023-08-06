@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.core.world;
 
 import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.core.client.BackMath;
+import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.core.world.gen.BMOreGeneration;
 import com.sophicreeper.backmath.core.world.gen.BMPlantFeatures;
@@ -10,6 +11,7 @@ import com.sophicreeper.backmath.core.world.gen.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.core.world.structure.BMStructures;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.DebugChunkGenerator;
@@ -37,6 +39,9 @@ public class BMWorldEvents {
             ServerWorld serverWorld = (ServerWorld) event.getWorld();
             if (serverWorld.getChunkProvider().generator instanceof DebugChunkGenerator && serverWorld.getDimensionKey().equals(BMDimensions.THE_ALJAN)) {
                 BMCarverGeneration.canGenerate = false;
+                BMConfigs.SERVER_CONFIGS.enableAljanCarverGeneration.set(false);
+            } else {
+                BMConfigs.SERVER_CONFIGS.enableAljanCarverGeneration.set(true);
             }
         }
     }
@@ -64,8 +69,9 @@ public class BMWorldEvents {
                 if (cgRL != null && cgRL.getNamespace().equals("terraforged")) {
                     return;
                 }
-            } catch (Exception e) {
-                LogManager.getLogger().error("Back Math: Was unable to check if " + serverWorld.getDimensionKey().getLocation() + " is using Terraforged's ChunkGenerator.");
+            } catch (Exception exception) {
+                //LogManager.getLogger().error("Back Math: Was unable to check if " + serverWorld.getDimensionKey().getLocation() + " is using Terraforged's ChunkGenerator.");
+                LogManager.getLogger().error(new TranslationTextComponent("messages.backmath.terraforged_world_generator", serverWorld.getDimensionKey().getLocation()).toString());
             }
 
             // Prevent spawning our structure in Vanilla's superflat world

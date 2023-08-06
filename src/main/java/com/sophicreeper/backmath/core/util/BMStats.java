@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item;
+package com.sophicreeper.backmath.core.util;
 
 import com.sophicreeper.backmath.core.client.BackMath;
 import net.minecraft.stats.IStatFormatter;

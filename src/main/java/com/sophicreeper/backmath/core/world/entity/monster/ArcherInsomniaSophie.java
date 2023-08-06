@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.core.world.entity.monster;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.goal.BMRangedBowAttackGoal;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenLucyPet;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.item.weapon.BMBowItem;
 import net.minecraft.entity.*;
@@ -112,7 +112,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombie.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieFabricio.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBones.class, true));

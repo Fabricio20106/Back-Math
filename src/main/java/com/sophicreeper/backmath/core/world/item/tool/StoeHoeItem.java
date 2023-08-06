@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.core.world.item.tool;
 
 import com.sophicreeper.backmath.core.util.BMSetFields;
 import com.sophicreeper.backmath.core.world.entity.monster.AngrySophie;
-import com.sophicreeper.backmath.core.world.entity.monster.QueenSophie;
+import com.sophicreeper.backmath.core.world.entity.monster.QueenLucy;
 import com.sophicreeper.backmath.core.world.item.BMWeaponryTab;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,7 +24,7 @@ public class StoeHoeItem extends HoeItem {
         } else {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
         }
-        if (entity instanceof QueenSophie) {
+        if (entity instanceof QueenLucy) {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
         }
         return super.onLeftClickEntity(stack, player, entity);

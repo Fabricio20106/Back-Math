@@ -41,8 +41,8 @@ public class AljamicGlassBottleItem extends Item {
     }*/
 
     protected ItemStack getBottleStack(ItemStack bottleStack, PlayerEntity player) {
-        ItemStack stack = player.getHeldItem(Hand.MAIN_HAND);
-        if (stack.getItem() == AxolotlTest.ALJAMIC_GLASS_BOTTLE.get()) {
+        ItemStack mainHandItem = player.getHeldItem(Hand.MAIN_HAND);
+        if (mainHandItem.getItem() == AxolotlTest.ALJAMIC_GLASS_BOTTLE.get()) {
             return new ItemStack(AxolotlTest.SLEEPISHWATER_BOTTLE.get());
         }
         return  new ItemStack(Items.AIR);

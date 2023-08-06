@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.core.world.entity.monster;
 
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenLucyPet;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
 import net.minecraft.entity.*;
@@ -35,12 +35,12 @@ import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 
-public class QueenSophie extends MonsterEntity {
+public class QueenLucy extends MonsterEntity {
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
-    private static final DataParameter<Byte> SPELL = EntityDataManager.createKey(QueenSophie.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> SPELL = EntityDataManager.createKey(QueenLucy.class, DataSerializers.BYTE);
     protected int spellTicks;
 
-    public QueenSophie(EntityType<QueenSophie> type, World world) {
+    public QueenLucy(EntityType<QueenLucy> type, World world) {
         super(type, world);
         this.setHealth(this.getMaxHealth());
         this.getNavigator().setCanSwim(true);
@@ -92,7 +92,7 @@ public class QueenSophie extends MonsterEntity {
     }
 
     protected void applyMobAI() {
-        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
@@ -189,7 +189,7 @@ public class QueenSophie extends MonsterEntity {
 
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
-        return new ItemStack(AxolotlTest.QUEEN_SOPHIE_SPAWN_EGG.get());
+        return new ItemStack(AxolotlTest.QUEEN_LUCY_SPAWN_EGG.get());
     }
 
     public void updateRidden() {
@@ -225,12 +225,12 @@ public class QueenSophie extends MonsterEntity {
         protected UseSpellGoal() {}
 
         public boolean shouldExecute() {
-            LivingEntity queenSophieTarget = QueenSophie.this.getAttackTarget();
+            LivingEntity queenSophieTarget = QueenLucy.this.getAttackTarget();
             if (queenSophieTarget != null && queenSophieTarget.isAlive()) {
-                if (QueenSophie.this.isSpellcasting()) {
+                if (QueenLucy.this.isSpellcasting()) {
                     return false;
                 } else {
-                    return QueenSophie.this.ticksExisted >= this.spellCooldown;
+                    return QueenLucy.this.ticksExisted >= this.spellCooldown;
                 }
             } else {
                 return false;
@@ -238,26 +238,26 @@ public class QueenSophie extends MonsterEntity {
         }
 
         public boolean shouldContinueExecuting() {
-            LivingEntity queenSophieTarget = QueenSophie.this.getAttackTarget();
+            LivingEntity queenSophieTarget = QueenLucy.this.getAttackTarget();
             return queenSophieTarget != null && queenSophieTarget.isAlive() && this.spellWarmup > 0;
         }
 
         public void startExecuting() {
             this.spellWarmup = this.getCastWarmupTime();
-            QueenSophie.this.spellTicks = this.getCastingTime();
-            this.spellCooldown = QueenSophie.this.ticksExisted + this.getCastingInterval();
+            QueenLucy.this.spellTicks = this.getCastingTime();
+            this.spellCooldown = QueenLucy.this.ticksExisted + this.getCastingInterval();
             SoundEvent prepareSpellSound = this.getSpellPrepareSound();
             if (prepareSpellSound != null) {
-                QueenSophie.this.playSound(prepareSpellSound, 1.0F, 1.0F);
+                QueenLucy.this.playSound(prepareSpellSound, 1.0F, 1.0F);
             }
-            QueenSophie.this.setSpellType(this.getSpellType());
+            QueenLucy.this.setSpellType(this.getSpellType());
         }
 
         public void tick() {
             --this.spellWarmup;
             if (this.spellWarmup == 0) {
                 this.castSpell();
-                QueenSophie.this.playSound(QueenSophie.this.getSpellSound(), 1.0F, 1.0F);
+                QueenLucy.this.playSound(QueenLucy.this.getSpellSound(), 1.0F, 1.0F);
             }
         }
 
@@ -288,8 +288,8 @@ public class QueenSophie extends MonsterEntity {
             if (!super.shouldExecute()) {
                 return false;
             } else {
-                int i = QueenSophie.this.world.getTargettableEntitiesWithinAABB(WarriorSophie.class, this.entityPredicate, QueenSophie.this, QueenSophie.this.getBoundingBox().grow(16.0D)).size();
-                return QueenSophie.this.rand.nextInt(8) + 1 > i;
+                int i = QueenLucy.this.world.getTargettableEntitiesWithinAABB(WarriorSophie.class, this.entityPredicate, QueenLucy.this, QueenLucy.this.getBoundingBox().grow(16.0D)).size();
+                return QueenLucy.this.rand.nextInt(8) + 1 > i;
             }
         }
 
@@ -302,13 +302,13 @@ public class QueenSophie extends MonsterEntity {
         }
 
         protected void castSpell() {
-            ServerWorld serverWorld = (ServerWorld) QueenSophie.this.world;
+            ServerWorld serverWorld = (ServerWorld) QueenLucy.this.world;
 
             for(int i = 0; i < 3; ++i) {
-                BlockPos pos = QueenSophie.this.getPosition().add(-2 + QueenSophie.this.rand.nextInt(5), 1, -2 + QueenSophie.this.rand.nextInt(5));
-                WarriorSophie warriorSophie = BMEntities.WARRIOR_SOPHIE.get().create(QueenSophie.this.world);
+                BlockPos pos = QueenLucy.this.getPosition().add(-2 + QueenLucy.this.rand.nextInt(5), 1, -2 + QueenLucy.this.rand.nextInt(5));
+                WarriorSophie warriorSophie = BMEntities.WARRIOR_SOPHIE.get().create(QueenLucy.this.world);
                 warriorSophie.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
-                warriorSophie.onInitialSpawn(serverWorld, QueenSophie.this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
+                warriorSophie.onInitialSpawn(serverWorld, QueenLucy.this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
                 serverWorld.func_242417_l(warriorSophie);
             }
         }
@@ -336,8 +336,8 @@ public class QueenSophie extends MonsterEntity {
             if (!super.shouldExecute()) {
                 return false;
             } else {
-                int i = QueenSophie.this.world.getTargettableEntitiesWithinAABB(InsomniaSophie.class, this.entityPredicate, QueenSophie.this, QueenSophie.this.getBoundingBox().grow(16.0D)).size();
-                return QueenSophie.this.rand.nextInt(8) + 1 > i;
+                int i = QueenLucy.this.world.getTargettableEntitiesWithinAABB(InsomniaSophie.class, this.entityPredicate, QueenLucy.this, QueenLucy.this.getBoundingBox().grow(16.0D)).size();
+                return QueenLucy.this.rand.nextInt(8) + 1 > i;
             }
         }
 
@@ -350,13 +350,13 @@ public class QueenSophie extends MonsterEntity {
         }
 
         protected void castSpell() {
-            ServerWorld serverWorld = (ServerWorld) QueenSophie.this.world;
+            ServerWorld serverWorld = (ServerWorld) QueenLucy.this.world;
 
             for(int i = 0; i < 3; ++i) {
-                BlockPos pos = QueenSophie.this.getPosition().add(-2 + QueenSophie.this.rand.nextInt(5), 1, -2 + QueenSophie.this.rand.nextInt(5));
-                InsomniaSophie insomniaSophie = BMEntities.INSOMNIA_SOPHIE.get().create(QueenSophie.this.world);
+                BlockPos pos = QueenLucy.this.getPosition().add(-2 + QueenLucy.this.rand.nextInt(5), 1, -2 + QueenLucy.this.rand.nextInt(5));
+                InsomniaSophie insomniaSophie = BMEntities.INSOMNIA_SOPHIE.get().create(QueenLucy.this.world);
                 insomniaSophie.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
-                insomniaSophie.onInitialSpawn(serverWorld, QueenSophie.this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
+                insomniaSophie.onInitialSpawn(serverWorld, QueenLucy.this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
                 serverWorld.func_242417_l(insomniaSophie);
             }
         }
@@ -384,8 +384,8 @@ public class QueenSophie extends MonsterEntity {
             if (!super.shouldExecute()) {
                 return false;
             } else {
-                int i = QueenSophie.this.world.getTargettableEntitiesWithinAABB(ArcherInsomniaSophie.class, this.entityPredicate, QueenSophie.this, QueenSophie.this.getBoundingBox().grow(16.0D)).size();
-                return QueenSophie.this.rand.nextInt(8) + 1 > i;
+                int i = QueenLucy.this.world.getTargettableEntitiesWithinAABB(ArcherInsomniaSophie.class, this.entityPredicate, QueenLucy.this, QueenLucy.this.getBoundingBox().grow(16.0D)).size();
+                return QueenLucy.this.rand.nextInt(8) + 1 > i;
             }
         }
 
@@ -398,13 +398,13 @@ public class QueenSophie extends MonsterEntity {
         }
 
         protected void castSpell() {
-            ServerWorld serverWorld = (ServerWorld) QueenSophie.this.world;
+            ServerWorld serverWorld = (ServerWorld) QueenLucy.this.world;
 
             for(int i = 0; i < 3; ++i) {
-                BlockPos pos = QueenSophie.this.getPosition().add(-2 + QueenSophie.this.rand.nextInt(5), 1, -2 + QueenSophie.this.rand.nextInt(5));
-                ArcherInsomniaSophie archerInsomniaSophie = BMEntities.ARCHER_INSOMNIA_SOPHIE.get().create(QueenSophie.this.world);
+                BlockPos pos = QueenLucy.this.getPosition().add(-2 + QueenLucy.this.rand.nextInt(5), 1, -2 + QueenLucy.this.rand.nextInt(5));
+                ArcherInsomniaSophie archerInsomniaSophie = BMEntities.ARCHER_INSOMNIA_SOPHIE.get().create(QueenLucy.this.world);
                 archerInsomniaSophie.moveToBlockPosAndAngles(pos, 0.0F, 0.0F);
-                archerInsomniaSophie.onInitialSpawn(serverWorld, QueenSophie.this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
+                archerInsomniaSophie.onInitialSpawn(serverWorld, QueenLucy.this.world.getDifficultyForLocation(pos), SpawnReason.MOB_SUMMONED, null, null);
                 serverWorld.func_242417_l(archerInsomniaSophie);
             }
         }
@@ -434,8 +434,8 @@ public class QueenSophie extends MonsterEntity {
         }
 
         protected void castSpell() {
-            QueenSophie.this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
-            QueenSophie.this.heal(25.0f);
+            QueenLucy.this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
+            QueenLucy.this.heal(25.0f);
         }
 
         protected SoundEvent getSpellPrepareSound() {

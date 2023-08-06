@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.core.config;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class BMServerConfigs {
-    // World generation
+    // World Generation
     public final ForgeConfigSpec.BooleanValue devilOreGen;
     public final ForgeConfigSpec.BooleanValue netherDevilOreGen;
     public final ForgeConfigSpec.BooleanValue angelicOreGen;
@@ -17,18 +17,23 @@ public class BMServerConfigs {
     public final ForgeConfigSpec.BooleanValue aljamicCopperGen;
     public final ForgeConfigSpec.BooleanValue aljamicTinGen;
 
+    // Carver Generation
+    public final ForgeConfigSpec.BooleanValue enableAljanCarverGeneration;
+    public final ForgeConfigSpec.BooleanValue enableAljanCavesAndRavines;
+    public final ForgeConfigSpec.BooleanValue enableUnderwaterAljanCaves;
+
     // Plants
     public final ForgeConfigSpec.BooleanValue grapeVinesInTaigas;
     public final ForgeConfigSpec.BooleanValue bananaJunglesInJungles;
     public final ForgeConfigSpec.BooleanValue turtleFriedEggFlowersInBeaches;
     public final ForgeConfigSpec.BooleanValue enderDragonFriedEggFlowersInTheEnd;
 
-    // Biome generation
+    // Biome Generation
     public final ForgeConfigSpec.BooleanValue originalBackFieldsGen;
     public final ForgeConfigSpec.BooleanValue modifiedBackFieldsGen;
     public final ForgeConfigSpec.BooleanValue angelicWoodsGen;
 
-    // Mob spawning
+    // Mob Spawning
     public final ForgeConfigSpec.BooleanValue wandererSophieSpawn;
     public final ForgeConfigSpec.BooleanValue archerLuciaSpawn;
     public final ForgeConfigSpec.BooleanValue karateLuciaSpawn;
@@ -55,6 +60,21 @@ public class BMServerConfigs {
     public final ForgeConfigSpec.BooleanValue peaceTeaInvisibilityToggle;
     public final ForgeConfigSpec.BooleanValue peaceTeaGlowingToggle;
 
+    // Gameplay Aspects - Structure Generation
+    public final ForgeConfigSpec.BooleanValue sophieTowerGeneration;
+    public final ForgeConfigSpec.IntValue sophieTowerAvgDistance;
+    public final ForgeConfigSpec.IntValue sophieTowerMinDistance;
+    public final ForgeConfigSpec.IntValue sophieTowerSeed;
+    public final ForgeConfigSpec.BooleanValue sophieTowerTST;
+    public final ForgeConfigSpec.IntValue sophieTowerYOffset;
+
+    public final ForgeConfigSpec.BooleanValue fabricioHideoutDungeonGeneration;
+    public final ForgeConfigSpec.IntValue fabricioHideoutDungeonAvgDistance;
+    public final ForgeConfigSpec.IntValue fabricioHideoutDungeonMinDistance;
+    public final ForgeConfigSpec.IntValue fabricioHideoutDungeonSeed;
+    public final ForgeConfigSpec.BooleanValue fabricioHideoutDungeonTST;
+    public final ForgeConfigSpec.IntValue fabricioHideoutDungeonYOffset;
+
     // Bows
     public final ForgeConfigSpec.BooleanValue bowDamageCounter;
     public final ForgeConfigSpec.BooleanValue devilBowFCA;
@@ -72,6 +92,9 @@ public class BMServerConfigs {
     public final ForgeConfigSpec.IntValue midTermBowAAD;
     public final ForgeConfigSpec.IntValue midTermBowFIT;
     public final ForgeConfigSpec.IntValue midTermBowFRD;
+
+    // Debug
+    public final ForgeConfigSpec.BooleanValue logStructureLocationMessages;
 
     public BMServerConfigs(ForgeConfigSpec.Builder builder) {
         builder.comment("Welcome to the Back Math configuration file. Created on April 08th and 09th, 2022 and made working on April 21st and 22nd, 2022.");
@@ -102,6 +125,12 @@ public class BMServerConfigs {
         this.originalBackFieldsGen = builder.comment("Allow the original back fields to generate?").define("originalBackFieldsGeneration", true);
         this.modifiedBackFieldsGen = builder.comment("Allow the modified back fields to generate?").define("modifiedBackFieldsGeneration", true);
         this.angelicWoodsGen = builder.comment("Allow angelic wood forests to generate?").define("angelicWoodsGeneration", true);
+        builder.pop();
+
+        builder.push("carverGeneration");
+        this.enableAljanCarverGeneration = builder.comment("Whether carvers should generate at all in the Aljan.").define("enableAljanCarverGeneration", true);
+        this.enableAljanCavesAndRavines = builder.comment("Whether caves and ravines should generate in the Aljan.").define("enableAljanCavesAndRavines", true);
+        this.enableUnderwaterAljanCaves = builder.comment("Whether underwater caves should generate in the Aljan.").define("enableUnderwaterAljanCaves", true);
         builder.pop();
 
         builder.push("mobSpawning");
@@ -152,6 +181,26 @@ public class BMServerConfigs {
         this.midTermBowAAD = builder.comment("Should a mid-term bow deal additional damage? Zero for no additional damage.").defineInRange("midTermBow.aAD", 0, 0, 32767);
         this.midTermBowFIT = builder.comment("For how many ticks should a mid-term bow set mobs on fire? Zero for no fire.").defineInRange("midTermBow.fIT", 200, 0, 32767);
         this.midTermBowFRD = builder.comment("How long should a mid-term bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("midTermBow.fRD", 10, 1, 72000);
+
+        builder.comment("Structure Generation");
+        builder.comment("Sophie Towers");
+        this.sophieTowerGeneration = builder.comment("Whether to generate Sophie Towers or not.").define("structures.sophieTower.generation", true);
+        this.sophieTowerAvgDistance = builder.comment("Average distance in chunks between Sophie Towers.").defineInRange("structures.sophieTower.avgDistance", 10, 1, 2000);
+        this.sophieTowerMinDistance = builder.comment("Minimum distance in chunks between Sophie Towers; MUST BE LESS THAN THE AVERAGE DISTANCE.").defineInRange("structures.sophieTower.minDistance", 5, 0, 1999);
+        this.sophieTowerSeed = builder.comment("Sophie Tower's generation seed. Needed so no two structures spawn on each other.").defineInRange("structures.sophieTower.seed", 1073741823, 0, Integer.MAX_VALUE);
+        this.sophieTowerTST = builder.comment("Whether Sophie Towers should transform the terrain around it (Terraform Surrounding Terrain).").define("structures.sophieTower.tST", true);
+        this.sophieTowerYOffset = builder.comment("The Y offset of Sophie Towers.").defineInRange("structures.sophieTower.yOffset", 1, -64, 192);
+
+        builder.comment("Fabricio's Hideout Dungeons");
+        this.fabricioHideoutDungeonGeneration = builder.comment("Whether to generate Fabricio's Hideout Dungeons or not.").define("structures.fabricioHideoutDungeon.generation", true);
+        this.fabricioHideoutDungeonAvgDistance = builder.comment("Average distance in chunks between Fabricio's Hideout Dungeons.").defineInRange("structures.fabricioHideoutDungeon.avgDistance", 15, 1, 2000);
+        this.fabricioHideoutDungeonMinDistance = builder.comment("Minimum distance in chunks between Fabricio's Hideout Dungeons; MUST BE LESS THAN THE AVERAGE DISTANCE.").defineInRange("structures.fabricioHideoutDungeon.minDistance", 10, 0, 1999);
+        this.fabricioHideoutDungeonSeed = builder.comment("Fabricio's Hideout Dungeon's generation seed. Needed so no two structures spawn on each other.").defineInRange("structures.fabricioHideoutDungeon.seed", 27482834, 0, Integer.MAX_VALUE);
+        this.fabricioHideoutDungeonTST = builder.comment("Whether Fabricio's Hideout Dungeons should transform the terrain around it (Terraform Surrounding Terrain).").define("structures.fabricioHideoutDungeon.tST", false);
+        this.fabricioHideoutDungeonYOffset = builder.comment("The Y offset of Fabricio's Hideout Dungeons.").defineInRange("structures.fabricioHideoutDungeon.yOffset", -48, -64, 192);
+
+        builder.comment("Debug Code");
+        this.logStructureLocationMessages = builder.comment("Whether to log or not FHD and Sophie Tower locations. (Debug)").define("structures.logStructureLocationMessages", false);
         builder.pop();
     }
 }

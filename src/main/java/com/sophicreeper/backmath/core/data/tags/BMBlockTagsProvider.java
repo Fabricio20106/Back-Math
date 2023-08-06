@@ -98,7 +98,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(Tags.Blocks.DIRT).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get());
         this.getOrCreateBuilder(Tags.Blocks.COBBLESTONE).add(BMBlocks.COBBLED_ALJANSTONE.get());
 
-        this.getOrCreateBuilder(BlockTags.GUARDED_BY_PIGLINS).add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get()).add(BMBlocks.QUEEN_SOPHIE_RELIC
+        this.getOrCreateBuilder(BlockTags.GUARDED_BY_PIGLINS).add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get()).add(BMBlocks.QUEEN_LUCY_RELIC
                 .get()).add(BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.QUEEN_SOPHIE_PET_RELIC.get());
 
         // Back Math Tags

@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item.alchemy;
+package com.sophicreeper.backmath.core.world.item.potions;
 
 import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;

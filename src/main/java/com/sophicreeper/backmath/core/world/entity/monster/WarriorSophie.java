@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.core.world.entity.monster;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.InsomniaZombie;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.Janticle;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.ZombieFabricio;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenLucyPet;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import net.minecraft.entity.*;
@@ -33,7 +33,7 @@ public class WarriorSophie extends CreatureEntity {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.2d));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.1D, false));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, QueenSophie.class, 6.0F));
+        this.goalSelector.addGoal(4, new LookAtGoal(this, QueenLucy.class, 6.0F));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.applyMobAI();
         super.registerGoals();
@@ -47,7 +47,7 @@ public class WarriorSophie extends CreatureEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombie.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieFabricio.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));

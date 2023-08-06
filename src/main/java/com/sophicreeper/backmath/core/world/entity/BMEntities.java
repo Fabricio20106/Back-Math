@@ -10,7 +10,7 @@ import com.sophicreeper.backmath.core.world.entity.misc.ChocoGlueProjEntity;
 import com.sophicreeper.backmath.core.world.entity.misc.InsomniaArrow;
 import com.sophicreeper.backmath.core.world.entity.monster.*;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenLucyPet;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -32,8 +32,8 @@ public class BMEntities {
     public static final RegistryObject<EntityType<ArcherInsomniaSophie>> ARCHER_INSOMNIA_SOPHIE = ENTITIES.register("archer_insomnia_sophie", () ->
             EntityType.Builder.create(ArcherInsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 2.0F).trackingRange(32).build("archer_insomnia_sophie"));
 
-    public static final RegistryObject<EntityType<QueenSophie>> QUEEN_SOPHIE = ENTITIES.register("queen_sophie", () ->
-            EntityType.Builder.create(QueenSophie::new, EntityClassification.MONSTER).size(0.6F, 2.0F).immuneToFire().trackingRange(64).build("queen_sophie"));
+    public static final RegistryObject<EntityType<QueenLucy>> QUEEN_SOPHIE = ENTITIES.register("queen_sophie", () ->
+            EntityType.Builder.create(QueenLucy::new, EntityClassification.MONSTER).size(0.6F, 2.0F).immuneToFire().trackingRange(64).build("queen_sophie"));
 
     public static final RegistryObject<EntityType<WarriorSophie>> WARRIOR_SOPHIE = ENTITIES.register("warrior_sophie", () ->
             EntityType.Builder.create(WarriorSophie::new, EntityClassification.MONSTER).size(0.6F, 2.0F).trackingRange(32).build("warrior_sophie"));
@@ -47,8 +47,8 @@ public class BMEntities {
     public static final RegistryObject<EntityType<ShyFabricio>> SHY_FABRICIO = ENTITIES.register("shy_fabricio", () ->
             EntityType.Builder.create(ShyFabricio::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(32).build("shy_fabricio"));
 
-    public static final RegistryObject<EntityType<QueenSophiePet>> QUEEN_SOPHIE_PET = ENTITIES.register("queen_sophie_pet", () ->
-            EntityType.Builder.create(QueenSophiePet::new, EntityClassification.CREATURE).trackingRange(10).immuneToFire().size(0.3f, 0.9f).build("queen_sophie_pet"));
+    public static final RegistryObject<EntityType<QueenLucyPet>> QUEEN_SOPHIE_PET = ENTITIES.register("queen_sophie_pet", () ->
+            EntityType.Builder.create(QueenLucyPet::new, EntityClassification.CREATURE).trackingRange(10).immuneToFire().size(0.3f, 0.9f).build("queen_sophie_pet"));
 
     // BM 1.7.0: Aljamic Wars Creatures and Enemies
     public static final RegistryObject<EntityType<InsomniaZombie>> INSOMNIA_ZOMBIE = ENTITIES.register("insomnia_zombie", () ->

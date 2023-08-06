@@ -34,3 +34,11 @@
             BMBlocks.COBBLED_ALJANSTONE.get().getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3);
 
 // public static final RegistryObject<Item> GOLDEN_PLATED = ITEMS.register("peitoraldeouro", () -> new Item(new Item.Properties().group(BMWeaponryTab.TAB)));
+
+// From structure code.
+                //LogManager.getLogger().log(Level.DEBUG, "Back Math: Fabricio's Hideout Dungeon located at: /tp @s " +
+                //        this.components.get(0).getBoundingBox().minX + " " +
+                //        this.components.get(0).getBoundingBox().minY + " " +
+                //        this.components.get(0).getBoundingBox().minZ);
+
+//LOGGER.warn("Back Math: Did not find the expected vanilla baked model(s) for insomnian_tulip in registry");

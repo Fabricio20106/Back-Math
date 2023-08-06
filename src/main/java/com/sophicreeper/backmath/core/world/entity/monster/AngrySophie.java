@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.core.world.entity.monster;
 
 import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenLucyPet;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
@@ -40,8 +40,8 @@ public class AngrySophie extends MonsterEntity {
     }
 
     protected void applyEntityAI() {
-        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenSophie.class, true));
-        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, true));
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenLucy.class, true));
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, true));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, WarriorSophie.class, true));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, WandererSophie.class, true));

@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.core.world.item;
+package com.sophicreeper.backmath.core.util;
 
 import com.google.common.collect.Maps;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
@@ -140,10 +140,10 @@ public class BMVanillaCompatibility {
         strippable(BMBlocks.CORK_OAK_WOOD.get(), BMBlocks.STRIPPED_CORK_OAK_WOOD.get());
         tillable(BMBlocks.ALJAMIC_DIRT_PATH.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
         tillable(BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJAMIC_FARMLAND.get().getDefaultState());
-        makePath(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
-        makePath(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
-        makePath(BMBlocks.ALJAMIC_FARMLAND.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
-        makePath(BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
+        flattenable(BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
+        flattenable(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
+        flattenable(BMBlocks.ALJAMIC_FARMLAND.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
+        flattenable(BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJAMIC_DIRT_PATH.get().getDefaultState());
     }
 
     public static void strippable(Block log, Block strippedLog) {
@@ -161,7 +161,7 @@ public class BMVanillaCompatibility {
         HoeItem.HOE_LOOKUP.put(block, farmland);
     }
 
-    private static void makePath(Block block, BlockState path) {
+    private static void flattenable(Block block, BlockState path) {
         ShovelItem.SHOVEL_LOOKUP = Maps.newHashMap(ShovelItem.SHOVEL_LOOKUP);
         ShovelItem.SHOVEL_LOOKUP.put(block, path);
     }

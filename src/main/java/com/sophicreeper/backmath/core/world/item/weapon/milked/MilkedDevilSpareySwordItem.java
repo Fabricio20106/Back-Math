@@ -6,7 +6,7 @@ import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
 import com.sophicreeper.backmath.core.world.entity.monster.ArcherLucia;
 import com.sophicreeper.backmath.core.world.entity.monster.InsomniaSophie;
-import com.sophicreeper.backmath.core.world.entity.monster.QueenSophie;
+import com.sophicreeper.backmath.core.world.entity.monster.QueenLucy;
 import com.sophicreeper.backmath.core.world.entity.monster.WarriorSophie;
 import com.sophicreeper.backmath.core.world.item.BMWeaponryTab;
 import net.minecraft.entity.Entity;
@@ -28,7 +28,7 @@ public class MilkedDevilSpareySwordItem extends MilkedSwordItem {
         } else {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200, 1));
         }
-        if (entity instanceof QueenSophie) {
+        if (entity instanceof QueenLucy) {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
         }
         return super.onLeftClickEntity(stack, player, entity);

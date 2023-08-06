@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.Direction;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.data.IModelData;
 
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Random;
 
 public class LightBakedModel implements IBakedModel {
+    private static final int UPPER_HALF = 65536; // 2^16
     private IBakedModel lightBakedModel;
 
     @Override
@@ -36,20 +38,19 @@ public class LightBakedModel implements IBakedModel {
         return quads;
     }
 
-    private static final int UPPER_HALF = 65536; // 2^16
     private static int getLightValue() {
         return UPPER_HALF * 15 * 16 + 15 * 16;
     }
 
-    // ---- All these methods are required by the interface, but we don't do anything special with them.
+    // ---- All methods below are required by the interface, but we don't do anything special with them.
 
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, Random rand) {
-        throw new AssertionError("IBakedModel::getQuads should never be called, only IForgeBakedModel::getQuads");
+        // throw new AssertionError("IBakedModel::getQuads should never be called, only IForgeBakedModel::getQuads");
+        throw new AssertionError(new TranslationTextComponent("messages.backmath.get_quads_error").toString());
     }
 
-    // getTexture is used directly when player is inside the block. The game will crash if you don't use something
-    //   meaningful here.
+    // getParticleTexture is used directly when player is inside the block. The game will crash if you don't use something meaningful here.
     @Override
     public TextureAtlasSprite getParticleTexture() {
         return lightBakedModel.getParticleTexture();
@@ -67,7 +68,8 @@ public class LightBakedModel implements IBakedModel {
 
     @Override
     public boolean isSideLit() {
-        return lightBakedModel.isSideLit(); // related to item "diffuselighting"
+        // Related to item "diffuselighting".
+        return lightBakedModel.isSideLit();
     }
 
     @Override

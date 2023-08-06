@@ -12,8 +12,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class InsomniaArrowRenderer extends ArrowRenderer<InsomniaArrow> {
     public static final ResourceLocation INSOMNIA_ARROW = BackMath.resourceLoc("textures/entity/insomnia_arrow.png");
 
-    public InsomniaArrowRenderer(EntityRendererManager manager) {
-        super(manager);
+    public InsomniaArrowRenderer(EntityRendererManager renderManager) {
+        super(renderManager);
     }
 
     public ResourceLocation getEntityTexture(InsomniaArrow arrow) {

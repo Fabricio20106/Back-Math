@@ -20,25 +20,24 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
-// The Queen Sophie's Summoner Staff is a copy of the BMSpawnEggItem class
-public class QueenSophieSummonerStaffItem extends SpawnEggItem {
-    private static final List<QueenSophieSummonerStaffItem> UNADDED_EGGS = Lists.newArrayList();
+// The Queen Lucy's Summoner Staff is a copy of the BMSpawnEggItem class
+public class QueenLucySummonerStaffItem extends SpawnEggItem {
+    private static final List<QueenLucySummonerStaffItem> UNADDED_EGGS = Lists.newArrayList();
     private final Supplier<? extends EntityType<? extends Entity>> typeSupplier;
 
-    public QueenSophieSummonerStaffItem(Supplier<? extends EntityType<? extends Entity>> type, int primaryColor, int secondaryColor, Properties properties) {
+    public QueenLucySummonerStaffItem(Supplier<? extends EntityType<? extends Entity>> type, int primaryColor, int secondaryColor, Properties properties) {
         super(null, primaryColor, secondaryColor, properties);
         this.typeSupplier = type;
         UNADDED_EGGS.add(this);
     }
 
-    public static void initUnaddedEggs() {
+    public static void initializeUnaddedEggs() {
         DefaultDispenseItemBehavior dispenseItemBehavior = new DefaultDispenseItemBehavior() {
             @Override
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
                 Direction direction = source.getBlockState().get(DispenserBlock.FACING);
                 EntityType<?> type = ((SpawnEggItem) stack.getItem()).getType(stack.getTag());
-                type.spawn(source.getWorld(), stack, null, source.getBlockPos().offset(direction),
-                        SpawnReason.DISPENSER, direction != Direction.UP, false);
+                type.spawn(source.getWorld(), stack, null, source.getBlockPos().offset(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
                 stack.shrink(1);
                 return stack;
             }

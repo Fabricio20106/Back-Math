@@ -22,13 +22,13 @@ public class AmaracamelerGelLayer<T extends LivingEntity> extends LayerRenderer<
     }
 
     @Override
-    public void render(MatrixStack matrixStack, IRenderTypeBuffer iRenderTypeBuffer, int i, T t, float v, float v1, float v2, float v3, float v4, float v5) {
-        if (!t.isInvisible()) {
+    public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight, T mob, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        if (!mob.isInvisible()) {
             this.getEntityModel().copyModelAttributesTo(this.amaracamelerModel);
-            this.amaracamelerModel.setLivingAnimations(t, v, v1, v2);
-            this.amaracamelerModel.setRotationAngles(t, v, v1, v3, v4, v5);
-            IVertexBuilder vertexBuilder = iRenderTypeBuffer.getBuffer(RenderType.getEntityTranslucent(this.getEntityTexture(t)));
-            this.amaracamelerModel.render(matrixStack, vertexBuilder, i, LivingRenderer.getPackedOverlay(t, 0.0f), 1.0f, 1.0f, 1.0f, 1.0f);
+            this.amaracamelerModel.setLivingAnimations(mob, limbSwing, limbSwingAmount, partialTicks);
+            this.amaracamelerModel.setRotationAngles(mob, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+            IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.getEntityTranslucent(this.getEntityTexture(mob)));
+            this.amaracamelerModel.render(matrixStack, vertexBuilder, packedLight, LivingRenderer.getPackedOverlay(mob, 0), 1, 1, 1, 1);
         }
     }
 }

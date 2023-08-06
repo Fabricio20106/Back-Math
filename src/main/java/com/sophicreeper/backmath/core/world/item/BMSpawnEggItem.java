@@ -26,14 +26,13 @@ public class BMSpawnEggItem extends SpawnEggItem {
         UNADDED_EGGS.add(this);
     }
 
-    public static void initUnaddedEggs() {
+    public static void initializeUnaddedEggs() {
         DefaultDispenseItemBehavior dispenseItemBehavior = new DefaultDispenseItemBehavior() {
             @Override
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
                 Direction direction = source.getBlockState().get(DispenserBlock.FACING);
                 EntityType<?> type = ((SpawnEggItem) stack.getItem()).getType(stack.getTag());
-                type.spawn(source.getWorld(), stack, null, source.getBlockPos().offset(direction),
-                        SpawnReason.DISPENSER, direction != Direction.UP, false);
+                type.spawn(source.getWorld(), stack, null, source.getBlockPos().offset(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
                 stack.shrink(1);
                 return stack;
             }

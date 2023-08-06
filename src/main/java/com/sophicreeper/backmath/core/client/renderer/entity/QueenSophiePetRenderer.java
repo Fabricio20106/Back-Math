@@ -1,8 +1,8 @@
 package com.sophicreeper.backmath.core.client.renderer.entity;
 
 import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.client.model.entity.QueenSophiePetModel;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
+import com.sophicreeper.backmath.core.client.model.entity.QueenLucyPetModel;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenLucyPet;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class QueenSophiePetRenderer extends BipedRenderer<QueenSophiePet, QueenSophiePetModel> {
+public class QueenSophiePetRenderer extends BipedRenderer<QueenLucyPet, QueenLucyPetModel> {
     public static final ResourceLocation[] QUEEN_SOPHIE_PET_LOCATIONS = new ResourceLocation[] {
             BackMath.resourceLoc("textures/entity/queen_sophie_pet/qsp_current.png"),
             BackMath.resourceLoc("textures/entity/queen_sophie_pet/qsp_alt.png"),
@@ -33,7 +33,7 @@ public class QueenSophiePetRenderer extends BipedRenderer<QueenSophiePet, QueenS
     };
 
     public QueenSophiePetRenderer(EntityRendererManager renderManager) {
-        super(renderManager, new QueenSophiePetModel(), 0.25f);
+        super(renderManager, new QueenLucyPetModel(), 0.25f);
         // better not render armor than it being giant
         //this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0.0F, 64, 32),
         //        new BMBipedModel<>(0.0F, 0.0F, 64, 32)));
@@ -42,7 +42,7 @@ public class QueenSophiePetRenderer extends BipedRenderer<QueenSophiePet, QueenS
     }
 
     @Override
-    public ResourceLocation getEntityTexture(QueenSophiePet queenSophiePet) {
+    public ResourceLocation getEntityTexture(QueenLucyPet queenSophiePet) {
         return QUEEN_SOPHIE_PET_LOCATIONS[queenSophiePet.getVariant()];
     }
 }

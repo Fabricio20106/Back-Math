@@ -9,8 +9,8 @@ import net.minecraft.util.ResourceLocation;
 public class BMBoatRenderer extends BoatRenderer {
     private static final ResourceLocation BOAT_TEXTURE = BackMath.resourceLoc("textures/entity/boat/aljanwood.png");
 
-    public BMBoatRenderer(EntityRendererManager entityRendererManager) {
-        super(entityRendererManager);
+    public BMBoatRenderer(EntityRendererManager renderManager) {
+        super(renderManager);
     }
 
     @Override

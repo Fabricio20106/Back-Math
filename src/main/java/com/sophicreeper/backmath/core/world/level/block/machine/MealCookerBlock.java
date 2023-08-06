@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.core.world.level.block.machine;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.item.BMStats;
+import com.sophicreeper.backmath.core.util.BMStats;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -79,7 +79,7 @@ public class MealCookerBlock extends HorizontalBlock {
             MainHand.shrink(1);
             OffHand.shrink(1);
         }
-        if (MainHand.getItem() == AxolotlTest.SPOON.get()) {
+        if (MainHand.getItem() == AxolotlTest.ANGELIC_SPOON.get()) {
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
             player.addItemStackToInventory(new ItemStack(AxolotlTest.PASTA.get()));
         }

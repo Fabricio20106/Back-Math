@@ -7,14 +7,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class BMBipedModel<T extends CreatureEntity> extends BipedModel<T> {
-    public BMBipedModel(float modelSize, float yOffsetIn, int textureWidthIn, int textureHeightIn) {
-        super(modelSize, yOffsetIn, textureWidthIn, textureHeightIn);
+    public BMBipedModel(float modelSize, float yOffset, int textureWidth, int textureHeight) {
+        super(modelSize, yOffset, textureWidth, textureHeight);
     }
 
-    /**
-     * Sets this entity's model rotation angles
-     */
-    public void setRotationAngles(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        super.setRotationAngles(entityIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+    // Sets this entity's model rotation angles.
+    public void setRotationAngles(T mob, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        super.setRotationAngles(mob, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
     }
 }

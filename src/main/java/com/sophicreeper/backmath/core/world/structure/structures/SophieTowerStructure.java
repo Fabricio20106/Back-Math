@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.core.world.structure.structures;
 
 import com.google.common.collect.ImmutableList;
 import com.sophicreeper.backmath.core.client.BackMath;
+import com.sophicreeper.backmath.core.config.BMConfigs;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.SharedSeedRandom;
@@ -10,6 +11,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.MobSpawnInfo;
@@ -71,7 +73,8 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
             super(structure, chunkX, chunkZ, mutableBoundingBox, reference, seed);
         }
 
-        @Override // generatePieces
+        @Override
+        // generatePieces
         public void func_230364_a_(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig config) {
             // Turns chunk coordinates into actual coordinates we can use by getting the center of that chunk.
             int x = (chunkX << 4) + 7;
@@ -79,21 +82,21 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
 
             BlockPos pos = new BlockPos(x, 0, z);
 
-            // addpieces()
+            // addPieces()
             JigsawManager.func_242837_a(dynamicRegistryManager, new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(BackMath.resourceLoc(
                     "sophie_tower/start_pool")), 10), AbstractVillagePiece::new, chunkGenerator, templateManager, pos, this.components, this.rand,false,
                     true);
 
-            this.components.forEach(piece -> piece.offset(0, 1, 0));
-            this.components.forEach(piece -> piece.getBoundingBox().minY -= 1);
+            this.components.forEach(piece -> piece.offset(0, BMConfigs.SERVER_CONFIGS.sophieTowerYOffset.get(), 0));
+            this.components.forEach(piece -> piece.getBoundingBox().minY -= BMConfigs.SERVER_CONFIGS.sophieTowerYOffset.get());
 
             this.recalculateStructureSize();
 
-            if (BackMath.logDebugMessages) {
-                LogManager.getLogger().log(Level.DEBUG, "Back Math: Sophie Tower located at: /tp @p" +
-                        this.components.get(0).getBoundingBox().minX + " " +
-                        this.components.get(0).getBoundingBox().minY + " " +
-                        this.components.get(0).getBoundingBox().minZ);
+            if (BMConfigs.SERVER_CONFIGS.logStructureLocationMessages.get()) {
+                LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("messages.backmath.sophie_tower_location",
+                        this.components.get(0).getBoundingBox().minX,
+                        this.components.get(0).getBoundingBox().minY,
+                        this.components.get(0).getBoundingBox().minZ).toString());
             }
         }
     }

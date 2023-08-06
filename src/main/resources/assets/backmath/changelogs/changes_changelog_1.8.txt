@@ -76,3 +76,9 @@ Prior fixes:
   - "pedradormedica" to "pedradormecida" on sleepingstone ores.
   - "agglomeratio" and "agglomerario" to "aglomerado" on hillary and milkllary agglomeratios.
   - Fixed capitalization on "Spath Sílios Drack", changed to "Spath cílios drack"
+
+05/08/2023 (Saturday):
+- Renamed a few classes & field names.
+  - Class "QueenSophieBattlePack" to "QueenLucyBattlePack".
+  - Package "alchemy" to "potions".
+  - Many other classes.

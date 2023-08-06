@@ -12,13 +12,13 @@ import com.sophicreeper.backmath.core.world.entity.creature.aljan.Malaika;
 import com.sophicreeper.backmath.core.world.entity.decoration.BMMotives;
 import com.sophicreeper.backmath.core.world.entity.monster.*;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenLucyPet;
 import com.sophicreeper.backmath.core.world.gen.carver.BMConfiguredCarvers;
 import com.sophicreeper.backmath.core.world.gen.carver.BMWorldCarvers;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
-import com.sophicreeper.backmath.core.world.item.BMStats;
-import com.sophicreeper.backmath.core.world.item.BMVanillaCompatibility;
-import com.sophicreeper.backmath.core.world.item.alchemy.BMPotions;
+import com.sophicreeper.backmath.core.util.BMStats;
+import com.sophicreeper.backmath.core.util.BMVanillaCompatibility;
+import com.sophicreeper.backmath.core.world.item.potions.BMPotions;
 import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
 import com.sophicreeper.backmath.core.world.level.material.BMFluids;
@@ -73,7 +73,7 @@ public class CommonProxy {
         }
 
         event.enqueueWork(() -> {
-            // Entity spawning, but it now works! I just needed both the old and this new code together instead of deleting the old code.
+            // Entity Spawning, but it now works! I just needed both the old and this new code together instead of deleting the old code.
             if (BMConfigs.SERVER_CONFIGS.groundMobSpawningAljan.get()) {
                 EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_ZOMBIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                         Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawnInLight);
@@ -107,16 +107,16 @@ public class CommonProxy {
             }
         });
 
-        // Entity attributes
+        // Entity Attributes
         GlobalEntityTypeAttributes.put(BMEntities.WANDERER_SOPHIE.get(), WandererSophie.createWandererSophieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ARCHER_LUCIA.get(), ArcherLucia.createArcherLuciaAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ANGRY_SOPHIE.get(), AngrySophie.createAngrySophieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.SHY_FABRICIO.get(), ShyFabricio.createShyFabricioAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.KARATE_LUCIA.get(), KarateLucia.createKarateLuciaAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.INSOMNIA_SOPHIE.get(), InsomniaSophie.createInsomniaSophieAttributes().create());
-        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_SOPHIE.get(), QueenSophie.createQueenSophieAttributes().create());
+        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_SOPHIE.get(), QueenLucy.createQueenSophieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.WARRIOR_SOPHIE.get(), WarriorSophie.createWarriorSophieAttributes().create());
-        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_SOPHIE_PET.get(), QueenSophiePet.createQueenSophiePetAttributes().create());
+        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_SOPHIE_PET.get(), QueenLucyPet.createQueenSophiePetAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), ArcherInsomniaSophie.createMobAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.INSOMNIA_ZOMBIE.get(), InsomniaZombie.createInsomniaZombieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ZOMBIE_FABRICIO.get(), ZombieFabricio.createZombieFabricioAttributes().create());
@@ -126,7 +126,7 @@ public class CommonProxy {
         GlobalEntityTypeAttributes.put(BMEntities.ALJAMIC_BONES.get(), AljamicBones.createAljamicBonesAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.SLEEPISH_SKELETON.get(), SleepishSkeleton.createSleepishSkeletonAttributes().create());
 
-        // Other things to load
+        // Other Things to Load
         BMPotions.addPotionRecipes();
         BMDimensions.init();
         BMConfiguredCarvers.register();

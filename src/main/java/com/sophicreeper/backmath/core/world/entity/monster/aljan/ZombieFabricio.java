@@ -68,7 +68,7 @@ public class ZombieFabricio extends MonsterEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherLucia.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, KarateLucia.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenSophie.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucy.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }

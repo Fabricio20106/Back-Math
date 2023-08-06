@@ -14,9 +14,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class AngrySophieRenderer extends BipedRenderer<AngrySophie, BMBipedModel<AngrySophie>> {
     private static final ResourceLocation ANGRY_SOPHIE_LOCATION = BackMath.resourceLoc("textures/entity/angry_sophie.png");
 
-    public AngrySophieRenderer(EntityRendererManager entityRendererManager) {
-        super(entityRendererManager, new BMBipedModel<>(0.0F, 0.0F, 64, 64), 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0.0F, 64, 32), new BMBipedModel<>(1.0F, 0.0F, 64, 32)));
+    public AngrySophieRenderer(EntityRendererManager renderManager) {
+        super(renderManager, new BMBipedModel<>(0, 0, 64, 64), 0.5F);
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
     }
 
     public ResourceLocation getEntityTexture(AngrySophie angrySophie) {

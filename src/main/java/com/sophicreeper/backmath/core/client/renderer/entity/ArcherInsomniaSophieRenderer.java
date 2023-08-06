@@ -15,9 +15,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ArcherInsomniaSophieRenderer extends BipedRenderer<ArcherInsomniaSophie, BMBipedModel<ArcherInsomniaSophie>> {
     private static final ResourceLocation ARCHER_INSOMNIA_SOPHIE_LOCATION = BackMath.resourceLoc("textures/entity/insomnia_sophie.png");
 
-    public ArcherInsomniaSophieRenderer(EntityRendererManager entityRendererManager) {
-        super(entityRendererManager, new BMBipedModel<>(0.0F, 0.0F, 64, 64), 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0.0F, 64, 32), new BMBipedModel<>(1.0F, 0.0F, 64, 32)));
+    public ArcherInsomniaSophieRenderer(EntityRendererManager renderManager) {
+        super(renderManager, new BMBipedModel<>(0, 0, 64, 64), 0.5F);
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
         this.addLayer(new ElytraLayer<>(this));
     }
 

@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.core.world.entity.monster;
 
 import com.sophicreeper.backmath.core.world.entity.creature.KarateLucia;
 import com.sophicreeper.backmath.core.world.entity.monster.aljan.*;
-import com.sophicreeper.backmath.core.world.entity.tameable.QueenSophiePet;
+import com.sophicreeper.backmath.core.world.entity.tameable.QueenLucyPet;
 import com.sophicreeper.backmath.core.world.entity.creature.ShyFabricio;
 import com.sophicreeper.backmath.core.world.entity.creature.WandererSophie;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
@@ -44,7 +44,7 @@ public class InsomniaSophie extends MonsterEntity {
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.6f));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6.0F));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenSophiePet.class, false));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
