@@ -111,6 +111,8 @@ public class BMTags {
         public static final TagKey<Item> SQUIDS = backMath("squids");
         public static final TagKey<Item> POPSICLES = backMath("popsicles");
         public static final TagKey<Item> ALJANSTONE_CRAFTING_MATERIALS = backMath("aljanstone_crafting_materials");
+        public static final TagKey<Item> MID_TERM_MATERIALS = backMath("mid_term_materials");
+        public static final TagKey<Item> OIMT_MATERIALS = backMath("oimt_materials");
         // Tag Migration
         public static final TagKey<Item> ALJAN_RECIPE_STICKS = backMath("aljan_recipe_sticks");
         public static final TagKey<Item> BACK_GUIDE_RECIPE_ACCEPTABLES = backMath("back_guide_recipe_acceptables");
@@ -271,6 +273,8 @@ public class BMTags {
         public static final TagKey<Block> GRAPE_VINE_POSTS = backMath("grape_vine_posts");
         public static final TagKey<Block> SQUIDS = backMath("squids");
         public static final TagKey<Block> TOYS = backMath("toys");
+        public static final TagKey<Block> END_ORE_REPLACEABLE = backMath("end_ore_replaceable");
+        public static final TagKey<Block> OBSIDIAN_ORE_REPLACEABLE = backMath("obsidian_ore_replaceable");
 
         public static final TagKey<Block> SOPHIE_IDEA = backMath("sophie_idea");
         public static final TagKey<Block> BOUNTIFULLY_EXPANSIVE_IDEA = backMath("sophie_idea/bountifully_expansive");

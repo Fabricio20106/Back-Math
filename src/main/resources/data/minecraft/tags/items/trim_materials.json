@@ -1,0 +1,26 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ingots/devil",
+    "#forge:ingots/angelic",
+    "#forge:ingots/milkllary",
+    "#forge:ingots/mid_hillary",
+    "#forge:ingots/christian_mid_term",
+    "#forge:ingots/mid_term",
+    "#forge:gems/mid_term",
+    "#forge:singularities/mid_term",
+    "#forge:ingots/obsidian_infused_mid_term",
+    "#forge:gems/obsidian_infused_mid_term",
+    "#forge:singularities/obsidian_infused_mid_term",
+    "#forge:gems/milkllarity",
+    "#forge:singularities/milkllarity",
+    "#forge:ingots/aljameed",
+    "#forge:ingots/aljansteel",
+    "#forge:ingots/moonering",
+    "#forge:gems/jantical",
+    "#forge:gems/persona",
+    "#forge:gems/crystalline_angelic",
+    "#forge:ingots/hardened_amaracamel",
+    "#backmath:materials/hardened_amaracamel"
+  ]
+}

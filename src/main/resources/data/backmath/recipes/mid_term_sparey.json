@@ -1,19 +1,15 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "XXX",
-    "XCX",
-    "XXX"
-  ],
-  "key": {
-    "X": {
-      "tag": "forge:gems/mid_term"
-    },
-    "C": {
-      "item": "backmath:sparey"
-    }
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "backmath:mid_term_materials"
+  },
+  "base": {
+    "item": "backmath:sparey"
   },
   "result": {
     "item": "backmath:mid_term_sparey"
+  },
+  "template": {
+    "item": "backmath:mid_term_upgrade_smithing_template"
   }
 }

@@ -104,6 +104,8 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
 
         // Back Math Tags
         this.tag(BMTags.Blocks.INFINIBURN_ALJAN).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);
+        this.tag(BMTags.Blocks.END_ORE_REPLACEABLE).add(Blocks.END_STONE);
+        this.tag(BMTags.Blocks.OBSIDIAN_ORE_REPLACEABLE).add(Blocks.OBSIDIAN).add(Blocks.CRYING_OBSIDIAN);
 
         // Logs & Woods
         this.tag(BMTags.Blocks.CRYSTALLINE_BIRCH_LOGS).add(BMBlocks.CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get());

@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.core.world.item;
 
 import com.sophicreeper.backmath.core.client.BackMath;
+import com.sophicreeper.backmath.core.util.BMSmithingTemplateComponents;
 import com.sophicreeper.backmath.core.world.item.armor.*;
 import com.sophicreeper.backmath.core.world.item.food.*;
 import com.sophicreeper.backmath.core.world.item.food.drink.*;
@@ -648,6 +649,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> CRYSTALLIZED_MOLD = ITEMS.register("crystallized_mold", () -> new Item(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> CRYSTALLINE_EMPTY_MOLD = ITEMS.register("crystalline_empty_mold", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CRYSTALLINE_GEM_MOLD = ITEMS.register("crystalline_gem_mold", () -> new Item(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> MID_TERM_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("mid_term_upgrade_smithing_template", BMSmithingTemplateComponents::createMidTermUpgradeTemplate);
+    public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_UPGRADE_SMITHING_TEMPLATE = ITEMS.register("obsidian_infused_mid_term_upgrade_smithing_template", BMSmithingTemplateComponents::createObsidianInfusedMidTermUpgradeTemplate);
     public static final RegistryObject<Item> UPGRADE_TOKEN_BASE = ITEMS.register("upgrade_token_base", () -> new UpgradeTokenItem(new Item.Properties().rarity(Rarity.UNCOMMON), "base"));
     public static final RegistryObject<Item> UPGRADE_TOKEN_FLAME = ITEMS.register("upgrade_token_flame", () -> new UpgradeTokenItem(new Item.Properties().rarity(Rarity.UNCOMMON), "flame"));
     public static final RegistryObject<Item> UPGRADE_TOKEN_CRYSTALLIZER_UPG = ITEMS.register("upgrade_token_crystallizer_upg", () -> new UpgradeTokenItem(new Item.Properties().rarity(Rarity.UNCOMMON), "crystallizer_upg"));

@@ -13,6 +13,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.registries.DeferredRegister;
@@ -200,8 +201,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJAMIC_GRASS_BLOCK = BLOCKS.register("aljamic_grass_block", () -> new AljamicGrassBlock(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
     public static final RegistryObject<Block> ALJAMIC_DIRT = BLOCKS.register("aljamic_dirt", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)));
     public static final RegistryObject<Block> ALJAMIC_FARMLAND = BLOCKS.register("aljamic_farmland", () -> new AljamicFarmlandBlock(BlockBehaviour.Properties.copy(Blocks.FARMLAND)));
-    public static final RegistryObject<Block> ZOMBIE_FABRICIO_HEAD = BLOCKS.register("zombie_fabricio_head", () -> new BMHeadBlock(BlockBehaviour.Properties.copy(Blocks.PLAYER_HEAD)));
-    public static final RegistryObject<Block> ZOMBIE_FABRICIO_WALL_HEAD = BLOCKS.register("zombie_fabricio_wall_head", () -> new BMWallHeadBlock(BlockBehaviour.Properties.copy(Blocks.PLAYER_WALL_HEAD)));
+    public static final RegistryObject<Block> ZOMBIE_FABRICIO_HEAD = BLOCKS.register("zombie_fabricio_head", () -> new BMHeadBlock(BlockBehaviour.Properties.copy(Blocks.ZOMBIE_HEAD)));
+    public static final RegistryObject<Block> ZOMBIE_FABRICIO_WALL_HEAD = BLOCKS.register("zombie_fabricio_wall_head", () -> new BMWallHeadBlock(BlockBehaviour.Properties.copy(Blocks.ZOMBIE_WALL_HEAD)));
     public static final RegistryObject<Block> CHARJAN_WOOD_TORCH = BLOCKS.register("charjan_wood_torch", () -> new TorchBlock(BlockBehaviour.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CHARJAN_WOOD_WALL_TORCH = BLOCKS.register("charjan_wood_wall_torch", () -> new WallTorchBlock(BlockBehaviour.Properties.copy(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_WOOD_TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CARAMELED_WHEAT = BLOCKS.register("carameled_wheat", () -> new CarameledWheatBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT)));

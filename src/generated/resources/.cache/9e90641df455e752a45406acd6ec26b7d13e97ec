@@ -1,16 +1,18 @@
-// 1.20.1	2023-08-05T15:24:15.6737387	Back Math - Block Tags
+// 1.20.1	2023-08-10T23:45:58.100214	Back Math - Block Tags
 402dd61624f30c52c060e8d463c1005c8d58a8c3 data/backmath/tags/blocks/aljancap_logs.json
 054af26a1ea8e2c4a5c9e386437c6af8daa76862 data/backmath/tags/blocks/aljanwood_logs.json
 f53dfd85415f2772bd3d8b191663651a6e956b10 data/backmath/tags/blocks/avondalic_willow_logs.json
 ee5c3873a40e7fa6349b49ba6710b392a385242c data/backmath/tags/blocks/base_stone_aljan.json
 c07f19b6d8fe6a1d0d441b923c61a595f8895462 data/backmath/tags/blocks/cork_oak_logs.json
 af3c78ec80195c9bf0c2610bd6fa3831db7a4076 data/backmath/tags/blocks/crystalline_birch_logs.json
+9994f212884e8264af96eaba34aa7e89696d8994 data/backmath/tags/blocks/end_ore_replaceable.json
 e6a30f4fa44f6146acaa0f3b2d2dbf4822040b33 data/backmath/tags/blocks/goldenwood_logs.json
 49cec3d346ac84f5782da5ef0a01c953dc582f37 data/backmath/tags/blocks/grape_vine_posts.json
 aafde219bf54da688aa5a2a3dd04d0193c02fc61 data/backmath/tags/blocks/guava_logs.json
 882f7161808179f92ed953b9200fdaf74eec6c36 data/backmath/tags/blocks/infiniburn_aljan.json
 dbad68fdbaf0653e568559978872965cef77edc3 data/backmath/tags/blocks/insomnian_logs.json
 b73eeac436c7f1859c7fce100058011c29202dde data/backmath/tags/blocks/jabuticaba_logs.json
+858b4736f63a64046a40e9dbd025c709c79d7cb2 data/backmath/tags/blocks/obsidian_ore_replaceable.json
 025e3ce6e2d4eee8dc363fc5a14b590600bfff4a data/backmath/tags/blocks/sophie_idea.json
 712cbbd63cf286320c64dd57d940d082ef028a75 data/backmath/tags/blocks/sophie_idea/bountifully_expansive.json
 10a750eb833fd8ecc765d4c8aff36b7da40a4cba data/backmath/tags/blocks/squids.json

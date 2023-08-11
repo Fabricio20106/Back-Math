@@ -1096,6 +1096,10 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("upgrade_token_base");
         compat("queen_lucy_shirt_current");
         compat("queen_lucy_shirt_alt");
+
+        // Back Math 1.20.1
+        compat("mid_term_upgrade_smithing_template");
+        compat("obsidian_infused_mid_term_upgrade_smithing_template");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

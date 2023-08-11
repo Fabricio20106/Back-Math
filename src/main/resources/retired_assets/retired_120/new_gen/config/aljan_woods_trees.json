@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "backmath:aljanwood",
+    "features": [
+      {
+        "chance": 0.1,
+        "feature": "backmath:fancy_aljanwood"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ingots/devil",
+    "#forge:ingots/angelic",
+    "#forge:ingots/christian_mid_term",
+    "#forge:ingots/milkllary",
+    "#forge:ingots/mid_hillary",
+    "#forge:ingots/aljameed",
+    "#forge:ingots/aljansteel",
+    "#forge:ingots/moonering",
+    "#forge:singularities/mid_term",
+    "#forge:singularities/obsidian_infused_mid_term"
+  ]
+}

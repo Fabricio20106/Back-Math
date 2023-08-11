@@ -1,12 +1,15 @@
 {
-  "type": "minecraft:smithing",
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "backmath:oimt_materials"
+  },
   "base": {
     "item": "backmath:mid_term_pickaxe"
   },
-  "addition": {
-    "item": "backmath:obsidian_infused_mid_term_ingot"
-  },
   "result": {
     "item": "backmath:obsidian_infused_mid_term_pickaxe"
+  },
+  "template": {
+    "item": "backmath:obsidian_infused_mid_term_upgrade_smithing_template"
   }
 }

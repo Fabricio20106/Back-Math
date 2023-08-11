@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-05T15:24:15.6567816	Back Math - Item Models
+// 1.20.1	2023-08-10T20:26:47.0802135	Back Math - Item Models
 8f0777a886a7b03c63d0e73a79f80f022622a9b8 assets/backmath/models/item/acacia_grape_vine_post.json
 471d539086e29bae367d084ad100231d6c0f642e assets/backmath/models/item/advanced_molds_book.json
 746bef77a17ed340dfed6e48edfd990d7f1a9666 assets/backmath/models/item/alan_toy.json
@@ -738,6 +738,7 @@ d02b766a8ffe75545db958308ad26708a00b1790 assets/backmath/models/item/mid_term_nu
 f031be6f2e3172ea9b9ad3480c0a761fb8753721 assets/backmath/models/item/mid_term_sparey.json
 5a5c82f08d23eb1bc8810843902c8508f5e26eb4 assets/backmath/models/item/mid_term_sword.json
 13e468a5d06aa1515063f65be2d78467ec6c54a7 assets/backmath/models/item/mid_term_trapdoor.json
+e16e11aa3f7e8b4935f866023a53309eaaddfecd assets/backmath/models/item/mid_term_upgrade_smithing_template.json
 e5f51ab77f1a7fa3ba09fc0ec30ea3154b4f6440 assets/backmath/models/item/mid_term_warrior_helmet.json
 49dc5261044925d80c1c4b972b58fe538b1dd235 assets/backmath/models/item/milked_aljameed_blade.json
 db4c762bbc103016849b7d371149618034ecace2 assets/backmath/models/item/milked_aljancap_sword.json
@@ -868,6 +869,7 @@ f1396b452618378d0e8bd9143dbceee061d7f295 assets/backmath/models/item/obsidian_in
 8c03ca840a748943d724dc389156461cf7e3f4ea assets/backmath/models/item/obsidian_infused_mid_term_sparey.json
 cf7e81d11c588b54957ebdf2077b27663e235b5e assets/backmath/models/item/obsidian_infused_mid_term_sword.json
 5a6576169facf92cb5286861762e2223554e6794 assets/backmath/models/item/obsidian_infused_mid_term_trapdoor.json
+d3b7f85f40ba99543fc05ae6bcb66b87677aa7dc assets/backmath/models/item/obsidian_infused_mid_term_upgrade_smithing_template.json
 5c0e0ff888604189d13e395192926b65d7c8ac34 assets/backmath/models/item/obsidian_infused_mid_term_warrior_helmet.json
 aa261048ef7162c0432af9eefe9d6ead0d0827f7 assets/backmath/models/item/obsidian_ingot.json
 3f8fc6053cce9d652cb4a1332a0acd8e6d70243a assets/backmath/models/item/obsidian_mid_term_ore.json

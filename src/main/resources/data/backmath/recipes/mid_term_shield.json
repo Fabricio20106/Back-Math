@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "backmath:mid_term_materials"
+  },
+  "base": {
+    "item": "minecraft:shield"
+  },
+  "result": {
+    "item": "backmath:mid_term_shield"
+  },
+  "template": {
+    "item": "backmath:mid_term_upgrade_smithing_template"
+  }
+}

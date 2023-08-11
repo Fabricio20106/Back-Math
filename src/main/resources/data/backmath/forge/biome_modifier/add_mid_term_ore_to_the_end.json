@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": "backmath:mid_term_ore_vein",
+  "step": "underground_ores"
+}

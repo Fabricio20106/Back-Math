@@ -1461,6 +1461,14 @@
   "item.backmath.queen_lucy_shirt_alt": "Queen Lucy Shirt",
   "item.backmath.queen_lucy_shirt_alt.desc": " Sophie's Alternate",
   "item.backmath.queen_lucy_shirt.design": "Shirt Design:",
+  "item.backmath.smithing_template.mid_term_upgrade.additions_slot_description": "Add Mid-Term or Mid-Term Ingot",
+  "item.backmath.smithing_template.mid_term_upgrade.applies_to": "Netherite Equipment",
+  "item.backmath.smithing_template.mid_term_upgrade.base_slot_description": "Add netherite armor, weapon, or tool",
+  "item.backmath.smithing_template.mid_term_upgrade.ingredients": "Mid-Term or Mid-Term Ingot",
+  "item.backmath.smithing_template.obsidian_infused_mid_term_upgrade.additions_slot_description": "Add Obsidian Infused Mid-Term or Obsidian Infused Mid-Term Ingot",
+  "item.backmath.smithing_template.obsidian_infused_mid_term_upgrade.applies_to": "Mid-Term Equipment",
+  "item.backmath.smithing_template.obsidian_infused_mid_term_upgrade.base_slot_description": "Add mid-term armor, weapon, or tool",
+  "item.backmath.smithing_template.obsidian_infused_mid_term_upgrade.ingredients": "Obsidian Infused Mid-Term or Obsidian Infused Mid-Term Ingot",
 
   "item.minecraft.potion.effect.insomnia": "Potion of Insomnia",
   "item.minecraft.potion.effect.long_insomnia": "Potion of Insomnia",
@@ -1536,5 +1544,8 @@
   "stat.backmath.change_crystallizer_mold": "Crystallizer Mold Changes",
   "stat.backmath.craft_in_crystallizer": "Recipes made in Crystallizer",
   "stat.backmath.change_crystalline_crystallizer_mold": "Crystalline Crystallizer Mold Changes",
-  "stat.backmath.craft_in_crystalline_crystallizer": "Recipes made in Crystalline Crystallizer"
+  "stat.backmath.craft_in_crystalline_crystallizer": "Recipes made in Crystalline Crystallizer",
+
+  "upgrade.backmath.mid_term_upgrade": "Mid-Term Upgrade",
+  "upgrade.backmath.obsidian_infused_mid_term_upgrade": "Obsidian Infused Mid-Term Upgrade"
 }

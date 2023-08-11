@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DTD",
+    "DMD",
+    "DDD"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:singularities/obsidian_infused_mid_term"
+    },
+    "T": {
+      "item": "backmath:obsidian_infused_mid_term_upgrade_smithing_template"
+    },
+    "D": {
+      "tag": "forge:gems/diamond"
+    }
+  },
+  "result": {
+    "item": "backmath:obsidian_infused_mid_term_upgrade_smithing_template",
+    "count": 2
+  }
+}

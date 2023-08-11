@@ -1,12 +1,15 @@
 {
-  "type": "minecraft:smithing",
-  "base": {
-    "item": "backmath:diamond_knife"
-  },
+  "type": "minecraft:smithing_transform",
   "addition": {
     "tag": "forge:ingots/netherite"
   },
+  "base": {
+    "item": "backmath:diamond_knife"
+  },
   "result": {
     "item": "backmath:netherite_knife"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
   }
 }

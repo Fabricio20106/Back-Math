@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "tag": "backmath:mid_term_materials"
+  },
+  "base": {
+    "item": "backmath:netherite_knife"
+  },
+  "result": {
+    "item": "backmath:mid_term_knife"
+  },
+  "template": {
+    "item": "backmath:mid_term_upgrade_smithing_template"
+  }
+}

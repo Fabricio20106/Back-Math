@@ -402,5 +402,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.MILKED_JANTIQUIFIED_MOONERING_SWORD.get()).add(AxolotlTest.MILKED_CRYSTALLINE_BIRCH_SWORD.get()).add(AxolotlTest.MILKED_CORK_OAK_SWORD.get())
                 .add(AxolotlTest.MILKED_GOLDENWOOD_SWORD.get()).add(AxolotlTest.MILKED_GUAVA_SWORD.get()).add(AxolotlTest.MILKED_JABUTICABA_SWORD.get());
         this.tag(BMTags.Items.ALJAN_LOGS).addTag(BMTags.Items.ALJANWOOD_LOGS).addTag(BMTags.Items.ALJANCAP_LOGS).addTag(BMTags.Items.INSOMNIAN_LOGS).addTag(BMTags.Items.AVONDALIC_WILLOW_LOGS);
+        this.tag(BMTags.Items.MID_TERM_MATERIALS).addTag(BMTags.Items.INGOTS_MID_TERM).addTag(BMTags.Items.SINGULARITIES_MID_TERM).addTag(BMTags.Items.GEMS_MID_TERM);
+        this.tag(BMTags.Items.OIMT_MATERIALS).addTag(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.GEMS_OBSIDIAN_INFUSED_MID_TERM);
     }
 }

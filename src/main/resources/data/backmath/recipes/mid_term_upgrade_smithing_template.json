@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "M",
+    "T"
+  ],
+  "key": {
+    "M": {
+      "tag": "forge:singularities/mid_term"
+    },
+    "T": {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    }
+  },
+  "result": {
+    "item": "backmath:mid_term_upgrade_smithing_template"
+  }
+}

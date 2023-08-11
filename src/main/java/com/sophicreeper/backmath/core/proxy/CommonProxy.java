@@ -1,5 +1,7 @@
 package com.sophicreeper.backmath.core.proxy;
 
+import com.sophicreeper.backmath.core.world.BMConfiguredFeatures;
+import com.sophicreeper.backmath.core.world.BMPlacedFeatures;
 import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.core.world.effect.BMMobEffects;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
@@ -20,6 +22,8 @@ public class CommonProxy {
         AxolotlTest.ITEMS.register(eventBus);
         BMEntities.ENTITIES.register(eventBus);
         BMMobEffects.MOB_EFFECTS.register(eventBus);
+        //BMConfiguredFeatures.CONFIGURED_FEATURES.register(eventBus);
+        //BMPlacedFeatures.PLACED_FEATURES.register(eventBus);
         //BMFluids.FLUIDS.register(eventBus);
         //BMWorldCarvers.WORLD_CARVERS.register(eventBus);
         //BMBiomes.BIOMES.register(eventBus);
