@@ -114,9 +114,9 @@ public class CommonProxy {
         GlobalEntityTypeAttributes.put(BMEntities.SHY_FABRICIO.get(), ShyFabricio.createShyFabricioAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.KARATE_LUCIA.get(), KarateLucia.createKarateLuciaAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.INSOMNIA_SOPHIE.get(), InsomniaSophie.createInsomniaSophieAttributes().create());
-        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_SOPHIE.get(), QueenLucy.createQueenSophieAttributes().create());
+        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_LUCY.get(), QueenLucy.createQueenSophieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.WARRIOR_SOPHIE.get(), WarriorSophie.createWarriorSophieAttributes().create());
-        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_SOPHIE_PET.get(), QueenLucyPet.createQueenSophiePetAttributes().create());
+        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_LUCY_PET.get(), QueenLucyPet.createQueenSophiePetAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), ArcherInsomniaSophie.createMobAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.INSOMNIA_ZOMBIE.get(), InsomniaZombie.createInsomniaZombieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ZOMBIE_FABRICIO.get(), ZombieFabricio.createZombieFabricioAttributes().create());

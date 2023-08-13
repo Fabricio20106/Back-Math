@@ -7,6 +7,10 @@
     "#forge:ores/crystalline_angelic",
     "#forge:ores/aljameed",
     "#forge:ores/moonering",
-    "#forge:ores/jantical"
+    "#forge:ores/jantical",
+    "#forge:ores/aljamic_copper",
+    "#forge:ores/copper",
+    "#forge:ores/aljamic_tin",
+    "#forge:ores/tin"
   ]
 }

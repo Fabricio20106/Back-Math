@@ -57,6 +57,10 @@
         {
           "type": "minecraft:item",
           "name": "backmath:queen_lucy_shirt_alt"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "backmath:queen_lucy_shirt_relic"
         }
       ],
       "conditions": [

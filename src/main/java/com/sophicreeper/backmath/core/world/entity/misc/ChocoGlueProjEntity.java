@@ -24,7 +24,7 @@ public class ChocoGlueProjEntity extends ProjectileItemEntity {
     }
 
     public ChocoGlueProjEntity(World world, LivingEntity shooter) {
-        super(BMEntities.CHOCOGLUE_PROJ.get(), shooter, world);
+        super(BMEntities.CHOCOGLUE_PROJECTILE.get(), shooter, world);
     }
 
     @Override

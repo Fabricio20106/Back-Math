@@ -88,3 +88,16 @@ Prior fixes:
 
 06/08/2023 (Sunday):
 - Log Messages now appear as "messages.backmath.<message>" (Still broken though).
+
+13/08/2023 (Sunday):
+- Texture Updates:
+   - Mid-Term Block, Obsidian Infused Mid-Term Block, Mid-Term Shield, Raw Mid-Term, Mid-Term Ore, and Obsidian Mid-Term Ore.
+   - Lemon Juice, Popsicle, Jam and Jam with Bread are now concrete white instead of yellow.
+   - Queen Lucy Battle Pack.
+   - Milked Devil Sword.
+- Added "Relic" queen Lucy shirt.
+- Slightly changed the UV map on Back Math shields.
+- Back Math shield now properly block in first person view.
+- Added recipe for Hillaried Stone Pillar.
+- Added more recipes related to Tabu blocks.
+- Renamed "Devil Dye" to "Red Yellow Dye"

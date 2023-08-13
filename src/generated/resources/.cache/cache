@@ -1817,6 +1817,7 @@ a3e304938533ea9fa313f60536e715ec8daa47f4 assets/backmath/models/item/pumpkin_pop
 c309477b1bed9b1d1cc8d488e24f776c30bd4291 assets/backmath/models/item/pumpkin_slice.json
 f69616f79a5cc502a950f88b703a3bcdb28f72db assets/backmath/models/item/queen_lucy_shirt_alt.json
 ff4157e96c405ad8cd25eeb8299eddc940c985e9 assets/backmath/models/item/queen_lucy_shirt_current.json
+abad34fbc5fc377246aaa7d401eb4a079a523391 assets/backmath/models/item/queen_lucy_shirt_relic.json
 c4fbcaa546cfdc336f0f45b416837f4941a13db0 assets/backmath/models/item/queen_sophie_battle_info.json
 47adebf046654e6d32d64ae04135d55f76a3d7d6 assets/backmath/models/item/queen_sophie_battle_pack.json
 2e8875f40b17ca08910021ade5d48a08dedb0e13 assets/backmath/models/item/queen_sophie_pet_relic.json
@@ -2140,7 +2141,7 @@ e8aa9d35bc53aedeff5f2f3548719a81bf8a976e data/forge/tags/items/nuggets/milkllari
 ea90db850eab2f4c01339fde3bbfc2942aaf383f data/forge/tags/items/nuggets/milkllary.json
 41c12a812af16dfdb682770ed52c6ef3db404544 data/forge/tags/items/nuggets/moonering.json
 07b20d1e90851cc8989d12992bf14d0be17a6e58 data/forge/tags/items/nuggets/obsidian_infused_mid_term.json
-0da626b24204c9dfcc1a60acd84badb38fc95ce3 data/forge/tags/items/ores.json
+5d0f0783966178e0f2593a3f376502e072d80c5a data/forge/tags/items/ores.json
 f7540f4c9b870bda1fbe037294ef62163f1a0f9f data/forge/tags/items/ores/aljameed.json
 945f7dafcbed10b592ec684ef527a87b4dfa3d03 data/forge/tags/items/ores/aljamic_copper.json
 7de6dbfd5e01cac859a94b4433073633b3a27bb8 data/forge/tags/items/ores/aljamic_tin.json

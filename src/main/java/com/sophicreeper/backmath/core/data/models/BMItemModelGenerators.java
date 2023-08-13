@@ -1095,6 +1095,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("upgrade_token_base");
         compat("queen_lucy_shirt_current");
         compat("queen_lucy_shirt_alt");
+        compat("queen_lucy_shirt_relic");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

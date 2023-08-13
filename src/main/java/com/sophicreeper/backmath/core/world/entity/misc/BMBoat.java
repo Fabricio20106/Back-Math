@@ -29,7 +29,7 @@ public class BMBoat extends BoatEntity {
     }
 
     public BMBoat(World world, double x, double y, double z) {
-        this(BMEntities.BACKMATH_BOAT.get(), world);
+        this(BMEntities.BACK_MATH_BOAT.get(), world);
         this.setPosition(x, y, z);
         this.setMotion(Vector3d.ZERO);
         this.prevPosX = x;

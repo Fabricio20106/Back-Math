@@ -16,6 +16,11 @@ public class BMFluidTagsProvider extends FluidTagsProvider {
     }
 
     @Override
+    public String getName() {
+        return "Back Math - Fluid Tags";
+    }
+
+    @Override
     protected void registerTags() {
         this.getOrCreateBuilder(BMTags.Fluids.HILLARY).add(BMFluids.HILLARY.get()).add(BMFluids.FLOWING_HILLARY.get());
         this.getOrCreateBuilder(BMTags.Fluids.MILKLLARY).add(BMFluids.MILKLLARY.get()).add(BMFluids.FLOWING_MILKLLARY.get());

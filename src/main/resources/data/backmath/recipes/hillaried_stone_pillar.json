@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X",
+    "X"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:hillaried_stone_slab"
+    }
+  },
+  "result": {
+    "item": "backmath:hillaried_stone_pillar"
+  }
+}

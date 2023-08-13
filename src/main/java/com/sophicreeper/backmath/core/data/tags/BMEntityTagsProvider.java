@@ -15,6 +15,11 @@ public class BMEntityTagsProvider extends EntityTypeTagsProvider {
     }
 
     @Override
+    public String getName() {
+        return "Back Math - Entity Tags";
+    }
+
+    @Override
     protected void registerTags() {
         this.getOrCreateBuilder(BMTags.EntityTypes.ALJAMIC_WARS_IDEA).add(BMEntities.MALAIKA.get());
         this.getOrCreateBuilder(BMTags.EntityTypes.SOPHIE_IDEA).addTag(BMTags.EntityTypes.ALJAMIC_WARS_IDEA);

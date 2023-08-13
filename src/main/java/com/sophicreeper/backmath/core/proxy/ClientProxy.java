@@ -227,9 +227,9 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.SHY_FABRICIO.get(), ShyFabricioRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.KARATE_LUCIA.get(), KarateLuciaRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_SOPHIE.get(), InsomniaSophieRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(BMEntities.QUEEN_SOPHIE.get(), QueenSophieRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BMEntities.QUEEN_LUCY.get(), QueenSophieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WARRIOR_SOPHIE.get(), WarriorSophieRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(BMEntities.QUEEN_SOPHIE_PET.get(), QueenSophiePetRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BMEntities.QUEEN_LUCY_PET.get(), QueenSophiePetRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), ArcherInsomniaSophieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ZOMBIE.get(), InsomniaZombieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ZOMBIE_FABRICIO.get(), ZombieFabricioRenderer::new);
@@ -238,7 +238,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.JANTICLE.get(), JanticleRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ALJAMIC_BONES.get(), AljamicBonesRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.SLEEPISH_SKELETON.get(), SleepishSkeletonRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(BMEntities.BACKMATH_BOAT.get(), BMBoatRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BMEntities.BACK_MATH_BOAT.get(), BMBoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ARROW.get(), InsomniaArrowRenderer::new);
 
         // Item Properties

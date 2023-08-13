@@ -804,7 +804,7 @@
   "item.backmath.mid_term_breastplate": "Mid-Term Breastplate",
   "item.backmath.mid_term_leggings": "Mid-Term Leggings",
   "item.backmath.mid_term_boots": "Mid-Term Boots",
-  "item.backmath.devil_dye": "Devil Dye",
+  "item.backmath.devil_dye": "Red Yellow Dye",
   "item.backmath.choccy_milk_bucket": "Choccy Milk Bucket",
   "item.backmath.choccy_milk_bottle": "Choccy Milk Bottle",
   "item.backmath.hillary_agglomeratio": "Hillary Agglomeratio",
@@ -1460,6 +1460,8 @@
   "item.backmath.queen_lucy_shirt_current.desc": " Current",
   "item.backmath.queen_lucy_shirt_alt": "Queen Lucy Shirt",
   "item.backmath.queen_lucy_shirt_alt.desc": " Sophie's Alternate",
+  "item.backmath.queen_lucy_shirt_relic": "Queen Lucy Shirt",
+  "item.backmath.queen_lucy_shirt_relic.desc": " Queen Lucy Relic",
   "item.backmath.queen_lucy_shirt.design": "Shirt Design:",
 
   "item.minecraft.potion.effect.insomnia": "Potion of Insomnia",

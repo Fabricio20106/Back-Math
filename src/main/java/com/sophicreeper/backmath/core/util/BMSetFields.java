@@ -17,6 +17,7 @@ public class BMSetFields {
     public static final BMArmors GOLDEN_PLATED_ARMOR = new BMArmors.GoldenPlated();
     public static final BMArmors QLS_CURRENT = new BMArmors.QueenLucyShirt("current");
     public static final BMArmors QLS_ALT = new BMArmors.QueenLucyShirt("alt");
+    public static final BMArmors QLS_RELIC = new BMArmors.QueenLucyShirt("relic");
 
     // (Mostly) Full armor sets
     public static final BMArmors ANGELIC_ARMOR = new BMArmors.Angelic();
