@@ -646,9 +646,9 @@
   "death.attack.midTermArmorInstability.player": "%1$s's mid-term armor exploded out of instability because %2$s broke it",
   "death.attack.went.americanas": "%1$s went like Americanas",
   "death.attack.went.drinkFood": "%1$s went like foods and drinks",
-  "death.attack.patienceTea": "%1$s was poisoned by %2$s's tea",
+  "death.attack.patienceTea": "%1$s was poisoned by a patience tea",
   "death.attack.patienceTea.player": "%1$s was poisoned by %2$s's tea while running from %2$s",
-  "death.attack.chocoglued": "%1$s was chocoglued by %2$s",
+  "death.attack.chocoglued": "%1$s was chocoglued",
   "death.attack.chocoglued.player": "%1$s was chocoglued while running from %2$s",
 
   "effect.backmath.insomnia": "Insomnia",

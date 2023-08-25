@@ -17,7 +17,7 @@ public class BMColorManager {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerBlockColorHandlers(final ColorHandlerEvent.Block event) {
-        event.getBlockColors().register((x, reader, pos, u) -> reader != null && pos != null ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5d, 1.0d),
+        event.getBlockColors().register((x, reader, pos, u) -> reader != null && pos != null ? BiomeColors.getGrassColor(reader, pos) : GrassColors.get(0.5d, 1),
                 BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.AVONDALIC_NYLIUM.get());
 
         event.getBlockColors().register((x, reader, pos, u) -> reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault(),
@@ -32,7 +32,7 @@ public class BMColorManager {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public static void registerItemColorHandlers(final ColorHandlerEvent.Item event) {
-        event.getItemColors().register((stack, color) -> GrassColors.get(0.5d, 1.0d), AxolotlTest.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.AVONDALIC_NYLIUM.get(),
+        event.getItemColors().register((stack, color) -> GrassColors.get(0.5d, 1), AxolotlTest.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.AVONDALIC_NYLIUM.get(),
                 BMBlocks.JABUTICABA_LEAVES.get(), BMBlocks.GUARANA_OAK_LEAVES.get(), BMBlocks.MANGO_OAK_LEAVES.get(), BMBlocks.PINEAPPLE_OAK_LEAVES.get(), BMBlocks.LEMON_OAK_LEAVES.get(),
                 BMBlocks.BANANA_JUNGLE_LEAVES.get(), BMBlocks.MANGAED_MANGO_OAK_LEAVES.get(), BMBlocks.ORANGE_OAK_LEAVES.get(), BMBlocks.CORK_OAK_LEAVES.get(), BMBlocks.ALJANWOOD_LEAVES.get(),
                 BMBlocks.ALJANCAP_LEAVES.get(), BMBlocks.INSOMNIAN_LEAVES.get(), BMBlocks.AMARACAP_LEAVES.get(), BMBlocks.AVONDALIC_WILLOW_LEAVES.get());
