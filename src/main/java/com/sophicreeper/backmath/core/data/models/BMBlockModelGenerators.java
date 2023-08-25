@@ -35,6 +35,13 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         ResourceLocation aljanstoneBricks = modLoc("block/aljanstone_bricks");
         ResourceLocation cobbledAljanstone = modLoc("block/cobbled_aljanstone");
 
+        // From pre-data generation era. / From the handwritten JSON files.
+        simpleBlock(BMBlocks.DEVIL_BLOCK.get());
+
+        // Other handwritten files that, for some reason, were made there instead of here.
+        // Back Math 1.8.0
+        simpleBlock(BMBlocks.ALJANSTEEL_BLOCK.get(), models().cubeTop("aljansteel_block", modLoc("block/aljansteel_block"), modLoc("block/aljansteel_block_end")));
+
         simpleBlock(BMBlocks.DEVIL_ORE.get());
         simpleBlock(BMBlocks.NETHER_DEVIL_ORE.get());
         simpleBlock(BMBlocks.CHISELED_DEVIL_BLOCK.get());
@@ -425,6 +432,10 @@ public class BMBlockModelGenerators extends BlockStateProvider {
 
     public ModelBuilder<BlockModelBuilder> wallTorch(String name, ResourceLocation torch) {
         return models().singleTexture(name, mcLoc(BLOCK_FOLDER + "/wall_torch"), "torch", torch);
+    }
+
+    public ModelBuilder<BlockModelBuilder> templateToy(String name, ResourceLocation toy) {
+        return models().singleTexture(name, modLoc("block/template_toy"), "toy", toy);
     }
 
     // Methods below were taken from my other mod "Variants"

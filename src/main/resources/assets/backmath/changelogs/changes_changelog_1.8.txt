@@ -100,4 +100,7 @@ Prior fixes:
 - Back Math shield now properly block in first person view.
 - Added recipe for Hillaried Stone Pillar.
 - Added more recipes related to Tabu blocks.
-- Renamed "Devil Dye" to "Red Yellow Dye"
+- Renamed "Devil Dye" to "Red Yellow Dye".
+
+24/08/2023 (Thursday):
+- Moved most of the handwritten block and item models to the data generators.

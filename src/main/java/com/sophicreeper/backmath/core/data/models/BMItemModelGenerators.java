@@ -180,13 +180,11 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("milkllary_block");
         withExistingParent("jantic_ore");
         withExistingParent("aljancap_leaves");
-        withExistingParent("aljan_portal_frame");
         withExistingParent("aljanwood_grape_vine_post", modLoc("block/grape_vine_posts/aljanwood"));
         withExistingParent("aljancap_grape_vine_post", modLoc("block/grape_vine_posts/aljancap"));
         withExistingParent("insomnian_grape_vine_post", modLoc("block/grape_vine_posts/insomnian"));
         withExistingParent("aljamic_grass_block");
         withExistingParent("aljamic_dirt");
-        withExistingParent("aljanwood_barrel");
         withExistingParent("chiseled_aljanstone_fabricio");
         withExistingParent("chiseled_aljanstone_june");
         withExistingParent("chiseled_aljanstone_sophie");
@@ -342,6 +340,49 @@ public class BMItemModelGenerators extends ItemModelProvider {
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
         ModelFile handheldThirtyTwo = getExistingFile(modLoc("item/handheld_thirty_two"));
 
+        // From pre-data generation era. / From the handwritten JSON files.
+        compat("peitoraldeouro");
+        sword("empada_de_ouro");
+        sword("espada_de_manteiga");
+        standard(handheld, "lapis_rainbow");
+        compat("tiara_de_gato");
+        compat("talco_de_agua");
+        compat("hilary_bucket");
+        compat("spath_simos_drack");
+        compat("black_sulios");
+        compat("sophie");
+        compat("minced_sophie");
+        compat("fried_sophie");
+        compat("cooked_egg");
+        compat("water_jam");
+        compat("water_droplet_bread");
+        standardWithCustom(generated, "ze_droplet_bread", "water_droplet_bread");
+        compat("devil_ingot");
+        compat("devil_nugget");
+        compat("gel_alcohol");
+        compat("wellerman_disc");
+        compat("snowman_disc");
+        compat("arcade_disc");
+        compat("ericwho_disc");
+        compat("zonibus_disc");
+        compat("back_guide");
+        block(generated, "crystalline_birch_sapling");
+        standard(handheld, "queen_sophie_summoner_staff");
+
+        // Angelic Items
+        compat("angelic_ingot");
+        compat("angelic_nugget");
+        compat("angelic_sword");
+        compat("angelic_pickaxe");
+        compat("angelic_shovel");
+        compat("angelic_axe");
+        compat("angelic_hoe");
+        compat("angelic_helmet");
+        compat("angelic_chestplate");
+        compat("angelic_leggings");
+        compat("angelic_boots");
+        compat("angelic_door");
+
         standard(generated, "hilary_jam");
         standard(generated, "hilary_jam_bread");
         standard(generated, "jam_pot");
@@ -403,8 +444,6 @@ public class BMItemModelGenerators extends ItemModelProvider {
         standard(generated, "mid_term_door");
         standard(generated, "hilary_lantern");
         standard(generated, "hilary_mid_term_lantern");
-        milkedSword("espada_de_manteiga", false);
-        milkedSword("empada_de_ouro", false);
         milkedSword("angelic_sword", false);
         milkedSword("mid_term_sword", false);
         block(generated, "red_yellow_flower");
@@ -419,7 +458,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         standard(generated, "mid_term_leggings");
         standard(generated, "mid_term_boots");
         standard(generated, "devil_dye");
-        blockWithCustomFile(generated, "devil_stained_glass_pane", "devil_stained_glass");
+        blockWithCustom(generated, "devil_stained_glass_pane", "devil_stained_glass");
         standard(generated, "hillary_cake");
         standard(generated, "milkllary_cake");
         standard(generated, "choccy_milk_bucket");
@@ -679,7 +718,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         block(generated, "aljanwood_ladder");
         block(generated, "aljanwood_sapling");
         block(generated, "turtle_fried_egg_flower");
-        blockWithCustomFile(generated, "grape_vines", "grape_vines_top");
+        blockWithCustom(generated, "grape_vines", "grape_vines_top");
         block(generated, "aljan_tulip");
         block(generated, "poison_rose");
         block(generated, "aljanshroom");
@@ -935,7 +974,7 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("aljamic_glass_bottle");
         compat("sleepishwater_bottle");
         compat("insomnia_arrow");
-        blockWithCustomFile(generated, "aljamic_glass_pane", "aljamic_glass");
+        blockWithCustom(generated, "aljamic_glass_pane", "aljamic_glass");
         block(generated, "wild_aljamic_onions");
         compat("glue");
         standard(handheld, "pink_gum_frying_pan");
@@ -1102,11 +1141,15 @@ public class BMItemModelGenerators extends ItemModelProvider {
         return getBuilder(name).parent(model).texture("layer0", "item/" + name);
     }
 
+    private ItemModelBuilder standardWithCustom(ModelFile model, String name, String texName) {
+        return getBuilder(name).parent(model).texture("layer0", "item/" + texName);
+    }
+
     private ItemModelBuilder block(ModelFile model, String name) {
         return getBuilder(name).parent(model).texture("layer0", "block/" + name);
     }
 
-    private ItemModelBuilder blockWithCustomFile(ModelFile model, String fileName, String blockName) {
+    private ItemModelBuilder blockWithCustom(ModelFile model, String fileName, String blockName) {
         return getBuilder(fileName).parent(model).texture("layer0", "block/" + blockName);
     }
 
