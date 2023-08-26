@@ -9,11 +9,11 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
 
-public class BMItemModelGenerators extends ItemModelProvider {
+public class BMItemModelProvider extends ItemModelProvider {
     public final ModelFile modelFile = getExistingFile(mcLoc("item/handheld"));
     public final ModelFile modelFileGenerated = getExistingFile(mcLoc("item/generated"));
 
-    public BMItemModelGenerators(DataGenerator generator, ExistingFileHelper fileHelper) {
+    public BMItemModelProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
         super(generator, BackMath.MOD_ID, fileHelper);
     }
 
@@ -335,6 +335,11 @@ public class BMItemModelGenerators extends ItemModelProvider {
         withExistingParent("mossy_angelic_brick_slab");
         withExistingParent("angelic_pillar");
         withExistingParent("insomnia_sophie_head");
+        withExistingParent("raw_aljamic_copper_block");
+        withExistingParent("raw_aljamic_tin_block");
+        withExistingParent("warmterm_block");
+        withExistingParent("coldterm_block");
+        withExistingParent("chiseled_obsiditerm");
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -372,11 +377,11 @@ public class BMItemModelGenerators extends ItemModelProvider {
         // Angelic Items
         compat("angelic_ingot");
         compat("angelic_nugget");
-        compat("angelic_sword");
-        compat("angelic_pickaxe");
-        compat("angelic_shovel");
-        compat("angelic_axe");
-        compat("angelic_hoe");
+        standard(handheld, "angelic_sword");
+        standard(handheld, "angelic_pickaxe");
+        standard(handheld, "angelic_shovel");
+        standard(handheld, "angelic_axe");
+        standard(handheld, "angelic_hoe");
         compat("angelic_helmet");
         compat("angelic_chestplate");
         compat("angelic_leggings");
@@ -1135,6 +1140,8 @@ public class BMItemModelGenerators extends ItemModelProvider {
         compat("queen_lucy_shirt_current");
         compat("queen_lucy_shirt_alt");
         compat("queen_lucy_shirt_relic");
+        compat("warmterm_ingot");
+        compat("coldterm_ingot");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

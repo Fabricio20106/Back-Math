@@ -4,7 +4,9 @@
     "#forge:storage_blocks/devil",
     "#forge:storage_blocks/angelic",
     "#forge:storage_blocks/christian_mid_term",
+    "#forge:storage_blocks/warmterm",
     "#forge:storage_blocks/mid_term",
+    "#forge:storage_blocks/coldterm",
     "#forge:storage_blocks/christian_mid_term_angelic",
     "#forge:storage_blocks/christian_mid_term_devil",
     "#forge:storage_blocks/devil_angelic",
@@ -22,6 +24,8 @@
     "#forge:storage_blocks/raw_aljameed",
     "#forge:storage_blocks/raw_moonering",
     "#forge:storage_blocks/mid_hillary",
-    "#forge:storage_blocks/jantical"
+    "#forge:storage_blocks/jantical",
+    "#forge:storage_blocks/raw_aljamic_copper",
+    "#forge:storage_blocks/raw_aljamic_tin"
   ]
 }

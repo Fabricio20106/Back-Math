@@ -18,7 +18,9 @@ public class BMTags {
         public static final ITag.INamedTag<Item> INGOTS_DEVIL_ANGELIC = forge("ingots/devil_angelic");
         public static final ITag.INamedTag<Item> INGOTS_CHRISTIAN_MID_TERM_ANGELIC = forge("ingots/christian_mid_term_angelic");
         public static final ITag.INamedTag<Item> INGOTS_CHRISTIAN_MID_TERM_DEVIL = forge("ingots/christian_mid_term_devil");
+        public static final ITag.INamedTag<Item> INGOTS_WARMTERM = forge("ingots/warmterm");
         public static final ITag.INamedTag<Item> INGOTS_MID_TERM = forge("ingots/mid_term");
+        public static final ITag.INamedTag<Item> INGOTS_COLDTERM = forge("ingots/coldterm");
         public static final ITag.INamedTag<Item> INGOTS_OBSIDIAN_INFUSED_MID_TERM = forge("ingots/obsidian_infused_mid_term");
         public static final ITag.INamedTag<Item> INGOTS_HARDENED_AMARACAMEL = forge("ingots/hardened_amaracamel");
         public static final ITag.INamedTag<Item> INGOTS_MILKLLARY = forge("ingots/milkllary");
@@ -168,7 +170,9 @@ public class BMTags {
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_DEVIL_ANGELIC = forge("storage_blocks/devil_angelic");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_CHRISTIAN_MID_TERM_ANGELIC = forge("storage_blocks/christian_mid_term_angelic");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_CHRISTIAN_MID_TERM_DEVIL = forge("storage_blocks/christian_mid_term_devil");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_WARMTERM = forge("storage_blocks/warmterm");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_MID_TERM = forge("storage_blocks/mid_term");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_COLDTERM = forge("storage_blocks/coldterm");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_MID_TERM = forge("storage_blocks/raw_mid_term");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM = forge("storage_blocks/obsidian_infused_mid_term");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_CRYSTALLINE_ANGELIC = forge("storage_blocks/crystalline_angelic");
@@ -182,6 +186,8 @@ public class BMTags {
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_MOONERING = forge("storage_blocks/raw_moonering");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_MID_HILLARY = forge("storage_blocks/mid_hillary");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_JANTICAL = forge("storage_blocks/jantical");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_ALJAMIC_COPPER = forge("storage_blocks/raw_aljamic_copper");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_ALJAMIC_TIN = forge("storage_blocks/raw_aljamic_tin");
 
         public static final ITag.INamedTag<Item> ORES_DEVIL = forge("ores/devil");
         public static final ITag.INamedTag<Item> ORES_ANGELIC = forge("ores/angelic");
@@ -226,7 +232,9 @@ public class BMTags {
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_DEVIL_ANGELIC = forge("storage_blocks/devil_angelic");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHRISTIAN_MID_TERM_ANGELIC = forge("storage_blocks/christian_mid_term_angelic");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CHRISTIAN_MID_TERM_DEVIL = forge("storage_blocks/christian_mid_term_devil");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_WARMTERM = forge("storage_blocks/warmterm");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MID_TERM = forge("storage_blocks/mid_term");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_COLDTERM = forge("storage_blocks/coldterm");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_MID_TERM = forge("storage_blocks/raw_mid_term");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM = forge("storage_blocks/obsidian_infused_mid_term");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_CRYSTALLINE_ANGELIC = forge("storage_blocks/crystalline_angelic");
@@ -240,6 +248,8 @@ public class BMTags {
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_MOONERING = forge("storage_blocks/raw_moonering");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_MID_HILLARY = forge("storage_blocks/mid_hillary");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_JANTICAL = forge("storage_blocks/jantical");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ALJAMIC_COPPER = forge("storage_blocks/raw_aljamic_copper");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ALJAMIC_TIN = forge("storage_blocks/raw_aljamic_tin");
 
         public static final ITag.INamedTag<Block> ORES_DEVIL = forge("ores/devil");
         public static final ITag.INamedTag<Block> ORES_ANGELIC = forge("ores/angelic");

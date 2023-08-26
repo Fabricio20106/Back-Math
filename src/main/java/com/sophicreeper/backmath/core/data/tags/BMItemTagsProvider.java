@@ -28,7 +28,9 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_DEVIL).add(AxolotlTest.DEVIL_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_ANGELIC).add(AxolotlTest.ANGELIC_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_CHRISTIAN_MID_TERM).add(AxolotlTest.CHRISTIAN_MID_TERM_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_WARMTERM).add(AxolotlTest.WARMTERM_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_MID_TERM).add(AxolotlTest.MID_TERM_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_COLDTERM).add(AxolotlTest.COLDTERM_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_CHRISTIAN_MID_TERM_ANGELIC).add(AxolotlTest.CHRISTIAN_MID_TERM_ANGELIC_ALLOY_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_CHRISTIAN_MID_TERM_DEVIL).add(AxolotlTest.CHRISTIAN_MID_TERM_DEVIL_ALLOY_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_DEVIL_ANGELIC).add(AxolotlTest.DEVIL_ANGELIC_ALLOY_BLOCK.get());
@@ -47,6 +49,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_RAW_MOONERING).add(AxolotlTest.RAW_MOONER_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_MID_HILLARY).add(AxolotlTest.MID_HILLARY_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_JANTICAL).add(AxolotlTest.JANTICAL_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_RAW_ALJAMIC_COPPER).add(AxolotlTest.RAW_ALJAMIC_COPPER_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_RAW_ALJAMIC_TIN).add(AxolotlTest.RAW_ALJAMIC_TIN_BLOCK.get());
 
         this.getOrCreateBuilder(BMTags.Items.ORES_DEVIL).add(AxolotlTest.DEVIL_ORE.get()).add(AxolotlTest.DEEPSLATE_DEVIL_ORE.get()).add(AxolotlTest.NETHER_DEVIL_ORE.get()).add(AxolotlTest.RAW_DEVIL.get());
         this.getOrCreateBuilder(BMTags.Items.ORES_ANGELIC).add(AxolotlTest.ANGELIC_ORE.get()).add(AxolotlTest.DEEPSLATE_ANGELIC_ORE.get()).add(AxolotlTest.RAW_ANGELIC.get());
@@ -63,7 +67,9 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_DEVIL);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_CHRISTIAN_MID_TERM);
+        this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_WARMTERM);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_MID_TERM);
+        this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_COLDTERM);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_CHRISTIAN_MID_TERM_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_CHRISTIAN_MID_TERM_DEVIL);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_DEVIL_ANGELIC);
@@ -82,6 +88,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_RAW_MOONERING);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_MID_HILLARY);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_JANTICAL);
+        this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_RAW_ALJAMIC_COPPER);
+        this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_RAW_ALJAMIC_TIN);
 
         this.getOrCreateBuilder(Tags.Items.ORES).addTag(BMTags.Items.ORES_DEVIL).addTag(BMTags.Items.ORES_ANGELIC).addTag(BMTags.Items.ORES_MID_TERM)
                 .addTag(BMTags.Items.ORES_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.ORES_ALJAMEED).addTag(BMTags.Items.ORES_MOONERING).addTag(BMTags.Items.ORES_JANTICAL)
@@ -90,7 +98,9 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.INGOTS_CHRISTIAN_MID_TERM).add(AxolotlTest.CHRISTIAN_MID_TERM_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_ANGELIC).add(AxolotlTest.ANGELIC_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_DEVIL).add(AxolotlTest.DEVIL_INGOT.get());
+        this.getOrCreateBuilder(BMTags.Items.INGOTS_WARMTERM).add(AxolotlTest.WARMTERM_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_MID_TERM).add(AxolotlTest.MID_TERM_INGOT.get());
+        this.getOrCreateBuilder(BMTags.Items.INGOTS_COLDTERM).add(AxolotlTest.COLDTERM_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_CHRISTIAN_MID_TERM_ANGELIC).add(AxolotlTest.CHRISTIAN_MID_TERM_ANGELIC_ALLOY_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_CHRISTIAN_MID_TERM_DEVIL).add(AxolotlTest.CHRISTIAN_MID_TERM_DEVIL_ALLOY_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_DEVIL_ANGELIC).add(AxolotlTest.DEVIL_ANGELIC_ALLOY_INGOT.get());
@@ -208,7 +218,9 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_DEVIL);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_CHRISTIAN_MID_TERM);
+        this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_WARMTERM);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_MID_TERM);
+        this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_COLDTERM);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_DEVIL_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_CHRISTIAN_MID_TERM_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_CHRISTIAN_MID_TERM_DEVIL);

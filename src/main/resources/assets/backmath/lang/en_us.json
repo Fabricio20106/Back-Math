@@ -627,6 +627,11 @@
   "block.backmath.angelic_pillar": "Angelic Pillar",
   "block.backmath.insomnia_sophie_head": "Insomnia Sophie Head",
   "block.backmath.insomnia_sophie_wall_head": "Insomnia Sophie Wall Head",
+  "block.backmath.coldterm_block": "Block of Coldterm",
+  "block.backmath.warmterm_block": "Block of Warmterm",
+  "block.backmath.chiseled_obsiditerm": "Chiseled Obsiditerm",
+  "block.backmath.raw_aljamic_copper_block": "Block of Raw Aljamic Copper",
+  "block.backmath.raw_aljamic_tin_block": "Block of Raw Aljamic Tin",
 
   "crop.backmath.angelic": "Angelic",
   "crop.backmath.christian_mid_term": "Christian Mid-Term",
@@ -1463,6 +1468,8 @@
   "item.backmath.queen_lucy_shirt_relic": "Queen Lucy Shirt",
   "item.backmath.queen_lucy_shirt_relic.desc": " Queen Lucy Relic",
   "item.backmath.queen_lucy_shirt.design": "Shirt Design:",
+  "item.backmath.coldterm_ingot": "Coldterm Ingot",
+  "item.backmath.warmterm_ingot": "Warmterm Ingot",
 
   "item.minecraft.potion.effect.insomnia": "Potion of Insomnia",
   "item.minecraft.potion.effect.long_insomnia": "Potion of Insomnia",

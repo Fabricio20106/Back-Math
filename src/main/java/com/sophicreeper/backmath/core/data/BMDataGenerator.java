@@ -1,8 +1,8 @@
 package com.sophicreeper.backmath.core.data;
 
 import com.sophicreeper.backmath.core.client.BackMath;
-import com.sophicreeper.backmath.core.data.models.BMBlockModelGenerators;
-import com.sophicreeper.backmath.core.data.models.BMItemModelGenerators;
+import com.sophicreeper.backmath.core.data.models.BMBlockStateProvider;
+import com.sophicreeper.backmath.core.data.models.BMItemModelProvider;
 import com.sophicreeper.backmath.core.data.tags.BMBlockTagsProvider;
 import com.sophicreeper.backmath.core.data.tags.BMEntityTagsProvider;
 import com.sophicreeper.backmath.core.data.tags.BMFluidTagsProvider;
@@ -20,8 +20,8 @@ public final class BMDataGenerator {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
-        generator.addProvider(new BMBlockModelGenerators(generator, fileHelper));
-        generator.addProvider(new BMItemModelGenerators(generator, fileHelper));
+        generator.addProvider(new BMBlockStateProvider(generator, fileHelper));
+        generator.addProvider(new BMItemModelProvider(generator, fileHelper));
 
         BMBlockTagsProvider bmBlockTags = new BMBlockTagsProvider(generator, fileHelper);
         generator.addProvider(bmBlockTags);

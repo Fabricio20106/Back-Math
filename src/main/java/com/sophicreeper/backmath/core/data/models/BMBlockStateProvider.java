@@ -16,8 +16,8 @@ import javax.annotation.Nonnull;
 
 import static net.minecraftforge.client.model.generators.ModelProvider.BLOCK_FOLDER;
 
-public class BMBlockModelGenerators extends BlockStateProvider {
-    public BMBlockModelGenerators(DataGenerator generator, ExistingFileHelper fileHelper) {
+public class BMBlockStateProvider extends BlockStateProvider {
+    public BMBlockStateProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
         super(generator, BackMath.MOD_ID, fileHelper);
     }
 
@@ -342,6 +342,8 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         simpleBlock(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get(), models().cross("ender_dragon_fried_egg_flower", modLoc("block/ender_dragon_fried_egg_flower")));
         simpleBlock(BMBlocks.POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER.get(), models().withExistingParent("potted_ender_dragon_fried_egg_flower",
                 "block/flower_pot_cross").texture("plant", "block/ender_dragon_fried_egg_flower"));
+        simpleBlock(BMBlocks.RAW_ALJAMIC_COPPER_BLOCK.get());
+        simpleBlock(BMBlocks.RAW_ALJAMIC_TIN_BLOCK.get());
 
         simpleBlock(BMBlocks.GOLDENWOOD_LEAVES.get());
         simpleBlock(BMBlocks.ENCHANTED_GOLDENWOOD_LEAVES.get());
@@ -410,14 +412,17 @@ public class BMBlockModelGenerators extends BlockStateProvider {
         doorBlock((DoorBlock) BMBlocks.CORK_OAK_DOOR.get(), modLoc("block/cork_oak_door_bottom"), modLoc("block/cork_oak_door_top"));
         trapdoorBlock((TrapDoorBlock) BMBlocks.CORK_OAK_TRAPDOOR.get(), modLoc("block/cork_oak_trapdoor"), true);
 
+        simpleBlock(BMBlocks.COLDTERM_BLOCK.get());
         simpleBlock(BMBlocks.COLDTERM_BRICKS.get());
         stairsBlock((StairsBlock) BMBlocks.COLDTERM_BRICK_STAIRS.get(), modLoc("block/coldterm_bricks"));
         slabBlock((SlabBlock) BMBlocks.COLDTERM_BRICK_SLAB.get(), modLoc("block/coldterm_bricks"), modLoc("block/coldterm_bricks"));
         wallBlock((WallBlock) BMBlocks.COLDTERM_BRICK_WALL.get(), modLoc("block/coldterm_bricks"));
+        simpleBlock(BMBlocks.WARMTERM_BLOCK.get());
         simpleBlock(BMBlocks.WARMTERM_BRICKS.get());
         stairsBlock((StairsBlock) BMBlocks.WARMTERM_BRICK_STAIRS.get(), modLoc("block/warmterm_bricks"));
         slabBlock((SlabBlock) BMBlocks.WARMTERM_BRICK_SLAB.get(), modLoc("block/warmterm_bricks"), modLoc("block/warmterm_bricks"));
         wallBlock((WallBlock) BMBlocks.WARMTERM_BRICK_WALL.get(), modLoc("block/warmterm_bricks"));
+        simpleBlock(BMBlocks.CHISELED_OBSIDITERM.get());
         simpleBlock(BMBlocks.OBSIDITERM_BRICKS.get());
         stairsBlock((StairsBlock) BMBlocks.OBSIDITERM_BRICK_STAIRS.get(), modLoc("block/obsiditerm_bricks"));
         slabBlock((SlabBlock) BMBlocks.OBSIDITERM_BRICK_SLAB.get(), modLoc("block/obsiditerm_bricks"), modLoc("block/obsiditerm_bricks"));

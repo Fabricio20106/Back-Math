@@ -452,15 +452,18 @@ public class BMBlocks {
     public static final RegistryObject<Block> INSOMNIA_SOPHIE_HEAD = BLOCKS.register("insomnia_sophie_head", () -> new BMHeadBlock(AbstractBlock.Properties.from(Blocks.PLAYER_HEAD)));
     public static final RegistryObject<Block> INSOMNIA_SOPHIE_WALL_HEAD = BLOCKS.register("insomnia_sophie_wall_head", () -> new BMWallHeadBlock(AbstractBlock.Properties.from(Blocks.PLAYER_WALL_HEAD)));
 
-    // 1.8.0: Coldterm, Warmterm and Obsiditerm Bricks:
+    // 1.8.0: Coldterm, Warmterm and Obsiditerm Related Blocks:
+    public static final RegistryObject<Block> COLDTERM_BLOCK = BLOCKS.register("coldterm_block", () -> new Block(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
     public static final RegistryObject<Block> COLDTERM_BRICKS = BLOCKS.register("coldterm_bricks", () -> new Block(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
     public static final RegistryObject<Block> COLDTERM_BRICK_STAIRS = BLOCKS.register("coldterm_brick_stairs", () -> new StairsBlock(BMBlocks.MID_TERM_BLOCK.get().getDefaultState(), AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
     public static final RegistryObject<Block> COLDTERM_BRICK_SLAB = BLOCKS.register("coldterm_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
     public static final RegistryObject<Block> COLDTERM_BRICK_WALL = BLOCKS.register("coldterm_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> WARMTERM_BLOCK = BLOCKS.register("warmterm_block", () -> new Block(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
     public static final RegistryObject<Block> WARMTERM_BRICKS = BLOCKS.register("warmterm_bricks", () -> new Block(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
     public static final RegistryObject<Block> WARMTERM_BRICK_STAIRS = BLOCKS.register("warmterm_brick_stairs", () -> new StairsBlock(BMBlocks.MID_TERM_BLOCK.get().getDefaultState(), AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
     public static final RegistryObject<Block> WARMTERM_BRICK_SLAB = BLOCKS.register("warmterm_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
     public static final RegistryObject<Block> WARMTERM_BRICK_WALL = BLOCKS.register("warmterm_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
+    public static final RegistryObject<Block> CHISELED_OBSIDITERM = BLOCKS.register("chiseled_obsiditerm", () -> new Block(AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
     public static final RegistryObject<Block> OBSIDITERM_BRICKS = BLOCKS.register("obsiditerm_bricks", () -> new Block(AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
     public static final RegistryObject<Block> OBSIDITERM_BRICK_STAIRS = BLOCKS.register("obsiditerm_brick_stairs", () -> new StairsBlock(Blocks.OBSIDIAN.getDefaultState(), AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
     public static final RegistryObject<Block> OBSIDITERM_BRICK_SLAB = BLOCKS.register("obsiditerm_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
@@ -475,6 +478,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> WILD_ALJAMIC_ONIONS = BLOCKS.register("wild_aljamic_onions", () -> new WildAljamicOnionsBlock(AbstractBlock.Properties.from(Blocks.CARROTS)));
     public static final RegistryObject<Block> ALJANSTEEL_CHAIN = BLOCKS.register("aljansteel_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN)));
     public static final RegistryObject<Block> ALJANSTEEL_BLOCK = BLOCKS.register("aljansteel_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> RAW_ALJAMIC_COPPER_BLOCK = BLOCKS.register("raw_aljamic_copper_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_ORE).hardnessAndResistance(5, 6)));
+    public static final RegistryObject<Block> RAW_ALJAMIC_TIN_BLOCK = BLOCKS.register("raw_aljamic_tin_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_ORE).hardnessAndResistance(5, 6)));
 
     // 1.8.0: Avondalic Willow Wood:
     public static final RegistryObject<Block> AVONDALIC_NYLIUM = BLOCKS.register("avondalic_nylium", () -> new AljamicGrassBlock(AbstractBlock.Properties.from(Blocks.GRASS_BLOCK).harvestTool(ToolType.SHOVEL)));

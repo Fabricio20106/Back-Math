@@ -27,7 +27,9 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_DEVIL).add(BMBlocks.DEVIL_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_ANGELIC).add(BMBlocks.ANGELIC_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_CHRISTIAN_MID_TERM).add(BMBlocks.CHRISTIAN_MID_TERM_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_WARMTERM).add(BMBlocks.WARMTERM_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_MID_TERM).add(BMBlocks.MID_TERM_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_COLDTERM).add(BMBlocks.COLDTERM_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_CHRISTIAN_MID_TERM_ANGELIC).add(BMBlocks.CHRISTIAN_MID_TERM_ANGELIC_ALLOY_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_CHRISTIAN_MID_TERM_DEVIL).add(BMBlocks.CHRISTIAN_MID_TERM_DEVIL_ALLOY_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_DEVIL_ANGELIC).add(BMBlocks.DEVIL_ANGELIC_ALLOY_BLOCK.get());
@@ -42,6 +44,8 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_RAW_DEVIL).add(BMBlocks.RAW_DEVIL_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_RAW_ANGELIC).add(BMBlocks.RAW_ANGELIC_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_RAW_MID_TERM).add(BMBlocks.RAW_MID_TERM_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_RAW_ALJAMIC_COPPER).add(BMBlocks.RAW_ALJAMIC_COPPER_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_RAW_ALJAMIC_TIN).add(BMBlocks.RAW_ALJAMIC_TIN_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_RAW_ALJAMEED).add(BMBlocks.RAW_ALJAMEED_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_RAW_MOONERING).add(BMBlocks.RAW_MOONER_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_MID_HILLARY).add(BMBlocks.MID_HILLARY_BLOCK.get());
@@ -71,7 +75,12 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_CHRISTIAN_MID_TERM_ANGELIC);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_CHRISTIAN_MID_TERM_DEVIL);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_DEVIL_ANGELIC);
+        this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_WARMTERM);
+        this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_MID_TERM);
+        this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_COLDTERM);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_OBSIDIAN_INFUSED_MID_TERM);
+        this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_RAW_ALJAMIC_COPPER);
+        this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_RAW_ALJAMIC_TIN);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_ALJAMEED);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_RAW_ALJAMEED);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_ALJANSTEEL);
@@ -81,7 +90,6 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_HARDENED_AMARACAMEL);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_MILKLLARY);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_CRYSTALLINE_ANGELIC);
-        this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_MID_TERM);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_RAW_MID_TERM);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_MID_HILLARY);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_JANTICAL);

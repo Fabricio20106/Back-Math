@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/warmterm"
+    },
+    {
+      "tag": "forge:ingots/warmterm"
+    },
+    {
+      "tag": "forge:ingots/coldterm"
+    },
+    {
+      "tag": "forge:ingots/coldterm"
+    }
+  ],
+  "result": {
+    "item": "backmath:mid_term"
+  }
+}
