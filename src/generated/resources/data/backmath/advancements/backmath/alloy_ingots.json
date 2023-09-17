@@ -1,0 +1,48 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_any_alloy_ingots": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:devil_angelic_alloy_ingot"
+            ]
+          },
+          {
+            "items": [
+              "backmath:christian_mid_term_devil_alloy_ingot"
+            ]
+          },
+          {
+            "items": [
+              "backmath:christian_mid_term_angelic_alloy_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.mixing_ingots.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:christian_mid_term_angelic_alloy_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.mixing_ingots.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_any_alloy_ingots"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

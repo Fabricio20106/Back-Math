@@ -201,14 +201,16 @@ public class ClientProxy extends CommonProxy {
         ItemBlockRenderTypes.setRenderLayer(BMBlocks.GOLDENWOOD_LADDER.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BMBlocks.INSOMNIA_SOPHIE_HEAD.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BMBlocks.INSOMNIA_SOPHIE_WALL_HEAD.get(), RenderType.cutout());
-        /*ItemBlockRenderTypes.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BMFluids.HILLARY.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_MILKLLARY.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.LIQUID_ALJAME.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_LIQUID_ALJAME.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.SLEEPISHWATER.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_SLEEPISHWATER.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.LIQUID_MANGA.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_LIQUID_MANGA.get(), RenderType.translucent());*/
+        ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_LIQUID_MANGA.get(), RenderType.translucent());
 
         // Entity renderers
         /*RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);
@@ -289,17 +291,6 @@ public class ClientProxy extends CommonProxy {
             }
         }
     }*/
-
-    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void subClientSetup(FMLClientSetupEvent event) {
-            event.enqueueWork(() -> {
-                ItemBlockRenderTypes.setRenderLayer(BMFluids.HILLARY.get(), RenderType.translucent());
-                ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.translucent());
-            });
-        }
-    }
 
     // Double layer render lookup
     public static boolean getDoubleLayer(RenderType layerToCheck) {

@@ -1,0 +1,39 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_the_water_talc_power": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:talco_de_agua"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.water_in_dust_form.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:talco_de_agua",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.water_in_dust_form.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_water_talc_power"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

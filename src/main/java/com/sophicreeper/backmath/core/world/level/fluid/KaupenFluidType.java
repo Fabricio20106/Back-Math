@@ -87,7 +87,7 @@ public class KaupenFluidType extends FluidType {
 
             @Override
             public void modifyFogRender(Camera camera, FogRenderer.FogMode mode, float renderDistance, float partialTick, float nearDistance, float farDistance, FogShape shape) {
-                RenderSystem.setShaderFogStart(1f);
+                RenderSystem.setShaderFogStart(5f);
                 RenderSystem.setShaderFogEnd(10f); // Distance when the fog starts.
             }
         });

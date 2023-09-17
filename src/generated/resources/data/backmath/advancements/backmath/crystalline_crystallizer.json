@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/crystallizer",
+  "criteria": {
+    "has_the_crystalline_crystallizer": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:crystalline_crystallizer"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.crystalline_crystallizer.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:crystalline_crystallizer"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.crystalline_crystallizer.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_crystalline_crystallizer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

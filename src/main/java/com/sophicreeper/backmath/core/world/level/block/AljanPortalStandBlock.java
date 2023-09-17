@@ -36,7 +36,7 @@ public class AljanPortalStandBlock extends Block implements SimpleWaterloggedBlo
 
     public AljanPortalStandBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(JANTICAL, false).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(JANTICAL, Boolean.FALSE).setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override

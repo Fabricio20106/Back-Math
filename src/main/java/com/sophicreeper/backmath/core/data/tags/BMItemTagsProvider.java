@@ -325,7 +325,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
 
         this.tag(BMTags.Items.ALPHA_IDEA).add(AxolotlTest.GOLDEN_PLATED.get()).add(AxolotlTest.GOLDEN_PATTY.get()).add(AxolotlTest.BUTTER_SWORD.get())
                 .add(AxolotlTest.SPATH_SIRIUS_BLACK.get()).add(AxolotlTest.BLACK_SULIOS.get()).add(AxolotlTest.RAINBOW_PENCIL.get()).add(AxolotlTest.WATER_TALC_POWDER.get())
-                .add(AxolotlTest.CAT_TIARA.get())/*.add(AxolotlTest.HILLARY_BUCKET.get())*/.add(AxolotlTest.LAGUSTA.get()).add(AxolotlTest.PATTY.get()).add(AxolotlTest.CHEESE_BREAD.get())
+                .add(AxolotlTest.CAT_TIARA.get()).add(AxolotlTest.HILLARY_BUCKET.get()).add(AxolotlTest.LAGUSTA.get()).add(AxolotlTest.PATTY.get()).add(AxolotlTest.CHEESE_BREAD.get())
                 .add(AxolotlTest.CHEESE_BREAD_BAG.get()).add(AxolotlTest.OLIVE_PICKAXE.get()).addTag(BMTags.Items.SINGULARITIES_MID_TERM);
         this.tag(BMTags.Items.SOPHIES_TAKE_OVER_IDEA).add(AxolotlTest.ALJAME.get()).add(AxolotlTest.HUMAN_PATRICK.get()).add(AxolotlTest.MECH_MECH.get()).add(AxolotlTest.CAREWNI.get())
                 .add(AxolotlTest.AMARACAMEL_BATTER.get()).add(AxolotlTest.AMARACAMEL_BATTER_BAG.get()).add(AxolotlTest.EMPTY_AMARACAMEL_BATTER_BAG.get()).add(AxolotlTest.ENERGETIC_MONSTER.get());
@@ -363,8 +363,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.SOPHIES_DRAMATIC_ENTRANCE_2_DISC.get()).add(AxolotlTest.SOPHIES_DRAMATIC_ENTRANCE_3_DISC.get());
         this.tag(BMTags.Items.BOTTLES).addTag(BMTags.Items.JUICES).add(AxolotlTest.CHOCCY_MILK_BOTTLE.get()).add(AxolotlTest.HILLARY_BOTTLE.get()).add(AxolotlTest.MILKLLARY_BOTTLE.get())
                 .add(AxolotlTest.SOPHIE_FRAGRANCE.get()).add(AxolotlTest.GEL_ALCOHOL.get());
-        //this.tag(BMTags.Items.BUCKETS).add(AxolotlTest.HILLARY_BUCKET.get()).add(AxolotlTest.MILKLLARY_BUCKET.get()).add(AxolotlTest.LIQUEFIED_MONSTER_BUCKET.get())
-        //        .add(AxolotlTest.LIQUID_ALJAME_BUCKET.get()).add(AxolotlTest.LIQUID_MANGA_BUCKET.get()).add(AxolotlTest.SLEEPISHWATER_BUCKET.get())
+        this.tag(BMTags.Items.BUCKETS).add(AxolotlTest.HILLARY_BUCKET.get()).add(AxolotlTest.MILKLLARY_BUCKET.get()).add(AxolotlTest.LIQUEFIED_MONSTER_BUCKET.get())
+                .add(AxolotlTest.LIQUID_ALJAME_BUCKET.get()).add(AxolotlTest.LIQUID_MANGA_BUCKET.get()).add(AxolotlTest.SLEEPISHWATER_BUCKET.get());
         this.tag(BMTags.Items.BUCKETS).add(AxolotlTest.MOLTEN_MID_TERM_BUCKET.get()).add(AxolotlTest.CHOCCY_MILK_BUCKET.get()).add(AxolotlTest.COFFEE_MUG.get());
         this.tag(BMTags.Items.JUICES).add(AxolotlTest.GUARANA_JUICE.get()).add(AxolotlTest.MANGO_JUICE.get()).add(AxolotlTest.MANGA_JUICE.get()).add(AxolotlTest.GRAPE_JUICE.get())
                 .add(AxolotlTest.LEMON_JUICE.get()).add(AxolotlTest.PINEAPPLE_JUICE.get()).add(AxolotlTest.ORANGE_JUICE.get()).add(AxolotlTest.BANANA_JUICE.get()).add(AxolotlTest.GUAVA_JUICE.get())

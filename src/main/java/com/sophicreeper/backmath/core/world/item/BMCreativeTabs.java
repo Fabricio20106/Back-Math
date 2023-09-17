@@ -551,6 +551,12 @@ public class BMCreativeTabs {
                 output.accept(AxolotlTest.CRYSTALLIZED_PUMPKIN_INGOT.get());
                 output.accept(AxolotlTest.CRYSTALLIZED_SWEET_BERRY_INGOT.get());
                 output.accept(AxolotlTest.CRYSTALLIZED_GLOW_BERRY_INGOT.get());
+                output.accept(AxolotlTest.HILLARY_BUCKET.get());
+                output.accept(AxolotlTest.MILKLLARY_BUCKET.get());
+                output.accept(AxolotlTest.LIQUID_ALJAME_BUCKET.get());
+                output.accept(AxolotlTest.LIQUID_MANGA_BUCKET.get());
+                output.accept(AxolotlTest.LIQUEFIED_MONSTER_BUCKET.get());
+                output.accept(AxolotlTest.SLEEPISHWATER_BUCKET.get());
                 output.accept(AxolotlTest.MOLTEN_MID_TERM_BUCKET.get());
                 output.accept(AxolotlTest.CRYSTALLINE_BIRCH_STICK.get());
                 output.accept(AxolotlTest.GOLDENWOOD_STICK.get());

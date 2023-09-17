@@ -1,0 +1,67 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_the_set": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:obsidian_infused_mid_term_sparey"
+            ]
+          },
+          {
+            "items": [
+              "backmath:mid_term_warrior_helmet"
+            ]
+          },
+          {
+            "items": [
+              "backmath:mid_term_breastplate"
+            ]
+          },
+          {
+            "items": [
+              "backmath:mid_term_leggings"
+            ]
+          },
+          {
+            "items": [
+              "backmath:mid_term_boots"
+            ]
+          },
+          {
+            "items": [
+              "backmath:mid_term_shield"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.true_overpower.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "backmath:obsidian_infused_mid_term_sparey",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.true_overpower.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_set"
+    ]
+  ],
+  "rewards": {
+    "experience": 2800
+  },
+  "sends_telemetry_event": true
+}

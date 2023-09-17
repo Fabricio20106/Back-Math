@@ -1,0 +1,39 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_the_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:persona_blade"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.swords_personified.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:persona_blade",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.swords_personified.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_sword"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

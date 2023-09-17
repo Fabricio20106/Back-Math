@@ -1,0 +1,251 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_christianity_sg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:christianity_singularity"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_emotional_sg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:emotional_singularity"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_fishy_sg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:fishy_singularity"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_frutifery_sg_back_math": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:frutifery_singularity_backmath"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_frutifery_sg_minecraft": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:frutifery_singularity_minecraft"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_heat_sg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:heat_singularity"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mangaed_mango_sg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mangibelarity"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_meaty_sg_fabricio": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:meaty_singularity_fabricio"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_meaty_sg_lucia": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:meaty_singularity_lucia"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_meaty_sg_minecraft": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:meaty_singularity_minecraft"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_meaty_sg_sophie": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:meaty_singularity_sophie"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mid_term": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mid_term"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_milkllary_sg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:milkllarity"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_obsidian_infused_mid_term": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:obsidian_infused_mid_term"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_vegetably_sg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:vegetably_singularity"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.with_all_powers_combined.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "item": "backmath:emotional_singularity"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.with_all_powers_combined.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_emotional_sg"
+    ],
+    [
+      "has_heat_sg"
+    ],
+    [
+      "has_christianity_sg"
+    ],
+    [
+      "has_milkllary_sg"
+    ],
+    [
+      "has_meaty_sg_sophie"
+    ],
+    [
+      "has_meaty_sg_lucia"
+    ],
+    [
+      "has_meaty_sg_fabricio"
+    ],
+    [
+      "has_meaty_sg_minecraft"
+    ],
+    [
+      "has_fishy_sg"
+    ],
+    [
+      "has_frutifery_sg_back_math"
+    ],
+    [
+      "has_frutifery_sg_minecraft"
+    ],
+    [
+      "has_vegetably_sg"
+    ],
+    [
+      "has_mangaed_mango_sg"
+    ],
+    [
+      "has_mid_term"
+    ],
+    [
+      "has_obsidian_infused_mid_term"
+    ]
+  ],
+  "rewards": {
+    "experience": 500
+  },
+  "sends_telemetry_event": true
+}

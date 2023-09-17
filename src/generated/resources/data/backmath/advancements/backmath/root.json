@@ -1,0 +1,44 @@
+{
+  "criteria": {
+    "has_fruits": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:guarana"
+            ]
+          },
+          {
+            "items": [
+              "backmath:mango"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "backmath:textures/block/glazed_tabu.png",
+    "description": {
+      "translate": "advancements.backmath.root.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:peitoraldeouro",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.backmath.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_fruits"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

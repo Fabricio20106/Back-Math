@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/crystallizer",
+  "criteria": {
+    "has_the_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:milkllary_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.milkllary_ingot.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:milkllary_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.milkllary_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

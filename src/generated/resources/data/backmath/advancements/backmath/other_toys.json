@@ -1,0 +1,83 @@
+{
+  "parent": "backmath:backmath/alice_toy",
+  "criteria": {
+    "has_a_leandro_toy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:leandro_toy"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_a_malena_toy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:malena_toy"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_a_teenager_alice_toy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:teenager_alice_toy"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_a_tyler_toy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:tyler_toy"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.oh_hey_more_toys.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:leandro_toy"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.oh_hey_more_toys.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_a_leandro_toy"
+    ],
+    [
+      "has_a_teenager_alice_toy"
+    ],
+    [
+      "has_a_tyler_toy"
+    ],
+    [
+      "has_a_malena_toy"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

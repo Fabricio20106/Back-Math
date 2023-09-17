@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_angelic_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:angelic_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.angelic_ingot.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:angelic_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.angelic_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_angelic_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

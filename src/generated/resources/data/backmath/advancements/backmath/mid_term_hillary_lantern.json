@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/mid_term_door",
+  "criteria": {
+    "has_the_lanterns": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:hilary_mid_term_lantern"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.mt_hillary_lamps.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:hilary_mid_term_lantern"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.mt_hillary_lamps.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_lanterns"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

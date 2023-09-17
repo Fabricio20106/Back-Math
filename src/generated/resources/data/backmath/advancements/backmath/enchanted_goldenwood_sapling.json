@@ -1,0 +1,41 @@
+{
+  "parent": "backmath:backmath/goldenwood_sapling",
+  "criteria": {
+    "has_the_sapling": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:enchanted_goldenwood_sapling"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.truly_a_masterpiece.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:enchanted_goldenwood_sapling"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.truly_a_masterpiece.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_sapling"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

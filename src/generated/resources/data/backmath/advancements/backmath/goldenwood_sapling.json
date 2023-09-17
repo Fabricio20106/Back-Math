@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_the_sapling": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:goldenwood_sapling"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.a_legendary_sapling.description"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:goldenwood_sapling"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.a_legendary_sapling.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_sapling"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

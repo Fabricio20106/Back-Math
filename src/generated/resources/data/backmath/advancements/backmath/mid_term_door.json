@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/mid_term",
+  "criteria": {
+    "has_the_door": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mid_term_door"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.decorative_expensive.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:mid_term_door"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.decorative_expensive.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_door"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

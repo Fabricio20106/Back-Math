@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_an_alice_toy": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:alice_toy"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.oh_hey_toys.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:alice_toy"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.oh_hey_toys.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_an_alice_toy"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

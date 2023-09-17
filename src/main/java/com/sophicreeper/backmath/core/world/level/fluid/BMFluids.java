@@ -20,7 +20,7 @@ public class BMFluids {
             new ForgeFlowingFluid.Flowing(BMFluids.HILLARY_PROPERTIES));
 
     // Milkllary
-    /*public static final RegistryObject<FlowingFluid> MILKLLARY = FLUIDS.register("milklary_fluid", () ->
+    public static final RegistryObject<FlowingFluid> MILKLLARY = FLUIDS.register("milklary_fluid", () ->
             new ForgeFlowingFluid.Source(BMFluids.MILKLLARY_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_MILKLLARY = FLUIDS.register("milklary_flowing", () ->
             new ForgeFlowingFluid.Flowing(BMFluids.MILKLLARY_PROPERTIES));
@@ -48,32 +48,29 @@ public class BMFluids {
             new ForgeFlowingFluid.Source(BMFluids.SLEEPISHWATER_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_SLEEPISHWATER = FLUIDS.register("flowing_sleepishwater", () ->
             new ForgeFlowingFluid.Flowing(BMFluids.SLEEPISHWATER_PROPERTIES));
-*/
+
     // Fluid Properties
     public static final ForgeFlowingFluid.Properties HILLARY_PROPERTIES = new ForgeFlowingFluid.Properties(
             BMFluidTypes.HILLARY, HILLARY, FLOWING_HILLARY).slopeFindDistance(8).levelDecreasePerBlock(1)
             .block(BMBlocks.HILLARY).bucket(AxolotlTest.HILLARY_BUCKET);
 
-            /*FluidAttributes.builder(HILLARY_STILL, BMResourceLocations.FLOWING_HILLARY).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(HILLARY_OVERLAY))
-            .canMultiply().block(BMBlocks.HILLARY).bucket(AxolotlTest.HILLARY_BUCKET);
-
-    /*public static final ForgeFlowingFluid.Properties MILKLLARY_PROPERTIES = new ForgeFlowingFluid.Properties(MILKLLARY, FLOWING_MILKLLARY,
-            FluidAttributes.builder(MILKLLARY_STILL, BMResourceLocations.FLOWING_MILKLLARY).rarity(Rarity.COMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(MILKLLARY_OVERLAY))
+    public static final ForgeFlowingFluid.Properties MILKLLARY_PROPERTIES = new ForgeFlowingFluid.Properties(
+            BMFluidTypes.MILKLLARY, MILKLLARY, FLOWING_MILKLLARY).slopeFindDistance(8).levelDecreasePerBlock(1)
             .block(BMBlocks.MILKLLARY).bucket(AxolotlTest.MILKLLARY_BUCKET);
 
-    public static final ForgeFlowingFluid.Properties LIQUID_ALJAME_PROPERTIES = new ForgeFlowingFluid.Properties(LIQUID_ALJAME, FLOWING_LIQUID_ALJAME,
-            FluidAttributes.builder(LIQUID_ALJAME_STILL, BMResourceLocations.FLOWING_LIQUID_ALJAME).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY)
-                    .overlay(LIQUID_ALJAME_OVERLAY)).bucket(AxolotlTest.LIQUID_ALJAME_BUCKET).block(BMBlocks.LIQUID_ALJAME);
+    public static final ForgeFlowingFluid.Properties LIQUID_ALJAME_PROPERTIES = new ForgeFlowingFluid.Properties(
+            BMFluidTypes.LIQUID_ALJAME, LIQUID_ALJAME, FLOWING_LIQUID_ALJAME).slopeFindDistance(8).levelDecreasePerBlock(1)
+            .block(BMBlocks.LIQUID_ALJAME).bucket(AxolotlTest.LIQUID_ALJAME_BUCKET);
 
-    public static final ForgeFlowingFluid.Properties LIQUID_MANGA_PROPERTIES = new ForgeFlowingFluid.Properties(LIQUID_MANGA, FLOWING_LIQUID_MANGA,
-            FluidAttributes.builder(LIQUID_MANGA_STILL, BMResourceLocations.FLOWING_LIQUID_MANGA).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY)
-                    .overlay(LIQUID_MANGA_OVERLAY)).bucket(AxolotlTest.LIQUID_MANGA_BUCKET).block(BMBlocks.LIQUID_MANGA);
+    public static final ForgeFlowingFluid.Properties LIQUID_MANGA_PROPERTIES = new ForgeFlowingFluid.Properties(
+            BMFluidTypes.LIQUID_MANGA, LIQUID_MANGA, FLOWING_LIQUID_MANGA).slopeFindDistance(8).levelDecreasePerBlock(1)
+            .block(BMBlocks.LIQUID_MANGA).bucket(AxolotlTest.LIQUID_MANGA_BUCKET);
 
-    public static final ForgeFlowingFluid.Properties LIQUEFIED_MONSTER_PROPERTIES = new ForgeFlowingFluid.Properties(LIQUEFIED_MONSTER, FLOWING_LIQUEFIED_MONSTER,
-            FluidAttributes.builder(LIQUEFIED_MONSTER_STILL, BMResourceLocations.FLOWING_LIQUEFIED_MONSTER).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY)
-                    .overlay(LIQUEFIED_MONSTER_OVERLAY)).bucket(AxolotlTest.LIQUEFIED_MONSTER_BUCKET).block(BMBlocks.LIQUEFIED_MONSTER);
+    public static final ForgeFlowingFluid.Properties LIQUEFIED_MONSTER_PROPERTIES = new ForgeFlowingFluid.Properties(
+            BMFluidTypes.LIQUEFIED_MONSTER, LIQUEFIED_MONSTER, FLOWING_LIQUEFIED_MONSTER).slopeFindDistance(8).levelDecreasePerBlock(2)
+            .block(BMBlocks.LIQUEFIED_MONSTER).bucket(AxolotlTest.LIQUEFIED_MONSTER_BUCKET);
 
-    public static final ForgeFlowingFluid.Properties SLEEPISHWATER_PROPERTIES = new ForgeFlowingFluid.Properties(SLEEPISHWATER, FLOWING_SLEEPISHWATER,
-            FluidAttributes.builder(SLEEPISHWATER_STILL, FLOWING_SLEEPISHWATER_RL).rarity(Rarity.COMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(SLEEPISHWATER_OVERLAY))
-            .canMultiply().block(BMBlocks.SLEEPISHWATER).bucket(AxolotlTest.SLEEPISHWATER_BUCKET);*/
+    public static final ForgeFlowingFluid.Properties SLEEPISHWATER_PROPERTIES = new ForgeFlowingFluid.Properties(
+            BMFluidTypes.SLEEPISHWATER, SLEEPISHWATER, FLOWING_SLEEPISHWATER).slopeFindDistance(8).levelDecreasePerBlock(1)
+            .block(BMBlocks.SLEEPISHWATER).bucket(AxolotlTest.SLEEPISHWATER_BUCKET);
 }

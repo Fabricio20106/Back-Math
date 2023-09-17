@@ -10,10 +10,12 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.common.data.ForgeAdvancementProvider;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = BackMath.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -25,14 +27,15 @@ public final class BMDataGenerator {
         PackOutput output = event.getGenerator().getPackOutput();
         CompletableFuture<HolderLookup.Provider> providerLookup = event.getLookupProvider();
 
-        generator.addProvider(true, new BMBlockModelGenerators(output, fileHelper));
-        generator.addProvider(true, new BMItemModelGenerators(output, fileHelper));
+        generator.addProvider(event.includeClient(), new BMBlockModelGenerators(output, fileHelper));
+        generator.addProvider(event.includeClient(), new BMItemModelGenerators(output, fileHelper));
+
+        generator.addProvider(event.includeClient(), new ForgeAdvancementProvider(output, providerLookup, fileHelper, List.of(new BMAdvancementsProvider())));
 
         BMBlockTagsProvider bmBlockTags = new BMBlockTagsProvider(output, providerLookup, fileHelper);
-        generator.addProvider(true, bmBlockTags);
-        generator.addProvider(true, new BMItemTagsProvider(output, providerLookup, bmBlockTags.contentsGetter(), fileHelper));
-        generator.addProvider(true, new BMFluidTagsProvider(output, providerLookup, fileHelper));
-        //generator.addProvider(new BMFluidTagsProvider(generator, fileHelper));
+        generator.addProvider(event.includeServer(), bmBlockTags);
+        generator.addProvider(event.includeServer(), new BMItemTagsProvider(output, providerLookup, bmBlockTags.contentsGetter(), fileHelper));
+        generator.addProvider(event.includeServer(), new BMFluidTagsProvider(output, providerLookup, fileHelper));
         //generator.addProvider(new BMEntityTagsProvider(generator, fileHelper));
     }
 }

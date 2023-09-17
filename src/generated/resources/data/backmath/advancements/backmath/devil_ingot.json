@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_devil_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:devil_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.devil_ingot.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:devil_ingot"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.devil_ingot.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_devil_ingot"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

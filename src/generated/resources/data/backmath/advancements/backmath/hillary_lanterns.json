@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_the_lamps": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:hilary_lantern"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.hillary_lamps.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:hilary_lantern"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.hillary_lamps.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_lamps"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

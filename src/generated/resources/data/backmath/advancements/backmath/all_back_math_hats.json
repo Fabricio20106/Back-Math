@@ -1,0 +1,162 @@
+{
+  "parent": "backmath:backmath/root",
+  "criteria": {
+    "has_aljamic_bone_helmet": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:aljamic_bone_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_bakugou_hair": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:bakugou_hair"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_candy_pink_turtle_shell": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:candy_pink_turtle_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_candy_yellow_turtle_shell": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:candy_yellow_turtle_helmet"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cat_tiara": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:tiara_de_gato"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_dog_tiara": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:dog_tiara"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_golden_crown": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:golden_crown"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_golden_halo": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:golden_halo"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_yellow_karate_band": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:yellow_karate_band"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.some_sick_hats.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:bakugou_hair",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.some_sick_hats.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_bakugou_hair"
+    ],
+    [
+      "has_golden_halo"
+    ],
+    [
+      "has_aljamic_bone_helmet"
+    ],
+    [
+      "has_cat_tiara"
+    ],
+    [
+      "has_dog_tiara"
+    ],
+    [
+      "has_candy_pink_turtle_shell"
+    ],
+    [
+      "has_candy_yellow_turtle_shell"
+    ],
+    [
+      "has_yellow_karate_band"
+    ],
+    [
+      "has_golden_crown"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

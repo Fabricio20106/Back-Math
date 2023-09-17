@@ -1,0 +1,114 @@
+{
+  "parent": "backmath:backmath/mid_term",
+  "criteria": {
+    "has_mid_term_axe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mid_term_axe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mid_term_hoe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mid_term_hoe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mid_term_pickaxe": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mid_term_pickaxe"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mid_term_shield": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mid_term_shield"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mid_term_shovel": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mid_term_shovel"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_mid_term_sword": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:mid_term_sword"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.mid_term_tools.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:mid_term_sword",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.mid_term_tools.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_mid_term_sword"
+    ],
+    [
+      "has_mid_term_pickaxe"
+    ],
+    [
+      "has_mid_term_shovel"
+    ],
+    [
+      "has_mid_term_axe"
+    ],
+    [
+      "has_mid_term_hoe"
+    ],
+    [
+      "has_mid_term_shield"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

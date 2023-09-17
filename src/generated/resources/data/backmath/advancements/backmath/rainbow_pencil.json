@@ -1,0 +1,39 @@
+{
+  "parent": "backmath:backmath/mid_term",
+  "criteria": {
+    "has_the_pencil": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:lapis_rainbow"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.lapis_rainbow.description"
+    },
+    "frame": "challenge",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:lapis_rainbow",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.lapis_rainbow.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_pencil"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

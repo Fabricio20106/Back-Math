@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/angelical_casing",
+  "criteria": {
+    "has_the_crystallizer": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:crystallizer"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.crystallizer.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:crystallizer"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.crystallizer.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_crystallizer"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

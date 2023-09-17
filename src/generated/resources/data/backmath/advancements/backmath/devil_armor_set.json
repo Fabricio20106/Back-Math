@@ -1,0 +1,54 @@
+{
+  "parent": "backmath:backmath/devil_ingot",
+  "criteria": {
+    "has_devil_armor_set": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:devil_helmet"
+            ]
+          },
+          {
+            "items": [
+              "backmath:devil_chestplate"
+            ]
+          },
+          {
+            "items": [
+              "backmath:devil_leggings"
+            ]
+          },
+          {
+            "items": [
+              "backmath:devil_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.devil_armor.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:devil_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.devil_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_devil_armor_set"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

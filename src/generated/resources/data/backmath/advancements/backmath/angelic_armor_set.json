@@ -1,0 +1,54 @@
+{
+  "parent": "backmath:backmath/angelic_ingot",
+  "criteria": {
+    "has_angelic_armor_set": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:angelic_helmet"
+            ]
+          },
+          {
+            "items": [
+              "backmath:angelic_chestplate"
+            ]
+          },
+          {
+            "items": [
+              "backmath:angelic_leggings"
+            ]
+          },
+          {
+            "items": [
+              "backmath:angelic_boots"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.angelic_armor.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:angelic_chestplate",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.angelic_armor.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_angelic_armor_set"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,38 @@
+{
+  "parent": "backmath:backmath/angelic_ingot",
+  "criteria": {
+    "has_a_casing": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "backmath:angelical_casing"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.backmath.angelical_casing.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "backmath:angelical_casing"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.backmath.angelical_casing.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_a_casing"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
