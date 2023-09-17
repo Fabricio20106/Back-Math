@@ -18,26 +18,22 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class QueenSophiePetRelicBlock extends Block {
+public class QueenLucyPetRelicBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
-    public QueenSophiePetRelicBlock() {
+    public QueenLucyPetRelicBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).lightLevel(state -> 5));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-        switch (state.getValue(FACING)) {
-            case SOUTH:
-                return qspRelicSouth();
-            case EAST:
-                return qspRelicEast();
-            case WEST:
-                return qspRelicWest();
-            default:
-                return qspRelicNorth();
-        }
+        return switch (state.getValue(FACING)) {
+            case SOUTH -> qspRelicSouth();
+            case EAST -> qspRelicEast();
+            case WEST -> qspRelicWest();
+            default -> qspRelicNorth();
+        };
     }
 
     public VoxelShape qspRelicNorth() {

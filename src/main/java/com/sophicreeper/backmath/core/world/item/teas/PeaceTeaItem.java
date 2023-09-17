@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.core.world.item.teas;
 
+import com.sophicreeper.backmath.core.util.BMKeys;
 import com.sophicreeper.backmath.core.world.effect.BMMobEffects;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -110,8 +111,8 @@ public class PeaceTeaItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag flag) {
         tooltip.add(Component.translatable(this.getDescriptionId() + ".quote").withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.translatable("messages.backmath.hold_shift"));
-        tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+        if (!BMKeys.isHoldingShift()) tooltip.add(Component.translatable("messages.backmath.hold_shift"));
+        if (BMKeys.isHoldingShift()) tooltip.add(Component.translatable(this.getDescriptionId() + ".desc").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
         super.appendHoverText(stack, world, tooltip, flag);
     }
 }

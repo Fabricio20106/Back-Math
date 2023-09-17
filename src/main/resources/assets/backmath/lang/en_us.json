@@ -636,6 +636,8 @@
   "crop.backmath.milkllary": "Milkllary",
   "crop.backmath.hardened_amaracamel": "Hardened Amaracamel",
 
+  "dataPack.backmath.description": "Back Math: Bountifully Exp. resources.",
+
   "death.attack.hotAndColdMeal": "%1$s's stomach was blown up by Hot Sophie and Cold Fabricio Meal",
   "death.attack.hotAndColdMeal.player": "%1$s's stomach was blown up by Hot Sophie and Cold Fabricio Meal while running away from %2$s",
   "death.attack.poisonRose": "%1$s was poisoned to death by Poison Rose",
@@ -690,6 +692,8 @@
   "fluid.backmath.flowing_liquefied_monster": "Flowing Liquefied Monster",
   "fluid.backmath.sleepishwater": "Sleepishwater",
   "fluid.backmath.flowing_sleepishwater": "Flowing Sleepishwater",
+
+  "fluid_type.backmath.hilary_fluid": "Hillary",
 
   "item.backmath.peitoraldeouro": "Golden Plated",
   "item.backmath.empada_de_ouro": "Golden Patty",

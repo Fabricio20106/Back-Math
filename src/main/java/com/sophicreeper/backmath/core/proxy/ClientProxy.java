@@ -2,14 +2,19 @@ package com.sophicreeper.backmath.core.proxy;
 
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
+import com.sophicreeper.backmath.core.world.level.fluid.BMFluids;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import static com.sophicreeper.backmath.core.client.BackMath.MOD_ID;
 import static net.minecraft.client.renderer.item.ItemProperties.register;
 
 public class ClientProxy extends CommonProxy {
@@ -196,9 +201,7 @@ public class ClientProxy extends CommonProxy {
         ItemBlockRenderTypes.setRenderLayer(BMBlocks.GOLDENWOOD_LADDER.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BMBlocks.INSOMNIA_SOPHIE_HEAD.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(BMBlocks.INSOMNIA_SOPHIE_WALL_HEAD.get(), RenderType.cutout());
-        /*ItemBlockRenderTypes.setRenderLayer(BMFluids.HILLARY.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.translucent());
+        /*ItemBlockRenderTypes.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_MILKLLARY.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.LIQUID_ALJAME.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_LIQUID_ALJAME.get(), RenderType.translucent());
@@ -286,6 +289,17 @@ public class ClientProxy extends CommonProxy {
             }
         }
     }*/
+
+    @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void subClientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> {
+                ItemBlockRenderTypes.setRenderLayer(BMFluids.HILLARY.get(), RenderType.translucent());
+                ItemBlockRenderTypes.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.translucent());
+            });
+        }
+    }
 
     // Double layer render lookup
     public static boolean getDoubleLayer(RenderType layerToCheck) {

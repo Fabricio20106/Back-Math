@@ -482,7 +482,6 @@ public class BMCreativeTabs {
                 output.accept(AxolotlTest.TEMPERATURE_SINGULARITY.get());
                 output.accept(AxolotlTest.CHRISTIANITY_SINGULARITY.get());
                 output.accept(AxolotlTest.MANGIBELARITY.get());
-                output.accept(AxolotlTest.YIN_YANG.get());
                 output.accept(AxolotlTest.FRUTIFERY_SINGULARITY_BACKMATH.get());
                 output.accept(AxolotlTest.FRUTIFERY_SINGULARITY_MINECRAFT.get());
                 output.accept(AxolotlTest.MEATY_SINGULARITY_SOPHIE.get());
@@ -566,7 +565,6 @@ public class BMCreativeTabs {
                 output.accept(AxolotlTest.ANGELIC_ROD.get());
                 output.accept(AxolotlTest.HILLARY_ROD.get());
                 output.accept(AxolotlTest.MID_TERM_ROD.get());
-                output.accept(AxolotlTest.HUMAN_PATRICK.get());
                 output.accept(AxolotlTest.CORK_STOPPER.get());
                 output.accept(AxolotlTest.INSOFLINT.get());
                 output.accept(AxolotlTest.CARAMELED_WHEAT.get());

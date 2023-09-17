@@ -25,6 +25,7 @@ import com.sophicreeper.backmath.core.world.item.weapon.sparey.CustomSpareySword
 import com.sophicreeper.backmath.core.world.item.weapon.sparey.DevilSpareySwordItem;
 import com.sophicreeper.backmath.core.world.item.weapon.sparey.SpareySwordItem;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
+import com.sophicreeper.backmath.core.world.level.fluid.BMFluids;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -576,8 +577,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> CRYSTALLIZED_PUMPKIN_INGOT = ITEMS.register("crystallized_pumpkin_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CRYSTALLIZED_SWEET_BERRY_INGOT = ITEMS.register("crystallized_sweet_berry_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CRYSTALLIZED_GLOW_BERRY_INGOT = ITEMS.register("crystallized_glow_berry_ingot", () -> new Item(new Item.Properties()));
-    /*public static final RegistryObject<Item> HILLARY_BUCKET = ITEMS.register("hilary_bucket", () -> new BucketItem(BMFluids.HILLARY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
-    public static final RegistryObject<Item> MILKLLARY_BUCKET = ITEMS.register("milklary_bucket", () -> new BucketItem(BMFluids.MILKLLARY, new Item.Properties().craftRemainder(Items.BUCKET).rarity(Rarity.UNCOMMON).stacksTo(1)));
+    public static final RegistryObject<Item> HILLARY_BUCKET = ITEMS.register("hilary_bucket", () -> new BucketItem(BMFluids.HILLARY, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    /*public static final RegistryObject<Item> MILKLLARY_BUCKET = ITEMS.register("milklary_bucket", () -> new BucketItem(BMFluids.MILKLLARY, new Item.Properties().craftRemainder(Items.BUCKET).rarity(Rarity.UNCOMMON).stacksTo(1)));
     public static final RegistryObject<Item> LIQUID_ALJAME_BUCKET = ITEMS.register("liquid_aljame_bucket", () -> new BucketItem(BMFluids.LIQUID_ALJAME, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> LIQUID_MANGA_BUCKET = ITEMS.register("liquid_manga_bucket", () -> new BucketItem(BMFluids.LIQUID_MANGA, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
     public static final RegistryObject<Item> LIQUEFIED_MONSTER_BUCKET = ITEMS.register("liquefied_monster_bucket", () -> new BucketItem(BMFluids.LIQUEFIED_MONSTER, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));

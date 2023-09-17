@@ -1,7 +1,5 @@
 package com.sophicreeper.backmath.core.proxy;
 
-import com.sophicreeper.backmath.core.world.BMConfiguredFeatures;
-import com.sophicreeper.backmath.core.world.BMPlacedFeatures;
 import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.core.world.effect.BMMobEffects;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
@@ -10,6 +8,8 @@ import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.item.BMCreativeTabs;
 import com.sophicreeper.backmath.core.world.item.alchemy.BMPotions;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
+import com.sophicreeper.backmath.core.world.level.fluid.BMFluidTypes;
+import com.sophicreeper.backmath.core.world.level.fluid.BMFluids;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -24,7 +24,8 @@ public class CommonProxy {
         BMMobEffects.MOB_EFFECTS.register(eventBus);
         //BMConfiguredFeatures.CONFIGURED_FEATURES.register(eventBus);
         //BMPlacedFeatures.PLACED_FEATURES.register(eventBus);
-        //BMFluids.FLUIDS.register(eventBus);
+        BMFluidTypes.FLUID_TYPES.register(eventBus);
+        BMFluids.FLUIDS.register(eventBus);
         //BMWorldCarvers.WORLD_CARVERS.register(eventBus);
         //BMBiomes.BIOMES.register(eventBus);
         BMMotives.MOTIVES.register(eventBus);

@@ -1,7 +1,8 @@
 {
   "pack": {
     "description": {
-      "text": "Back Math: Bountifully Exp. resources."
+      "translate": "dataPack.backmath.description",
+      "fallback": "Back Math: Bountifully Exp. resources."
     },
     "pack_format": 15
   }

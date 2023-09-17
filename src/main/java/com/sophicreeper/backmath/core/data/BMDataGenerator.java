@@ -4,6 +4,7 @@ import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.data.models.BMBlockModelGenerators;
 import com.sophicreeper.backmath.core.data.models.BMItemModelGenerators;
 import com.sophicreeper.backmath.core.data.tags.BMBlockTagsProvider;
+import com.sophicreeper.backmath.core.data.tags.BMFluidTagsProvider;
 import com.sophicreeper.backmath.core.data.tags.BMItemTagsProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -30,6 +31,7 @@ public final class BMDataGenerator {
         BMBlockTagsProvider bmBlockTags = new BMBlockTagsProvider(output, providerLookup, fileHelper);
         generator.addProvider(true, bmBlockTags);
         generator.addProvider(true, new BMItemTagsProvider(output, providerLookup, bmBlockTags.contentsGetter(), fileHelper));
+        generator.addProvider(true, new BMFluidTagsProvider(output, providerLookup, fileHelper));
         //generator.addProvider(new BMFluidTagsProvider(generator, fileHelper));
         //generator.addProvider(new BMEntityTagsProvider(generator, fileHelper));
     }

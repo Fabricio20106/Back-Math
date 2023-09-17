@@ -1,7 +1,17 @@
-package com.sophicreeper.backmath.core.world.level.material;
+package com.sophicreeper.backmath.core.world.level.fluid;
+
+import com.sophicreeper.backmath.core.client.BackMath;
+import com.sophicreeper.backmath.core.world.item.AxolotlTest;
+import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.fluids.ForgeFlowingFluid;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class BMFluids {
-    /*public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, BackMath.MOD_ID);
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, BackMath.MOD_ID);
 
     // Hillary
     public static final RegistryObject<FlowingFluid> HILLARY = FLUIDS.register("hilary_fluid", () ->
@@ -10,7 +20,7 @@ public class BMFluids {
             new ForgeFlowingFluid.Flowing(BMFluids.HILLARY_PROPERTIES));
 
     // Milkllary
-    public static final RegistryObject<FlowingFluid> MILKLLARY = FLUIDS.register("milklary_fluid", () ->
+    /*public static final RegistryObject<FlowingFluid> MILKLLARY = FLUIDS.register("milklary_fluid", () ->
             new ForgeFlowingFluid.Source(BMFluids.MILKLLARY_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_MILKLLARY = FLUIDS.register("milklary_flowing", () ->
             new ForgeFlowingFluid.Flowing(BMFluids.MILKLLARY_PROPERTIES));
@@ -38,15 +48,18 @@ public class BMFluids {
             new ForgeFlowingFluid.Source(BMFluids.SLEEPISHWATER_PROPERTIES));
     public static final RegistryObject<FlowingFluid> FLOWING_SLEEPISHWATER = FLUIDS.register("flowing_sleepishwater", () ->
             new ForgeFlowingFluid.Flowing(BMFluids.SLEEPISHWATER_PROPERTIES));
-
+*/
     // Fluid Properties
-    public static final ForgeFlowingFluid.Properties MILKLLARY_PROPERTIES = new ForgeFlowingFluid.Properties(MILKLLARY, FLOWING_MILKLLARY,
+    public static final ForgeFlowingFluid.Properties HILLARY_PROPERTIES = new ForgeFlowingFluid.Properties(
+            BMFluidTypes.HILLARY, HILLARY, FLOWING_HILLARY).slopeFindDistance(8).levelDecreasePerBlock(1)
+            .block(BMBlocks.HILLARY).bucket(AxolotlTest.HILLARY_BUCKET);
+
+            /*FluidAttributes.builder(HILLARY_STILL, BMResourceLocations.FLOWING_HILLARY).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(HILLARY_OVERLAY))
+            .canMultiply().block(BMBlocks.HILLARY).bucket(AxolotlTest.HILLARY_BUCKET);
+
+    /*public static final ForgeFlowingFluid.Properties MILKLLARY_PROPERTIES = new ForgeFlowingFluid.Properties(MILKLLARY, FLOWING_MILKLLARY,
             FluidAttributes.builder(MILKLLARY_STILL, BMResourceLocations.FLOWING_MILKLLARY).rarity(Rarity.COMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(MILKLLARY_OVERLAY))
             .block(BMBlocks.MILKLLARY).bucket(AxolotlTest.MILKLLARY_BUCKET);
-
-    public static final ForgeFlowingFluid.Properties HILLARY_PROPERTIES = new ForgeFlowingFluid.Properties(HILLARY, FLOWING_HILLARY,
-            FluidAttributes.builder(HILLARY_STILL, BMResourceLocations.FLOWING_HILLARY).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY).overlay(HILLARY_OVERLAY))
-            .canMultiply().block(BMBlocks.HILLARY).bucket(AxolotlTest.HILLARY_BUCKET);
 
     public static final ForgeFlowingFluid.Properties LIQUID_ALJAME_PROPERTIES = new ForgeFlowingFluid.Properties(LIQUID_ALJAME, FLOWING_LIQUID_ALJAME,
             FluidAttributes.builder(LIQUID_ALJAME_STILL, BMResourceLocations.FLOWING_LIQUID_ALJAME).rarity(Rarity.UNCOMMON).sound(SoundEvents.ITEM_BUCKET_EMPTY)
