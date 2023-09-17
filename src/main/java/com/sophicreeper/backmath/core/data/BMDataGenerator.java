@@ -3,9 +3,11 @@ package com.sophicreeper.backmath.core.data;
 import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.data.models.BMBlockModelGenerators;
 import com.sophicreeper.backmath.core.data.models.BMItemModelGenerators;
+import com.sophicreeper.backmath.core.data.tags.BMBiomeTagsProvider;
 import com.sophicreeper.backmath.core.data.tags.BMBlockTagsProvider;
 import com.sophicreeper.backmath.core.data.tags.BMFluidTagsProvider;
 import com.sophicreeper.backmath.core.data.tags.BMItemTagsProvider;
+import com.sophicreeper.backmath.core.data.worldgen.BMWorldGenerationProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -36,6 +38,9 @@ public final class BMDataGenerator {
         generator.addProvider(event.includeServer(), bmBlockTags);
         generator.addProvider(event.includeServer(), new BMItemTagsProvider(output, providerLookup, bmBlockTags.contentsGetter(), fileHelper));
         generator.addProvider(event.includeServer(), new BMFluidTagsProvider(output, providerLookup, fileHelper));
-        //generator.addProvider(new BMEntityTagsProvider(generator, fileHelper));
+        generator.addProvider(event.includeServer(), new BMBiomeTagsProvider(output, providerLookup, fileHelper));
+        // generator.addProvider(event.includeServer(), new BMEntityTagsProvider(output, providerLookup, fileHelper));
+
+        generator.addProvider(event.includeServer(), new BMWorldGenerationProvider(output, providerLookup));
     }
 }

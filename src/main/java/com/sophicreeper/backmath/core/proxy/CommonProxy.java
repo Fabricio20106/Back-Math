@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.core.proxy;
 
+import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.core.world.effect.BMMobEffects;
 import com.sophicreeper.backmath.core.world.entity.BMEntities;
@@ -7,12 +8,17 @@ import com.sophicreeper.backmath.core.world.entity.decoration.BMMotives;
 import com.sophicreeper.backmath.core.world.item.AxolotlTest;
 import com.sophicreeper.backmath.core.world.item.BMCreativeTabs;
 import com.sophicreeper.backmath.core.world.item.alchemy.BMPotions;
+import com.sophicreeper.backmath.core.world.level.biome.BMBiomes;
 import com.sophicreeper.backmath.core.world.level.block.BMBlocks;
 import com.sophicreeper.backmath.core.world.level.fluid.BMFluidTypes;
 import com.sophicreeper.backmath.core.world.level.fluid.BMFluids;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class CommonProxy {
     CommonProxy() {
@@ -38,13 +44,14 @@ public class CommonProxy {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        /*ResourceKey<Biome> originalBackFieldsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.ORIGINAL_BACK_FIELDS.getId());
-        ResourceKey<Biome> modifiedBackFieldsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.MODIFIED_BACK_FIELDS.getId());
-        ResourceKey<Biome> angelicWoodsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.ANGELIC_WOODS.getId());
+        //ResourceKey<Biome> originalBackFieldsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.ORIGINAL_BACK_FIELDS.registry());
+        ResourceKey<Biome> originalBackFieldsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BackMath.resourceLoc("original_back_fields"));
+        //ResourceKey<Biome> modifiedBackFieldsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.MODIFIED_BACK_FIELDS.getId());
+        //ResourceKey<Biome> angelicWoodsKey = ResourceKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.ANGELIC_WOODS.getId());
 
-        if (BMConfigs.SERVER_CONFIGS.originalBackFieldsGen.get()) {
+        //if (BMConfigs.SERVER_CONFIGS.originalBackFieldsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(originalBackFieldsKey, 15));
-        }
+        /*}
         if (BMConfigs.SERVER_CONFIGS.modifiedBackFieldsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(modifiedBackFieldsKey, 10));
         }

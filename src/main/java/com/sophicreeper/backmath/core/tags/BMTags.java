@@ -1,12 +1,11 @@
 package com.sophicreeper.backmath.core.tags;
 
 import com.sophicreeper.backmath.core.client.BackMath;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
+import net.minecraft.tags.*;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 
@@ -311,4 +310,16 @@ public class BMTags {
             return EntityTypeTags.create(BackMath.resourceLoc(path));
         }
     }*/
+
+    public static class Biomes {
+        public static final TagKey<Biome> HAS_CRYSTALLINE_ANGELIC_ORE = backMath("has_crystalline_angelic_ore");
+        public static final TagKey<Biome> HAS_ABUNDANT_ANGELIC_ORE = backMath("has_abundant_angelic_ore");
+
+        public static final TagKey<Biome> IS_ALJAN = backMath("is_aljan");
+        public static final TagKey<Biome> ALJAMIC_HIGHLANDS_ORES = backMath("aljamic_highlands_ores");
+
+        private static TagKey<Biome> backMath(String name) {
+            return TagKey.create(Registries.BIOME, BackMath.resourceLoc(name));
+        }
+    }
 }

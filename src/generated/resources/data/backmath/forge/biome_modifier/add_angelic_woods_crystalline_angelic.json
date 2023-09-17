@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#backmath:has_crystalline_angelic_ore",
+  "features": "backmath:placed_crystalline_angelic_ore",
+  "step": "underground_ores"
+}

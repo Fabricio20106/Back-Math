@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_end",
+  "features": "backmath:placed_mid_term_ore",
+  "step": "underground_ores"
+}

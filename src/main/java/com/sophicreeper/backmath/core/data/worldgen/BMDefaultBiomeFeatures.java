@@ -1,15 +1,22 @@
 package com.sophicreeper.backmath.core.data.worldgen;
 
+import com.sophicreeper.backmath.core.world.feature.BMPlacedFeatures;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraft.world.level.biome.MobSpawnSettings;
+import net.minecraft.world.level.levelgen.GenerationStep;
+
 public class BMDefaultBiomeFeatures {
-    /*public static void withOriginalBackFieldTrees(BiomeGenerationSettings.Builder settings) {
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAME_BIRCHES);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.GUARANA_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.MANGO_OAKS);
-        //settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.MANGAED_MANGO_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.OAKS);
+    public static void withOriginalBackFieldTrees(BiomeGenerationSettings.Builder settings) {
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_ALJAME_BIRCH);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_GUARANA_OAK);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_MANGO_OAK);
+        //settings.addFeature()(GenerationStep.Decoration.VEGETAL_DECORATION, BMFeatures.MANGAED_MANGO_OAKS);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_BIRCH_AND_OAK);
     }
 
-    public static void withModifiedBackFieldTrees(BiomeGenerationSettings.Builder settings) {
+    /*public static void withModifiedBackFieldTrees(BiomeGenerationSettings.Builder settings) {
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAME_BIRCHES);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.LEMON_OAKS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PINEAPPLE_OAKS);
@@ -47,36 +54,32 @@ public class BMDefaultBiomeFeatures {
         if (BMConfigs.SERVER_CONFIGS.angrySophieSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.ANGRY_SOPHIE.get(), 100, 4, 4));
         }
-    }
+    }*/
 
-    public static void withGeneralBackFieldThings(BiomeGenerationSettings.Builder settings, MobSpawnInfo.Builder spawns) {
-        // Structures
-        DefaultBiomeFeatures.withStrongholdAndMineshaft(settings);
-        settings.withStructure(StructureFeatures.RUINED_PORTAL);
-        settings.withStructure(StructureFeatures.VILLAGE_PLAINS);
-
-        settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.HILLARY_LAKE);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
-        DefaultBiomeFeatures.withCavesAndCanyons(settings);
-        DefaultBiomeFeatures.withLavaAndWaterLakes(settings);
-        DefaultBiomeFeatures.withMonsterRoom(settings);
-        DefaultBiomeFeatures.withForestGrass(settings);
-        DefaultBiomeFeatures.withSugarCaneAndPumpkins(settings);
-        DefaultBiomeFeatures.withLavaAndWaterSprings(settings);
+    public static void withGeneralBackFieldThings(BiomeGenerationSettings.Builder settings, MobSpawnSettings.Builder spawns) {
+        // settings.addFeature(GenerationStep.Decoration.LAKES, BMFeatures.HILLARY_LAKE);
+        // settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
+        BiomeDefaultFeatures.addDefaultCarversAndLakes(settings);
+        BiomeDefaultFeatures.addDefaultMonsterRoom(settings);
+        BiomeDefaultFeatures.addForestGrass(settings);
+        BiomeDefaultFeatures.addDefaultExtraVegetation(settings);
+        BiomeDefaultFeatures.addDefaultSprings(settings);
+        BiomeDefaultFeatures.addSurfaceFreezing(settings);
 
         // Underground Ores / Disks
-        DefaultBiomeFeatures.withCommonOverworldBlocks(settings);
-        DefaultBiomeFeatures.withOverworldOres(settings);
-        DefaultBiomeFeatures.withDisks(settings);
+        BiomeDefaultFeatures.addDefaultUndergroundVariety(settings);
+        BiomeDefaultFeatures.addDefaultOres(settings);
+        BiomeDefaultFeatures.addDefaultSoftDisks(settings);
+        BiomeDefaultFeatures.addDefaultCrystalFormations(settings);
 
         // Passive and hostile mob spawns
-        DefaultBiomeFeatures.withBatsAndHostiles(spawns);
-        DefaultBiomeFeatures.withPassiveMobs(spawns);
-        withFriendlyBMMobs(spawns);
-        withHostileBMMobs(spawns);
+        BiomeDefaultFeatures.commonSpawns(spawns);
+        BiomeDefaultFeatures.farmAnimals(spawns);
+        // withFriendlyBMMobs(spawns);
+        // withHostileBMMobs(spawns);
     }
 
-    public static void withCommonUndergroundAljanBlocks(BiomeGenerationSettings.Builder settings) {
+    /*public static void withCommonUndergroundAljanBlocks(BiomeGenerationSettings.Builder settings) {
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.SLEEPINGSTONE_BLOB);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_DIRT_BLOB);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_BLOB);

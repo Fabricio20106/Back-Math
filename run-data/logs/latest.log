@@ -1,31 +1,41 @@
-[17set.2023 13:50:31.410] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\tamir\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.1.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, backmath, --all, --existing, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\main\resources, --existing, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\generated\resources, --output, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\generated\resources]
-[17set.2023 13:50:31.414] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.5 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
-[17set.2023 13:50:31.525] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
-[17set.2023 13:50:31.577] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/tamir/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[17set.2023 13:50:31.823] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\tamir\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.1.0\a2cd58d15791eaac9983e30be0995e66bd48633e\javafmllanguage-1.20.1-47.1.0.jar is missing mods.toml file
-[17set.2023 13:50:31.831] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\tamir\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.1.0\f1f11b7217b8320f1b3eb81c746b7b8a70a9ba06\lowcodelanguage-1.20.1-47.1.0.jar is missing mods.toml file
-[17set.2023 13:50:31.838] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\tamir\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.1.0\ff1b8eeb1bd00dfb130263b8952b931f5369252e\mclanguage-1.20.1-47.1.0.jar is missing mods.toml file
-[17set.2023 13:50:31.845] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\tamir\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.1.0\69ca36ae5b8d45c377a5485dc38a7343e5ebf33c\fmlcore-1.20.1-47.1.0.jar is missing mods.toml file
-[17set.2023 13:50:31.921] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[17set.2023 13:50:35.240] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\tamir\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, backmath, --all, --existing, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\main\resources, --existing, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\generated\resources, --output, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\generated\resources]
-[17set.2023 13:50:35.502] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [backmath]
-[17set.2023 13:50:38.745] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.1.0, for MC 1.20.1 with MCP 20230612.114412
-[17set.2023 13:50:38.746] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.1.0 Initialized
-[17set.2023 13:50:38.962] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
-[17set.2023 13:50:38.967] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 2.905 ms
-[17set.2023 13:50:39.608] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/tamir/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.1.0_mapped_official_1.20.1/forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[17set.2023 13:50:39.608] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/tamir/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.1.0_mapped_official_1.20.1/forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[17set.2023 13:50:39.733] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Block States and Models
-[17set.2023 13:50:40.307] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Block States and Models finished after 573 ms
-[17set.2023 13:50:40.307] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Item Models
-[17set.2023 13:50:40.667] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Item Models finished after 360 ms
-[17set.2023 13:50:40.668] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Advancements
-[17set.2023 13:50:40.713] [main/INFO] [net.minecraft.data.DataGenerator/]: Advancements finished after 45 ms
-[17set.2023 13:50:40.713] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Block Tags
-[17set.2023 13:50:40.729] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Block Tags finished after 16 ms
-[17set.2023 13:50:40.729] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Item Tags
-[17set.2023 13:50:40.744] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Item Tags finished after 14 ms
-[17set.2023 13:50:40.744] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Fluid Tags
-[17set.2023 13:50:40.746] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Fluid Tags finished after 1 ms
-[17set.2023 13:50:40.746] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 1014 ms
-[17set.2023 13:50:40.924] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 2290, old count: 2283, new count: 2291, removed stale: 0, written: 8
+[17set.2023 17:08:12.116] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\tamir\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.1.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, backmath, --all, --existing, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\main\resources, --existing, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\generated\resources, --output, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\generated\resources]
+[17set.2023 17:08:12.121] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.5 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[17set.2023 17:08:12.294] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[17set.2023 17:08:12.346] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/tamir/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[17set.2023 17:08:12.610] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\tamir\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.1.0\a2cd58d15791eaac9983e30be0995e66bd48633e\javafmllanguage-1.20.1-47.1.0.jar is missing mods.toml file
+[17set.2023 17:08:12.618] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\tamir\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.1.0\f1f11b7217b8320f1b3eb81c746b7b8a70a9ba06\lowcodelanguage-1.20.1-47.1.0.jar is missing mods.toml file
+[17set.2023 17:08:12.624] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\tamir\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.1.0\ff1b8eeb1bd00dfb130263b8952b931f5369252e\mclanguage-1.20.1-47.1.0.jar is missing mods.toml file
+[17set.2023 17:08:12.630] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\tamir\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.1.0\69ca36ae5b8d45c377a5485dc38a7343e5ebf33c\fmlcore-1.20.1-47.1.0.jar is missing mods.toml file
+[17set.2023 17:08:12.742] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[17set.2023 17:08:24.889] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[17set.2023 17:08:24.894] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\tamir\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, backmath, --all, --existing, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\main\resources, --existing, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\generated\resources, --output, I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\src\generated\resources]
+[17set.2023 17:08:25.462] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\build\createSrgToMcp\output.srg
+[17set.2023 17:08:25.463] [main/INFO] [mixin/]: Remapping refMap terrablender.refmap.json using I:\Users\tamir\Documents\Main Minecraft Mods\BackMath-1.20.1\build\createSrgToMcp\output.srg
+[17set.2023 17:08:25.715] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [backmath]
+[17set.2023 17:08:29.076] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.1.0, for MC 1.20.1 with MCP 20230612.114412
+[17set.2023 17:08:29.077] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.1.0 Initialized
+[17set.2023 17:08:29.291] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
+[17set.2023 17:08:29.298] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 3.965 ms
+[17set.2023 17:08:29.470] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:overworld to index 0 for type OVERWORLD
+[17set.2023 17:08:29.470] [modloading-worker-0/INFO] [terrablender/]: Registered region minecraft:nether to index 0 for type NETHER
+[17set.2023 17:08:29.470] [modloading-worker-0/INFO] [terrablender/]: Registered region backmath:overworld to index 1 for type OVERWORLD
+[17set.2023 17:08:29.941] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/tamir/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.1.0_mapped_official_1.20.1/forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[17set.2023 17:08:29.942] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/tamir/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.1.0_mapped_official_1.20.1/forge-1.20.1-47.1.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[17set.2023 17:08:30.326] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Block States and Models
+[17set.2023 17:08:30.850] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Block States and Models finished after 523 ms
+[17set.2023 17:08:30.850] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Item Models
+[17set.2023 17:08:31.193] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Item Models finished after 342 ms
+[17set.2023 17:08:31.193] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Advancements
+[17set.2023 17:08:31.220] [main/INFO] [net.minecraft.data.DataGenerator/]: Advancements finished after 27 ms
+[17set.2023 17:08:31.221] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Block Tags
+[17set.2023 17:08:31.236] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Block Tags finished after 14 ms
+[17set.2023 17:08:31.236] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Item Tags
+[17set.2023 17:08:31.251] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Item Tags finished after 14 ms
+[17set.2023 17:08:31.251] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Back Math - Fluid Tags
+[17set.2023 17:08:31.252] [main/INFO] [net.minecraft.data.DataGenerator/]: Back Math - Fluid Tags finished after 1 ms
+[17set.2023 17:08:31.253] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Tags for minecraft:worldgen/biome mod id backmath
+[17set.2023 17:08:31.253] [main/INFO] [net.minecraft.data.DataGenerator/]: Tags for minecraft:worldgen/biome mod id backmath finished after 0 ms
+[17set.2023 17:08:31.253] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Registries
+[17set.2023 17:08:31.276] [main/INFO] [net.minecraft.data.DataGenerator/]: Registries finished after 22 ms
+[17set.2023 17:08:31.276] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 949 ms
+[17set.2023 17:08:31.475] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 2335, old count: 2335, new count: 2336, removed stale: 0, written: 1

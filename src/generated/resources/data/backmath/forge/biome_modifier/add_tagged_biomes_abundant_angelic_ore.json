@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#backmath:has_abundant_angelic_ore",
+  "features": "backmath:placed_abundant_angelic_ore",
+  "step": "underground_ores"
+}

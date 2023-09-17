@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#backmath:aljamic_highlands_ores",
+  "features": "backmath:placed_highlands_jantic_ore",
+  "step": "underground_ores"
+}

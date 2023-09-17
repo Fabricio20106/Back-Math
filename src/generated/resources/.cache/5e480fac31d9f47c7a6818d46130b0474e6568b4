@@ -1,0 +1,5 @@
+// 1.20.1	2023-09-17T15:25:03.484654	Tags for minecraft:worldgen/biome mod id backmath
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/backmath/tags/worldgen/biome/aljamic_highlands_ores.json
+e164a373e5b48930731cf3c1b47393ecb40248d5 data/backmath/tags/worldgen/biome/has_abundant_angelic_ore.json
+e164a373e5b48930731cf3c1b47393ecb40248d5 data/backmath/tags/worldgen/biome/has_crystalline_angelic_ore.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/backmath/tags/worldgen/biome/is_aljan.json
