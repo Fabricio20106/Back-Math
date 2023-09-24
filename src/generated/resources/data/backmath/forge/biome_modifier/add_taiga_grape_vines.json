@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_taiga",
+  "features": "backmath:placed_grape_vine",
+  "step": "vegetal_decoration"
+}

@@ -12,9 +12,7 @@ import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
+import net.minecraft.world.level.levelgen.placement.*;
 
 import java.util.List;
 
@@ -37,7 +35,21 @@ public class BMPlacedFeatures {
     // Trees
     public static final ResourceKey<PlacedFeature> PLACED_GUARANA_OAK = registerKey("placed_guarana_oak");
     public static final ResourceKey<PlacedFeature> PLACED_MANGO_OAK = registerKey("placed_mango_oak");
+    public static final ResourceKey<PlacedFeature> PLACED_MANGAED_MANGO_OAK = registerKey("placed_mangaed_mango_oak");
+    public static final ResourceKey<PlacedFeature> PLACED_GRAPE_VINE = registerKey("placed_grape_vine");
+    public static final ResourceKey<PlacedFeature> PLACED_LEMON_OAK = registerKey("placed_lemon_oak");
+    public static final ResourceKey<PlacedFeature> PLACED_PINEAPPLE_OAK = registerKey("placed_pineapple_oak");
+    public static final ResourceKey<PlacedFeature> PLACED_ORANGE_OAK = registerKey("placed_orange_oak");
+    public static final ResourceKey<PlacedFeature> PLACED_BANANA_JUNGLE = registerKey("placed_banana_jungle");
+    public static final ResourceKey<PlacedFeature> PLACED_GUAVA_TREE = registerKey("placed_guava_tree");
+    public static final ResourceKey<PlacedFeature> PLACED_JABUTICABEIRA = registerKey("placed_jabuticabeira");
+    public static final ResourceKey<PlacedFeature> PLACED_CRYSTALLINE_BIRCH = registerKey("placed_crystalline_birch");
     public static final ResourceKey<PlacedFeature> PLACED_ALJAME_BIRCH = registerKey("placed_aljame_birch");
+
+    // Plant Patches
+    public static final ResourceKey<PlacedFeature> PLACED_BACK_FIELD_FLOWERS = registerKey("placed_back_field_flowers");
+    public static final ResourceKey<PlacedFeature> PLACED_TURTLE_FRIED_EGG_FLOWER_PATCH = registerKey("placed_turtle_fried_egg_flower_patch");
+    public static final ResourceKey<PlacedFeature> PLACED_ENDER_DRAGON_FRIED_EGG_FLOWER_PATCH = registerKey("placed_ender_dragon_fried_egg_flower_patch");
 
     public static void bootstrap(BootstapContext<PlacedFeature> context) {
         HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
@@ -84,8 +96,45 @@ public class BMPlacedFeatures {
         register(context, PLACED_MANGO_OAK, configuredFeatures.getOrThrow(BMConfiguredFeatures.MANGO_OAK), VegetationPlacements.treePlacement(
                 PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.MANGO_OAK_SAPLING.get()));
 
+        register(context, PLACED_MANGAED_MANGO_OAK, configuredFeatures.getOrThrow(BMConfiguredFeatures.MANGAED_MANGO_OAK), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.MANGAED_MANGO_OAK_SAPLING.get()));
+
+        register(context, PLACED_GRAPE_VINE, configuredFeatures.getOrThrow(BMConfiguredFeatures.GRAPE_VINE), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(1, 0.01f, 0), BMBlocks.GRAPE_VINE_SAPLING.get()));
+
+        register(context, PLACED_LEMON_OAK, configuredFeatures.getOrThrow(BMConfiguredFeatures.LEMON_OAK), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.LEMON_OAK_SAPLING.get()));
+
+        register(context, PLACED_PINEAPPLE_OAK, configuredFeatures.getOrThrow(BMConfiguredFeatures.PINEAPPLE_OAK), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.PINEAPPLE_OAK_SAPLING.get()));
+
+        register(context, PLACED_ORANGE_OAK, configuredFeatures.getOrThrow(BMConfiguredFeatures.ORANGE_OAK), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.ORANGE_OAK_SAPLING.get()));
+
+        register(context, PLACED_BANANA_JUNGLE, configuredFeatures.getOrThrow(BMConfiguredFeatures.BANANA_JUNGLE), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.BANANA_JUNGLE_SAPLING.get()));
+
+        register(context, PLACED_GUAVA_TREE, configuredFeatures.getOrThrow(BMConfiguredFeatures.GUAVA_TREE), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.GUAVA_SAPLING.get()));
+
+        register(context, PLACED_JABUTICABEIRA, configuredFeatures.getOrThrow(BMConfiguredFeatures.JABUTICABEIRA), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.JABUTICABA_SAPLING.get()));
+
+        register(context, PLACED_CRYSTALLINE_BIRCH, configuredFeatures.getOrThrow(BMConfiguredFeatures.CRYSTALLINE_BIRCH), VegetationPlacements.treePlacement(
+                PlacementUtils.countExtra(3, 0.1f, 1), BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get()));
+
         register(context, PLACED_ALJAME_BIRCH, configuredFeatures.getOrThrow(BMConfiguredFeatures.ALJAME_BIRCH), VegetationPlacements.treePlacement(
                 PlacementUtils.countExtra(1, 0.01f, 1), BMBlocks.ALJAME_BIRCH_SAPLING.get()));
+
+        // Plant Patches
+        register(context, PLACED_BACK_FIELD_FLOWERS, configuredFeatures.getOrThrow(BMConfiguredFeatures.BACK_FIELD_FLOWERS),
+                List.of(RarityFilter.onAverageOnceEvery(16), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
+        register(context, PLACED_TURTLE_FRIED_EGG_FLOWER_PATCH, configuredFeatures.getOrThrow(BMConfiguredFeatures.TURTLE_FRIED_EGG_FLOWER_PATCH),
+                List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+
+        register(context, PLACED_ENDER_DRAGON_FRIED_EGG_FLOWER_PATCH, configuredFeatures.getOrThrow(BMConfiguredFeatures.ENDER_DRAGON_FRIED_EGG_FLOWER_PATCH),
+                List.of(RarityFilter.onAverageOnceEvery(32), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
     }
 
     private static ResourceKey<PlacedFeature> registerKey(String name) {

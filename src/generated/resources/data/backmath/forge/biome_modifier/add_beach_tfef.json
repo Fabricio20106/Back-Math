@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_beach",
+  "features": "backmath:placed_turtle_fried_egg_flower_patch",
+  "step": "vegetal_decoration"
+}

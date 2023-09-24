@@ -16,6 +16,7 @@ import net.minecraftforge.fml.common.Mod;
 public class BMColorManager {
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
+    // Todo: Swap to Forge's RegisterColorHandlersEvent.Block
     public static void registerBlockColorHandlers(final RegisterColorHandlersEvent.Block event) {
         event.getBlockColors().register((x, reader, pos, u) -> reader != null && pos != null ? BiomeColors.getAverageGrassColor(reader, pos) : GrassColor.get(0.5d, 1),
                 BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.AVONDALIC_NYLIUM.get());

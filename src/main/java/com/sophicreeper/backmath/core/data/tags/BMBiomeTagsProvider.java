@@ -20,13 +20,18 @@ public class BMBiomeTagsProvider extends BiomeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.tag(BMTags.Biomes.HAS_CRYSTALLINE_ANGELIC_ORE).add(Biomes.WINDSWEPT_HILLS).add(Biomes.WINDSWEPT_GRAVELLY_HILLS);
-        this.tag(BMTags.Biomes.HAS_ABUNDANT_ANGELIC_ORE).add(Biomes.WINDSWEPT_HILLS).add(Biomes.WINDSWEPT_GRAVELLY_HILLS);
+        this.tag(BMTags.Biomes.HAS_CRYSTALLINE_ANGELIC_ORE).add(BMBiomes.ANGELIC_WOODS)
+                .add(Biomes.WINDSWEPT_HILLS).add(Biomes.WINDSWEPT_GRAVELLY_HILLS);
+        this.tag(BMTags.Biomes.HAS_ABUNDANT_ANGELIC_ORE).add(BMBiomes.ANGELIC_WOODS)
+                .add(Biomes.WINDSWEPT_HILLS).add(Biomes.WINDSWEPT_GRAVELLY_HILLS);
+
+        this.tag(BMTags.Biomes.IS_BACK_FIELDS).add(BMBiomes.ORIGINAL_BACK_FIELDS).add(BMBiomes.MODIFIED_BACK_FIELDS);
 
         this.tag(BMTags.Biomes.IS_ALJAN);
         this.tag(BMTags.Biomes.ALJAMIC_HIGHLANDS_ORES);
 
-        this.tag(BiomeTags.IS_OVERWORLD).add(BMBiomes.ORIGINAL_BACK_FIELDS);
-        this.tag(BiomeTags.IS_FOREST).add(BMBiomes.ORIGINAL_BACK_FIELDS);
+        this.tag(BiomeTags.IS_OVERWORLD).add(BMBiomes.ORIGINAL_BACK_FIELDS).add(BMBiomes.MODIFIED_BACK_FIELDS).add(BMBiomes.ANGELIC_WOODS);
+        this.tag(BiomeTags.IS_FOREST).add(BMBiomes.ORIGINAL_BACK_FIELDS).add(BMBiomes.MODIFIED_BACK_FIELDS).add(BMBiomes.ANGELIC_WOODS);
+        this.tag(BiomeTags.IS_HILL).add(BMBiomes.ANGELIC_WOODS);
     }
 }

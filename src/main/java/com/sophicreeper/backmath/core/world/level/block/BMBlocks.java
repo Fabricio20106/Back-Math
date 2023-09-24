@@ -391,7 +391,7 @@ public class BMBlocks {
 
     // Jabuticaba Wood
     public static final RegistryObject<Block> JABUTICABA_LEAVES = BLOCKS.register("jabuticaba_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
-    public static final RegistryObject<Block> JABUTICABA_SAPLING = BLOCKS.register("jabuticaba_sapling", () -> new SaplingBlock(new JabuticabaTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> JABUTICABA_SAPLING = BLOCKS.register("jabuticaba_sapling", () -> new SaplingBlock(new JabuticabeiraGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
     public static final RegistryObject<Block> POTTED_JABUTICABA_SAPLING = BLOCKS.register("potted_jabuticaba_sapling", () -> new FlowerPotBlock(BMBlocks.JABUTICABA_SAPLING.get(), BlockBehaviour.Properties.copy(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> JABUTICABA_LOG = BLOCKS.register("jabuticaba_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> JABUTICABA_WOOD = BLOCKS.register("jabuticaba_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WOOD)));

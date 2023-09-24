@@ -30,6 +30,14 @@ public class BMBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_JANTIC_ORE_TO_ALJAN_BIOMES = registerKey("add_aljan_jantic_ore");
     public static final ResourceKey<BiomeModifier> ADD_JANTIC_ORE_TO_TAGGED_BIOMES = registerKey("add_tagged_jantic_ore");
 
+    // Trees
+    public static final ResourceKey<BiomeModifier> ADD_GRAPE_VINES_TO_TAIGAS = registerKey("add_taiga_grape_vines");
+    public static final ResourceKey<BiomeModifier> ADD_BANANA_JUNGLES_TO_JUNGLES = registerKey("add_jungle_banana_jungle");
+
+    // Plant Patches
+    public static final ResourceKey<BiomeModifier> ADD_TURTLE_FRIED_EGG_FLOWERS_TO_BEACHES = registerKey("add_beach_tfef");
+    public static final ResourceKey<BiomeModifier> ADD_ENDER_DRAGON_FRIED_EGG_FLOWERS_TO_END_BIOMES = registerKey("add_end_edfef");
+
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         var placedFeatures = context.lookup(Registries.PLACED_FEATURE);
         var biomes = context.lookup(Registries.BIOME);
@@ -95,6 +103,28 @@ public class BMBiomeModifiers {
                 biomes.getOrThrow(BMTags.Biomes.ALJAMIC_HIGHLANDS_ORES),
                 HolderSet.direct(placedFeatures.getOrThrow(BMPlacedFeatures.PLACED_HIGHLANDS_JANTIC_ORE)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
+
+        // Trees
+        context.register(ADD_GRAPE_VINES_TO_TAIGAS, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_TAIGA),
+                HolderSet.direct(placedFeatures.getOrThrow(BMPlacedFeatures.PLACED_GRAPE_VINE)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_BANANA_JUNGLES_TO_JUNGLES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_JUNGLE),
+                HolderSet.direct(placedFeatures.getOrThrow(BMPlacedFeatures.PLACED_BANANA_JUNGLE)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        // Plant Patches
+        context.register(ADD_TURTLE_FRIED_EGG_FLOWERS_TO_BEACHES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_BEACH),
+                HolderSet.direct(placedFeatures.getOrThrow(BMPlacedFeatures.PLACED_TURTLE_FRIED_EGG_FLOWER_PATCH)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
+
+        context.register(ADD_ENDER_DRAGON_FRIED_EGG_FLOWERS_TO_END_BIOMES, new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+                biomes.getOrThrow(BiomeTags.IS_END),
+                HolderSet.direct(placedFeatures.getOrThrow(BMPlacedFeatures.PLACED_ENDER_DRAGON_FRIED_EGG_FLOWER_PATCH)),
+                GenerationStep.Decoration.VEGETAL_DECORATION));
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

@@ -7,26 +7,27 @@ import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 
-public class BMDefaultBiomeFeatures {
-    public static void withOriginalBackFieldTrees(BiomeGenerationSettings.Builder settings) {
+public class BMBiomeDefaultFeatures {
+    public static void addOriginalBackFieldsTrees(BiomeGenerationSettings.Builder settings) {
         settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_ALJAME_BIRCH);
         settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_GUARANA_OAK);
         settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_MANGO_OAK);
-        //settings.addFeature()(GenerationStep.Decoration.VEGETAL_DECORATION, BMFeatures.MANGAED_MANGO_OAKS);
+        // Todo: Make this configurable later on.
+        //settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_MANGAED_MANGO_OAK);
         settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_BIRCH_AND_OAK);
     }
 
-    /*public static void withModifiedBackFieldTrees(BiomeGenerationSettings.Builder settings) {
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAME_BIRCHES);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.LEMON_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PINEAPPLE_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ORANGE_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.GUAVA_TREES);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.JABUTICABA_TREES);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.OAKS);
+    public static void addModifiedBackFieldTrees(BiomeGenerationSettings.Builder settings) {
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_ALJAME_BIRCH);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_LEMON_OAK);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_PINEAPPLE_OAK);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_ORANGE_OAK);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_GUAVA_TREE);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_JABUTICABEIRA);
+        settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, VegetationPlacements.TREES_BIRCH_AND_OAK);
     }
 
-    public static void withFriendlyBMMobs(MobSpawnInfo.Builder spawns) {
+    /*public static void friendlyBackFieldMobs(MobSpawnInfo.Builder spawns) {
         if (BMConfigs.SERVER_CONFIGS.wandererSophieSpawn.get()) {
             spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.WANDERER_SOPHIE.get(), 8, 4, 4));
         }
@@ -41,7 +42,7 @@ public class BMDefaultBiomeFeatures {
         }
     }
 
-    public static void withBackFieldMobs(MobSpawnInfo.Builder spawns) {
+    public static void commonBackFieldMobs(MobSpawnInfo.Builder spawns) {
         if (BMConfigs.SERVER_CONFIGS.wandererSophieSpawn.get()) {
             spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.WANDERER_SOPHIE.get(), 8, 4, 4));
         }
@@ -56,12 +57,9 @@ public class BMDefaultBiomeFeatures {
         }
     }*/
 
-    public static void withGeneralBackFieldThings(BiomeGenerationSettings.Builder settings, MobSpawnSettings.Builder spawns) {
-        // settings.addFeature(GenerationStep.Decoration.LAKES, BMFeatures.HILLARY_LAKE);
-        // settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
+    public static void addBasicBiomeFeatures(BiomeGenerationSettings.Builder settings, MobSpawnSettings.Builder spawns) {
         BiomeDefaultFeatures.addDefaultCarversAndLakes(settings);
         BiomeDefaultFeatures.addDefaultMonsterRoom(settings);
-        BiomeDefaultFeatures.addForestGrass(settings);
         BiomeDefaultFeatures.addDefaultExtraVegetation(settings);
         BiomeDefaultFeatures.addDefaultSprings(settings);
         BiomeDefaultFeatures.addSurfaceFreezing(settings);
@@ -75,17 +73,25 @@ public class BMDefaultBiomeFeatures {
         // Passive and hostile mob spawns
         BiomeDefaultFeatures.commonSpawns(spawns);
         BiomeDefaultFeatures.farmAnimals(spawns);
+    }
+
+    public static void addDefaultBackFieldsFeatures(BiomeGenerationSettings.Builder settings, MobSpawnSettings.Builder spawns) {
+        // settings.addFeature(GenerationStep.Decoration.LAKES, BMFeatures.HILLARY_LAKE);
+        // settings.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, BMPlacedFeatures.PLACED_BACK_FIELD_FLOWERS);
+
+        addBasicBiomeFeatures(settings, spawns);
+
         // withFriendlyBMMobs(spawns);
         // withHostileBMMobs(spawns);
     }
 
-    /*public static void withCommonUndergroundAljanBlocks(BiomeGenerationSettings.Builder settings) {
+    /*public static void addAljanUndergroundVariety(BiomeGenerationSettings.Builder settings) {
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.SLEEPINGSTONE_BLOB);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_DIRT_BLOB);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_BLOB);
     }
 
-    public static void withHostileBMMobs(MobSpawnInfo.Builder spawns) {
+    public static void backMathHostiles(MobSpawnInfo.Builder spawns) {
         if (BMConfigs.SERVER_CONFIGS.angrySophieSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.ANGRY_SOPHIE.get(), 100, 4, 4));
         }
@@ -97,7 +103,7 @@ public class BMDefaultBiomeFeatures {
         }
     }
 
-    public static void withAljanHostileMobs(MobSpawnInfo.Builder spawns) {
+    public static void aljanMonsters(MobSpawnInfo.Builder spawns) {
         if (BMConfigs.SERVER_CONFIGS.insomniaZombieSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.INSOMNIA_ZOMBIE.get(), 25, 4, 5));
         }
@@ -112,13 +118,13 @@ public class BMDefaultBiomeFeatures {
         }
     }
 
-    public static void withAljanPassiveMobs(MobSpawnInfo.Builder spawns) {
+    public static void aljanPassives(MobSpawnInfo.Builder spawns) {
         if (BMConfigs.SERVER_CONFIGS.malaikaSpawn.get()) {
             spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(BMEntities.MALAIKA.get(), 12, 2, 5));
         }
     }
 
-    public static void withAljanMobs(MobSpawnInfo.Builder spawns) {
+    public static void aljanMobs(MobSpawnInfo.Builder spawns) {
         withAljanHostileMobs(spawns);
         withAljanPassiveMobs(spawns);
     }*/

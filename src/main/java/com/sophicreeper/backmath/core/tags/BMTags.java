@@ -315,6 +315,8 @@ public class BMTags {
         public static final TagKey<Biome> HAS_CRYSTALLINE_ANGELIC_ORE = backMath("has_crystalline_angelic_ore");
         public static final TagKey<Biome> HAS_ABUNDANT_ANGELIC_ORE = backMath("has_abundant_angelic_ore");
 
+        public static final TagKey<Biome> IS_BACK_FIELDS = backMath("is_back_fields");
+
         public static final TagKey<Biome> IS_ALJAN = backMath("is_aljan");
         public static final TagKey<Biome> ALJAMIC_HIGHLANDS_ORES = backMath("aljamic_highlands_ores");
 
