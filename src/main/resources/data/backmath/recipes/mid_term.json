@@ -24,9 +24,12 @@
     },
     {
       "tag": "forge:singularities/manga_mango"
+    },
+    {
+      "item": "backmath:superheater"
     }
   ],
   "result": {
-    "item": "backmath:mid_term"
+    "item": "backmath:molten_mid_term_bucket"
   }
 }

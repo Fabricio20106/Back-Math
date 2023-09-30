@@ -3,8 +3,8 @@ package com.sophicreeper.backmath.core.world.item.tool;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class MortarAndPestleItem extends Item {
-    public MortarAndPestleItem(Properties properties) {
+public class DamageableCraftingToolItem extends Item {
+    public DamageableCraftingToolItem(Properties properties) {
         super(properties);
     }
 

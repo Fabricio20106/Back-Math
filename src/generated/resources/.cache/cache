@@ -1960,6 +1960,7 @@ f561d8c6fb8161fca803ae353a2a29ecbd372f26 assets/backmath/models/item/stripped_go
 2312a11e773e4d7743199a0614f7157135e7c477 assets/backmath/models/item/stripped_jabuticaba_log.json
 9489cf4f9ae5288e87a6252e1df0233c51944478 assets/backmath/models/item/stripped_jabuticaba_wood.json
 9b2e7ec012d101d50f795912b456e60bdcbda249 assets/backmath/models/item/sugar_crash_disc.json
+ad06db9f3711a792727bbcc65a62dec560e8886d assets/backmath/models/item/superheater.json
 3fcc4be3ff88608c2670709482d38b070f2caff0 assets/backmath/models/item/sweet_berry_jam.json
 efb94dbcd3c9554886c80a55b60d3ecc8f84f489 assets/backmath/models/item/sweet_berry_jam_bread.json
 ed584c00512eb3ea28c36fb33461cefaae25e13f assets/backmath/models/item/sweet_berry_juice.json
@@ -2020,7 +2021,7 @@ c2dc82f58f81b580fc523082a5394886186495b2 data/backmath/tags/blocks/crystalline_b
 3a206a97959a264e91dd1c7ee4437e01e70f7304 data/backmath/tags/blocks/guava_logs.json
 305fe272833afea72f97591d3555e3566f54eaba data/backmath/tags/blocks/infiniburn_aljan.json
 f978aa91a9e21d61b30026f88abcab85580649bc data/backmath/tags/blocks/insomnian_logs.json
-3eaeb9aec4928e09d590b5d5479eb7c33874e3a3 data/backmath/tags/blocks/jabuticaba_logs.json
+8acda300198a77f4dde669aa03918bdd9d8abd0b data/backmath/tags/blocks/jabuticaba_logs.json
 28df2ca8b9692ba9b2461b7cdaab3c1c6462721f data/backmath/tags/blocks/sophie_idea.json
 79e7ae3ce0d59e3e6a1493b8f8a21b88d2be13c5 data/backmath/tags/blocks/sophie_idea/bountifully_expansive.json
 3a230b2e7ddc66a438caa7bc74a3e830f25b2526 data/backmath/tags/blocks/squids.json
@@ -2055,7 +2056,7 @@ a3ea94a82795e6c99a2e19e7dadfad99ae4765bd data/backmath/tags/items/energetics.jso
 3a206a97959a264e91dd1c7ee4437e01e70f7304 data/backmath/tags/items/guava_logs.json
 f978aa91a9e21d61b30026f88abcab85580649bc data/backmath/tags/items/insomnian_logs.json
 bd9056747e90b3add8b9337014270784de49df7e data/backmath/tags/items/item_sacs.json
-3eaeb9aec4928e09d590b5d5479eb7c33874e3a3 data/backmath/tags/items/jabuticaba_logs.json
+8acda300198a77f4dde669aa03918bdd9d8abd0b data/backmath/tags/items/jabuticaba_logs.json
 2e35cd01013f76e728d49cca98a81b62f9c1bd90 data/backmath/tags/items/jams.json
 d0ed241fbb1452a188f3fa54995a02a9acd0866b data/backmath/tags/items/juices.json
 a8acbe5225067464ca4cbfe09313becd8bfe6e8b data/backmath/tags/items/materials.json

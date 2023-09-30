@@ -176,13 +176,17 @@ public class BMFeatures {
         TODO: BACKMATH 1.7: ALJAMIC WARS WORLD GENERATION BELOW
      */
 
-    // Vegetation patches.
+    // Vegetation Patches.
     private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ALJAN_WOODS_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ALJAN_TULIP.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
     public static final ConfiguredFeature<?, ?> ALJAN_WOODS_FLOWER_PATCH = register("aljan_woods_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
             new SingleRandomFeature(ALJAN_WOODS_FLOWER_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.VEGETATION_PLACEMENT)
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
+
+    public static final ConfiguredFeature<?, ?> ALJAN_WOODS_FLOWER_PATCH_SINGLE = register("aljan_woods_flower_patch_single", Feature.FLOWER.withConfiguration(
+            Configs.ALJAN_FLOWERS_CONFIG).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+            .func_242731_b(5));
 
     private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> CAPPED_HILLS_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.POISON_ROSE.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
@@ -451,5 +455,10 @@ public class BMFeatures {
         public static final BlockState LEMON_OAK_LEAVES = BMBlocks.LEMON_OAK_LEAVES.get().getDefaultState();
         public static final BlockState ALJAME_BIRCH_LEAVES = BMBlocks.ALJAME_BIRCH_LEAVES.get().getDefaultState();
         public static final BlockState INSOMNIAN_LEAVES = BMBlocks.INSOMNIAN_LEAVES.get().getDefaultState();
+    }
+
+    public static final class Configs {
+        public static final BlockClusterFeatureConfig ALJAN_FLOWERS_CONFIG = new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider()
+                .addWeightedBlockstate(BMBlocks.ALJAN_TULIP.get().getDefaultState(), 2), SimpleBlockPlacer.PLACER).tries(64).build();
     }
 }

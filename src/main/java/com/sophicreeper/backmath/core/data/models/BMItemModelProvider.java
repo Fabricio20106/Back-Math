@@ -1142,6 +1142,7 @@ public class BMItemModelProvider extends ItemModelProvider {
         compat("queen_lucy_shirt_relic");
         compat("warmterm_ingot");
         compat("coldterm_ingot");
+        compat("superheater");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

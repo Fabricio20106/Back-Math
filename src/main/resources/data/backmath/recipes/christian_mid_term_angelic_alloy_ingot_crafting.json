@@ -2,19 +2,17 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "backmath:christian_mid_term_ingot"
+      "tag": "forge:ingots/christian_mid_term"
     },
     {
-      "item": "backmath:angelic_ingot"
+      "tag": "forge:ingots/angelic"
     },
     {
-      "item": "minecraft:blaze_powder"
-    },
-    {
-      "item": "minecraft:dragon_breath"
+      "item": "backmath:superheater"
     }
   ],
   "result": {
-    "item": "backmath:christian_mid_term_angelic_alloy_ingot"
+    "item": "backmath:christian_mid_term_angelic_alloy_ingot",
+    "count": 2
   }
 }

@@ -2,14 +2,21 @@ package com.sophicreeper.backmath.core.world.structure.structures;
 
 import com.sophicreeper.backmath.core.client.BackMath;
 import com.sophicreeper.backmath.core.config.BMConfigs;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.jigsaw.JigsawManager;
 import net.minecraft.world.gen.feature.structure.AbstractVillagePiece;
@@ -28,6 +35,17 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
     @Override
     public GenerationStage.Decoration getDecorationStage() {
         return GenerationStage.Decoration.UNDERGROUND_STRUCTURES;
+    }
+
+    @Override
+    protected boolean func_230363_a_(ChunkGenerator chunkGenerator, BiomeProvider biomeProvider, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig featureConfig) {
+        BlockPos centerOfChunk = new BlockPos(chunkX, 0, chunkZ);
+        int landHeight = chunkGenerator.getHeight(centerOfChunk.getX(), centerOfChunk.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
+
+        IBlockReader columnOfBlocks = chunkGenerator.func_230348_a_(centerOfChunk.getX(), centerOfChunk.getZ());
+        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.up(landHeight));
+
+        return topBlock.getFluidState().isEmpty() || topBlock.isIn(Blocks.BEDROCK);
     }
 
     @Override

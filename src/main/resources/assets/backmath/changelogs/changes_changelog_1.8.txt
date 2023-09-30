@@ -104,3 +104,29 @@ Prior fixes:
 
 24/08/2023 (Thursday):
 - Moved most of the handwritten block and item models to the data generators.
+
+30/09/2023 (Saturday):
+- Bugs Fixed:
+   - BM #5: Fabricio Hideout Dungeons (hopefully) no longer generate in the Nether or the End.
+   - BM #13: Jabuticaba Log and Wood entries are duplicated in "backmath:jabuticaba_logs" block and item tags
+- Added the Superheater
+   - Used to "heat" up items in a few recipes, such as alloys and the Molten Mid-Term Bucket.
+- Christian Mid-Term & Devil/Angelic Ingots and Devil & Angelic Alloy Ingots no longer require Dragon's Breath and Blaze Powder, but now need the Superheater to craft.
+   - Output has also been increased from 1 to 2 ingots.
+- Mid-Term recipe now required the Superheater, and now gives a Molten Mid-Term Bucket instead of the Mid-Term.
+   - To get the Mid-Term, you'll now need to use it at a Crystalline Crystallizer with either a singularity or ingot mold.
+- Slightly updated the Brazilian Portuguese translation.
+- Fixed a typo in Brazilian Portuguese translation:
+   - "Rosa envenedada" -> "Rosa envenenada"
+- Fixed inconsistent names in Brazilian Portuguese translation:
+   - "Parede" (Wall) -> "Muro"
+   - "Lingote" (Ingot) -> "Barra"
+- Updated textures for:
+   - Fried Egg, Fried Egg Bag and Empty Fried Egg Bag
+   - Turtle Fried Egg, Turtle Fried Egg Bag and Empty Turtle Fried Egg Bag
+   - Ender Dragon Fried Egg, Ender Dragon Fried Egg Bag and Empty Ender Dragon Fried Egg Bag
+   - All Fried Egg Flowers
+   - Queen Lucy Battle Pack
+   - Amaracamel Batter, Amaracamel Batter Bag and Empty Amaracamel Batter Bag (does not include block)
+   - Emotional Singularity and Yin-Yang
+   - Paintings: "Abobra Braba Oi", "Abrobra Rainbow Braba", "Oi" and "Sarépoca"
