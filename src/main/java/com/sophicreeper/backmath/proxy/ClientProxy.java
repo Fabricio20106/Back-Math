@@ -1,20 +1,17 @@
 package com.sophicreeper.backmath.proxy;
 
+import com.sophicreeper.backmath.block.BMBlocks;
+import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.block.model.LightBakedModel;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.block.BMFluids;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
-import net.minecraft.item.CrossbowItem;
-import net.minecraft.item.Items;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -23,7 +20,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import static com.sophicreeper.backmath.BackMath.LOGGER;
-import static net.minecraft.item.ItemModelsProperties.registerProperty;
+import static com.sophicreeper.backmath.util.BMItemModelProperties.*;
 
 public class ClientProxy extends CommonProxy {
     public ClientProxy() {
@@ -242,45 +239,16 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ARROW.get(), InsomniaArrowRenderer::new);
 
         // Item Properties
-        registerProperty(AxolotlTest.DEVIL_SHIELD.get(), new ResourceLocation("blocking"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() &&
-                livingEntity.getActiveItemStack() == stack ? 1 : 0);
-        registerProperty(AxolotlTest.ANGELIC_SHIELD.get(), new ResourceLocation("blocking"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() &&
-                livingEntity.getActiveItemStack() == stack ? 1 : 0);
-        registerProperty(AxolotlTest.MID_TERM_SHIELD.get(), new ResourceLocation("blocking"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() &&
-                livingEntity.getActiveItemStack() == stack ? 1 : 0);
+        makeShield(AxolotlTest.DEVIL_SHIELD.get());
+        makeShield(AxolotlTest.ANGELIC_SHIELD.get());
+        makeShield(AxolotlTest.MID_TERM_SHIELD.get());
 
-        registerProperty(AxolotlTest.ANGELIC_BOW.get(), new ResourceLocation("pull"), (stack, world, livingEntity) -> {
-            if (livingEntity == null) {
-                return 0;
-            } else {
-                return livingEntity.getActiveItemStack() != stack ? 0 : (float) (stack.getUseDuration() - livingEntity.getItemInUseCount()) / 20;
-            }
-        });
-        registerProperty(AxolotlTest.ANGELIC_BOW.get(), new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1 : 0);
-        registerProperty(AxolotlTest.ANGELIC_CROSSBOW.get(), new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack && !CrossbowItem.isCharged(stack) ? 1 : 0);
-        registerProperty(AxolotlTest.ANGELIC_CROSSBOW.get(), new ResourceLocation("charged"), (stack, world, livingEntity) -> livingEntity != null && CrossbowItem.isCharged(stack) ? 1 : 0);
-        registerProperty(AxolotlTest.ANGELIC_CROSSBOW.get(), new ResourceLocation("firework"), (stack, world, livingEntity) -> livingEntity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1 : 0);
+        makeBow(AxolotlTest.DEVIL_BOW.get());
+        makeBow(AxolotlTest.ANGELIC_BOW.get());
+        makeBow(AxolotlTest.MID_TERM_BOW.get());
 
-        registerProperty(AxolotlTest.DEVIL_BOW.get(), new ResourceLocation("pull"), (stack, world, livingEntity) -> {
-            if (livingEntity == null) {
-                return 0;
-            } else {
-                return livingEntity.getActiveItemStack() != stack ? 0 : (float) (stack.getUseDuration() - livingEntity.getItemInUseCount()) / 20;
-            }
-        });
-        registerProperty(AxolotlTest.DEVIL_BOW.get(), new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1 : 0);
-        registerProperty(AxolotlTest.DEVIL_CROSSBOW.get(), new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack && !CrossbowItem.isCharged(stack) ? 1 : 0);
-        registerProperty(AxolotlTest.DEVIL_CROSSBOW.get(), new ResourceLocation("charged"), (stack, world, livingEntity) -> livingEntity != null && CrossbowItem.isCharged(stack) ? 1 : 0);
-        registerProperty(AxolotlTest.DEVIL_CROSSBOW.get(), new ResourceLocation("firework"), (stack, world, livingEntity) -> livingEntity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1 : 0);
-
-        registerProperty(AxolotlTest.MID_TERM_BOW.get(), new ResourceLocation("pull"), (stack, world, livingEntity) -> {
-            if (livingEntity == null) {
-                return 0;
-            } else {
-                return livingEntity.getActiveItemStack() != stack ? 0 : (float) (stack.getUseDuration() - livingEntity.getItemInUseCount()) / 20;
-            }
-        });
-        registerProperty(AxolotlTest.MID_TERM_BOW.get(), new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1 : 0);
+        makeCrossbow(AxolotlTest.DEVIL_CROSSBOW.get());
+        makeCrossbow(AxolotlTest.ANGELIC_CROSSBOW.get());
     }
 
     @SubscribeEvent

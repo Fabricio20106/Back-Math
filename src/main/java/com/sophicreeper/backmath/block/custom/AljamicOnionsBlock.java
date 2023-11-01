@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
-import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
@@ -20,15 +20,14 @@ public class AljamicOnionsBlock extends CropsBlock {
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 6.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D),
             Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D),
-            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D)
-    };
+            Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 9.0D, 16.0D)};
 
     public AljamicOnionsBlock(Properties properties) {
         super(properties);
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader reader, BlockPos pos) {
-        return state.isIn(BMBlocks.ALJAMIC_FARMLAND.get());
+        return state.isIn(BMTags.Blocks.ALJAN_CROP_PLANTABLE_ON);
     }
 
     protected IItemProvider getSeedsItem() {

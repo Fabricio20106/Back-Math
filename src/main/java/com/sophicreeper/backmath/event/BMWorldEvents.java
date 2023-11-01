@@ -5,7 +5,7 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
-import com.sophicreeper.backmath.world.plant.BMPlantFeatures;
+import com.sophicreeper.backmath.world.plant.BMPlantGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructureGeneration;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructures;
@@ -52,7 +52,7 @@ public class BMWorldEvents {
         BMOreGeneration.generateAljanstoneOres(event);
         BMOreGeneration.generateSleepingstoneOres(event);
         BMCarverGeneration.generateCarvers(event);
-        BMPlantFeatures.generatePlantsAndTrees(event);
+        BMPlantGeneration.generatePlantsAndTrees(event);
 
         BMStructureGeneration.generateStructures(event);
     }

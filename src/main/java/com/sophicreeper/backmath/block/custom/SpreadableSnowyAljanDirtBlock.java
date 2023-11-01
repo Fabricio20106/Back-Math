@@ -16,27 +16,25 @@ public class SpreadableSnowyAljanDirtBlock extends SnowyDirtBlock {
         super(builder);
     }
 
-    private static boolean isSnowyConditions(BlockState state, IWorldReader worldReader, BlockPos pos) {
+    private static boolean isSnowyConditions(BlockState state, IWorldReader world, BlockPos pos) {
         BlockPos abovePos = pos.up();
-        BlockState aboveState = worldReader.getBlockState(abovePos);
+        BlockState aboveState = world.getBlockState(abovePos);
         if (aboveState.isIn(Blocks.SNOW) && aboveState.get(SnowBlock.LAYERS) == 1) {
             return true;
         } else if (aboveState.getFluidState().getLevel() == 8) {
             return false;
         } else {
-            int i = LightEngine.func_215613_a(worldReader, state, pos, aboveState, abovePos, Direction.UP, aboveState.getOpacity(worldReader, abovePos));
-            return i < worldReader.getMaxLightLevel();
+            int i = LightEngine.func_215613_a(world, state, pos, aboveState, abovePos, Direction.UP, aboveState.getOpacity(world, abovePos));
+            return i < world.getMaxLightLevel();
         }
     }
 
-    private static boolean isSnowyAndNotUnderwater(BlockState state, IWorldReader worldReader, BlockPos pos) {
+    private static boolean isSnowyAndNotUnderwater(BlockState state, IWorldReader world, BlockPos pos) {
         BlockPos abovePos = pos.up();
-        return isSnowyConditions(state, worldReader, pos) && !worldReader.getFluidState(abovePos).isTagged(FluidTags.WATER);
+        return isSnowyConditions(state, world, pos) && !world.getFluidState(abovePos).isTagged(FluidTags.WATER);
     }
 
-    /**
-     * Performs a random tick on a block.
-     */
+    // Performs a random tick on a block.
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (!isSnowyConditions(state, world, pos)) {
             if (!world.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading

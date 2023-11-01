@@ -2,9 +2,9 @@ package com.sophicreeper.backmath.world.biome;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.data.worldgen.BMDefaultBiomeFeatures;
 import com.sophicreeper.backmath.world.BMFeatures;
 import com.sophicreeper.backmath.entity.BMEntities;
+import com.sophicreeper.backmath.world.biome.custom.BMDefaultBiomeFeatures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.*;
@@ -34,12 +34,12 @@ public class BMBiomes {
     public static final RegistryObject<Biome> ALJAMIC_ORCHARD = BIOMES.register("aljamic_orchard", BMBiomes::aljamicOrchard);
     public static final RegistryObject<Biome> AVONDALIC_GROVE = BIOMES.register("avondalic_grove", BMBiomes::avondalicGrove);
 
-    // This is the actual original back fields, the back Field.
+    // This is the actual original back fields, the Back Field.
     private static Biome backField() {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
 
-        // Structures
+        // Structures Generation
         DefaultBiomeFeatures.withStrongholdAndMineshaft(settings);
         settings.withStructure(StructureFeatures.RUINED_PORTAL);
         settings.withStructure(StructureFeatures.VILLAGE_PLAINS);
@@ -48,7 +48,7 @@ public class BMBiomes {
         DefaultBiomeFeatures.withLavaAndWaterLakes(settings);
         DefaultBiomeFeatures.withMonsterRoom(settings);
 
-        // Underground Ores / Disks
+        // Underground Ores & Disks
         DefaultBiomeFeatures.withCommonOverworldBlocks(settings);
         DefaultBiomeFeatures.withOverworldOres(settings);
         DefaultBiomeFeatures.withDisks(settings);
@@ -56,7 +56,7 @@ public class BMBiomes {
         // Passive and hostile mob spawns
         DefaultBiomeFeatures.withBatsAndHostiles(spawns);
         DefaultBiomeFeatures.withPassiveMobs(spawns);
-        BMDefaultBiomeFeatures.withBackFieldMobs(spawns);
+        BMDefaultBiomeFeatures.backFieldHostiles(spawns);
 
         // Vegetal Decoration
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
@@ -78,13 +78,14 @@ public class BMBiomes {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
-        // to create a regular back fields to then add new things to it
-        BMDefaultBiomeFeatures.withGeneralBackFieldThings(settings, spawns);
+        // Adds the default features of a Back Field.
+        BMDefaultBiomeFeatures.addBackFieldFeatures(settings, spawns);
 
-        // 2x more flower patches and with the original back fields trees
+        // Add twice the amount of Back Field flower generation for this biome.
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
-        BMDefaultBiomeFeatures.withOriginalBackFieldTrees(settings);
+
+        BMDefaultBiomeFeatures.addOriginalBackFieldTrees(settings);
         DefaultBiomeFeatures.withOverworldOres(settings);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.2F).temperature(0.7F).downfall(0.8F).setEffects(new
@@ -96,8 +97,8 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(ConfiguredSurfaceBuilders.field_244178_j);
 
-        BMDefaultBiomeFeatures.withGeneralBackFieldThings(settings, spawns);
-        BMDefaultBiomeFeatures.withModifiedBackFieldTrees(settings);
+        BMDefaultBiomeFeatures.addBackFieldFeatures(settings, spawns);
+        BMDefaultBiomeFeatures.addModifiedBackFieldTrees(settings);
         DefaultBiomeFeatures.withOverworldOres(settings);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(1.5f).scale(0.025f).temperature(0.7F).downfall(0.8F).setEffects(new
@@ -126,7 +127,7 @@ public class BMBiomes {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(BMSurfaceBuilders.ALJAN);
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_BUSHES);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
@@ -139,7 +140,7 @@ public class BMBiomes {
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
         DefaultBiomeFeatures.withFrozenTopLayer(settings);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1.0F).scale(0.1F).temperature(0.5F).downfall(0.5F)
                 .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea)
@@ -150,7 +151,7 @@ public class BMBiomes {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(BMSurfaceBuilders.ALJAN);
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPSHROOM_PATCH);
@@ -163,7 +164,7 @@ public class BMBiomes {
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
         DefaultBiomeFeatures.withFrozenTopLayer(settings);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1.8F).scale(0.1F).temperature(0.5F).downfall(0.5F)
                 .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea)
@@ -174,7 +175,7 @@ public class BMBiomes {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(BMSurfaceBuilders.ALJAN);
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPSHROOM_PATCH);
@@ -187,7 +188,7 @@ public class BMBiomes {
         DefaultBiomeFeatures.withSimpleSeagrass(settings);
         DefaultBiomeFeatures.withColdKelp(settings);
         DefaultBiomeFeatures.withFrozenTopLayer(settings);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-2.4F).scale(0.1F).temperature(0.5F).downfall(0.5F)
                 .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea)
@@ -199,14 +200,14 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
         DefaultBiomeFeatures.withForestGrass(settings);
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANWOODS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH_SINGLE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_WAO_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2f).scale(0.5f).temperature(0.5F).downfall(0.8F).setEffects(
                         new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xffffff).withGrassColor(0xd4eaea).build())
@@ -218,11 +219,11 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
         DefaultBiomeFeatures.withForestGrass(settings);
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANCAPS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.CAPPED_HILLS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2f).scale(0.5f).temperature(0.5F).downfall(0.8F).setEffects(
                         new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0x538989).withGrassColor(0x68a4a4).build())
@@ -234,12 +235,12 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
         DefaultBiomeFeatures.withForestGrass(settings);
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.INSOMNIANS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.INSOMNIAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.SLEEPYSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.4F).downfall(0.5F).setEffects(
                 new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xf0b87a).withGrassColor(0x526b9e).build())
@@ -251,7 +252,7 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
         DefaultBiomeFeatures.withForestGrass(settings);
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         if (BMConfigs.SERVER_CONFIGS.amaracamelerSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.AMARACAMELER.get(), 50, 1, 2));
         }
@@ -259,7 +260,7 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AMARACAMEL_STICKS_WCW_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.SWAMP).depth(0.1f).scale(0.5f).temperature(0.4f).downfall(0.5f).setEffects(
                 new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xf0b87a).withGrassColor(0xFCB76B).build())
@@ -272,12 +273,12 @@ public class BMBiomes {
 
         DefaultBiomeFeatures.withForestGrass(settings);
         DefaultBiomeFeatures.withFrozenTopLayer(settings);
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANWOODS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.SNOW).category(Biome.Category.FOREST).depth(1.5f).scale(0.025f).temperature(-0.3F).downfall(0.8F).setEffects(
                         new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xffffff).withGrassColor(0xd4eaea).build())
@@ -288,12 +289,12 @@ public class BMBiomes {
         BiomeGenerationSettings.Builder settings = new BiomeGenerationSettings.Builder().withSurfaceBuilder(BMSurfaceBuilders.ALJAN);
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANSHROOM_PATCH);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJANWOODS_ORCHARD);
         settings.withFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, BMFeatures.ALJANCAP_LEAF_PILE);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
                 new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0x7abdbd).withGrassColor(0x78bfbf).build())
@@ -305,14 +306,14 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder().isValidSpawnBiomeForPlayer();
 
         DefaultBiomeFeatures.withForestGrass(settings);
-        BMDefaultBiomeFeatures.withCommonUndergroundAljanBlocks(settings);
+        BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.SLEEPISHWATER_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AVONDALIC_WILLOWS);
-        BMDefaultBiomeFeatures.withAljanMobs(spawns);
+        BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1f).scale(0.5f).temperature(0.6f).downfall(0.9f).setEffects(
                         new BiomeAmbience.Builder().setWaterColor(0x280c40).setWaterFogColor(0x1d082e).setFogColor(0xb9d1ff).withSkyColor(0xd4eaea).withFoliageColor(0xd73fc1).withGrassColor(0xcc3db4).build())

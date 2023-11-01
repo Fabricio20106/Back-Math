@@ -117,8 +117,6 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.INGOTS_HARDENED_AMARACAMEL).add(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get());
         this.getOrCreateBuilder(BMTags.Items.INGOTS_OBSIDIAN).add(AxolotlTest.OBSIDIAN_INGOT.get());
 
-        // this.getOrCreateBuilder(BMTags.Items.ORES_ALJAMEED).add(AxolotlTest.RAW_ALJAMEED.get()).add(AxolotlTest.ALJAMEED_ORE.get());
-        // this.getOrCreateBuilder(BMTags.Items.ORES_MOONERING).add(AxolotlTest.RAW_MOONER.get()).add(AxolotlTest.MOONERING_ORE.get());
         this.getOrCreateBuilder(BMTags.Items.ORES_JANTICAL).add(AxolotlTest.JANTIC_ORE.get());
 
         this.getOrCreateBuilder(BMTags.Items.DUSTS_DEVIL).add(AxolotlTest.DEVIL_DUST.get());
@@ -191,6 +189,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.RODS_ALJAMEED).add(AxolotlTest.ALJAMEED_BONE.get());
 
         this.getOrCreateBuilder(BMTags.Items.SQUIDS).add(AxolotlTest.TITO.get()).add(AxolotlTest.TOTI.get());
+        this.getOrCreateBuilder(BMTags.Items.BONE_MEALS).add(Items.BONE_MEAL).add(AxolotlTest.SLEEPISH_FERTILIZER.get());
         this.getOrCreateBuilder(BMTags.Items.MOLDS_SINGULARITY).add(AxolotlTest.SINGULARITY_MOLD.get());
         this.getOrCreateBuilder(BMTags.Items.MOLDS_CRYSTALLIZED).add(AxolotlTest.CRYSTALLIZED_MOLD.get());
         this.getOrCreateBuilder(BMTags.Items.MOLDS_INGOT).add(AxolotlTest.INGOT_MOLD.get());

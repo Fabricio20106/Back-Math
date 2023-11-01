@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
@@ -13,6 +13,6 @@ public class EDFEFlowerBlock extends FlowerBlock {
     }
 
     protected boolean isValidGround(BlockState state, IBlockReader world, BlockPos pos) {
-        return super.isValidGround(state, world, pos) || state.isIn(Blocks.END_STONE) || state.isIn(Blocks.END_STONE_BRICKS);
+        return super.isValidGround(state, world, pos) || state.isIn(BMTags.Blocks.EDFEF_PLANTABLE_ON);
     }
 }

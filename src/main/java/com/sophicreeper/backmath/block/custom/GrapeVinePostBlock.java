@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -60,7 +61,7 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
         int ageState = state.get(AGE);
         boolean flag = ageState == 3;
-        if (!flag && player.getHeldItem(hand).getItem() == Items.BONE_MEAL) {
+        if (!flag && player.getHeldItem(hand).getItem().isIn(BMTags.Items.BONE_MEALS)) {
             return ActionResultType.PASS;
         } else if (ageState > 1) {
             int j = 1 + world.rand.nextInt(2);

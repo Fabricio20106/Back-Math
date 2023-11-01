@@ -7,7 +7,7 @@ import net.minecraft.world.gen.GenerationStage;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 
-public class BMPlantFeatures {
+public class BMPlantGeneration {
     public static void generatePlantsAndTrees(final BiomeLoadingEvent event) {
         BiomeGenerationSettingsBuilder settings = event.getGeneration();
 

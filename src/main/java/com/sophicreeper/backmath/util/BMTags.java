@@ -113,6 +113,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> SQUIDS = backMath("squids");
         public static final ITag.INamedTag<Item> POPSICLES = backMath("popsicles");
         public static final ITag.INamedTag<Item> ALJANSTONE_CRAFTING_MATERIALS = backMath("aljanstone_crafting_materials");
+        public static final ITag.INamedTag<Item> BONE_MEALS = backMath("bone_meals");
         // Tag Migration
         public static final ITag.INamedTag<Item> ALJAN_RECIPE_STICKS = backMath("aljan_recipe_sticks");
         public static final ITag.INamedTag<Item> BACK_GUIDE_RECIPE_ACCEPTABLES = backMath("back_guide_recipe_acceptables");
@@ -281,6 +282,11 @@ public class BMTags {
         public static final ITag.INamedTag<Block> GRAPE_VINE_POSTS = backMath("grape_vine_posts");
         public static final ITag.INamedTag<Block> SQUIDS = backMath("squids");
         public static final ITag.INamedTag<Block> TOYS = backMath("toys");
+
+        public static final ITag.INamedTag<Block> WILD_CROPS_PLANTABLE_ON = backMath("wild_crops_plantable_on");
+        public static final ITag.INamedTag<Block> ALJAN_CROP_PLANTABLE_ON = backMath("aljan_crop_plantable_on");
+        public static final ITag.INamedTag<Block> EDFEF_PLANTABLE_ON = backMath("edfef_plantable_on");
+        public static final ITag.INamedTag<Block> TFEF_PLANTABLE_ON = backMath("tfef_plantable_on");
 
         public static final ITag.INamedTag<Block> SOPHIE_IDEA = backMath("sophie_idea");
         public static final ITag.INamedTag<Block> BOUNTIFULLY_EXPANSIVE_IDEA = backMath("sophie_idea/bountifully_expansive");

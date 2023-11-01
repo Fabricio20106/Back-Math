@@ -112,6 +112,12 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         // Back Math Tags
         this.getOrCreateBuilder(BMTags.Blocks.INFINIBURN_ALJAN).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);
 
+        this.getOrCreateBuilder(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get())
+                .add(BMBlocks.ALJAMIC_FARMLAND.get());
+        this.getOrCreateBuilder(BMTags.Blocks.ALJAN_CROP_PLANTABLE_ON).add(BMBlocks.ALJAMIC_FARMLAND.get());
+        this.getOrCreateBuilder(BMTags.Blocks.TFEF_PLANTABLE_ON).addTag(Tags.Blocks.SAND);
+        this.getOrCreateBuilder(BMTags.Blocks.EDFEF_PLANTABLE_ON).add(Blocks.END_STONE).add(Blocks.END_STONE_BRICKS);
+
         // Logs & Woods
         this.getOrCreateBuilder(BMTags.Blocks.CRYSTALLINE_BIRCH_LOGS).add(BMBlocks.CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get());
         this.getOrCreateBuilder(BMTags.Blocks.CORK_OAK_LOGS).add(BMBlocks.CORK_OAK_LOG.get()).add(BMBlocks.CORK_OAK_WOOD.get()).add(BMBlocks.STRIPPED_CORK_OAK_LOG.get()).add(BMBlocks.STRIPPED_CORK_OAK_WOOD.get());
