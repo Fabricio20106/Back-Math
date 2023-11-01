@@ -1,4 +1,4 @@
-package retired_assets.removelater;
+package com.sophicreeper.backmath.item.custom.food;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,17 +8,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-@Deprecated
-public class AmaracamelBatterBagItem extends Item {
-    public AmaracamelBatterBagItem(Properties properties) {
+public class LagustaBagItem extends Item {
+    public LagustaBagItem(Properties properties) {
         super(properties);
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack heldItem = player.getHeldItem(hand);
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.EMPTY_AMARACAMEL_BATTER_BAG.get()));
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.AMARACAMEL_BATTER.get()));
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.EMPTY_LAGUSTA_BAG.get()));
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.LAGUSTA.get()));
         heldItem.shrink(1);
         return super.onItemRightClick(world, player, hand);
     }

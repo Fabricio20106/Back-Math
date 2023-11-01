@@ -1,6 +1,6 @@
 package retired_assets.removelater;
 
-import com.sophicreeper.backmath.core.world.item.AxolotlTest;
+import com.sophicreeper.backmath.item.AxolotlTest;
 
 /**
  * Here's an old version of {@link AxolotlTest} that was merged by Github.

@@ -1,6 +1,7 @@
-package retired_assets.removelater;
+package com.sophicreeper.backmath.item.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.tab.SophiesCursedFoods;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,17 +9,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-@Deprecated
-public class AmaracamelBatterBagItem extends Item {
-    public AmaracamelBatterBagItem(Properties properties) {
-        super(properties);
+public class QueenLucyBattlePackItem extends Item {
+    public QueenLucyBattlePackItem() {
+        super(new Properties().isImmuneToFire().group(SophiesCursedFoods.TAB));
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack heldItem = player.getHeldItem(hand);
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.EMPTY_AMARACAMEL_BATTER_BAG.get()));
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.AMARACAMEL_BATTER.get()));
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.QUEEN_LUCY_SPAWN_EGG.get()));
+        player.addItemStackToInventory(new ItemStack(AxolotlTest.QUEEN_LUCY_BATTLE_INFO.get()));
         heldItem.shrink(1);
         return super.onItemRightClick(world, player, hand);
     }
