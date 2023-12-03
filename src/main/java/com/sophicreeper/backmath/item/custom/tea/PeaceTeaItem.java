@@ -38,12 +38,12 @@ public class PeaceTeaItem extends Item {
         livEntity.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 6000));
-        if (BMConfigs.SERVER_CONFIGS.peaceTeaInvisibilityToggle.get()) {
+        if (BMConfigs.COMMON_CONFIGS.peaceTeaInvisibilityToggle.get()) {
             livEntity.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 6000));
         }
         livEntity.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.SATURATION, 6000));
-        if (BMConfigs.SERVER_CONFIGS.peaceTeaGlowingToggle.get()) {
+        if (BMConfigs.COMMON_CONFIGS.peaceTeaGlowingToggle.get()) {
             livEntity.addPotionEffect(new EffectInstance(Effects.GLOWING, 6000));
         }
         livEntity.addPotionEffect(new EffectInstance(Effects.LUCK, 6000));
@@ -72,12 +72,12 @@ public class PeaceTeaItem extends Item {
         livEntity.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 6000));
-        if (BMConfigs.SERVER_CONFIGS.peaceTeaInvisibilityToggle.get()) {
+        if (BMConfigs.COMMON_CONFIGS.peaceTeaInvisibilityToggle.get()) {
             livEntity.addPotionEffect(new EffectInstance(Effects.INVISIBILITY, 6000));
         }
         livEntity.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 6000));
         livEntity.addPotionEffect(new EffectInstance(Effects.SATURATION, 6000));
-        if (BMConfigs.SERVER_CONFIGS.peaceTeaGlowingToggle.get()) {
+        if (BMConfigs.COMMON_CONFIGS.peaceTeaGlowingToggle.get()) {
             livEntity.addPotionEffect(new EffectInstance(Effects.GLOWING, 6000));
         }
         livEntity.addPotionEffect(new EffectInstance(Effects.LUCK, 6000));

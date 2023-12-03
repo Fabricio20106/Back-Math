@@ -15,7 +15,7 @@ public class BMStructureGeneration {
     public static void generateStructures(final BiomeLoadingEvent event) {
         List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
-        if (Objects.equals(BMBiomes.ORIGINAL_BACK_FIELDS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.MODIFIED_BACK_FIELDS.get().getRegistryName(), event.getName()) && BMConfigs.SERVER_CONFIGS.sophieTowerGeneration.get()) {
+        if (Objects.equals(BMBiomes.ORIGINAL_BACK_FIELDS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.MODIFIED_BACK_FIELDS.get().getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.sophieTowerGeneration.get()) {
             structures.add(() -> BMStructures.SOPHIE_TOWER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
         }
 
@@ -23,7 +23,7 @@ public class BMStructureGeneration {
                 event.getName()) || Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                 || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_ORCHARD.get().getRegistryName(), event.getName()))) {
-            if (!(event.getCategory() == Biome.Category.NETHER || event.getCategory() == Biome.Category.THEEND) && BMConfigs.SERVER_CONFIGS.fabricioHideoutDungeonGeneration.get()) {
+            if (!(event.getCategory() == Biome.Category.NETHER || event.getCategory() == Biome.Category.THEEND) && BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonGeneration.get()) {
                 structures.add(() -> BMStructures.FABRICIO_HIDEOUT_DUNGEON.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
             }
         }

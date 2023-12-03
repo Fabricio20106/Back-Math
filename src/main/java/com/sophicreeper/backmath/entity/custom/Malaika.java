@@ -185,7 +185,7 @@ public class Malaika extends CreatureEntity {
                 Objects.equals(world.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
                 Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
                 Objects.equals(world.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
-                Objects.equals(world.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get()) && BMConfigs.SERVER_CONFIGS.malaikaSpawn.get()) {
+                Objects.equals(world.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get()) && BMConfigs.COMMON_CONFIGS.malaikaSpawn.get()) {
             canSpawnOn(malaika, world, reason, pos, rand);
         }
         return false;

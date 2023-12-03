@@ -1,0 +1,6 @@
+    /*public static final ConfiguredFeature<?, ?> ALJANSTONE_BOULDER = register("aljanstone_boulder", BMFeatureRegister.ALJANSTONE_BOULDER.get().withConfiguration(new BlockStateProvidingFeatureConfig(
+            new WeightedBlockStateProvider().addWeightedBlockstate(BMBlocks.ALJANSTONE.get().getDefaultState(), 7).addWeightedBlockstate(BMBlocks.COBBLED_ALJANSTONE.get()
+                    .getDefaultState(), 4))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3));
+
+    public static final ConfiguredFeature<?, ?> SLEEPINGSTONE_BOULDER = register("sleepingstone_boulder", Feature.FOREST_ROCK.withConfiguration(new BlockStateFeatureConfig(
+            BMBlocks.SLEEPINGSTONE.get().getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3);*/

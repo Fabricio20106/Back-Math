@@ -39,9 +39,9 @@ public class BMWorldEvents {
             ServerWorld serverWorld = (ServerWorld) event.getWorld();
             if (serverWorld.getChunkProvider().generator instanceof DebugChunkGenerator && serverWorld.getDimensionKey().equals(BMDimensions.THE_ALJAN)) {
                 BMCarverGeneration.canGenerate = false;
-                BMConfigs.SERVER_CONFIGS.enableAljanCarverGeneration.set(false);
+                BMConfigs.COMMON_CONFIGS.enableAljanCarverGeneration.set(false);
             } else {
-                BMConfigs.SERVER_CONFIGS.enableAljanCarverGeneration.set(true);
+                BMConfigs.COMMON_CONFIGS.enableAljanCarverGeneration.set(true);
             }
         }
     }
@@ -64,9 +64,9 @@ public class BMWorldEvents {
 
             try {
                 Method GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-                ResourceLocation cgRL = Registry.CHUNK_GENERATOR_CODEC.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkProvider().generator));
+                ResourceLocation chunkGeneratorRL = Registry.CHUNK_GENERATOR_CODEC.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkProvider().generator));
 
-                if (cgRL != null && cgRL.getNamespace().equals("terraforged")) {
+                if (chunkGeneratorRL != null && chunkGeneratorRL.getNamespace().equals("terraforged")) {
                     return;
                 }
             } catch (Exception exception) {
@@ -75,9 +75,10 @@ public class BMWorldEvents {
             }
 
             // Prevent spawning our structure in Vanilla's superflat world.
-            if (serverWorld.getChunkProvider().generator instanceof FlatChunkGenerator && serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
+            /*if (serverWorld.getChunkProvider().generator instanceof FlatChunkGenerator && serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
                 return;
-            }
+            }*/
+            // Who cares about structures not generating in Superflat?
 
             // Adding our structure to the Map.
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());

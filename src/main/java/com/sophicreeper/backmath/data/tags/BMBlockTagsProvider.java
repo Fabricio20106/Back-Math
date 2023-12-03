@@ -112,8 +112,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         // Back Math Tags
         this.getOrCreateBuilder(BMTags.Blocks.INFINIBURN_ALJAN).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);
 
-        this.getOrCreateBuilder(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get())
-                .add(BMBlocks.ALJAMIC_FARMLAND.get());
+        this.getOrCreateBuilder(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get()).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.getOrCreateBuilder(BMTags.Blocks.ALJAN_CROP_PLANTABLE_ON).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.getOrCreateBuilder(BMTags.Blocks.TFEF_PLANTABLE_ON).addTag(Tags.Blocks.SAND);
         this.getOrCreateBuilder(BMTags.Blocks.EDFEF_PLANTABLE_ON).add(Blocks.END_STONE).add(Blocks.END_STONE_BRICKS);

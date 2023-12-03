@@ -87,15 +87,15 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
                     "sophie_tower/start_pool")), 10), AbstractVillagePiece::new, chunkGenerator, templateManager, pos, this.components, this.rand,false,
                     true);
 
-            this.components.forEach(piece -> piece.offset(0, BMConfigs.SERVER_CONFIGS.sophieTowerYOffset.get(), 0));
-            this.components.forEach(piece -> piece.getBoundingBox().minY -= BMConfigs.SERVER_CONFIGS.sophieTowerYOffset.get());
+            this.components.forEach(piece -> piece.offset(0, BMConfigs.COMMON_CONFIGS.sophieTowerYOffset.get(), 0));
+            this.components.forEach(piece -> piece.getBoundingBox().minY -= BMConfigs.COMMON_CONFIGS.sophieTowerYOffset.get());
 
             this.recalculateStructureSize();
 
-            if (BMConfigs.SERVER_CONFIGS.logStructureLocationMessages.get()) {
+            if (BMConfigs.COMMON_CONFIGS.logStructureLocationMessages.get()) {
                 LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("messages.backmath.sophie_tower_location",
                         this.components.get(0).getBoundingBox().minX,
-                        this.components.get(0).getBoundingBox().minY + BMConfigs.SERVER_CONFIGS.sophieTowerYOffset.get(),
+                        this.components.get(0).getBoundingBox().minY + BMConfigs.COMMON_CONFIGS.sophieTowerYOffset.get(),
                         this.components.get(0).getBoundingBox().minZ).getString());
             }
         }

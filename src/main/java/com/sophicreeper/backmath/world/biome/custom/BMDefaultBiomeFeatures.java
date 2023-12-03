@@ -29,28 +29,28 @@ public class BMDefaultBiomeFeatures {
     }
 
     public static void backFieldPassives(MobSpawnInfo.Builder spawns) {
-        if (BMConfigs.SERVER_CONFIGS.wandererSophieSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.wandererSophieSpawn.get()) {
             spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.WANDERER_SOPHIE.get(), 8, 4, 4));
         }
-        if (BMConfigs.SERVER_CONFIGS.shyFabricioSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.shyFabricioSpawn.get()) {
             spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.SHY_FABRICIO.get(), 6, 1, 3));
         }
-        if (BMConfigs.SERVER_CONFIGS.archerLuciaSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.archerLuciaSpawn.get()) {
             spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.ARCHER_LUCIA.get(), 8, 4, 4));
         }
-        if (BMConfigs.SERVER_CONFIGS.karateLuciaSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.karateLuciaSpawn.get()) {
             spawns.withSpawner(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.KARATE_LUCIA.get(), 8, 1, 6));
         }
     }
 
     public static void backFieldHostiles(MobSpawnInfo.Builder spawns) {
-        if (BMConfigs.SERVER_CONFIGS.angrySophieSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.angrySophieSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.ANGRY_SOPHIE.get(), 100, 4, 4));
         }
-        if (BMConfigs.SERVER_CONFIGS.insomniaSophieSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.insomniaSophieSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.INSOMNIA_SOPHIE.get(), 25, 4, 4));
         }
-        if (BMConfigs.SERVER_CONFIGS.archerInsomniaSophieSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.archerInsomniaSophieSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), 15, 4, 5));
         }
     }
@@ -86,22 +86,22 @@ public class BMDefaultBiomeFeatures {
     }
 
     public static void aljanHostiles(MobSpawnInfo.Builder spawns) {
-        if (BMConfigs.SERVER_CONFIGS.insomniaZombieSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.insomniaZombieSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.INSOMNIA_ZOMBIE.get(), 25, 4, 5));
         }
-        if (BMConfigs.SERVER_CONFIGS.zombieFabricioSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.zombieFabricioSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.ZOMBIE_FABRICIO.get(), 5, 1, 2));
         }
-        if (BMConfigs.SERVER_CONFIGS.aljamicBonesSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.aljamicBonesSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.ALJAMIC_BONES.get(), 35, 1, 5));
         }
-        if (BMConfigs.SERVER_CONFIGS.sleepishSkeletonSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.sleepishSkeletonSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.SLEEPISH_SKELETON.get(), 5, 1, 2));
         }
     }
 
     public static void aljanPassives(MobSpawnInfo.Builder spawns) {
-        if (BMConfigs.SERVER_CONFIGS.malaikaSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.malaikaSpawn.get()) {
             spawns.withSpawner(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(BMEntities.MALAIKA.get(), 12, 2, 5));
         }
     }

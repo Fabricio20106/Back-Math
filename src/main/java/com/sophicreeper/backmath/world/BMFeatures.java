@@ -27,7 +27,7 @@ import java.util.OptionalInt;
 import java.util.function.Supplier;
 
 public class BMFeatures {
-    // Trees.
+    // Trees
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GUARANA_OAK = register("guarana_oak",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
                     new SimpleBlockStateProvider(States.GUARANA_OAK_LEAVES),
@@ -76,7 +76,6 @@ public class BMFeatures {
             Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PINEAPPLE_OAK.withChance(0.2F), PINEAPPLE_OAK.withChance(0.1F)), PINEAPPLE_OAK))
                     .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
-    // A orange oak tree.
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ORANGE_OAK = register("orange_oak",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
                     new SimpleBlockStateProvider(BMBlocks.ORANGE_OAK_LEAVES.get().getDefaultState()),
@@ -139,7 +138,7 @@ public class BMFeatures {
             Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(GRAPE_VINE.withChance(0.2F), GRAPE_VINE.withChance(0.1F)), GRAPE_VINE))
                     .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.0f, 0))));
 
-    // BM 1.6 Aljame birch trees.
+    // Back Math 1.6.0: Aljame Birch trees
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ALJAME_BIRCH = register("aljame_birch",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.BIRCH_LOG),
                     new SimpleBlockStateProvider(States.ALJAME_BIRCH_LEAVES),
@@ -155,7 +154,7 @@ public class BMFeatures {
     public static final ConfiguredFeature<?, ?> HILLARY_LAKE = register("hillary_lake", Feature.LAKE.withConfiguration(new BlockStateFeatureConfig(States.HILLARY))
             .withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(8))));
 
-    // Flowers.
+    // Flowers
     private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> BACK_FIELD_FLOWERS_IL = ImmutableList.of(
             () -> Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(States.FRIED_EGG_FLOWER), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()),
             () -> Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.RED_YELLOW_FLOWER.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build())
@@ -172,11 +171,9 @@ public class BMFeatures {
             SingleRandomFeature(TURTLE_FRIED_EGG_FLOWER_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.
             VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
-    /**
-        TODO: BACKMATH 1.7: ALJAMIC WARS WORLD GENERATION BELOW
-     */
+   // TODO: BACK MATH 1.7.0: ALJAMIC WARS WORLD GENERATION BELOW
 
-    // Vegetation Patches.
+    // Vegetation Patches
     private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ALJAN_WOODS_FLOWER_PATCH_IL = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
             new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ALJAN_TULIP.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
@@ -210,7 +207,7 @@ public class BMFeatures {
             new SingleRandomFeature(AMARACAMEL_STICKS_WCW_PATCH_IL)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
             .withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
-    // Underground block blobs.
+    // Underground Block Blobs
     public static final ConfiguredFeature<?, ?> SLEEPINGSTONE_BLOB = register("sleepingstone_blob", Feature.ORE.withConfiguration(
             new OreFeatureConfig(BMOreGeneration.BASE_STONE_ALJAN, BMBlocks.SLEEPINGSTONE.get().getDefaultState(), 33)).range(80).square().func_242731_b(10));
 
@@ -220,11 +217,11 @@ public class BMFeatures {
     public static final ConfiguredFeature<?, ?> INSOGRAVEL_BLOB = register("insogravel_blob", Feature.ORE.withConfiguration(
             new OreFeatureConfig(BMOreGeneration.BASE_STONE_ALJAN, BMBlocks.INSOGRAVEL.get().getDefaultState(), 33)).range(256).square().func_242731_b(8));
 
-    // Lakes.
+    // Lakes
     public static final ConfiguredFeature<?, ?> SLEEPISHWATER_LAKE = register("sleepishwater_lake", Feature.LAKE.withConfiguration(
             new BlockStateFeatureConfig(BMBlocks.SLEEPISHWATER.get().getDefaultState())).withPlacement(Placement.WATER_LAKE.configure(new ChanceConfig(8))));
 
-    // Trees.
+    // Trees
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ALJANWOOD = register("aljanwood",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ALJANWOOD_LOG.get().getDefaultState()),
                     new SimpleBlockStateProvider(BMBlocks.ALJANWOOD_LEAVES.get().getDefaultState()),
@@ -303,13 +300,9 @@ public class BMFeatures {
             new MultipleRandomFeatureConfig(ImmutableList.of(INSOMNIAN.withChance(0.2F), INSOMNIAN.withChance(0.1F)), INSOMNIAN))
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
-    /**
-     TODO: BACKMATH 1.7: ALJAMIC WARS CONTENTS ENDS HERE
-     */
+    // TODO: BACK MATH 1.7.0: ALJAMIC WARS CONTENTS ENDS HERE
 
-    /**
-     TODO: BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT STARTS HERE
-     */
+    // TODO: BACK MATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT STARTS HERE
 
     // Trees
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MANGAED_MANGO_OAK = register("mangaed_mango_oak",
@@ -425,16 +418,7 @@ public class BMFeatures {
     public static final ConfiguredFeature<?, ?> ALJANCAP_LEAF_PILE = register("aljancap_leaf_pile", Feature.BLOCK_PILE.withConfiguration(
             new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider().addWeightedBlockstate(BMBlocks.ALJANCAP_LEAVES.get().getDefaultState(), 19))));
 
-    /*public static final ConfiguredFeature<?, ?> ALJANSTONE_BOULDER = register("aljanstone_boulder", BMFeatureRegister.ALJANSTONE_BOULDER.get().withConfiguration(new BlockStateProvidingFeatureConfig(
-            new WeightedBlockStateProvider().addWeightedBlockstate(BMBlocks.ALJANSTONE.get().getDefaultState(), 7).addWeightedBlockstate(BMBlocks.COBBLED_ALJANSTONE.get()
-                    .getDefaultState(), 4))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3));
-
-    public static final ConfiguredFeature<?, ?> SLEEPINGSTONE_BOULDER = register("sleepingstone_boulder", Feature.FOREST_ROCK.withConfiguration(new BlockStateFeatureConfig(
-            BMBlocks.SLEEPINGSTONE.get().getDefaultState()))).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242732_c(3);*/
-
-    /**
-     TODO: BACKMATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
-     */
+    // TODO: BACK MATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
 
     public static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, BackMath.resourceLoc(name), configuredFeature);
@@ -458,7 +442,7 @@ public class BMFeatures {
     }
 
     public static final class Configs {
-        public static final BlockClusterFeatureConfig ALJAN_FLOWERS_CONFIG = new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider()
-                .addWeightedBlockstate(BMBlocks.ALJAN_TULIP.get().getDefaultState(), 2), SimpleBlockPlacer.PLACER).tries(64).build();
+        public static final BlockClusterFeatureConfig ALJAN_FLOWERS_CONFIG = new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().addWeightedBlockstate(BMBlocks.ALJAN_TULIP.get().getDefaultState(), 2), SimpleBlockPlacer.PLACER)
+                .tries(64).build();
     }
 }

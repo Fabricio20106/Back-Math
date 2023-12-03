@@ -9,10 +9,13 @@ import com.sophicreeper.backmath.world.plant.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.DyeColor;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -51,7 +54,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> MID_TERM_DOOR = BLOCKS.register("mid_term_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.OBSIDIAN).notSolid().sound(SoundType.METAL)));
     public static final RegistryObject<Block> ANGELIC_DOOR = BLOCKS.register("angelic_door", () -> new DoorBlock(AbstractBlock.Properties.from(DEVIL_BLOCK.get()).notSolid()));
     public static final RegistryObject<Block> ANGELIC_TRAPDOOR = BLOCKS.register("angelic_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(DEVIL_BLOCK.get()).notSolid()));
-    public static final RegistryObject<Block> GUARANA_OAK_LEAVES = BLOCKS.register("guarana_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES).notSolid()));
+    public static final RegistryObject<Block> GUARANA_OAK_LEAVES = BLOCKS.register("guarana_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES).notSolid().setAllowsSpawn(BMBlocks::neverAllowSpawns).setOpaque(BMBlocks::isntSolid).setSuffocates(BMBlocks::isntSolid).setBlocksVision(BMBlocks::isntSolid)));
     public static final RegistryObject<Block> MANGO_OAK_LEAVES = BLOCKS.register("mango_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES).notSolid()));
     public static final RegistryObject<Block> ALJAME_BIRCH_LEAVES = BLOCKS.register("aljame_birch_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.BIRCH_LEAVES).notSolid()));
     public static final RegistryObject<Block> GRAPE_VINE_LEAVES = BLOCKS.register("grape_vine_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.SPRUCE_LEAVES).notSolid()));
@@ -504,5 +507,13 @@ public class BMBlocks {
 
     private static RotatedPillarBlock createLogBlock(MaterialColor topColor, MaterialColor barkColor) {
         return new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, (state) -> state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topColor : barkColor).hardnessAndResistance(2).sound(SoundType.WOOD));
+    }
+
+    private static boolean neverAllowSpawns(BlockState state, IBlockReader world, BlockPos pos, EntityType<?> entity) {
+        return false;
+    }
+
+    private static boolean isntSolid(BlockState state, IBlockReader world, BlockPos pos) {
+        return false;
     }
 }

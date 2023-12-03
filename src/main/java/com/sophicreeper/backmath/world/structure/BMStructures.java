@@ -17,7 +17,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.sophicreeper.backmath.config.BMConfigs.SERVER_CONFIGS;
+import static com.sophicreeper.backmath.config.BMConfigs.COMMON_CONFIGS;
 
 public class BMStructures {
     public static final DeferredRegister<Structure<?>> STRUCTURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, BackMath.MOD_ID);
@@ -32,10 +32,10 @@ public class BMStructures {
     // 2. Minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE.
     // 3. This modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique.
     public static void setupStructures() {
-        setupMapSpacingAndLand(SOPHIE_TOWER.get(), new StructureSeparationSettings(SERVER_CONFIGS.sophieTowerAvgDistance.get(), SERVER_CONFIGS.sophieTowerMinDistance.get(), SERVER_CONFIGS.sophieTowerSeed.get()),
-                SERVER_CONFIGS.sophieTowerTST.get());
-        setupMapSpacingAndLand(FABRICIO_HIDEOUT_DUNGEON.get(), new StructureSeparationSettings(SERVER_CONFIGS.fabricioHideoutDungeonAvgDistance.get(), SERVER_CONFIGS.fabricioHideoutDungeonMinDistance.get(),
-                SERVER_CONFIGS.fabricioHideoutDungeonSeed.get()), SERVER_CONFIGS.fabricioHideoutDungeonTST.get());
+        setupMapSpacingAndLand(SOPHIE_TOWER.get(), new StructureSeparationSettings(COMMON_CONFIGS.sophieTowerAvgDistance.get(), COMMON_CONFIGS.sophieTowerMinDistance.get(), COMMON_CONFIGS.sophieTowerSeed.get()),
+                COMMON_CONFIGS.sophieTowerTST.get());
+        setupMapSpacingAndLand(FABRICIO_HIDEOUT_DUNGEON.get(), new StructureSeparationSettings(COMMON_CONFIGS.fabricioHideoutDungeonAvgDistance.get(), COMMON_CONFIGS.fabricioHideoutDungeonMinDistance.get(),
+                COMMON_CONFIGS.fabricioHideoutDungeonSeed.get()), COMMON_CONFIGS.fabricioHideoutDungeonTST.get());
     }
 
     // Adds the provided structure to the registry, and adds the separation settings.
@@ -68,14 +68,14 @@ public class BMStructures {
 
         // There are very few mods that relies on seeing your structure in the noise settings registry before the world is made.
 
-        // You may see some mods add their spacings to DimensionSettings.BUILTIN_OVERWORLD instead of the NOISE_GENERATOR_SETTINGS loop below but that field
+        // You may see some mods add their spacings to DimensionSettings.BUILTIN_OVERWORLD instead of the NOISE_SETTINGS loop below but that field
         // only applies for the default overworld and won't add to other world types or dimensions, such as amplified or the Nether.
-        // So yeah, don't use DimensionSettings.BUILTIN_OVERWORLD. Use the NOISE_GENERATOR_SETTINGS loop below instead if you must.
+        // So yeah, don't use DimensionSettings.BUILTIN_OVERWORLD. Use the NOISE_SETTINGS loop below instead if you must.
         WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {Map<Structure<?>, StructureSeparationSettings> structureMap =
                 settings.getValue().getStructures().func_236195_a_();
 
             // Pre-caution in case a mod makes the structure map immutable like datapacks do.
-            // I take no chances myself. You never know what another mods do...
+            // I take no chances myself. You never know what other mods do...
 
             // structureConfig requires AccessTransformer (See resources/META-INF/accesstransformer.cfg)
             if (structureMap instanceof ImmutableMap) {

@@ -1,6 +1,6 @@
 {
   "parent": "backmath:block/template_grape_vine_pregrown_post",
   "textures": {
-    "plank": "backmath:lock/crystalline_birch_planks"
+    "plank": "backmath:block/crystalline_birch_planks"
   }
 }

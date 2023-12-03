@@ -78,7 +78,7 @@ public class BMBowItem extends ShootableItem {
                             arrowEntity.setDamage(arrowEntity.getDamage() + (double) powerPredicate * 0.5D + 0.5D);
                         }
                         arrowEntity.setDamage(arrowEntity.getDamage() + additionalArrowDamage);
-                        if (BMConfigs.SERVER_CONFIGS.bowDamageCounter.get()) {
+                        if (BMConfigs.COMMON_CONFIGS.bowDamageCounter.get()) {
                             sendMessage(player, new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".arrow_damage", arrowEntity.getDamage()));
                         }
 

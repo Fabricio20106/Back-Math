@@ -7,12 +7,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
-import static com.sophicreeper.backmath.config.BMConfigs.SERVER_CONFIGS;
+import static com.sophicreeper.backmath.config.BMConfigs.COMMON_CONFIGS;
 
 public class MidTermBowItem extends BMBowItem {
     public MidTermBowItem(Properties properties) {
-        super(SERVER_CONFIGS.midTermBowFCA.get(), SERVER_CONFIGS.midTermBowCBD.get(), SERVER_CONFIGS.midTermBowAAD.get(), SERVER_CONFIGS.midTermBowFIT.get(),
-                SERVER_CONFIGS.midTermBowFRD.get(), properties);
+        super(COMMON_CONFIGS.midTermBowFCA.get(), COMMON_CONFIGS.midTermBowCBD.get(), COMMON_CONFIGS.midTermBowAAD.get(), COMMON_CONFIGS.midTermBowFIT.get(),
+                COMMON_CONFIGS.midTermBowFRD.get(), properties);
     }
 
     @Override

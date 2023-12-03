@@ -253,7 +253,7 @@ public class BMBiomes {
 
         DefaultBiomeFeatures.withForestGrass(settings);
         BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
-        if (BMConfigs.SERVER_CONFIGS.amaracamelerSpawn.get()) {
+        if (BMConfigs.COMMON_CONFIGS.amaracamelerSpawn.get()) {
             spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.AMARACAMELER.get(), 50, 1, 2));
         }
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.AMARACAP);

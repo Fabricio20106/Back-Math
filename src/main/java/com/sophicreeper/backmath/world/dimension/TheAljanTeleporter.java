@@ -55,7 +55,7 @@ public class TheAljanTeleporter implements ITeleporter {
                 }
             }
             if (doSetBlock) {
-                if (BMConfigs.SERVER_CONFIGS.safeAljan.get()) {
+                if (BMConfigs.COMMON_CONFIGS.safeAljan.get()) {
                     destinationWorld.setBlockState(destinationPos, BMBlocks.ALJAN_PORTAL_STAND.get().getDefaultState().with(BMBlockStateProperties.JANTICAL, true));
                 } else {
                     destinationWorld.setBlockState(destinationPos, BMBlocks.ALJAN_PORTAL_STAND.get().getDefaultState());

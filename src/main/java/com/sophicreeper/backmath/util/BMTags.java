@@ -299,7 +299,7 @@ public class BMTags {
             return BlockTags.makeWrapperTag(BackMath.resourceLoc(path).toString());
         }
 
-        private Blocks() {}
+        public Blocks() {}
     }
 
     public static class Fluids {

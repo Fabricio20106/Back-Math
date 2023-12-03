@@ -276,7 +276,7 @@ public class Amaracameler extends MobEntity implements IMob {
 
     public static boolean canSpawnAmaracamelerOn(EntityType<Amaracameler> entityType, IWorld world, SpawnReason spawnReason, BlockPos pos, Random rand) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) && world.getLight(pos) <= rand.nextInt(8) && BMConfigs.SERVER_CONFIGS.amaracamelerSpawn.get()) {
+            if (Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) && world.getLight(pos) <= rand.nextInt(8) && BMConfigs.COMMON_CONFIGS.amaracamelerSpawn.get()) {
                 return canSpawnOn(entityType, world, spawnReason, pos, rand);
             }
 

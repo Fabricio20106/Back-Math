@@ -305,7 +305,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .addTag(BMTags.Items.NUGGETS_HARDENED_AMARACAMEL).addTag(BMTags.Items.NUGGETS_MILKLLARY).addTag(BMTags.Items.NUGGETS_MID_HILLARY).addTag(BMTags.Items.NUGGETS_MILKLLARITY)
                 .addTag(BMTags.Items.NUGGETS_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.NUGGETS_JANTICAL).addTag(BMTags.Items.NUGGETS_ALJANSTEEL);
 
-        // Back Math Tags
+        // Todo: Back Math Tags
 
         // Logs & Woods
         this.getOrCreateBuilder(BMTags.Items.CRYSTALLINE_BIRCH_LOGS).add(AxolotlTest.CRYSTALLINE_BIRCH_LOG.get()).add(AxolotlTest.CRYSTALLINE_BIRCH_WOOD.get()).add(AxolotlTest.STRIPPED_CRYSTALLINE_BIRCH_LOG.get()).add(AxolotlTest.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get());
@@ -350,6 +350,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.SOPHIE_IDEA).addTag(BMTags.Items.ALJAMIC_WARS_IDEA);
         this.getOrCreateBuilder(BMTags.Items.SOPHIE_IDEA).addTag(BMTags.Items.BOUNTIFULLY_EXPANSIVE_IDEA);
 
+        this.getOrCreateBuilder(BMTags.Items.ALJANSTONE_CRAFTING_MATERIALS).add(AxolotlTest.ALJANSTONE.get()).add(AxolotlTest.COBBLED_ALJANSTONE.get());
         this.getOrCreateBuilder(BMTags.Items.ALJAN_RECIPE_STICKS).addTag(BMTags.Items.RODS_ALJANWOOD).addTag(BMTags.Items.RODS_ALJANCAP).addTag(BMTags.Items.RODS_INSOMNIAN).addTag(
                 BMTags.Items.RODS_AVONDALIC_WILLOW);
         this.getOrCreateBuilder(BMTags.Items.BACK_GUIDE_RECIPE_ACCEPTABLES).add(AxolotlTest.GUARANA.get()).add(AxolotlTest.MANGO.get()).add(AxolotlTest.MANGAED_MANGO.get())

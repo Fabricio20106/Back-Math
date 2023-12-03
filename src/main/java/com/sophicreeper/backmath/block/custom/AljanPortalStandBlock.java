@@ -84,7 +84,7 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (BMConfigs.SERVER_CONFIGS.standingAljanTeleport.get()) {
+        if (BMConfigs.COMMON_CONFIGS.standingAljanTeleport.get()) {
             if (state.get(JANTICAL)) {
                 if (!world.isRemote()) {
                     MinecraftServer server = world.getServer();

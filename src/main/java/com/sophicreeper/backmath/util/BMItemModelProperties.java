@@ -9,24 +9,24 @@ import static net.minecraft.item.ItemModelsProperties.registerProperty;
 
 public class BMItemModelProperties {
     public static void makeBow(Item bow) {
-        registerProperty(bow, new ResourceLocation("pull"), (stack, world, livingEntity) -> {
-            if (livingEntity == null) {
+        registerProperty(bow, new ResourceLocation("pull"), (stack, world, livEntity) -> {
+            if (livEntity == null) {
                 return 0;
             } else {
-                return livingEntity.getActiveItemStack() != stack ? 0 : (float) (stack.getUseDuration() - livingEntity.getItemInUseCount()) / 20;
+                return livEntity.getActiveItemStack() != stack ? 0 : (float) (stack.getUseDuration() - livEntity.getItemInUseCount()) / 20;
             }
         });
-        registerProperty(bow, new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1 : 0);
+        registerProperty(bow, new ResourceLocation("pulling"), (stack, world, livEntity) -> livEntity != null && livEntity.isHandActive() && livEntity.getActiveItemStack() == stack ? 1 : 0);
     }
 
     public static void makeCrossbow(Item crossbow) {
-        registerProperty(crossbow, new ResourceLocation("pulling"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack && !CrossbowItem.isCharged(stack) ? 1 : 0);
-        registerProperty(crossbow, new ResourceLocation("charged"), (stack, world, livingEntity) -> livingEntity != null && CrossbowItem.isCharged(stack) ? 1 : 0);
-        registerProperty(crossbow, new ResourceLocation("firework"), (stack, world, livingEntity) -> livingEntity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1 : 0);
+        registerProperty(crossbow, new ResourceLocation("pulling"), (stack, world, livEntity) -> livEntity != null && livEntity.isHandActive() && livEntity.getActiveItemStack() == stack && !CrossbowItem.isCharged(stack) ? 1 : 0);
+        registerProperty(crossbow, new ResourceLocation("charged"), (stack, world, livEntity) -> livEntity != null && CrossbowItem.isCharged(stack) ? 1 : 0);
+        registerProperty(crossbow, new ResourceLocation("firework"), (stack, world, livEntity) -> livEntity != null && CrossbowItem.isCharged(stack) && CrossbowItem.hasChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1 : 0);
 
     }
 
     public static void makeShield(Item shield) {
-        registerProperty(shield, new ResourceLocation("blocking"), (stack, world, livingEntity) -> livingEntity != null && livingEntity.isHandActive() && livingEntity.getActiveItemStack() == stack ? 1 : 0);
+        registerProperty(shield, new ResourceLocation("blocking"), (stack, world, livEntity) -> livEntity != null && livEntity.isHandActive() && livEntity.getActiveItemStack() == stack ? 1 : 0);
     }
 }

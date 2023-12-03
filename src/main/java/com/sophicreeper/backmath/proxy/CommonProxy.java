@@ -1,22 +1,21 @@
 package com.sophicreeper.backmath.proxy;
 
-import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.entity.custom.*;
-import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.world.dimension.BMDimensions;
-import com.sophicreeper.backmath.effect.BMEffects;
-import com.sophicreeper.backmath.entity.BMEntities;
-import com.sophicreeper.backmath.misc.BMMotives;
-import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
-import com.sophicreeper.backmath.world.carver.BMConfiguredCarvers;
-import com.sophicreeper.backmath.world.carver.BMWorldCarvers;
-import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.misc.BMStats;
-import com.sophicreeper.backmath.util.BMVanillaCompatibility;
-import com.sophicreeper.backmath.item.custom.potion.BMPotions;
-import com.sophicreeper.backmath.world.biome.BMBiomes;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
+import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.effect.BMEffects;
+import com.sophicreeper.backmath.entity.BMEntities;
+import com.sophicreeper.backmath.entity.custom.*;
+import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.custom.potion.BMPotions;
+import com.sophicreeper.backmath.misc.BMMotives;
+import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.misc.BMStats;
+import com.sophicreeper.backmath.util.BMVanillaCompatibility;
+import com.sophicreeper.backmath.world.biome.BMBiomes;
+import com.sophicreeper.backmath.world.carver.BMConfiguredCarvers;
+import com.sophicreeper.backmath.world.carver.BMWorldCarvers;
+import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -36,6 +35,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class CommonProxy {
     CommonProxy() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         BMBlocks.BLOCKS.register(eventBus);
         AxolotlTest.ITEMS.register(eventBus);
         BMEntities.ENTITIES.register(eventBus);
@@ -57,19 +57,19 @@ public class CommonProxy {
         RegistryKey<Biome> modifiedBackFieldsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.MODIFIED_BACK_FIELDS.getId());
         RegistryKey<Biome> angelicWoodsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.ANGELIC_WOODS.getId());
 
-        if (BMConfigs.SERVER_CONFIGS.originalBackFieldsGen.get()) {
+        if (BMConfigs.COMMON_CONFIGS.originalBackFieldsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(originalBackFieldsKey, 15));
         }
-        if (BMConfigs.SERVER_CONFIGS.modifiedBackFieldsGen.get()) {
+        if (BMConfigs.COMMON_CONFIGS.modifiedBackFieldsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(modifiedBackFieldsKey, 10));
         }
-        if (BMConfigs.SERVER_CONFIGS.angelicWoodsGen.get()) {
+        if (BMConfigs.COMMON_CONFIGS.angelicWoodsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(angelicWoodsKey, 12));
         }
 
         event.enqueueWork(() -> {
             // Entity Spawning, but it now works! I just needed both the old and this new code together instead of deleting the old code.
-            if (BMConfigs.SERVER_CONFIGS.groundMobSpawningAljan.get()) {
+            if (BMConfigs.COMMON_CONFIGS.groundMobSpawningAljan.get()) {
                 EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_ZOMBIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                         Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::canMonsterSpawnInLight);
                 EntitySpawnPlacementRegistry.register(BMEntities.ZOMBIE_FABRICIO.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
@@ -84,7 +84,7 @@ public class CommonProxy {
                         Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canSpawnOn);
             }
 
-            if (BMConfigs.SERVER_CONFIGS.groundMobSpawningBackFields.get()) {
+            if (BMConfigs.COMMON_CONFIGS.groundMobSpawningBackFields.get()) {
                 EntitySpawnPlacementRegistry.register(BMEntities.WANDERER_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
                         Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::canSpawnOn);
                 EntitySpawnPlacementRegistry.register(BMEntities.ARCHER_LUCIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND,
