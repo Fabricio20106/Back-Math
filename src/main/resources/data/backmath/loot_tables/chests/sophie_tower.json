@@ -3,9 +3,8 @@
   "pools": [
     {
       "rolls": {
-        "min": 1.0,
-        "max": 3.0,
-        "type": "minecraft:uniform"
+        "min": 1,
+        "max": 3
       },
       "entries": [
         {
@@ -21,17 +20,16 @@
         {
           "type": "minecraft:item",
           "weight": 2,
+          "name": "backmath:queen_sophie_battle_pack",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0.0,
-                "max": 1.0,
-                "type": "minecraft:uniform"
+                "min": 0,
+                "max": 1
               }
             }
-          ],
-          "name": "backmath:queen_sophie_battle_pack"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -41,14 +39,16 @@
         {
           "type": "minecraft:item",
           "weight": 2,
+          "name": "backmath:devil_sparey",
           "functions": [
             {
-              "function": "minecraft:enchant_with_levels",
-              "levels": 15,
-              "treasure": true
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.05,
+                "max": 0.45
+              }
             }
-          ],
-          "name": "backmath:devil_sparey"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -73,26 +73,40 @@
         {
           "type": "minecraft:item",
           "weight": 10,
+          "name": "backmath:espada_de_manteiga",
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.6,
+                "max": 1
+              }
+            },
+            {
               "function": "minecraft:enchant_with_levels",
-              "levels": 15,
-              "treasure": true
+              "levels": 10,
+              "treasure": false
             }
-          ],
-          "name": "backmath:espada_de_manteiga"
+          ]
         },
         {
           "type": "minecraft:item",
           "weight": 15,
+          "name": "backmath:empada_de_ouro",
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.6,
+                "max": 1
+              }
+            },
+            {
               "function": "minecraft:enchant_with_levels",
-              "levels": 15,
-              "treasure": true
+              "levels": 10,
+              "treasure": false
             }
-          ],
-          "name": "backmath:empada_de_ouro"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -102,53 +116,57 @@
         {
           "type": "minecraft:item",
           "weight": 10,
+          "name": "backmath:angelic_crossbow",
           "functions": [
             {
+              "function": "minecraft:set_damage",
+              "damage": {
+                "min": 0.4,
+                "max": 0.85
+              }
+            },
+            {
               "function": "minecraft:enchant_with_levels",
-              "levels": 15,
-              "treasure": true
+              "levels": 10,
+              "treasure": false
             }
-          ],
-          "name": "backmath:angelic_crossbow"
+          ]
         }
       ]
     },
     {
       "rolls": {
-        "min": 1.0,
-        "max": 4.0,
-        "type": "minecraft:uniform"
+        "min": 1,
+        "max": 4
       },
       "entries": [
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 6,
+          "name": "backmath:devil_ingot",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
+                "min": 1,
+                "max": 3
               }
             }
-          ],
-          "name": "backmath:devil_ingot"
+          ]
         },
         {
           "type": "minecraft:item",
-          "weight": 5,
+          "weight": 6,
+          "name": "backmath:angelic_ingot",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
+                "min": 1,
+                "max": 3
               }
             }
-          ],
-          "name": "backmath:angelic_ingot"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -158,17 +176,16 @@
         {
           "type": "minecraft:item",
           "weight": 20,
+          "name": "backmath:spath_simos_drack",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
+                "min": 1,
+                "max": 2
               }
             }
-          ],
-          "name": "backmath:spath_simos_drack"
+          ]
         },
         {
           "type": "minecraft:item",
@@ -178,62 +195,58 @@
         {
           "type": "minecraft:item",
           "weight": 15,
+          "name": "backmath:devil_dye",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
+                "min": 1,
+                "max": 9
               }
             }
-          ],
-          "name": "backmath:devil_dye"
+          ]
         },
         {
           "type": "minecraft:item",
           "weight": 15,
+          "name": "backmath:cooked_egg",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 1.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
+                "min": 3,
+                "max": 12
               }
             }
-          ],
-          "name": "backmath:cooked_egg"
+          ]
         },
         {
           "type": "minecraft:item",
-          "weight": 12,
+          "weight": 8,
+          "name": "backmath:turtle_fried_egg",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
+                "min": 0,
+                "max": 4
               }
             }
-          ],
-          "name": "backmath:turtle_fried_egg"
+          ]
         },
         {
           "type": "minecraft:item",
-          "weight": 10,
+          "weight": 3,
+          "name": "backmath:empty_mold",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 4.0,
-                "type": "minecraft:uniform"
+                "min": 2,
+                "max": 6
               }
             }
-          ],
-          "name": "backmath:empty_mold"
+          ]
         }
       ]
     }

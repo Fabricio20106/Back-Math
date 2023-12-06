@@ -39,9 +39,6 @@ public class BMWorldEvents {
             ServerWorld serverWorld = (ServerWorld) event.getWorld();
             if (serverWorld.getChunkProvider().generator instanceof DebugChunkGenerator && serverWorld.getDimensionKey().equals(BMDimensions.THE_ALJAN)) {
                 BMCarverGeneration.canGenerate = false;
-                BMConfigs.COMMON_CONFIGS.enableAljanCarverGeneration.set(false);
-            } else {
-                BMConfigs.COMMON_CONFIGS.enableAljanCarverGeneration.set(true);
             }
         }
     }

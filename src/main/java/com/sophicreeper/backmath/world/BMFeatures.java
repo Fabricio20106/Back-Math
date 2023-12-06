@@ -62,7 +62,7 @@ public class BMFeatures {
 
     public static final ConfiguredFeature<?, ?> LEMON_OAKS = register("lemon_oaks",
             Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(LEMON_OAK.withChance(0.2F), LEMON_OAK.withChance(0.1F)), LEMON_OAK))
-                    .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
+                    .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> PINEAPPLE_OAK = register("pineapple_oak",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
@@ -74,7 +74,7 @@ public class BMFeatures {
 
     public static final ConfiguredFeature<?, ?> PINEAPPLE_OAKS = register("pineapple_oaks",
             Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(PINEAPPLE_OAK.withChance(0.2F), PINEAPPLE_OAK.withChance(0.1F)), PINEAPPLE_OAK))
-                    .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
+                    .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ORANGE_OAK = register("orange_oak",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
@@ -86,7 +86,7 @@ public class BMFeatures {
 
     public static final ConfiguredFeature<?, ?> ORANGE_OAKS = register("orange_oaks",
             Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(ORANGE_OAK.withChance(0.2F), ORANGE_OAK.withChance(0.1F)), ORANGE_OAK))
-                    .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
+                    .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> BANANA_JUNGLE = register("banana_jungle",
             Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.JUNGLE_LOG.getDefaultState()),
@@ -315,7 +315,7 @@ public class BMFeatures {
 
     public static final ConfiguredFeature<?, ?> MANGAED_MANGO_OAKS = register("mangaed_mango_oaks", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(
             MANGAED_MANGO_OAK.withChance(0.2F), MANGAED_MANGO_OAK.withChance(0.1F)), MANGAED_MANGO_OAK)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(
-                    Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
+                    Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GUAVA_TREE = register("guava_tree", Feature.TREE.withConfiguration(new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(
             BMBlocks.GUAVA_LOG.get().getDefaultState()), new SimpleBlockStateProvider(BMBlocks.GUAVA_LEAVES.get().getDefaultState()), new BlobFoliagePlacer(FeatureSpread.func_242252_a(2),
@@ -324,7 +324,7 @@ public class BMFeatures {
 
     public static final ConfiguredFeature<?, ?> GUAVA_TREES = register("guava_trees", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(GUAVA_TREE
             .withChance(0.2f), GUAVA_TREE.withChance(0.1f)), GUAVA_TREE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(
-                    new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
+                    new AtSurfaceWithExtraConfig(2, 0.05f, 1))));
 
     public static final ConfiguredFeature<?, ?> ALJAMIC_SAND_DISK = register("disk_aljamic_sand", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.ALJAMIC_SAND.get().getDefaultState(),
             FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), BMBlocks.ALJAMIC_SAND.get().getDefaultState())))
@@ -364,7 +364,7 @@ public class BMFeatures {
 
     public static final ConfiguredFeature<?, ?> JABUTICABA_TREES = register("jabuticaba_trees", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(JABUTICABA_TREE
             .withChance(0.2f), JABUTICABA_TREE.withChance(0.1f)), JABUTICABA_TREE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(
-            new AtSurfaceWithExtraConfig(3, 0.1f, 1))));
+            new AtSurfaceWithExtraConfig(2, 0.05f, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> AVONDALIC_WILLOW = register("avondalic_willow", Feature.TREE.withConfiguration(
             new BaseTreeFeatureConfig.Builder(

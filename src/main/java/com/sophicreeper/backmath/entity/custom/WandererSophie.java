@@ -9,12 +9,18 @@ import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
@@ -23,6 +29,14 @@ import javax.annotation.Nullable;
 
 public class WandererSophie extends CreatureEntity {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(WandererSophie.class, DataSerializers.VARINT);
+    public double prevChasingPosX;
+    public double prevChasingPosY;
+    public double prevChasingPosZ;
+    public double chasingPosX;
+    public double chasingPosY;
+    public double chasingPosZ;
+    public float prevCameraYaw;
+    public float cameraYaw;
 
     public WandererSophie(EntityType<WandererSophie> type, World world) {
         super(type, world);
@@ -34,12 +48,37 @@ public class WandererSophie extends CreatureEntity {
         this.dataManager.register(VARIANT, 0);
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+        this.updateCape();
+        this.updateTurtleHelmet();
+    }
+
+    private void updateTurtleHelmet() {
+        ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+        boolean acceptableHelmets = headStack.getItem() == Items.TURTLE_HELMET || headStack.getItem() == AxolotlTest.CANDY_PINK_TURTLE_HELMET.get() || headStack.getItem() == AxolotlTest.CANDY_YELLOW_TURTLE_HELMET.get();
+        if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
+            this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
+        }
+    }
+
     public void livingTick() {
         this.updateArmSwingProgress();
 
+        this.prevCameraYaw = this.cameraYaw;
+
+        float f;
+        if (this.onGround && !this.getShouldBeDead() && !this.isSwimming()) {
+            f = Math.min(0.1F, MathHelper.sqrt(horizontalMag(this.getMotion())));
+        } else {
+            f = 0;
+        }
+        this.cameraYaw += (f - this.cameraYaw) * 0.4F;
+
         if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
             if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
-                this.heal(1.0F);
+                this.heal(1);
             }
         }
         super.livingTick();
@@ -52,11 +91,13 @@ public class WandererSophie extends CreatureEntity {
     public void writeAdditional(CompoundNBT compoundNBT) {
         super.writeAdditional(compoundNBT);
         compoundNBT.putInt("Variant", this.getVariant());
+//        compoundNBT.putBoolean("CustomNameVisible", true);
     }
 
     public void readAdditional(CompoundNBT compoundNBT) {
         super.readAdditional(compoundNBT);
         this.setVariant(compoundNBT.getInt("Variant"));
+//        this.setCustomNameVisible(compoundNBT.getBoolean("CustomNameVisible"));
     }
 
     public int getVariant() {
@@ -77,11 +118,10 @@ public class WandererSophie extends CreatureEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new PanicGoal(this, 1.25D));
-        this.goalSelector.addGoal(2, new TemptGoal(this, 1.1D, Ingredient.fromItems(AxolotlTest.MILKLLARY_CAKE.get()), false));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.fromItems(AxolotlTest.MILKLLARY_CAKE.get()), false));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1d));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6f));
+        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.applyEntityAI();
         super.registerGoals();
     }
@@ -99,14 +139,14 @@ public class WandererSophie extends CreatureEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createWandererSophieAttributes() {
-        // Old wanderer Sophie health was 70.0D.
-        // Old new wanderer Sophie health was 35.0d.
+        // Old wanderer Sophie health was 70.
+        // Old new wanderer Sophie health was 35.
         return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 20.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 20)
                 .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25F);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -128,7 +168,62 @@ public class WandererSophie extends CreatureEntity {
         if (this.getRidingEntity() instanceof CreatureEntity) {
             CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
             this.renderYawOffset = entity.renderYawOffset;
+            this.prevCameraYaw = this.cameraYaw;
+            this.cameraYaw = 0;
         }
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return SoundEvents.ENTITY_PLAYER_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return SoundEvents.ENTITY_PLAYER_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? SoundEvents.ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH : SoundEvents.ENTITY_PLAYER_HURT;
+        }
+    }
+
+    private void updateCape() {
+        this.prevChasingPosX = this.chasingPosX;
+        this.prevChasingPosY = this.chasingPosY;
+        this.prevChasingPosZ = this.chasingPosZ;
+        double d0 = this.getPosX() - this.chasingPosX;
+        double d1 = this.getPosY() - this.chasingPosY;
+        double d2 = this.getPosZ() - this.chasingPosZ;
+
+        if (d0 > 10) {
+            this.chasingPosX = this.getPosX();
+            this.prevChasingPosX = this.chasingPosX;
+        }
+
+        if (d2 > 10) {
+            this.chasingPosZ = this.getPosZ();
+            this.prevChasingPosZ = this.chasingPosZ;
+        }
+
+        if (d1 > 10) {
+            this.chasingPosY = this.getPosY();
+            this.prevChasingPosY = this.chasingPosY;
+        }
+
+        if (d0 < -10) {
+            this.chasingPosX = this.getPosX();
+            this.prevChasingPosX = this.chasingPosX;
+        }
+
+        if (d2 < -10) {
+            this.chasingPosZ = this.getPosZ();
+            this.prevChasingPosZ = this.chasingPosZ;
+        }
+
+        if (d1 < -10) {
+            this.chasingPosY = this.getPosY();
+            this.prevChasingPosY = this.chasingPosY;
+        }
+
+        this.chasingPosX += d0 * 0.25D;
+        this.chasingPosZ += d2 * 0.25D;
+        this.chasingPosY += d1 * 0.25D;
     }
 
     /**

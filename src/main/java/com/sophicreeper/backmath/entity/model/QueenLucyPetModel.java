@@ -30,7 +30,7 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPet> {
 	private final ModelRenderer leftWingR1;
 
 	public QueenLucyPetModel() {
-		super(0, 0, 32, 32);
+		super(0.25f, 0, 32, 32);
 		textureWidth = 32;
 		textureHeight = 32;
 

@@ -12,20 +12,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class MalaikaRenderer extends BipedRenderer<Malaika, BMBipedModel<Malaika>> {
-    public static final ResourceLocation MALAIKA_LOCATION = BackMath.resourceLoc("textures/entity/malaika.png");
-
-    public MalaikaRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, new BMBipedModel<>(0.0f, 0.0f, 64, 64), 0.5f);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5f, 0.5f, 64, 32), new BMBipedModel<>(1.0f, 0, 64, 32)));
-        this.addLayer(new ElytraLayer<>(this));
+public class MalaikaRenderer extends BMBipedRenderer<Malaika> {
+    public MalaikaRenderer(EntityRendererManager manager) {
+        super(manager, 0.5f);
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5f, 0.5f, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
     }
 
-    /**
-     * Returns the location of an entity's texture.
-     */
+    // Returns the location of an entity's texture.
     @Override
     public ResourceLocation getEntityTexture(Malaika malaika) {
-        return MALAIKA_LOCATION;
+        return BackMath.resourceLoc("textures/entity/malaika.png");
     }
 }

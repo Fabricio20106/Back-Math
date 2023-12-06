@@ -68,7 +68,7 @@ public class QueenLucyPet extends TameableEntity {
         this.updateArmSwingProgress();
         if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
             if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
-                this.heal(1.0F);
+                this.heal(1);
             }
         }
         super.livingTick();
@@ -80,10 +80,10 @@ public class QueenLucyPet extends TameableEntity {
         this.goalSelector.addGoal(2, new SitGoal(this));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.2d, Ingredient.fromStacks(new ItemStack(AxolotlTest.GUARANA.get()), new ItemStack(Items.CAKE)), false));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 2.1f, true));
-        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2f, 10.0f, 2.0f, false));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1.0d));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8.0f));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, QueenLucy.class, 8.0f));
+        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2f, 10, 2, false));
+        this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, QueenLucy.class, 8));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));

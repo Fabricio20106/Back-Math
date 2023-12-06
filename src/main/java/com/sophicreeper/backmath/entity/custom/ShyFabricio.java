@@ -75,7 +75,7 @@ public class ShyFabricio extends CreatureEntity {
         }
     }
 
-    static class ShyFabricioAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
+    public static class ShyFabricioAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
         public ShyFabricioAvoidEntityGoal(ShyFabricio shyFabricio, Class<T> entityToAvoid, float avoidDistance, double farRunningSpeed, double nearRunningSpeed) {
             super(shyFabricio, entityToAvoid, avoidDistance, farRunningSpeed, nearRunningSpeed);
         }

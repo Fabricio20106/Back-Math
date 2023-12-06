@@ -184,11 +184,11 @@ public class BMCommonConfigs {
         this.midTermBowFRD = builder.comment("How long should a mid-term bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("midTermBow.firerateDelay", 10, 1, 72000);
         builder.pop();
 
-        builder.push("structureRelated");
+        builder.push("structures");
         builder.comment("Sophie Towers");
         this.sophieTowerGeneration = builder.comment("Whether to generate Sophie Towers or not.").define("sophieTower.canGenerate", true);
-        this.sophieTowerAvgDistance = builder.comment("Average distance in chunks between Sophie Towers.").defineInRange("sophieTower.averageDistance", 10, 1, 2000);
-        this.sophieTowerMinDistance = builder.comment("Minimum distance in chunks between Sophie Towers; MUST BE LESS THAN THE AVERAGE DISTANCE.").defineInRange("sophieTower.minDistance", 5, 0, 1999);
+        this.sophieTowerAvgDistance = builder.comment("Average distance in chunks between Sophie Towers.").defineInRange("sophieTower.averageDistance", 12, 1, 2000);
+        this.sophieTowerMinDistance = builder.comment("Minimum distance in chunks between Sophie Towers; MUST BE LESS THAN THE AVERAGE DISTANCE.").defineInRange("sophieTower.minDistance", 7, 0, 1999);
         this.sophieTowerSeed = builder.comment("Sophie Tower's generation seed. Needed so no two structures spawn on each other.").defineInRange("sophieTower.seed", 1073741823, Integer.MIN_VALUE, Integer.MAX_VALUE);
         this.sophieTowerTST = builder.comment("Whether Sophie Towers should transform the terrain around it (Terraform Surrounding Terrain).").define("sophieTower.terraformSurroundingTerrain", true);
         this.sophieTowerYOffset = builder.comment("The Y offset of Sophie Towers.").defineInRange("sophieTower.yOffset", 1, -64, 192);
@@ -202,7 +202,7 @@ public class BMCommonConfigs {
         this.fabricioHideoutDungeonYOffset = builder.comment("The Y offset of Fabricio's Hideout Dungeons.").defineInRange("fabricioHideoutDungeon.yOffset", -48, -64, 192);
 
         builder.comment("Debug Code");
-        this.logStructureLocationMessages = builder.comment("(Debug) Whether to log Fabricio's Hideout Dungeon and Sophie Tower locations.").define("structures.logStructureLocationMessages", false);
+        this.logStructureLocationMessages = builder.comment("(Debug) Whether to log Fabricio's Hideout Dungeon and Sophie Tower locations.").define("logStructureLocationMessages", false);
         builder.pop();
     }
 }
