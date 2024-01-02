@@ -114,6 +114,8 @@ public class BMTags {
         public static final ITag.INamedTag<Item> POPSICLES = backMath("popsicles");
         public static final ITag.INamedTag<Item> ALJANSTONE_CRAFTING_MATERIALS = backMath("aljanstone_crafting_materials");
         public static final ITag.INamedTag<Item> BONE_MEALS = backMath("bone_meals");
+        public static final ITag.INamedTag<Item> TURTLE_SHELLS = backMath("turtle_shells");
+        public static final ITag.INamedTag<Item> CROSSBOWS = backMath("crossbows");
         // Tag Migration
         public static final ITag.INamedTag<Item> ALJAN_RECIPE_STICKS = backMath("aljan_recipe_sticks");
         public static final ITag.INamedTag<Item> BACK_GUIDE_RECIPE_ACCEPTABLES = backMath("back_guide_recipe_acceptables");

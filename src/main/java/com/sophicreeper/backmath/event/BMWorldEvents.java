@@ -2,20 +2,15 @@ package com.sophicreeper.backmath.event;
 
 import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.world.dimension.BMDimensions;
+import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
 import com.sophicreeper.backmath.world.plant.BMPlantGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructureGeneration;
-import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.DebugChunkGenerator;
-import net.minecraft.world.gen.FlatChunkGenerator;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
@@ -33,16 +28,6 @@ import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = BackMath.MOD_ID)
 public class BMWorldEvents {
-    @SubscribeEvent
-    public static void generateCarvers(final WorldEvent.Load event) {
-        if (event.getWorld() instanceof ServerWorld) {
-            ServerWorld serverWorld = (ServerWorld) event.getWorld();
-            if (serverWorld.getChunkProvider().generator instanceof DebugChunkGenerator && serverWorld.getDimensionKey().equals(BMDimensions.THE_ALJAN)) {
-                BMCarverGeneration.canGenerate = false;
-            }
-        }
-    }
-
     @SubscribeEvent
     public static void biomeLoadEvent(final BiomeLoadingEvent event) {
         BMOreGeneration.generateOres(event);

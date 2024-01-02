@@ -23,7 +23,7 @@ public class BackMath {
     public BackMath() {
         MinecraftForge.EVENT_BUS.register(this);
         proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BMConfigs.COMMON_SPEC, "jtw-mods/backmath-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BMConfigs.COMMON_SPEC, "backmath-common.toml");
         BMConfigs.init();
     }
 

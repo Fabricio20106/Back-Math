@@ -49,6 +49,14 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         this.experienceValue = 3 + this.world.rand.nextInt(6);
     }
 
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 1.62F;
+    }
+
+    public double getYOffset() {
+        return -0.35D;
+    }
+
     public void updateRidden() {
         super.updateRidden();
         if (this.getRidingEntity() instanceof CreatureEntity) {

@@ -71,8 +71,8 @@ public class BMStructures {
         // You may see some mods add their spacings to DimensionSettings.BUILTIN_OVERWORLD instead of the NOISE_SETTINGS loop below but that field
         // only applies for the default overworld and won't add to other world types or dimensions, such as amplified or the Nether.
         // So yeah, don't use DimensionSettings.BUILTIN_OVERWORLD. Use the NOISE_SETTINGS loop below instead if you must.
-        WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {Map<Structure<?>, StructureSeparationSettings> structureMap =
-                settings.getValue().getStructures().func_236195_a_();
+        WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
+            Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().getStructures().func_236195_a_();
 
             // Pre-caution in case a mod makes the structure map immutable like datapacks do.
             // I take no chances myself. You never know what other mods do...

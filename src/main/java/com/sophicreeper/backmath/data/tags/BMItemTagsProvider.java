@@ -299,6 +299,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.MID_TERM_SHEARS.get()).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHEARS.get()).add(AxolotlTest.MILKLLARY_SHEARS.get()).add(AxolotlTest.ALJAMEED_SHEARS.get())
                 .add(AxolotlTest.ALJANSTEEL_SHEARS.get()).add(AxolotlTest.MOONERING_SHEARS.get()).add(AxolotlTest.JANTIQUIFIED_MOONERING_SHEARS.get());
         this.getOrCreateBuilder(Tags.Items.SLIMEBALLS).add(AxolotlTest.STICKY_AMARACAMEL_BALL.get());
+        this.getOrCreateBuilder(BMTags.Items.TURTLE_SHELLS).add(Items.TURTLE_HELMET).add(AxolotlTest.CANDY_PINK_TURTLE_HELMET.get()).add(AxolotlTest.CANDY_YELLOW_TURTLE_HELMET.get());
+        this.getOrCreateBuilder(BMTags.Items.CROSSBOWS).add(Items.CROSSBOW).add(AxolotlTest.DEVIL_CROSSBOW.get()).add(AxolotlTest.ANGELIC_CROSSBOW.get());
 
         this.getOrCreateBuilder(Tags.Items.NUGGETS).addTag(BMTags.Items.NUGGETS_DEVIL).addTag(BMTags.Items.NUGGETS_ANGELIC).addTag(BMTags.Items.NUGGETS_CHRISTIAN_MID_TERM)
                 .addTag(BMTags.Items.NUGGETS_MID_TERM).addTag(BMTags.Items.NUGGETS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.NUGGETS_ALJAMEED).addTag(BMTags.Items.NUGGETS_MOONERING)

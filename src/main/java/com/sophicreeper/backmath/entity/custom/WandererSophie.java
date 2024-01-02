@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -9,7 +10,6 @@ import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -57,7 +57,7 @@ public class WandererSophie extends CreatureEntity {
 
     private void updateTurtleHelmet() {
         ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        boolean acceptableHelmets = headStack.getItem() == Items.TURTLE_HELMET || headStack.getItem() == AxolotlTest.CANDY_PINK_TURTLE_HELMET.get() || headStack.getItem() == AxolotlTest.CANDY_YELLOW_TURTLE_HELMET.get();
+        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.TURTLE_SHELLS);
         if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
             this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }

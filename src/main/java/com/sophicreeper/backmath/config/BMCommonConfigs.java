@@ -157,7 +157,7 @@ public class BMCommonConfigs {
         builder.push("gameplayAspects");
         this.safeAljan = builder.comment("When you teleport to the Aljan through the Aljan Portal Stand, the stand on the other side will already have a jantical in it.").define("safeAljan", false);
         this.standingAljanTeleport = builder.comment("When turned on, you'll be able to walk up to the portal stand and be teleported over.").define("standingAljanTeleport", false);
-        this.enableMobAIChanges = builder.comment("Enable the new Back Math mob AI changes? Currently does nothing.").define("enableMobAIChanges", false);
+        this.enableMobAIChanges = builder.comment("Enable the new Back Math mob AI changes? Currently, this toggle does nothing.").define("enableMobAIChanges", false);
         this.peaceTeaInvisibilityToggle = builder.comment("Makes peace teas give you or the affected mob Invisibility.").define("peaceTea.invisibilityToggle", false);
         this.peaceTeaGlowingToggle = builder.comment("Makes peace teas give you or the affected mob Glowing.").define("peaceTea.glowingToggle", false);
         builder.comment("Back Math Bow Configurations:");
@@ -170,11 +170,11 @@ public class BMCommonConfigs {
         this.devilBowFRD = builder.comment("How long should a devil bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("devilBow.firerateDelay", 72000, 0, 72000);
 
         builder.comment("Angelic Bow:");
-        this.angelicBowFCA = builder.comment("Should a angelic bow force its arrow to be critical?").define("angelicBow.forcedCriticalArrow", false);
-        this.angelicBowCBD = builder.comment("Should a angelic bow not lose durability when firing arrows?").define("angelicBow.canBeDamaged", true);
-        this.angelicBowAAD = builder.comment("Should a angelic bow deal additional damage? Zero for no additional damage.").defineInRange("angelicBow.additionalArrowDamage", 0, 0, 32767);
+        this.angelicBowFCA = builder.comment("Should angelic bows force their arrows to be critical?").define("angelicBow.forcedCriticalArrow", false);
+        this.angelicBowCBD = builder.comment("Should angelic bows not lose durability when firing arrows?").define("angelicBow.canBeDamaged", true);
+        this.angelicBowAAD = builder.comment("Should angelic bows deal additional damage? Zero for no additional damage.").defineInRange("angelicBow.additionalArrowDamage", 0, 0, 32767);
         this.angelicBowFIT = builder.comment("For how many ticks should a angelic bow set mobs on fire? Zero for no fire.").defineInRange("angelicBow.fireInTicks", 0, 0, 32767);
-        this.angelicBowFRD = builder.comment("How long should a angelic bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("angelicBow.firerateDelay", 72000, 0, 72000);
+        this.angelicBowFRD = builder.comment("How long should angelic bows be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("angelicBow.firerateDelay", 72000, 0, 72000);
 
         builder.comment("Mid-Term Bow:");
         this.midTermBowFCA = builder.comment("Should a mid-term bow force its arrow to be critical?").define("midTermBow.forcedCriticalArrow", true);
@@ -190,7 +190,7 @@ public class BMCommonConfigs {
         this.sophieTowerAvgDistance = builder.comment("Average distance in chunks between Sophie Towers.").defineInRange("sophieTower.averageDistance", 12, 1, 2000);
         this.sophieTowerMinDistance = builder.comment("Minimum distance in chunks between Sophie Towers; MUST BE LESS THAN THE AVERAGE DISTANCE.").defineInRange("sophieTower.minDistance", 7, 0, 1999);
         this.sophieTowerSeed = builder.comment("Sophie Tower's generation seed. Needed so no two structures spawn on each other.").defineInRange("sophieTower.seed", 1073741823, Integer.MIN_VALUE, Integer.MAX_VALUE);
-        this.sophieTowerTST = builder.comment("Whether Sophie Towers should transform the terrain around it (Terraform Surrounding Terrain).").define("sophieTower.terraformSurroundingTerrain", true);
+        this.sophieTowerTST = builder.comment("Whether Sophie Towers should transform the surrounding terrain (Terraform Surrounding Terrain).").define("sophieTower.terraformSurroundingTerrain", true);
         this.sophieTowerYOffset = builder.comment("The Y offset of Sophie Towers.").defineInRange("sophieTower.yOffset", 1, -64, 192);
 
         builder.comment("Fabricio's Hideout Dungeons");
@@ -198,7 +198,7 @@ public class BMCommonConfigs {
         this.fabricioHideoutDungeonAvgDistance = builder.comment("Average distance in chunks between Fabricio's Hideout Dungeons.").defineInRange("fabricioHideoutDungeon.averageDistance", 15, 1, 2000);
         this.fabricioHideoutDungeonMinDistance = builder.comment("Minimum distance in chunks between Fabricio's Hideout Dungeons; MUST BE LESS THAN THE AVERAGE DISTANCE.").defineInRange("fabricioHideoutDungeon.minDistance", 10, 0, 1999);
         this.fabricioHideoutDungeonSeed = builder.comment("Fabricio's Hideout Dungeon's generation seed. Needed so no two structures spawn on each other.").defineInRange("fabricioHideoutDungeon.seed", 27482834, 0, Integer.MAX_VALUE);
-        this.fabricioHideoutDungeonTST = builder.comment("Whether Fabricio's Hideout Dungeons should transform the terrain around it (Terraform Surrounding Terrain).").define("fabricioHideoutDungeon.terraformSurroundingTerrain", false);
+        this.fabricioHideoutDungeonTST = builder.comment("Whether Fabricio's Hideout Dungeons should transform the surrounding terrain (Terraform Surrounding Terrain).").define("fabricioHideoutDungeon.terraformSurroundingTerrain", true);
         this.fabricioHideoutDungeonYOffset = builder.comment("The Y offset of Fabricio's Hideout Dungeons.").defineInRange("fabricioHideoutDungeon.yOffset", -48, -64, 192);
 
         builder.comment("Debug Code");

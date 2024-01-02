@@ -9,12 +9,10 @@ import net.minecraftforge.event.world.BiomeLoadingEvent;
 import java.util.Objects;
 
 public class BMCarverGeneration {
-    public static boolean canGenerate = BMConfigs.COMMON_CONFIGS.enableAljanCarverGeneration.get();
-
     public static void generateCarvers(final BiomeLoadingEvent event) {
         BiomeGenerationSettingsBuilder settings = event.getGeneration();
 
-        if (canGenerate) {
+        if (BMConfigs.COMMON_CONFIGS.enableAljanCarverGeneration.get()) {
             if (Objects.equals(BMBiomes.ALJAN_WOODS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.CAPPED_HILLS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.INSOMNIAN_WOODS.get().getRegistryName(),
                     event.getName()) || Objects.equals(BMBiomes.AMARACAMEL_STICKS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName())
                     || Objects.equals(BMBiomes.AVONDALIC_GROVE.get().getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.enableAljanCavesAndRavines.get()) {

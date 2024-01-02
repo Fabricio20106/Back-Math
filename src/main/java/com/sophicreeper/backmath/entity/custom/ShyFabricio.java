@@ -1,14 +1,19 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 
@@ -44,9 +49,23 @@ public class ShyFabricio extends CreatureEntity {
         return 1.62f;
     }
 
+    public double getYOffset() {
+        return -0.35D;
+    }
+
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.SHY_FABRICIO_SPAWN_EGG.get());
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.TURTLE_SHELLS);
+        if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
+            this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
+        }
     }
 
     public void livingTick() {
@@ -62,9 +81,10 @@ public class ShyFabricio extends CreatureEntity {
     @Nullable
     @Override
     public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.onInitialSpawn(world, difficulty, reason, spawnData, dataTag);
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
-        return super.onInitialSpawn(world, difficulty, reason, spawnData, dataTag);
+        return spawnData;
     }
 
     public void updateRidden() {

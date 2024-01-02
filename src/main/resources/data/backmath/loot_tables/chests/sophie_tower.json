@@ -86,6 +86,10 @@
               "function": "minecraft:enchant_with_levels",
               "levels": 10,
               "treasure": false
+            },
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{experience_points:55}"
             }
           ]
         },
