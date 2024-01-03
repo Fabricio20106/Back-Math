@@ -1,10 +1,12 @@
 package com.sophicreeper.backmath.block.custom.machine;
 
+import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMStats;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.custom.properties.AdvancedMolds;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,23 +38,23 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
         ItemStack OffHand = player.getHeldItem(Hand.OFF_HAND);
 
         // You can set the specific molds for the recipes below using their respective mold items.
-        if (MainHand.getItem() == AxolotlTest.INGOT_MOLD.get()) {
+        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_INGOT)) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.INGOT));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        if (MainHand.getItem() == AxolotlTest.CRYSTALLIZED_MOLD.get()) {
+        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLIZED)) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLIZED));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        if (MainHand.getItem() == AxolotlTest.SINGULARITY_MOLD.get()) {
+        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_SINGULARITY)) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.SINGULARITY));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        if (MainHand.getItem() == AxolotlTest.MOLD_MOLD.get()) {
+        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_MOLD)) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.MOLD));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        if (MainHand.getItem() == AxolotlTest.ROD_MOLD.get()) {
+        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_ROD)) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.ROD));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
@@ -60,11 +62,11 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.EMPTY));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        if (MainHand.getItem() == AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()) {
+        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_EMPTY)) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLINE_EMPTY));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
-        if (MainHand.getItem() == AxolotlTest.CRYSTALLINE_GEM_MOLD.get()) {
+        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_GEM)) {
             world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLINE_GEM));
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
         }
@@ -137,111 +139,111 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
                 MainHand.shrink(4);
             }
         } else {
-            world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1f, 1f);
+            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
         }
         // Mold: Rod
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.ROD) {
             if (MainHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.HILLARY_ROD.get()));
                 player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
             }
         } else {
-            world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1f, 1f);
+            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
         }
         // Mold: Singularity.
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.SINGULARITY) {
             if (MainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARITY.get()));
                 player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
             }
             if (MainHand.getItem() == AxolotlTest.MID_TERM_INGOT.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
             }
             if (MainHand.getItem() == AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
             }
             if (MainHand.getItem() == AxolotlTest.MILKLLARY_INGOT.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARITY.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
             }
             if (MainHand.getItem() == AxolotlTest.MOLTEN_MID_TERM_BUCKET.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
             }
         } else {
-            world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1f, 1f);
+            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
         }
         // Mold: Ingot.
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.INGOT) {
             if (MainHand.getItem() == AxolotlTest.MID_TERM.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM_INGOT.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
             }
             if (MainHand.getItem() == AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
             }
             if (MainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARY_INGOT.get(), 2));
                 player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
             }
             if (MainHand.getItem() == AxolotlTest.MILKLLARITY.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
             }
             if (MainHand.getItem() == AxolotlTest.MILKLLARY_INGOT.get() && OffHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
                 player.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.BUCKET));
             }
             if (MainHand.getItem() == AxolotlTest.HARDENED_AMARACAMEL_BATTER.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 MainHand.shrink(1);
             }
             if (MainHand.getItem() == AxolotlTest.MOLTEN_MID_TERM_BUCKET.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM_INGOT.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                 player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
             }
         } else {
-            world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1f, 1f);
+            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
         }
         // Mold: Mold
         if (state.get(ADVANCED_MOLD) == AdvancedMolds.MOLD) {
             if (MainHand.getItem() == AxolotlTest.CRYSTALLINE_ANGELIC.get()) {
-                world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.BLOCKS, 1f, 1f);
+                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
                 player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
             }
         } else {
-            world.playSound(null, pos, SoundEvents.BLOCK_ANVIL_BREAK, SoundCategory.BLOCKS, 1f, 1f);
+            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1f, 1f);
         }
         return super.onBlockActivated(state, world, pos, player, hand, hit);
     }

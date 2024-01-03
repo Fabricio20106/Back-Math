@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -11,12 +12,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
-public class KarateLucia extends CreatureEntity {
+public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
     public KarateLucia(EntityType<KarateLucia> type, World world) {
         super(type, world);
     }
@@ -25,18 +28,14 @@ public class KarateLucia extends CreatureEntity {
     public boolean isOnSameTeam(Entity entity) {
         if (super.isOnSameTeam(entity)) {
             return true;
-        } else if (entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie) {
-            return this.getTeam() == null && entity.getTeam() == null;
-        } else {
-            return false;
-        }
+        } else return entity instanceof ISophieFriendlies;
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.applyEntityAI();
         super.registerGoals();
@@ -59,11 +58,8 @@ public class KarateLucia extends CreatureEntity {
         return CreatureEntity.func_233666_p_()
                 // Old karate Lucia health was 50.0d.
                 // Old new karate Lucia health was 28.0d.
-                .createMutableAttribute(Attributes.MAX_HEALTH, 20.0D)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 32.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F)
-                .createMutableAttribute(Attributes.ARMOR, 3.0d);
+                .createMutableAttribute(Attributes.MAX_HEALTH, 20).createMutableAttribute(Attributes.FOLLOW_RANGE, 32).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F)
+                .createMutableAttribute(Attributes.ARMOR, 3);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -82,7 +78,7 @@ public class KarateLucia extends CreatureEntity {
         this.updateArmSwingProgress();
         if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
             if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
-                this.heal(1.0F);
+                this.heal(1);
             }
         }
         super.livingTick();
@@ -94,6 +90,20 @@ public class KarateLucia extends CreatureEntity {
             CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
             this.renderYawOffset = entity.renderYawOffset;
         }
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_LUCIA_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_LUCIA_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_LUCIA_HURT_BERRY_BUSH : BMSounds.ENTITY_LUCIA_HURT;
+        }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_SOPHIE_DEATH;
     }
 
     @Override

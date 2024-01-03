@@ -32,16 +32,16 @@ public class StickyAmaracamelBlock extends BreakableBlock {
     private void bounceEntity(Entity entity) {
         Vector3d vector3D = entity.getMotion();
         if (vector3D.y < 0) {
-            double lvt_3_1_ = entity instanceof LivingEntity ? 1 : 0.8;
-            entity.setMotion(vector3D.x, -vector3D.y * lvt_3_1_, vector3D.z);
+            double d0 = entity instanceof LivingEntity ? 1 : 0.8;
+            entity.setMotion(vector3D.x, -vector3D.y * d0, vector3D.z);
         }
     }
 
     public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-        double lvt_4_1_ = Math.abs(entity.getMotion().y);
-        if (lvt_4_1_ < 0.1 && !entity.isSteppingCarefully()) {
-            double lvt_6_1_ = 0.4 + lvt_4_1_ * 0.2;
-            entity.setMotion(entity.getMotion().mul(lvt_6_1_, 1, lvt_6_1_));
+        double d0 = Math.abs(entity.getMotion().y);
+        if (d0 < 0.1 && !entity.isSteppingCarefully()) {
+            double d1 = 0.4 + d0 * 0.2;
+            entity.setMotion(entity.getMotion().mul(d1, 1, d1));
         }
 
         super.onEntityWalk(world, pos, entity);

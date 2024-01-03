@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -18,6 +19,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -25,7 +27,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class InsomniaSophie extends MonsterEntity {
+public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
     public InsomniaSophie(EntityType<InsomniaSophie> type, World world) {
         super(type, world);
         this.experienceValue = 3 + this.world.rand.nextInt(6);
@@ -37,7 +39,7 @@ public class InsomniaSophie extends MonsterEntity {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.6f, true));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.6f));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
@@ -56,21 +58,32 @@ public class InsomniaSophie extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createInsomniaSophieAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4.0f)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 28.0f)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0f)
+        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 4).createMutableAttribute(Attributes.MAX_HEALTH, 28).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
     }
 
     public boolean isOnSameTeam(Entity entity) {
         if (super.isOnSameTeam(entity)) {
             return true;
-        } else if (entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie) {
-            return this.getTeam() == null && entity.getTeam() == null;
+        } else return entity instanceof ISophieFriendlies;
+    }
+
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 1.62F;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_SOPHIE_HURT_DROWN;
         } else {
-            return false;
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_SOPHIE_HURT_BERRY_BUSH : BMSounds.ENTITY_SOPHIE_HURT;
         }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_SOPHIE_DEATH;
     }
 
     @Override
@@ -117,7 +130,6 @@ public class InsomniaSophie extends MonsterEntity {
         Entity entity = source.getTrueSource();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
-            // If it is a charged creeper
             if (creeper.ableToCauseSkullDrop()) {
                 ItemStack skullStack = this.getSkullDrop();
                 if (!skullStack.isEmpty()) {

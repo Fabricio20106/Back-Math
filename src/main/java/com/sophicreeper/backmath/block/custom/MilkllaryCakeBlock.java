@@ -24,7 +24,14 @@ import net.minecraft.world.World;
 
 public class MilkllaryCakeBlock extends Block {
     public static final IntegerProperty BITES = BlockStateProperties.BITES_0_6;
-    protected static final VoxelShape[] SHAPES = new VoxelShape[]{Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(3.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(5.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(7.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(9.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(11.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D), Block.makeCuboidShape(13.0D, 0.0D, 1.0D, 15.0D, 8.0D, 15.0D)};
+    protected static final VoxelShape[] SHAPES = new VoxelShape[] {
+            Block.makeCuboidShape(1, 0, 1, 15, 8, 15),
+            Block.makeCuboidShape(3, 0, 1, 15, 8, 15),
+            Block.makeCuboidShape(5, 0, 1, 15, 8, 15),
+            Block.makeCuboidShape(7, 0, 1, 15, 8, 15),
+            Block.makeCuboidShape(9, 0, 1, 15, 8, 15),
+            Block.makeCuboidShape(11, 0, 1, 15, 8, 15),
+            Block.makeCuboidShape(13, 0, 1, 15, 8, 15)};
 
     public MilkllaryCakeBlock(Properties properties) {
         super(properties);

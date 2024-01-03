@@ -67,18 +67,15 @@ public class Janticle extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createJanticleAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 15)
-                .createMutableAttribute(Attributes.FLYING_SPEED, 0.4f)
+        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3).createMutableAttribute(Attributes.MAX_HEALTH, 15).createMutableAttribute(Attributes.FLYING_SPEED, 0.4f)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 2);
     }
 
     public void tick() {
-        Vector3d vector3D = this.getMotion();
+        Vector3d vec3D = this.getMotion();
         if (this.world.isRemote) {
-            this.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.DIAMOND_BLOCK.getDefaultState()), this.getPosX() - vector3D.x, this.getPosY() - vector3D.y + 0.15D, this.getPosZ() - vector3D.z, 0.0D, 0.0D, 0.0D);
-            this.world.addParticle(ParticleTypes.WARPED_SPORE, this.getPosX() - vector3D.x, this.getPosY() - vector3D.y + 0.15D, this.getPosZ() - vector3D.z, 0.0D, 0.0D, 0.0D);
+            this.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.DIAMOND_BLOCK.getDefaultState()), this.getPosX() - vec3D.x, this.getPosY() - vec3D.y + 0.15D, this.getPosZ() - vec3D.z, 0, 0, 0);
+            this.world.addParticle(ParticleTypes.WARPED_SPORE, this.getPosX() - vec3D.x, this.getPosY() - vec3D.y + 0.15D, this.getPosZ() - vec3D.z, 0, 0, 0);
         }
         super.tick();
     }

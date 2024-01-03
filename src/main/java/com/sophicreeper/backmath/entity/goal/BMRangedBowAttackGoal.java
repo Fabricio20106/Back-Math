@@ -34,10 +34,7 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
         this.attackCooldown = attackCooldown;
     }
 
-    /**
-     * Returns whether execution should begin. You can also read and cache any state necessary for execution in this
-     * method as well.
-     */
+    // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
     public boolean shouldExecute() {
         return this.entity.getAttackTarget() != null && this.isBowInMainhand();
     }
@@ -46,24 +43,18 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
         return this.entity.func_233634_a_(item -> item instanceof BowItem);
     }
 
-    /**
-     * Returns whether an in-progress EntityAIBase should continue executing
-     */
+    // Returns whether an in-progress EntityAIBase should continue executing.
     public boolean shouldContinueExecuting() {
         return this.shouldExecute() || !this.entity.getNavigator().noPath() && this.isBowInMainhand();
     }
 
-    /**
-     * Execute a one shot task or start executing a continuous task
-     */
+    // Execute a one shot task or start executing a continuous task.
     public void startExecuting() {
         super.startExecuting();
         this.entity.setAggroed(true);
     }
 
-    /**
-     * Reset the task's internal state. Called when this task is interrupted by another one
-     */
+    // Reset the task's internal state. Called when this task is interrupted by another one.
     public void resetTask() {
         super.resetTask();
         this.entity.setAggroed(false);
@@ -72,20 +63,18 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
         this.entity.resetActiveHand();
     }
 
-    /**
-     * Keep ticking a continuous task that has already been started
-     */
+    // Keep ticking a continuous task that has already been started.
     public void tick() {
         LivingEntity livingEntity = this.entity.getAttackTarget();
         if (livingEntity != null) {
             double mobDistanceSqr = this.entity.getDistanceSq(livingEntity.getPosX(), livingEntity.getPosY(), livingEntity.getPosZ());
-            boolean canMobSeeOther = this.entity.getEntitySenses().canSee(livingEntity);
+            boolean canSeeOther = this.entity.getEntitySenses().canSee(livingEntity);
             boolean seeTimeFlag = this.seeTime > 0;
-            if (canMobSeeOther != seeTimeFlag) {
+            if (canSeeOther != seeTimeFlag) {
                 this.seeTime = 0;
             }
 
-            if (canMobSeeOther) {
+            if (canSeeOther) {
                 ++this.seeTime;
             } else {
                 --this.seeTime;
@@ -119,15 +108,15 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
                 }
 
                 this.entity.getMoveHelper().strafe(this.strafingBackwards ? -0.5F : 0.5F, this.strafingClockwise ? 0.5F : -0.5F);
-                this.entity.faceEntity(livingEntity, 30.0F, 30.0F);
+                this.entity.faceEntity(livingEntity, 30, 30);
             } else {
-                this.entity.getLookController().setLookPositionWithEntity(livingEntity, 30.0F, 30.0F);
+                this.entity.getLookController().setLookPositionWithEntity(livingEntity, 30, 30);
             }
 
             if (this.entity.isHandActive()) {
-                if (!canMobSeeOther && this.seeTime < -60) {
+                if (!canSeeOther && this.seeTime < -60) {
                     this.entity.resetActiveHand();
-                } else if (canMobSeeOther) {
+                } else if (canSeeOther) {
                     int i = this.entity.getItemInUseMaxCount();
                     if (i >= 20) {
                         this.entity.resetActiveHand();

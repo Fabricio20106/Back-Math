@@ -108,7 +108,7 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
 
                     flag = false;
                     if (stack.isEmpty()) {
-                        Item item = getBackMathArmorByChance(equipmentSlotType, i);
+                        Item item = getAljanArmorByChance(equipmentSlotType, i);
                         if (item != null) {
                             this.setItemStackToSlot(equipmentSlotType, new ItemStack(item));
                         }
@@ -120,7 +120,7 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
     }
 
     @Nullable
-    public static Item getBackMathArmorByChance(EquipmentSlotType slotIn, int chance) {
+    public static Item getAljanArmorByChance(EquipmentSlotType slotIn, int chance) {
         switch(slotIn) {
             case HEAD:
                 if (chance == 0) {
@@ -182,11 +182,11 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
     }
 
     protected AbstractArrowEntity fireArrow(ItemStack arrowStack, float distanceFactor) {
-        AbstractArrowEntity arrowEntity = super.fireArrow(arrowStack, distanceFactor);
-        if (arrowEntity instanceof ArrowEntity) {
-            ((ArrowEntity) arrowEntity).addEffect(new EffectInstance(Effects.POISON, 100));
-            ((ArrowEntity) arrowEntity).addEffect(new EffectInstance(Effects.BLINDNESS, 600));
+        AbstractArrowEntity arrow = super.fireArrow(arrowStack, distanceFactor);
+        if (arrow instanceof ArrowEntity) {
+            ((ArrowEntity) arrow).addEffect(new EffectInstance(Effects.POISON, 100));
+            ((ArrowEntity) arrow).addEffect(new EffectInstance(Effects.BLINDNESS, 600));
         }
-        return arrowEntity;
+        return arrow;
     }
 }

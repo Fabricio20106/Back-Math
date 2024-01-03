@@ -133,5 +133,306 @@
         "stream": true
       }
     ]
+  },
+  "block.crystallizer.craft": {
+    "category": "block",
+    "sounds": [
+      "random/anvil_land"
+    ],
+    "subtitle": "subtitles.block.crystallizer.craft"
+  },
+  "block.crystallizer.failed_craft": {
+    "category": "block",
+    "sounds": [
+      "dig/stone1",
+      "dig/stone2",
+      "dig/stone3",
+      "dig/stone4"
+    ],
+    "subtitle": "subtitles.block.crystallizer.failed_craft"
+  },
+  "block.aljan_portal_stand.fill": {
+    "sounds": [
+      "block/end_portal/eyeplace1",
+      "block/end_portal/eyeplace2",
+      "block/end_portal/eyeplace3"
+    ],
+    "subtitle": "subtitles.block.aljan_portal_stand.fill"
+  },
+  "item.chocoglue.shoot": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.item.chocoglue.shoot"
+  },
+  "entity.sophie.death": {
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ],
+    "subtitle": "subtitles.entity.sophie.death"
+  },
+  "entity.sophie.hurt": {
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ],
+    "subtitle": "subtitles.entity.sophie.hurt"
+  },
+  "entity.sophie.hurt.drown": {
+    "sounds": [
+      "entity/player/hurt/drown1",
+      "entity/player/hurt/drown2",
+      "entity/player/hurt/drown3",
+      "entity/player/hurt/drown4"
+    ],
+    "subtitle": "subtitles.entity.sophie.hurt.drown"
+  },
+  "entity.sophie.hurt.on_fire": {
+    "sounds": [
+      "entity/player/hurt/fire_hurt1",
+      "entity/player/hurt/fire_hurt2",
+      "entity/player/hurt/fire_hurt3"
+    ],
+    "subtitle": "subtitles.entity.sophie.hurt.on_fire"
+  },
+  "entity.sophie.hurt.berry_bush": {
+    "sounds": [
+      "entity/player/hurt/berrybush_hurt1",
+      "entity/player/hurt/berrybush_hurt2"
+    ],
+    "subtitle": "subtitles.entity.sophie.hurt"
+  },
+  "entity.sophie.shoot": {
+    "sounds": [
+      "random/bow"
+    ],
+    "subtitle": "subtitles.entity.sophie.shoot"
+  },
+  "entity.lucia.hurt": {
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ],
+    "subtitle": "subtitles.entity.lucia.hurt"
+  },
+  "entity.lucia.hurt.drown": {
+    "sounds": [
+      "entity/player/hurt/drown1",
+      "entity/player/hurt/drown2",
+      "entity/player/hurt/drown3",
+      "entity/player/hurt/drown4"
+    ],
+    "subtitle": "subtitles.entity.lucia.hurt.drown"
+  },
+  "entity.lucia.hurt.on_fire": {
+    "sounds": [
+      "entity/player/hurt/fire_hurt1",
+      "entity/player/hurt/fire_hurt2",
+      "entity/player/hurt/fire_hurt3"
+    ],
+    "subtitle": "subtitles.entity.lucia.hurt.on_fire"
+  },
+  "entity.lucia.hurt.berry_bush": {
+    "sounds": [
+      "entity/player/hurt/berrybush_hurt1",
+      "entity/player/hurt/berrybush_hurt2"
+    ],
+    "subtitle": "subtitles.entity.lucia.hurt"
+  },
+  "entity.lucia.death": {
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ],
+    "subtitle": "subtitles.entity.lucia.death"
+  },
+  "entity.fabricio.hurt": {
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ],
+    "subtitle": "subtitles.entity.fabricio.hurt"
+  },
+  "entity.fabricio.hurt.drown": {
+    "sounds": [
+      "entity/player/hurt/drown1",
+      "entity/player/hurt/drown2",
+      "entity/player/hurt/drown3",
+      "entity/player/hurt/drown4"
+    ],
+    "subtitle": "subtitles.entity.fabricio.hurt.drown"
+  },
+  "entity.fabricio.hurt.on_fire": {
+    "sounds": [
+      "entity/player/hurt/fire_hurt1",
+      "entity/player/hurt/fire_hurt2",
+      "entity/player/hurt/fire_hurt3"
+    ],
+    "subtitle": "subtitles.entity.fabricio.hurt.on_fire"
+  },
+  "entity.fabricio.hurt.berry_bush": {
+    "sounds": [
+      "entity/player/hurt/berrybush_hurt1",
+      "entity/player/hurt/berrybush_hurt2"
+    ],
+    "subtitle": "subtitles.entity.fabricio.hurt"
+  },
+  "entity.fabricio.death": {
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ],
+    "subtitle": "subtitles.entity.fabricio.death"
+  },
+  "entity.malaika.hurt": {
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ],
+    "subtitle": "subtitles.entity.malaika.hurt"
+  },
+  "entity.malaika.hurt.drown": {
+    "sounds": [
+      "entity/player/hurt/drown1",
+      "entity/player/hurt/drown2",
+      "entity/player/hurt/drown3",
+      "entity/player/hurt/drown4"
+    ],
+    "subtitle": "subtitles.entity.malaika.hurt.drown"
+  },
+  "entity.malaika.hurt.on_fire": {
+    "sounds": [
+      "entity/player/hurt/fire_hurt1",
+      "entity/player/hurt/fire_hurt2",
+      "entity/player/hurt/fire_hurt3"
+    ],
+    "subtitle": "subtitles.entity.malaika.hurt.on_fire"
+  },
+  "entity.malaika.hurt.berry_bush": {
+    "sounds": [
+      "entity/player/hurt/berrybush_hurt1",
+      "entity/player/hurt/berrybush_hurt2"
+    ],
+    "subtitle": "subtitles.entity.malaika.hurt"
+  },
+  "entity.malaika.death": {
+    "sounds": [
+      "damage/hit1",
+      "damage/hit2",
+      "damage/hit3"
+    ],
+    "subtitle": "subtitles.entity.malaika.death"
+  },
+  "entity.queen_lucy.cast_spell": {
+    "sounds": [
+      "mob/evocation_illager/cast1",
+      "mob/evocation_illager/cast2"
+    ],
+    "subtitle": "subtitles.entity.queen_lucy.cast_spell"
+  },
+  "entity.queen_lucy.prepare_heal": {
+    "sounds": [
+      "mob/evocation_illager/prepare_attack1",
+      "mob/evocation_illager/prepare_attack2"
+    ],
+    "subtitle": "subtitles.entity.queen_lucy.prepare_heal"
+  },
+  "entity.queen_lucy.prepare_summon": {
+    "sounds": [
+      "mob/evocation_illager/prepare_summon"
+    ],
+    "subtitle": "subtitles.entity.queen_lucy.prepare_summon"
+  },
+
+  "entity.amaracameler.attack": {
+    "sounds": [
+      "mob/slime/attack1",
+      "mob/slime/attack2"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.attack"
+  },
+  "entity.amaracameler.death": {
+    "sounds": [
+      "mob/slime/big1",
+      "mob/slime/big2",
+      "mob/slime/big3",
+      "mob/slime/big4"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.death"
+  },
+  "entity.amaracameler.death_small": {
+    "sounds": [
+      "mob/slime/small1",
+      "mob/slime/small2",
+      "mob/slime/small3",
+      "mob/slime/small4",
+      "mob/slime/small5"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.death"
+  },
+  "entity.amaracameler.hurt": {
+    "sounds": [
+      "mob/slime/big1",
+      "mob/slime/big2",
+      "mob/slime/big3",
+      "mob/slime/big4"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.hurt"
+  },
+  "entity.amaracameler.hurt_small": {
+    "sounds": [
+      "mob/slime/small1",
+      "mob/slime/small2",
+      "mob/slime/small3",
+      "mob/slime/small4",
+      "mob/slime/small5"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.hurt"
+  },
+  "entity.amaracameler.jump": {
+    "sounds": [
+      "mob/slime/big1",
+      "mob/slime/big2",
+      "mob/slime/big3",
+      "mob/slime/big4"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.squish"
+  },
+  "entity.amaracameler.jump_small": {
+    "sounds": [
+      "mob/slime/small1",
+      "mob/slime/small2",
+      "mob/slime/small3",
+      "mob/slime/small4",
+      "mob/slime/small5"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.squish"
+  },
+  "entity.amaracameler.squish": {
+    "sounds": [
+      "mob/slime/big1",
+      "mob/slime/big2",
+      "mob/slime/big3",
+      "mob/slime/big4"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.squish"
+  },
+  "entity.amaracameler.squish_small": {
+    "sounds": [
+      "mob/slime/small1",
+      "mob/slime/small2",
+      "mob/slime/small3",
+      "mob/slime/small4",
+      "mob/slime/small5"
+    ],
+    "subtitle": "subtitles.entity.amaracameler.squish"
   }
 }

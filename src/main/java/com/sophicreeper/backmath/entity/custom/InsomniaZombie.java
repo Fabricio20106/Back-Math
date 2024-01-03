@@ -37,7 +37,7 @@ import java.time.temporal.ChronoField;
 import java.util.function.Predicate;
 
 public class InsomniaZombie extends MonsterEntity {
-    private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (p_213697_0_) -> p_213697_0_ == Difficulty.HARD;
+    private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (difficulty) -> difficulty == Difficulty.HARD;
     private final BreakDoorGoal breakDoor = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
     private boolean isBreakDoorsTaskSet;
 
@@ -46,14 +46,14 @@ public class InsomniaZombie extends MonsterEntity {
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.applyEntityAI();
     }
 
     protected void applyEntityAI() {
-        this.goalSelector.addGoal(2, new InsomniaZombieAttackGoal(this, 1.0D, false));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+        this.goalSelector.addGoal(2, new InsomniaZombieAttackGoal(this, 1, false));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Malaika.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
@@ -71,25 +71,20 @@ public class InsomniaZombie extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createInsomniaZombieAttributes() {
-        return MonsterEntity.func_234295_eP_()
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 35.0D)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
-                .createMutableAttribute(Attributes.ARMOR, 2.0D);
+        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 35).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3)
+                .createMutableAttribute(Attributes.ARMOR, 2);
     }
 
     public boolean isBreakDoorsTaskSet() {
         return this.isBreakDoorsTaskSet;
     }
 
-    /**
-     * Sets or removes EntityAIBreakDoor task
-     */
+    // Sets or removes EntityAIBreakDoor task.
     public void setBreakDoorsAItask(boolean enabled) {
         if (this.canBreakDoors() && GroundPathHelper.isGroundNavigator(this)) {
             if (this.isBreakDoorsTaskSet != enabled) {
                 this.isBreakDoorsTaskSet = enabled;
-                ((GroundPathNavigator)this.getNavigator()).setBreakDoors(enabled);
+                ((GroundPathNavigator) this.getNavigator()).setBreakDoors(enabled);
                 if (enabled) {
                     this.goalSelector.addGoal(1, this.breakDoor);
                 } else {
@@ -100,16 +95,13 @@ public class InsomniaZombie extends MonsterEntity {
             this.goalSelector.removeGoal(this.breakDoor);
             this.isBreakDoorsTaskSet = false;
         }
-
     }
 
     protected boolean canBreakDoors() {
         return true;
     }
 
-    /**
-     * Get the experience points the entity currently has.
-     */
+    // Get the experience points the entity currently has.
     protected int getExperiencePoints(PlayerEntity player) {
         if (this.isChild()) {
             this.experienceValue = (int)((float)this.experienceValue * 2.5F);
@@ -118,14 +110,11 @@ public class InsomniaZombie extends MonsterEntity {
         return super.getExperiencePoints(player);
     }
 
-    /**
-     * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
-     * use this to react to sunlight and start to burn.
-     */
+    // Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
     public void livingTick() {
         if (this.isAlive()) {
-            boolean flag = this.shouldBurnInDay() && this.isInDaylight();
-            if (flag) {
+            boolean shouldBurn = this.shouldBurnInDay() && this.isInDaylight();
+            if (shouldBurn) {
                 ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
                 if (!headStack.isEmpty()) {
                     if (headStack.isDamageable()) {
@@ -136,10 +125,10 @@ public class InsomniaZombie extends MonsterEntity {
                         }
                     }
 
-                    flag = false;
+                    shouldBurn = false;
                 }
 
-                if (flag) {
+                if (shouldBurn) {
                     this.setFire(8);
                 }
             }
@@ -155,9 +144,9 @@ public class InsomniaZombie extends MonsterEntity {
     public boolean attackEntityAsMob(Entity entity) {
         boolean flag = super.attackEntityAsMob(entity);
         if (flag) {
-            float locationDifficulty = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
-            if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < locationDifficulty * 0.3F) {
-                entity.setFire(2 * (int) locationDifficulty);
+            float localDifficulty = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
+            if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < localDifficulty * 0.3F) {
+                entity.setFire(2 * (int) localDifficulty);
             }
         }
 
@@ -168,7 +157,7 @@ public class InsomniaZombie extends MonsterEntity {
         return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
     }
 
-    protected SoundEvent getHurtSound(DamageSource damageSource) {
+    protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.ENTITY_ZOMBIE_HURT;
     }
 
@@ -181,7 +170,7 @@ public class InsomniaZombie extends MonsterEntity {
     }
 
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(this.getStepSound(), 0.15F, 1.0F);
+        this.playSound(this.getStepSound(), 0.15F, 1);
     }
 
     public CreatureAttribute getCreatureAttribute() {
@@ -220,7 +209,7 @@ public class InsomniaZombie extends MonsterEntity {
 
                     flag = false;
                     if (armorSlotStacks.isEmpty()) {
-                        Item item = getBackMathArmorByChance(equipmentSlots, i);
+                        Item item = getAljanArmorByChance(equipmentSlots, i);
                         if (item != null) {
                             this.setItemStackToSlot(equipmentSlots, new ItemStack(item));
                         }
@@ -228,11 +217,10 @@ public class InsomniaZombie extends MonsterEntity {
                 }
             }
         }
-
     }
 
     @Nullable
-    public static Item getBackMathArmorByChance(EquipmentSlotType slot, int chance) {
+    public static Item getAljanArmorByChance(EquipmentSlotType slot, int chance) {
         switch(slot) {
             case HEAD:
                 if (chance == 0) {
@@ -299,20 +287,18 @@ public class InsomniaZombie extends MonsterEntity {
         }
     }
 
-    public void writeAdditional(CompoundNBT compoundNBT) {
-        super.writeAdditional(compoundNBT);
-        compoundNBT.putBoolean("CanBreakDoors", this.isBreakDoorsTaskSet());
+    public void writeAdditional(CompoundNBT tag) {
+        super.writeAdditional(tag);
+        tag.putBoolean("CanBreakDoors", this.isBreakDoorsTaskSet());
     }
 
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
-    public void readAdditional(CompoundNBT compoundNBT) {
-        super.readAdditional(compoundNBT);
-        this.setBreakDoorsAItask(compoundNBT.getBoolean("CanBreakDoors"));
+    // (abstract) Protected helper method to read subclass entity data from NBT.
+    public void readAdditional(CompoundNBT tag) {
+        super.readAdditional(tag);
+        this.setBreakDoorsAItask(tag.getBoolean("CanBreakDoors"));
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntitySize entitySize) {
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.74F;
     }
 
@@ -332,7 +318,7 @@ public class InsomniaZombie extends MonsterEntity {
             int monthOfYear = localDate.get(ChronoField.MONTH_OF_YEAR);
             if (monthOfYear == 10 && dayOfMonth == 31 && this.rand.nextFloat() < 0.25F) {
                 this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
-                this.inventoryArmorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0.0F;
+                this.inventoryArmorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0;
             }
         }
 
@@ -341,21 +327,19 @@ public class InsomniaZombie extends MonsterEntity {
     }
 
     protected void applyAttributeBonuses(float difficulty) {
-        this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random spawn bonus", this.rand.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));
-        double d0 = this.rand.nextDouble() * 1.5D * (double)difficulty;
-        if (d0 > 1.0D) {
-            this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random insomnia zombie-spawn bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random Knockback Res. Bonus", this.rand.nextDouble() * (double)0.05F, AttributeModifier.Operation.ADDITION));
+        double d0 = this.rand.nextDouble() * 1.5D * (double) difficulty;
+        if (d0 > 1) {
+            this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random Follow Range Bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
 
         if (this.rand.nextFloat() < difficulty * 0.05F) {
-            this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader insomnia zombie bonus", this.rand.nextDouble() * 3.0D + 1.0D, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader Insomnia Zombie Bonus", this.rand.nextDouble() * 3 + 1, AttributeModifier.Operation.MULTIPLY_TOTAL));
             this.setBreakDoorsAItask(this.canBreakDoors());
         }
     }
 
-    /**
-     * Returns the Y Offset of this entity.
-     */
+    // Returns the Y Offset of this entity.
     public double getYOffset() {
         return -0.45D;
     }
@@ -365,7 +349,6 @@ public class InsomniaZombie extends MonsterEntity {
         Entity entity = source.getTrueSource();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
-            // If it is a charged creeper
             if (creeper.ableToCauseSkullDrop()) {
                 ItemStack skullStack = this.getSkullDrop();
                 if (!skullStack.isEmpty()) {

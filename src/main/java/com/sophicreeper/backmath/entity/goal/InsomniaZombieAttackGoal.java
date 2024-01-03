@@ -7,9 +7,9 @@ public class InsomniaZombieAttackGoal extends MeleeAttackGoal {
     private final InsomniaZombie zombie;
     private int raisedArmTicks;
 
-    public InsomniaZombieAttackGoal(InsomniaZombie insomniaZombie, double speed, boolean useLongMemory) {
-        super(insomniaZombie, speed, useLongMemory);
-        this.zombie = insomniaZombie;
+    public InsomniaZombieAttackGoal(InsomniaZombie zombie, double speed, boolean useLongMemory) {
+        super(zombie, speed, useLongMemory);
+        this.zombie = zombie;
     }
 
     public void startExecuting() {

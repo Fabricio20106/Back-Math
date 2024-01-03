@@ -92,7 +92,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
 
                     flag = false;
                     if (stack.isEmpty()) {
-                        Item item = getBackMathArmorByChance(equipmentSlotType, i);
+                        Item item = getAljanArmorByChance(equipmentSlotType, i);
                         if (item != null) {
                             this.setItemStackToSlot(equipmentSlotType, new ItemStack(item));
                         }
@@ -104,7 +104,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
     }
 
     @Nullable
-    public static Item getBackMathArmorByChance(EquipmentSlotType slot, int chance) {
+    public static Item getAljanArmorByChance(EquipmentSlotType slot, int chance) {
         switch(slot) {
             case HEAD:
                 if (chance == 0) {
@@ -159,9 +159,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
         }
     }
 
-    /**
-     * Gives armor or weapon for entity based on given DifficultyInstance
-     */
+    // Gives armor or weapon for entity based on given DifficultyInstance.
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         super.setEquipmentBasedOnDifficulty(difficulty);
         this.setEquipmentBasedOnDifficultyCustom(difficulty);

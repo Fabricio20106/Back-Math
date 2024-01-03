@@ -22,16 +22,16 @@ public class BMEntities {
             EntityType.Builder.create(AngrySophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build("angry_sophie"));
 
     public static final RegistryObject<EntityType<InsomniaSophie>> INSOMNIA_SOPHIE = ENTITIES.register("insomnia_sophie", () ->
-            EntityType.Builder.create(InsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 2.0F).trackingRange(32).build("insomnia_sophie"));
+            EntityType.Builder.create(InsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build("insomnia_sophie"));
 
     public static final RegistryObject<EntityType<ArcherInsomniaSophie>> ARCHER_INSOMNIA_SOPHIE = ENTITIES.register("archer_insomnia_sophie", () ->
-            EntityType.Builder.create(ArcherInsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 2.0F).trackingRange(32).build("archer_insomnia_sophie"));
+            EntityType.Builder.create(ArcherInsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build("archer_insomnia_sophie"));
 
     public static final RegistryObject<EntityType<QueenLucy>> QUEEN_LUCY = ENTITIES.register("queen_sophie", () ->
-            EntityType.Builder.create(QueenLucy::new, EntityClassification.MONSTER).size(0.6F, 2.0F).immuneToFire().trackingRange(64).build("queen_sophie"));
+            EntityType.Builder.create(QueenLucy::new, EntityClassification.MONSTER).size(0.6F, 1.8F).immuneToFire().trackingRange(64).build("queen_sophie"));
 
     public static final RegistryObject<EntityType<WarriorSophie>> WARRIOR_SOPHIE = ENTITIES.register("warrior_sophie", () ->
-            EntityType.Builder.create(WarriorSophie::new, EntityClassification.MONSTER).size(0.6F, 2.0F).trackingRange(32).build("warrior_sophie"));
+            EntityType.Builder.create(WarriorSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build("warrior_sophie"));
 
     public static final RegistryObject<EntityType<ArcherLucia>> ARCHER_LUCIA = ENTITIES.register("archer_lucia", () ->
             EntityType.Builder.create(ArcherLucia::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(32).build("archer_lucia"));

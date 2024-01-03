@@ -44,15 +44,15 @@ public class BMBoat extends BoatEntity {
     }
 
     @Override
-    protected void readAdditional(CompoundNBT compoundNBT) {
-        super.readAdditional(compoundNBT);
-        compoundNBT.putString("Type", this.getWoodType());
+    protected void readAdditional(CompoundNBT tag) {
+        super.readAdditional(tag);
+        tag.putString("Type", this.getWoodType());
     }
 
     @Override
-    protected void writeAdditional(CompoundNBT compoundNBT) {
-        super.writeAdditional(compoundNBT);
-        compoundNBT.putString("Type", this.getWoodType());
+    protected void writeAdditional(CompoundNBT tag) {
+        super.writeAdditional(tag);
+        tag.putString("Type", this.getWoodType());
     }
 
     public String getWoodType() {
@@ -67,7 +67,6 @@ public class BMBoat extends BoatEntity {
     public Item getItemBoat() {
         switch(this.getWoodType()) {
             case "aljanwood":
-                return AxolotlTest.ALJANWOOD_BOAT.get();
             default:
                 return AxolotlTest.ALJANWOOD_BOAT.get();
         }

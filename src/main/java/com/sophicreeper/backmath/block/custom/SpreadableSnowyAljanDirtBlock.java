@@ -12,8 +12,8 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Random;
 
 public class SpreadableSnowyAljanDirtBlock extends SnowyDirtBlock {
-    public SpreadableSnowyAljanDirtBlock(AbstractBlock.Properties builder) {
-        super(builder);
+    public SpreadableSnowyAljanDirtBlock(Properties properties) {
+        super(properties);
     }
 
     private static boolean isSnowyConditions(BlockState state, IWorldReader world, BlockPos pos) {

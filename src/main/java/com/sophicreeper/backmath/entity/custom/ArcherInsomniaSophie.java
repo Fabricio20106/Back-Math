@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.entity.custom;
 import com.sophicreeper.backmath.entity.goal.BMRangedBowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
+import com.sophicreeper.backmath.misc.BMSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -19,7 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
@@ -29,7 +30,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttackMob {
+public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttackMob, ISophieFriendlies {
     private final BMRangedBowAttackGoal<ArcherInsomniaSophie> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1, 20, 15);
     private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2d, false) {
         public void resetTask() {
@@ -70,6 +71,20 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_BOW.get()));
     }
 
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_SOPHIE_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_SOPHIE_HURT_BERRY_BUSH : BMSounds.ENTITY_SOPHIE_HURT;
+        }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_SOPHIE_DEATH;
+    }
+
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.ARCHER_INSOMNIA_SOPHIE_SPAWN_EGG.get());
@@ -105,6 +120,12 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         }
     }
 
+    public boolean isOnSameTeam(Entity entity) {
+        if (super.isOnSameTeam(entity)) {
+            return true;
+        } else return entity instanceof ISophieFriendlies;
+    }
+
     @Override
     protected void registerGoals() {
         super.registerGoals();
@@ -138,7 +159,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
         arrow.shoot(d0, d1 + d3 * (double) 0.2f, d2, 1.6f, (float) (14 - this.world.getDifficulty().getId() * 4));
 
-        this.playSound(SoundEvents.ENTITY_SKELETON_SHOOT, 1, 1 / (this.getRNG().nextFloat() * 0.4f + 0.8f));
+        this.playSound(BMSounds.ENTITY_SOPHIE_SHOOT, 1, 1 / (this.getRNG().nextFloat() * 0.4f + 0.8f));
         this.world.addEntity(arrow);
     }
 
@@ -151,10 +172,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     }
 
     public static AttributeModifierMap.MutableAttribute createMobAttributes() {
-        return MonsterEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 4)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 28)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
+        return MonsterEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 4).createMutableAttribute(Attributes.MAX_HEALTH, 28).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
     }
 
@@ -163,7 +181,6 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         Entity entity = source.getTrueSource();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
-            // If it is a charged creeper
             if (creeper.ableToCauseSkullDrop()) {
                 ItemStack skullStack = this.getSkullDrop();
                 if (!skullStack.isEmpty()) {

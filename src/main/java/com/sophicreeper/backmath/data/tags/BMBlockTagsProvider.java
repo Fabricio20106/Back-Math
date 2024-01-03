@@ -114,8 +114,8 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
 
         this.getOrCreateBuilder(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get()).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.getOrCreateBuilder(BMTags.Blocks.ALJAN_CROP_PLANTABLE_ON).add(BMBlocks.ALJAMIC_FARMLAND.get());
-        this.getOrCreateBuilder(BMTags.Blocks.TFEF_PLANTABLE_ON).addTag(Tags.Blocks.SAND);
-        this.getOrCreateBuilder(BMTags.Blocks.EDFEF_PLANTABLE_ON).add(Blocks.END_STONE).add(Blocks.END_STONE_BRICKS);
+        this.getOrCreateBuilder(BMTags.Blocks.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON).addTag(Tags.Blocks.SAND);
+        this.getOrCreateBuilder(BMTags.Blocks.ENDER_DRAGON_FRIED_EGG_FLOWER_PLANTABLE_ON).add(Blocks.END_STONE).add(Blocks.END_STONE_BRICKS);
 
         // Logs & Woods
         this.getOrCreateBuilder(BMTags.Blocks.CRYSTALLINE_BIRCH_LOGS).add(BMBlocks.CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get());

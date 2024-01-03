@@ -13,11 +13,11 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 
 public class EmotionalSquidBlock extends HorizontalBlock {
-    public static final VoxelShape SHAPE = Block.makeCuboidShape(4.0d, 0.0d, 4.0d, 12.0d, 6.0d, 12.0d);
+    public static final VoxelShape SHAPE = Block.makeCuboidShape(4, 0, 4, 12, 6, 12);
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
     public EmotionalSquidBlock() {
-        super(AbstractBlock.Properties.from(Blocks.WHITE_WOOL));
+        super(Properties.from(Blocks.WHITE_WOOL));
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }
 

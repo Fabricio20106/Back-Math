@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -12,6 +13,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -28,8 +30,8 @@ public class AngrySophie extends MonsterEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.applyEntityAI();
         super.registerGoals();
@@ -54,10 +56,7 @@ public class AngrySophie extends MonsterEntity {
         return MonsterEntity.func_233666_p_()
                 // She had 75 health at first (I think) now it's 45, but I think it still a lot.
                 // But now she'll have 28 health, because it was still too much.
-                .createMutableAttribute(Attributes.MAX_HEALTH, 28.0D)
-                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0D)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3.0D)
+                .createMutableAttribute(Attributes.MAX_HEALTH, 28).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F).createMutableAttribute(Attributes.FOLLOW_RANGE, 12).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
@@ -73,6 +72,20 @@ public class AngrySophie extends MonsterEntity {
     @Override
     public CreatureAttribute getCreatureAttribute() {
         return CreatureAttribute.UNDEFINED;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_SOPHIE_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_SOPHIE_HURT_BERRY_BUSH : BMSounds.ENTITY_SOPHIE_HURT;
+        }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_SOPHIE_DEATH;
     }
 
     @Override
@@ -108,7 +121,6 @@ public class AngrySophie extends MonsterEntity {
         Entity entity = source.getTrueSource();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
-            // If it is a charged creeper
             if (creeper.ableToCauseSkullDrop()) {
                 ItemStack skullStack = this.getSkullDrop();
                 if (!skullStack.isEmpty()) {

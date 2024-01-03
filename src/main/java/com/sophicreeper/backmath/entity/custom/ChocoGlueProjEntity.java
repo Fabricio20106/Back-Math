@@ -39,8 +39,8 @@ public class ChocoGlueProjEntity extends ProjectileItemEntity {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte bite) {
-        if (bite == 3) {
+    public void handleStatusUpdate(byte id) {
+        if (id == 3) {
             IParticleData particleData = this.makeParticle();
 
             for (int i = 0; i < 8; ++i) {

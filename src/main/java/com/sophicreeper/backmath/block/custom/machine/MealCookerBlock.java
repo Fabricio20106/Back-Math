@@ -31,7 +31,7 @@ public class MealCookerBlock extends HorizontalBlock {
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
     public MealCookerBlock() {
-        super(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().sound(SoundType.WOOD).hardnessAndResistance(2.0F, 6.0F));
+        super(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().sound(SoundType.WOOD).hardnessAndResistance(2, 6));
     }
 
     @Override
@@ -41,45 +41,45 @@ public class MealCookerBlock extends HorizontalBlock {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        ItemStack MainHand = player.getHeldItem(Hand.MAIN_HAND);
-        ItemStack OffHand = player.getHeldItem(Hand.OFF_HAND);
+        ItemStack mainHand = player.getHeldItem(Hand.MAIN_HAND);
+        ItemStack offHand = player.getHeldItem(Hand.OFF_HAND);
 
-        if (MainHand.getItem() == AxolotlTest.HOT_SOPHIE.get() && OffHand.getItem() == AxolotlTest.COLD_FABRICIO.get()) {
+        if (mainHand.getItem() == AxolotlTest.HOT_SOPHIE.get() && offHand.getItem() == AxolotlTest.COLD_FABRICIO.get()) {
             player.addItemStackToInventory(new ItemStack(AxolotlTest.HOT_SOPHIE_COLD_FABRICIO_MEAL.get()));
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
-            MainHand.shrink(1);
-            OffHand.shrink(1);
+            mainHand.shrink(1);
+            offHand.shrink(1);
         }
-        if (MainHand.getItem() == AxolotlTest.FRIED_SOPHIE.get() && OffHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
+        if (mainHand.getItem() == AxolotlTest.FRIED_SOPHIE.get() && offHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
             player.addItemStackToInventory(new ItemStack(AxolotlTest.FRIED_SOPHIE_FRIED_EGG_MEAL.get()));
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
-            MainHand.shrink(1);
-            OffHand.shrink(1);
+            mainHand.shrink(1);
+            offHand.shrink(1);
         }
-        if (MainHand.getItem() == AxolotlTest.COOKED_LUCIA.get() && OffHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
+        if (mainHand.getItem() == AxolotlTest.COOKED_LUCIA.get() && offHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
             player.addItemStackToInventory(new ItemStack(AxolotlTest.COOKED_LUCIA_FRIED_EGG_MEAL.get()));
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
-            MainHand.shrink(1);
-            OffHand.shrink(1);
+            mainHand.shrink(1);
+            offHand.shrink(1);
         }
-        if (MainHand.getItem() == AxolotlTest.TOASTED_FABRICIO.get() && OffHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
+        if (mainHand.getItem() == AxolotlTest.TOASTED_FABRICIO.get() && offHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
             player.addItemStackToInventory(new ItemStack(AxolotlTest.TOASTED_FABRICIO_FRIED_EGG_MEAL.get()));
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
-            MainHand.shrink(1);
-            OffHand.shrink(1);
+            mainHand.shrink(1);
+            offHand.shrink(1);
         }
-        if (MainHand.getItem() == AxolotlTest.ALJAME_TEA.get()) {
+        if (mainHand.getItem() == AxolotlTest.ALJAME_TEA.get()) {
             player.addItemStackToInventory(new ItemStack(AxolotlTest.ALJAME_TEACUP.get()));
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
-            MainHand.shrink(1);
+            mainHand.shrink(1);
         }
-        if (MainHand.getItem() == Items.BREAD && OffHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
+        if (mainHand.getItem() == Items.BREAD && offHand.getItem() == AxolotlTest.FRIED_EGG.get()) {
             player.addItemStackToInventory(new ItemStack(AxolotlTest.FRIED_EGG_BREAD.get()));
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
-            MainHand.shrink(1);
-            OffHand.shrink(1);
+            mainHand.shrink(1);
+            offHand.shrink(1);
         }
-        if (MainHand.getItem() == AxolotlTest.ANGELIC_SPOON.get()) {
+        if (mainHand.getItem() == AxolotlTest.ANGELIC_SPOON.get()) {
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
             player.addItemStackToInventory(new ItemStack(AxolotlTest.PASTA.get()));
         }

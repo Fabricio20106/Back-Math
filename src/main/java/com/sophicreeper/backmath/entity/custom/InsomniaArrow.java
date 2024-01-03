@@ -30,35 +30,31 @@ public class InsomniaArrow extends AbstractArrowEntity {
         return new ItemStack(AxolotlTest.INSOMNIA_ARROW.get());
     }
 
-    protected void arrowHit(LivingEntity livingEntity) {
-        super.arrowHit(livingEntity);
-        EffectInstance poison = new EffectInstance(Effects.POISON, this.poisonDuration, 0);
-        EffectInstance blindness = new EffectInstance(Effects.BLINDNESS, this.blindnessDuration, 0);
-        livingEntity.addPotionEffect(poison);
-        livingEntity.addPotionEffect(blindness);
+    protected void arrowHit(LivingEntity livEntity) {
+        super.arrowHit(livEntity);
+        livEntity.addPotionEffect(new EffectInstance(Effects.POISON, this.poisonDuration, 0));
+        livEntity.addPotionEffect(new EffectInstance(Effects.BLINDNESS, this.blindnessDuration, 0));
     }
 
-    public void writeAdditional(CompoundNBT compoundNBT) {
-        super.writeAdditional(compoundNBT);
-        if (compoundNBT.contains("PoisonDuration")) {
-            this.poisonDuration = compoundNBT.getInt("PoisonDuration");
+    public void writeAdditional(CompoundNBT tag) {
+        super.writeAdditional(tag);
+        if (tag.contains("poison_duration")) {
+            this.poisonDuration = tag.getInt("poison_duration");
         }
-        if (compoundNBT.contains("BlindnessDuration")) {
-            this.blindnessDuration = compoundNBT.getInt("BlindnessDuration");
+        if (tag.contains("blindness_duration")) {
+            this.blindnessDuration = tag.getInt("blindness_duration");
         }
     }
 
-    public void readAdditional(CompoundNBT compoundNBT) {
-        super.readAdditional(compoundNBT);
-        compoundNBT.putInt("PoisonDuration", this.poisonDuration);
-        compoundNBT.putInt("BlindnessDuration", this.blindnessDuration);
+    public void readAdditional(CompoundNBT tag) {
+        super.readAdditional(tag);
+        tag.putInt("poison_duration", this.poisonDuration);
+        tag.putInt("blindness_duration", this.blindnessDuration);
     }
 
     @Override
     public void checkDespawn() {
-        if (this.timeInGround > 1200) {
-            this.remove();
-        }
+        if (this.timeInGround > 1200) this.remove();
     }
 
     @Override

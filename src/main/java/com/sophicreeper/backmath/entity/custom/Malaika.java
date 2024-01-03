@@ -1,8 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.world.biome.BMBiomes;
+import com.sophicreeper.backmath.misc.BMSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -13,7 +12,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -21,10 +21,8 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.Objects;
-import java.util.Random;
 
-public class Malaika extends CreatureEntity {
+public class Malaika extends CreatureEntity implements ISophieFriendlies {
     public Malaika(EntityType<Malaika> entity, World world) {
         super(entity, world);
         this.experienceValue = 2;
@@ -33,9 +31,8 @@ public class Malaika extends CreatureEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(2, new PanicGoal(this, 1.3f));
-        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, Malaika.class, 6));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, Malaika.class, 6));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.entityAttackTargets();
@@ -53,12 +50,8 @@ public class Malaika extends CreatureEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createMalaikaAttributes() {
-        return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 15)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f)
-                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.25f)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 16)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3);
+        return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.25f)
+                .createMutableAttribute(Attributes.FOLLOW_RANGE, 16).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3);
     }
 
     @Override
@@ -77,6 +70,20 @@ public class Malaika extends CreatureEntity {
         this.setEquipmentBasedOnDifficulty(difficulty);
         this.setEnchantmentBasedOnDifficulty(difficulty);
         return spawnData;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_MALAIKA_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_MALAIKA_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_MALAIKA_HURT_BERRY_BUSH : BMSounds.ENTITY_MALAIKA_HURT;
+        }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_MALAIKA_DEATH;
     }
 
     @Override
@@ -111,7 +118,7 @@ public class Malaika extends CreatureEntity {
 
                     flag = false;
                     if (stack.isEmpty()) {
-                        Item item = getBackMathArmorByChance(equipmentSlotType, i);
+                        Item item = getAljanArmorByChance(equipmentSlotType, i);
                         if (item != null) {
                             this.setItemStackToSlot(equipmentSlotType, new ItemStack(item));
                         }
@@ -123,7 +130,7 @@ public class Malaika extends CreatureEntity {
     }
 
     @Nullable
-    public static Item getBackMathArmorByChance(EquipmentSlotType armorSlot, int chance) {
+    public static Item getAljanArmorByChance(EquipmentSlotType armorSlot, int chance) {
         switch(armorSlot) {
             case HEAD:
                 if (chance == 0) {
@@ -176,19 +183,6 @@ public class Malaika extends CreatureEntity {
             default:
                 return null;
         }
-    }
-
-    public static boolean canSpawnMalaikaOn(EntityType<Malaika> malaika, IServerWorld world, SpawnReason reason, BlockPos pos, Random rand) {
-        if (Objects.equals(world.getBiome(pos), BMBiomes.ALJAN_WOODS.get()) ||
-                Objects.equals(world.getBiome(pos), BMBiomes.ALJAMIC_HIGHLANDS.get()) ||
-                Objects.equals(world.getBiome(pos), BMBiomes.CAPPED_HILLS.get()) ||
-                Objects.equals(world.getBiome(pos), BMBiomes.INSOMNIAN_WOODS.get()) ||
-                Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) ||
-                Objects.equals(world.getBiome(pos), BMBiomes.SLEEPISH_OCEAN.get()) ||
-                Objects.equals(world.getBiome(pos), BMBiomes.DEEP_SLEEPISH_OCEAN.get()) && BMConfigs.COMMON_CONFIGS.malaikaSpawn.get()) {
-            canSpawnOn(malaika, world, reason, pos, rand);
-        }
-        return false;
     }
 
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {

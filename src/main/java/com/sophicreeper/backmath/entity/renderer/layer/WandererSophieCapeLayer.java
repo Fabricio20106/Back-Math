@@ -53,6 +53,9 @@ public class WandererSophieCapeLayer extends LayerRenderer<WandererSophie, BMBip
                 matrixStack.rotate(Vector3f.XP.rotationDegrees(6 + f2 / 2 + f1));
                 matrixStack.rotate(Vector3f.ZP.rotationDegrees(f3 / 2));
                 matrixStack.rotate(Vector3f.YP.rotationDegrees(180 - f3 / 2));
+                // TODO: Make the cape texture modifiable through NBT in Wanderer Sophies.
+                // Example: (cape_texture: "cherry_blossom") + "_cape.png"
+                // Thus making new cape viable just through mob NBT and a resource pack.
                 IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.getEntitySolid(BackMath.resourceLoc("textures/entity/cherry_blossom_cape.png")));
                 this.getEntityModel().renderCape(matrixStack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY);
                 matrixStack.pop();

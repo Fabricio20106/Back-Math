@@ -14,7 +14,7 @@ public class JanticOreBlock extends Block {
 
     @Override
     public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
-        if (!world.isRemote) {
+        if (!world.isRemote && !player.isCreative()) {
             Janticle janticle = new Janticle(world);
             world.addEntity(janticle);
         }

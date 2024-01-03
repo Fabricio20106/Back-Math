@@ -7,9 +7,9 @@ public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
     private final ZombieFabricio zombie;
     private int raisedArmTicks;
 
-    public ZombieFabricioAttackGoal(ZombieFabricio zombieFabricio, double speed, boolean useLongMemory) {
-        super(zombieFabricio, speed, useLongMemory);
-        this.zombie = zombieFabricio;
+    public ZombieFabricioAttackGoal(ZombieFabricio zombie, double speed, boolean useLongMemory) {
+        super(zombie, speed, useLongMemory);
+        this.zombie = zombie;
     }
 
     public void startExecuting() {

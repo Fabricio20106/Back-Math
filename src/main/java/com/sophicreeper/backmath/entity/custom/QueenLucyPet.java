@@ -1,8 +1,9 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.google.common.collect.Sets;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -14,9 +15,7 @@ import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -30,6 +29,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Hand;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -38,18 +38,14 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
-import java.util.Set;
 import java.util.function.Predicate;
 
 public class QueenLucyPet extends TameableEntity {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(QueenLucyPet.class, DataSerializers.VARINT);
-    public static final Predicate<LivingEntity> TARGETS = (p_213440_0_) -> {
-        EntityType<?> type = p_213440_0_.getType();
+    public static final Predicate<LivingEntity> TARGETS = (livEntity) -> {
+        EntityType<?> type = livEntity.getType();
         return type == BMEntities.ANGRY_SOPHIE.get() || type == BMEntities.SHY_FABRICIO.get();
     };
-    private static final Set<Item> TAME_ITEMS = Sets.newHashSet(AxolotlTest.GUARANA.get(), AxolotlTest.MANGO.get(), AxolotlTest.GRAPES.get(), AxolotlTest.LEMON.get(), AxolotlTest.PINEAPPLE.get(),
-            AxolotlTest.ORANGE.get(), AxolotlTest.BANANA.get(), AxolotlTest.GUAVA.get(), AxolotlTest.JABUTICABA.get(), AxolotlTest.ALJAMIC_BERRY.get(), AxolotlTest.GREEN_APPLE.get());
-    public static final Item DEADLY_ITEM = AxolotlTest.ALJAME.get();
 
     public QueenLucyPet(EntityType<QueenLucyPet> type, World world) {
         super(type, world);
@@ -78,7 +74,7 @@ public class QueenLucyPet extends TameableEntity {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new SitGoal(this));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.2d, Ingredient.fromStacks(new ItemStack(AxolotlTest.GUARANA.get()), new ItemStack(Items.CAKE)), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.2d, Ingredient.fromTag(BMTags.Items.QUEEN_LUCY_PET_TEMPT_ITEMS), false));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 2.1f, true));
         this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2f, 10, 2, false));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1));
@@ -130,7 +126,7 @@ public class QueenLucyPet extends TameableEntity {
 
     public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
         ItemStack heldItem = player.getHeldItem(hand);
-        if (!this.isTamed() && TAME_ITEMS.contains(heldItem.getItem())) {
+        if (!this.isTamed() && heldItem.getItem().isIn(BMTags.Items.QUEEN_LUCY_PET_TAME_ITEMS)) {
             if (!player.abilities.isCreativeMode) {
                 heldItem.shrink(1);
             }
@@ -145,7 +141,7 @@ public class QueenLucyPet extends TameableEntity {
             }
 
             return ActionResultType.func_233537_a_(this.world.isRemote);
-        } else if (heldItem.getItem() == DEADLY_ITEM) {
+        } else if (heldItem.getItem().isIn(BMTags.Items.QUEEN_LUCY_PET_DEADLY_ITEMS)) {
             if (!player.abilities.isCreativeMode) {
                 heldItem.shrink(1);
             }
@@ -180,7 +176,7 @@ public class QueenLucyPet extends TameableEntity {
         return 0.81f;
     }
 
-    public boolean canMateWith(AnimalEntity otherQSP) {
+    public boolean canMateWith(AnimalEntity otherQLP) {
         return false;
     }
 
@@ -196,6 +192,20 @@ public class QueenLucyPet extends TameableEntity {
     @Override
     public QueenLucyPet func_241840_a(ServerWorld world, AgeableEntity ageableEntity) {
         return null;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_SOPHIE_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_SOPHIE_HURT_BERRY_BUSH : BMSounds.ENTITY_SOPHIE_HURT;
+        }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_SOPHIE_DEATH;
     }
 
     @Override

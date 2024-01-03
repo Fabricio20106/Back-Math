@@ -444,7 +444,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_LOG = BLOCKS.register("stripped_crystalline_birch_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_LOG).notSolid()));
     public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_WOOD = BLOCKS.register("stripped_crystalline_birch_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_WOOD).notSolid()));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_GRAPE_VINE_POST = BLOCKS.register("crystalline_birch_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(BMBlocks.OAK_GRAPE_VINE_POST.get()).notSolid()));
-    public static final RegistryObject<Block> ENDER_DRAGON_FRIED_EGG_FLOWER = BLOCKS.register("ender_dragon_fried_egg_flower", () -> new EDFEFlowerBlock(AbstractBlock.Properties.from(Blocks.POPPY)));
+    public static final RegistryObject<Block> ENDER_DRAGON_FRIED_EGG_FLOWER = BLOCKS.register("ender_dragon_fried_egg_flower", () -> new EnderDragonFriedEggFlowerBlock(AbstractBlock.Properties.from(Blocks.POPPY)));
     public static final RegistryObject<Block> POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER = BLOCKS.register("potted_ender_dragon_fried_egg_flower", () -> new FlowerPotBlock(ENDER_DRAGON_FRIED_EGG_FLOWER.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_LADDER = BLOCKS.register("crystalline_birch_ladder", () -> new LadderBlock(AbstractBlock.Properties.from(Blocks.LADDER)));
     public static final RegistryObject<Block> ANGELIC_PILLAR = BLOCKS.register("angelic_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));

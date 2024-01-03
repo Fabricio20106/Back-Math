@@ -115,11 +115,6 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPet> {
 		return ImmutableList.of(this.body, this.rightLeg, this.leftLeg, this.rightArm, this.leftArm, this.rightWing, this.leftWing);
 	}
 
-	//@Override
-	//public void setRotationAngles(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch){
-	//	previously the render function, render code was moved to a method below
-	//}
-
 	// Sets this entity's model rotation angles
 	public void setRotationAngles(QueenLucyPet queenLucyPet, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.rotateAngleY = netHeadYaw * 0.017453292f;

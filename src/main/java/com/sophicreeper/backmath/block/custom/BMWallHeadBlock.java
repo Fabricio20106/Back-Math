@@ -21,10 +21,10 @@ import java.util.Map;
 public class BMWallHeadBlock extends HorizontalBlock {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
     private static final Map<Direction, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(
-            Direction.NORTH, Block.makeCuboidShape(4.0D, 4.0D, 8.0D, 12.0D, 12.0D, 16.0D),
-            Direction.SOUTH, Block.makeCuboidShape(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 8.0D),
-            Direction.EAST, Block.makeCuboidShape(0.0D, 4.0D, 4.0D, 8.0D, 12.0D, 12.0D),
-            Direction.WEST, Block.makeCuboidShape(8.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D)
+            Direction.NORTH, Block.makeCuboidShape(4, 4, 8, 12, 12, 16),
+            Direction.SOUTH, Block.makeCuboidShape(4, 4, 0, 12, 12, 8),
+            Direction.EAST, Block.makeCuboidShape(0, 4, 4, 8, 12, 12),
+            Direction.WEST, Block.makeCuboidShape(8, 4, 4, 16, 12, 12)
     ));
 
     public BMWallHeadBlock(Properties properties) {

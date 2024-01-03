@@ -16,7 +16,7 @@ import net.minecraft.world.IBlockReader;
 
 public class BMHeadBlock extends HorizontalBlock {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D);
+    protected static final VoxelShape SHAPE = Block.makeCuboidShape(4, 0, 4, 12, 8, 12);
 
     public BMHeadBlock(Properties properties) {
         super(properties);

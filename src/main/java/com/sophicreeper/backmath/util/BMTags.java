@@ -110,12 +110,24 @@ public class BMTags {
         public static final ITag.INamedTag<Item> MOLDS_CRYSTALLINE_GEM = backMath("molds/crystalline_gem");
         public static final ITag.INamedTag<Item> MOLDS_ROD = backMath("molds/rod");
 
+        public static final ITag.INamedTag<Item> FRUITS = backMath("fruits");
         public static final ITag.INamedTag<Item> SQUIDS = backMath("squids");
         public static final ITag.INamedTag<Item> POPSICLES = backMath("popsicles");
         public static final ITag.INamedTag<Item> ALJANSTONE_CRAFTING_MATERIALS = backMath("aljanstone_crafting_materials");
         public static final ITag.INamedTag<Item> BONE_MEALS = backMath("bone_meals");
         public static final ITag.INamedTag<Item> TURTLE_SHELLS = backMath("turtle_shells");
         public static final ITag.INamedTag<Item> CROSSBOWS = backMath("crossbows");
+        public static final ITag.INamedTag<Item> ARCHER_LUCIA_PICKUPABLES = backMath("archer_lucia_pickupables");
+        public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TAME_ITEMS = backMath("queen_lucy_pet_tame_items");
+        public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_DEADLY_ITEMS = backMath("queen_lucy_pet_deadly_items");
+
+        // Mob Related Tags
+        public static final ITag.INamedTag<Item> MOB_TEMPT_ITEMS = backMath("tempt_items");
+        public static final ITag.INamedTag<Item> WANDERER_SOPHIE_TEMPT_ITEMS = backMath("tempt_items/wanderer_sophie");
+        public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TEMPT_ITEMS = backMath("tempt_items/queen_lucy_pet");
+        public static final ITag.INamedTag<Item> ARCHER_LUCIA_TEMPT_ITEMS = backMath("tempt_items/archer_lucia");
+        public static final ITag.INamedTag<Item> SHY_FABRICIO_TEMPT_ITEMS = backMath("tempt_items/shy_fabricio");
+
         // Tag Migration
         public static final ITag.INamedTag<Item> ALJAN_RECIPE_STICKS = backMath("aljan_recipe_sticks");
         public static final ITag.INamedTag<Item> BACK_GUIDE_RECIPE_ACCEPTABLES = backMath("back_guide_recipe_acceptables");
@@ -287,8 +299,8 @@ public class BMTags {
 
         public static final ITag.INamedTag<Block> WILD_CROPS_PLANTABLE_ON = backMath("wild_crops_plantable_on");
         public static final ITag.INamedTag<Block> ALJAN_CROP_PLANTABLE_ON = backMath("aljan_crop_plantable_on");
-        public static final ITag.INamedTag<Block> EDFEF_PLANTABLE_ON = backMath("edfef_plantable_on");
-        public static final ITag.INamedTag<Block> TFEF_PLANTABLE_ON = backMath("tfef_plantable_on");
+        public static final ITag.INamedTag<Block> ENDER_DRAGON_FRIED_EGG_FLOWER_PLANTABLE_ON = backMath("ender_dragon_fried_egg_flower_plantable_on");
+        public static final ITag.INamedTag<Block> TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON = backMath("turtle_fried_egg_flower_plantable_on");
 
         public static final ITag.INamedTag<Block> SOPHIE_IDEA = backMath("sophie_idea");
         public static final ITag.INamedTag<Block> BOUNTIFULLY_EXPANSIVE_IDEA = backMath("sophie_idea/bountifully_expansive");
@@ -320,5 +332,10 @@ public class BMTags {
     public static class EntityTypes {
         public static final ITag.INamedTag<EntityType<?>> SOPHIE_IDEA = getTagById("backmath:sophie_idea");
         public static final ITag.INamedTag<EntityType<?>> ALJAMIC_WARS_IDEA = getTagById("backmath:sophie_idea/aljamic_wars");
+
+        public static final ITag.INamedTag<EntityType<?>> PLAYER_LIKE = getTagById("backmath:player_like");
+        public static final ITag.INamedTag<EntityType<?>> SOPHIES = getTagById("backmath:sophies");
+        public static final ITag.INamedTag<EntityType<?>> LUCIAS = getTagById("backmath:lucias");
+        public static final ITag.INamedTag<EntityType<?>> FABRICIOS = getTagById("backmath:fabricios");
     }
 }

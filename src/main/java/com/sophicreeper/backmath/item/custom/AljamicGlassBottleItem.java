@@ -18,18 +18,19 @@ public class AljamicGlassBottleItem extends Item {
         super(properties);
     }
 
+    // TODO: Fix aljamic glass bottles not giving the sleepishwater bottle when right-clicking the fluid.
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack heldItem = player.getHeldItem(hand);
-        RayTraceResult rayTraceResult = rayTrace(world, player, RayTraceContext.FluidMode.SOURCE_ONLY);
+        BlockRayTraceResult rayTraceResult = rayTrace(world, player, RayTraceContext.FluidMode.SOURCE_ONLY);
         if (rayTraceResult.getType() == RayTraceResult.Type.BLOCK) {
-            BlockPos rayTraceBlockPos = ((BlockRayTraceResult) rayTraceResult).getPos();
+            BlockPos rayTraceBlockPos = rayTraceResult.getPos();
             if (!world.isBlockModifiable(player, rayTraceBlockPos)) {
                 return ActionResult.resultPass(heldItem);
             }
 
             if (world.getFluidState(rayTraceBlockPos) == BMFluids.SLEEPISHWATER.get().getDefaultState()) {
-                world.playSound(player, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
+                world.playSound(player, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1, 1);
                 return ActionResult.func_233538_a_(getBottleStack(heldItem, player), world.isRemote());
             }
         }
@@ -46,6 +47,6 @@ public class AljamicGlassBottleItem extends Item {
         if (mainHandItem.getItem() == AxolotlTest.ALJAMIC_GLASS_BOTTLE.get()) {
             return new ItemStack(AxolotlTest.SLEEPISHWATER_BOTTLE.get());
         }
-        return  new ItemStack(Items.AIR);
+        return new ItemStack(Items.AIR);
     }
 }

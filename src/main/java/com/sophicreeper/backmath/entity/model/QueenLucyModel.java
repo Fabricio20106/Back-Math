@@ -77,15 +77,12 @@ public class QueenLucyModel extends BipedModel<QueenLucy> {
         this.leftArm.rotateAngleY = 0;
     }*/
 
-    /**
-     * Sets this entity's model rotation angles
-     */
+    // Sets this entity's model rotation angles.
     /*public void setRotationAngles(QueenLucy queenLucy, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setRotationAngles(queenLucy, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
     }*/
-    /**
-     * Sets this entity's model rotation angles
-     */
+
+    // Sets this entity's model rotation angles.
     /*public void setRotationAngles(QueenLucy queenLucy, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.bipedHead.rotateAngleY = netHeadYaw * 0.017453292f;
         this.bipedHead.rotateAngleX = headPitch * 0.017453292f;
@@ -138,11 +135,5 @@ public class QueenLucyModel extends BipedModel<QueenLucy> {
         bipedRightArm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
         bipedLeftArm.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
         bipedHead.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-    }
-
-    public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
     }
 }

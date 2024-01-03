@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.item.custom.weapon.misc;
 
 import com.sophicreeper.backmath.entity.custom.ChocoGlueProjEntity;
+import com.sophicreeper.backmath.misc.BMSounds;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,7 +9,6 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.world.World;
 
 public class ChocoGlueItem extends Item {
@@ -19,8 +19,7 @@ public class ChocoGlueItem extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack heldStack = player.getHeldItem(hand);
-        world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL,
-                0.5f, 0.4f / (random.nextFloat() * 0.4f + 0.8f));
+        world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), BMSounds.ITEM_CHOCOGLUE_SHOOT, SoundCategory.NEUTRAL, 0.5f, 0.4f / (random.nextFloat() * 0.4f + 0.8f));
         if (!world.isRemote) {
             ChocoGlueProjEntity chocoGlueProj = new ChocoGlueProjEntity(world, player);
             chocoGlueProj.setItem(heldStack);

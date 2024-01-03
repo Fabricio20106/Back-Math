@@ -4,6 +4,7 @@ import com.sophicreeper.backmath.item.custom.armor.BMArmorItem;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.weapon.BMCrossbowItem;
+import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -30,6 +31,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -39,7 +42,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser {
+public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISophieFriendlies {
     private static final DataParameter<Boolean> IS_CHARGING_CROSSBOW = EntityDataManager.createKey(ArcherLucia.class, DataSerializers.BOOLEAN);
     private final Inventory inventory = new Inventory(5);
 
@@ -57,8 +60,8 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new BMRangedCrossbowAttackGoal<>(this, 1.1d, 12));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.1d, Ingredient.fromItems(Items.APPLE), false));
+        this.goalSelector.addGoal(2, new TemptGoal(this, 1.1d, Ingredient.fromTag(BMTags.Items.ARCHER_LUCIA_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
@@ -155,11 +158,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser {
     public boolean isOnSameTeam(Entity entity) {
         if (super.isOnSameTeam(entity)) {
             return true;
-        } else if (entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie) {
-            return this.getTeam() == null && entity.getTeam() == null;
-        } else {
-            return false;
-        }
+        } else return entity instanceof ISophieFriendlies;
     }
 
     public static AttributeModifierMap.MutableAttribute createArcherLuciaAttributes() {
@@ -174,6 +173,21 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser {
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62F;
     }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_LUCIA_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_LUCIA_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_LUCIA_HURT_BERRY_BUSH : BMSounds.ENTITY_LUCIA_HURT;
+        }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_LUCIA_DEATH;
+    }
+
 
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
@@ -244,7 +258,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser {
     }
 
     private boolean pickupableItems(Item item) {
-        return item instanceof BMArmorItem || item instanceof BMCrossbowItem;
+        return item instanceof BMArmorItem || item instanceof BMCrossbowItem || item.isIn(BMTags.Items.ARCHER_LUCIA_PICKUPABLES);
     }
 
     public boolean replaceItemInInventory(int inventorySlot, ItemStack stack) {

@@ -133,7 +133,7 @@ public class ToyBlock extends HorizontalBlock {
                 Block.makeCuboidShape(7, 0, 6, 9, 6, 10)
         ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
-        public static final VoxelShape DEFAULT_SHAPE = Block.makeCuboidShape(6.0d, 0.0d, 6.0d, 10.0d, 9.0d, 10.0d);
+        public static final VoxelShape DEFAULT_SHAPE = Block.makeCuboidShape(6, 0, 6, 10, 9, 10);
     }
 
     public enum ToyType {

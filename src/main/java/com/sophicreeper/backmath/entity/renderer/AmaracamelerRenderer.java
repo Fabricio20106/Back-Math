@@ -24,7 +24,7 @@ public class AmaracamelerRenderer extends MobRenderer<Amaracameler, Amaracameler
 
     @Override
     public void render(Amaracameler amaracameler, float entityYaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
-        this.shadowSize = 0.25f * (float) amaracameler.getSlimeSize();
+        this.shadowSize = 0.25f * (float) amaracameler.getAmaracamelerSize();
         super.render(amaracameler, entityYaw, partialTicks, matrixStack, buffer, packedLight);
     }
 
@@ -32,7 +32,7 @@ public class AmaracamelerRenderer extends MobRenderer<Amaracameler, Amaracameler
     protected void preRenderCallback(Amaracameler amaracameler, MatrixStack matrixStack, float partialTickTime) {
         matrixStack.scale(0.999f, 0.999f, 0.999f);
         matrixStack.translate(0, 0.0010000000474974513, 0);
-        float amaracamelerSize = (float) amaracameler.getSlimeSize();
+        float amaracamelerSize = (float) amaracameler.getAmaracamelerSize();
         float squishFactor = MathHelper.lerp(partialTickTime, amaracameler.prevSquishFactor, amaracameler.squishFactor) / (amaracamelerSize * 0.5f + 1);
         float f3 = 1 / (squishFactor + 1);
         matrixStack.scale(f3 * amaracamelerSize, 1 / f3 * amaracamelerSize, f3 * amaracamelerSize);

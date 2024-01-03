@@ -29,8 +29,8 @@ import java.util.Random;
 public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_0_3;
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    public static final VoxelShape SHAPE_NS = Block.makeCuboidShape(0.0d, 0.0d, 7.0d, 16.0d, 16.0d, 9.0d);
-    public static final VoxelShape SHAPE_EW = Block.makeCuboidShape(7.0d, 0.0d, 0.0d, 9.0d, 16.0d, 16.0d);
+    public static final VoxelShape SHAPE_NS = Block.makeCuboidShape(0, 0, 7, 16, 16, 9);
+    public static final VoxelShape SHAPE_EW = Block.makeCuboidShape(7, 0, 0, 9, 16, 16);
 
     public GrapeVinePostBlock(Properties properties) {
         super(properties);
@@ -66,7 +66,7 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
         } else if (ageState > 1) {
             int j = 1 + world.rand.nextInt(2);
             spawnAsEntity(world, pos, new ItemStack(AxolotlTest.GRAPES.get(), j + (flag ? 1 : 0)));
-            world.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + world.rand.nextFloat() * 0.4F);
+            world.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1, 0.8F + world.rand.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResultType.func_233537_a_(world.isRemote);
         } else {

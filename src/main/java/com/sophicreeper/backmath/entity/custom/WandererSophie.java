@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -20,14 +21,13 @@ import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
-public class WandererSophie extends CreatureEntity {
+public class WandererSophie extends CreatureEntity implements ISophieFriendlies {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(WandererSophie.class, DataSerializers.VARINT);
     public double prevChasingPosX;
     public double prevChasingPosY;
@@ -88,16 +88,16 @@ public class WandererSophie extends CreatureEntity {
         return -0.35D;
     }
 
-    public void writeAdditional(CompoundNBT compoundNBT) {
-        super.writeAdditional(compoundNBT);
-        compoundNBT.putInt("Variant", this.getVariant());
-//        compoundNBT.putBoolean("CustomNameVisible", true);
+    public void writeAdditional(CompoundNBT tag) {
+        super.writeAdditional(tag);
+        tag.putInt("Variant", this.getVariant());
+        // tag.putBoolean("CustomNameVisible", true);
     }
 
-    public void readAdditional(CompoundNBT compoundNBT) {
-        super.readAdditional(compoundNBT);
-        this.setVariant(compoundNBT.getInt("Variant"));
-//        this.setCustomNameVisible(compoundNBT.getBoolean("CustomNameVisible"));
+    public void readAdditional(CompoundNBT tag) {
+        super.readAdditional(tag);
+        this.setVariant(tag.getInt("Variant"));
+        // this.setCustomNameVisible(tag.getBoolean("CustomNameVisible"));
     }
 
     public int getVariant() {
@@ -111,16 +111,15 @@ public class WandererSophie extends CreatureEntity {
     public boolean isOnSameTeam(Entity entity) {
         if (super.isOnSameTeam(entity)) {
             return true;
-        } else return entity instanceof ArcherLucia || entity instanceof WandererSophie || entity instanceof KarateLucia || entity instanceof InsomniaSophie;
-        //this.getTeam() == null && entity.getTeam() == null;
+        } else return entity instanceof ISophieFriendlies;
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.fromItems(AxolotlTest.MILKLLARY_CAKE.get()), false));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1d));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6f));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.fromTag(BMTags.Items.WANDERER_SOPHIE_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
+        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.applyEntityAI();
         super.registerGoals();
@@ -141,12 +140,8 @@ public class WandererSophie extends CreatureEntity {
     public static AttributeModifierMap.MutableAttribute createWandererSophieAttributes() {
         // Old wanderer Sophie health was 70.
         // Old new wanderer Sophie health was 35.
-        return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 20)
-                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25F);
+        return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25F);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -175,12 +170,16 @@ public class WandererSophie extends CreatureEntity {
 
     protected SoundEvent getHurtSound(DamageSource source) {
         if (source == DamageSource.ON_FIRE) {
-            return SoundEvents.ENTITY_PLAYER_HURT_ON_FIRE;
+            return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;
         } else if (source == DamageSource.DROWN) {
-            return SoundEvents.ENTITY_PLAYER_HURT_DROWN;
+            return BMSounds.ENTITY_SOPHIE_HURT_DROWN;
         } else {
-            return source == DamageSource.SWEET_BERRY_BUSH ? SoundEvents.ENTITY_PLAYER_HURT_SWEET_BERRY_BUSH : SoundEvents.ENTITY_PLAYER_HURT;
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_SOPHIE_HURT_BERRY_BUSH : BMSounds.ENTITY_SOPHIE_HURT;
         }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_SOPHIE_DEATH;
     }
 
     private void updateCape() {
@@ -226,10 +225,8 @@ public class WandererSophie extends CreatureEntity {
         this.chasingPosY += d1 * 0.25D;
     }
 
-    /**
-     * If this mob can be leashed to
-     * @return If this mob can be leashed to
-     */
+    // If this mob can be leashed.
+    // Returns: If this mob can be leashed.
     // Old Back Math shenanigans.
     @Override
     public boolean canBeLeashedTo(PlayerEntity player) {

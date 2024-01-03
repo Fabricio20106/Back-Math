@@ -77,8 +77,7 @@ public class QueenSophieRelicBlock extends HorizontalBlock {
             return super.isValidPosition(state, world, pos);
         } else {
             BlockState belowState = world.getBlockState(pos.down());
-            if (state.getBlock() != this)
-                return super.isValidPosition(state, world, pos); //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+            if (state.getBlock() != this) return super.isValidPosition(state, world, pos); // Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
             return belowState.isIn(this) && belowState.get(HALF) == DoubleBlockHalf.LOWER;
         }
     }

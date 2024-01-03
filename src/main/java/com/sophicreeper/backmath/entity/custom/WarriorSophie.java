@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -13,12 +14,14 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
-public class WarriorSophie extends CreatureEntity {
+public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
     public WarriorSophie(EntityType<WarriorSophie> type, World world) {
         super(type, world);
     }
@@ -28,7 +31,7 @@ public class WarriorSophie extends CreatureEntity {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.2d));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.1D, false));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, QueenLucy.class, 6.0F));
+        this.goalSelector.addGoal(4, new LookAtGoal(this, QueenLucy.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.applyMobAI();
         super.registerGoals();
@@ -49,10 +52,7 @@ public class WarriorSophie extends CreatureEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createWarriorSophieAttributes() {
-        return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 6.0f)
-                .createMutableAttribute(Attributes.MAX_HEALTH, 36.0f)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12.0f)
+        return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 6).createMutableAttribute(Attributes.MAX_HEALTH, 36).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25f);
     }
 
@@ -61,7 +61,7 @@ public class WarriorSophie extends CreatureEntity {
 
         if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
             if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
-                this.heal(1.0F);
+                this.heal(1);
             }
         }
         super.livingTick();
@@ -69,6 +69,30 @@ public class WarriorSophie extends CreatureEntity {
 
     public double getYOffset() {
         return -0.35D;
+    }
+
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 1.62F;
+    }
+
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_SOPHIE_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_SOPHIE_HURT_BERRY_BUSH : BMSounds.ENTITY_SOPHIE_HURT;
+        }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_SOPHIE_DEATH;
+    }
+
+    public boolean isOnSameTeam(Entity entity) {
+        if (super.isOnSameTeam(entity)) {
+            return true;
+        } else return entity instanceof ISophieFriendlies;
     }
 
     @Override

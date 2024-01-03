@@ -16,11 +16,11 @@ import net.minecraft.world.IBlockReader;
 
 public class BagBlock extends HorizontalBlock {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    public static final VoxelShape SHAPE_NS = Block.makeCuboidShape(4.0d, 0.0d, 6.0d, 12.0d, 10.0d, 10.0d);
-    public static final VoxelShape SHAPE_EW = Block.makeCuboidShape(6.0d, 0.0d, 4.0d, 10.0d, 10.0d, 12.0d);
+    public static final VoxelShape SHAPE_NS = Block.makeCuboidShape(4, 0, 6, 12, 10, 10);
+    public static final VoxelShape SHAPE_EW = Block.makeCuboidShape(6, 0, 4, 10, 10, 12);
 
-    public BagBlock(Properties builder) {
-        super(builder);
+    public BagBlock(Properties properties) {
+        super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }
 

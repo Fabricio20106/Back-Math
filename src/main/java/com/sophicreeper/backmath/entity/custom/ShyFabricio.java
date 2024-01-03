@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -14,6 +15,8 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 
@@ -28,9 +31,9 @@ public class ShyFabricio extends CreatureEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new ShyFabricioAvoidEntityGoal<>(this, LivingEntity.class, 24, 1.6d, 2.6d));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1d, Ingredient.fromTag(BMTags.Items.SHY_FABRICIO_TEMPT_ITEMS), true));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, LivingEntity.class, 24, 1.6d, 2.6d, (livEntity) -> !(livEntity instanceof ShyFabricio)));
         this.goalSelector.addGoal(2, new PanicGoal(this, 2.1d));
-        this.goalSelector.addGoal(2, new TemptGoal(this, 1.1d, Ingredient.fromItems(AxolotlTest.HONEYED_BREAD.get()), true));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookAtGoal(this, ShyFabricio.class, 6));
@@ -53,6 +56,20 @@ public class ShyFabricio extends CreatureEntity {
         return -0.35D;
     }
 
+    protected SoundEvent getHurtSound(DamageSource source) {
+        if (source == DamageSource.ON_FIRE) {
+            return BMSounds.ENTITY_FABRICIO_HURT_ON_FIRE;
+        } else if (source == DamageSource.DROWN) {
+            return BMSounds.ENTITY_FABRICIO_HURT_DROWN;
+        } else {
+            return source == DamageSource.SWEET_BERRY_BUSH ? BMSounds.ENTITY_FABRICIO_HURT_BERRY_BUSH : BMSounds.ENTITY_FABRICIO_HURT;
+        }
+    }
+
+    protected SoundEvent getDeathSound() {
+        return BMSounds.ENTITY_FABRICIO_DEATH;
+    }
+
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.SHY_FABRICIO_SPAWN_EGG.get());
@@ -72,7 +89,7 @@ public class ShyFabricio extends CreatureEntity {
         this.updateArmSwingProgress();
         if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
             if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
-                this.heal(1.0F);
+                this.heal(1);
             }
         }
         super.livingTick();
@@ -92,12 +109,6 @@ public class ShyFabricio extends CreatureEntity {
         if (this.getRidingEntity() instanceof CreatureEntity) {
             CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
             this.renderYawOffset = entity.renderYawOffset;
-        }
-    }
-
-    public static class ShyFabricioAvoidEntityGoal<T extends LivingEntity> extends AvoidEntityGoal<T> {
-        public ShyFabricioAvoidEntityGoal(ShyFabricio shyFabricio, Class<T> entityToAvoid, float avoidDistance, double farRunningSpeed, double nearRunningSpeed) {
-            super(shyFabricio, entityToAvoid, avoidDistance, farRunningSpeed, nearRunningSpeed);
         }
     }
 }
