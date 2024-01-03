@@ -29,6 +29,7 @@ public class BMCommonConfigs {
     public final ForgeConfigSpec.BooleanValue enderDragonFriedEggFlowersInTheEnd;
 
     // Biome Generation
+    public final ForgeConfigSpec.BooleanValue backFieldGen;
     public final ForgeConfigSpec.BooleanValue originalBackFieldsGen;
     public final ForgeConfigSpec.BooleanValue modifiedBackFieldsGen;
     public final ForgeConfigSpec.BooleanValue angelicWoodsGen;
@@ -110,7 +111,7 @@ public class BMCommonConfigs {
         this.aljameedOreGen = builder.comment("Allow aljameed ore to generate in the aljan?").define("aljameedOreGeneration", true);
         this.mooneringOreGen = builder.comment("Allow moonering ore to generate in the aljan?").define("mooneringOreGeneration", true);
         this.janticOreGen = builder.comment("Allow jantic ore to generate in the aljan?").define("janticOreGen", true);
-        this.aljamicHighlandsAbundantJanticOreGen = builder.comment("Allow abundant jantic ore to generate in the Aljamic Highlands?").define("aljamicHighlAbundantJanticOreGeneration", true);
+        this.aljamicHighlandsAbundantJanticOreGen = builder.comment("Allow abundant jantic ore to generate in the Aljamic Highlands?").define("aljamicHighlandsAbundantJanticOreGeneration", true);
         this.aljamicCopperGen = builder.comment("Allow aljamic copper ore to generate in the aljan?").define("aljamicCopperOreGeneration", true);
         this.aljamicTinGen = builder.comment("Allow aljamic tin ore to generate in the aljan?").define("aljamicTinOreGeneration", true);
         builder.pop();
@@ -119,10 +120,11 @@ public class BMCommonConfigs {
         this.grapeVinesInTaigas = builder.comment("Allow grape vines to generate in any biome categorized as a taiga?").define("grapeVinesInTaiga", true);
         this.bananaJunglesInJungles = builder.comment("Allow banana jungles to generate in any biome categorized as a jungle?").define("bananaJunglesInJungles", true);
         this.turtleFriedEggFlowersInBeaches = builder.comment("Allow turtle fried egg flowers to generate in any biome categorized as a beach?").define("turtleFriedEggFlowersInBeaches", true);
-        this.enderDragonFriedEggFlowersInTheEnd = builder.comment("Allow ender dragon fried egg flowers to generate in any biome categorized as the End?").define("edfeFlowersInTheEnd", true);
+        this.enderDragonFriedEggFlowersInTheEnd = builder.comment("Allow ender dragon fried egg flowers to generate in any biome categorized as the End?").define("enderDragonFriedEggFlowersInTheEnd", true);
         builder.pop();
 
         builder.push("biomeGeneration");
+        this.backFieldGen = builder.comment("Allow the (truly) original back field to generate?").define("backFieldGeneration", false);
         this.originalBackFieldsGen = builder.comment("Allow the original back fields to generate?").define("originalBackFieldsGeneration", true);
         this.modifiedBackFieldsGen = builder.comment("Allow the modified back fields to generate?").define("modifiedBackFieldsGeneration", true);
         this.angelicWoodsGen = builder.comment("Allow the angelic woods to generate?").define("angelicWoodsGeneration", true);
@@ -198,7 +200,7 @@ public class BMCommonConfigs {
         this.fabricioHideoutDungeonAvgDistance = builder.comment("Average distance in chunks between Fabricio's Hideout Dungeons.").defineInRange("fabricioHideoutDungeon.averageDistance", 15, 1, 2000);
         this.fabricioHideoutDungeonMinDistance = builder.comment("Minimum distance in chunks between Fabricio's Hideout Dungeons; MUST BE LESS THAN THE AVERAGE DISTANCE.").defineInRange("fabricioHideoutDungeon.minDistance", 10, 0, 1999);
         this.fabricioHideoutDungeonSeed = builder.comment("Fabricio's Hideout Dungeon's generation seed. Needed so no two structures spawn on each other.").defineInRange("fabricioHideoutDungeon.seed", 27482834, 0, Integer.MAX_VALUE);
-        this.fabricioHideoutDungeonTST = builder.comment("Whether Fabricio's Hideout Dungeons should transform the surrounding terrain (Terraform Surrounding Terrain).").define("fabricioHideoutDungeon.terraformSurroundingTerrain", true);
+        this.fabricioHideoutDungeonTST = builder.comment("Whether Fabricio's Hideout Dungeons should transform the surrounding terrain (Terraform Surrounding Terrain).").define("fabricioHideoutDungeon.terraformSurroundingTerrain", false);
         this.fabricioHideoutDungeonYOffset = builder.comment("The Y offset of Fabricio's Hideout Dungeons.").defineInRange("fabricioHideoutDungeon.yOffset", -48, -64, 192);
 
         builder.comment("Debug Code");

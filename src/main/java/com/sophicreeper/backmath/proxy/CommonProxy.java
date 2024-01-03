@@ -53,10 +53,14 @@ public class CommonProxy {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        RegistryKey<Biome> backFieldKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.BACK_FIELD.getId());
         RegistryKey<Biome> originalBackFieldsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.ORIGINAL_BACK_FIELDS.getId());
         RegistryKey<Biome> modifiedBackFieldsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.MODIFIED_BACK_FIELDS.getId());
         RegistryKey<Biome> angelicWoodsKey = RegistryKey.getOrCreateKey(ForgeRegistries.Keys.BIOMES, BMBiomes.ANGELIC_WOODS.getId());
 
+        if (BMConfigs.COMMON_CONFIGS.backFieldGen.get()) {
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(backFieldKey, 5));
+        }
         if (BMConfigs.COMMON_CONFIGS.originalBackFieldsGen.get()) {
             BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(originalBackFieldsKey, 15));
         }
@@ -111,7 +115,7 @@ public class CommonProxy {
         GlobalEntityTypeAttributes.put(BMEntities.INSOMNIA_SOPHIE.get(), InsomniaSophie.createInsomniaSophieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.QUEEN_LUCY.get(), QueenLucy.createQueenLucyAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.WARRIOR_SOPHIE.get(), WarriorSophie.createWarriorSophieAttributes().create());
-        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_LUCY_PET.get(), QueenLucyPet.createQueenSophiePetAttributes().create());
+        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_LUCY_PET.get(), QueenLucyPet.createQueenLucyPetAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), ArcherInsomniaSophie.createMobAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.INSOMNIA_ZOMBIE.get(), InsomniaZombie.createInsomniaZombieAttributes().create());
         GlobalEntityTypeAttributes.put(BMEntities.ZOMBIE_FABRICIO.get(), ZombieFabricio.createZombieFabricioAttributes().create());

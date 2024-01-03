@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -12,13 +13,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.Difficulty;
-import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.IServerWorld;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
@@ -62,6 +63,31 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
     @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62f;
+    }
+
+    public double getYOffset() {
+        return -0.35D;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.TURTLE_SHELLS);
+
+        if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
+            this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
+        }
+    }
+
+    public void livingTick() {
+        this.updateArmSwingProgress();
+        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+                this.heal(1);
+            }
+        }
+        super.livingTick();
     }
 
     @Nullable

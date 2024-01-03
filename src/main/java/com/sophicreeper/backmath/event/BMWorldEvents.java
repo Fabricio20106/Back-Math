@@ -2,11 +2,17 @@ package com.sophicreeper.backmath.event;
 
 import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.block.BMBlocks;
+import com.sophicreeper.backmath.block.model.LightBakedModel;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
 import com.sophicreeper.backmath.world.plant.BMPlantGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructureGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructures;
+import net.minecraft.block.BlockState;
+import net.minecraft.client.renderer.BlockModelShapes;
+import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -15,6 +21,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,6 +32,8 @@ import org.apache.logging.log4j.LogManager;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.sophicreeper.backmath.BackMath.LOGGER;
 
 @Mod.EventBusSubscriber(modid = BackMath.MOD_ID)
 public class BMWorldEvents {
@@ -37,6 +46,22 @@ public class BMWorldEvents {
         BMPlantGeneration.generatePlantsAndTrees(event);
 
         BMStructureGeneration.generateStructures(event);
+    }
+
+    @SubscribeEvent
+    public static void onModelBakeEvent(ModelBakeEvent event) {
+        for (BlockState blockState : BMBlocks.INSOMNIAN_TULIP.get().getStateContainer().getValidStates()) {
+            ModelResourceLocation variantMRL = BlockModelShapes.getModelLocation(blockState);
+            IBakedModel existingModel = event.getModelRegistry().get(variantMRL);
+            if (existingModel == null) {
+                LOGGER.warn(new TranslationTextComponent("messages.backmath.it_baked_model_not_found").getString());
+            } else if (existingModel instanceof LightBakedModel) {
+                LOGGER.warn(new TranslationTextComponent("messages.backmath.replace_light_baked_model").getString());
+            } else {
+                LightBakedModel lightBakedModel = new LightBakedModel();
+                event.getModelRegistry().put(variantMRL, lightBakedModel);
+            }
+        }
     }
 
     @SubscribeEvent

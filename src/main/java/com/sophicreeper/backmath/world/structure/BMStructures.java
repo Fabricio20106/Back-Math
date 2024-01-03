@@ -63,8 +63,7 @@ public class BMStructures {
         // We also use our entry in DimensionStructuresSettings.DEFAULTS in WorldEvent.Load as well.
 
         // DEFAULTS requires AccessTransformer (See resources/META-INF/accesstransformer.cfg)
-        DimensionStructuresSettings.field_236191_b_ = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.field_236191_b_).put(structure,
-                structureSeparationSettings).build();
+        DimensionStructuresSettings.field_236191_b_ = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.field_236191_b_).put(structure, structureSeparationSettings).build();
 
         // There are very few mods that relies on seeing your structure in the noise settings registry before the world is made.
 

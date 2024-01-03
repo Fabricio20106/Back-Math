@@ -29,4 +29,8 @@ public class BMResourceLocations {
     public static final ResourceLocation SLEEPISHWATER_STILL = BackMath.resourceLoc("fluid/sleepishwater");
     public static final ResourceLocation FLOWING_SLEEPISHWATER_RL = BackMath.resourceLoc("fluid/flowing_sleepishwater");
     public static final ResourceLocation SLEEPISHWATER_OVERLAY = BackMath.resourceLoc("fluid/sleepishwater_overlay");
+
+    // Loot Tables
+    public static final ResourceLocation ALJAN_DUNGEON_LOOT = BackMath.resourceLoc("chests/aljan_dungeon");
+    public static final ResourceLocation ALJAN_MINESHAFT_LOOT = BackMath.resourceLoc("chests/aljan_mineshaft");
 }

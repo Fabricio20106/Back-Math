@@ -1,25 +1,19 @@
 package com.sophicreeper.backmath.proxy;
 
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
-import com.sophicreeper.backmath.block.model.LightBakedModel;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.BlockModelShapes;
+import com.sophicreeper.backmath.world.renderer.AljanRenderInfo;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ModelResourceLocation;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import static com.sophicreeper.backmath.BackMath.LOGGER;
 import static com.sophicreeper.backmath.util.BMItemModelProperties.*;
 
 public class ClientProxy extends CommonProxy {
@@ -238,6 +232,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.BACK_MATH_BOAT.get(), BMBoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ARROW.get(), InsomniaArrowRenderer::new);
 
+        // Aljan Sky
+        AljanRenderInfo renderInfo = new AljanRenderInfo(128, false, DimensionRenderInfo.FogType.NORMAL, false, false);
+        DimensionRenderInfo.field_239208_a_.put(BackMath.resourceLoc("the_aljan"), renderInfo);
+
         // Item Properties
         makeShield(AxolotlTest.DEVIL_SHIELD.get());
         makeShield(AxolotlTest.ANGELIC_SHIELD.get());
@@ -249,22 +247,6 @@ public class ClientProxy extends CommonProxy {
 
         makeCrossbow(AxolotlTest.DEVIL_CROSSBOW.get());
         makeCrossbow(AxolotlTest.ANGELIC_CROSSBOW.get());
-    }
-
-    @SubscribeEvent
-    public static void onModelBakeEvent(ModelBakeEvent event) {
-        for (BlockState blockState : BMBlocks.INSOMNIAN_TULIP.get().getStateContainer().getValidStates()) {
-            ModelResourceLocation variantMRL = BlockModelShapes.getModelLocation(blockState);
-            IBakedModel existingModel = event.getModelRegistry().get(variantMRL);
-            if (existingModel == null) {
-                LOGGER.warn(new TranslationTextComponent("messages.backmath.it_baked_model_not_found").getString());
-            } else if (existingModel instanceof LightBakedModel) {
-                LOGGER.warn(new TranslationTextComponent("messages.backmath.replace_light_baked_model").getString());
-            } else {
-                LightBakedModel lightBakedModel = new LightBakedModel();
-                event.getModelRegistry().put(variantMRL, lightBakedModel);
-            }
-        }
     }
 
     // Double layer render lookup

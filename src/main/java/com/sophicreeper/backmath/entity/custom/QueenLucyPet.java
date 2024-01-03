@@ -180,7 +180,7 @@ public class QueenLucyPet extends TameableEntity {
         return false;
     }
 
-    public static AttributeModifierMap.MutableAttribute createQueenSophiePetAttributes() {
+    public static AttributeModifierMap.MutableAttribute createQueenLucyPetAttributes() {
         return MobEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3f)
                 .createMutableAttribute(Attributes.MAX_HEALTH, 350)

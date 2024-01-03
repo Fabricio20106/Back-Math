@@ -1,0 +1,8 @@
+Aljan To-Do List (02/01/2024):
+
+- Change aljanstone ore textures to new aljanstone texture.
+- Make aljameed ore contrast more with the stone.
+
+Additions:
+- Mineshaft (maybe)
+- Dungeons

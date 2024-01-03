@@ -32,7 +32,7 @@ public class BMEntityTagsProvider extends EntityTypeTagsProvider {
 
         this.getOrCreateBuilder(BMTags.EntityTypes.PLAYER_LIKE).addTag(BMTags.EntityTypes.SOPHIES).addTag(BMTags.EntityTypes.LUCIAS).addTag(BMTags.EntityTypes.FABRICIOS).add(BMEntities.MALAIKA.get());
 
-        this.getOrCreateBuilder(EntityTypeTags.SKELETONS).add(BMEntities.INSOMNIA_ZOMBIE.get()).add(BMEntities.ZOMBIE_FABRICIO.get());
+        this.getOrCreateBuilder(EntityTypeTags.SKELETONS).add(BMEntities.ALJAMIC_BONES.get()).add(BMEntities.SLEEPISH_SKELETON.get());
         this.getOrCreateBuilder(EntityTypeTags.ARROWS).add(BMEntities.INSOMNIA_ARROW.get());
     }
 }

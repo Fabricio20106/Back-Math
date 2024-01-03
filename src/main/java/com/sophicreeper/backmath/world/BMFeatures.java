@@ -2,8 +2,9 @@ package com.sophicreeper.backmath.world;
 
 import com.google.common.collect.ImmutableList;
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.world.ore.BMOreGeneration;
 import com.sophicreeper.backmath.block.BMBlocks;
+import com.sophicreeper.backmath.world.feature.AljanDungeonFeature;
+import com.sophicreeper.backmath.world.ore.BMOreGeneration;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
@@ -265,14 +266,26 @@ public class BMFeatures {
                     .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
 
     // Mushroom patches. They aren't actually being generated because they can't be placed on grass block at plain sunlight.
-    public static final ConfiguredFeature<?, ?> ALJANSHROOM_PATCH = register("patch_aljanshroom", Feature.RANDOM_PATCH.withConfiguration(
-            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ALJANSHROOM.get().getDefaultState()), SimpleBlockPlacer.PLACER).tries(64).func_227317_b_().build()));
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> ALJANSHROOM_PATCH_LIST = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.ALJANSHROOM.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
-    public static final ConfiguredFeature<?, ?> SLEEPSHROOM_PATCH = register("patch_sleepshroom", Feature.RANDOM_PATCH.withConfiguration(
-            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.SLEEPSHROOM.get().getDefaultState()), SimpleBlockPlacer.PLACER).tries(64).func_227317_b_().build()));
+    public static final ConfiguredFeature<?, ?> ALJANSHROOM_PATCH = register("patch_aljanshroom", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
+                    new SingleRandomFeature(ALJANSHROOM_PATCH_LIST)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
+            .withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
-    public static final ConfiguredFeature<?, ?> SLEEPYSHROOM_PATCH = register("patch_sleepyshroom", Feature.RANDOM_PATCH.withConfiguration(
-            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.SLEEPYSHROOM.get().getDefaultState()), SimpleBlockPlacer.PLACER).tries(64).func_227317_b_().build()));
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> SLEEPSHROOM_PATCH_LIST = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.SLEEPSHROOM.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
+
+    public static final ConfiguredFeature<?, ?> SLEEPSHROOM_PATCH = register("patch_sleepshroom", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
+                    new SingleRandomFeature(SLEEPSHROOM_PATCH_LIST)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
+            .withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
+
+    private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> SLEEPYSHROOM_PATCH_LIST = ImmutableList.of(() -> Feature.RANDOM_PATCH.withConfiguration(
+            new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.SLEEPYSHROOM.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
+
+    public static final ConfiguredFeature<?, ?> SLEEPYSHROOM_PATCH = register("patch_sleepyshroom", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(
+                    new SingleRandomFeature(SLEEPYSHROOM_PATCH_LIST)).func_242730_a(FeatureSpread.func_242253_a(-3, 4))
+            .withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
 
     // Ocean block patches (like clay), and they're actually called "disks".
     public static final ConfiguredFeature<?, ?> INSOGRAVEL_DISK = register("disk_insogravel", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.INSOGRAVEL.get().getDefaultState(),
@@ -417,6 +430,9 @@ public class BMFeatures {
 
     public static final ConfiguredFeature<?, ?> ALJANCAP_LEAF_PILE = register("aljancap_leaf_pile", Feature.BLOCK_PILE.withConfiguration(
             new BlockStateProvidingFeatureConfig(new WeightedBlockStateProvider().addWeightedBlockstate(BMBlocks.ALJANCAP_LEAVES.get().getDefaultState(), 19))));
+
+    public static final ConfiguredFeature<?, ?> ALJAN_DUNGEON = register("aljan_dungeon", new AljanDungeonFeature(NoFeatureConfig.field_236558_a_).withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).range(256).square()
+            .func_242731_b(8));
 
     // TODO: BACK MATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
 
