@@ -6,10 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "minecraft:potion"
+      "item": "minecraft:potion",
+      "nbt": "{\"Potion\":\"minecraft:water\"}"
     },
     "X": {
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

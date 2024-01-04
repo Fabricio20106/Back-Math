@@ -9,7 +9,7 @@
       "item": "backmath:hillary_bottle"
     },
     "X": {
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
     }
   },
   "result": {

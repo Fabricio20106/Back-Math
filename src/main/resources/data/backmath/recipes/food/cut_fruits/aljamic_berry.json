@@ -5,11 +5,11 @@
       "item": "backmath:aljamic_berry"
     },
     {
-      "tag": "backmath:knives"
+      "tag": "forge:knives"
     }
   ],
   "result": {
     "item": "backmath:cut_aljamic_berry",
-    "count": 2
+    "count": 4
   }
 }

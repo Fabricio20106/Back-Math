@@ -1,5 +1,11 @@
 {
   "type": "create:cutting",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
   "ingredients": [
     {
       "item": "backmath:aljamic_berry"
@@ -8,7 +14,7 @@
   "results": [
     {
       "item": "backmath:cut_aljamic_berry",
-      "count": 2
+      "count": 4
     }
   ],
   "processingTime": 50

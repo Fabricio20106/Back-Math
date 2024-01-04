@@ -248,6 +248,5 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
                 }
             }
         }
-
     }
 }

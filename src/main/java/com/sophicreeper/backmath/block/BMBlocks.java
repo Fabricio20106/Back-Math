@@ -351,8 +351,8 @@ public class BMBlocks {
 
     // 1.8.0: Cork Oak Wood:
     public static final RegistryObject<Block> CORK_OAK_LEAVES = BLOCKS.register("cork_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES)));
-    // public static final RegistryObject<Block> CORK_OAK_SAPLING = BLOCKS.register("cork_oak_sapling", () -> new SaplingBlock(new AvondalicWillowGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
-    // public static final RegistryObject<Block> POTTED_CORK_OAK_SAPLING = BLOCKS.register("potted_cork_oak_sapling", () -> new FlowerPotBlock(BMBlocks.CORK_OAK_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
+    public static final RegistryObject<Block> CORK_OAK_SAPLING = BLOCKS.register("cork_oak_sapling", () -> new SaplingBlock(new CorkOakTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> POTTED_CORK_OAK_SAPLING = BLOCKS.register("potted_cork_oak_sapling", () -> new FlowerPotBlock(BMBlocks.CORK_OAK_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> CORK_OAK_LOG = BLOCKS.register("cork_oak_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.OAK_LOG)));
     public static final RegistryObject<Block> CORK_OAK_WOOD = BLOCKS.register("cork_oak_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.OAK_WOOD)));
     public static final RegistryObject<Block> STRIPPED_CORK_OAK_LOG = BLOCKS.register("stripped_cork_oak_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STRIPPED_OAK_LOG)));
@@ -473,7 +473,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> OBSIDITERM_BRICK_WALL = BLOCKS.register("obsiditerm_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(Blocks.OBSIDIAN)));
 
     // 1.8.0: Aljan Content:
-    public static final RegistryObject<Block> ALJAMIC_SAND = BLOCKS.register("aljamic_sand", () -> new SandBlock(0xd4eaea, AbstractBlock.Properties.from(Blocks.SAND)));
+    public static final RegistryObject<Block> ALJAMIC_SAND = BLOCKS.register("aljamic_sand", () -> new SandBlock(0xD4EAEA, AbstractBlock.Properties.from(Blocks.SAND)));
     public static final RegistryObject<Block> ALJAMIC_GLASS = BLOCKS.register("aljamic_glass", () -> new GlassBlock(AbstractBlock.Properties.from(Blocks.GLASS)));
     public static final RegistryObject<Block> ALJAMIC_GLASS_PANE = BLOCKS.register("aljamic_glass_pane", () -> new PaneBlock(AbstractBlock.Properties.from(Blocks.GLASS_PANE)));
     public static final RegistryObject<Block> ALJAMIC_DIRT_PATH = BLOCKS.register("aljamic_dirt_path", () -> new AljamicDirtPathBlock(AbstractBlock.Properties.from(Blocks.GRASS_PATH)));
@@ -483,6 +483,26 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJANSTEEL_BLOCK = BLOCKS.register("aljansteel_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> RAW_ALJAMIC_COPPER_BLOCK = BLOCKS.register("raw_aljamic_copper_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_ORE).hardnessAndResistance(5, 6)));
     public static final RegistryObject<Block> RAW_ALJAMIC_TIN_BLOCK = BLOCKS.register("raw_aljamic_tin_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_ORE).hardnessAndResistance(5, 6)));
+    public static final RegistryObject<Block> CHARJAN_CRYSTALLINE_BIRCH_TORCH = BLOCKS.register("charjan_crystalline_birch_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_CRYSTALLINE_BIRCH_WALL_TORCH = BLOCKS.register("charjan_crystalline_birch_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_GOLDENWOOD_TORCH = BLOCKS.register("charjan_goldenwood_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_GOLDENWOOD_WALL_TORCH = BLOCKS.register("charjan_goldenwood_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_GOLDENWOOD_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_GUAVA_TORCH = BLOCKS.register("charjan_guava_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_GUAVA_WALL_TORCH = BLOCKS.register("charjan_guava_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_GUAVA_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_JABUTICABA_TORCH = BLOCKS.register("charjan_jabuticaba_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_JABUTICABA_WALL_TORCH = BLOCKS.register("charjan_jabuticaba_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_JABUTICABA_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_CORK_OAK_TORCH = BLOCKS.register("charjan_cork_oak_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_CORK_OAK_WALL_TORCH = BLOCKS.register("charjan_cork_oak_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_CORK_OAK_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_HILLARY_TORCH = BLOCKS.register("charjan_hillary_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_HILLARY_WALL_TORCH = BLOCKS.register("charjan_hillary_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_HILLARY_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_DEVIL_TORCH = BLOCKS.register("charjan_devil_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_DEVIL_WALL_TORCH = BLOCKS.register("charjan_devil_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_DEVIL_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_ANGELIC_TORCH = BLOCKS.register("charjan_angelic_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_ANGELIC_WALL_TORCH = BLOCKS.register("charjan_angelic_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_ANGELIC_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_MID_TERM_TORCH = BLOCKS.register("charjan_mid_term_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_MID_TERM_WALL_TORCH = BLOCKS.register("charjan_mid_term_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_MID_TERM_TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_ALJAMEED_TORCH = BLOCKS.register("charjan_aljameed_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_ALJAMEED_WALL_TORCH = BLOCKS.register("charjan_aljameed_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_ALJAMEED_TORCH), ParticleTypes.FLAME));
 
     // 1.8.0: Avondalic Willow Wood:
     public static final RegistryObject<Block> AVONDALIC_NYLIUM = BLOCKS.register("avondalic_nylium", () -> new AljamicGrassBlock(AbstractBlock.Properties.from(Blocks.GRASS_BLOCK).harvestTool(ToolType.SHOVEL)));
@@ -504,6 +524,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> AVONDALIC_WILLOW_TRAPDOOR = BLOCKS.register("avondalic_willow_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(Blocks.OAK_TRAPDOOR)));
     public static final RegistryObject<Block> AVONDALIC_WILLOW_GRAPE_VINE_POST = BLOCKS.register("avondalic_willow_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(BMBlocks.OAK_GRAPE_VINE_POST.get())));
     public static final RegistryObject<Block> AVONDALIC_WILLOW_LADDER = BLOCKS.register("avondalic_willow_ladder", () -> new LadderBlock(AbstractBlock.Properties.from(Blocks.LADDER)));
+    public static final RegistryObject<Block> CHARJAN_AVONDALIC_WILLOW_TORCH = BLOCKS.register("charjan_avondalic_willow_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
+    public static final RegistryObject<Block> CHARJAN_AVONDALIC_WILLOW_WALL_TORCH = BLOCKS.register("charjan_avondalic_willow_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_AVONDALIC_WILLOW_TORCH), ParticleTypes.FLAME));
 
     private static RotatedPillarBlock createLogBlock(MaterialColor topColor, MaterialColor barkColor) {
         return new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, (state) -> state.get(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? topColor : barkColor).hardnessAndResistance(2).sound(SoundType.WOOD));

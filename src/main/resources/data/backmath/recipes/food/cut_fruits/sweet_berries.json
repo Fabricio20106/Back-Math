@@ -5,11 +5,11 @@
       "item": "minecraft:sweet_berries"
     },
     {
-      "tag": "backmath:knives"
+      "tag": "forge:knives"
     }
   ],
   "result": {
     "item": "backmath:cut_sweet_berries",
-    "count": 2
+    "count": 6
   }
 }

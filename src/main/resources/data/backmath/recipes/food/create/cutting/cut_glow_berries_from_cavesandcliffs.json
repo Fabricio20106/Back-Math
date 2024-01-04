@@ -1,5 +1,15 @@
 {
   "type": "create:cutting",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "cavesandcliffs"
+    }
+  ],
   "ingredients": [
     {
       "item": "cavesandcliffs:glow_berries"
@@ -7,8 +17,8 @@
   ],
   "results": [
     {
-      "item": "backmath:glow_berries_slice",
-      "count": 2
+      "item": "backmath:cut_glow_berries",
+      "count": 4
     }
   ],
   "processingTime": 50

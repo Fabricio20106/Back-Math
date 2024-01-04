@@ -23,6 +23,4 @@ public class AljanRenderInfo extends DimensionRenderInfo {
     public void setSkyRenderHandler(ISkyRenderHandler skyRenderHandler) {
         skyRenderHandler = new AljanSkyRenderer();
     }
-
-    public static void init() {}
 }

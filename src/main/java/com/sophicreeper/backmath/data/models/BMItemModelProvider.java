@@ -10,8 +10,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import javax.annotation.Nonnull;
 
 public class BMItemModelProvider extends ItemModelProvider {
-    public final ModelFile modelFile = getExistingFile(mcLoc("item/handheld"));
-    public final ModelFile modelFileGenerated = getExistingFile(mcLoc("item/generated"));
+    public final ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
+    public final ModelFile generated = getExistingFile(mcLoc("item/generated"));
 
     public BMItemModelProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
         super(generator, BackMath.MOD_ID, fileHelper);
@@ -343,7 +343,7 @@ public class BMItemModelProvider extends ItemModelProvider {
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
-        ModelFile handheldThirtyTwo = getExistingFile(modLoc("item/handheld_thirty_two"));
+        ModelFile handheld32x = getExistingFile(modLoc("item/handheld_thirty_two"));
 
         // From pre-data generation era. / From the handwritten JSON files.
         compat("peitoraldeouro");
@@ -491,7 +491,7 @@ public class BMItemModelProvider extends ItemModelProvider {
         standard(generated, "yellow_karate_band");
         standard(handheld, "devil_rod");
         block(generated, "aljame_birch_sapling");
-        standard(handheldThirtyTwo, "mid_term_greatsword");
+        standard(handheld32x, "mid_term_greatsword");
 
         // Back Math 1.5 items
         compat("christian_mid_term_angelic_alloy_ingot");
@@ -882,7 +882,7 @@ public class BMItemModelProvider extends ItemModelProvider {
         milkedSword("aljanstone_sword", false);
         milkedSword("moonering_sword", false);
         milkedSword("olive_sword", false);
-        getBuilder("milked_aljameed_blade").parent(modelFile).texture("layer0", "item/aljameed_blade").texture("layer1", "item/milked_aljameed_blade_base");
+        getBuilder("milked_aljameed_blade").parent(this.handheld).texture("layer0", "item/aljameed_blade").texture("layer1", "item/milked_aljameed_blade_base");
         compat("cookie_pot");
         compat("devil_chain");
         compat("angelic_chain");
@@ -1045,7 +1045,7 @@ public class BMItemModelProvider extends ItemModelProvider {
         compat("cut_golden_apple");
         getBuilder("cut_enchanted_golden_apple").parent(generated).texture("layer0", "item/cut_golden_apple");
         standard(handheld, "aljansteel_blade");
-        getBuilder("milked_aljansteel_blade").parent(modelFile).texture("layer0", "item/aljansteel_blade").texture("layer1", "item/milked_aljameed_blade_base");
+        getBuilder("milked_aljansteel_blade").parent(this.handheld).texture("layer0", "item/aljansteel_blade").texture("layer1", "item/milked_aljameed_blade_base");
         standard(handheld, "aljansteel_pick");
         standard(handheld, "aljansteel_shovel");
         standard(handheld, "aljansteel_axe");
@@ -1143,6 +1143,19 @@ public class BMItemModelProvider extends ItemModelProvider {
         compat("warmterm_ingot");
         compat("coldterm_ingot");
         compat("superheater");
+        block(generated, "charjan_crystalline_birch_torch");
+        block(generated, "charjan_goldenwood_torch");
+        block(generated, "charjan_guava_torch");
+        block(generated, "charjan_jabuticaba_torch");
+        block(generated, "charjan_cork_oak_torch");
+        block(generated, "charjan_avondalic_willow_torch");
+        block(generated, "charjan_hillary_torch");
+        block(generated, "charjan_devil_torch");
+        block(generated, "charjan_angelic_torch");
+        block(generated, "charjan_mid_term_torch");
+        block(generated, "charjan_aljameed_torch");
+        compat("cork_oak_mortar_and_pestle");
+        block(generated, "cork_oak_sapling");
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {
@@ -1162,23 +1175,23 @@ public class BMItemModelProvider extends ItemModelProvider {
     }
 
     private ItemModelBuilder enchantedGoldenApple(String thing) {
-        return getBuilder("enchanted_golden_apple_" + thing).parent(modelFileGenerated).texture("layer0", "item/golden_apple_" + thing);
+        return getBuilder("enchanted_golden_apple_" + thing).parent(generated).texture("layer0", "item/golden_apple_" + thing);
     }
 
     private ItemModelBuilder milkedSword(String originalSword, boolean isSparey) {
-        return getBuilder("milked_" + originalSword).parent(modelFile).texture("layer0", "item/" + originalSword).texture("layer1", isSparey ? "item/milked_sparey_base" : "item/milked_sword_base");
+        return getBuilder("milked_" + originalSword).parent(handheld).texture("layer0", "item/" + originalSword).texture("layer1", isSparey ? "item/milked_sparey_base" : "item/milked_sword_base");
     }
 
     private ItemModelBuilder milkedSwordMC(String originalSword) {
-        return getBuilder("milked_" + originalSword).parent(modelFile).texture("layer0", "minecraft:item/" + originalSword).texture("layer1", "item/milked_sword_base");
+        return getBuilder("milked_" + originalSword).parent(handheld).texture("layer0", "minecraft:item/" + originalSword).texture("layer1", "item/milked_sword_base");
     }
 
     private ItemModelBuilder compat(String item) {
-        return getBuilder(item).parent(modelFileGenerated).texture("layer0", "item/" + item);
+        return getBuilder(item).parent(generated).texture("layer0", "item/" + item);
     }
 
     private ItemModelBuilder shears(String material) {
-        return getBuilder(material + "_shears").parent(modelFileGenerated).texture("layer0", "item/" + material  + "_shears");
+        return getBuilder(material + "_shears").parent(generated).texture("layer0", "item/" + material  + "_shears");
     }
 
     private ItemModelBuilder withExistingParent(String name) {
@@ -1187,6 +1200,6 @@ public class BMItemModelProvider extends ItemModelProvider {
 
     private ItemModelBuilder sword(String name) {
         this.milkedSword(name, false);
-        return getBuilder(name).parent(modelFile).texture("layer0", "item/" + name);
+        return getBuilder(name).parent(handheld).texture("layer0", "item/" + name);
     }
 }

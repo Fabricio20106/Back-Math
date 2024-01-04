@@ -4,6 +4,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 
 public class BMCommonConfigs {
     // World Generation
+    // Ore Generation
     public final ForgeConfigSpec.BooleanValue devilOreGen;
     public final ForgeConfigSpec.BooleanValue netherDevilOreGen;
     public final ForgeConfigSpec.BooleanValue angelicOreGen;
@@ -16,6 +17,9 @@ public class BMCommonConfigs {
     public final ForgeConfigSpec.BooleanValue aljamicHighlandsAbundantJanticOreGen;
     public final ForgeConfigSpec.BooleanValue aljamicCopperGen;
     public final ForgeConfigSpec.BooleanValue aljamicTinGen;
+
+    // Miscellaneous
+    public final ForgeConfigSpec.BooleanValue aljanDungeonsInAljan;
 
     // Carver Generation
     public final ForgeConfigSpec.BooleanValue enableAljanCarverGeneration;
@@ -54,6 +58,7 @@ public class BMCommonConfigs {
     // Gameplay Aspects
     public final ForgeConfigSpec.BooleanValue safeAljan;
     public final ForgeConfigSpec.BooleanValue standingAljanTeleport;
+    public final ForgeConfigSpec.BooleanValue aljanEnabledThroughStand;
     public final ForgeConfigSpec.BooleanValue enableMobAIChanges;
 
     // Gameplay Aspects - Items
@@ -121,6 +126,7 @@ public class BMCommonConfigs {
         this.bananaJunglesInJungles = builder.comment("Allow banana jungles to generate in any biome categorized as a jungle?").define("bananaJunglesInJungles", true);
         this.turtleFriedEggFlowersInBeaches = builder.comment("Allow turtle fried egg flowers to generate in any biome categorized as a beach?").define("turtleFriedEggFlowersInBeaches", true);
         this.enderDragonFriedEggFlowersInTheEnd = builder.comment("Allow ender dragon fried egg flowers to generate in any biome categorized as the End?").define("enderDragonFriedEggFlowersInTheEnd", true);
+        this.aljanDungeonsInAljan = builder.comment("Allow Aljan Dungeons to spawn randomly in Aljan caves?").define("aljanDungeonsInAljan", true);
         builder.pop();
 
         builder.push("biomeGeneration");
@@ -157,6 +163,7 @@ public class BMCommonConfigs {
         builder.pop();
 
         builder.push("gameplayAspects");
+        this.aljanEnabledThroughStand = builder.comment("Whether you can go to the Aljan through the Portal Stand. This will not disable the dimension entirely.").define("aljanEnabledThroughStand", true);
         this.safeAljan = builder.comment("When you teleport to the Aljan through the Aljan Portal Stand, the stand on the other side will already have a jantical in it.").define("safeAljan", false);
         this.standingAljanTeleport = builder.comment("When turned on, you'll be able to walk up to the portal stand and be teleported over.").define("standingAljanTeleport", false);
         this.enableMobAIChanges = builder.comment("Enable the new Back Math mob AI changes? Currently, this toggle does nothing.").define("enableMobAIChanges", false);
@@ -175,15 +182,15 @@ public class BMCommonConfigs {
         this.angelicBowFCA = builder.comment("Should angelic bows force their arrows to be critical?").define("angelicBow.forcedCriticalArrow", false);
         this.angelicBowCBD = builder.comment("Should angelic bows not lose durability when firing arrows?").define("angelicBow.canBeDamaged", true);
         this.angelicBowAAD = builder.comment("Should angelic bows deal additional damage? Zero for no additional damage.").defineInRange("angelicBow.additionalArrowDamage", 0, 0, 32767);
-        this.angelicBowFIT = builder.comment("For how many ticks should a angelic bow set mobs on fire? Zero for no fire.").defineInRange("angelicBow.fireInTicks", 0, 0, 32767);
+        this.angelicBowFIT = builder.comment("For how many ticks should angelic bows set mobs on fire? Zero for no fire.").defineInRange("angelicBow.fireInTicks", 0, 0, 32767);
         this.angelicBowFRD = builder.comment("How long should angelic bows be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("angelicBow.firerateDelay", 72000, 0, 72000);
 
         builder.comment("Mid-Term Bow:");
-        this.midTermBowFCA = builder.comment("Should a mid-term bow force its arrow to be critical?").define("midTermBow.forcedCriticalArrow", true);
-        this.midTermBowCBD = builder.comment("Should a mid-term bow not lose durability when firing arrows?").define("midTermBow.canBeDamaged", false);
-        this.midTermBowAAD = builder.comment("Should a mid-term bow deal additional damage? Zero for no additional damage.").defineInRange("midTermBow.additionalArrowDamage", 0, 0, 32767);
-        this.midTermBowFIT = builder.comment("For how many ticks should a mid-term bow set mobs on fire? Zero for no fire.").defineInRange("midTermBow.fireInTicks", 200, 0, 32767);
-        this.midTermBowFRD = builder.comment("How long should a mid-term bow be held up to fire? Defaults to 72.000 (1 hour).").defineInRange("midTermBow.firerateDelay", 10, 1, 72000);
+        this.midTermBowFCA = builder.comment("Should a mid-term bow force its arrow to be critical? (Def: true)").define("midTermBow.forcedCriticalArrow", true);
+        this.midTermBowCBD = builder.comment("Should a mid-term bow not lose durability when firing arrows? (Def: false)").define("midTermBow.canBeDamaged", false);
+        this.midTermBowAAD = builder.comment("Should a mid-term bow deal additional damage? Zero for no additional damage. (Def: 0)").defineInRange("midTermBow.additionalArrowDamage", 0, 0, 32767);
+        this.midTermBowFIT = builder.comment("For how many ticks should a mid-term bow set mobs on fire? Zero for no fire. (Def: 200)").defineInRange("midTermBow.fireInTicks", 200, 0, 32767);
+        this.midTermBowFRD = builder.comment("How long should a mid-term bow be held up to fire? Defaults to 72.000 (1 hour). (Def: 10)").defineInRange("midTermBow.firerateDelay", 10, 1, 72000);
         builder.pop();
 
         builder.push("structures");

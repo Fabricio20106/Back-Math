@@ -1,5 +1,11 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "variants"
+    }
+  ],
   "ingredients": [
     {
       "item": "variants:soul_carrot"
@@ -16,11 +22,5 @@
   ],
   "result": {
     "item": "backmath:vegetably_singularity_variants"
-  },
-  "conditions": [
-    {
-      "condition": "forge:mod_loaded",
-      "modid": "variants"
-    }
-  ]
+  }
 }

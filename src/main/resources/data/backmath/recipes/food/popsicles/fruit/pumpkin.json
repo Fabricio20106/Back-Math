@@ -10,7 +10,7 @@
       "item": "minecraft:packed_ice"
     },
     "X": {
-      "item": "minecraft:stick"
+      "tag": "forge:rods/wooden"
     },
     "C": {
       "item": "backmath:pumpkin_slice"

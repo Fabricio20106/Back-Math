@@ -22,28 +22,28 @@ public class BMEntities {
             EntityType.Builder.create(AngrySophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build("angry_sophie"));
 
     public static final RegistryObject<EntityType<InsomniaSophie>> INSOMNIA_SOPHIE = ENTITIES.register("insomnia_sophie", () ->
-            EntityType.Builder.create(InsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build("insomnia_sophie"));
+            EntityType.Builder.create(InsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build(BackMath.resourceLoc("insomnia_sophie").toString()));
 
     public static final RegistryObject<EntityType<ArcherInsomniaSophie>> ARCHER_INSOMNIA_SOPHIE = ENTITIES.register("archer_insomnia_sophie", () ->
-            EntityType.Builder.create(ArcherInsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build("archer_insomnia_sophie"));
+            EntityType.Builder.create(ArcherInsomniaSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build(BackMath.resourceLoc("archer_insomnia_sophie").toString()));
 
     public static final RegistryObject<EntityType<QueenLucy>> QUEEN_LUCY = ENTITIES.register("queen_sophie", () ->
-            EntityType.Builder.create(QueenLucy::new, EntityClassification.MONSTER).size(0.6F, 1.8F).immuneToFire().trackingRange(64).build("queen_sophie"));
+            EntityType.Builder.create(QueenLucy::new, EntityClassification.MONSTER).size(0.6F, 1.8F).immuneToFire().trackingRange(64).build(BackMath.resourceLoc("queen_sophie").toString()));
 
     public static final RegistryObject<EntityType<WarriorSophie>> WARRIOR_SOPHIE = ENTITIES.register("warrior_sophie", () ->
-            EntityType.Builder.create(WarriorSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build("warrior_sophie"));
+            EntityType.Builder.create(WarriorSophie::new, EntityClassification.MONSTER).size(0.6F, 1.8F).trackingRange(32).build(BackMath.resourceLoc("warrior_sophie").toString()));
 
     public static final RegistryObject<EntityType<ArcherLucia>> ARCHER_LUCIA = ENTITIES.register("archer_lucia", () ->
-            EntityType.Builder.create(ArcherLucia::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(32).build("archer_lucia"));
+            EntityType.Builder.create(ArcherLucia::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(32).build(BackMath.resourceLoc("archer_lucia").toString()));
 
     public static final RegistryObject<EntityType<KarateLucia>> KARATE_LUCIA = ENTITIES.register("karate_lucia", () ->
-            EntityType.Builder.create(KarateLucia::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(64).build("karate_lucia"));
+            EntityType.Builder.create(KarateLucia::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(64).build(BackMath.resourceLoc("karate_lucia").toString()));
 
     public static final RegistryObject<EntityType<ShyFabricio>> SHY_FABRICIO = ENTITIES.register("shy_fabricio", () ->
-            EntityType.Builder.create(ShyFabricio::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(32).build("shy_fabricio"));
+            EntityType.Builder.create(ShyFabricio::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(32).build(BackMath.resourceLoc("shy_fabricio").toString()));
 
     public static final RegistryObject<EntityType<QueenLucyPet>> QUEEN_LUCY_PET = ENTITIES.register("queen_sophie_pet", () ->
-            EntityType.Builder.create(QueenLucyPet::new, EntityClassification.CREATURE).trackingRange(10).immuneToFire().size(0.3f, 0.9f).build("queen_sophie_pet"));
+            EntityType.Builder.create(QueenLucyPet::new, EntityClassification.CREATURE).trackingRange(10).immuneToFire().size(0.3f, 0.9f).build(BackMath.resourceLoc("queen_sophie_pet").toString()));
 
     // BM 1.7.0: Aljamic Wars Creatures and Enemies
     public static final RegistryObject<EntityType<InsomniaZombie>> INSOMNIA_ZOMBIE = ENTITIES.register("insomnia_zombie", () ->
@@ -72,8 +72,8 @@ public class BMEntities {
             EntityType.Builder.<BMBoat>create(BMBoat::new, EntityClassification.MISC).size(1.375f, 0.5f).build(BackMath.resourceLoc("backmath_boat").toString()));
 
     public static final RegistryObject<EntityType<InsomniaArrow>> INSOMNIA_ARROW = ENTITIES.register("insomnia_arrow", () ->
-            EntityType.Builder.<InsomniaArrow>create(InsomniaArrow::new, EntityClassification.MISC).size(0.5F, 0.5F).build("insomnia_arrow"));
+            EntityType.Builder.<InsomniaArrow>create(InsomniaArrow::new, EntityClassification.MISC).size(0.5F, 0.5F).build(BackMath.resourceLoc("insomnia_arrow").toString()));
 
     public static final RegistryObject<EntityType<ChocoGlueProjEntity>> CHOCOGLUE_PROJECTILE = ENTITIES.register("chocoglue_proj", () ->
-            EntityType.Builder.<ChocoGlueProjEntity>create(ChocoGlueProjEntity::new, EntityClassification.MISC).size(0.25f, 0.25f).build("chocoglue_proj"));
+            EntityType.Builder.<ChocoGlueProjEntity>create(ChocoGlueProjEntity::new, EntityClassification.MISC).size(0.25f, 0.25f).build(BackMath.resourceLoc("chocoglue_proj").toString()));
 }

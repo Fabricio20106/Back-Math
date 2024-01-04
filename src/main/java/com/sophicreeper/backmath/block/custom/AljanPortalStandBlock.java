@@ -56,7 +56,7 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        if (state.get(JANTICAL)) {
+        if (state.get(JANTICAL) && BMConfigs.COMMON_CONFIGS.aljanEnabledThroughStand.get()) {
             if (!world.isRemote()) {
                 if (!player.isCrouching()) {
                     MinecraftServer server = world.getServer();
@@ -84,7 +84,7 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (BMConfigs.COMMON_CONFIGS.standingAljanTeleport.get()) {
+        if (BMConfigs.COMMON_CONFIGS.standingAljanTeleport.get() && BMConfigs.COMMON_CONFIGS.aljanEnabledThroughStand.get()) {
             if (state.get(JANTICAL)) {
                 if (!world.isRemote()) {
                     MinecraftServer server = world.getServer();

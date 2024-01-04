@@ -16,6 +16,7 @@ import com.sophicreeper.backmath.world.biome.BMBiomes;
 import com.sophicreeper.backmath.world.carver.BMConfiguredCarvers;
 import com.sophicreeper.backmath.world.carver.BMWorldCarvers;
 import com.sophicreeper.backmath.world.dimension.BMDimensions;
+import com.sophicreeper.backmath.world.feature.BMFeature;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
@@ -46,6 +47,7 @@ public class CommonProxy {
         BMMotives.MOTIVES.register(eventBus);
         BMPotions.POTIONS.register(eventBus);
         BMStructures.STRUCTURES.register(eventBus);
+        BMFeature.FEATURES.register(eventBus);
         BMStats.init();
         BMSounds.registerSounds();
 

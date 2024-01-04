@@ -25,35 +25,35 @@ public class BMPotions {
             new Potion("insomnia", new EffectInstance(Effects.POISON, 800, 1), new EffectInstance(Effects.BLINDNESS, 2400, 1)));
 
     public static void addPotionRecipes() {
-        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(Potions.AWKWARD, AxolotlTest.ALJAME.get(), INSOMNIA.get()));
-        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(BMPotions.INSOMNIA.get(), Items.REDSTONE, LONG_INSOMNIA.get()));
-        BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(BMPotions.INSOMNIA.get(), Items.GLOWSTONE_DUST, DEEP_INSOMNIA.get()));
+        BrewingRecipeRegistry.addRecipe(new BMBrewingRecipe(Potions.AWKWARD, AxolotlTest.ALJAME.get(), INSOMNIA.get()));
+        BrewingRecipeRegistry.addRecipe(new BMBrewingRecipe(BMPotions.INSOMNIA.get(), Items.REDSTONE, LONG_INSOMNIA.get()));
+        BrewingRecipeRegistry.addRecipe(new BMBrewingRecipe(BMPotions.INSOMNIA.get(), Items.GLOWSTONE_DUST, DEEP_INSOMNIA.get()));
     }
 
-    private static class BetterBrewingRecipe implements IBrewingRecipe {
+    private static class BMBrewingRecipe implements IBrewingRecipe {
         private final Potion bottleInput;
         private final Item itemInput;
         private final ItemStack output;
 
-        public BetterBrewingRecipe(Potion bottleInputIn, Item itemInputIn, Potion outputIn){
-            this.bottleInput = bottleInputIn;
-            this.itemInput = itemInputIn;
-            this.output = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), outputIn);
+        public BMBrewingRecipe(Potion potion, Item ingredient, Potion output) {
+            this.bottleInput = potion;
+            this.itemInput = ingredient;
+            this.output = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), output);
         }
 
-        // checks the item where the water bottle would go
+        // Checks the item where the potion would go.
         @Override
         public boolean isInput(ItemStack input) {
             return PotionUtils.getPotionFromItem(input).equals(this.bottleInput);
         }
 
-        // checks the item where the nether wart would go
+        // Checks the item where the nether wart would go.
         @Override
         public boolean isIngredient(ItemStack ingredient) {
             return ingredient.getItem().equals(this.itemInput);
         }
 
-        // gets the output potion. Very important to call copy because ItemStacks are mutable
+        // Gets the output potion. Very important to call copy because ItemStacks are mutable.
         @Override
         public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
             if (isInput(input) && isIngredient(ingredient)) {

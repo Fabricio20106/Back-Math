@@ -173,6 +173,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_JANTICAL).add(AxolotlTest.JANTICAL_SHARD.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_DIAMOND).add(AxolotlTest.DIAMOND_SHARD.get());
 
+        this.getOrCreateBuilder(BMTags.Items.RODS_GOLD);
         this.getOrCreateBuilder(BMTags.Items.RODS_DEVIL).add(AxolotlTest.DEVIL_ROD.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_ANGELIC).add(AxolotlTest.ANGELIC_ROD.get());
         this.getOrCreateBuilder(BMTags.Items.RODS_HILLARY).add(AxolotlTest.HILLARY_ROD.get());
@@ -237,9 +238,9 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_OBSIDIAN);
 
         // Rods
-        this.getOrCreateBuilder(Tags.Items.RODS).addTag(BMTags.Items.RODS_ALJANWOOD).addTag(BMTags.Items.RODS_ALJANCAP).addTag(BMTags.Items.RODS_INSOMNIAN).addTag(BMTags.Items.RODS_ALJAMEED).addTag(BMTags.Items.RODS_GUAVA).addTag(BMTags.Items.RODS_AVONDALIC_WILLOW)
-                .addTag(BMTags.Items.RODS_GOLDENWOOD).addTag(BMTags.Items.RODS_JABUTICABA).addTag(BMTags.Items.RODS_CORK_OAK).addTag(BMTags.Items.RODS_DEVIL).addTag(BMTags.Items.RODS_ANGELIC)
-                .addTag(BMTags.Items.RODS_MID_TERM).addTag(BMTags.Items.RODS_HILLARY).addTag(BMTags.Items.RODS_CRYSTALLINE_BIRCH);
+        this.getOrCreateBuilder(Tags.Items.RODS).addTag(BMTags.Items.RODS_GOLD).addTag(BMTags.Items.RODS_DEVIL).addTag(BMTags.Items.RODS_ANGELIC).addTag(BMTags.Items.RODS_MID_TERM).addTag(BMTags.Items.RODS_HILLARY)
+                .addTag(BMTags.Items.RODS_ALJAMEED).addTag(BMTags.Items.RODS_CRYSTALLINE_BIRCH).addTag(BMTags.Items.RODS_GOLDENWOOD).addTag(BMTags.Items.RODS_GUAVA).addTag(BMTags.Items.RODS_JABUTICABA).addTag(BMTags.Items.RODS_CORK_OAK)
+                .addTag(BMTags.Items.RODS_ALJANWOOD).addTag(BMTags.Items.RODS_ALJANCAP).addTag(BMTags.Items.RODS_INSOMNIAN).addTag(BMTags.Items.RODS_AVONDALIC_WILLOW);
 
         // Coals
         this.getOrCreateBuilder(ItemTags.COALS).add(AxolotlTest.CHARJAN_COAL.get());
@@ -375,7 +376,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.FOOD_BAGS).add(AxolotlTest.FOOD_BAG.get()).add(AxolotlTest.FOOD_BAG_ALT.get());
         this.getOrCreateBuilder(BMTags.Items.ENERGETICS).add(AxolotlTest.ENERGETIC_MONSTER.get()).add(AxolotlTest.MONSTER_ENERGY_DRINK.get());
         this.getOrCreateBuilder(BMTags.Items.MORTAR_AND_PESTLES).add(AxolotlTest.MORTAR_AND_PESTLE.get()).add(AxolotlTest.CRYSTALLINE_BIRCH_MORTAR_AND_PESTLE.get())
-                .add(AxolotlTest.GUAVA_MORTAR_AND_PESTLE.get()).add(AxolotlTest.JABUTICABA_MORTAR_AND_PESTLE.get()).add(AxolotlTest.GOLDENWOOD_MORTAR_AND_PESTLE.get())
+                .add(AxolotlTest.GOLDENWOOD_MORTAR_AND_PESTLE.get()).add(AxolotlTest.GUAVA_MORTAR_AND_PESTLE.get()).add(AxolotlTest.JABUTICABA_MORTAR_AND_PESTLE.get()).add(AxolotlTest.CORK_OAK_MORTAR_AND_PESTLE.get())
                 .add(AxolotlTest.ALJANWOOD_MORTAR_AND_PESTLE.get()).add(AxolotlTest.ALJANCAP_MORTAR_AND_PESTLE.get()).add(AxolotlTest.INSOMNIAN_MORTAR_AND_PESTLE.get())
                 .add(AxolotlTest.AVONDALIC_WILLOW_MORTAR_AND_PESTLE.get());
         this.getOrCreateBuilder(BMTags.Items.DISCS).add(AxolotlTest.WELLERMAN_DISC.get()).add(AxolotlTest.SNOWMAN_DISC.get()).add(AxolotlTest.DADADADA_DA_DISC.get()).add(AxolotlTest.ARCADE_DISC.get())

@@ -11,11 +11,11 @@
       "item": "cavesandcliffs:glow_berries"
     },
     {
-      "tag": "backmath:knives"
+      "tag": "forge:knives"
     }
   ],
   "result": {
     "item": "backmath:cut_glow_berries",
-    "count": 2
+    "count": 4
   }
 }

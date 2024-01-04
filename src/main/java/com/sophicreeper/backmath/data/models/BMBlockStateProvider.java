@@ -288,11 +288,11 @@ public class BMBlockStateProvider extends BlockStateProvider {
         simpleBlock(BMBlocks.SLEEPINGSTONE_ALJAMIC_TIN_ORE.get());
 
         getVariantBuilder(BMBlocks.ALJAMIC_ONIONS.get()).forAllStates(state -> {
-            int cropAgeIndex = cropAgeToIndexPotato(state.get(CropsBlock.AGE));
+            int cropAgeIndex = potatoAgeIndex(state.get(CropsBlock.AGE));
             return ConfiguredModel.builder().modelFile(models().crop("aljamic_onions_stage" + cropAgeIndex, modLoc("block/aljamic_onions_stage" + cropAgeIndex))).build();
         });
         getVariantBuilder(BMBlocks.CARAMELED_WHEAT.get()).forAllStates(state -> {
-            int cropAgeIndex = cropAgeToIndexWheat(state.get(CropsBlock.AGE));
+            int cropAgeIndex = wheatAgeIndex(state.get(CropsBlock.AGE));
             return ConfiguredModel.builder().modelFile(models().crop("carameled_wheat_stage" + cropAgeIndex, modLoc("block/carameled_wheat_stage" + cropAgeIndex))).build();
         });
         simpleBlock(BMBlocks.WILD_CARAMELED_WHEAT.get(), models().withExistingParent("wild_carameled_wheat", "backmath:block/template_wild_crop").texture("crop", "block/wild_carameled_wheat"));
@@ -398,8 +398,8 @@ public class BMBlockStateProvider extends BlockStateProvider {
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get(), modLoc("block/stripped_crystalline_birch_log"), modLoc("block/stripped_crystalline_birch_log"));
 
         simpleBlock(BMBlocks.CORK_OAK_LEAVES.get(), models().withExistingParent("cork_oak_leaves", "minecraft:block/leaves").texture("all", "backmath:block/cork_oak_leaves"));
-        //simpleBlock(BMBlocks.CORK_OAK_SAPLING.get(), models().cross("cork_oak_sapling", modLoc("block/cork_oak_sapling")));
-        //simpleBlock(BMBlocks.POTTED_CORK_OAK_SAPLING.get(), models().withExistingParent("potted_cork_oak_sapling", "block/flower_pot_cross").texture("plant", "block/cork_oak_sapling"));
+        simpleBlock(BMBlocks.CORK_OAK_SAPLING.get(), models().cross("cork_oak_sapling", modLoc("block/cork_oak_sapling")));
+        simpleBlock(BMBlocks.POTTED_CORK_OAK_SAPLING.get(), models().withExistingParent("potted_cork_oak_sapling", "block/flower_pot_cross").texture("plant", "block/cork_oak_sapling"));
         axisBlock((RotatedPillarBlock) BMBlocks.CORK_OAK_LOG.get(), modLoc("block/cork_oak_log"), modLoc("block/cork_oak_log_top"));
         axisBlock((RotatedPillarBlock) BMBlocks.CORK_OAK_WOOD.get(), modLoc("block/cork_oak_log"), modLoc("block/cork_oak_log"));
         axisBlock((RotatedPillarBlock) BMBlocks.STRIPPED_CORK_OAK_LOG.get(), modLoc("block/stripped_cork_oak_log"), modLoc("block/stripped_cork_oak_log_top"));
@@ -433,25 +433,39 @@ public class BMBlockStateProvider extends BlockStateProvider {
         slabBlock((SlabBlock) BMBlocks.MOSSY_ANGELIC_BRICK_SLAB.get(), modLoc("block/mossy_angelic_bricks"), modLoc("block/mossy_angelic_bricks"));
         wallBlock((WallBlock) BMBlocks.MOSSY_ANGELIC_BRICK_WALL.get(), modLoc("block/mossy_angelic_bricks"));
         axisBlock((RotatedPillarBlock) BMBlocks.ANGELIC_PILLAR.get(), modLoc("block/angelic_pillar"));
+
+        charjanTorch(BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_TORCH.get(), BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_WALL_TORCH.get(), "crystalline_birch");
+        charjanTorch(BMBlocks.CHARJAN_GOLDENWOOD_TORCH.get(), BMBlocks.CHARJAN_GOLDENWOOD_WALL_TORCH.get(), "goldenwood");
+        charjanTorch(BMBlocks.CHARJAN_GUAVA_TORCH.get(), BMBlocks.CHARJAN_GUAVA_WALL_TORCH.get(), "guava");
+        charjanTorch(BMBlocks.CHARJAN_JABUTICABA_TORCH.get(), BMBlocks.CHARJAN_JABUTICABA_WALL_TORCH.get(), "jabuticaba");
+        charjanTorch(BMBlocks.CHARJAN_CORK_OAK_TORCH.get(), BMBlocks.CHARJAN_CORK_OAK_WALL_TORCH.get(), "cork_oak");
+        charjanTorch(BMBlocks.CHARJAN_AVONDALIC_WILLOW_TORCH.get(), BMBlocks.CHARJAN_AVONDALIC_WILLOW_WALL_TORCH.get(), "avondalic_willow");
+        charjanTorch(BMBlocks.CHARJAN_HILLARY_TORCH.get(), BMBlocks.CHARJAN_HILLARY_WALL_TORCH.get(), "hillary");
+        charjanTorch(BMBlocks.CHARJAN_DEVIL_TORCH.get(), BMBlocks.CHARJAN_DEVIL_WALL_TORCH.get(), "devil");
+        charjanTorch(BMBlocks.CHARJAN_ANGELIC_TORCH.get(), BMBlocks.CHARJAN_ANGELIC_WALL_TORCH.get(), "angelic");
+        charjanTorch(BMBlocks.CHARJAN_MID_TERM_TORCH.get(), BMBlocks.CHARJAN_MID_TERM_WALL_TORCH.get(), "mid_term");
+        charjanTorch(BMBlocks.CHARJAN_ALJAMEED_TORCH.get(), BMBlocks.CHARJAN_ALJAMEED_WALL_TORCH.get(), "aljameed");
     }
 
     public ModelBuilder<BlockModelBuilder> wallTorch(String name, ResourceLocation torch) {
         return models().singleTexture(name, mcLoc(BLOCK_FOLDER + "/wall_torch"), "torch", torch);
     }
 
-    public ModelBuilder<BlockModelBuilder> templateToy(String name, ResourceLocation toy) {
-        return models().singleTexture(name, modLoc("block/template_toy"), "toy", toy);
+    public void charjanTorch(Block standingTorch, Block wallTorch, String material) {
+        simpleBlock(standingTorch, models().torch("charjan_" + material + "_torch", modLoc("block/charjan_" + material + "_torch")));
+        getVariantBuilder(wallTorch).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_" + material + "_wall_torch", modLoc("block/charjan_" + material + "_torch"))).rotationY((int) state.get(
+                BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
     }
 
-    // Methods below were taken from my other mod "Variants"
-    public static int cropAgeToIndexPotato(int age) {
+    // Methods below were taken from my other mod Variants.
+    public static int potatoAgeIndex(int age) {
         if (age > 6) return 3;
         if (age > 3) return 2;
         if (age > 1) return 1;
         return 0;
     }
 
-    public static int cropAgeToIndexWheat(int age) {
+    public static int wheatAgeIndex(int age) {
         if (age == 7) return 7;
         if (age == 6) return 6;
         if (age == 5) return 5;

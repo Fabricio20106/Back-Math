@@ -1,19 +1,20 @@
 {
   "replace": false,
   "values": [
-    "#forge:rods/aljanwood",
-    "#forge:rods/aljancap",
-    "#forge:rods/insomnian",
-    "#forge:rods/aljameed",
-    "#forge:rods/guava",
-    "#forge:rods/avondalic_willow",
-    "#forge:rods/goldenwood",
-    "#forge:rods/jabuticaba",
-    "#forge:rods/cork_oak",
+    "#forge:rods/gold",
     "#forge:rods/devil",
     "#forge:rods/angelic",
     "#forge:rods/mid_term",
     "#forge:rods/hillary",
-    "#forge:rods/crystalline_birch"
+    "#forge:rods/aljameed",
+    "#forge:rods/crystalline_birch",
+    "#forge:rods/goldenwood",
+    "#forge:rods/guava",
+    "#forge:rods/jabuticaba",
+    "#forge:rods/cork_oak",
+    "#forge:rods/aljanwood",
+    "#forge:rods/aljancap",
+    "#forge:rods/insomnian",
+    "#forge:rods/avondalic_willow"
   ]
 }

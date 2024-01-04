@@ -339,6 +339,14 @@ public class BMFeatures {
             .withChance(0.2f), GUAVA_TREE.withChance(0.1f)), GUAVA_TREE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(
                     new AtSurfaceWithExtraConfig(2, 0.05f, 1))));
 
+    public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CORK_OAK = register("cork_oak",
+            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.CORK_OAK_LOG.get().getDefaultState()),
+                    new SimpleBlockStateProvider(BMBlocks.CORK_OAK_LEAVES.get().getDefaultState()),
+                    new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+                    new StraightTrunkPlacer(4, 2, 0),
+                    new TwoLayerFeature(1, 0, 1)))
+                    .setIgnoreVines().build()));
+
     public static final ConfiguredFeature<?, ?> ALJAMIC_SAND_DISK = register("disk_aljamic_sand", Feature.DISK.withConfiguration(new SphereReplaceConfig(BMBlocks.ALJAMIC_SAND.get().getDefaultState(),
             FeatureSpread.func_242253_a(2, 1), 1, ImmutableList.of(BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), BMBlocks.ALJAMIC_SAND.get().getDefaultState())))
             .withPlacement(Features.Placements.SEAGRASS_DISK_PLACEMENT));

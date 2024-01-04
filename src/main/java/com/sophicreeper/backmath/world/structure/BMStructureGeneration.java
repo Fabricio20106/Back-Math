@@ -28,11 +28,13 @@ public class BMStructureGeneration {
         }
 
         for (Biome biome : ALJAN_BIOMES) {
-            if (!(Objects.equals(biome.getRegistryName(), event.getName())) && event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND && BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonGeneration.get()) {
-                structures.add(() -> BMStructures.FABRICIO_HIDEOUT_DUNGEON.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+            if (!(Objects.equals(biome.getRegistryName(), event.getName())) && event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND) {
+                if (BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonGeneration.get()) structures.add(() -> BMStructures.FABRICIO_HIDEOUT_DUNGEON.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
             }
 
-            if (Objects.equals(biome.getRegistryName(), event.getName())) event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMFeatures.ALJAN_DUNGEON);
+            if (Objects.equals(biome.getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.aljanDungeonsInAljan.get()) {
+                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMFeatures.ALJAN_DUNGEON);
+            }
         }
     }
 }

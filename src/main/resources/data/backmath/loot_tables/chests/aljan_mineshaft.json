@@ -31,7 +31,7 @@
         {
           "type": "minecraft:item",
           "weight": 5,
-          "name": "backmath:aljameed_pickaxe"
+          "name": "backmath:aljameed_pick"
         },
         {
           "type": "minecraft:empty",
