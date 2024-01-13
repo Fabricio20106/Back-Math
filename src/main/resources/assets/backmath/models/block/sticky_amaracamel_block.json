@@ -1,8 +1,8 @@
 {
   "parent": "block/block",
   "textures": {
-    "particle": "#texture",
-    "texture": "backmath:block/sticky_amaracamel_block"
+    "texture": "backmath:block/sticky_amaracamel_block",
+    "particle": "#texture"
   },
   "elements": [
     {

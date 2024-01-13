@@ -30,7 +30,7 @@ import java.util.function.Supplier;
 public class BMFeatures {
     // Trees
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GUARANA_OAK = register("guarana_oak",
-            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
+            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.getBackFieldTreeLog()),
                     new SimpleBlockStateProvider(States.GUARANA_OAK_LEAVES),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
@@ -42,7 +42,7 @@ public class BMFeatures {
             .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MANGO_OAK = register("mango_oak",
-            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
+            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.getBackFieldTreeLog()),
                     new SimpleBlockStateProvider(States.MANGO_OAK_LEAVES),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
@@ -54,7 +54,7 @@ public class BMFeatures {
                     .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LEMON_OAK = register("lemon_oak",
-            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
+            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.getBackFieldTreeLog()),
                     new SimpleBlockStateProvider(States.LEMON_OAK_LEAVES),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
@@ -66,7 +66,7 @@ public class BMFeatures {
                     .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> PINEAPPLE_OAK = register("pineapple_oak",
-            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
+            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.getBackFieldTreeLog()),
                     new SimpleBlockStateProvider(BMBlocks.PINEAPPLE_OAK_LEAVES.get().getDefaultState()),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
@@ -78,7 +78,7 @@ public class BMFeatures {
                     .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ORANGE_OAK = register("orange_oak",
-            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
+            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.getBackFieldTreeLog()),
                     new SimpleBlockStateProvider(BMBlocks.ORANGE_OAK_LEAVES.get().getDefaultState()),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
@@ -114,8 +114,8 @@ public class BMFeatures {
                     .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> OAK = register("vanilla_oak",
-            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
-                    new SimpleBlockStateProvider(States.OAK_LEAVES),
+            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(Blocks.OAK_LOG.getDefaultState()),
+                    new SimpleBlockStateProvider(Blocks.OAK_LEAVES.getDefaultState()),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
                     new TwoLayerFeature(1, 0, 1)))
@@ -319,7 +319,7 @@ public class BMFeatures {
 
     // Trees
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MANGAED_MANGO_OAK = register("mangaed_mango_oak",
-            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG),
+            Feature.TREE.withConfiguration((new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.getBackFieldTreeLog()),
                     new SimpleBlockStateProvider(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get().getDefaultState()),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
@@ -452,17 +452,19 @@ public class BMFeatures {
         public static final BlockState HILLARY = BMBlocks.HILLARY.get().getDefaultState();
         public static final BlockState FRIED_EGG_FLOWER = BMBlocks.FRIED_EGG_FLOWER.get().getDefaultState();
         public static final BlockState TURTLE_FRIED_EGG_FLOWER = BMBlocks.TURTLE_FRIED_EGG_FLOWER.get().getDefaultState();
-        public static final BlockState OAK_LOG = Blocks.OAK_LOG.getDefaultState();
         public static final BlockState BIRCH_LOG = Blocks.BIRCH_LOG.getDefaultState();
         public static final BlockState SPRUCE_LOG = Blocks.SPRUCE_LOG.getDefaultState();
         public static final BlockState INSOMNIAN_LOG = BMBlocks.INSOMNIAN_LOG.get().getDefaultState();
-        public static final BlockState OAK_LEAVES = Blocks.OAK_LEAVES.getDefaultState();
         public static final BlockState GUARANA_OAK_LEAVES = BMBlocks.GUARANA_OAK_LEAVES.get().getDefaultState();
         public static final BlockState MANGO_OAK_LEAVES = BMBlocks.MANGO_OAK_LEAVES.get().getDefaultState();
         public static final BlockState GRAPE_VINE_LEAVES = BMBlocks.GRAPE_VINE_LEAVES.get().getDefaultState();
         public static final BlockState LEMON_OAK_LEAVES = BMBlocks.LEMON_OAK_LEAVES.get().getDefaultState();
         public static final BlockState ALJAME_BIRCH_LEAVES = BMBlocks.ALJAME_BIRCH_LEAVES.get().getDefaultState();
         public static final BlockState INSOMNIAN_LEAVES = BMBlocks.INSOMNIAN_LEAVES.get().getDefaultState();
+
+        public static BlockState getBackFieldTreeLog() {
+            return Blocks.OAK_LOG.getDefaultState();
+        }
     }
 
     public static final class Configs {
