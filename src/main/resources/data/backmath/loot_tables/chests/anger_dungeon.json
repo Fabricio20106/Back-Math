@@ -11,7 +11,7 @@
             {
               "function": "minecraft:exploration_map",
               "destination": "backmath:sophie_tower",
-              "decoration": "red_marker",
+              "decoration": "target_x",
               "zoom": 1,
               "skip_existing_chunks": false
             }
