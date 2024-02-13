@@ -147,7 +147,7 @@ public class QueenLucy extends MonsterEntity implements ISophieFriendlies {
 
     protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
         super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
-        ItemEntity staffStack = this.entityDropItem(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get());
+        ItemEntity staffStack = this.entityDropItem(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());
         if (staffStack != null) {
             staffStack.setNoDespawn();
         }
@@ -183,7 +183,7 @@ public class QueenLucy extends MonsterEntity implements ISophieFriendlies {
 
     @Override
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get()));
+        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get()));
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {

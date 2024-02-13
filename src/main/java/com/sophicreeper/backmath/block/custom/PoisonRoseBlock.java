@@ -14,16 +14,16 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
 public class PoisonRoseBlock extends FlowerBlock {
-    public PoisonRoseBlock(Effect effect, Properties properties) {
-        super(effect, 10, properties);
+    public PoisonRoseBlock(Effect effect, int duration, Properties properties) {
+        super(effect, duration, properties);
     }
 
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (!world.isRemote && world.getDifficulty() != Difficulty.PEACEFUL) {
             if (entity instanceof LivingEntity) {
-                LivingEntity livingEntity = (LivingEntity) entity;
-                if (!livingEntity.isInvulnerableTo(BMDamageSources.POISON_ROSE) || !livingEntity.isInvulnerableTo(DamageSource.MAGIC)) {
-                    livingEntity.addPotionEffect(new EffectInstance(Effects.POISON, 100));
+                LivingEntity livEntity = (LivingEntity) entity;
+                if (!livEntity.isInvulnerableTo(BMDamageSources.POISON_ROSE) || !livEntity.isInvulnerableTo(DamageSource.MAGIC)) {
+                    livEntity.addPotionEffect(new EffectInstance(Effects.POISON, 100));
                 }
             }
         }

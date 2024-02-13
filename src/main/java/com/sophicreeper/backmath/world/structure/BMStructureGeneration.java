@@ -25,7 +25,7 @@ public class BMStructureGeneration {
 
         if (Objects.equals(BMBiomes.ORIGINAL_BACK_FIELDS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.MODIFIED_BACK_FIELDS.get().getRegistryName(), event.getName())) {
             if (BMConfigs.COMMON_CONFIGS.sophieTowerGeneration.get()) structures.add(() -> BMStructures.SOPHIE_TOWER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-            event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ANGER_DUNGEON);
+            if (BMConfigs.COMMON_CONFIGS.angerDungeonsInBackFields.get()) event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ANGER_DUNGEON);
         }
 
         for (Biome biome : ALJAN_BIOMES) {

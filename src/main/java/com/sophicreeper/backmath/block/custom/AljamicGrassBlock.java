@@ -18,9 +18,7 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
         super(properties);
     }
 
-    /**
-     * Whether this IGrowable can grow
-     */
+    // Whether this IGrowable can grow.
     public boolean canGrow(IBlockReader world, BlockPos pos, BlockState state, boolean isClient) {
         return world.getBlockState(pos.up()).isAir();
     }
@@ -44,13 +42,13 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
                 }
             }
 
-            BlockState state1 = world.getBlockState(abovePos1);
-            if (state1.isIn(grass.getBlock()) && rand.nextInt(10) == 0) {
-                ((IGrowable) grass.getBlock()).grow(world, rand, abovePos1, state1);
+            BlockState aboveState = world.getBlockState(abovePos1);
+            if (aboveState.isIn(grass.getBlock()) && rand.nextInt(10) == 0) {
+                ((IGrowable) grass.getBlock()).grow(world, rand, abovePos1, aboveState);
             }
 
-            if (state1.isAir()) {
-                BlockState state2;
+            if (aboveState.isAir()) {
+                BlockState stateToPlace;
                 if (rand.nextInt(8) == 0) {
                     List<ConfiguredFeature<?, ?>> list = world.getBiome(abovePos1).getGenerationSettings().getFlowerFeatures();
                     if (list.isEmpty()) {
@@ -59,13 +57,13 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
 
                     ConfiguredFeature<?, ?> configuredFeature = list.get(0);
                     FlowersFeature flowersFeature = (FlowersFeature) configuredFeature.feature;
-                    state2 = flowersFeature.getFlowerToPlace(rand, abovePos1, configuredFeature.getConfig());
+                    stateToPlace = flowersFeature.getFlowerToPlace(rand, abovePos1, configuredFeature.getConfig());
                 } else {
-                    state2 = grass;
+                    stateToPlace = grass;
                 }
 
-                if (state2.isValidPosition(world, abovePos1)) {
-                    world.setBlockState(abovePos1, state2, 3);
+                if (stateToPlace.isValidPosition(world, abovePos1)) {
+                    world.setBlockState(abovePos1, stateToPlace, 3);
                 }
             }
         }

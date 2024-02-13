@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "backmath:obsidian_infused_mid_term_block"
+      "tag": "forge:storage_blocks/obsidian_infused_mid_term"
     }
   ],
   "result": {

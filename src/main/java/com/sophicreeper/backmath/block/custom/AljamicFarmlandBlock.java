@@ -26,19 +26,16 @@ import java.util.Random;
 
 public class AljamicFarmlandBlock extends Block {
     public static final IntegerProperty MOISTURE = BlockStateProperties.MOISTURE_0_7;
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
+    protected static final VoxelShape SHAPE = Block.makeCuboidShape(0, 0, 0, 16, 15, 16);
 
     public AljamicFarmlandBlock(Properties properties) {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(MOISTURE, 0));
     }
 
-    /**
-     * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-     * returns its solidified counterpart.
-     * Note that this method should ideally consider only the specific face passed in.
-     */
+    // Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+    // For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
+    // Note that this method should ideally consider only the specific face passed in.
     public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
         if (facing == Direction.UP && !state.isValidPosition(world, currentPos)) {
             world.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
@@ -70,9 +67,7 @@ public class AljamicFarmlandBlock extends Block {
         }
     }
 
-    /**
-     * Performs a random tick on a block.
-     */
+    // Performs a random tick on a block.
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         int moistureState = state.get(MOISTURE);
         if (!hasWater(world, pos) && !world.isRainingAt(pos.up())) {
@@ -86,11 +81,10 @@ public class AljamicFarmlandBlock extends Block {
         }
     }
 
-    /**
-     * Block's chance to react to a living entity falling on it.
-     */
+    // Block's chance to react to a living entity falling on it.
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entity, float fallDistance) {
-        if (!worldIn.isRemote && ForgeHooks.onFarmlandTrample(worldIn, pos, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), fallDistance, entity)) { // Forge: Move logic to Entity#canTrample
+        // Forge: Move logic to Entity#canTrample.
+        if (!worldIn.isRemote && ForgeHooks.onFarmlandTrample(worldIn, pos, BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), fallDistance, entity)) {
             turnToAljamicDirt(worldIn.getBlockState(pos), worldIn, pos);
         }
 

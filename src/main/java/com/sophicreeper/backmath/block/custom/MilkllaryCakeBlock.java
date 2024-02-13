@@ -74,12 +74,9 @@ public class MilkllaryCakeBlock extends Block {
         }
     }
 
-    /**
-     * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-     * returns its solidified counterpart.
-     * Note that this method should ideally consider only the specific face passed in.
-     */
+    // Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+    // For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
+    // Note that this method should ideally consider only the specific face passed in.
     public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
         return facing == Direction.DOWN && !state.isValidPosition(world, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
     }

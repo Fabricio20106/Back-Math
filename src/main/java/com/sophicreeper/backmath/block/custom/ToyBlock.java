@@ -19,36 +19,36 @@ import java.util.stream.Stream;
 
 public class ToyBlock extends HorizontalBlock {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
-    private final ToyType type;
+    private final Type type;
 
-    public ToyBlock(ToyType type) {
-        super(AbstractBlock.Properties.create(Material.WOOL).hardnessAndResistance(0.5f).sound(SoundType.CLOTH).notSolid());
+    public ToyBlock(Type type) {
+        super(AbstractBlock.Properties.create(Material.WOOL).hardnessAndResistance(0.5F).sound(SoundType.CLOTH).notSolid());
         this.type = type;
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        ToyType type = this.type;
-        if (state.get(FACING) == Direction.EAST && type == ToyType.ALICE_OR_ALAN || state.get(FACING) == Direction.WEST && type == ToyType.ALICE_OR_ALAN) {
+        Type type = this.type;
+        if (state.get(FACING) == Direction.EAST && type == Type.ALICE_OR_ALAN || state.get(FACING) == Direction.WEST && type == Type.ALICE_OR_ALAN) {
             return ToyShapes.SHAPE_ALAN_OR_ALICE_EW;
-        } else if (state.get(FACING) == Direction.NORTH && type == ToyType.ALICE_OR_ALAN || state.get(FACING) == Direction.SOUTH && type == ToyType.ALICE_OR_ALAN) {
+        } else if (state.get(FACING) == Direction.NORTH && type == Type.ALICE_OR_ALAN || state.get(FACING) == Direction.SOUTH && type == Type.ALICE_OR_ALAN) {
             return ToyShapes.SHAPE_ALAN_OR_ALICE_NS;
         }
 
-        else if (state.get(FACING) == Direction.NORTH && type == ToyType.MALENA) {
+        else if (state.get(FACING) == Direction.NORTH && type == Type.MALENA) {
             return ToyShapes.SHAPE_MALENA_NORTH;
-        } else if (state.get(FACING) == Direction.SOUTH && type == ToyType.MALENA) {
+        } else if (state.get(FACING) == Direction.SOUTH && type == Type.MALENA) {
             return ToyShapes.SHAPE_MALENA_SOUTH;
-        } else if (state.get(FACING) == Direction.EAST && type == ToyType.MALENA) {
+        } else if (state.get(FACING) == Direction.EAST && type == Type.MALENA) {
             return ToyShapes.SHAPE_MALENA_EAST;
-        } else if (state.get(FACING) == Direction.WEST && type == ToyType.MALENA) {
+        } else if (state.get(FACING) == Direction.WEST && type == Type.MALENA) {
             return ToyShapes.SHAPE_MALENA_WEST;
         }
 
-        else if (state.get(FACING) == Direction.EAST && type == ToyType.TYLER || state.get(FACING) == Direction.WEST && type == ToyType.TYLER) {
+        else if (state.get(FACING) == Direction.EAST && type == Type.TYLER || state.get(FACING) == Direction.WEST && type == Type.TYLER) {
             return ToyShapes.SHAPE_TYLER_EW;
-        } else if (state.get(FACING) == Direction.NORTH && type == ToyType.TYLER || state.get(FACING) == Direction.SOUTH && type == ToyType.TYLER) {
+        } else if (state.get(FACING) == Direction.NORTH && type == Type.TYLER || state.get(FACING) == Direction.SOUTH && type == Type.TYLER) {
             return ToyShapes.SHAPE_TYLER_NS;
         }
 
@@ -136,7 +136,7 @@ public class ToyBlock extends HorizontalBlock {
         public static final VoxelShape DEFAULT_SHAPE = Block.makeCuboidShape(6, 0, 6, 10, 9, 10);
     }
 
-    public enum ToyType {
+    public enum Type {
         ALICE_OR_ALAN,
         INNOVATOR,
         TYLER,

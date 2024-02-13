@@ -124,6 +124,8 @@ public class BMTags {
         public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TAME_ITEMS = backMath("queen_lucy_pet_tame_items");
         public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_DEADLY_ITEMS = backMath("queen_lucy_pet_deadly_items");
         public static final ITag.INamedTag<Item> TABU_SMELTABLES = backMath("tabu_smeltables");
+        public static final ITag.INamedTag<Item> MID_TERM_MATERIALS = backMath("mid_term_materials");
+        public static final ITag.INamedTag<Item> OIMT_MATERIALS = backMath("oimt_materials");
 
         // Melony Tags
         public static final ITag.INamedTag<Item> SHIELDS = melony("shields");
@@ -369,9 +371,13 @@ public class BMTags {
         public static final ITag.INamedTag<EntityType<?>> LUCIAS = getTagById("backmath:lucias");
         public static final ITag.INamedTag<EntityType<?>> FABRICIOS = getTagById("backmath:fabricios");
 
-        public static final ITag.INamedTag<EntityType<?>> QUEEN_LUCY_PET_TARGETS = getTagById("backmath:queen_lucy_pet_targets");
+        public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_TAMED = getTagById("backmath:qlp_targets/tamed");
+        public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_NOT_TAMED = getTagById("backmath:qlp_targets/not_tamed");
         public static final ITag.INamedTag<EntityType<?>> DEVIL_SPAREY_EFFECTIVES = getTagById("backmath:devil_sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = getTagById("backmath:sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = getTagById("backmath:sparey_prohibited");
+
+        // Melony Tags
+        public static final ITag.INamedTag<EntityType<?>> CAN_SPAWN_ON_LEAVES = getTagById("melony:can_spawn_on_leaves");
     }
 }

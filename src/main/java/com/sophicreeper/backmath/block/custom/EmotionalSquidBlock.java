@@ -16,8 +16,8 @@ public class EmotionalSquidBlock extends HorizontalBlock {
     public static final VoxelShape SHAPE = Block.makeCuboidShape(4, 0, 4, 12, 6, 12);
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
-    public EmotionalSquidBlock() {
-        super(Properties.from(Blocks.WHITE_WOOL));
+    public EmotionalSquidBlock(Properties properties) {
+        super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
     }
 

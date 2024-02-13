@@ -20,6 +20,7 @@ public class BMCommonConfigs {
 
     // Miscellaneous
     public final ForgeConfigSpec.BooleanValue aljanDungeonsInAljan;
+    public final ForgeConfigSpec.BooleanValue angerDungeonsInBackFields;
 
     // Carver Generation
     public final ForgeConfigSpec.BooleanValue enableAljanCarverGeneration;
@@ -134,6 +135,7 @@ public class BMCommonConfigs {
         this.turtleFriedEggFlowersInBeaches = builder.comment("Allow turtle fried egg flowers to generate in any biome categorized as a beach?").define("turtleFriedEggFlowersInBeaches", true);
         this.enderDragonFriedEggFlowersInTheEnd = builder.comment("Allow ender dragon fried egg flowers to generate in any biome categorized as the End?").define("enderDragonFriedEggFlowersInTheEnd", true);
         this.aljanDungeonsInAljan = builder.comment("Allow Aljan Dungeons to spawn randomly in Aljan caves?").define("aljanDungeonsInAljan", true);
+        this.angerDungeonsInBackFields = builder.comment("Allow Anger Dungeons to spawn randomly in Back Field caves?").define("angerDungeonsInBackFields", true);
         builder.pop();
 
         builder.push("biomeGeneration");

@@ -63,7 +63,6 @@ public class BMDefaultBiomeFeatures {
         settings.withFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.HILLARY_LAKE);
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.BACK_FIELD_FLOWER_PATCH);
         settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMConfiguredFeatures.TABU_BLOB);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ANGER_DUNGEON);
         DefaultBiomeFeatures.withCavesAndCanyons(settings);
         DefaultBiomeFeatures.withLavaAndWaterLakes(settings);
         DefaultBiomeFeatures.withMonsterRoom(settings);

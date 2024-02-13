@@ -17,7 +17,7 @@ import net.minecraft.world.server.ServerWorld;
 import java.util.Random;
 
 public class AljamicDirtPathBlock extends Block {
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 15.0D, 16.0D);
+    protected static final VoxelShape SHAPE = Block.makeCuboidShape(0, 0, 0, 16, 15, 16);
 
     public AljamicDirtPathBlock(Properties builder) {
         super(builder);
@@ -31,12 +31,9 @@ public class AljamicDirtPathBlock extends Block {
         return !this.getDefaultState().isValidPosition(context.getWorld(), context.getPos()) ? Block.nudgeEntitiesWithNewState(this.getDefaultState(), BMBlocks.ALJAMIC_DIRT.get().getDefaultState(), context.getWorld(), context.getPos()) : super.getStateForPlacement(context);
     }
 
-    /**
-     * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
-     * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
-     * returns its solidified counterpart.
-     * Note that this method should ideally consider only the specific face passed in.
-     */
+    // Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+    // For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
+    // Note that this method should ideally consider only the specific face passed in.
     public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
         if (facing == Direction.UP && !state.isValidPosition(world, currentPos)) {
             world.getPendingBlockTicks().scheduleTick(currentPos, this, 1);

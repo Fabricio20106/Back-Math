@@ -58,19 +58,19 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
         }
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        int ageState = state.get(AGE);
-        boolean flag = ageState == 3;
-        if (!flag && player.getHeldItem(hand).getItem().isIn(BMTags.Items.BONE_MEALS)) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hitResult) {
+        int age = state.get(AGE);
+        boolean isFullyGrown = age == 3;
+        if (!isFullyGrown && player.getHeldItem(hand).getItem().isIn(BMTags.Items.BONE_MEALS)) {
             return ActionResultType.PASS;
-        } else if (ageState > 1) {
-            int j = 1 + world.rand.nextInt(2);
-            spawnAsEntity(world, pos, new ItemStack(AxolotlTest.GRAPES.get(), j + (flag ? 1 : 0)));
+        } else if (age > 1) {
+            int randInt = 1 + world.rand.nextInt(2);
+            spawnAsEntity(world, pos, new ItemStack(AxolotlTest.GRAPES.get(), randInt + (isFullyGrown ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1, 0.8F + world.rand.nextFloat() * 0.4F);
             world.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResultType.func_233537_a_(world.isRemote);
         } else {
-            return super.onBlockActivated(state, world, pos, player, hand, hit);
+            return super.onBlockActivated(state, world, pos, player, hand, hitResult);
         }
     }
 
@@ -99,7 +99,7 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
     }
 
     public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
-        int i = Math.min(3, state.get(AGE) + 1);
-        world.setBlockState(pos, state.with(AGE, i), 2);
+        int randInt = Math.min(3, state.get(AGE) + 1);
+        world.setBlockState(pos, state.with(AGE, randInt), 2);
     }
 }

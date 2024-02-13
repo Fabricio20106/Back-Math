@@ -27,8 +27,8 @@ public class CrystallizerBlock extends HorizontalBlock {
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
     public static final EnumProperty<Molds> MOLD = EnumProperty.create("mold", Molds.class);
 
-    public CrystallizerBlock() {
-        super(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(3).setRequiresTool().sound(SoundType.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(2));
+    public CrystallizerBlock(Properties properties) {
+        super(properties);
         this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(MOLD, Molds.EMPTY);
     }
 

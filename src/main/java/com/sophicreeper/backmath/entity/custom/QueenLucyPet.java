@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -11,8 +10,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.AbstractIllagerEntity;
-import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -45,7 +42,7 @@ public class QueenLucyPet extends TameableEntity {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(QueenLucyPet.class, DataSerializers.VARINT);
     public static final Predicate<LivingEntity> TARGETS = (livEntity) -> {
         EntityType<?> type = livEntity.getType();
-        return type == BMEntities.ANGRY_SOPHIE.get() || type == BMEntities.SHY_FABRICIO.get();
+        return type.isContained(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED);
     };
 
     public QueenLucyPet(EntityType<QueenLucyPet> type, World world) {
@@ -75,16 +72,16 @@ public class QueenLucyPet extends TameableEntity {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new SwimGoal(this));
         this.goalSelector.addGoal(2, new SitGoal(this));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.2d, Ingredient.fromTag(BMTags.Items.QUEEN_LUCY_PET_TEMPT_ITEMS), false));
-        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 2.1f, true));
-        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2f, 10, 2, false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.2F, Ingredient.fromTag(BMTags.Items.QUEEN_LUCY_PET_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 2.1F, true));
+        this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2F, 10, 2, true));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8));
         this.goalSelector.addGoal(6, new LookAtGoal(this, QueenLucy.class, 8));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class ,10, false, false, (livEntity) -> livEntity.getType().isContained(BMTags.EntityTypes.QUEEN_LUCY_PET_TARGETS)));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class ,10, false, false, (livEntity) -> livEntity.getType().isContained(BMTags.EntityTypes.QLP_TARGETS_TAMED)));
         this.targetSelector.addGoal(3, new NonTamedTargetGoal<>(this, LivingEntity.class, false, TARGETS));
         super.registerGoals();
     }
@@ -210,7 +207,7 @@ public class QueenLucyPet extends TameableEntity {
 
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
-        return new ItemStack(AxolotlTest.QUEEN_SOPHIE_SUMMONER_STAFF.get());
+        return new ItemStack(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());
     }
 
     public int getVariant() {

@@ -1,0 +1,241 @@
+{
+  "parent": "backmath:backmath/sophie_leader",
+  "display": {
+    "icon": {
+      "item": "backmath:queen_sophie_relic"
+    },
+    "title": {
+      "translate": "advancements.backmath.qlp_daycare.title"
+    },
+    "description": {
+      "translate": "advancements.backmath.qlp_daycare.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "rewards": {
+    "experience": 500
+  },
+  "criteria": {
+    "tamed_qlp:current": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:0}"
+        }
+      }
+    },
+    "tamed_qlp:alt": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:1}"
+        }
+      }
+    },
+    "tamed_qlp:relic": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:2}"
+        }
+      }
+    },
+    "tamed_qlp:shy_fabricio": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:3}"
+        }
+      }
+    },
+    "tamed_qlp:sv_original": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:4}"
+        }
+      }
+    },
+    "tamed_qlp:sv_modified": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:5}"
+        }
+      }
+    },
+    "tamed_qlp:sv_creeper": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:6}"
+        }
+      }
+    },
+    "tamed_qlp:sv_brazil_shirt": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:7}"
+        }
+      }
+    },
+    "tamed_qlp:sv_pajama": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:8}"
+        }
+      }
+    },
+    "tamed_qlp:sv_savannah": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:9}"
+        }
+      }
+    },
+    "tamed_qlp:sv_witcher": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:10}"
+        }
+      }
+    },
+    "tamed_qlp:sv_maid": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:11}"
+        }
+      }
+    },
+    "tamed_qlp:sv_yellow_sophixolotl": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:12}"
+        }
+      }
+    },
+    "tamed_qlp:sv_blue_sophixolotl": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:13}"
+        }
+      }
+    },
+    "tamed_qlp:sv_enderphie": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:14}"
+        }
+      }
+    },
+    "tamed_qlp:sv_worker": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:15}"
+        }
+      }
+    },
+    "tamed_qlp:sv_empresary2": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:16}"
+        }
+      }
+    },
+    "tamed_qlp:sv_entrepreneur": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:17}"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "tamed_qlp:current"
+    ],
+    [
+      "tamed_qlp:alt"
+    ],
+    [
+      "tamed_qlp:relic"
+    ],
+    [
+      "tamed_qlp:shy_fabricio"
+    ],
+    [
+      "tamed_qlp:sv_original"
+    ],
+    [
+      "tamed_qlp:sv_modified"
+    ],
+    [
+      "tamed_qlp:sv_creeper"
+    ],
+    [
+      "tamed_qlp:sv_brazil_shirt"
+    ],
+    [
+      "tamed_qlp:sv_pajama"
+    ],
+    [
+      "tamed_qlp:sv_savannah"
+    ],
+    [
+      "tamed_qlp:sv_witcher"
+    ],
+    [
+      "tamed_qlp:sv_maid"
+    ],
+    [
+      "tamed_qlp:sv_yellow_sophixolotl"
+    ],
+    [
+      "tamed_qlp:sv_blue_sophixolotl"
+    ],
+    [
+      "tamed_qlp:sv_enderphie"
+    ],
+    [
+      "tamed_qlp:sv_worker"
+    ],
+    [
+      "tamed_qlp:sv_empresary2"
+    ],
+    [
+      "tamed_qlp:sv_entrepreneur"
+    ]
+  ]
+}

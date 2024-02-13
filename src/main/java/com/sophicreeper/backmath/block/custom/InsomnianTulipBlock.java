@@ -3,11 +3,11 @@ package com.sophicreeper.backmath.block.custom;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerBlock;
-import net.minecraft.potion.Effects;
+import net.minecraft.potion.Effect;
 
-public class LightLayerFlowerBlock extends FlowerBlock {
-    public LightLayerFlowerBlock(Properties properties) {
-        super(Effects.GLOWING, 10, properties);
+public class InsomnianTulipBlock extends FlowerBlock {
+    public InsomnianTulipBlock(Effect effect, int duration, Properties properties) {
+        super(effect, duration, properties);
     }
 
     @Override

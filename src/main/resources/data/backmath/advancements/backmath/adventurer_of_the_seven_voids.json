@@ -20,54 +20,62 @@
     }
   },
   "criteria": {
-    "minecraft:the_end": {
+    "located_the_end": {
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "biome": "minecraft:the_end"
+          "biome": "located_the_end"
         }
       }
     },
-    "minecraft:end_barrens": {
+    "located_end_barrens": {
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "biome": "minecraft:end_barrens"
+          "biome": "located_end_barrens"
         }
       }
     },
-    "minecraft:end_highlands": {
+    "located_end_highlands": {
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "biome": "minecraft:end_highlands"
+          "biome": "located_end_highlands"
         }
       }
     },
-    "minecraft:end_midlands": {
+    "located_end_midlands": {
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "biome": "minecraft:end_midlands"
+          "biome": "located_end_midlands"
         }
       }
     },
-    "minecraft:small_end_islands": {
+    "located_small_end_islands": {
       "trigger": "minecraft:location",
       "conditions": {
         "location": {
-          "biome": "minecraft:small_end_islands"
+          "biome": "located_small_end_islands"
         }
       }
     }
   },
   "requirements": [
     [
-      "minecraft:the_end",
-      "minecraft:end_barrens",
-      "minecraft:end_highlands",
-      "minecraft:end_midlands",
-      "minecraft:small_end_islands"
+      "located_the_end"
+    ],
+    [
+      "located_end_barrens"
+    ],
+    [
+      "located_end_highlands"
+    ],
+    [
+      "located_end_midlands"
+    ],
+    [
+      "located_small_end_islands"
     ]
   ]
 }

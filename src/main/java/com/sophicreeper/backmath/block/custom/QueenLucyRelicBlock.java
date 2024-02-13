@@ -23,7 +23,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
-public class QueenSophieRelicBlock extends HorizontalBlock {
+public class QueenLucyRelicBlock extends HorizontalBlock {
     public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
     public static final VoxelShape SHAPE_FIRST_HALF = Stream.of(
             Block.makeCuboidShape(1, 0, 1, 15, 2, 15),
@@ -45,8 +45,8 @@ public class QueenSophieRelicBlock extends HorizontalBlock {
             Block.makeCuboidShape(12, 0, 6, 15, 10, 10)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
-    public QueenSophieRelicBlock() {
-        super(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).harvestLevel(2).setLightLevel(state -> 10));
+    public QueenLucyRelicBlock(Properties properties) {
+        super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(HALF, DoubleBlockHalf.LOWER));
     }
 
@@ -82,10 +82,7 @@ public class QueenSophieRelicBlock extends HorizontalBlock {
         }
     }
 
-    /**
-     * Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect
-     * this block
-     */
+    // Called before the Block is set to air in the world. Called regardless of if the player's tool can actually collect this block.
     public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         if (!world.isRemote) {
             if (player.isCreative()) {
@@ -98,10 +95,7 @@ public class QueenSophieRelicBlock extends HorizontalBlock {
         super.onBlockHarvested(world, pos, state, player);
     }
 
-    /**
-     * Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via
-     * Block.removedByPlayer
-     */
+    // Spawns the block's drops in the world. By the time this is called the Block has possibly been set to air via Block.removedByPlayer.
     public void harvestBlock(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable TileEntity blockEntity, ItemStack stack) {
         super.harvestBlock(world, player, pos, Blocks.AIR.getDefaultState(), blockEntity, stack);
     }

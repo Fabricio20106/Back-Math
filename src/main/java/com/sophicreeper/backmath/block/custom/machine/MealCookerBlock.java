@@ -30,8 +30,8 @@ public class MealCookerBlock extends HorizontalBlock {
             Block.makeCuboidShape(0, 0, 0, 16, 16, 16)
     ).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
 
-    public MealCookerBlock() {
-        super(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().sound(SoundType.WOOD).hardnessAndResistance(2, 6));
+    public MealCookerBlock(Properties properties) {
+        super(properties);
     }
 
     @Override

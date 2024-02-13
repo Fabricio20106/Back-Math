@@ -312,6 +312,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.QUEEN_LUCY_PET_TAME_ITEMS).addTag(BMTags.Items.FRUITS);
         this.getOrCreateBuilder(BMTags.Items.QUEEN_LUCY_PET_DEADLY_ITEMS).add(AxolotlTest.ALJAME.get());
         this.getOrCreateBuilder(BMTags.Items.TABU_SMELTABLES).add(AxolotlTest.TABU.get()).add(AxolotlTest.CUBIC_TABU.get()).add(AxolotlTest.TABU_MOSAIC.get()).add(AxolotlTest.TABU_PILLAR.get());
+        this.getOrCreateBuilder(BMTags.Items.MID_TERM_MATERIALS).addTag(BMTags.Items.SINGULARITIES_MID_TERM).addTag(BMTags.Items.INGOTS_MID_TERM);
+        this.getOrCreateBuilder(BMTags.Items.OIMT_MATERIALS).addTag(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM);
 
         this.getOrCreateBuilder(BMTags.Items.WANDERER_SOPHIE_TEMPT_ITEMS).add(AxolotlTest.MILKLLARY_CAKE.get());
         this.getOrCreateBuilder(BMTags.Items.QUEEN_LUCY_PET_TEMPT_ITEMS).add(AxolotlTest.GUARANA.get(), Items.CAKE);

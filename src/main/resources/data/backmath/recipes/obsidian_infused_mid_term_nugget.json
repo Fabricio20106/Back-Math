@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "backmath:obsidian_infused_mid_term_ingot"
+      "tag": "forge:ingots/obsidian_infused_mid_term"
     }
   ],
   "result": {

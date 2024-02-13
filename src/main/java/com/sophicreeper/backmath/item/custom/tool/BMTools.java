@@ -115,6 +115,11 @@ public class BMTools implements IItemTier {
             super(4, 2031, 9, 18, 12, () -> Ingredient.fromTag(BMTags.Items.INGOTS_CHRISTIAN_MID_TERM));
         }
     }
+    public static class DevilSparey extends BMTools {
+        public DevilSparey() {
+            super(4, 2031, 9, 18, 12, () -> Ingredient.fromTag(BMTags.Items.INGOTS_DEVIL));
+        }
+    }
     public static class MechMech extends BMTools {
         public MechMech() {
             super(3, 1561, 4, 0, 22, () -> Ingredient.fromItems(AxolotlTest.DIAMOND_SHARD.get()));

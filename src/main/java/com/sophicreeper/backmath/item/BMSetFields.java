@@ -80,4 +80,5 @@ public class BMSetFields {
     public static final BMTools MOONERING_SET = new BMTools.Moonering();
     public static final BMTools JANTIQUIFIED_MOONERING_SET = new BMTools.JantiquifiedMoonering();
     public static final BMTools SPAREY_SET = new BMTools.Sparey();
+    public static final BMTools DEVIL_SPAREY_SET = new BMTools.DevilSparey();
 }

@@ -33,14 +33,18 @@ public class BMEntityTagsProvider extends EntityTypeTagsProvider {
 
         this.getOrCreateBuilder(BMTags.EntityTypes.PLAYER_LIKE).addTag(BMTags.EntityTypes.SOPHIES).addTag(BMTags.EntityTypes.LUCIAS).addTag(BMTags.EntityTypes.FABRICIOS).add(BMEntities.MALAIKA.get());
 
-        this.getOrCreateBuilder(BMTags.EntityTypes.QUEEN_LUCY_PET_TARGETS).addTag(EntityTypeTags.RAIDERS).add(BMEntities.ANGRY_SOPHIE.get()).add(BMEntities.INSOMNIA_SOPHIE.get()).add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get())
+        this.getOrCreateBuilder(BMTags.EntityTypes.QLP_TARGETS_TAMED).addTag(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED).addTag(EntityTypeTags.RAIDERS).add(BMEntities.INSOMNIA_SOPHIE.get()).add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get())
                 .add(BMEntities.WARRIOR_SOPHIE.get()).add(BMEntities.ARCHER_LUCIA.get()).add(BMEntities.JANTICLE.get()).add(BMEntities.INSOMNIA_ZOMBIE.get()).add(BMEntities.ZOMBIE_FABRICIO.get()).add(BMEntities.ALJAMIC_BONES.get())
                 .add(BMEntities.SLEEPISH_SKELETON.get()).add(BMEntities.AMARACAMELER.get()).add(EntityType.ZOMBIE).add(EntityType.HUSK).add(EntityType.DROWNED).add(EntityType.ZOMBIE_VILLAGER).add(EntityType.ZOMBIFIED_PIGLIN);
+        this.getOrCreateBuilder(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED).add(BMEntities.ANGRY_SOPHIE.get()).add(BMEntities.SHY_FABRICIO.get());
 
         this.getOrCreateBuilder(BMTags.EntityTypes.DEVIL_SPAREY_EFFECTIVES).add(BMEntities.WANDERER_SOPHIE.get()).add(BMEntities.INSOMNIA_SOPHIE.get()).add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get()).add(BMEntities.WARRIOR_SOPHIE.get())
                 .add(BMEntities.QUEEN_LUCY_PET.get()).add(BMEntities.ARCHER_LUCIA.get()).add(BMEntities.KARATE_LUCIA.get()).add(BMEntities.SHY_FABRICIO.get()).add(BMEntities.MALAIKA.get());
         this.getOrCreateBuilder(BMTags.EntityTypes.SPAREY_EFFECTIVES).add(BMEntities.ANGRY_SOPHIE.get());
         this.getOrCreateBuilder(BMTags.EntityTypes.SPAREYS_PROHIBITED).add(BMEntities.QUEEN_LUCY.get());
+
+        // Melony Tags
+        this.getOrCreateBuilder(BMTags.EntityTypes.CAN_SPAWN_ON_LEAVES).add(EntityType.OCELOT).add(EntityType.PARROT);
 
         this.getOrCreateBuilder(EntityTypeTags.SKELETONS).add(BMEntities.ALJAMIC_BONES.get()).add(BMEntities.SLEEPISH_SKELETON.get());
         this.getOrCreateBuilder(EntityTypeTags.ARROWS).add(BMEntities.INSOMNIA_ARROW.get());

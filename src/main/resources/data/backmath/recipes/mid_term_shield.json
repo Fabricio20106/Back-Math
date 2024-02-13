@@ -10,7 +10,7 @@
       "tag": "forge:ingots/iron"
     },
     "o": {
-      "tag": "forge:ingots/mid_term"
+      "tag": "backmath:mid_term_materials"
     }
   },
   "result": {

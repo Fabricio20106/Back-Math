@@ -37,7 +37,7 @@ public class SpreadableSnowyAljanDirtBlock extends SnowyDirtBlock {
     // Performs a random tick on a block.
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (!isSnowyConditions(state, world, pos)) {
-            if (!world.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
+            if (!world.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading.
             world.setBlockState(pos, BMBlocks.ALJAMIC_DIRT.get().getDefaultState());
         } else {
             if (world.getLight(pos.up()) >= 9) {

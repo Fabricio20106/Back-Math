@@ -4,7 +4,7 @@
     "item": "backmath:mid_term_leggings"
   },
   "addition": {
-    "item": "backmath:obsidian_infused_mid_term_ingot"
+    "tag": "backmath:oimt_materials"
   },
   "result": {
     "item": "backmath:obsidian_infused_mid_term_leggings"
