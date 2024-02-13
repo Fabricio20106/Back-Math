@@ -23,9 +23,9 @@ public class PinkGumFryingPanItem extends Item {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
-            LivingEntity livingEntity = (LivingEntity) entity;
-            livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10, 3));
-            livingEntity.addPotionEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 10, 0));
+            LivingEntity livEntity = (LivingEntity) entity;
+            livEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10, 3));
+            livEntity.addPotionEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 10, 0));
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

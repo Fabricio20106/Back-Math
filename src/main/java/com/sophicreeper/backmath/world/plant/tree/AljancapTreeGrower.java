@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.world.plant.tree;
 
-import com.sophicreeper.backmath.world.BMFeatures;
+import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -13,9 +13,9 @@ public class AljancapTreeGrower extends Tree {
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean largeHive) {
         if (random.nextInt(10) == 0) {
-            return BMFeatures.FANCY_ALJANCAP;
+            return BMConfiguredFeatures.FANCY_ALJANCAP;
         } else {
-            return BMFeatures.ALJANCAP;
+            return BMConfiguredFeatures.ALJANCAP;
         }
     }
 }

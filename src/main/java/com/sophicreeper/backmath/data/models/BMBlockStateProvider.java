@@ -337,7 +337,7 @@ public class BMBlockStateProvider extends BlockStateProvider {
         simpleBlock(BMBlocks.ALJAMIC_SAND.get());
         simpleBlock(BMBlocks.ALJAMIC_GLASS.get());
         paneBlock((PaneBlock) BMBlocks.ALJAMIC_GLASS_PANE.get(), modLoc("block/aljamic_glass"), modLoc("block/aljamic_glass_pane_top"));
-        simpleBlock(BMBlocks.JANTICAL_BLOCK.get());
+        simpleBlock(BMBlocks.JANTICAL_BLOCK.get(), models().cubeBottomTop("jantical_block", modLoc("block/jantical_block_side"), modLoc("block/jantical_block_bottom"), modLoc("block/jantical_block_top")));
         simpleBlock(BMBlocks.WILD_ALJAMIC_ONIONS.get(), models().withExistingParent("wild_aljamic_onions", "backmath:block/template_wild_crop").texture("crop", "block/wild_aljamic_onions"));
         simpleBlock(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get(), models().cross("ender_dragon_fried_egg_flower", modLoc("block/ender_dragon_fried_egg_flower")));
         simpleBlock(BMBlocks.POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER.get(), models().withExistingParent("potted_ender_dragon_fried_egg_flower",
@@ -433,6 +433,11 @@ public class BMBlockStateProvider extends BlockStateProvider {
         slabBlock((SlabBlock) BMBlocks.MOSSY_ANGELIC_BRICK_SLAB.get(), modLoc("block/mossy_angelic_bricks"), modLoc("block/mossy_angelic_bricks"));
         wallBlock((WallBlock) BMBlocks.MOSSY_ANGELIC_BRICK_WALL.get(), modLoc("block/mossy_angelic_bricks"));
         axisBlock((RotatedPillarBlock) BMBlocks.ANGELIC_PILLAR.get(), modLoc("block/angelic_pillar"));
+
+        // 12/02/2024
+        simpleBlock(BMBlocks.TABU.get());
+        simpleBlock(BMBlocks.EMERIOND_BLOCK.get());
+        axisBlock((RotatedPillarBlock) BMBlocks.CARAMELED_HAY_BALE.get(), modLoc("block/carameled_hay_bale_side"), modLoc("block/carameled_hay_bale_top"));
 
         charjanTorch(BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_TORCH.get(), BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_WALL_TORCH.get(), "crystalline_birch");
         charjanTorch(BMBlocks.CHARJAN_GOLDENWOOD_TORCH.get(), BMBlocks.CHARJAN_GOLDENWOOD_WALL_TORCH.get(), "goldenwood");

@@ -62,18 +62,18 @@ public class BMEntities {
             EntityType.Builder.create(Amaracameler::new, EntityClassification.MONSTER).size(2.04F, 2.04F).trackingRange(10).build(BackMath.resourceLoc("amaracameler").toString()));
 
     public static final RegistryObject<EntityType<Malaika>> MALAIKA = ENTITIES.register("malaika", () ->
-            EntityType.Builder.create(Malaika::new, EntityClassification.CREATURE).size(0.6f, 1.8f).trackingRange(10).build(BackMath.resourceLoc("malaika").toString()));
+            EntityType.Builder.create(Malaika::new, EntityClassification.CREATURE).size(0.6F, 1.8F).trackingRange(10).build(BackMath.resourceLoc("malaika").toString()));
 
     public static final RegistryObject<EntityType<Janticle>> JANTICLE = ENTITIES.register("janticle", () ->
-            EntityType.Builder.<Janticle>create(Janticle::new, EntityClassification.MONSTER).size(0.5f, 0.5f).trackingRange(16).build(BackMath.resourceLoc("janticle").toString()));
+            EntityType.Builder.<Janticle>create(Janticle::new, EntityClassification.MONSTER).size(0.5F, 0.5F).trackingRange(16).build(BackMath.resourceLoc("janticle").toString()));
 
     // BM 1.8.0: Bountifully Expansive Creatures and Enemies
     public static final RegistryObject<EntityType<BMBoat>> BACK_MATH_BOAT = ENTITIES.register("backmath_boat", () ->
-            EntityType.Builder.<BMBoat>create(BMBoat::new, EntityClassification.MISC).size(1.375f, 0.5f).build(BackMath.resourceLoc("backmath_boat").toString()));
+            EntityType.Builder.<BMBoat>create(BMBoat::new, EntityClassification.MISC).size(1.375F, 0.5F).build(BackMath.resourceLoc("backmath_boat").toString()));
 
     public static final RegistryObject<EntityType<InsomniaArrow>> INSOMNIA_ARROW = ENTITIES.register("insomnia_arrow", () ->
             EntityType.Builder.<InsomniaArrow>create(InsomniaArrow::new, EntityClassification.MISC).size(0.5F, 0.5F).build(BackMath.resourceLoc("insomnia_arrow").toString()));
 
     public static final RegistryObject<EntityType<ChocoGlueProjEntity>> CHOCOGLUE_PROJECTILE = ENTITIES.register("chocoglue_proj", () ->
-            EntityType.Builder.<ChocoGlueProjEntity>create(ChocoGlueProjEntity::new, EntityClassification.MISC).size(0.25f, 0.25f).build(BackMath.resourceLoc("chocoglue_proj").toString()));
+            EntityType.Builder.<ChocoGlueProjEntity>create(ChocoGlueProjEntity::new, EntityClassification.MISC).size(0.25F, 0.25F).build(BackMath.resourceLoc("chocoglue_proj").toString()));
 }

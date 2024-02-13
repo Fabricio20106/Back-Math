@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "backmath:tabu",
+    "backmath:cubic_tabu",
+    "backmath:tabu_mosaic",
+    "backmath:tabu_pillar"
+  ]
+}

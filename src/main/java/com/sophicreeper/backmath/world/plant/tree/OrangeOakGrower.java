@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.world.plant.tree;
 
-import com.sophicreeper.backmath.world.BMFeatures;
+import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import net.minecraft.block.trees.Tree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -12,6 +12,6 @@ public class OrangeOakGrower extends Tree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-        return BMFeatures.ORANGE_OAK;
+        return BMConfiguredFeatures.ORANGE_OAK;
     }
 }

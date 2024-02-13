@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class BMBoatItem extends BoatItem {
-    private static final Predicate<Entity> field_219989_a = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
+    private static final Predicate<Entity> CAN_COLLIDE_WITH_ENTITY = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
     private final String woodType;
 
     public BMBoatItem(Properties properties, String woodType) {
@@ -33,10 +33,10 @@ public class BMBoatItem extends BoatItem {
         if (fluidRayTrace.getType() == RayTraceResult.Type.MISS) {
             return ActionResult.resultPass(heldItem);
         } else {
-            Vector3d vector3D = player.getLook(1.0F);
-            List<Entity> list = world.getEntitiesInAABBexcluding(player, player.getBoundingBox().expand(vector3D.scale(5.0D)).grow(1.0D), field_219989_a);
+            Vector3d vec3D = player.getLook(1);
+            List<Entity> list = world.getEntitiesInAABBexcluding(player, player.getBoundingBox().expand(vec3D.scale(5)).grow(1), CAN_COLLIDE_WITH_ENTITY);
             if (!list.isEmpty()) {
-                Vector3d vector3D1 = player.getEyePosition(1.0F);
+                Vector3d vector3D1 = player.getEyePosition(1);
 
                 for(Entity entity : list) {
                     AxisAlignedBB axisAlignedBB = entity.getBoundingBox().grow(entity.getCollisionBorderSize());

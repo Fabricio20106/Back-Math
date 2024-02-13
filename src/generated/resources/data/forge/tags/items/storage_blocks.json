@@ -26,6 +26,7 @@
     "#forge:storage_blocks/mid_hillary",
     "#forge:storage_blocks/jantical",
     "#forge:storage_blocks/raw_aljamic_copper",
-    "#forge:storage_blocks/raw_aljamic_tin"
+    "#forge:storage_blocks/raw_aljamic_tin",
+    "#forge:storage_blocks/emeriond"
   ]
 }

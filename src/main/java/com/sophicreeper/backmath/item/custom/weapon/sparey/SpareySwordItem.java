@@ -1,33 +1,31 @@
 package com.sophicreeper.backmath.item.custom.weapon.sparey;
 
-import com.sophicreeper.backmath.item.BMSetFields;
-import com.sophicreeper.backmath.entity.custom.AngrySophie;
-import com.sophicreeper.backmath.entity.custom.QueenLucy;
-import com.sophicreeper.backmath.item.tab.BMWeaponryTab;
+import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
 import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
 public class SpareySwordItem extends SwordItem {
-    public SpareySwordItem() {
-        super(BMSetFields.SPAREY_SET, 3, -2.4F, new Properties().isImmuneToFire().rarity(Rarity.RARE).group(BMWeaponryTab.TAB));
+    public SpareySwordItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
+        super(tier, attackDamage, swingSpeed, properties);
     }
 
     // When you hit an entity
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity hitTarget) {
-        if (hitTarget instanceof AngrySophie) {
+        if (hitTarget.getType().isContained(BMTags.EntityTypes.SPAREY_EFFECTIVES)) {
             player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 200, 1));
             // Gives Strength II effect for 10 secs.
         } else {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
             // Gives Weakness III effect for 2.5 secs, but it rounds it up to 3 secs.
         }
-        if (hitTarget instanceof QueenLucy) {
+        if (hitTarget.getType().isContained(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
             // Gives Weakness LXIII (63) for 30 secs.
         }
@@ -36,6 +34,6 @@ public class SpareySwordItem extends SwordItem {
 
     @Override
     public int getRGBDurabilityForDisplay(ItemStack stack) {
-        return 0x85c284;
+        return BMConfigs.COMMON_CONFIGS.spareyCustomDurabilityBar.get();
     }
 }

@@ -19,7 +19,7 @@ public class TurtleShellItem extends ArmorItem {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         ItemStack shellStack = player.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        if (shellStack.getItem().isIn(BMTags.Items.TURTLE_SHELLS) && !player.areEyesInFluid(FluidTags.WATER)) {
+        if (shellStack.getItem().isIn(BMTags.Items.PROVIDES_WATER_BREATHING) && !player.areEyesInFluid(FluidTags.WATER)) {
             player.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
 

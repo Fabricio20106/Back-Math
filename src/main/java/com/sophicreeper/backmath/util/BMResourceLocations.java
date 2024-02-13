@@ -32,5 +32,6 @@ public class BMResourceLocations {
 
     // Loot Tables
     public static final ResourceLocation ALJAN_DUNGEON_LOOT = BackMath.resourceLoc("chests/aljan_dungeon");
+    public static final ResourceLocation ANGER_DUNGEON_LOOT = BackMath.resourceLoc("chests/anger_dungeon");
     public static final ResourceLocation ALJAN_MINESHAFT_LOOT = BackMath.resourceLoc("chests/aljan_mineshaft");
 }

@@ -1,18 +1,17 @@
 package com.sophicreeper.backmath.item.custom.weapon.milked;
 
+import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.custom.AngrySophie;
-import com.sophicreeper.backmath.item.tab.BMWeaponryTab;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
 public class MilkedCustomSpareySwordItem extends MilkedSwordItem {
-    public MilkedCustomSpareySwordItem(IItemTier tier, Rarity rarity) {
-        super(tier, 3, -2.4F, new Properties().isImmuneToFire().rarity(rarity).group(BMWeaponryTab.TAB));
+    public MilkedCustomSpareySwordItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
+        super(tier, attackDamage, swingSpeed, properties);
     }
 
     @Override
@@ -32,6 +31,6 @@ public class MilkedCustomSpareySwordItem extends MilkedSwordItem {
 
     @Override
     public int getRGBDurabilityForDisplay(ItemStack stack) {
-        return 0x1dc2d1;
+        return BMConfigs.COMMON_CONFIGS.midTermCustomDurabilityBar.get();
     }
 }

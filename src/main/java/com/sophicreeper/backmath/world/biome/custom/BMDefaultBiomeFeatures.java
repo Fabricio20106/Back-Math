@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.world.biome.custom;
 
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.world.BMFeatures;
+import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import com.sophicreeper.backmath.entity.BMEntities;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.BiomeGenerationSettings;
@@ -12,20 +12,20 @@ import net.minecraft.world.gen.feature.structure.StructureFeatures;
 
 public class BMDefaultBiomeFeatures {
     public static void addOriginalBackFieldTrees(BiomeGenerationSettings.Builder settings) {
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAME_BIRCHES);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.GUARANA_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.MANGO_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJAME_BIRCHES);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.GUARANA_OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.MANGO_OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.OAKS);
     }
 
     public static void addModifiedBackFieldTrees(BiomeGenerationSettings.Builder settings) {
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ALJAME_BIRCHES);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.LEMON_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.PINEAPPLE_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.ORANGE_OAKS);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.GUAVA_TREES);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.JABUTICABA_TREES);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJAME_BIRCHES);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.LEMON_OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.PINEAPPLE_OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ORANGE_OAKS);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.GUAVA_TREES);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.JABUTICABA_TREES);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.OAKS);
     }
 
     public static void backFieldPassives(MobSpawnInfo.Builder spawns) {
@@ -60,8 +60,10 @@ public class BMDefaultBiomeFeatures {
         settings.withStructure(StructureFeatures.RUINED_PORTAL);
         settings.withStructure(StructureFeatures.VILLAGE_PLAINS);
 
-        settings.withFeature(GenerationStage.Decoration.LAKES, BMFeatures.HILLARY_LAKE);
-        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMFeatures.BACK_FIELD_FLOWER_PATCH);
+        settings.withFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.HILLARY_LAKE);
+        settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.BACK_FIELD_FLOWER_PATCH);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMConfiguredFeatures.TABU_BLOB);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ANGER_DUNGEON);
         DefaultBiomeFeatures.withCavesAndCanyons(settings);
         DefaultBiomeFeatures.withLavaAndWaterLakes(settings);
         DefaultBiomeFeatures.withMonsterRoom(settings);
@@ -80,9 +82,9 @@ public class BMDefaultBiomeFeatures {
     }
 
     public static void addAljanUndergroundVariety(BiomeGenerationSettings.Builder settings) {
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.SLEEPINGSTONE_BLOB);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.ALJAMIC_DIRT_BLOB);
-        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMFeatures.INSOGRAVEL_BLOB);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMConfiguredFeatures.SLEEPINGSTONE_BLOB);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMConfiguredFeatures.ALJAMIC_DIRT_BLOB);
+        settings.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, BMConfiguredFeatures.INSOGRAVEL_BLOB);
     }
 
     public static void aljanHostiles(MobSpawnInfo.Builder spawns) {

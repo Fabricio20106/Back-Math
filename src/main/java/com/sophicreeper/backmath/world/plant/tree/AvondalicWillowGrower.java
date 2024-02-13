@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.world.plant.tree;
 
-import com.sophicreeper.backmath.world.BMFeatures;
+import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import net.minecraft.block.trees.BigTree;
 import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -12,12 +12,12 @@ public class AvondalicWillowGrower extends BigTree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getHugeTreeFeature(Random rand) {
-        return BMFeatures.MEGA_AVONDALIC_WILLOW;
+        return BMConfiguredFeatures.MEGA_AVONDALIC_WILLOW;
     }
 
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean largeHive) {
-        return BMFeatures.AVONDALIC_WILLOW;
+        return BMConfiguredFeatures.AVONDALIC_WILLOW;
     }
 }

@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:raiders",
+    "backmath:angry_sophie",
+    "backmath:insomnia_sophie",
+    "backmath:archer_insomnia_sophie",
+    "backmath:warrior_sophie",
+    "backmath:archer_lucia",
+    "backmath:janticle",
+    "backmath:insomnia_zombie",
+    "backmath:zombie_fabricio",
+    "backmath:aljamic_bones",
+    "backmath:sleepish_skeleton",
+    "backmath:amaracameler",
+    "minecraft:zombie",
+    "minecraft:husk",
+    "minecraft:drowned",
+    "minecraft:zombie_villager",
+    "minecraft:zombified_piglin"
+  ]
+}

@@ -52,15 +52,8 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     public void tick() {
         super.tick();
         this.updateCape();
-        this.updateTurtleHelmet();
-    }
-
-    private void updateTurtleHelmet() {
-        ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.TURTLE_SHELLS);
-        if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
-            this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
-        }
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
     }
 
     public void livingTick() {

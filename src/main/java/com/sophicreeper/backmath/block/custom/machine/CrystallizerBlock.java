@@ -121,6 +121,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                 player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARITY.get()));
                 player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
                 player.addStat(BMStats.CRAFT_IN_CRYSTALLIZER);
+                return ActionResultType.SUCCESS;
             }
             if (mainHand.getItem() == AxolotlTest.MID_TERM_INGOT.get()) {
                 world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);

@@ -340,6 +340,9 @@ public class BMItemModelProvider extends ItemModelProvider {
         withExistingParent("warmterm_block");
         withExistingParent("coldterm_block");
         withExistingParent("chiseled_obsiditerm");
+        withExistingParent("tabu");
+        withExistingParent("emeriond_block");
+        withExistingParent("carameled_hay_bale");
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -1156,6 +1159,18 @@ public class BMItemModelProvider extends ItemModelProvider {
         block(generated, "charjan_aljameed_torch");
         compat("cork_oak_mortar_and_pestle");
         block(generated, "cork_oak_sapling");
+        compat("emeriond");
+        compat("red_yellow_glasses");
+        compat("jantiquified_moonering_helmet");
+        compat("jantiquified_moonering_chestplate");
+        compat("jantiquified_moonering_leggings");
+        compat("jantiquified_moonering_boots");
+        compat("cut_jantical");
+        compat("two_thirds_hillary_dust");
+        standard(handheld, "bread_sword");
+        compat("jantiquified_pearl");
+
+        getBuilder("effect_jam").parent(generated).texture("layer0", modLoc("item/effect_jam_overlay")).texture("layer1", modLoc("item/effect_jam_pot"));
     }
 
     private ItemModelBuilder standard(ModelFile model, String name) {

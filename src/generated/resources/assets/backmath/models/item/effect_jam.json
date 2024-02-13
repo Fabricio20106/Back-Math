@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "backmath:item/effect_jam_overlay",
+    "layer1": "backmath:item/effect_jam_pot"
+  }
+}

@@ -1,19 +1,45 @@
 package com.sophicreeper.backmath.world.carver.custom;
 
-import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
-import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.block.BMFluids;
-import net.minecraft.block.Blocks;
-import net.minecraft.fluid.Fluids;
+import com.sophicreeper.backmath.util.BMTags;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.carver.CanyonWorldCarver;
 import net.minecraft.world.gen.feature.ProbabilityConfig;
 
 public class AljanRavineCarver extends CanyonWorldCarver {
     public AljanRavineCarver(Codec<ProbabilityConfig> codec) {
         super(codec);
-        this.carvableBlocks = ImmutableSet.of(BMBlocks.ALJAMIC_DIRT.get(), BMBlocks.ALJAMIC_GRASS_BLOCK.get(), BMBlocks.AVONDALIC_NYLIUM.get(), BMBlocks.ALJANSTONE.get(),
-                BMBlocks.SLEEPINGSTONE.get(), BMBlocks.INSOGRAVEL.get(), BMBlocks.ALJAMIC_SAND.get(), Blocks.GRASS_BLOCK);
-        this.carvableFluids = ImmutableSet.of(Fluids.WATER, BMFluids.SLEEPISHWATER.get());
+    }
+
+    @Override
+    public boolean isCarvable(BlockState state) {
+        return state.isIn(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES);
+    }
+
+    @Override
+    protected boolean func_222700_a(IChunk chunk, int chunkX, int chunkZ, int minX, int maxX, int minY, int maxY, int minZ, int maxZ) {
+        BlockPos.Mutable mutablePos = new BlockPos.Mutable();
+
+        for(int i = minX; i < maxX; ++i) {
+            for(int j = minZ; j < maxZ; ++j) {
+                for(int k = minY - 1; k <= maxY + 1; ++k) {
+                    if (BMTags.Fluids.ALJAN_CARVER_REPLACEABLES == chunk.getFluidState(mutablePos.setPos(i + chunkX * 16, k, j + chunkZ * 16)).getFluid()) {
+                        return true;
+                    }
+
+                    if (k != maxY + 1 && !this.isOnEdge(minX, maxX, minZ, maxZ, i, j)) {
+                        k = maxY;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean isOnEdge(int minX, int maxX, int minZ, int maxZ, int x, int z) {
+        return x == minX || x == maxX - 1 || z == minZ || z == maxZ - 1;
     }
 }

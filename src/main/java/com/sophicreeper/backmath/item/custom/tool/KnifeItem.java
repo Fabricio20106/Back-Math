@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.item.custom.tool;
 
 import com.google.common.collect.ImmutableSet;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,13 +20,18 @@ public class KnifeItem extends ToolItem {
     private static final Set<Block> EFFECTIVE_ON = ImmutableSet.of(Blocks.GRASS, Blocks.TALL_GRASS, Blocks.FERN, Blocks.LARGE_FERN, Blocks.SEAGRASS, Blocks.TALL_SEAGRASS, Blocks.KELP, Blocks.KELP_PLANT, Blocks.CRIMSON_ROOTS, Blocks.WARPED_ROOTS, Blocks.CRIMSON_FUNGUS, Blocks.WARPED_FUNGUS, Blocks.NETHER_SPROUTS, Blocks.WHEAT, Blocks.CARROTS, Blocks.POTATOES, Blocks.BEETROOTS, Blocks.NETHER_WART, Blocks.SWEET_BERRY_BUSH, Blocks.OAK_SAPLING, Blocks.SPRUCE_SAPLING, Blocks.BIRCH_SAPLING, Blocks.JUNGLE_SAPLING, Blocks.ACACIA_SAPLING, Blocks.DARK_OAK_SAPLING);
     public static final ToolType KNIFE = ToolType.get("knife");
 
-    public KnifeItem(float attackDamage, float attackSpeed, IItemTier tier, Properties properties) {
-        super(attackDamage, attackSpeed, tier, EFFECTIVE_ON, properties.addToolType(KNIFE, tier.getHarvestLevel()));
+    public KnifeItem(float attackDamage, float swingSpeed, IItemTier tier, Properties properties) {
+        super(attackDamage, swingSpeed, tier, EFFECTIVE_ON, properties.addToolType(KNIFE, tier.getHarvestLevel()));
+    }
+
+    public float getDestroySpeed(ItemStack stack, BlockState state) {
+        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return efficiency;
+        return state.isIn(BMTags.Blocks.MINEABLE_KNIVES) ? this.efficiency : 1;
     }
 
     @Override
-    public ItemStack getContainerItem(ItemStack itemStack) {
-        ItemStack container = itemStack.copy();
+    public ItemStack getContainerItem(ItemStack stack) {
+        ItemStack container = stack.copy();
         if (container.attemptDamageItem(1, random, null)) {
             return ItemStack.EMPTY;
         } else {

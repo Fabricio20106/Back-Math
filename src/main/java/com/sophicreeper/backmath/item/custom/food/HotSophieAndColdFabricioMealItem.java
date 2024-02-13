@@ -1,17 +1,14 @@
 package com.sophicreeper.backmath.item.custom.food;
 
 import com.sophicreeper.backmath.entity.BMDamageSources;
-import com.sophicreeper.backmath.item.tab.SophiesCursedFoods;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
 import net.minecraft.world.World;
 
 public class HotSophieAndColdFabricioMealItem extends Item {
-    public HotSophieAndColdFabricioMealItem() {
-        super(new Properties().group(SophiesCursedFoods.TAB).maxStackSize(8).rarity(Rarity.UNCOMMON).food(new Food.Builder().hunger(2).saturation(9.5f).build()));
+    public HotSophieAndColdFabricioMealItem(Properties properties) {
+        super(properties);
     }
 
     @Override

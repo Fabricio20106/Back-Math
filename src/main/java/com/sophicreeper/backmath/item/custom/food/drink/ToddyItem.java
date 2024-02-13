@@ -1,7 +1,5 @@
 package com.sophicreeper.backmath.item.custom.food.drink;
 
-import com.sophicreeper.backmath.item.tab.SophiesCursedFoods;
-import com.sophicreeper.backmath.item.custom.food.BMFoods;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,8 +17,8 @@ import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 import javax.annotation.Nullable;
 
 public class ToddyItem extends Item {
-    public ToddyItem() {
-        super(new Properties().group(SophiesCursedFoods.TAB).maxStackSize(1).food(BMFoods.TODDY));
+    public ToddyItem(Properties properties) {
+        super(properties);
     }
 
     @Override

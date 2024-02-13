@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -60,6 +61,13 @@ public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
     public static AttributeModifierMap.MutableAttribute createInsomniaSophieAttributes() {
         return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 4).createMutableAttribute(Attributes.MAX_HEALTH, 28).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
                 .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
     }
 
     public boolean isOnSameTeam(Entity entity) {

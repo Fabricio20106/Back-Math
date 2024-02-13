@@ -17,16 +17,16 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class BMSpawnEggItem extends SpawnEggItem {
-    private static final List<BMSpawnEggItem> UNADDED_EGGS = Lists.newArrayList();
+    private static final List<BMSpawnEggItem> BACKMATH_EGGS = Lists.newArrayList();
     private final Supplier<? extends EntityType<? extends Entity>> typeSupplier;
 
     public BMSpawnEggItem(Supplier<? extends EntityType<? extends Entity>> type, int primaryColor, int secondaryColor, Properties properties) {
         super(null, primaryColor, secondaryColor, properties);
         this.typeSupplier = type;
-        UNADDED_EGGS.add(this);
+        BACKMATH_EGGS.add(this);
     }
 
-    public static void initializeUnaddedEggs() {
+    public static void initBackMathEggs() {
         DefaultDispenseItemBehavior dispenseItemBehavior = new DefaultDispenseItemBehavior() {
             @Override
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
@@ -38,19 +38,19 @@ public class BMSpawnEggItem extends SpawnEggItem {
             }
         };
 
-        for (final SpawnEggItem spawnEgg : UNADDED_EGGS) {
-            EGGS.put(spawnEgg.getType(null), spawnEgg);
-            DispenserBlock.registerDispenseBehavior(spawnEgg, dispenseItemBehavior);
+        for (final SpawnEggItem spawnEggs : BACKMATH_EGGS) {
+            EGGS.put(spawnEggs.getType(null), spawnEggs);
+            DispenserBlock.registerDispenseBehavior(spawnEggs, dispenseItemBehavior);
         }
 
-        UNADDED_EGGS.clear();
+        BACKMATH_EGGS.clear();
         EGGS.remove(null);
     }
 
     @Override
-    public EntityType<?> getType(@Nullable CompoundNBT compoundNBT) {
-        if (compoundNBT != null && compoundNBT.contains("EntityTag", 10)) {
-            CompoundNBT entityTagNBT = compoundNBT.getCompound("EntityTag");
+    public EntityType<?> getType(@Nullable CompoundNBT tag) {
+        if (tag != null && tag.contains("EntityTag", 10)) {
+            CompoundNBT entityTagNBT = tag.getCompound("EntityTag");
             if (entityTagNBT.contains("id", 8)) {
                 return EntityType.byKey(entityTagNBT.getString("id")).orElse(this.typeSupplier.get());
             }

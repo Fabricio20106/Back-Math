@@ -1,8 +1,8 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.sophicreeper.backmath.item.custom.armor.BMArmorItem;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.custom.armor.BMArmorItem;
 import com.sophicreeper.backmath.item.custom.weapon.BMCrossbowItem;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -21,16 +21,17 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.ShootableItem;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
@@ -108,15 +109,8 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
     @Override
     public void tick() {
         super.tick();
-        this.updateTurtleHelmet();
-    }
-
-    private void updateTurtleHelmet() {
-        ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.TURTLE_SHELLS);
-        if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
-            this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
-        }
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
     }
 
     @Override

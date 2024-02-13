@@ -1,22 +1,20 @@
 package com.sophicreeper.backmath.item.custom.food.drink;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.tab.BackLayer;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class SleepishwaterBottleItem extends Item {
-    public SleepishwaterBottleItem() {
-        super(new Properties().group(BackLayer.TAB));
+    public SleepishwaterBottleItem(Properties properties) {
+        super(properties);
     }
 
     public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
@@ -28,7 +26,7 @@ public class SleepishwaterBottleItem extends Item {
         }
 
         if (stack.isEmpty()) {
-            return new ItemStack(Items.GLASS_BOTTLE);
+            return new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get());
         } else {
             if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
                 ItemStack aljamicGlassBottle = new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get());

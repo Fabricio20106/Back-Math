@@ -7,7 +7,9 @@ import com.sophicreeper.backmath.effect.BMEffects;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.custom.BMSpawnEggItem;
 import com.sophicreeper.backmath.item.custom.potion.BMPotions;
+import com.sophicreeper.backmath.item.custom.weapon.misc.QueenLucySummonerStaffItem;
 import com.sophicreeper.backmath.misc.BMMotives;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStats;
@@ -134,5 +136,9 @@ public class CommonProxy {
         BMVanillaCompatibility.registerCompatibilities();
         BMSurfaceBuilders.init();
         BMStructures.setupStructures();
+
+        // Spawn Eggs
+        BMSpawnEggItem.initBackMathEggs();
+        QueenLucySummonerStaffItem.initQueenLucyPet();
     }
 }

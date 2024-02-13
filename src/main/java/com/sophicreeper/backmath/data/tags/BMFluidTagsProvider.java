@@ -31,5 +31,7 @@ public class BMFluidTagsProvider extends FluidTagsProvider {
 
         this.getOrCreateBuilder(FluidTags.WATER).addTag(BMTags.Fluids.HILLARY).addTag(BMTags.Fluids.MILKLLARY).addTag(BMTags.Fluids.LIQUID_ALJAME).addTag(BMTags.Fluids.LIQUID_MANGA)
                 .addTag(BMTags.Fluids.LIQUEFIED_MONSTER).addTag(BMTags.Fluids.SLEEPISHWATER);
+
+        this.getOrCreateBuilder(BMTags.Fluids.ALJAN_CARVER_REPLACEABLES).addTag(BMTags.Fluids.SLEEPISHWATER).addTag(FluidTags.WATER);
     }
 }

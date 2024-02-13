@@ -1,26 +1,22 @@
 package com.sophicreeper.backmath.item.custom.weapon.sparey;
 
-import com.sophicreeper.backmath.entity.custom.*;
-import com.sophicreeper.backmath.item.BMSetFields;
-import com.sophicreeper.backmath.item.tab.BMWeaponryTab;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Rarity;
 import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
 public class DevilSpareySwordItem extends SwordItem {
-    public DevilSpareySwordItem() {
-        super(BMSetFields.SPAREY_SET, 3, -2.4F, new Properties().rarity(Rarity.UNCOMMON).group(BMWeaponryTab.TAB));
+    public DevilSpareySwordItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
+        super(tier, attackDamage, swingSpeed, properties);
     }
 
-    // When hitting an entity:
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity hitTarget) {
-        if (hitTarget instanceof WandererSophie || hitTarget instanceof InsomniaSophie || hitTarget instanceof KarateLucia || hitTarget instanceof ArcherLucia || hitTarget instanceof ShyFabricio ||
-                hitTarget instanceof WarriorSophie || hitTarget instanceof ArcherInsomniaSophie) {
+    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity target) {
+        if (target.getType().isContained(BMTags.EntityTypes.DEVIL_SPAREY_EFFECTIVES)) {
             player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 50, 2));
             // If the sword user hits one of these:
             // - Wanderer Sophie, Insomnia Sophie, Karate Lucia, Archer Lucia, Shy Fabricio or Warrior Sophie
@@ -29,10 +25,10 @@ public class DevilSpareySwordItem extends SwordItem {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200, 1));
             // Give user Weakness II for 10 secs.
         }
-        if (hitTarget instanceof QueenLucy) {
+        if (target.getType().isContained(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
             player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
-            // Give sword user hitting Queen Sophie Weakness LXIII (63) for 30 secs.
+            // Give sword user hitting Queen Lucy Weakness LXIII (63) for 30 secs.
         }
-        return super.onLeftClickEntity(stack, player, hitTarget);
+        return super.onLeftClickEntity(stack, player, target);
     }
 }

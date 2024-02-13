@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -15,6 +16,7 @@ import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
@@ -26,13 +28,12 @@ import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.ChatType;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -83,20 +84,8 @@ public class QueenLucyPet extends TameableEntity {
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaSophie.class, false));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherInsomniaSophie.class, false));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WarriorSophie.class, false));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherLucia.class, false));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombie.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieFabricio.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBones.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SleepishSkeleton.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
-        this.targetSelector.addGoal(3, new NonTamedTargetGoal<>(this, ZombieEntity.class, false, TARGETS));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class ,10, false, false, (livEntity) -> livEntity.getType().isContained(BMTags.EntityTypes.QUEEN_LUCY_PET_TARGETS)));
+        this.targetSelector.addGoal(3, new NonTamedTargetGoal<>(this, LivingEntity.class, false, TARGETS));
         super.registerGoals();
     }
 
@@ -155,11 +144,22 @@ public class QueenLucyPet extends TameableEntity {
         } else if (!this.isFlying() && this.isTamed() && this.isOwner(player)) {
             if (!this.world.isRemote) {
                 this.func_233687_w_(!this.isSitting());
+                displaySittingMessage(player, this.isSitting());
             }
 
             return ActionResultType.func_233537_a_(this.world.isRemote);
         } else {
             return super.func_230254_b_(player, hand);
+        }
+    }
+
+    public void displaySittingMessage(PlayerEntity player, boolean isSitting) {
+        if (isSitting && player instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+            serverPlayer.func_241151_a_(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".queen_lucy_pet.sit_down", this.getName()), ChatType.GAME_INFO, Util.DUMMY_UUID);
+        } else if (!isSitting && player instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+            serverPlayer.func_241151_a_(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".queen_lucy_pet.stand_up", this.getName()), ChatType.GAME_INFO, Util.DUMMY_UUID);
         }
     }
 
@@ -226,14 +226,14 @@ public class QueenLucyPet extends TameableEntity {
         this.dataManager.register(VARIANT, 0);
     }
 
-    public void writeAdditional(CompoundNBT compoundNBT) {
-        super.writeAdditional(compoundNBT);
-        compoundNBT.putInt("Variant", this.getVariant());
+    public void writeAdditional(CompoundNBT tag) {
+        super.writeAdditional(tag);
+        tag.putInt("Variant", this.getVariant());
     }
 
-    public void readAdditional(CompoundNBT compoundNBT) {
-        super.readAdditional(compoundNBT);
-        this.setVariant(compoundNBT.getInt("Variant"));
+    public void readAdditional(CompoundNBT tag) {
+        super.readAdditional(tag);
+        this.setVariant(tag.getInt("Variant"));
     }
 
     public boolean isFlying() {

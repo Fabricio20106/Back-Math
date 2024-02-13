@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "backmath:tabu"
+  },
+  "result": "backmath:cubic_tabu_stairs",
+  "count": 1
+}

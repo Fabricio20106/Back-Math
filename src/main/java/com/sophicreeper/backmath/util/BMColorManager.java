@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.util;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.block.BMBlocks;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.world.FoliageColors;
 import net.minecraft.world.GrassColors;
 import net.minecraft.world.biome.BiomeColors;
@@ -39,5 +40,7 @@ public class BMColorManager {
 
         event.getItemColors().register((stack, color) -> FoliageColors.getSpruce(), BMBlocks.GRAPE_VINE_LEAVES.get());
         event.getItemColors().register((stack, color) -> FoliageColors.getBirch(), BMBlocks.ALJAME_BIRCH_LEAVES.get());
+
+        event.getItemColors().register((stack, color) -> color > 0 ? -1 : PotionUtils.getColor(stack), AxolotlTest.EFFECT_JAM.get());
     }
 }

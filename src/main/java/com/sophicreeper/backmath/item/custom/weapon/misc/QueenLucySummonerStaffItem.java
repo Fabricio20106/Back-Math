@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.item.custom.weapon.misc;
 
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
@@ -8,6 +10,10 @@ import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.attributes.Attribute;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
@@ -22,16 +28,20 @@ import java.util.function.Supplier;
 
 // The Queen Lucy's Summoner Staff is a copy of the BMSpawnEggItem class
 public class QueenLucySummonerStaffItem extends SpawnEggItem {
-    private static final List<QueenLucySummonerStaffItem> UNADDED_EGGS = Lists.newArrayList();
+    private static final List<QueenLucySummonerStaffItem> BACKMATH_EGGS = Lists.newArrayList();
     private final Supplier<? extends EntityType<? extends Entity>> typeSupplier;
+    private final Multimap<Attribute, AttributeModifier> attributeModifiers;
 
     public QueenLucySummonerStaffItem(Supplier<? extends EntityType<? extends Entity>> type, int primaryColor, int secondaryColor, Properties properties) {
         super(null, primaryColor, secondaryColor, properties);
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Q.L.S.S. Swing Speed Modifier", -2.4F, AttributeModifier.Operation.ADDITION));
+        this.attributeModifiers = builder.build();
         this.typeSupplier = type;
-        UNADDED_EGGS.add(this);
+        BACKMATH_EGGS.add(this);
     }
 
-    public static void initializeUnaddedEggs() {
+    public static void initQueenLucyPet() {
         DefaultDispenseItemBehavior dispenseItemBehavior = new DefaultDispenseItemBehavior() {
             @Override
             protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
@@ -43,38 +53,44 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem {
             }
         };
 
-        for (final SpawnEggItem spawnEgg : UNADDED_EGGS) {
-            EGGS.put(spawnEgg.getType(null), spawnEgg);
-            DispenserBlock.registerDispenseBehavior(spawnEgg, dispenseItemBehavior);
+        for (final SpawnEggItem spawnEggs : BACKMATH_EGGS) {
+            EGGS.put(spawnEggs.getType(null), spawnEggs);
+            DispenserBlock.registerDispenseBehavior(spawnEggs, dispenseItemBehavior);
         }
 
-        UNADDED_EGGS.clear();
+        BACKMATH_EGGS.clear();
         EGGS.remove(null);
     }
 
     @Override
-    public EntityType<?> getType(@Nullable CompoundNBT compoundNBT) {
-        if (compoundNBT != null && compoundNBT.contains("EntityTag", 10)) {
-            CompoundNBT entityTagNBT = compoundNBT.getCompound("EntityTag");
-            if (entityTagNBT.contains("id", 8)) {
-                return EntityType.byKey(entityTagNBT.getString("id")).orElse(this.typeSupplier.get());
+    public EntityType<?> getType(@Nullable CompoundNBT tag) {
+        if (tag != null && tag.contains("EntityTag", 10)) {
+            CompoundNBT entityTag = tag.getCompound("EntityTag");
+            if (entityTag.contains("id", 8)) {
+                return EntityType.byKey(entityTag.getString("id")).orElse(this.typeSupplier.get());
             }
         }
 
         return this.typeSupplier.get();
     }
 
+    @Override
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot) {
+        return slot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(slot);
+    }
+
     // Adds tooltips for this item:
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        super.addInformation(stack, world, tooltip, flag);
         // Supposed to be an empty space to represent an actual weapon, like a sword.
         tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
         // "When in main hand:".
         tooltip.add(new TranslationTextComponent("tooltip.backmath.when.in_main_hand"));
         // Queen Sophie pets deal 17 damage, the "summon" damage is inspired by Terraria.
-        tooltip.add(new TranslationTextComponent("tooltip.backmath.qsss_summon_damage"));
+        tooltip.add(new TranslationTextComponent("tooltip.backmath.qlss_summon_damage"));
         // Terraria like tooltip, also says what food is used to tame her. Like parrots that don't like cookies, QSP's don't like aljame.
-        tooltip.add(new TranslationTextComponent("tooltip.backmath.qsss_desc"));
-        super.addInformation(stack, world, tooltip, flag);
+        tooltip.add(new TranslationTextComponent("tooltip.backmath.qlss_desc"));
+        tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
     }
 }

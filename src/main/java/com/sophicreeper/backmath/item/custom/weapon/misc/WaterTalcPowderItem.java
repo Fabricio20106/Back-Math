@@ -8,13 +8,13 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.world.World;
 
 public class WaterTalcPowderItem extends SwordItem {
-    public WaterTalcPowderItem(IItemTier tier, int attackDamage, float attackSpeed, Properties properties) {
-        super(tier, attackDamage, attackSpeed, properties);
+    public WaterTalcPowderItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
+        super(tier, attackDamage, swingSpeed, properties);
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        livingEntity.attackEntityFrom(BMDamageSources.WATER_TALC_POWDER, Float.MAX_VALUE);
-        return super.onItemUseFinish(stack, world, livingEntity);
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livEntity) {
+        livEntity.attackEntityFrom(BMDamageSources.WATER_TALC_POWDER, Float.MAX_VALUE);
+        return super.onItemUseFinish(stack, world, livEntity);
     }
 }

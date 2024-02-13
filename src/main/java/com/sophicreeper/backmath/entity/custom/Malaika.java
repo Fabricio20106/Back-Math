@@ -73,7 +73,7 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
     public void tick() {
         super.tick();
         ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.TURTLE_SHELLS);
+        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.PROVIDES_WATER_BREATHING);
 
         if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
             this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));

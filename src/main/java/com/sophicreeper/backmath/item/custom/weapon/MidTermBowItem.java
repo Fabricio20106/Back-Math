@@ -11,8 +11,7 @@ import static com.sophicreeper.backmath.config.BMConfigs.COMMON_CONFIGS;
 
 public class MidTermBowItem extends BMBowItem {
     public MidTermBowItem(Properties properties) {
-        super(COMMON_CONFIGS.midTermBowFCA.get(), COMMON_CONFIGS.midTermBowCBD.get(), COMMON_CONFIGS.midTermBowAAD.get(), COMMON_CONFIGS.midTermBowFIT.get(),
-                COMMON_CONFIGS.midTermBowFRD.get(), properties);
+        super(COMMON_CONFIGS.midTermBowFCA.get(), COMMON_CONFIGS.midTermBowCBD.get(), COMMON_CONFIGS.midTermBowAAD.get(), COMMON_CONFIGS.midTermBowFIT.get(), COMMON_CONFIGS.midTermBowFRD.get(), properties);
     }
 
     @Override
@@ -23,10 +22,10 @@ public class MidTermBowItem extends BMBowItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
-            LivingEntity livingEntity = (LivingEntity) entity;
-            livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
+            LivingEntity livEntity = (LivingEntity) entity;
+            livEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
+            entity.setFire(10);
         }
-        entity.setFire(10);
         return super.onLeftClickEntity(stack, player, entity);
     }
 
@@ -35,5 +34,10 @@ public class MidTermBowItem extends BMBowItem {
         if (count == 1) {
             this.onPlayerStoppedUsing(stack, player.world, player, count);
         }
+    }
+
+    @Override
+    public int getRGBDurabilityForDisplay(ItemStack stack) {
+        return COMMON_CONFIGS.midTermCustomDurabilityBar.get();
     }
 }

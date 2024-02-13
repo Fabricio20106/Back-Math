@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.item.custom.weapon;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -36,9 +37,7 @@ public class BMBowItem extends ShootableItem {
         this.fireRateDelay = fireRateDelay;
     }
 
-    /**
-     * Called when the player stops using an Item (stops holding the right mouse button).
-     */
+    // Called when the player stops using an Item (stops holding the right mouse button).
     public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity livEntity, int timeLeft) {
         if (livEntity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) livEntity;
@@ -131,7 +130,7 @@ public class BMBowItem extends ShootableItem {
         return trueCharge;
     }
 
-    // Default is 72.000
+    // Default is 72.000.
     public int getUseDuration(ItemStack stack) {
         return fireRateDelay;
     }
@@ -167,8 +166,13 @@ public class BMBowItem extends ShootableItem {
         return arrow;
     }
 
-    // getDefaultProjectileRange
+    // getDefaultProjectileRange()
     public int func_230305_d_() {
         return 15;
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return enchantment == Enchantments.POWER || enchantment == Enchantments.PUNCH || enchantment == Enchantments.FLAME || enchantment == Enchantments.INFINITY || super.canApplyAtEnchantingTable(stack, enchantment);
     }
 }

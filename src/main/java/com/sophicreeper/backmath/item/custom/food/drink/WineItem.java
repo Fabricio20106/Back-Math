@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.item.custom.food.drink;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.tab.SophiesCursedFoods;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -14,8 +13,8 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 
 public class WineItem extends Item {
-    public WineItem() {
-        super(new Properties().group(SophiesCursedFoods.TAB).maxStackSize(1));
+    public WineItem(Properties properties) {
+        super(properties);
     }
 
     public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {

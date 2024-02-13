@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.world.feature;
 
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.world.feature.custom.AljanDungeonFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.fml.RegistryObject;

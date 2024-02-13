@@ -102,6 +102,13 @@ public class BMCommonConfigs {
     // Debug
     public final ForgeConfigSpec.BooleanValue logStructureLocationMessages;
 
+    // Items
+    public final ForgeConfigSpec.BooleanValue milkedSwordsEnabled;
+    public final ForgeConfigSpec.IntValue midTermCustomDurabilityBar;
+    public final ForgeConfigSpec.IntValue spareyCustomDurabilityBar;
+    public final ForgeConfigSpec.IntValue midTermGreatswordReachIncrease;
+    public final ForgeConfigSpec.IntValue mechMechReachDecrease;
+
     public BMCommonConfigs(ForgeConfigSpec.Builder builder) {
         builder.comment("Welcome to the Back Math configuration file. Created on April 08th and 09th, 2022 and made working on April 21st and 22nd, 2022.");
         builder.push("oreGeneration");
@@ -160,6 +167,14 @@ public class BMCommonConfigs {
         builder.comment("Mob Spawning:");
         this.groundMobSpawningBackFields = builder.comment("Make it so that Back Fields mobs spawn in the ground and not on top of leaves or air. Disable for old behaviour.").define("groundMobSpawning.backFields", true);
         this.groundMobSpawningAljan = builder.comment("Make it so that aljan mobs spawn in the ground and not on top of leaves or air.").define("groundMobSpawning.aljan", true);
+        builder.pop();
+
+        builder.push("items");
+        this.milkedSwordsEnabled = builder.comment("Should milked swords give you Milk Buckets when hitting a mob.").define("milkedSwordsEnabled", true);
+        this.midTermCustomDurabilityBar = builder.comment("The color used by the durability bar of mid-term gear.").defineInRange("midTermCustomDurabilityBar", 0x1DC2D1, 0x000000, 0xFFFFFF);
+        this.spareyCustomDurabilityBar = builder.comment("The color used by the durability bar of (default) spareys gear.").defineInRange("spareyCustomDurabilityBar", 0x85C284, 0x000000, 0xFFFFFF);
+        this.midTermGreatswordReachIncrease = builder.comment("How much extra Reach Distance a Mid-Term Greatsword gives you.").defineInRange("midTermGreatswordReachIncrease", 2, -3, 64);
+        this.mechMechReachDecrease = builder.comment("How much less Reach Distance a Mech-Mech gives you.").defineInRange("mechMechReachDecrease", -1, -3, 64);
         builder.pop();
 
         builder.push("gameplayAspects");

@@ -6,24 +6,23 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "backmath:chocolate",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 0.0,
-                "max": 3.0,
-                "type": "minecraft:uniform"
+                "min": 0,
+                "max": 3
               }
             },
             {
               "function": "minecraft:looting_enchant",
               "count": {
-                "min": 0.0,
-                "max": 1.0
+                "min": 0,
+                "max": 1
               }
             }
-          ],
-          "name": "backmath:chocolate"
+          ]
         }
       ]
     },
@@ -33,6 +32,15 @@
         {
           "type": "minecraft:item",
           "name": "backmath:devil_sparey"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_damage",
+          "damage": {
+            "min": 0.25,
+            "max": 0.8
+          }
         }
       ],
       "conditions": [
@@ -50,13 +58,13 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "backmath:sophie",
           "functions": [
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 2.0,
-                "max": 5.0,
-                "type": "minecraft:uniform"
+                "min": 2,
+                "max": 5
               }
             },
             {
@@ -64,24 +72,23 @@
               "conditions": [
                 {
                   "condition": "minecraft:entity_properties",
+                  "entity": "this",
                   "predicate": {
                     "flags": {
                       "is_on_fire": true
                     }
-                  },
-                  "entity": "this"
+                  }
                 }
               ]
             },
             {
               "function": "minecraft:looting_enchant",
               "count": {
-                "min": 0.0,
-                "max": 1.0
+                "min": 0,
+                "max": 1
               }
             }
-          ],
-          "name": "backmath:sophie"
+          ]
         }
       ]
     }

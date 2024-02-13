@@ -1,6 +1,14 @@
 {
   "replace": false,
   "values": [
+    {
+      "id": "variants:ender_nylium",
+      "required": false
+    },
+    {
+      "id": "variants:ender_farmland",
+      "required": false
+    },
     "minecraft:end_stone",
     "minecraft:end_stone_bricks"
   ]

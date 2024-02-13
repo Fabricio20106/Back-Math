@@ -19,11 +19,11 @@ public class ChocoGlueItem extends Item {
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack heldStack = player.getHeldItem(hand);
-        world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), BMSounds.ITEM_CHOCOGLUE_SHOOT, SoundCategory.NEUTRAL, 0.5f, 0.4f / (random.nextFloat() * 0.4f + 0.8f));
+        world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), BMSounds.ITEM_CHOCOGLUE_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
         if (!world.isRemote) {
             ChocoGlueProjEntity chocoGlueProj = new ChocoGlueProjEntity(world, player);
             chocoGlueProj.setItem(heldStack);
-            chocoGlueProj.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0, 1.5f, 1);
+            chocoGlueProj.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0, 1.5F, 1);
             world.addEntity(chocoGlueProj);
         }
 

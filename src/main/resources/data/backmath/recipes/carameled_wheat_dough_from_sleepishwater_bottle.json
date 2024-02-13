@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:carameled_wheat_flour"
+    },
+    {
+      "item": "backmath:sleepishwater_bottle"
+    }
+  ],
+  "result": {
+    "item": "backmath:carameled_wheat_dough"
+  }
+}

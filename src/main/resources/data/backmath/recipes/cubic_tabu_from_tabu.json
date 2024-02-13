@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:tabu"
+    }
+  },
+  "result": {
+    "item": "backmath:cubic_tabu",
+    "count": 4
+  }
+}

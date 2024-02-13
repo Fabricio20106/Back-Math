@@ -5,7 +5,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
-import net.minecraft.tags.*;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ITag;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
 
 import static net.minecraft.tags.EntityTypeTags.getTagById;
@@ -64,6 +67,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> DUSTS_WATER = forge("dusts/water");
         public static final ITag.INamedTag<Item> DUSTS_HILLARY = forge("dusts/hillary");
         public static final ITag.INamedTag<Item> DUSTS_MILKLLARY = forge("dusts/milkllary");
+        public static final ITag.INamedTag<Item> DUSTS_MID_HILLARY = forge("dusts/mid_hillary");
 
         public static final ITag.INamedTag<Item> SINGULARITIES = forge("singularities");
         public static final ITag.INamedTag<Item> SINGULARITIES_MID_TERM = forge("singularities/mid_term");
@@ -116,11 +120,18 @@ public class BMTags {
         public static final ITag.INamedTag<Item> POPSICLES = backMath("popsicles");
         public static final ITag.INamedTag<Item> ALJANSTONE_CRAFTING_MATERIALS = backMath("aljanstone_crafting_materials");
         public static final ITag.INamedTag<Item> BONE_MEALS = backMath("bone_meals");
-        public static final ITag.INamedTag<Item> TURTLE_SHELLS = backMath("turtle_shells");
-        public static final ITag.INamedTag<Item> CROSSBOWS = backMath("crossbows");
         public static final ITag.INamedTag<Item> ARCHER_LUCIA_PICKUPABLES = backMath("archer_lucia_pickupables");
         public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TAME_ITEMS = backMath("queen_lucy_pet_tame_items");
         public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_DEADLY_ITEMS = backMath("queen_lucy_pet_deadly_items");
+        public static final ITag.INamedTag<Item> TABU_SMELTABLES = backMath("tabu_smeltables");
+
+        // Melony Tags
+        public static final ITag.INamedTag<Item> SHIELDS = melony("shields");
+        public static final ITag.INamedTag<Item> BOWS = melony("bows");
+        public static final ITag.INamedTag<Item> CROSSBOWS = melony("crossbows");
+        public static final ITag.INamedTag<Item> PROVIDES_EFFECT = melony("provides_effect");
+        public static final ITag.INamedTag<Item> PROVIDES_WATER_BREATHING = melony("provides_effect/water_breathing");
+        public static final ITag.INamedTag<Item> PROVIDES_RESISTANCE = melony("provides_effect/resistance");
 
         // Mob Related Tags
         public static final ITag.INamedTag<Item> MOB_TEMPT_ITEMS = backMath("tempt_items");
@@ -177,6 +188,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> GEMS_CRYSTALLINE_ANGELIC = forge("gems/crystalline_angelic");
         public static final ITag.INamedTag<Item> GEMS_JANTICAL = forge("gems/jantical");
         public static final ITag.INamedTag<Item> GEMS_PERSONA = forge("gems/persona");
+        public static final ITag.INamedTag<Item> GEMS_EMERIOND = forge("gems/emeriond");
 
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_DEVIL = forge("storage_blocks/devil");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_DEVIL = forge("storage_blocks/raw_devil");
@@ -204,6 +216,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_JANTICAL = forge("storage_blocks/jantical");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_ALJAMIC_COPPER = forge("storage_blocks/raw_aljamic_copper");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_RAW_ALJAMIC_TIN = forge("storage_blocks/raw_aljamic_tin");
+        public static final ITag.INamedTag<Item> STORAGE_BLOCKS_EMERIOND = forge("storage_blocks/emeriond");
 
         public static final ITag.INamedTag<Item> ORES_DEVIL = forge("ores/devil");
         public static final ITag.INamedTag<Item> ORES_ANGELIC = forge("ores/angelic");
@@ -232,6 +245,10 @@ public class BMTags {
 
         private static ITag.INamedTag<Item> forge(String path) {
             return ItemTags.makeWrapperTag(new ResourceLocation("forge", path).toString());
+        }
+
+        private static ITag.INamedTag<Item> melony(String path) {
+            return ItemTags.makeWrapperTag(new ResourceLocation("melony", path).toString());
         }
 
         private static ITag.INamedTag<Item> backMath(String path) {
@@ -266,6 +283,7 @@ public class BMTags {
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_JANTICAL = forge("storage_blocks/jantical");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ALJAMIC_COPPER = forge("storage_blocks/raw_aljamic_copper");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_RAW_ALJAMIC_TIN = forge("storage_blocks/raw_aljamic_tin");
+        public static final ITag.INamedTag<Block> STORAGE_BLOCKS_EMERIOND = forge("storage_blocks/emeriond");
 
         public static final ITag.INamedTag<Block> ORES_DEVIL = forge("ores/devil");
         public static final ITag.INamedTag<Block> ORES_ANGELIC = forge("ores/angelic");
@@ -302,12 +320,22 @@ public class BMTags {
         public static final ITag.INamedTag<Block> ALJAN_CROP_PLANTABLE_ON = backMath("aljan_crop_plantable_on");
         public static final ITag.INamedTag<Block> ENDER_DRAGON_FRIED_EGG_FLOWER_PLANTABLE_ON = backMath("ender_dragon_fried_egg_flower_plantable_on");
         public static final ITag.INamedTag<Block> TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON = backMath("turtle_fried_egg_flower_plantable_on");
+        public static final ITag.INamedTag<Block> MINEABLE_KNIVES = backMath("mineable/knife");
+        public static final ITag.INamedTag<Block> ALJAN_CARVER_REPLACEABLES = backMath("aljan_carver_replaceables");
+        public static final ITag.INamedTag<Block> ALJAN_TELEPORTER_REPLACEABLES = backMath("aljan_teleporter_replaceables");
 
         public static final ITag.INamedTag<Block> SOPHIE_IDEA = backMath("sophie_idea");
         public static final ITag.INamedTag<Block> BOUNTIFULLY_EXPANSIVE_IDEA = backMath("sophie_idea/bountifully_expansive");
 
+        // Melony Tags
+        public static final ITag.INamedTag<Block> CAMPFIRE_SIGNAL_FIRE_BLOCKS = melony("campfire_signal_fire_blocks");
+
         private static ITag.INamedTag<Block> forge(String path) {
             return BlockTags.makeWrapperTag(new ResourceLocation("forge", path).toString());
+        }
+
+        private static ITag.INamedTag<Block> melony(String path) {
+            return BlockTags.makeWrapperTag(new ResourceLocation("melony", path).toString());
         }
 
         private static ITag.INamedTag<Block> backMath(String path) {
@@ -325,6 +353,8 @@ public class BMTags {
         public static final ITag.INamedTag<Fluid> LIQUEFIED_MONSTER = backMath("liquefied_monster");
         public static final ITag.INamedTag<Fluid> SLEEPISHWATER = backMath("sleepishwater");
 
+        public static final ITag.INamedTag<Fluid> ALJAN_CARVER_REPLACEABLES = backMath("aljan_carver_replaceables");
+
         private static ITag.INamedTag<Fluid> backMath(String path) {
             return FluidTags.makeWrapperTag(BackMath.resourceLoc(path).toString());
         }
@@ -338,5 +368,10 @@ public class BMTags {
         public static final ITag.INamedTag<EntityType<?>> SOPHIES = getTagById("backmath:sophies");
         public static final ITag.INamedTag<EntityType<?>> LUCIAS = getTagById("backmath:lucias");
         public static final ITag.INamedTag<EntityType<?>> FABRICIOS = getTagById("backmath:fabricios");
+
+        public static final ITag.INamedTag<EntityType<?>> QUEEN_LUCY_PET_TARGETS = getTagById("backmath:queen_lucy_pet_targets");
+        public static final ITag.INamedTag<EntityType<?>> DEVIL_SPAREY_EFFECTIVES = getTagById("backmath:devil_sparey_effectives");
+        public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = getTagById("backmath:sparey_effectives");
+        public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = getTagById("backmath:sparey_prohibited");
     }
 }

@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.world.structure;
 
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.world.BMFeatures;
+import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import com.sophicreeper.backmath.world.biome.BMBiomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -23,8 +23,9 @@ public class BMStructureGeneration {
     public static void generateStructures(final BiomeLoadingEvent event) {
         List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
-        if (Objects.equals(BMBiomes.ORIGINAL_BACK_FIELDS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.MODIFIED_BACK_FIELDS.get().getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.sophieTowerGeneration.get()) {
-            structures.add(() -> BMStructures.SOPHIE_TOWER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+        if (Objects.equals(BMBiomes.ORIGINAL_BACK_FIELDS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.MODIFIED_BACK_FIELDS.get().getRegistryName(), event.getName())) {
+            if (BMConfigs.COMMON_CONFIGS.sophieTowerGeneration.get()) structures.add(() -> BMStructures.SOPHIE_TOWER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+            event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ANGER_DUNGEON);
         }
 
         for (Biome biome : ALJAN_BIOMES) {
@@ -33,7 +34,7 @@ public class BMStructureGeneration {
             }
 
             if (Objects.equals(biome.getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.aljanDungeonsInAljan.get()) {
-                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMFeatures.ALJAN_DUNGEON);
+                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ALJAN_DUNGEON);
             }
         }
     }

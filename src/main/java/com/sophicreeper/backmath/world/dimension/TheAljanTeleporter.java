@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.block.custom.AljanPortalStandBlock;
 import com.sophicreeper.backmath.block.custom.BMBlockStateProperties;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.fluid.Fluids;
@@ -26,25 +27,31 @@ public class TheAljanTeleporter implements ITeleporter {
     @Override
     public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destinationWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
         entity = repositionEntity.apply(false);
-        // Used to be 61.
-        double y = 63;
+        // Used to be 61, then 63.
+        double y = 0;
 
         if (!insideDimension) {
             y = thisPos.getY();
         }
 
-        BlockPos destinationPos = new BlockPos(thisPos.getX() + 2.5f, y, thisPos.getZ());
+        // Now positions the entity at ~ ~1 ~ (~ = the location of the stand).
+        BlockPos destinationPos = new BlockPos(thisPos.getX(), y, thisPos.getZ());
 
         int tries = 0;
-        while ((destinationWorld.getBlockState(destinationPos).getMaterial() != Material.AIR) && !destinationWorld.getBlockState(destinationPos).isReplaceable(Fluids.WATER) &&
-                destinationWorld.getBlockState(destinationPos.up()).getMaterial() != Material.AIR && !destinationWorld.getBlockState(destinationPos.up()).isReplaceable(Fluids.WATER) && tries < 25 &&
-                (destinationWorld.getBlockState(destinationPos).getMaterial() != Material.AIR) && !destinationWorld.getBlockState(destinationPos).isReplaceable(BMFluids.SLEEPISHWATER.get()) &&
-                destinationWorld.getBlockState(destinationPos.up()).getMaterial() != Material.AIR && !destinationWorld.getBlockState(destinationPos.up()).isReplaceable(BMFluids.SLEEPISHWATER.get()) && tries < 25) {
-            destinationPos = destinationPos.up(2);
+        while (destinationWorld.getBlockState(destinationPos).getMaterial() != Material.AIR && !destinationWorld.getBlockState(destinationPos).isIn(BMTags.Blocks.ALJAN_TELEPORTER_REPLACEABLES) && tries < 250) {
+            destinationPos = destinationPos.up(1);
             tries++;
         }
 
-        entity.setPositionAndUpdate(destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
+        // On Overworld
+        if (!insideDimension) {
+            while (destinationWorld.getBlockState(destinationPos.down()).getMaterial() == Material.AIR) {
+                destinationPos = destinationPos.down(1);
+            }
+            entity.setPositionAndUpdate(destinationPos.getX() + 0.5, destinationPos.getY() + 0.9, destinationPos.getZ() + 0.5);
+        } else { // On Aljan
+            entity.setPositionAndUpdate(destinationPos.getX() + 0.5, destinationPos.getY() + 0.9, destinationPos.getZ() + 0.5);
+        }
 
         if (insideDimension) {
             boolean doSetBlock = true;
@@ -59,6 +66,10 @@ public class TheAljanTeleporter implements ITeleporter {
                     destinationWorld.setBlockState(destinationPos, BMBlocks.ALJAN_PORTAL_STAND.get().getDefaultState().with(BMBlockStateProperties.JANTICAL, true));
                 } else {
                     destinationWorld.setBlockState(destinationPos, BMBlocks.ALJAN_PORTAL_STAND.get().getDefaultState());
+                }
+                // Places a Polished Sleepingstone below the stand when above water or sleepishwater
+                if (destinationWorld.getFluidState(destinationPos.down()).isTagged(BMTags.Fluids.ALJAN_CARVER_REPLACEABLES)) {
+                    destinationWorld.setBlockState(destinationPos.down(), BMBlocks.POLISHED_SLEEPINGSTONE.get().getDefaultState());
                 }
             }
         }

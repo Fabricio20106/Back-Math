@@ -51,6 +51,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_JANTICAL).add(AxolotlTest.JANTICAL_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_RAW_ALJAMIC_COPPER).add(AxolotlTest.RAW_ALJAMIC_COPPER_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_RAW_ALJAMIC_TIN).add(AxolotlTest.RAW_ALJAMIC_TIN_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Items.STORAGE_BLOCKS_EMERIOND).add(AxolotlTest.EMERIOND_BLOCK.get());
 
         this.getOrCreateBuilder(BMTags.Items.ORES_DEVIL).add(AxolotlTest.DEVIL_ORE.get()).add(AxolotlTest.DEEPSLATE_DEVIL_ORE.get()).add(AxolotlTest.NETHER_DEVIL_ORE.get()).add(AxolotlTest.RAW_DEVIL.get());
         this.getOrCreateBuilder(BMTags.Items.ORES_ANGELIC).add(AxolotlTest.ANGELIC_ORE.get()).add(AxolotlTest.DEEPSLATE_ANGELIC_ORE.get()).add(AxolotlTest.RAW_ANGELIC.get());
@@ -90,6 +91,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_JANTICAL);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_RAW_ALJAMIC_COPPER);
         this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_RAW_ALJAMIC_TIN);
+        this.getOrCreateBuilder(Tags.Items.STORAGE_BLOCKS).addTag(BMTags.Items.STORAGE_BLOCKS_EMERIOND);
 
         this.getOrCreateBuilder(Tags.Items.ORES).addTag(BMTags.Items.ORES_DEVIL).addTag(BMTags.Items.ORES_ANGELIC).addTag(BMTags.Items.ORES_MID_TERM)
                 .addTag(BMTags.Items.ORES_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.ORES_ALJAMEED).addTag(BMTags.Items.ORES_MOONERING).addTag(BMTags.Items.ORES_JANTICAL)
@@ -125,6 +127,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.DUSTS_MID_TERM).add(AxolotlTest.MID_TERM_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_HILLARY).add(AxolotlTest.HILLARY_AGGLOMERATIO.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_MILKLLARY).add(AxolotlTest.MILKLLARY_AGGLOMERATIO.get());
+        this.getOrCreateBuilder(BMTags.Items.DUSTS_MID_HILLARY).add(AxolotlTest.TWO_THIRDS_HILLARY_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_CHRISTIAN_MID_TERM_ANGELIC).add(AxolotlTest.CHRISTIAN_MID_TERM_ANGELIC_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_CHRISTIAN_MID_TERM_DEVIL).add(AxolotlTest.CHRISTIAN_MID_TERM_DEVIL_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_DEVIL_ANGELIC).add(AxolotlTest.DEVIL_ANGELIC_DUST.get());
@@ -134,10 +137,6 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.DUSTS_MOONERING).add(AxolotlTest.MOONERING_DUST.get());
         this.getOrCreateBuilder(BMTags.Items.DUSTS_WATER).add(AxolotlTest.WATER_TALC_POWDER.get());
 
-        this.getOrCreateBuilder(BMTags.Items.SINGULARITIES).addTag(BMTags.Items.SINGULARITIES_FRUTIFERY).addTag(BMTags.Items.SINGULARITIES_MEATY).addTag(BMTags.Items.SINGULARITIES_VEGETABLY).addTag(BMTags.Items.SINGULARITIES_EMOTIONAL).addTag(BMTags.Items.SINGULARITIES_CHRISTIANITY)
-                .addTag(BMTags.Items.SINGULARITIES_HEAT).addTag(BMTags.Items.SINGULARITIES_FISHY).addTag(BMTags.Items.SINGULARITIES_MID_TERM).addTag(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.SINGULARITIES_MILKLLARY).addTag(BMTags.Items.SINGULARITIES_MANGA_MANGO)
-                .addTag(BMTags.Items.SINGULARITIES_MEATY_FABRICIO).addTag(BMTags.Items.SINGULARITIES_MEATY_SOPHIE).addTag(BMTags.Items.SINGULARITIES_MEATY_LUCIA).addTag(BMTags.Items.SINGULARITIES_MEATY_MINECRAFT).addTag(BMTags.Items.SINGULARITIES_FRUTIFERY_BACKMATH)
-                .addTag(BMTags.Items.SINGULARITIES_FRUTIFERY_MINECRAFT).addTag(BMTags.Items.SINGULARITIES_VEGETABLY_VARIANTS);
         this.getOrCreateBuilder(BMTags.Items.SINGULARITIES_CHRISTIANITY).add(AxolotlTest.CHRISTIANITY_SINGULARITY.get());
         this.getOrCreateBuilder(BMTags.Items.SINGULARITIES_EMOTIONAL).add(AxolotlTest.EMOTIONAL_SINGULARITY.get());
         this.getOrCreateBuilder(BMTags.Items.SINGULARITIES_HEAT).add(AxolotlTest.HEAT_SINGULARITY.get()).add(AxolotlTest.TEMPERATURE_SINGULARITY.get());
@@ -156,6 +155,11 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.SINGULARITIES_MEATY_SOPHIE).add(AxolotlTest.MEATY_SINGULARITY_SOPHIE.get());
         this.getOrCreateBuilder(BMTags.Items.SINGULARITIES_MEATY_LUCIA).add(AxolotlTest.MEATY_SINGULARITY_LUCIA.get());
         this.getOrCreateBuilder(BMTags.Items.SINGULARITIES_MEATY_MINECRAFT).add(AxolotlTest.MEATY_SINGULARITY_MINECRAFT.get());
+
+        this.getOrCreateBuilder(BMTags.Items.SINGULARITIES).addTag(BMTags.Items.SINGULARITIES_FRUTIFERY).addTag(BMTags.Items.SINGULARITIES_MEATY).addTag(BMTags.Items.SINGULARITIES_VEGETABLY).addTag(BMTags.Items.SINGULARITIES_EMOTIONAL).addTag(BMTags.Items.SINGULARITIES_CHRISTIANITY)
+                .addTag(BMTags.Items.SINGULARITIES_HEAT).addTag(BMTags.Items.SINGULARITIES_FISHY).addTag(BMTags.Items.SINGULARITIES_MID_TERM).addTag(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.SINGULARITIES_MILKLLARY).addTag(BMTags.Items.SINGULARITIES_MANGA_MANGO)
+                .addTag(BMTags.Items.SINGULARITIES_MEATY_FABRICIO).addTag(BMTags.Items.SINGULARITIES_MEATY_SOPHIE).addTag(BMTags.Items.SINGULARITIES_MEATY_LUCIA).addTag(BMTags.Items.SINGULARITIES_MEATY_MINECRAFT).addTag(BMTags.Items.SINGULARITIES_FRUTIFERY_BACKMATH)
+                .addTag(BMTags.Items.SINGULARITIES_FRUTIFERY_MINECRAFT).addTag(BMTags.Items.SINGULARITIES_VEGETABLY_VARIANTS);
 
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_DEVIL).add(AxolotlTest.DEVIL_NUGGET.get());
         this.getOrCreateBuilder(BMTags.Items.NUGGETS_ANGELIC).add(AxolotlTest.ANGELIC_NUGGET.get());
@@ -214,6 +218,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.GEMS_OBSIDIAN_INFUSED_MID_TERM).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get());
         this.getOrCreateBuilder(BMTags.Items.GEMS_JANTICAL).add(AxolotlTest.JANTICAL.get());
         this.getOrCreateBuilder(BMTags.Items.GEMS_PERSONA).add(AxolotlTest.PERSONA_SHARD.get());
+        this.getOrCreateBuilder(BMTags.Items.GEMS_EMERIOND).add(AxolotlTest.EMERIOND.get());
 
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.INGOTS).addTag(BMTags.Items.INGOTS_DEVIL);
@@ -247,7 +252,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
 
         // Gems
         this.getOrCreateBuilder(Tags.Items.GEMS).addTag(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.GEMS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.GEMS_JANTICAL)
-                .addTag(BMTags.Items.GEMS_PERSONA).addTag(BMTags.Items.GEMS_MID_TERM).addTag(BMTags.Items.GEMS_MILKLLARITY);
+                .addTag(BMTags.Items.GEMS_PERSONA).addTag(BMTags.Items.GEMS_EMERIOND).addTag(BMTags.Items.GEMS_MID_TERM).addTag(BMTags.Items.GEMS_MILKLLARITY);
 
         // Glass and Glass Panes
         this.getOrCreateBuilder(Tags.Items.GLASS_COLORLESS).add(AxolotlTest.ALJAMIC_GLASS.get());
@@ -265,6 +270,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_MID_TERM);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_HILLARY);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_MILKLLARY);
+        this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_MID_HILLARY);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_CHRISTIAN_MID_TERM_ANGELIC);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_CHRISTIAN_MID_TERM_DEVIL);
         this.getOrCreateBuilder(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_DEVIL_ANGELIC);
@@ -287,7 +293,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(BMTags.Items.ARMORS_BOOTS).add(Items.LEATHER_BOOTS).add(Items.CHAINMAIL_BOOTS).add(Items.IRON_BOOTS).add(Items.GOLDEN_BOOTS).add(Items.DIAMOND_BOOTS)
                 .add(Items.NETHERITE_BOOTS).add(AxolotlTest.DEVIL_BOOTS.get()).add(AxolotlTest.ANGELIC_BOOTS.get()).add(AxolotlTest.MID_TERM_BOOTS.get()).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BOOTS.get())
                 .add(AxolotlTest.BAKUGOU_SHOES.get()).add(AxolotlTest.HARDENED_AMARACAMEL_BOOTS.get()).add(AxolotlTest.MILKLLARY_BOOTS.get()).add(AxolotlTest.ALJAMEED_BOOTS.get())
-                .add(AxolotlTest.MOONERING_BOOTS.get());
+                .add(AxolotlTest.MOONERING_BOOTS.get()).add(AxolotlTest.JANTIQUIFIED_MOONERING_BOOTS.get());
         this.getOrCreateBuilder(Tags.Items.HEADS).add(AxolotlTest.ANGRY_SOPHIE_HEAD.get()).add(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get()).add(AxolotlTest.QUEEN_SOPHIE_HEAD.get()).add(AxolotlTest.ZOMBIE_FABRICIO_HEAD.get());
         this.getOrCreateBuilder(BMTags.Items.KNIVES).add(AxolotlTest.WOODEN_KNIFE.get()).add(AxolotlTest.STONE_KNIFE.get()).add(AxolotlTest.IRON_KNIFE.get()).add(AxolotlTest.DIAMOND_KNIFE.get())
                 .add(AxolotlTest.GOLDEN_KNIFE.get()).add(AxolotlTest.NETHERITE_KNIFE.get()).add(AxolotlTest.DEVIL_KNIFE.get()).add(AxolotlTest.ANGELIC_KNIFE.get()).add(AxolotlTest.MID_TERM_KNIFE.get())
@@ -302,11 +308,10 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.getOrCreateBuilder(Tags.Items.SLIMEBALLS).add(AxolotlTest.STICKY_AMARACAMEL_BALL.get());
         this.getOrCreateBuilder(BMTags.Items.FRUITS).add(AxolotlTest.GUARANA.get(), AxolotlTest.MANGO.get(), AxolotlTest.GRAPES.get(), AxolotlTest.LEMON.get(), AxolotlTest.PINEAPPLE.get(), AxolotlTest.ORANGE.get(), AxolotlTest.BANANA.get(), AxolotlTest.GUAVA.get(),
                 AxolotlTest.JABUTICABA.get(), AxolotlTest.GREEN_APPLE.get(), AxolotlTest.ALJAMIC_BERRY.get());
-        this.getOrCreateBuilder(BMTags.Items.TURTLE_SHELLS).add(Items.TURTLE_HELMET).add(AxolotlTest.CANDY_PINK_TURTLE_HELMET.get()).add(AxolotlTest.CANDY_YELLOW_TURTLE_HELMET.get());
-        this.getOrCreateBuilder(BMTags.Items.CROSSBOWS).add(Items.CROSSBOW).add(AxolotlTest.DEVIL_CROSSBOW.get()).add(AxolotlTest.ANGELIC_CROSSBOW.get());
         this.getOrCreateBuilder(BMTags.Items.ARCHER_LUCIA_PICKUPABLES).addTag(BMTags.Items.CROSSBOWS);
         this.getOrCreateBuilder(BMTags.Items.QUEEN_LUCY_PET_TAME_ITEMS).addTag(BMTags.Items.FRUITS);
         this.getOrCreateBuilder(BMTags.Items.QUEEN_LUCY_PET_DEADLY_ITEMS).add(AxolotlTest.ALJAME.get());
+        this.getOrCreateBuilder(BMTags.Items.TABU_SMELTABLES).add(AxolotlTest.TABU.get()).add(AxolotlTest.CUBIC_TABU.get()).add(AxolotlTest.TABU_MOSAIC.get()).add(AxolotlTest.TABU_PILLAR.get());
 
         this.getOrCreateBuilder(BMTags.Items.WANDERER_SOPHIE_TEMPT_ITEMS).add(AxolotlTest.MILKLLARY_CAKE.get());
         this.getOrCreateBuilder(BMTags.Items.QUEEN_LUCY_PET_TEMPT_ITEMS).add(AxolotlTest.GUARANA.get(), Items.CAKE);
@@ -319,6 +324,15 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .addTag(BMTags.Items.NUGGETS_MID_TERM).addTag(BMTags.Items.NUGGETS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.NUGGETS_ALJAMEED).addTag(BMTags.Items.NUGGETS_MOONERING)
                 .addTag(BMTags.Items.NUGGETS_HARDENED_AMARACAMEL).addTag(BMTags.Items.NUGGETS_MILKLLARY).addTag(BMTags.Items.NUGGETS_MID_HILLARY).addTag(BMTags.Items.NUGGETS_MILKLLARITY)
                 .addTag(BMTags.Items.NUGGETS_CRYSTALLINE_ANGELIC).addTag(BMTags.Items.NUGGETS_JANTICAL).addTag(BMTags.Items.NUGGETS_ALJANSTEEL);
+
+        // Melony Tags
+        this.getOrCreateBuilder(BMTags.Items.SHIELDS).add(Items.SHIELD).add(AxolotlTest.DEVIL_SHIELD.get()).add(AxolotlTest.ANGELIC_SHIELD.get()).add(AxolotlTest.MID_TERM_SHIELD.get()).add(AxolotlTest.ALJAMEED_SHIELD.get())
+                .add(AxolotlTest.MOONERING_SHIELD.get());
+        this.getOrCreateBuilder(BMTags.Items.BOWS).add(AxolotlTest.DEVIL_BOW.get()).add(AxolotlTest.ANGELIC_BOW.get()).add(AxolotlTest.MID_TERM_BOW.get());
+        this.getOrCreateBuilder(BMTags.Items.CROSSBOWS).add(Items.CROSSBOW).add(AxolotlTest.DEVIL_CROSSBOW.get()).add(AxolotlTest.ANGELIC_CROSSBOW.get());
+        this.getOrCreateBuilder(BMTags.Items.PROVIDES_WATER_BREATHING).add(Items.TURTLE_HELMET).add(AxolotlTest.CANDY_PINK_TURTLE_HELMET.get()).add(AxolotlTest.CANDY_YELLOW_TURTLE_HELMET.get());
+        this.getOrCreateBuilder(BMTags.Items.PROVIDES_RESISTANCE);
+        this.getOrCreateBuilder(BMTags.Items.PROVIDES_EFFECT).addTag(BMTags.Items.PROVIDES_WATER_BREATHING).addTag(BMTags.Items.PROVIDES_RESISTANCE);
 
         // Back Math Tags
 
@@ -400,7 +414,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.SWEET_BERRY_JAM.get()).add(AxolotlTest.GLOW_BERRY_JAM.get()).add(AxolotlTest.MUSHROOM_STEW_POT.get()).add(AxolotlTest.FUNGI_STEW_POT.get()).add(
                         AxolotlTest.END_FUNGI_STEW_POT.get()).add(AxolotlTest.ALJAN_FUNGI_STEW_POT.get()).add(AxolotlTest.BEETROOT_SOUP_POT.get()).add(AxolotlTest.RABBIT_STEW_POT.get())
                 .add(AxolotlTest.HILLARY_JAM.get()).add(AxolotlTest.MILKLLARY_JAM.get()).add(AxolotlTest.WATER_JAM.get()).add(AxolotlTest.LAVA_POT.get()).add(AxolotlTest.MILK_POT.get())
-                .add(AxolotlTest.POWDER_SNOW_POT.get()).add(AxolotlTest.COOKIE_POT.get()); //.add(AxolotlTest.JAM_POT.get()); // Don't know if this counts for this tag.
+                .add(AxolotlTest.POWDER_SNOW_POT.get()).add(AxolotlTest.COOKIE_POT.get()).add(AxolotlTest.EFFECT_JAM.get()); //.add(AxolotlTest.JAM_POT.get()); // Don't know if this counts for this tag.
         this.getOrCreateBuilder(BMTags.Items.CUT_FRUITS).add(AxolotlTest.CUT_GUARANA.get()).add(AxolotlTest.CUT_MANGO.get()).add(AxolotlTest.CUT_GRAPES.get())
                 .add(AxolotlTest.CUT_LEMON.get()).add(AxolotlTest.CUT_PINEAPPLE.get()).add(AxolotlTest.CUT_ORANGE.get()).add(AxolotlTest.CUT_BANANA.get()).add(AxolotlTest.CUT_GUAVA.get())
                 .add(AxolotlTest.CUT_JABUTICABA.get()).add(AxolotlTest.CUT_GREEN_APPLE.get()).add(AxolotlTest.CUT_ALJAME.get()).add(AxolotlTest.CUT_JANTIQUIFIED_ALJAME.get())

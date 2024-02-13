@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.item.custom.weapon.milked;
 
+import com.sophicreeper.backmath.config.BMConfigs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -8,11 +9,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
-import net.minecraft.world.World;
 
-public class MilkedMidTermSwordItem extends SwordItem {
-    public MilkedMidTermSwordItem(IItemTier tier, int attackDamage, float attackSpeed, Properties properties) {
-        super(tier, attackDamage, attackSpeed, properties);
+public class MilkedMidTermSwordItem extends MilkedSwordItem {
+    public MilkedMidTermSwordItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
+        super(tier, attackDamage, swingSpeed, properties);
     }
 
     @Override
@@ -25,21 +25,13 @@ public class MilkedMidTermSwordItem extends SwordItem {
         if (entity instanceof LivingEntity) {
             LivingEntity livingEntity = (LivingEntity) entity;
             livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
+            entity.setFire(10);
         }
-        entity.setFire(10);
         return super.onLeftClickEntity(stack, player, entity);
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        if (livingEntity instanceof PlayerEntity) {
-            ((PlayerEntity) livingEntity).giveExperiencePoints(500);
-        }
-        return super.onItemUseFinish(stack, world, livingEntity);
-    }
-
-    @Override
     public int getRGBDurabilityForDisplay(ItemStack stack) {
-        return 0x1dc2d1;
+        return BMConfigs.COMMON_CONFIGS.midTermCustomDurabilityBar.get();
     }
 }

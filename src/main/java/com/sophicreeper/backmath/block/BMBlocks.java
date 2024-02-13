@@ -25,21 +25,21 @@ public class BMBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BackMath.MOD_ID);
 
     public static final RegistryObject<Block> DEVIL_ORE = BLOCKS.register("devil_ore", () -> new OreBlock(AbstractBlock.Properties.from(Blocks.IRON_ORE).harvestLevel(2)));
-    public static final RegistryObject<Block> DEEPSLATE_DEVIL_ORE = BLOCKS.register("deepslate_devil_ore", () -> new OreBlock(AbstractBlock.Properties.from(Blocks.IRON_ORE).harvestLevel(2).hardnessAndResistance(4.5f)));
+    public static final RegistryObject<Block> DEEPSLATE_DEVIL_ORE = BLOCKS.register("deepslate_devil_ore", () -> new OreBlock(AbstractBlock.Properties.from(Blocks.IRON_ORE).harvestLevel(2).hardnessAndResistance(4.5F)));
     public static final RegistryObject<Block> NETHER_DEVIL_ORE = BLOCKS.register("nether_devil_ore", () -> new OreBlock(AbstractBlock.Properties.from(Blocks.IRON_ORE).harvestLevel(2).sound(SoundType.NETHER_ORE)));
     public static final RegistryObject<Block> CHRISTIAN_MID_TERM_BLOCK = BLOCKS.register("christian_mid_term_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> CHRISTIAN_MID_TERM_ANGELIC_ALLOY_BLOCK = BLOCKS.register("christian_mid_term_angelic_alloy_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> CHRISTIAN_MID_TERM_DEVIL_ALLOY_BLOCK = BLOCKS.register("christian_mid_term_devil_alloy_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
-    public static final RegistryObject<Block> DEVIL_ANGELIC_ALLOY_BLOCK = BLOCKS.register("devil_angelic_alloy_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
-    public static final RegistryObject<Block> MID_TERM_ORE = BLOCKS.register("mid_term_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(3).hardnessAndResistance(50.0F, 1200.0F)));
-    public static final RegistryObject<Block> OBSIDIAN_MID_TERM_ORE = BLOCKS.register("obsidian_mid_term_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK).harvestLevel(3).setRequiresTool().hardnessAndResistance(100.0F, 2400.0F)));
-    public static final RegistryObject<Block> MID_TERM_BLOCK = BLOCKS.register("mid_term_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.METAL).harvestLevel(3).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F)));
-    public static final RegistryObject<Block> OBSIDIAN_INFUSED_MID_TERM_BLOCK = BLOCKS.register("obsidian_infused_mid_term_block", () -> new Block(AbstractBlock.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(100.0F, 2400.0F)));
-    public static final RegistryObject<Block> RAW_MID_TERM_BLOCK = BLOCKS.register("raw_mid_term_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(50.0F, 1200.0F)));
-    public static final RegistryObject<Block> DEVIL_BLOCK = BLOCKS.register("devil_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK).harvestLevel(2)));
-    public static final RegistryObject<Block> RAW_DEVIL_BLOCK = BLOCKS.register("raw_devil_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_ORE).harvestLevel(2).hardnessAndResistance(5.0F, 6.0F)));
-    public static final RegistryObject<Block> CHISELED_DEVIL_BLOCK = BLOCKS.register("chiseled_devil_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
-    public static final RegistryObject<Block> CHISELED_DEVIL_BLOCK_SOPHIE = BLOCKS.register("sophie_chiseled_devil_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> DEVIL_ANGELIC_ALLOY_BLOCK = BLOCKS.register("devil_angelic_alloy_block", () -> new DevilBlock(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> MID_TERM_ORE = BLOCKS.register("mid_term_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().harvestLevel(3).hardnessAndResistance(50, 1200)));
+    public static final RegistryObject<Block> OBSIDIAN_MID_TERM_ORE = BLOCKS.register("obsidian_mid_term_ore", () -> new OreBlock(AbstractBlock.Properties.create(Material.ROCK).harvestLevel(3).setRequiresTool().hardnessAndResistance(100, 2400)));
+    public static final RegistryObject<Block> MID_TERM_BLOCK = BLOCKS.register("mid_term_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).sound(SoundType.METAL).harvestLevel(3).setRequiresTool().hardnessAndResistance(50, 1200)));
+    public static final RegistryObject<Block> OBSIDIAN_INFUSED_MID_TERM_BLOCK = BLOCKS.register("obsidian_infused_mid_term_block", () -> new Block(AbstractBlock.Properties.create(Material.IRON).sound(SoundType.METAL).setRequiresTool().hardnessAndResistance(100, 2400)));
+    public static final RegistryObject<Block> RAW_MID_TERM_BLOCK = BLOCKS.register("raw_mid_term_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).setRequiresTool().hardnessAndResistance(50, 1200)));
+    public static final RegistryObject<Block> DEVIL_BLOCK = BLOCKS.register("devil_block", () -> new DevilBlock(AbstractBlock.Properties.from(Blocks.IRON_BLOCK).harvestLevel(2)));
+    public static final RegistryObject<Block> RAW_DEVIL_BLOCK = BLOCKS.register("raw_devil_block", () -> new DevilBlock(AbstractBlock.Properties.from(Blocks.IRON_ORE).harvestLevel(2).hardnessAndResistance(5, 6)));
+    public static final RegistryObject<Block> CHISELED_DEVIL_BLOCK = BLOCKS.register("chiseled_devil_block", () -> new DevilBlock(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
+    public static final RegistryObject<Block> CHISELED_DEVIL_BLOCK_SOPHIE = BLOCKS.register("sophie_chiseled_devil_block", () -> new DevilBlock(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> DEVIL_SLAB = BLOCKS.register("devil_slab", () -> new SlabBlock(AbstractBlock.Properties.from(DEVIL_BLOCK.get())));
     public static final RegistryObject<Block> DEVIL_STAIRS = BLOCKS.register("devil_stairs", () -> new StairsBlock(() -> DEVIL_BLOCK.get().getDefaultState(), AbstractBlock.Properties.from(DEVIL_BLOCK.get())));
     public static final RegistryObject<Block> DEVIL_FENCE = BLOCKS.register("devil_fence", () -> new FenceBlock(AbstractBlock.Properties.from(DEVIL_BLOCK.get())));
@@ -89,16 +89,16 @@ public class BMBlocks {
     public static final RegistryObject<Block> DEVIL_STAINED_GLASS_PANE = BLOCKS.register("devil_stained_glass_pane", () -> new PaneBlock(AbstractBlock.Properties.from(Blocks.RED_STAINED_GLASS_PANE)));
     public static final RegistryObject<Block> ANGELIC_ORE = BLOCKS.register("angelic_ore", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_ORE).harvestLevel(2)));
     public static final RegistryObject<Block> DEEPSLATE_ANGELIC_ORE = BLOCKS.register("deepslate_angelic_ore", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_ORE).harvestLevel(2).hardnessAndResistance(4.5f)));
-    public static final RegistryObject<Block> RAW_ANGELIC_BLOCK = BLOCKS.register("raw_angelic_block", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_ORE).harvestLevel(2).hardnessAndResistance(5.0F, 6.0F)));
+    public static final RegistryObject<Block> RAW_ANGELIC_BLOCK = BLOCKS.register("raw_angelic_block", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_ORE).harvestLevel(2).hardnessAndResistance(5, 6)));
     public static final RegistryObject<Block> ANGELIC_BLOCK = BLOCKS.register("angelic_block", () -> new Block(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK).harvestLevel(2)));
     public static final RegistryObject<Block> HILLARY_CAKE = BLOCKS.register("hillary_cake", () -> new HillaryCakeBlock(AbstractBlock.Properties.from(Blocks.CAKE)));
     public static final RegistryObject<Block> MILKLLARY_CAKE = BLOCKS.register("milkllary_cake", () -> new MilkllaryCakeBlock(AbstractBlock.Properties.from(Blocks.CAKE)));
-    public static final RegistryObject<FlowingFluidBlock> HILLARY = BLOCKS.register("hilary", () -> new FlowingFluidBlock(BMFluids.HILLARY, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> MILKLLARY = BLOCKS.register("milklary", () -> new FlowingFluidBlock(BMFluids.MILKLLARY, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> LIQUID_ALJAME = BLOCKS.register("liquid_aljame", () -> new FlowingFluidBlock(BMFluids.LIQUID_ALJAME, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> LIQUID_MANGA = BLOCKS.register("liquid_manga", () -> new FlowingFluidBlock(BMFluids.LIQUID_MANGA, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> LIQUEFIED_MONSTER = BLOCKS.register("liquefied_monster", () -> new FlowingFluidBlock(BMFluids.LIQUEFIED_MONSTER, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
-    public static final RegistryObject<FlowingFluidBlock> SLEEPISHWATER = BLOCKS.register("sleepishwater", () -> new FlowingFluidBlock(BMFluids.SLEEPISHWATER, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100.0f).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> HILLARY = BLOCKS.register("hilary", () -> new FlowingFluidBlock(BMFluids.HILLARY, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> MILKLLARY = BLOCKS.register("milklary", () -> new FlowingFluidBlock(BMFluids.MILKLLARY, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> LIQUID_ALJAME = BLOCKS.register("liquid_aljame", () -> new FlowingFluidBlock(BMFluids.LIQUID_ALJAME, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> LIQUID_MANGA = BLOCKS.register("liquid_manga", () -> new FlowingFluidBlock(BMFluids.LIQUID_MANGA, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> LIQUEFIED_MONSTER = BLOCKS.register("liquefied_monster", () -> new FlowingFluidBlock(BMFluids.LIQUEFIED_MONSTER, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100).noDrops()));
+    public static final RegistryObject<FlowingFluidBlock> SLEEPISHWATER = BLOCKS.register("sleepishwater", () -> new FlowingFluidBlock(BMFluids.SLEEPISHWATER, AbstractBlock.Properties.create(Material.WATER).doesNotBlockMovement().hardnessAndResistance(100).noDrops()));
     public static final RegistryObject<Block> HILLARY_TORCH = BLOCKS.register("hillary_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> HILLARY_WALL_TORCH = BLOCKS.register("hillary_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.HILLARY_TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CRYSTALLIZER = BLOCKS.register("crystallizer", CrystallizerBlock::new);
@@ -106,13 +106,13 @@ public class BMBlocks {
     public static final RegistryObject<Block> ANGRY_SOPHIE_HEAD = BLOCKS.register("angry_sophie_head", () -> new BMHeadBlock(AbstractBlock.Properties.from(Blocks.PLAYER_HEAD)));
     public static final RegistryObject<Block> ANGRY_SOPHIE_WALL_HEAD = BLOCKS.register("angry_sophie_wall_head", () -> new BMWallHeadBlock(AbstractBlock.Properties.from(Blocks.PLAYER_WALL_HEAD)));
     public static final RegistryObject<Block> CRYSTALLINE_ANGELIC_ORE = BLOCKS.register("crystalline_angelic_ore", () -> new CrystallineAngelicOreBlock(AbstractBlock.Properties.from(ANGELIC_ORE.get()).sound(SoundType.CLOTH).doesNotBlockMovement().notSolid()));
-    public static final RegistryObject<Block> CRYSTALLINE_ANGELIC_BLOCK = BLOCKS.register("crystalline_angelic_block", () -> new Block(AbstractBlock.Properties.from(ANGELIC_ORE.get()).hardnessAndResistance(5.0f, 6.0f).sound(SoundType.METAL).notSolid()));
+    public static final RegistryObject<Block> CRYSTALLINE_ANGELIC_BLOCK = BLOCKS.register("crystalline_angelic_block", () -> new Block(AbstractBlock.Properties.from(ANGELIC_ORE.get()).hardnessAndResistance(5, 6).sound(SoundType.METAL).notSolid()));
     public static final RegistryObject<Block> ALICE_TOY = BLOCKS.register("alice_toy", () -> new ToyBlock(ToyBlock.ToyType.ALICE_OR_ALAN));
     public static final RegistryObject<Block> ALAN_TOY = BLOCKS.register("alan_toy", () -> new ToyBlock(ToyBlock.ToyType.ALICE_OR_ALAN));
     public static final RegistryObject<Block> INNOVATOR_TOY = BLOCKS.register("innovator_toy", () -> new ToyBlock(ToyBlock.ToyType.INNOVATOR));
     public static final RegistryObject<Block> TYLER_TOY = BLOCKS.register("tyler_toy", () -> new ToyBlock(ToyBlock.ToyType.TYLER));
     public static final RegistryObject<Block> MALENA_TOY = BLOCKS.register("malena_toy", () -> new ToyBlock(ToyBlock.ToyType.MALENA));
-    public static final RegistryObject<Block> ANGELICAL_CASING = BLOCKS.register("angelical_casing", () -> new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(3.0f).setRequiresTool().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> ANGELICAL_CASING = BLOCKS.register("angelical_casing", () -> new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(3).setRequiresTool().sound(SoundType.METAL)));
     public static final RegistryObject<Block> MEAL_COOKER = BLOCKS.register("meal_cooker", MealCookerBlock::new);
     public static final RegistryObject<Block> QUEEN_LUCY_RELIC = BLOCKS.register("queen_sophie_relic", QueenSophieRelicBlock::new);
     public static final RegistryObject<Block> QUEEN_LUCY_HEAD = BLOCKS.register("queen_sophie_head", () -> new BMHeadBlock(AbstractBlock.Properties.from(Blocks.PLAYER_HEAD)));
@@ -181,7 +181,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> HARDENED_AMARACAMEL_BLOCK = BLOCKS.register("hardened_amaracamel_block", () -> new Block(AbstractBlock.Properties.create(Material.CORAL).hardnessAndResistance(0.5f).harvestTool(ToolType.PICKAXE).sound(SoundType.CORAL)));
     public static final RegistryObject<Block> MILKLLARY_BLOCK = BLOCKS.register("milkllary_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> RAW_ALJAMEED_BLOCK = BLOCKS.register("raw_aljameed_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK)));
-    public static final RegistryObject<Block> RAW_MOONER_BLOCK = BLOCKS.register("raw_mooner_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(5.0f, 6.0f)));
+    public static final RegistryObject<Block> RAW_MOONER_BLOCK = BLOCKS.register("raw_mooner_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK).harvestLevel(1).harvestTool(ToolType.PICKAXE).hardnessAndResistance(5, 6)));
     public static final RegistryObject<Block> ALJAN_TULIP = BLOCKS.register("aljan_tulip", () -> new FlowerBlock(Effects.WEAKNESS, 6, AbstractBlock.Properties.from(Blocks.POPPY)));
     public static final RegistryObject<Block> INSOMNIAN_TULIP = BLOCKS.register("insomnian_tulip", () -> new LightLayerFlowerBlock(AbstractBlock.Properties.from(Blocks.POPPY)));
     public static final RegistryObject<Block> POISON_ROSE = BLOCKS.register("poison_rose", () -> new PoisonRoseBlock(Effects.POISON, AbstractBlock.Properties.from(Blocks.POPPY)));
@@ -194,7 +194,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> POTTED_ALJANSHROOM = BLOCKS.register("potted_aljanshroom", () -> new FlowerPotBlock(ALJANSHROOM.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
     public static final RegistryObject<Block> POTTED_SLEEPSHROOM = BLOCKS.register("potted_sleepshroom", () -> new FlowerPotBlock(SLEEPSHROOM.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
     public static final RegistryObject<Block> POTTED_SLEEPYSHROOM = BLOCKS.register("potted_sleepyshroom", () -> new FlowerPotBlock(SLEEPYSHROOM.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
-    public static final RegistryObject<Block> OBSIDIAN_INFUSED_MID_TERM_DOOR = BLOCKS.register("obsidian_infused_mid_term_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.OBSIDIAN).setRequiresTool().hardnessAndResistance(100.0F, 2400.0F).notSolid().sound(SoundType.METAL)));
+    public static final RegistryObject<Block> OBSIDIAN_INFUSED_MID_TERM_DOOR = BLOCKS.register("obsidian_infused_mid_term_door", () -> new DoorBlock(AbstractBlock.Properties.from(Blocks.OBSIDIAN).setRequiresTool().hardnessAndResistance(100, 2400).notSolid().sound(SoundType.METAL)));
     public static final RegistryObject<Block> MID_TERM_TRAPDOOR = BLOCKS.register("mid_term_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(MID_TERM_BLOCK.get()).notSolid()));
     public static final RegistryObject<Block> OBSIDIAN_INFUSED_MID_TERM_TRAPDOOR = BLOCKS.register("obsidian_infused_mid_term_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(OBSIDIAN_INFUSED_MID_TERM_BLOCK.get()).notSolid()));
     public static final RegistryObject<Block> AMARACAMEL_BATTER_BAG = BLOCKS.register("amaracamel_batter_bag", () -> new BagBlock(AbstractBlock.Properties.from(Blocks.WHITE_WOOL)));
@@ -218,8 +218,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> CHRISTIAN_MID_TERM_CHAIN = BLOCKS.register("christian_mid_term_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN)));
     public static final RegistryObject<Block> MILKLLARY_CHAIN = BLOCKS.register("milkllary_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN)));
     public static final RegistryObject<Block> MID_HILLARY_CHAIN = BLOCKS.register("mid_hillary_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN)));
-    public static final RegistryObject<Block> MID_TERM_CHAIN = BLOCKS.register("mid_term_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN).hardnessAndResistance(50.0F, 1200.0F)));
-    public static final RegistryObject<Block> OBSIDIAN_INFUSED_MID_TERM_CHAIN = BLOCKS.register("obsidian_infused_mid_term_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN).hardnessAndResistance(100.0F, 2400.0F)));
+    public static final RegistryObject<Block> MID_TERM_CHAIN = BLOCKS.register("mid_term_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN).hardnessAndResistance(50, 1200)));
+    public static final RegistryObject<Block> OBSIDIAN_INFUSED_MID_TERM_CHAIN = BLOCKS.register("obsidian_infused_mid_term_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN).hardnessAndResistance(100, 2400)));
     public static final RegistryObject<Block> ALJAMEED_CHAIN = BLOCKS.register("aljameed_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN)));
     public static final RegistryObject<Block> MOONERING_CHAIN = BLOCKS.register("moonering_chain", () -> new ChainBlock(AbstractBlock.Properties.from(Blocks.CHAIN)));
     public static final RegistryObject<Block> STICKY_AMARACAMEL_BLOCK = BLOCKS.register("sticky_amaracamel_block", () -> new StickyAmaracamelBlock(AbstractBlock.Properties.from(Blocks.SLIME_BLOCK)));
@@ -264,7 +264,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> CHISELED_SLEEPINGSTONE_SOPHIE = BLOCKS.register("chiseled_sleepingstone_sophie", () -> new Block(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> CHISELED_SLEEPINGSTONE_LUCIA = BLOCKS.register("chiseled_sleepingstone_lucia", () -> new Block(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> CHISELED_SLEEPINGSTONE_CREEPER = BLOCKS.register("chiseled_sleepingstone_creeper", () -> new Block(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> ALJAN_PORTAL_STAND = BLOCKS.register("aljan_portal_stand", () -> new AljanPortalStandBlock(AbstractBlock.Properties.from(BMBlocks.ALJANSTONE.get()).hardnessAndResistance(5.0f)));
+    public static final RegistryObject<Block> ALJAN_PORTAL_STAND = BLOCKS.register("aljan_portal_stand", () -> new AljanPortalStandBlock(AbstractBlock.Properties.from(BMBlocks.ALJANSTONE.get()).hardnessAndResistance(5)));
 
     // 1.7.0: Aljanwood Wood:
     public static final RegistryObject<Block> ALJANWOOD_LOG = BLOCKS.register("aljanwood_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.OAK_LOG)));
@@ -331,13 +331,14 @@ public class BMBlocks {
 
     // Todo: Back Math 1.8.0: Bountifully Expansive
     // 1.8.0: Tabu:
+    public static final RegistryObject<Block> TABU = BLOCKS.register("tabu", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.WHITE_TERRACOTTA).setRequiresTool().hardnessAndResistance(1.5F, 6)));
     public static final RegistryObject<Block> GLAZED_TABU = BLOCKS.register("glazed_tabu", () -> new GlazedTerracottaBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
     public static final RegistryObject<Block> CUBIC_TABU = BLOCKS.register("cubic_tabu", () -> new Block(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> CUBIC_TABU_STAIRS = BLOCKS.register("cubic_tabu_stairs", () -> new StairsBlock(() -> BMBlocks.CUBIC_TABU.get().getDefaultState(), AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> CUBIC_TABU_SLAB = BLOCKS.register("cubic_tabu_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
+    public static final RegistryObject<Block> CUBIC_TABU_STAIRS = BLOCKS.register("cubic_tabu_stairs", () -> new StairsBlock(() -> BMBlocks.CUBIC_TABU.get().getDefaultState(), AbstractBlock.Properties.from(Blocks.STONE_BRICK_STAIRS)));
+    public static final RegistryObject<Block> CUBIC_TABU_SLAB = BLOCKS.register("cubic_tabu_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICK_SLAB)));
     public static final RegistryObject<Block> TABU_MOSAIC = BLOCKS.register("tabu_mosaic", () -> new Block(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> TABU_MOSAIC_STAIRS = BLOCKS.register("tabu_mosaic_stairs", () -> new StairsBlock(() -> BMBlocks.TABU_MOSAIC.get().getDefaultState(), AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
-    public static final RegistryObject<Block> TABU_MOSAIC_SLAB = BLOCKS.register("tabu_mosaic_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
+    public static final RegistryObject<Block> TABU_MOSAIC_STAIRS = BLOCKS.register("tabu_mosaic_stairs", () -> new StairsBlock(() -> BMBlocks.TABU_MOSAIC.get().getDefaultState(), AbstractBlock.Properties.from(Blocks.STONE_BRICK_STAIRS)));
+    public static final RegistryObject<Block> TABU_MOSAIC_SLAB = BLOCKS.register("tabu_mosaic_slab", () -> new SlabBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICK_SLAB)));
     public static final RegistryObject<Block> TABU_PILLAR = BLOCKS.register("tabu_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(Blocks.STONE_BRICKS)));
 
     // 1.8.0: Hillaried Stone:
@@ -454,6 +455,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_WALL = BLOCKS.register("mossy_angelic_brick_wall", () -> new WallBlock(AbstractBlock.Properties.from(Blocks.GOLD_BLOCK)));
     public static final RegistryObject<Block> INSOMNIA_SOPHIE_HEAD = BLOCKS.register("insomnia_sophie_head", () -> new BMHeadBlock(AbstractBlock.Properties.from(Blocks.PLAYER_HEAD)));
     public static final RegistryObject<Block> INSOMNIA_SOPHIE_WALL_HEAD = BLOCKS.register("insomnia_sophie_wall_head", () -> new BMWallHeadBlock(AbstractBlock.Properties.from(Blocks.PLAYER_WALL_HEAD)));
+    public static final RegistryObject<Block> EMERIOND_BLOCK = BLOCKS.register("emeriond_block", () -> new Block(AbstractBlock.Properties.from(Blocks.DIAMOND_BLOCK)));
 
     // 1.8.0: Coldterm, Warmterm and Obsiditerm Related Blocks:
     public static final RegistryObject<Block> COLDTERM_BLOCK = BLOCKS.register("coldterm_block", () -> new Block(AbstractBlock.Properties.from(BMBlocks.MID_TERM_BLOCK.get())));
@@ -483,6 +485,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJANSTEEL_BLOCK = BLOCKS.register("aljansteel_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> RAW_ALJAMIC_COPPER_BLOCK = BLOCKS.register("raw_aljamic_copper_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_ORE).hardnessAndResistance(5, 6)));
     public static final RegistryObject<Block> RAW_ALJAMIC_TIN_BLOCK = BLOCKS.register("raw_aljamic_tin_block", () -> new Block(AbstractBlock.Properties.from(Blocks.IRON_ORE).hardnessAndResistance(5, 6)));
+    public static final RegistryObject<Block> CARAMELED_HAY_BALE = BLOCKS.register("carameled_hay_bale", () -> new HayBlock(AbstractBlock.Properties.from(Blocks.HAY_BLOCK)));
     public static final RegistryObject<Block> CHARJAN_CRYSTALLINE_BIRCH_TORCH = BLOCKS.register("charjan_crystalline_birch_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CHARJAN_CRYSTALLINE_BIRCH_WALL_TORCH = BLOCKS.register("charjan_crystalline_birch_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.from(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CHARJAN_GOLDENWOOD_TORCH = BLOCKS.register("charjan_goldenwood_torch", () -> new TorchBlock(AbstractBlock.Properties.from(Blocks.TORCH), ParticleTypes.FLAME));

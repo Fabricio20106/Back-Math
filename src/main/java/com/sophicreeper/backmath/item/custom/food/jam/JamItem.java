@@ -17,24 +17,24 @@ public class JamItem extends Item {
         super(properties);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        super.onItemUseFinish(stack, world, livingEntity);
-        if (livingEntity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livEntity) {
+        super.onItemUseFinish(stack, world, livEntity);
+        if (livEntity instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
         }
 
-        if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
             stack.shrink(1);
         }
 
         if (stack.isEmpty()) {
             return new ItemStack(AxolotlTest.JAM_POT.get());
         } else {
-            if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
+            if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
                 ItemStack jamPot = new ItemStack(AxolotlTest.JAM_POT.get());
-                PlayerEntity player = (PlayerEntity) livingEntity;
+                PlayerEntity player = (PlayerEntity) livEntity;
                 if (!player.inventory.addItemStackToInventory(jamPot)) {
                     player.dropItem(jamPot, false);
                 }

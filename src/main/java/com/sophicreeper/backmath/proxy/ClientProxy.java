@@ -265,6 +265,8 @@ public class ClientProxy extends CommonProxy {
         makeShield(AxolotlTest.DEVIL_SHIELD.get());
         makeShield(AxolotlTest.ANGELIC_SHIELD.get());
         makeShield(AxolotlTest.MID_TERM_SHIELD.get());
+        makeShield(AxolotlTest.ALJAMEED_SHIELD.get());
+        makeShield(AxolotlTest.MOONERING_SHIELD.get());
 
         makeBow(AxolotlTest.DEVIL_BOW.get());
         makeBow(AxolotlTest.ANGELIC_BOW.get());

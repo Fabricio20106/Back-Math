@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "backmath:carameled_wheat"
+    }
+  },
+  "result": {
+    "item": "backmath:carameled_hay_bale"
+  }
+}

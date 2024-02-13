@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -50,6 +51,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_RAW_MOONERING).add(BMBlocks.RAW_MOONER_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_MID_HILLARY).add(BMBlocks.MID_HILLARY_BLOCK.get());
         this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_JANTICAL).add(BMBlocks.JANTICAL_BLOCK.get());
+        this.getOrCreateBuilder(BMTags.Blocks.STORAGE_BLOCKS_EMERIOND).add(BMBlocks.EMERIOND_BLOCK.get());
 
         this.getOrCreateBuilder(BMTags.Blocks.ORES_DEVIL).add(BMBlocks.DEVIL_ORE.get()).add(BMBlocks.DEEPSLATE_DEVIL_ORE.get()).add(BMBlocks.NETHER_DEVIL_ORE.get());
         this.getOrCreateBuilder(BMTags.Blocks.ORES_ANGELIC).add(BMBlocks.ANGELIC_ORE.get()).add(BMBlocks.DEEPSLATE_ANGELIC_ORE.get());
@@ -93,6 +95,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_RAW_MID_TERM);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_MID_HILLARY);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_JANTICAL);
+        this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_EMERIOND);
 
         this.getOrCreateBuilder(Tags.Blocks.ORES).addTag(BMTags.Blocks.ORES_DEVIL).addTag(BMTags.Blocks.ORES_ANGELIC).addTag(BMTags.Blocks.ORES_MID_TERM).addTag(BMTags.Blocks
                 .ORES_CRYSTALLINE_ANGELIC).addTag(BMTags.Blocks.ORES_ALJAMEED).addTag(BMTags.Blocks.ORES_MOONERING).addTag(BMTags.Blocks.ORES_JANTICAL).addTag(BMTags.Blocks
@@ -103,11 +106,17 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(Tags.Blocks.GLASS).addTag(BMTags.Blocks.GLASS_DEVIL);
         this.getOrCreateBuilder(Tags.Blocks.GLASS_PANES).addTag(BMTags.Blocks.GLASS_PANES_DEVIL);
 
+        this.getOrCreateBuilder(BlockTags.BASE_STONE_OVERWORLD).add(BMBlocks.TABU.get());
+        this.getOrCreateBuilder(Tags.Blocks.STONE).add(BMBlocks.TABU.get());
+        this.getOrCreateBuilder(Tags.Blocks.SAND).add(BMBlocks.ALJAMIC_SAND.get());
         this.getOrCreateBuilder(Tags.Blocks.DIRT).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get());
         this.getOrCreateBuilder(Tags.Blocks.COBBLESTONE).add(BMBlocks.COBBLED_ALJANSTONE.get());
 
         this.getOrCreateBuilder(BlockTags.GUARDED_BY_PIGLINS).add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get()).add(BMBlocks.QUEEN_LUCY_RELIC
                 .get()).add(BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.QUEEN_SOPHIE_PET_RELIC.get());
+
+        // Melony Tags
+        this.getOrCreateBuilder(BMTags.Blocks.CAMPFIRE_SIGNAL_FIRE_BLOCKS).add(BMBlocks.CARAMELED_HAY_BALE.get());
 
         // Back Math Tags
         this.getOrCreateBuilder(BMTags.Blocks.INFINIBURN_ALJAN).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);
@@ -115,7 +124,15 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get()).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.getOrCreateBuilder(BMTags.Blocks.ALJAN_CROP_PLANTABLE_ON).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.getOrCreateBuilder(BMTags.Blocks.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON).addTag(Tags.Blocks.SAND);
-        this.getOrCreateBuilder(BMTags.Blocks.ENDER_DRAGON_FRIED_EGG_FLOWER_PLANTABLE_ON).add(Blocks.END_STONE).add(Blocks.END_STONE_BRICKS);
+        this.getOrCreateBuilder(BMTags.Blocks.ENDER_DRAGON_FRIED_EGG_FLOWER_PLANTABLE_ON).addOptional(new ResourceLocation("variants:ender_nylium")).addOptional(new ResourceLocation("variants:ender_farmland"))
+                .add(Blocks.END_STONE).add(Blocks.END_STONE_BRICKS);
+        this.getOrCreateBuilder(BMTags.Blocks.MINEABLE_KNIVES).addTag(BlockTags.SAPLINGS).addTag(BlockTags.FLOWERS).add(Blocks.GRASS).add(Blocks.TALL_GRASS).add(Blocks.FERN).add(Blocks.LARGE_FERN).add(Blocks.SEAGRASS).add(Blocks.TALL_SEAGRASS)
+                .add(Blocks.KELP).add(Blocks.KELP_PLANT).add(Blocks.CRIMSON_ROOTS).add(Blocks.WARPED_ROOTS).add(Blocks.CRIMSON_FUNGUS).add(Blocks.WARPED_FUNGUS).add(Blocks.NETHER_SPROUTS).add(Blocks.WHEAT).add(Blocks.CARROTS)
+                .add(Blocks.POTATOES).add(Blocks.BEETROOTS).add(Blocks.NETHER_WART).add(Blocks.SWEET_BERRY_BUSH).add(BMBlocks.CARAMELED_WHEAT.get()).add(BMBlocks.WILD_CARAMELED_WHEAT.get()).add(BMBlocks.ALJAMIC_ONIONS.get())
+                .add(BMBlocks.WILD_ALJAMIC_ONIONS.get());
+        this.getOrCreateBuilder(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES).addTag(BMTags.Blocks.BASE_STONE_ALJAN).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get())
+                .add(BMBlocks.ALJAMIC_SAND.get()).add(Blocks.GRASS_BLOCK).add(Blocks.DIRT);
+        this.getOrCreateBuilder(BMTags.Blocks.ALJAN_TELEPORTER_REPLACEABLES).add(BMBlocks.ALJAN_TULIP.get()).add(BMBlocks.POISON_ROSE.get()).add(BMBlocks.INSOMNIAN_TULIP.get()).add(Blocks.GRASS);
 
         // Logs & Woods
         this.getOrCreateBuilder(BMTags.Blocks.CRYSTALLINE_BIRCH_LOGS).add(BMBlocks.CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get());
