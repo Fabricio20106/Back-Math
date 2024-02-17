@@ -235,6 +235,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> ARMORS_BOOTS = forge("armors/boots");
         public static final ITag.INamedTag<Item> KNIVES = forge("knives");
         public static final ITag.INamedTag<Item> MILK = forge("milk");
+        public static final ITag.INamedTag<Item> FENCE_GATES_DEVIL = forge("fence_gates/devil");
 
         // Tag Migration
         public static final ITag.INamedTag<Item> GLASS_DEVIL = forge("glass/devil");
@@ -325,6 +326,11 @@ public class BMTags {
         public static final ITag.INamedTag<Block> MINEABLE_KNIVES = backMath("mineable/knife");
         public static final ITag.INamedTag<Block> ALJAN_CARVER_REPLACEABLES = backMath("aljan_carver_replaceables");
         public static final ITag.INamedTag<Block> ALJAN_TELEPORTER_REPLACEABLES = backMath("aljan_teleporter_replaceables");
+        public static final ITag.INamedTag<Block> ALJAN_GROUND = backMath("aljan_ground");
+        public static final ITag.INamedTag<Block> MALAIKA_SPAWNABLE_ON = backMath("malaika_spawnable_on");
+        public static final ITag.INamedTag<Block> SOPHIES_SPAWNABLE_ON = backMath("sophies_spawnable_on");
+        public static final ITag.INamedTag<Block> OBSIDIAN_REPLACEABLES = backMath("obsidian_replaceables");
+        public static final ITag.INamedTag<Block> AIR_REPLACEABLES = backMath("air_replaceables");
 
         public static final ITag.INamedTag<Block> SOPHIE_IDEA = backMath("sophie_idea");
         public static final ITag.INamedTag<Block> BOUNTIFULLY_EXPANSIVE_IDEA = backMath("sophie_idea/bountifully_expansive");
@@ -373,6 +379,7 @@ public class BMTags {
 
         public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_TAMED = getTagById("backmath:qlp_targets/tamed");
         public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_NOT_TAMED = getTagById("backmath:qlp_targets/not_tamed");
+        public static final ITag.INamedTag<EntityType<?>> MALAIKA_TARGETS = getTagById("backmath:malaika_targets");
         public static final ITag.INamedTag<EntityType<?>> DEVIL_SPAREY_EFFECTIVES = getTagById("backmath:devil_sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = getTagById("backmath:sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = getTagById("backmath:sparey_prohibited");

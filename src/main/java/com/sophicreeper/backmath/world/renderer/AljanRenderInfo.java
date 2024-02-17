@@ -10,12 +10,12 @@ public class AljanRenderInfo extends DimensionRenderInfo {
     }
 
     @Override
-    public Vector3d func_230494_a_(Vector3d vec3D, float p_230494_2_) {
-        return vec3D.mul(p_230494_2_ * 0.94F + 0.06F, p_230494_2_ * 0.94F + 0.06F, p_230494_2_ * 0.91F + 0.09F);
+    public Vector3d func_230494_a_(Vector3d vec3D, float f) {
+        return vec3D.mul(f * 0.94F + 0.06F, f * 0.94F + 0.06F, f * 0.91F + 0.09F);
     }
 
     @Override
-    public boolean func_230493_a_(int p_230493_1_, int p_230493_2_) {
+    public boolean func_230493_a_(int i, int i1) {
         return false;
     }
 

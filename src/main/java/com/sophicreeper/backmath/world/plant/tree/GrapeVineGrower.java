@@ -11,7 +11,7 @@ import java.util.Random;
 public class GrapeVineGrower extends Tree {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random random, boolean b) {
-        return BMConfiguredFeatures.GRAPE_VINE;
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+        return BMConfiguredFeatures.GRAPE_VINE_TREE;
     }
 }

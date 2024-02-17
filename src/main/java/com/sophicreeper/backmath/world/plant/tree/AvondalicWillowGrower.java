@@ -12,12 +12,12 @@ public class AvondalicWillowGrower extends BigTree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getHugeTreeFeature(Random rand) {
-        return BMConfiguredFeatures.MEGA_AVONDALIC_WILLOW;
+        return BMConfiguredFeatures.MEGA_AVONDALIC_WILLOW_TREE;
     }
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean largeHive) {
-        return BMConfiguredFeatures.AVONDALIC_WILLOW;
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+        return BMConfiguredFeatures.AVONDALIC_WILLOW_TREE;
     }
 }

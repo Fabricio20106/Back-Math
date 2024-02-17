@@ -12,12 +12,12 @@ public class InsomnianTreeGrower extends BigTree {
     @Nullable
     @Override
     protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getHugeTreeFeature(Random rand) {
-        return BMConfiguredFeatures.INSOMNIAN;
+        return BMConfiguredFeatures.INSOMNIAN_TREE;
     }
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
         return null;
     }
 }

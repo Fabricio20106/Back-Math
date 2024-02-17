@@ -11,11 +11,11 @@ import java.util.Random;
 public class AljanwoodTreeGrower extends Tree {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-        if (randomIn.nextInt(10) == 0) {
-            return BMConfiguredFeatures.FANCY_ALJANWOOD;
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+        if (rand.nextInt(10) == 0) {
+            return BMConfiguredFeatures.FANCY_ALJANWOOD_TREE;
         } else {
-            return BMConfiguredFeatures.ALJANWOOD;
+            return BMConfiguredFeatures.ALJANWOOD_TREE;
         }
     }
 }

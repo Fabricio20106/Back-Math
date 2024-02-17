@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 
 public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttackMob, ISophieFriendlies {
     private final BMRangedBowAttackGoal<ArcherInsomniaSophie> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1, 20, 15);
-    private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2d, false) {
+    private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) {
         public void resetTask() {
             super.resetTask();
             ArcherInsomniaSophie.this.setAggroed(false);
@@ -139,7 +139,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new BMRangedBowAttackGoal<>(this, 1.1d, 8, 8));
+        this.goalSelector.addGoal(1, new BMRangedBowAttackGoal<>(this, 1.1D, 8, 8));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
@@ -163,12 +163,12 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         if (this.getHeldItemMainhand().getItem() instanceof BMBowItem) arrow = ((BMBowItem) this.getHeldItemMainhand().getItem()).customArrow(arrow);
 
         double d0 = target.getPosX() - this.getPosX();
-        double d1 = target.getPosYHeight(0.3333333333333333d) - arrow.getPosY();
+        double d1 = target.getPosYHeight(0.3333333333333333D) - arrow.getPosY();
         double d2 = target.getPosZ() - this.getPosZ();
         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-        arrow.shoot(d0, d1 + d3 * (double) 0.2f, d2, 1.6f, (float) (14 - this.world.getDifficulty().getId() * 4));
+        arrow.shoot(d0, d1 + d3 * (double) 0.2F, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
 
-        this.playSound(BMSounds.ENTITY_SOPHIE_SHOOT, 1, 1 / (this.getRNG().nextFloat() * 0.4f + 0.8f));
+        this.playSound(BMSounds.ENTITY_SOPHIE_SHOOT, 1, 1 / (this.getRNG().nextFloat() * 0.4F + 0.8F));
         this.world.addEntity(arrow);
     }
 
@@ -180,9 +180,9 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         return shootableItem instanceof BMBowItem || shootableItem instanceof BowItem;
     }
 
-    public static AttributeModifierMap.MutableAttribute createMobAttributes() {
+    public static AttributeModifierMap.MutableAttribute createArcherInsomniaSophieAttributes() {
         return MonsterEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 4).createMutableAttribute(Attributes.MAX_HEALTH, 28).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
     protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
@@ -191,7 +191,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
             if (creeper.ableToCauseSkullDrop()) {
-                ItemStack skullStack = this.getSkullDrop();
+                ItemStack skullStack = this.getHeadDrop();
                 if (!skullStack.isEmpty()) {
                     creeper.incrementDroppedSkulls();
                     this.entityDropItem(skullStack);
@@ -200,7 +200,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         }
     }
 
-    protected ItemStack getSkullDrop() {
+    protected ItemStack getHeadDrop() {
         return new ItemStack(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get());
     }
 }

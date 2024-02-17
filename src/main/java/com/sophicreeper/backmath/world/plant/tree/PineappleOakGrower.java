@@ -9,10 +9,9 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class PineappleOakGrower extends Tree {
-
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-        return BMConfiguredFeatures.PINEAPPLE_OAK;
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+        return BMConfiguredFeatures.PINEAPPLE_OAK_TREE;
     }
 }

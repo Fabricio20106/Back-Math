@@ -21,11 +21,13 @@ import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class WandererSophie extends CreatureEntity implements ISophieFriendlies {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(WandererSophie.class, DataSerializers.VARINT);
@@ -262,5 +264,9 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
             this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_CHESTPLATE.get()));
             this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.BUTTER_SWORD.get()));
         }
+    }
+
+    public static boolean canSophieSpawnOn(EntityType<? extends CreatureEntity> termianFriendly, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        return world.getBlockState(pos.down()).isIn(BMTags.Blocks.SOPHIES_SPAWNABLE_ON) && world.getLightSubtracted(pos, 0) > 8;
     }
 }

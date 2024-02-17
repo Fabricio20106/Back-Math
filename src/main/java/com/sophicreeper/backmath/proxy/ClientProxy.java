@@ -23,7 +23,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        // Block and Fluid Render Lookups
+        // Block & Fluid Render Lookups
         RenderTypeLookup.setRenderLayer(BMBlocks.FRIED_EGG_FLOWER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGELIC_TRAPDOOR.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ANGELIC_DOOR.get(), RenderType.getCutout());
@@ -153,7 +153,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.GUAVA_LADDER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJAMIC_GLASS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJAMIC_GLASS_PANE.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_SOPHIE_PET_RELIC.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.QUEEN_LUCY_PET_RELIC.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.WILD_ALJAMIC_ONIONS.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.GUAVA_GRAPE_VINE_POST.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJANSTEEL_CHAIN.get(), RenderType.getCutout());
@@ -276,7 +276,7 @@ public class ClientProxy extends CommonProxy {
         makeCrossbow(AxolotlTest.ANGELIC_CROSSBOW.get());
     }
 
-    // Double layer render lookup
+    // Double Layer Render Lookup
     public static boolean getDoubleLayer(RenderType layerToCheck) {
         return layerToCheck == RenderType.getCutout() || layerToCheck == RenderType.getTranslucent();
     }

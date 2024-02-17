@@ -11,7 +11,7 @@ import java.util.Random;
 public class EnchantedGoldenwoodGrower extends Tree {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-        return BMConfiguredFeatures.FANCY_ENCHANTED_GOLDENWOOD;
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+        return BMConfiguredFeatures.FANCY_ENCHANTED_GOLDENWOOD_TREE;
     }
 }

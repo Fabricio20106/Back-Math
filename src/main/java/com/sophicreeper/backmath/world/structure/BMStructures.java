@@ -41,16 +41,14 @@ public class BMStructures {
     // Adds the provided structure to the registry, and adds the separation settings.
     // The rarity of the structure is determined based on the values passed into this method in the structureSeparationSettings argument.
     // This method is called by setupStructures method above.
-    public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean transformSurroundingLand) {
+    public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean terraformSurroundingTerrain) {
         // Add our structures into the map in Structure class.
         Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
 
         // Whether surrounding land will be modified automatically to conform to the bottom of the structure.
         // Basically, it adds land at the base of the structure like it does for Villages and Pillager Outposts.
         // Doesn't work well on structure that have pieces stacked vertically or change in heights.
-        if (transformSurroundingLand) {
-            Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder().addAll(Structure.field_236384_t_).add(structure).build();
-        }
+        if (terraformSurroundingTerrain) Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder().addAll(Structure.field_236384_t_).add(structure).build();
 
         // This is the map that holds the default spacing of all structures.
         // Always add your structure to here so that other mods can utilize it if needed.

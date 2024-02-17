@@ -519,8 +519,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> QUEEN_SOPHIE_HEAD = ITEMS.register("queen_sophie_head", () -> new BMHeadItem(BMBlocks.QUEEN_LUCY_HEAD.get(), BMBlocks.QUEEN_LUCY_WALL_HEAD.get(), new Item.Properties().group(BMBlockTab.TAB).rarity(Rarity.EPIC)));
 
     // Mob Relics:
-    public static final RegistryObject<Item> QUEEN_SOPHIE_RELIC = ITEMS.register("queen_sophie_relic", () -> new BlockItem(BMBlocks.QUEEN_LUCY_RELIC.get(), new Item.Properties().group(BMBlockTab.TAB).isImmuneToFire().rarity(Rarity.EPIC)));
-    public static final RegistryObject<Item> QUEEN_SOPHIE_PET_RELIC = ITEMS.register("queen_sophie_pet_relic", () -> new BlockItem(BMBlocks.QUEEN_SOPHIE_PET_RELIC.get(), new Item.Properties().group(BMBlockTab.TAB).isImmuneToFire().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> QUEEN_LUCY_RELIC = ITEMS.register("queen_sophie_relic", () -> new BlockItem(BMBlocks.QUEEN_LUCY_RELIC.get(), new Item.Properties().group(BMBlockTab.TAB).isImmuneToFire().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> QUEEN_LUCY_PET_RELIC = ITEMS.register("queen_sophie_pet_relic", () -> new BlockItem(BMBlocks.QUEEN_LUCY_PET_RELIC.get(), new Item.Properties().group(BMBlockTab.TAB).isImmuneToFire().rarity(Rarity.EPIC)));
 
     // Charjan Wood Torch:
     public static final RegistryObject<Item> CHARJAN_WOOD_TORCH = ITEMS.register("charjan_wood_torch", () -> new WallOrFloorItem(BMBlocks.CHARJAN_WOOD_TORCH.get(), BMBlocks.CHARJAN_WOOD_WALL_TORCH.get(), new Item.Properties().group(BMBlockTab.TAB)));
@@ -626,7 +626,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> LIQUID_MANGA_BUCKET = ITEMS.register("liquid_manga_bucket", () -> new BucketItem(BMFluids.LIQUID_MANGA, new Item.Properties().containerItem(Items.BUCKET).group(BackLayer.TAB).maxStackSize(1)));
     public static final RegistryObject<Item> LIQUEFIED_MONSTER_BUCKET = ITEMS.register("liquefied_monster_bucket", () -> new BucketItem(BMFluids.LIQUEFIED_MONSTER, new Item.Properties().containerItem(Items.BUCKET).group(BackLayer.TAB).maxStackSize(1)));
     public static final RegistryObject<Item> SLEEPISHWATER_BUCKET = ITEMS.register("sleepishwater_bucket", () -> new BucketItem(BMFluids.SLEEPISHWATER, new Item.Properties().containerItem(Items.BUCKET).group(BackLayer.TAB).maxStackSize(1)));
-    public static final RegistryObject<Item> MOLTEN_MID_TERM_BUCKET = ITEMS.register("molten_mid_term_bucket", () -> new GlisteringItem(new Item.Properties()/*.containerItem(Items.BUCKET)*/.rarity(Rarity.RARE).maxStackSize(1).group(BackLayer.TAB)));
+    public static final RegistryObject<Item> MOLTEN_MID_TERM_BUCKET = ITEMS.register("molten_mid_term_bucket", () -> new GlisteringItem(new Item.Properties().containerItem(Items.BUCKET).rarity(Rarity.RARE).maxStackSize(1).group(BackLayer.TAB)));
     public static final RegistryObject<Item> CRYSTALLINE_BIRCH_STICK = ITEMS.register("crystalline_birch_stick", () -> new Item(new Item.Properties().group(BackLayer.TAB)));
     public static final RegistryObject<Item> GOLDENWOOD_STICK = ITEMS.register("goldenwood_stick", () -> new Item(new Item.Properties().rarity(Rarity.RARE).group(BackLayer.TAB)));
     public static final RegistryObject<Item> GUAVA_STICK = ITEMS.register("guava_stick", () -> new Item(new Item.Properties().group(BackLayer.TAB)));

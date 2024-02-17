@@ -11,7 +11,7 @@ import net.minecraft.item.HoeItem;
 import net.minecraft.item.ShovelItem;
 
 public class BMVanillaCompatibility {
-    public static void registerCompatibilities() {
+    public static void initCompats() {
         flammable(BMBlocks.GUARANA_OAK_LEAVES.get(), 30, 60);
         flammable(BMBlocks.MANGO_OAK_LEAVES.get(), 30, 60);
         flammable(BMBlocks.GRAPE_VINE_LEAVES.get(), 30, 60);

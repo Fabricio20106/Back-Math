@@ -18,10 +18,12 @@ import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class Malaika extends CreatureEntity implements ISophieFriendlies {
     public Malaika(EntityType<Malaika> entity, World world) {
@@ -41,17 +43,12 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
     }
 
     protected void entityAttackTargets() {
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, InsomniaZombie.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, ZombieFabricio.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicBones.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, SleepishSkeleton.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().isContained(BMTags.EntityTypes.MALAIKA_TARGETS)));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1, true));
     }
 
     public static AttributeModifierMap.MutableAttribute createMalaikaAttributes() {
-        return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.25f)
+        return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.25F)
                 .createMutableAttribute(Attributes.FOLLOW_RANGE, 16).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3);
     }
 
@@ -62,7 +59,7 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62f;
+        return 1.62F;
     }
 
     public double getYOffset() {
@@ -220,5 +217,9 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
         } else {
             this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANSTONE_SWORD.get()));
         }
+    }
+
+    public static boolean canMalaikaSpawnOn(EntityType<Malaika> malaika, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        return world.getBlockState(pos.down()).isIn(BMTags.Blocks.MALAIKA_SPAWNABLE_ON) && world.getLightSubtracted(pos, 0) > 8;
     }
 }

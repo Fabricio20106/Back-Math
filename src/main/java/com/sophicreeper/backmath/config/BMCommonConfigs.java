@@ -102,6 +102,7 @@ public class BMCommonConfigs {
 
     // Debug
     public final ForgeConfigSpec.BooleanValue logStructureLocationMessages;
+    public final ForgeConfigSpec.BooleanValue logAljanTeleporterDebugging;
 
     // Items
     public final ForgeConfigSpec.BooleanValue milkedSwordsEnabled;
@@ -182,6 +183,7 @@ public class BMCommonConfigs {
         builder.push("gameplayAspects");
         this.aljanEnabledThroughStand = builder.comment("Whether you can go to the Aljan through the Portal Stand. This will not disable the dimension entirely.").define("aljanEnabledThroughStand", true);
         this.safeAljan = builder.comment("When you teleport to the Aljan through the Aljan Portal Stand, the stand on the other side will already have a jantical in it.").define("safeAljan", false);
+        this.logAljanTeleporterDebugging = builder.comment("Whether tp log information about the Aljan Teleporter, like locations.").define("logAljanTeleporterDebugging", false);
         this.standingAljanTeleport = builder.comment("When turned on, you'll be able to walk up to the portal stand and be teleported over.").define("standingAljanTeleport", false);
         this.enableMobAIChanges = builder.comment("Enable the new Back Math mob AI changes? Currently, this toggle does nothing.").define("enableMobAIChanges", false);
         this.peaceTeaInvisibilityToggle = builder.comment("Makes peace teas give you or the affected mob Invisibility.").define("peaceTea.invisibilityToggle", false);

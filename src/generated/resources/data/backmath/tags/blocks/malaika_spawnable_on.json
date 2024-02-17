@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#backmath:base_stone_aljan",
+    "#backmath:aljan_ground",
+    "backmath:aljamic_sand",
+    "minecraft:grass_block"
+  ]
+}

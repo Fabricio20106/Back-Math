@@ -11,7 +11,7 @@ import java.util.Random;
 public class JabuticabaTreeGrower extends Tree {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
         return BMConfiguredFeatures.JABUTICABA_TREE;
     }
 }

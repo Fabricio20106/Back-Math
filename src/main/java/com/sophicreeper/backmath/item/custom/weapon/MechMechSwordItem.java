@@ -25,7 +25,7 @@ public class MechMechSwordItem extends SwordItem {
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Mech-Mech Damage Modifier", attackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Mech-Mech Swing Speed Modifier", swingSpeed, AttributeModifier.Operation.ADDITION));
-        if (ForgeMod.REACH_DISTANCE.isPresent()) {
+        while (ForgeMod.REACH_DISTANCE.isPresent()) {
             builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mech-Mech Reach Modifier", BMConfigs.COMMON_CONFIGS.mechMechReachDecrease.get(),
                     AttributeModifier.Operation.ADDITION));
         }

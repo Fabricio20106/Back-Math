@@ -11,7 +11,7 @@ import java.util.Random;
 public class CrystallineBirchGrower extends Tree {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-        return BMConfiguredFeatures.CRYSTALLINE_BIRCH;
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+        return BMConfiguredFeatures.CRYSTALLINE_BIRCH_TREE;
     }
 }

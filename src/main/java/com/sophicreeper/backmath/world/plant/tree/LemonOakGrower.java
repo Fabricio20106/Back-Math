@@ -11,7 +11,7 @@ import java.util.Random;
 public class LemonOakGrower extends Tree {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
-        return BMConfiguredFeatures.LEMON_OAK;
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+        return BMConfiguredFeatures.LEMON_OAK_TREE;
     }
 }

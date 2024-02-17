@@ -17,7 +17,6 @@ import org.apache.logging.log4j.Logger;
 public class BackMath {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "backmath";
-
     public final CommonProxy proxy;
 
     public BackMath() {
