@@ -343,6 +343,9 @@ public class BMItemModelProvider extends ItemModelProvider {
         withExistingParent("tabu");
         withExistingParent("emeriond_block");
         withExistingParent("carameled_hay_bale");
+        withExistingParent("aljan_light_blue_stained_glass");
+        withExistingParent("poison_brown_stained_glass");
+        withExistingParent("insomnian_stained_glass");
 
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
@@ -1169,6 +1172,21 @@ public class BMItemModelProvider extends ItemModelProvider {
         compat("two_thirds_hillary_dust");
         standard(handheld, "bread_sword");
         compat("jantiquified_pearl");
+        compat("aljancap_boat");
+        compat("insomnian_boat");
+        compat("avondalic_willow_boat");
+        compat("oregano_fried_egg");
+        compat("oregano_turtle_fried_egg");
+        compat("oregano_ender_dragon_fried_egg");
+        compat("turtle_fried_egg_bread");
+        compat("ender_dragon_fried_egg_bread");
+        compat("spice_pot");
+        compat("oregano_pot");
+        blockWithCustom(generated, "aljan_light_blue_stained_glass_pane", "aljan_light_blue_stained_glass");
+        blockWithCustom(generated, "poison_brown_stained_glass_pane", "poison_brown_stained_glass");
+        blockWithCustom(generated, "insomnian_stained_glass_pane", "insomnian_stained_glass");
+        compat("amaracamelarity");
+        standard(handheld, "tabu_sword");
 
         getBuilder("effect_jam").parent(generated).texture("layer0", modLoc("item/effect_jam_overlay")).texture("layer1", modLoc("item/effect_jam_pot"));
     }

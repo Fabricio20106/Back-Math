@@ -40,7 +40,7 @@ import java.util.function.Predicate;
 
 public class QueenLucyPet extends TameableEntity {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(QueenLucyPet.class, DataSerializers.VARINT);
-    public static final Predicate<LivingEntity> TARGETS = (livEntity) -> {
+    public static final Predicate<LivingEntity> NON_TAMED_TARGETS = (livEntity) -> {
         EntityType<?> type = livEntity.getType();
         return type.isContained(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED);
     };
@@ -82,13 +82,13 @@ public class QueenLucyPet extends TameableEntity {
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class ,10, false, false, (livEntity) -> livEntity.getType().isContained(BMTags.EntityTypes.QLP_TARGETS_TAMED)));
-        this.targetSelector.addGoal(3, new NonTamedTargetGoal<>(this, LivingEntity.class, false, TARGETS));
+        this.targetSelector.addGoal(3, new NonTamedTargetGoal<>(this, LivingEntity.class, false, NON_TAMED_TARGETS));
         super.registerGoals();
     }
 
     @Nullable
     public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        this.setVariant(this.rand.nextInt(18));
+        this.setVariant(this.rand.nextInt(20));
         if (spawnData == null) {
             spawnData = new AgeableEntity.AgeableData(false);
         }
@@ -108,7 +108,7 @@ public class QueenLucyPet extends TameableEntity {
         return false;
     }
 
-    protected void updateFallState(double y, boolean isOnGround, BlockState state, BlockPos pos) {}
+    protected void updateFallState(double y, boolean onGround, BlockState state, BlockPos pos) {}
 
     public ActionResultType func_230254_b_(PlayerEntity player, Hand hand) {
         ItemStack heldItem = player.getHeldItem(hand);
@@ -170,7 +170,7 @@ public class QueenLucyPet extends TameableEntity {
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 0.81f;
+        return 0.81F;
     }
 
     public boolean canMateWith(AnimalEntity otherQLP) {
@@ -179,10 +179,10 @@ public class QueenLucyPet extends TameableEntity {
 
     public static AttributeModifierMap.MutableAttribute createQueenLucyPetAttributes() {
         return MobEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3f)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3F)
                 .createMutableAttribute(Attributes.MAX_HEALTH, 350)
                 .createMutableAttribute(Attributes.ATTACK_DAMAGE, 17)
-                .createMutableAttribute(Attributes.FLYING_SPEED, 0.4f);
+                .createMutableAttribute(Attributes.FLYING_SPEED, 0.4F);
     }
 
     @Nullable
@@ -211,7 +211,7 @@ public class QueenLucyPet extends TameableEntity {
     }
 
     public int getVariant() {
-        return MathHelper.clamp(this.dataManager.get(VARIANT), 0, 17);
+        return MathHelper.clamp(this.dataManager.get(VARIANT), 0, 19);
     }
 
     public void setVariant(int variant) {

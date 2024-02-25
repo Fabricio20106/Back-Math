@@ -225,6 +225,12 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.CORK_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_CORK_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLIZER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.POISON_BROWN_STAINED_GLASS.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.POISON_BROWN_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIAN_STAINED_GLASS.get(), RenderType.getTranslucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIAN_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMFluids.HILLARY.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.getTranslucent());

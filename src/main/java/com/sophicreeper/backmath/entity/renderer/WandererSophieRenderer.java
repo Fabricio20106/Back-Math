@@ -6,7 +6,6 @@ import com.sophicreeper.backmath.entity.model.BMBipedModel;
 import com.sophicreeper.backmath.entity.renderer.layer.WandererSophieCapeLayer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
-import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -15,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class WandererSophieRenderer extends BMBipedRenderer<WandererSophie> {
     public static final ResourceLocation[] WANDERER_SOPHIE_LOCATIONS = new ResourceLocation[] {
             BackMath.resourceLoc("textures/entity/wanderer_sophie/yellow_axolotl.png"),
-            BackMath.resourceLoc("textures/entity/wanderer_sophie/blue_axolotl.png"),
+            BackMath.resourceLoc("textures/entity/wanderer_sophie/cyan_axolotl.png"),
             BackMath.resourceLoc("textures/entity/wanderer_sophie/creeper.png"),
             BackMath.resourceLoc("textures/entity/wanderer_sophie/modified.png"),
             BackMath.resourceLoc("textures/entity/wanderer_sophie/original.png"),
@@ -25,7 +24,11 @@ public class WandererSophieRenderer extends BMBipedRenderer<WandererSophie> {
             BackMath.resourceLoc("textures/entity/wanderer_sophie/witcher.png"),
             BackMath.resourceLoc("textures/entity/wanderer_sophie/maid.png"),
             BackMath.resourceLoc("textures/entity/wanderer_sophie/ender.png"),
-            BackMath.resourceLoc("textures/entity/wanderer_sophie/worker.png")
+            BackMath.resourceLoc("textures/entity/wanderer_sophie/worker.png"),
+            BackMath.resourceLoc("textures/entity/wanderer_sophie/blue_axolotl.png"),
+            BackMath.resourceLoc("textures/entity/wanderer_sophie/cyan_axolotl_2.png"),
+            BackMath.resourceLoc("textures/entity/wanderer_sophie/empresary2.png"),
+            BackMath.resourceLoc("textures/entity/wanderer_sophie/entrepreneur.png")
     };
 
     public WandererSophieRenderer(EntityRendererManager rendererManager) {

@@ -67,9 +67,17 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(BMTags.Blocks.BASE_STONE_ALJAN).add(BMBlocks.ALJANSTONE.get()).add(BMBlocks.SLEEPINGSTONE.get()).add(BMBlocks.INSOGRAVEL.get());
 
         this.getOrCreateBuilder(BMTags.Blocks.GLASS_DEVIL).add(BMBlocks.DEVIL_STAINED_GLASS.get());
+        this.getOrCreateBuilder(BMTags.Blocks.GLASS_ALJAN_LIGHT_BLUE).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get());
+        this.getOrCreateBuilder(BMTags.Blocks.GLASS_POISON_BROWN).add(BMBlocks.POISON_BROWN_STAINED_GLASS.get());
+        this.getOrCreateBuilder(BMTags.Blocks.GLASS_INSOMNIAN).add(BMBlocks.INSOMNIAN_STAINED_GLASS.get());
         this.getOrCreateBuilder(BMTags.Blocks.GLASS_PANES_DEVIL).add(BMBlocks.DEVIL_STAINED_GLASS_PANE.get());
-        this.getOrCreateBuilder(Tags.Blocks.STAINED_GLASS).add(BMBlocks.DEVIL_STAINED_GLASS.get());
-        this.getOrCreateBuilder(Tags.Blocks.STAINED_GLASS_PANES).add(BMBlocks.DEVIL_STAINED_GLASS_PANE.get());
+        this.getOrCreateBuilder(BMTags.Blocks.GLASS_PANES_ALJAN_LIGHT_BLUE).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get());
+        this.getOrCreateBuilder(BMTags.Blocks.GLASS_PANES_POISON_BROWN).add(BMBlocks.POISON_BROWN_STAINED_GLASS_PANE.get());
+        this.getOrCreateBuilder(BMTags.Blocks.GLASS_PANES_INSOMNIAN).add(BMBlocks.INSOMNIAN_STAINED_GLASS_PANE.get());
+        this.getOrCreateBuilder(Tags.Blocks.STAINED_GLASS).add(BMBlocks.DEVIL_STAINED_GLASS.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS.get())
+                .add(BMBlocks.INSOMNIAN_STAINED_GLASS.get());
+        this.getOrCreateBuilder(Tags.Blocks.STAINED_GLASS_PANES).add(BMBlocks.DEVIL_STAINED_GLASS_PANE.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS_PANE.get())
+                .add(BMBlocks.INSOMNIAN_STAINED_GLASS_PANE.get());
 
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_DEVIL);
         this.getOrCreateBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_RAW_DEVIL);
@@ -180,7 +188,8 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.getOrCreateBuilder(BlockTags.WOOL).add(BMBlocks.DEVIL_WOOL.get());
         this.getOrCreateBuilder(BlockTags.CARPETS).add(BMBlocks.DEVIL_CARPET.get());
         this.getOrCreateBuilder(BlockTags.CROPS).add(BMBlocks.CARAMELED_WHEAT.get()).add(BMBlocks.WILD_CARAMELED_WHEAT.get()).add(BMBlocks.ALJAMIC_ONIONS.get()).add(BMBlocks.WILD_ALJAMIC_ONIONS.get());
-        this.getOrCreateBuilder(BlockTags.IMPERMEABLE).add(BMBlocks.DEVIL_STAINED_GLASS.get()).add(BMBlocks.ALJAMIC_GLASS.get());
+        this.getOrCreateBuilder(BlockTags.IMPERMEABLE).add(BMBlocks.DEVIL_STAINED_GLASS.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS.get()).add(BMBlocks.INSOMNIAN_STAINED_GLASS.get())
+                .add(BMBlocks.ALJAMIC_GLASS.get());
         this.getOrCreateBuilder(BlockTags.PIGLIN_REPELLENTS).add(BMBlocks.MID_TERM_SOUL_LANTERN.get());
         this.getOrCreateBuilder(BlockTags.SAND).add(BMBlocks.ALJAMIC_SAND.get());
         this.getOrCreateBuilder(BlockTags.SMALL_FLOWERS).add(BMBlocks.RED_YELLOW_FLOWER.get()).add(BMBlocks.FRIED_EGG_FLOWER.get()).add(BMBlocks.TURTLE_FRIED_EGG_FLOWER.get()).add(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get())
@@ -232,15 +241,17 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
 
         this.getOrCreateBuilder(BlockTags.FLOWER_POTS).add(BMBlocks.POTTED_GUARANA_OAK_SAPLING.get()).add(BMBlocks.POTTED_MANGO_OAK_SAPLING.get()).add(BMBlocks.POTTED_MANGAED_MANGO_OAK_SAPLING.get())
                 .add(BMBlocks.POTTED_GRAPE_VINE_SAPLING.get()).add(BMBlocks.POTTED_LEMON_OAK_SAPLING.get()).add(BMBlocks.POTTED_PINEAPPLE_OAK_SAPLING.get()).add(BMBlocks.POTTED_ORANGE_OAK_SAPLING.get())
-                .add(BMBlocks.POTTED_BANANA_JUNGLE_SAPLING.get()).add(BMBlocks.POTTED_GUAVA_SAPLING.get()).add(BMBlocks.POTTED_JABUTICABA_SAPLING.get()).add(BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get())
-                .add(BMBlocks.POTTED_GOLDENWOOD_SAPLING.get()).add(BMBlocks.POTTED_ENCHANTED_GOLDENWOOD_SAPLING.get()).add(BMBlocks.POTTED_CORK_OAK_SAPLING.get()).add(BMBlocks.POTTED_ALJANWOOD_SAPLING.get())
-                .add(BMBlocks.POTTED_ALJANCAP_SAPLING.get()).add(BMBlocks.POTTED_INSOMNIAN_SAPLING.get()).add(BMBlocks.POTTED_AVONDALIC_WILLOW_SAPLING.get()).add(BMBlocks.POTTED_RED_YELLOW_FLOWER.get())
-                .add(BMBlocks.POTTED_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_TURTLE_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_ALJAN_TULIP.get())
-                .add(BMBlocks.POTTED_POISON_ROSE.get()).add(BMBlocks.POTTED_INSOMNIAN_TULIP.get()).add(BMBlocks.POTTED_ALJANSHROOM.get()).add(BMBlocks.POTTED_SLEEPSHROOM.get()).add(BMBlocks.POTTED_SLEEPYSHROOM.get());
+                .add(BMBlocks.POTTED_BANANA_JUNGLE_SAPLING.get()).add(BMBlocks.POTTED_GUAVA_SAPLING.get()).add(BMBlocks.POTTED_JABUTICABA_SAPLING.get()).add(BMBlocks.POTTED_ALJAME_BIRCH_SAPLING.get())
+                .add(BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.POTTED_GOLDENWOOD_SAPLING.get()).add(BMBlocks.POTTED_ENCHANTED_GOLDENWOOD_SAPLING.get()).add(BMBlocks.POTTED_CORK_OAK_SAPLING.get())
+                .add(BMBlocks.POTTED_ALJANWOOD_SAPLING.get()).add(BMBlocks.POTTED_ALJANCAP_SAPLING.get()).add(BMBlocks.POTTED_INSOMNIAN_SAPLING.get()).add(BMBlocks.POTTED_AVONDALIC_WILLOW_SAPLING.get())
+                .add(BMBlocks.POTTED_RED_YELLOW_FLOWER.get()).add(BMBlocks.POTTED_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_TURTLE_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER.get())
+                .add(BMBlocks.POTTED_ALJAN_TULIP.get()).add(BMBlocks.POTTED_POISON_ROSE.get()).add(BMBlocks.POTTED_INSOMNIAN_TULIP.get()).add(BMBlocks.POTTED_ALJANSHROOM.get()).add(BMBlocks.POTTED_SLEEPSHROOM.get())
+                .add(BMBlocks.POTTED_SLEEPYSHROOM.get());
         this.getOrCreateBuilder(BlockTags.SAPLINGS).add(BMBlocks.GUARANA_OAK_SAPLING.get()).add(BMBlocks.MANGO_OAK_SAPLING.get()).add(BMBlocks.MANGAED_MANGO_OAK_SAPLING.get())
                 .add(BMBlocks.GRAPE_VINE_SAPLING.get()).add(BMBlocks.LEMON_OAK_SAPLING.get()).add(BMBlocks.PINEAPPLE_OAK_SAPLING.get()).add(BMBlocks.ORANGE_OAK_SAPLING.get()).add(BMBlocks.BANANA_JUNGLE_SAPLING.get())
-                .add(BMBlocks.GUAVA_SAPLING.get()).add(BMBlocks.JABUTICABA_SAPLING.get()).add(BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.GOLDENWOOD_SAPLING.get()).add(BMBlocks.ENCHANTED_GOLDENWOOD_SAPLING.get())
-                .add(BMBlocks.CORK_OAK_SAPLING.get()).add(BMBlocks.ALJANWOOD_SAPLING.get()).add(BMBlocks.ALJANCAP_SAPLING.get()).add(BMBlocks.INSOMNIAN_SAPLING.get()).add(BMBlocks.AVONDALIC_WILLOW_SAPLING.get());
+                .add(BMBlocks.GUAVA_SAPLING.get()).add(BMBlocks.JABUTICABA_SAPLING.get()).add(BMBlocks.ALJAME_BIRCH_SAPLING.get()).add(BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.GOLDENWOOD_SAPLING.get())
+                .add(BMBlocks.ENCHANTED_GOLDENWOOD_SAPLING.get()).add(BMBlocks.CORK_OAK_SAPLING.get()).add(BMBlocks.ALJANWOOD_SAPLING.get()).add(BMBlocks.ALJANCAP_SAPLING.get()).add(BMBlocks.INSOMNIAN_SAPLING.get())
+                .add(BMBlocks.AVONDALIC_WILLOW_SAPLING.get());
         this.getOrCreateBuilder(BlockTags.LEAVES).add(BMBlocks.GUARANA_OAK_LEAVES.get()).add(BMBlocks.MANGO_OAK_LEAVES.get()).add(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get())
                 .add(BMBlocks.GRAPE_VINE_LEAVES.get()).add(BMBlocks.LEMON_OAK_LEAVES.get()).add(BMBlocks.PINEAPPLE_OAK_LEAVES.get()).add(BMBlocks.GUAVA_LEAVES.get()).add(BMBlocks.JABUTICABA_LEAVES.get())
                 .add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.GOLDENWOOD_LEAVES.get()).add(BMBlocks.ENCHANTED_GOLDENWOOD_LEAVES.get()).add(BMBlocks.CORK_OAK_LEAVES.get())

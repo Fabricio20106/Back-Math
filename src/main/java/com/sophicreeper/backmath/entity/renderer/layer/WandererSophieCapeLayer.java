@@ -29,7 +29,7 @@ public class WandererSophieCapeLayer extends LayerRenderer<WandererSophie, BMBip
             ItemStack chestStack = sophie.getItemStackFromSlot(EquipmentSlotType.CHEST);
             if (chestStack.getItem() != Items.ELYTRA) {
                 matrixStack.push();
-                matrixStack.translate(0, 0, 0.125d);
+                matrixStack.translate(0, 0, 0.125D);
                 double d0 = MathHelper.lerp(partialTicks, sophie.prevChasingPosX, sophie.chasingPosX) - MathHelper.lerp(partialTicks, sophie.prevPosX, sophie.getPosX());
                 double d1 = MathHelper.lerp(partialTicks, sophie.prevChasingPosY, sophie.chasingPosY) - MathHelper.lerp(partialTicks, sophie.prevPosY, sophie.getPosY());
                 double d2 = MathHelper.lerp(partialTicks, sophie.prevChasingPosZ, sophie.chasingPosZ) - MathHelper.lerp(partialTicks, sophie.prevPosZ, sophie.getPosZ());
@@ -54,9 +54,9 @@ public class WandererSophieCapeLayer extends LayerRenderer<WandererSophie, BMBip
                 matrixStack.rotate(Vector3f.ZP.rotationDegrees(f3 / 2));
                 matrixStack.rotate(Vector3f.YP.rotationDegrees(180 - f3 / 2));
                 // TODO: Make the cape texture modifiable through NBT in Wanderer Sophies.
-                // Example: (cape_texture: "cherry_blossom") + "_cape.png"
+                // Example: (cape_texture: "cherry_blossom") + ".png"
                 // Thus making new cape viable just through mob NBT and a resource pack.
-                IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.getEntitySolid(BackMath.resourceLoc("textures/entity/cherry_blossom_cape.png")));
+                IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.getEntitySolid(BackMath.resourceLoc("textures/entity/cape/cherry_blossom.png")));
                 this.getEntityModel().renderCape(matrixStack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY);
                 matrixStack.pop();
             }

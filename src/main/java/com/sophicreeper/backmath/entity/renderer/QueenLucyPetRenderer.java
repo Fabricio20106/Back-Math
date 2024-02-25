@@ -1,12 +1,10 @@
 package com.sophicreeper.backmath.entity.renderer;
 
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.entity.model.BMBipedModel;
-import com.sophicreeper.backmath.entity.model.QueenLucyPetModel;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
+import com.sophicreeper.backmath.entity.model.QueenLucyPetModel;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -27,17 +25,19 @@ public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPet, QueenLucyP
             BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_witcher.png"),
             BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_maid.png"),
             BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_yellow_sophixolotl.png"),
-            BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_blue_sophixolotl.png"),
+            BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_cyan_sophixolotl.png"),
             BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_enderphie.png"),
             BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_worker.png"),
             BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_empresary2.png"),
-            BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_entrepreneur.png")
+            BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_entrepreneur.png"),
+            BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_blue_axolotl.png"),
+            BackMath.resourceLoc("textures/entity/queen_lucy_pet/qsp_sv_cyan_axolotl.png")
     };
 
     public QueenLucyPetRenderer(EntityRendererManager manager) {
-        super(manager, new QueenLucyPetModel(), 0.25f);
+        super(manager, new QueenLucyPetModel(), 0.25F);
         // I'd rather not render the armor than have it render 2x the size of the mob.
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.25F, 0, 64, 32), new BMBipedModel<>(0.5f, 0, 64, 32)));
+        // this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.25F, 0, 64, 32), new BMBipedModel<>(0.5F, 0, 64, 32)));
         // Elytra also renders 2x the mob size.
         // this.addLayer(new ElytraLayer<>(this));
     }

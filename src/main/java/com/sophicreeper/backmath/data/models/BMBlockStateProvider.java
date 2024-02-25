@@ -439,6 +439,14 @@ public class BMBlockStateProvider extends BlockStateProvider {
         simpleBlock(BMBlocks.EMERIOND_BLOCK.get());
         axisBlock((RotatedPillarBlock) BMBlocks.CARAMELED_HAY_BALE.get(), modLoc("block/carameled_hay_bale_side"), modLoc("block/carameled_hay_bale_top"));
 
+        //25/02/2024
+        simpleBlock(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get());
+        paneBlock((PaneBlock) BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get(), modLoc("block/aljan_light_blue_stained_glass"), modLoc("block/aljan_light_blue_stained_glass_pane_top"));
+        simpleBlock(BMBlocks.POISON_BROWN_STAINED_GLASS.get());
+        paneBlock((PaneBlock) BMBlocks.POISON_BROWN_STAINED_GLASS_PANE.get(), modLoc("block/poison_brown_stained_glass"), modLoc("block/poison_brown_stained_glass_pane_top"));
+        simpleBlock(BMBlocks.INSOMNIAN_STAINED_GLASS.get());
+        paneBlock((PaneBlock) BMBlocks.INSOMNIAN_STAINED_GLASS_PANE.get(), modLoc("block/insomnian_stained_glass"), modLoc("block/insomnian_stained_glass_pane_top"));
+
         charjanTorch(BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_TORCH.get(), BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_WALL_TORCH.get(), "crystalline_birch");
         charjanTorch(BMBlocks.CHARJAN_GOLDENWOOD_TORCH.get(), BMBlocks.CHARJAN_GOLDENWOOD_WALL_TORCH.get(), "goldenwood");
         charjanTorch(BMBlocks.CHARJAN_GUAVA_TORCH.get(), BMBlocks.CHARJAN_GUAVA_WALL_TORCH.get(), "guava");

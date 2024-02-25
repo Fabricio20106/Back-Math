@@ -9,4 +9,5 @@ public class BMMaterials {
 
     public static final Material ALJAN_ROCK = new Material.Builder(ALJAN).build();
     public static final Material SLEEPINGSTONE_ROCK = new Material.Builder(MaterialColor.PURPLE).build();
+    public static final Material SLEEPISHWATER = new Material.Builder(MaterialColor.PURPLE).doesNotBlockMovement().notSolid().replaceable().liquid().build();
 }

@@ -140,6 +140,11 @@ public class BMTools implements IItemTier {
             super(0, 150, 0, 1, 13, () -> Ingredient.fromItems(Items.BREAD));
         }
     }
+    public static class Tabu extends BMTools {
+        public Tabu() {
+            super(1, 1250, 3, 2, 20, () -> Ingredient.fromTag(BMTags.Items.TABU_SMELTABLES));
+        }
+    }
     public static class CorkOak extends BMTools {
         public CorkOak() {
             super(0, 59, 2, 0, 15, () -> Ingredient.fromItems(AxolotlTest.CORK_OAK_PLANKS.get()));

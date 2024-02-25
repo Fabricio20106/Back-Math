@@ -136,7 +136,7 @@
         }
       }
     },
-    "tamed_qlp:sv_blue_sophixolotl": {
+    "tamed_qlp:sv_cyan_sophixolotl": {
       "trigger": "minecraft:tame_animal",
       "conditions": {
         "entity": {
@@ -178,6 +178,24 @@
         "entity": {
           "type": "backmath:queen_sophie_pet",
           "nbt": "{Variant:17}"
+        }
+      }
+    },
+    "tamed_qlp:sv_blue_axolotl": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:18}"
+        }
+      }
+    },
+    "tamed_qlp:sv_cyan_axolotl": {
+      "trigger": "minecraft:tame_animal",
+      "conditions": {
+        "entity": {
+          "type": "backmath:queen_sophie_pet",
+          "nbt": "{Variant:19}"
         }
       }
     }
@@ -223,7 +241,7 @@
       "tamed_qlp:sv_yellow_sophixolotl"
     ],
     [
-      "tamed_qlp:sv_blue_sophixolotl"
+      "tamed_qlp:sv_cyan_sophixolotl"
     ],
     [
       "tamed_qlp:sv_enderphie"
@@ -236,6 +254,12 @@
     ],
     [
       "tamed_qlp:sv_entrepreneur"
+    ],
+    [
+      "tamed_qlp:sv_blue_axolotl"
+    ],
+    [
+      "tamed_qlp:sv_cyan_axolotl"
     ]
   ]
 }

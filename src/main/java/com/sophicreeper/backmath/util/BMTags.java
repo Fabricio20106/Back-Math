@@ -88,6 +88,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> SINGULARITIES_EMOTIONAL = forge("singularities/emotional");
         public static final ITag.INamedTag<Item> SINGULARITIES_HEAT = forge("singularities/heat");
         public static final ITag.INamedTag<Item> SINGULARITIES_MANGA_MANGO = forge("singularities/manga_mango");
+        public static final ITag.INamedTag<Item> SINGULARITIES_AMARACAMEL = forge("singularities/amaracamel");
 
         public static final ITag.INamedTag<Item> RODS_GOLD = forge("rods/gold");
         public static final ITag.INamedTag<Item> RODS_DEVIL = forge("rods/devil");
@@ -232,6 +233,15 @@ public class BMTags {
         public static final ITag.INamedTag<Item> ORES_COPPER = forge("ores/copper");
         public static final ITag.INamedTag<Item> ORES_TIN = forge("ores/tin");
 
+        public static final ITag.INamedTag<Item> RAW_MATERIALS = forge("raw_materials");
+        public static final ITag.INamedTag<Item> RAW_MATERIALS_DEVIL = forge("raw_materials/devil");
+        public static final ITag.INamedTag<Item> RAW_MATERIALS_ANGELIC = forge("raw_materials/angelic");
+        public static final ITag.INamedTag<Item> RAW_MATERIALS_MID_TERM = forge("raw_materials/mid_term");
+        public static final ITag.INamedTag<Item> RAW_MATERIALS_ALJAMEED = forge("raw_materials/aljameed");
+        public static final ITag.INamedTag<Item> RAW_MATERIALS_ALJAMIC_COPPER = forge("raw_materials/aljamic_copper");
+        public static final ITag.INamedTag<Item> RAW_MATERIALS_ALJAMIC_TIN = forge("raw_materials/aljamic_tin");
+        public static final ITag.INamedTag<Item> RAW_MATERIALS_MOONERING = forge("raw_materials/moonering");
+
         public static final ITag.INamedTag<Item> ARMORS_BOOTS = forge("armors/boots");
         public static final ITag.INamedTag<Item> KNIVES = forge("knives");
         public static final ITag.INamedTag<Item> MILK = forge("milk");
@@ -239,7 +249,13 @@ public class BMTags {
 
         // Tag Migration
         public static final ITag.INamedTag<Item> GLASS_DEVIL = forge("glass/devil");
+        public static final ITag.INamedTag<Item> GLASS_ALJAN_LIGHT_BLUE = forge("glass/aljan_light_blue");
+        public static final ITag.INamedTag<Item> GLASS_POISON_BROWN = forge("glass/poison_brown");
+        public static final ITag.INamedTag<Item> GLASS_INSOMNIAN = forge("glass/insomnian");
         public static final ITag.INamedTag<Item> GLASS_PANES_DEVIL = forge("glass_panes/devil");
+        public static final ITag.INamedTag<Item> GLASS_PANES_ALJAN_LIGHT_BLUE = forge("glass_panes/aljan_light_blue");
+        public static final ITag.INamedTag<Item> GLASS_PANES_POISON_BROWN = forge("glass_panes/poison_brown");
+        public static final ITag.INamedTag<Item> GLASS_PANES_INSOMNIAN = forge("glass_panes/insomnian");
 
         public static final ITag.INamedTag<Item> DYES_DEVIL = forge("dyes/devil");
         public static final ITag.INamedTag<Item> DYES_ALJAN_LIGHT_BLUE = forge("dyes/aljan_light_blue");
@@ -301,7 +317,13 @@ public class BMTags {
         public static final ITag.INamedTag<Block> ORES_TIN = forge("ores/tin");
 
         public static final ITag.INamedTag<Block> GLASS_DEVIL = forge("glass/devil");
+        public static final ITag.INamedTag<Block> GLASS_ALJAN_LIGHT_BLUE = forge("glass/aljan_light_blue");
+        public static final ITag.INamedTag<Block> GLASS_POISON_BROWN = forge("glass/poison_brown");
+        public static final ITag.INamedTag<Block> GLASS_INSOMNIAN = forge("glass/insomnian");
         public static final ITag.INamedTag<Block> GLASS_PANES_DEVIL = forge("glass_panes/devil");
+        public static final ITag.INamedTag<Block> GLASS_PANES_ALJAN_LIGHT_BLUE = forge("glass_panes/aljan_light_blue");
+        public static final ITag.INamedTag<Block> GLASS_PANES_POISON_BROWN = forge("glass_panes/poison_brown");
+        public static final ITag.INamedTag<Block> GLASS_PANES_INSOMNIAN = forge("glass_panes/insomnian");
 
         public static final ITag.INamedTag<Block> BASE_STONE_ALJAN = backMath("base_stone_aljan");
         public static final ITag.INamedTag<Block> INFINIBURN_ALJAN = backMath("infiniburn_aljan");
@@ -383,6 +405,7 @@ public class BMTags {
         public static final ITag.INamedTag<EntityType<?>> DEVIL_SPAREY_EFFECTIVES = getTagById("backmath:devil_sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = getTagById("backmath:sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = getTagById("backmath:sparey_prohibited");
+        public static final ITag.INamedTag<EntityType<?>> SHY_FABRICIO_FRIENDLIES = getTagById("backmath:shy_fabricio_friendlies");
 
         // Melony Tags
         public static final ITag.INamedTag<EntityType<?>> CAN_SPAWN_ON_LEAVES = getTagById("melony:can_spawn_on_leaves");

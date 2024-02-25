@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "backmath:oregano_pot"
+    },
+    {
+      "item": "backmath:cooked_egg"
+    }
+  ],
+  "result": {
+    "item": "backmath:oregano_fried_egg"
+  }
+}

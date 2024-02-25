@@ -22,9 +22,14 @@
     {
       "tag": "forge:singularities/vegetably"
     },
-    {
-      "tag": "forge:singularities/manga_mango"
-    },
+    [
+      {
+        "tag": "forge:singularities/manga_mango"
+      },
+      {
+        "tag": "forge:singularities/amaracamel"
+      }
+    ],
     {
       "item": "backmath:superheater"
     }

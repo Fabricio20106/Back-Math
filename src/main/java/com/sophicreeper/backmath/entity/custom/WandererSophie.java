@@ -96,7 +96,7 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     }
 
     public int getVariant() {
-        return MathHelper.clamp(this.dataManager.get(VARIANT), 0, 11);
+        return MathHelper.clamp(this.dataManager.get(VARIANT), 0, 15);
     }
 
     public void setVariant(int variant) {
@@ -147,7 +147,7 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     @Override
     public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         spawnData = super.onInitialSpawn(world, difficulty, reason, spawnData, dataTag);
-        this.setVariant(this.rand.nextInt(12));
+        this.setVariant(this.rand.nextInt(16));
         this.setEnchantmentBasedOnDifficulty(difficulty);
         this.setEquipmentBasedOnDifficulty(difficulty);
         return spawnData;

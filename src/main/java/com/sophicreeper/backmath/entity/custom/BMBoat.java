@@ -46,7 +46,7 @@ public class BMBoat extends BoatEntity {
     @Override
     protected void readAdditional(CompoundNBT tag) {
         super.readAdditional(tag);
-        tag.putString("Type", this.getWoodType());
+        this.setWoodType(tag.getString("Type"));
     }
 
     @Override
@@ -69,6 +69,10 @@ public class BMBoat extends BoatEntity {
             case "aljanwood":
             default:
                 return AxolotlTest.ALJANWOOD_BOAT.get();
+            case "aljancap":
+                return AxolotlTest.ALJANCAP_BOAT.get();
+            case "insomnian":
+                return AxolotlTest.INSOMNIAN_BOAT.get();
         }
     }
 

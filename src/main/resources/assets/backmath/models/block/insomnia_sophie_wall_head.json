@@ -1,9 +1,7 @@
 {
-  "parent": "backmath:block/template_bm_wall_head",
+  "parent": "backmath:block/template_bm_wall_head_no_overlay",
   "textures": {
     "side": "backmath:block/insomnia_sophie_head_side",
-    "top": "backmath:block/insomnia_sophie_head_top",
-    "overlay_side": "backmath:block/empty_head_overlay",
-    "overlay_top": "backmath:block/empty_head_overlay"
+    "top": "backmath:block/insomnia_sophie_head_top"
   }
 }

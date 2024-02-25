@@ -31,9 +31,9 @@ public class ShyFabricio extends CreatureEntity {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1d, Ingredient.fromTag(BMTags.Items.SHY_FABRICIO_TEMPT_ITEMS), true));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, LivingEntity.class, 24, 1.6d, 2.6d, (livEntity) -> !(livEntity instanceof ShyFabricio)));
-        this.goalSelector.addGoal(2, new PanicGoal(this, 2.1d));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.fromTag(BMTags.Items.SHY_FABRICIO_TEMPT_ITEMS), true));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, LivingEntity.class, 24, 1.6D, 2.6D, (livEntity) -> !(livEntity.getType().isContained(BMTags.EntityTypes.SHY_FABRICIO_FRIENDLIES))));
+        this.goalSelector.addGoal(2, new PanicGoal(this, 2.1D));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookAtGoal(this, ShyFabricio.class, 6));
@@ -45,11 +45,11 @@ public class ShyFabricio extends CreatureEntity {
     public static AttributeModifierMap.MutableAttribute createShyFabricioAttributes() {
         return CreatureEntity.func_233666_p_()
                 .createMutableAttribute(Attributes.MAX_HEALTH, 20)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62f;
+        return 1.62F;
     }
 
     public double getYOffset() {

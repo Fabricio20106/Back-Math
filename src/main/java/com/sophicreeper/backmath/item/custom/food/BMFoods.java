@@ -5,11 +5,11 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
 public class BMFoods {
-    public static final Food TODDY = new Food.Builder().hunger(10).saturation(10).effect(() -> new EffectInstance(Effects.STRENGTH, 1200), 1).build();
+    public static final Food TODDY = new Food.Builder().hunger(10).saturation(1).effect(() -> new EffectInstance(Effects.STRENGTH, 1200), 1).build();
     public static final Food ALJAME = new Food.Builder().hunger(5).saturation(3.5F).effect(() ->
             new EffectInstance(Effects.POISON, 100), 1).effect(() ->
             new EffectInstance(Effects.BLINDNESS, 600), 1).build();
-    public static final Food LAGUSTA = new Food.Builder().hunger(9).saturation(6).build();
+    public static final Food LAGUSTA = new Food.Builder().hunger(9).saturation(0.7F).build();
     public static final Food AMARACAMEL = new Food.Builder().hunger(5).saturation(2.2F).build();
     public static final Food ALJAME_TEACUP = new Food.Builder().hunger(4).saturation(1.2F).effect(
             () -> new EffectInstance(Effects.REGENERATION, 200), 1).effect(
@@ -45,39 +45,39 @@ public class BMFoods {
 
     // Back Math 1.8.0:
     // Foods
-    public static final Food GUAVA = new Food.Builder().hunger(5).saturation(0.5f).build();
-    public static final Food JABUTICABA = new Food.Builder().hunger(3).saturation(0.4f).build();
+    public static final Food GUAVA = new Food.Builder().hunger(5).saturation(0.5F).build();
+    public static final Food JABUTICABA = new Food.Builder().hunger(3).saturation(0.4F).build();
 
     // Cut Fruits
-    public static final Food HALVED_APPLE = new Food.Builder().hunger(2).saturation(0.15f).fastToEat().build();
-    public static final Food HALVED_GOLDEN_APPLE = new Food.Builder().hunger(2).saturation(0.6f).effect(
+    public static final Food HALVED_APPLE = new Food.Builder().hunger(2).saturation(0.15F).fastToEat().build();
+    public static final Food HALVED_GOLDEN_APPLE = new Food.Builder().hunger(2).saturation(0.6F).effect(
             () -> new EffectInstance(Effects.REGENERATION, 50, 0), 1).effect(
             () -> new EffectInstance(Effects.ABSORPTION, 1200, 0), 1).setAlwaysEdible().fastToEat().build();
-    public static final Food HALVED_ENCHANTED_GOLDEN_APPLE = new Food.Builder().hunger(2).saturation(0.6f).effect(
+    public static final Food HALVED_ENCHANTED_GOLDEN_APPLE = new Food.Builder().hunger(2).saturation(0.6F).effect(
             () -> new EffectInstance(Effects.REGENERATION, 200, 0), 1).effect(
             () -> new EffectInstance(Effects.ABSORPTION, 1200, 1), 1).effect(
             () -> new EffectInstance(Effects.RESISTANCE, 3000, 0), 1).effect(
             () -> new EffectInstance(Effects.FIRE_RESISTANCE, 1200, 1), 1).setAlwaysEdible().fastToEat().build();
-    public static final Food HALVED_CARROT = new Food.Builder().hunger(1).saturation(0.3f).fastToEat().build();
-    public static final Food HALVED_SWEET_BERRIES = new Food.Builder().hunger(1).saturation(0.05f).fastToEat().build();
-    public static final Food HALVED_BAKED_POTATO = new Food.Builder().hunger(2).saturation(0.3f).fastToEat().build();
-    public static final Food HALVED_HONEY_BOTTLE = new Food.Builder().hunger(3).saturation(0.05f).fastToEat().build();
-    public static final Food HALVED_ALJAME = new Food.Builder().hunger(2).saturation(1.75f).effect(() ->
-            new EffectInstance(Effects.POISON, 100), 1.0f).effect(() ->
-            new EffectInstance(Effects.BLINDNESS, 600), 1.0f).fastToEat().build();
-    public static final Food HALVED_JANTIQUIFIED_ALJAME = new Food.Builder().hunger(2).saturation(1.75f).effect(
-            () -> new EffectInstance(Effects.REGENERATION, 50, 1), 1.0F).effect(
-            () -> new EffectInstance(Effects.ABSORPTION, 1200, 0), 1.0F).setAlwaysEdible().build();
-    public static final Food HALVED_HOLY_JANTIQUIFIED_ALJAME = new Food.Builder().hunger(2).saturation(1.75f).effect(
-            () -> new EffectInstance(Effects.REGENERATION, 200, 1), 1.0F).effect(
-            () -> new EffectInstance(Effects.RESISTANCE, 3000, 0), 1.0F).effect(
-            () -> new EffectInstance(Effects.FIRE_RESISTANCE, 3000, 0), 1.0F).effect(
-            () -> new EffectInstance(Effects.ABSORPTION, 1200, 3), 1.0F).setAlwaysEdible().build();
-    public static final Food HALVED_GUAVA = new Food.Builder().hunger(2).saturation(0.25f).fastToEat().build();
-    public static final Food HALVED_JABUTICABA = new Food.Builder().hunger(1).saturation(0.2f).fastToEat().build();
-    public static final Food ALJAMIC_BERRY = new Food.Builder().hunger(5).saturation(3.5f).build();
-    public static final Food HALVED_ALJAMIC_BERRY = new Food.Builder().hunger(2).saturation(1.75f).fastToEat().build();
-    public static final Food AMARACAMEL_JUICE = new Food.Builder().hunger(6).saturation(3.2f).build();
+    public static final Food HALVED_CARROT = new Food.Builder().hunger(1).saturation(0.3F).fastToEat().build();
+    public static final Food HALVED_SWEET_BERRIES = new Food.Builder().hunger(1).saturation(0.05F).fastToEat().build();
+    public static final Food HALVED_BAKED_POTATO = new Food.Builder().hunger(2).saturation(0.3F).fastToEat().build();
+    public static final Food HALVED_HONEY_BOTTLE = new Food.Builder().hunger(3).saturation(0.05F).fastToEat().build();
+    public static final Food HALVED_ALJAME = new Food.Builder().hunger(2).saturation(1.75F).effect(() ->
+            new EffectInstance(Effects.POISON, 100), 1).effect(() ->
+            new EffectInstance(Effects.BLINDNESS, 600), 1).fastToEat().build();
+    public static final Food HALVED_JANTIQUIFIED_ALJAME = new Food.Builder().hunger(2).saturation(1.75F).effect(
+            () -> new EffectInstance(Effects.REGENERATION, 50, 1), 1).effect(
+            () -> new EffectInstance(Effects.ABSORPTION, 1200, 0), 1).setAlwaysEdible().build();
+    public static final Food HALVED_HOLY_JANTIQUIFIED_ALJAME = new Food.Builder().hunger(2).saturation(1.75F).effect(
+            () -> new EffectInstance(Effects.REGENERATION, 200, 1), 1).effect(
+            () -> new EffectInstance(Effects.RESISTANCE, 3000, 0), 1).effect(
+            () -> new EffectInstance(Effects.FIRE_RESISTANCE, 3000, 0), 1).effect(
+            () -> new EffectInstance(Effects.ABSORPTION, 1200, 3), 1).setAlwaysEdible().build();
+    public static final Food HALVED_GUAVA = new Food.Builder().hunger(2).saturation(0.25F).fastToEat().build();
+    public static final Food HALVED_JABUTICABA = new Food.Builder().hunger(1).saturation(0.2F).fastToEat().build();
+    public static final Food ALJAMIC_BERRY = new Food.Builder().hunger(5).saturation(3.5F).build();
+    public static final Food HALVED_ALJAMIC_BERRY = new Food.Builder().hunger(2).saturation(1.75F).fastToEat().build();
+    public static final Food AMARACAMEL_JUICE = new Food.Builder().hunger(6).saturation(3.2F).build();
 
     // Ported from AxolotlTest.
     public static final Food FRIED_EGG_BREAD = new Food.Builder().hunger(5).saturation(0.93F).build();

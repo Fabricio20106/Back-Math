@@ -79,6 +79,18 @@ public class MealCookerBlock extends HorizontalBlock {
             mainHand.shrink(1);
             offHand.shrink(1);
         }
+        if (mainHand.getItem() == Items.BREAD && offHand.getItem() == AxolotlTest.TURTLE_FRIED_EGG.get()) {
+            player.addItemStackToInventory(new ItemStack(AxolotlTest.TURTLE_FRIED_EGG_BREAD.get()));
+            player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            mainHand.shrink(1);
+            offHand.shrink(1);
+        }
+        if (mainHand.getItem() == Items.BREAD && offHand.getItem() == AxolotlTest.ENDER_DRAGON_FRIED_EGG.get()) {
+            player.addItemStackToInventory(new ItemStack(AxolotlTest.ENDER_DRAGON_FRIED_EGG_BREAD.get()));
+            player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
+            mainHand.shrink(1);
+            offHand.shrink(1);
+        }
         if (mainHand.getItem() == AxolotlTest.ANGELIC_SPOON.get()) {
             player.addStat(BMStats.INTERACT_WITH_MEAL_COOKER);
             player.addItemStackToInventory(new ItemStack(AxolotlTest.PASTA.get()));
