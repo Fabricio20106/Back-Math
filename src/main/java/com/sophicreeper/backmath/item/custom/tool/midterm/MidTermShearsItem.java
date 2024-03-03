@@ -1,15 +1,15 @@
 package com.sophicreeper.backmath.item.custom.tool.midterm;
 
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.item.custom.tool.BMShearsItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShearsItem;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 
-public class MidTermShearsItem extends ShearsItem {
+public class MidTermShearsItem extends BMShearsItem {
     public MidTermShearsItem(Properties properties) {
         super(properties);
     }

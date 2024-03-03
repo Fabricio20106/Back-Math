@@ -401,6 +401,7 @@ public class BMTags {
 
         public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_TAMED = getTagById("backmath:qlp_targets/tamed");
         public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_NOT_TAMED = getTagById("backmath:qlp_targets/not_tamed");
+        public static final ITag.INamedTag<EntityType<?>> QLP_CANNOT_TARGET = getTagById("backmath:qlp_targets/disallowed");
         public static final ITag.INamedTag<EntityType<?>> MALAIKA_TARGETS = getTagById("backmath:malaika_targets");
         public static final ITag.INamedTag<EntityType<?>> DEVIL_SPAREY_EFFECTIVES = getTagById("backmath:devil_sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = getTagById("backmath:sparey_effectives");

@@ -1654,6 +1654,10 @@
   "tooltip.backmath.hold_shift.held": "§8Hold <§fShift§8> for description",
   "tooltip.backmath.queen_lucy_pet.sit_down": "%s is sitting down",
   "tooltip.backmath.queen_lucy_pet.stand_up": "%s is standing up",
+  "tooltip.backmath.jantical": "§eJanticals§6 can be applied to §eAljan Portal Stands§6, optionally using §eDispensers§6.",
+  "tooltip.backmath.regular_molds_book": "§6The §eBook of Regular Molds §6acts as an all-in-one mold for the default §eCrystallizer§6, although this book works best on a §eDispenser§6. This cannot be used in a crystalline crystallizer.",
+  "tooltip.backmath.advanced_molds_book": "§3The §bBook of Advanced Molds §3acts as an all-in-one mold for the §bCrystalline Crystallizer§3, although this book works best on a §bDispenser§3. This cannot be used in a regular crystallizer.",
+  "tooltip.backmath.mid_term": "§bMid-Term §3is Back Math's 2nd most overpowered item, followed by §bOIMT§3. To craft it, you'll need to make a §bMolten Mid-Term Bucket §3and use it a a §bCrystalline Crystallizer §3with either an ingot or singularity mold.",
 
   "stat.backmath.interact_with_meal_cooker": "Recipes made in Meal Cooker",
   "stat.backmath.change_crystallizer_mold": "Crystallizer Mold Changes",

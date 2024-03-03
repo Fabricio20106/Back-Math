@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.item.custom;
 
+import com.sophicreeper.backmath.block.dispenser.vanilla.DispenseBMBoatBehavior;
 import com.sophicreeper.backmath.entity.custom.BMBoat;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BoatItem;
@@ -25,6 +27,7 @@ public class BMBoatItem extends BoatItem {
     public BMBoatItem(Properties properties, String woodType) {
         super(null, properties);
         this.woodType = woodType;
+        DispenserBlock.registerDispenseBehavior(this, new DispenseBMBoatBehavior(woodType));
     }
 
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {

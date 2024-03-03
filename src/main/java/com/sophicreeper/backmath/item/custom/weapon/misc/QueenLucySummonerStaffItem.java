@@ -80,16 +80,9 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem {
         return slot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(slot);
     }
 
-    // Adds tooltips for this item:
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.addInformation(stack, world, tooltip, flag);
-        // Supposed to be an empty space to represent an actual weapon, like a sword.
-        // tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
-        // "When in main hand:".
-        // tooltip.add(new TranslationTextComponent("tooltip.backmath.when.in_main_hand"));
-        // Queen Sophie pets deal 17 damage, the "summon" damage is inspired by Terraria.
-        // tooltip.add(new TranslationTextComponent("tooltip.backmath.qlss_summon_damage"));
         // Terraria like tooltip, also says what food is used to tame her. Like parrots that don't like cookies, QSP's don't like aljame.
         tooltip.add(new TranslationTextComponent("tooltip.backmath.qlss_desc"));
         tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));

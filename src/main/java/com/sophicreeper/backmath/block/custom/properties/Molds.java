@@ -23,4 +23,21 @@ public enum Molds implements IStringSerializable {
     public String getString() {
         return this.name;
     }
+
+    public static Molds getMoldFromString(String mold) {
+        switch (mold) {
+            case "singularity":
+                return SINGULARITY;
+            case "crystallized":
+                return CRYSTALLIZED;
+            case "ingot":
+                return INGOT;
+            case "mold":
+                return MOLD;
+            case "rod":
+                return ROD;
+            default:
+                return EMPTY;
+        }
+    }
 }

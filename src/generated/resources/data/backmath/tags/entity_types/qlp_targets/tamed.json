@@ -3,6 +3,7 @@
   "values": [
     "#backmath:qlp_targets/not_tamed",
     "#minecraft:raiders",
+    "#minecraft:skeletons",
     "backmath:insomnia_sophie",
     "backmath:archer_insomnia_sophie",
     "backmath:warrior_sophie",
@@ -10,8 +11,6 @@
     "backmath:janticle",
     "backmath:insomnia_zombie",
     "backmath:zombie_fabricio",
-    "backmath:aljamic_bones",
-    "backmath:sleepish_skeleton",
     "backmath:amaracameler",
     "minecraft:zombie",
     "minecraft:husk",

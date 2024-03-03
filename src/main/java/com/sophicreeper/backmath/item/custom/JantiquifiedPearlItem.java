@@ -1,11 +1,11 @@
 package com.sophicreeper.backmath.item.custom;
 
+import com.sophicreeper.backmath.item.AxolotlTest;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.EndPortalFrameBlock;
+import net.minecraft.block.*;
 import net.minecraft.block.pattern.BlockPattern;
+import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.dispenser.OptionalDispenseBehavior;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.entity.projectile.EyeOfEnderEntity;
@@ -25,6 +25,24 @@ import net.minecraft.world.server.ServerWorld;
 public class JantiquifiedPearlItem extends Item {
     public JantiquifiedPearlItem(Properties properties) {
         super(properties);
+        DispenserBlock.registerDispenseBehavior(this, new OptionalDispenseBehavior() {
+            @Override
+            protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
+                BlockPos pos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
+                BlockPos strongholdPos = source.getWorld().getChunkProvider().getChunkGenerator().func_235956_a_(source.getWorld(), Structure.STRONGHOLD, source.getBlockPos(), 100, false);
+                if (strongholdPos != null) {
+                    EyeOfEnderEntity enderEye = new EyeOfEnderEntity(source.getWorld(), pos.getX(), pos.getY(), pos.getZ());
+                    enderEye.func_213863_b(new ItemStack(AxolotlTest.JANTIQUIFIED_PEARL.get()));
+                    enderEye.moveTowards(strongholdPos);
+                    source.getWorld().addEntity(enderEye);
+                    source.getWorld().playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+                    source.getWorld().playEvent(null, 1003, source.getBlockPos(), 0);
+                    stack.shrink(1);
+                    setSuccessful(true);
+                }
+                return stack;
+            }
+        });
     }
 
     // Called when this item is used when targeting a block.
@@ -36,7 +54,7 @@ public class JantiquifiedPearlItem extends Item {
             if (world.isRemote) {
                 return ActionResultType.SUCCESS;
             } else {
-                BlockState filledPortalFrame = state.with(EndPortalFrameBlock.EYE, Boolean.TRUE);
+                BlockState filledPortalFrame = state.with(EndPortalFrameBlock.EYE, true);
                 Block.nudgeEntitiesWithNewState(state, filledPortalFrame, world, pos);
                 world.setBlockState(pos, filledPortalFrame, 2);
                 world.updateComparatorOutputLevel(pos, Blocks.END_PORTAL_FRAME);
@@ -62,7 +80,7 @@ public class JantiquifiedPearlItem extends Item {
         }
     }
 
-    // Called to trigger the item's "innate" right click behavior. To handle when this item is used on a block, see "onItemUse".
+    // Called to trigger the item's "innate" right-click behavior. To handle when this item is used on a block, see "onItemUse".
     public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getHeldItem(hand);
         BlockRayTraceResult hitResult = rayTrace(world, player, RayTraceContext.FluidMode.NONE);

@@ -33,10 +33,11 @@ public class BMEntityTagsProvider extends EntityTypeTagsProvider {
 
         this.getOrCreateBuilder(BMTags.EntityTypes.PLAYER_LIKE).addTag(BMTags.EntityTypes.SOPHIES).addTag(BMTags.EntityTypes.LUCIAS).addTag(BMTags.EntityTypes.FABRICIOS).add(BMEntities.MALAIKA.get());
 
-        this.getOrCreateBuilder(BMTags.EntityTypes.QLP_TARGETS_TAMED).addTag(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED).addTag(EntityTypeTags.RAIDERS).add(BMEntities.INSOMNIA_SOPHIE.get()).add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get())
-                .add(BMEntities.WARRIOR_SOPHIE.get()).add(BMEntities.ARCHER_LUCIA.get()).add(BMEntities.JANTICLE.get()).add(BMEntities.INSOMNIA_ZOMBIE.get()).add(BMEntities.ZOMBIE_FABRICIO.get()).add(BMEntities.ALJAMIC_BONES.get())
-                .add(BMEntities.SLEEPISH_SKELETON.get()).add(BMEntities.AMARACAMELER.get()).add(EntityType.ZOMBIE).add(EntityType.HUSK).add(EntityType.DROWNED).add(EntityType.ZOMBIE_VILLAGER).add(EntityType.ZOMBIFIED_PIGLIN).add(EntityType.VEX);
+        this.getOrCreateBuilder(BMTags.EntityTypes.QLP_TARGETS_TAMED).addTag(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED).addTag(EntityTypeTags.RAIDERS).addTag(EntityTypeTags.SKELETONS).add(BMEntities.INSOMNIA_SOPHIE.get())
+                .add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get()).add(BMEntities.WARRIOR_SOPHIE.get()).add(BMEntities.ARCHER_LUCIA.get()).add(BMEntities.JANTICLE.get()).add(BMEntities.INSOMNIA_ZOMBIE.get()).add(BMEntities.ZOMBIE_FABRICIO.get())
+                .add(BMEntities.AMARACAMELER.get()).add(EntityType.ZOMBIE).add(EntityType.HUSK).add(EntityType.DROWNED).add(EntityType.ZOMBIE_VILLAGER).add(EntityType.ZOMBIFIED_PIGLIN).add(EntityType.VEX);
         this.getOrCreateBuilder(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED).add(BMEntities.ANGRY_SOPHIE.get()).add(BMEntities.SHY_FABRICIO.get());
+        this.getOrCreateBuilder(BMTags.EntityTypes.QLP_CANNOT_TARGET).add(BMEntities.QUEEN_LUCY_PET.get());
 
         this.getOrCreateBuilder(BMTags.EntityTypes.MALAIKA_TARGETS).add(BMEntities.INSOMNIA_ZOMBIE.get()).add(BMEntities.ZOMBIE_FABRICIO.get()).add(BMEntities.ALJAMIC_BONES.get()).add(BMEntities.SLEEPISH_SKELETON.get()).add(BMEntities.AMARACAMELER.get())
                 .add(BMEntities.JANTICLE.get());

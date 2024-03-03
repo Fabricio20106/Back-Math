@@ -1,0 +1,17 @@
+Dispenser To-Do List (3/3/24 - Sunday):
+
+- Automate the Crystallizer:
+   - Molds apply on the crystallizer; [done]
+   - Recipes with only one item can be automated by dispensing the item;
+   - Also works with the Books of Regular/Advanced Molds.
+- Automate the Meal Cooker:
+   - Dispensing the spoon will give 2 pastas to the dispenser, and damage the spoon;
+   - Right-clicking with bags/boxes/packs will open them;
+   - Using an Aljame Tea will give an Aljamic Teacup.
+- Teas can be applied to mobs in front of the dispenser.
+- Insoflint and Aljansteel can set things on fire. [done]
+- Water Talc Powder places water, and Rainbow Pencils place lava.
+- Using Shears on grape vine posts or sweet berry bushes harvests them.
+- Using Janticals on Aljan portal stands will insert the jantical onto the stand. [done]
+- Jantiquified Pearls can be used by dispensers. [done]
+- Chocoglues can be used by dispensers.

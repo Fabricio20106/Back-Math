@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.entity.goal.QLPOwnersTargetGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -76,11 +77,11 @@ public class QueenLucyPet extends TameableEntity {
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 2.1F, true));
         this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2F, 10, 2, true));
         this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1));
+        this.goalSelector.addGoal(6, new LookAtGoal(this, QueenLucyPet.class, 8));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, QueenLucy.class, 8));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
-        this.targetSelector.addGoal(2, new OwnerHurtTargetGoal(this));
+        this.targetSelector.addGoal(2, new QLPOwnersTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class ,10, false, false, (livEntity) -> livEntity.getType().isContained(BMTags.EntityTypes.QLP_TARGETS_TAMED)));
         this.targetSelector.addGoal(3, new NonTamedTargetGoal<>(this, LivingEntity.class, false, NON_TAMED_TARGETS));
         super.registerGoals();

@@ -25,4 +25,25 @@ public enum AdvancedMolds implements IStringSerializable {
     public String getString() {
         return this.name;
     }
+
+    public static AdvancedMolds getMoldFromString(String mold) {
+        switch (mold) {
+            case "singularity":
+                return SINGULARITY;
+            case "crystallized":
+                return CRYSTALLIZED;
+            case "ingot":
+                return INGOT;
+            case "mold":
+                return MOLD;
+            case "rod":
+                return ROD;
+            case "crystalline_empty":
+                return CRYSTALLINE_EMPTY;
+            case "crystalline_gem":
+                return CRYSTALLINE_GEM;
+            default:
+                return EMPTY;
+        }
+    }
 }

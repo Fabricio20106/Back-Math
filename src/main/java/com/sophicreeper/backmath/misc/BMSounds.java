@@ -23,6 +23,11 @@ public class BMSounds {
     public static SoundEvent RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_2;
     public static SoundEvent RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_3;
 
+    // Music
+    public static SoundEvent MUSIC_OVERWORLD_BACK_FIELDS;
+    public static SoundEvent MUSIC_OVERWORLD_ANGELIC_WOODS;
+    public static SoundEvent MUSIC_ALJAN;
+
     // Blocks
     public static SoundEvent BLOCK_CRYSTALLIZER_CRAFT;
     public static SoundEvent BLOCK_CRYSTALLIZER_FAIL_CRAFT;
@@ -87,6 +92,11 @@ public class BMSounds {
         RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_1 = registerSound("record.sophicreeper.sophies_dramatic_entrance.1");
         RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_2 = registerSound("record.sophicreeper.sophies_dramatic_entrance.2");
         RECORD_SOPHICREEPER_SOPHIES_DRAMATIC_ENTRANCE_3 = registerSound("record.sophicreeper.sophies_dramatic_entrance.3");
+
+        // Music
+        MUSIC_OVERWORLD_BACK_FIELDS = registerSound("music.overworld.back_fields");
+        MUSIC_OVERWORLD_ANGELIC_WOODS = registerSound("music.overworld.angelic_woods");
+        MUSIC_ALJAN = registerSound("music.aljan");
 
         // Blocks
         BLOCK_CRYSTALLIZER_CRAFT = registerSound("block.crystallizer.craft");

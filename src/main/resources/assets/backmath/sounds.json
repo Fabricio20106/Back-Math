@@ -434,5 +434,24 @@
       "mob/slime/small5"
     ],
     "subtitle": "subtitles.entity.amaracameler.squish"
+  },
+  "music.overworld.back_fields": {
+    "sounds": [
+      {
+        "name": "music.game",
+        "type": "event"
+      }
+    ]
+  },
+  "music.overworld.angelic_woods": {
+    "sounds": [
+      {
+        "name": "music.game",
+        "type": "event"
+      }
+    ]
+  },
+  "music.aljan": {
+    "sounds": []
   }
 }

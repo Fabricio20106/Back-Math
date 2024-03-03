@@ -2,10 +2,12 @@ package com.sophicreeper.backmath.world.biome;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import com.sophicreeper.backmath.entity.BMEntities;
+import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import com.sophicreeper.backmath.world.biome.custom.BMDefaultBiomeFeatures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
+import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
@@ -72,9 +74,9 @@ public class BMBiomes {
         DefaultBiomeFeatures.withSugarCaneAndPumpkins(settings);
         DefaultBiomeFeatures.withLavaAndWaterSprings(settings);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.2F).temperature(0.7F).downfall(0.8F).setEffects(new
-                BiomeAmbience.Builder().setWaterColor(0x3F76E4).setWaterFogColor(0x3F76E4).setFogColor(0xB9D1FF).withSkyColor(0x82A8FF).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE)
-                .withGrassColor(0x79C05A).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.2F).temperature(0.7F).downfall(0.8F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x3F76E4)
+                .setWaterFogColor(0x3F76E4).setFogColor(0xB9D1FF).withSkyColor(0x82A8FF).withGrassColor(0x79C05A).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_OVERWORLD_BACK_FIELDS))
+                .setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome originalBackFields() {
@@ -91,8 +93,8 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.addOriginalBackFieldTrees(settings);
         DefaultBiomeFeatures.withOverworldOres(settings);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.2F).temperature(0.7F).downfall(0.8F).setEffects(new
-                BiomeAmbience.Builder().setWaterColor(0x3F76E4).setWaterFogColor(0x3F76E4).setFogColor(0xB9D1FF).withSkyColor(0x82A8FF).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE)
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.2F).temperature(0.7F).downfall(0.8F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x3F76E4)
+                .setWaterFogColor(0x3F76E4).setFogColor(0xB9D1FF).withSkyColor(0x82A8FF).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_OVERWORLD_BACK_FIELDS)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE)
                 .withGrassColor(0x79C05A).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -104,8 +106,8 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.addModifiedBackFieldTrees(settings);
         DefaultBiomeFeatures.withOverworldOres(settings);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(1.5F).scale(0.025F).temperature(0.7F).downfall(0.8F).setEffects(new
-                BiomeAmbience.Builder().setWaterColor(0x3F76E4).setWaterFogColor(0x3F76E4).setFogColor(0xB9D1FF).withSkyColor(0x82A8FF).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE)
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(1.5F).scale(0.025F).temperature(0.7F).downfall(0.8F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x3F76E4)
+                .setWaterFogColor(0x3F76E4).setFogColor(0xB9D1FF).withSkyColor(0x82A8FF).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_OVERWORLD_BACK_FIELDS)).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE)
                 .withGrassColor(0x79C05A).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -131,9 +133,9 @@ public class BMBiomes {
 
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.CRYSTALLINE_BIRCH_TREES);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(1.5F).scale(0.025F).temperature(0.7F).downfall(0.8F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x77BAE8).setWaterFogColor(0x77BAE8).setFogColor(0xB9D1FF).withFoliageColor(0xFFEC4F).withSkyColor(0x82A8FF).setMoodSound(MoodSoundAmbience.DEFAULT_CAVE)
-                        .withGrassColor(0xD4EAEA).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(1.5F).scale(0.025F).temperature(0.7F).downfall(0.8F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x77BAE8)
+                .setWaterFogColor(0x77BAE8).setFogColor(0xB9D1FF).withFoliageColor(0xFFEC4F).withSkyColor(0x82A8FF).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_OVERWORLD_ANGELIC_WOODS))
+                .setMoodSound(MoodSoundAmbience.DEFAULT_CAVE).withGrassColor(0xD4EAEA).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     // Aljan Biomes
@@ -155,9 +157,9 @@ public class BMBiomes {
         DefaultBiomeFeatures.withFrozenTopLayer(settings);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1).scale(0.1F).temperature(0.5F).downfall(0.5F)
-                .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA)
-                        .withFoliageColor(0xD73fC1).withGrassColor(0xCC3DB4).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1).scale(0.1F).temperature(0.5F).downfall(0.5F).setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xD73fC1).withGrassColor(0xCC3DB4).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
+                .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome deepSleepishOcean() {
@@ -178,9 +180,9 @@ public class BMBiomes {
         DefaultBiomeFeatures.withFrozenTopLayer(settings);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1.8F).scale(0.1F).temperature(0.5F).downfall(0.5F)
-                .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA)
-                        .withFoliageColor(0x68135C).withGrassColor(0x9C3A8B).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-1.8F).scale(0.1F).temperature(0.5F).downfall(0.5F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0x68135C).withGrassColor(0x9C3A8B).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
+                .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome deeperSleepishOcean() {
@@ -201,9 +203,9 @@ public class BMBiomes {
         DefaultBiomeFeatures.withFrozenTopLayer(settings);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-2.4F).scale(0.1F).temperature(0.5F).downfall(0.5F)
-                .setEffects((new BiomeAmbience.Builder()).setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA)
-                        .withFoliageColor(0x4E1045).withGrassColor(0x1D082E).build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.OCEAN).depth(-2.4F).scale(0.1F).temperature(0.5F).downfall(0.5F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0x4E1045).withGrassColor(0x1D082E).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
+                .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome aljanWoods() {
@@ -220,8 +222,8 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2F).scale(0.5F).temperature(0.5F).downfall(0.8F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xFFFFFF).withGrassColor(0xD4EAEA).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2F).scale(0.5F).temperature(0.5F).downfall(0.8F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xFFFFFF).withGrassColor(0xD4EAEA).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -236,8 +238,8 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2F).scale(0.5F).temperature(0.5F).downfall(0.8F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0x538989).withGrassColor(0x68A4A4).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.2F).scale(0.5F).temperature(0.5F).downfall(0.8F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0x538989).withGrassColor(0x68A4A4).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -253,8 +255,8 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.4F).downfall(0.5F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xF0B87A).withGrassColor(0x526B9E).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.4F).downfall(0.5F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xF0B87A).withGrassColor(0x526B9E).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -272,8 +274,8 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.aljanMobs(spawns);
         if (BMConfigs.COMMON_CONFIGS.amaracamelerSpawn.get()) spawns.withSpawner(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.AMARACAMELER.get(), 50, 1, 2));
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.SWAMP).depth(0.1F).scale(0.5F).temperature(0.4F).downfall(0.5F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xF0B87A).withGrassColor(0xFCB76B).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.SWAMP).depth(0.1F).scale(0.5F).temperature(0.4F).downfall(0.5F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xF0B87A).withGrassColor(0xFCB76B).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -290,9 +292,9 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.SNOW).category(Biome.Category.FOREST).depth(1.5F).scale(0.025F).temperature(-0.3F).downfall(0.8F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1ff).withSkyColor(0xD4EAEA).withFoliageColor(0xFFFFFF).withGrassColor(0xD4EAEA).build())
-                .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
+        return new Biome.Builder().precipitation(Biome.RainType.SNOW).category(Biome.Category.FOREST).depth(1.5F).scale(0.025F).temperature(-0.3F).downfall(0.8F).setEffects(new BiomeAmbience.Builder()
+                .setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1ff).withSkyColor(0xD4EAEA).withFoliageColor(0xFFFFFF).withGrassColor(0xD4EAEA).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN))
+                .build()).withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
     private static Biome aljamicOrchard() {
@@ -306,8 +308,8 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.6F).downfall(0.9F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0x7ABDBD).withGrassColor(0x78BFBF).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.6F).downfall(0.9F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0x7ABDBD).withGrassColor(0x78BFBF).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 
@@ -325,8 +327,8 @@ public class BMBiomes {
         settings.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.AVONDALIC_WILLOW_TREES);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.6F).downfall(0.9F).setEffects(
-                new BiomeAmbience.Builder().setWaterColor(0x280C40).setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xD73FC1).withGrassColor(0xCC3DB4).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).category(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.6F).downfall(0.9F).setEffects(new BiomeAmbience.Builder().setWaterColor(0x280C40)
+                .setWaterFogColor(0x1D082E).setFogColor(0xB9D1FF).withSkyColor(0xD4EAEA).withFoliageColor(0xD73FC1).withGrassColor(0xCC3DB4).setMusic(BackgroundMusicTracks.getDefaultBackgroundMusicSelector(BMSounds.MUSIC_ALJAN)).build())
                 .withMobSpawnSettings(spawns.copy()).withGenerationSettings(settings.build()).build();
     }
 }

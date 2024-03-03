@@ -21,6 +21,10 @@ public class InsomniaArrow extends AbstractArrowEntity {
         super(type, world);
     }
 
+    public InsomniaArrow(World world, double x, double y, double z) {
+        super(BMEntities.INSOMNIA_ARROW.get(), x, y, z, world);
+    }
+
     public InsomniaArrow(World world, LivingEntity shooter) {
         super(BMEntities.INSOMNIA_ARROW.get(), shooter, world);
     }
