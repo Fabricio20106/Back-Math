@@ -440,10 +440,6 @@ public class QueenLucy extends MonsterEntity implements ISophieFriendlies {
     public class EquipArmorAndHealGoal extends UseSpellGoal {
         private EquipArmorAndHealGoal() {}
 
-        public boolean shouldExecute() {
-            return super.shouldExecute();
-        }
-
         protected int getCastingTime() {
             return 100;
         }

@@ -42,7 +42,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void render(int ticks, float partialTicks, MatrixStack matrixStack, ClientWorld world, Minecraft mc) {
-        if (mc.world.getDimensionKey() == BMDimensions.THE_ALJAN) {
+        if (mc.world != null && mc.world.getDimensionKey() == BMDimensions.THE_ALJAN) {
             RenderSystem.disableTexture();
             Vector3d skyColor = world.getSkyColor(mc.gameRenderer.getActiveRenderInfo().getBlockPos(), partialTicks);
             FogRenderer.applyFog();

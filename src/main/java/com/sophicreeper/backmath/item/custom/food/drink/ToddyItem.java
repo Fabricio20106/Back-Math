@@ -41,11 +41,6 @@ public class ToddyItem extends Item {
     }
 
     @Override
-    public SoundEvent getDrinkSound() {
-        return SoundEvents.ENTITY_GENERIC_DRINK;
-    }
-
-    @Override
     public int getUseDuration(ItemStack stack) {
         return 32;
     }

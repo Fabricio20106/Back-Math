@@ -6,7 +6,7 @@ import net.minecraft.potion.EffectType;
 
 public class MoodTeaEffect extends Effect {
     public MoodTeaEffect() {
-        super(EffectType.BENEFICIAL, 0xcee09f);
+        super(EffectType.BENEFICIAL, 0xCEE09F);
     }
 
     @Override

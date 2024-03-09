@@ -2,10 +2,6 @@ package com.sophicreeper.backmath.entity;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.*;
-import com.sophicreeper.backmath.entity.custom.BMBoat;
-import com.sophicreeper.backmath.entity.custom.ChocoGlueProjEntity;
-import com.sophicreeper.backmath.entity.custom.InsomniaArrow;
-import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraftforge.fml.RegistryObject;

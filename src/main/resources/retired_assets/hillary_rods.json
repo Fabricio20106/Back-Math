@@ -1,0 +1,13 @@
+{
+  "__comment": "Mockup of what a crystallizing recipe JSON file could look like. - June 8/3/24",
+  "type": "backmath:crystallizing",
+  "mold": "rod",
+  "mainhand": {
+    "item": "backmath:hilary_bucket"
+  },
+  "result": {
+    "item": "backmath:hillary_rod",
+    "count": 4
+  },
+  "sound": "backmath:block.crystallizer.craft"
+}

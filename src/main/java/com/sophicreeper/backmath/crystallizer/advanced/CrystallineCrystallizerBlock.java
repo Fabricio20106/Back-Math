@@ -1,14 +1,12 @@
-package com.sophicreeper.backmath.block.custom.machine;
+package com.sophicreeper.backmath.crystallizer.advanced;
 
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMStats;
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.block.custom.properties.AdvancedMolds;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.*;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.BlockItemUseContext;
@@ -21,7 +19,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ToolType;
 
 public class CrystallineCrystallizerBlock extends HorizontalBlock {
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;

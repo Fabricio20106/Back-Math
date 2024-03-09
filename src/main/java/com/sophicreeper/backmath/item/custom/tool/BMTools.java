@@ -145,6 +145,11 @@ public class BMTools implements IItemTier {
             super(1, 1250, 3, 2, 20, () -> Ingredient.fromTag(BMTags.Items.TABU_SMELTABLES));
         }
     }
+    public static class KarateTrainingStick extends BMTools {
+        public KarateTrainingStick() {
+            super(0, 1561, 8, 3, 25, () -> Ingredient.fromTag(Tags.Items.RODS_WOODEN));
+        }
+    }
     public static class CorkOak extends BMTools {
         public CorkOak() {
             super(0, 59, 2, 0, 15, () -> Ingredient.fromItems(AxolotlTest.CORK_OAK_PLANKS.get()));

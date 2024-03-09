@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.dispenser.vanilla;
 
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.block.dispenser.CrystallizerRecipesDispenseBehavior;
+import com.sophicreeper.backmath.crystallizer.dispenser.CrystallizerRecipesDispenseBehavior;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;

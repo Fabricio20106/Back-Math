@@ -89,7 +89,7 @@
             },
             {
               "function": "minecraft:set_nbt",
-              "tag": "{experience_points:55}"
+              "tag": "{stored_experience:55}"
             }
           ]
         },

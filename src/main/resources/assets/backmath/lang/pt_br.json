@@ -83,8 +83,6 @@
   "advancements.backmath.bm_foods.get_guavas.description": "Get a guava from a Back Math's fruit tree leaf",
   "advancements.backmath.bm_foods.get_jabuticabas.title": "Jabuticaba",
   "advancements.backmath.bm_foods.get_jabuticabas.description": "Get a jabuticaba from a Back Math's fruit tree leaf",
-  "advancements.backmath.qsp_daycare.title": "QSP Daycare",
-  "advancements.backmath.qsp_daycare.description": "Tame all queen Sophie pet variants... and maybe consider open a daycare",
   "advancements.backmath.crystallizer.title": "The Crystallizer",
   "advancements.backmath.crystallizer.description": "Craft a Crystallizer to crystallize and press various items.",
   "advancements.backmath.crystalline_crystallizer.title": "More like Crystallizer MK2!",
@@ -1202,7 +1200,6 @@
   "material.silentgear.aljameed": "Aljameed",
   "material.silentgear.moonering": "Luário",
 
-  "messages.backmath.hold_shift": "§8Segure <§r§7Shift§r§8> para a descrição",
   "messages.backmath.take_armor_off.potion": "§4AVISO: §r§8Esse suco troca seus slots de armadura com a armadura do Bakugou, então tire sua armadura antes de tomar!",
   "messages.backmath.take_armor_off.jam": "§4AVISO: §r§8Essa geléia troca seus slots de armadura com a armadura do Bakugou, então tire sua armadura antes de comer!",
   "messages.backmath.take_armor_off.jam_bread": "§4AVISO: §r§8Esse pão com geléia troca seus slots de armadura com a armadura do Bakugou, então tire sua armadura antes de comer!",
@@ -1213,8 +1210,6 @@
   "tooltip.backmath.empty": " ",
   "tooltip.backmath.when.in_main_hand": "§7Quando na mão principal:",
   "tooltip.backmath.when.eaten": "Quando comido:",
-  "tooltip.backmath.qsss_summon_damage": "§2 17 de dano de sumonação",
-  "tooltip.backmath.qsss_desc": "§oA rainha Lucy pet lutará por você. Precisa ser domesticada com qualquer fruta do Back Math primeiro (exceto aljamé).",
 
   "stat.backmath.interact_with_meal_cooker": "Receitas feitas no cozinhador de refeições",
   "stat.backmath.change_crystallizer_mold": "Mudanças de molde da cristalizadora",

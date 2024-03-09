@@ -69,11 +69,6 @@ public class AngrySophie extends MonsterEntity {
         return 1.62F;
     }
 
-    @Override
-    public CreatureAttribute getCreatureAttribute() {
-        return CreatureAttribute.UNDEFINED;
-    }
-
     protected SoundEvent getHurtSound(DamageSource source) {
         if (source == DamageSource.ON_FIRE) {
             return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;

@@ -1,7 +1,9 @@
 package com.sophicreeper.backmath.item.custom;
 
+import com.sophicreeper.backmath.block.dispenser.BagDispenseBehavior;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.tab.SophiesCursedFoods;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,6 +14,7 @@ import net.minecraft.world.World;
 public class QueenLucyBattlePackItem extends Item {
     public QueenLucyBattlePackItem() {
         super(new Properties().isImmuneToFire().group(SophiesCursedFoods.TAB));
+        DispenserBlock.registerDispenseBehavior(this, new BagDispenseBehavior());
     }
 
     @Override

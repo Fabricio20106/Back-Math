@@ -55,6 +55,7 @@ public class BMSetFields {
     public static final BMTools PERSONA_SWORD = new BMTools.Persona();
     public static final BMTools BREAD_SWORD_SET = new BMTools.Bread();
     public static final BMTools TABU_SWORD_SET = new BMTools.Tabu();
+    public static final BMTools KARATE_TRAINING_STICK_SET = new BMTools.KarateTrainingStick();
 
     // Tool Sets
     public static final BMTools DEVIL_SET = new BMTools.Devil();

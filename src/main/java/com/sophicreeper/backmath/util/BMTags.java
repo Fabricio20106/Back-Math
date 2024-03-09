@@ -127,6 +127,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> TABU_SMELTABLES = backMath("tabu_smeltables");
         public static final ITag.INamedTag<Item> MID_TERM_MATERIALS = backMath("mid_term_materials");
         public static final ITag.INamedTag<Item> OIMT_MATERIALS = backMath("oimt_materials");
+        public static final ITag.INamedTag<Item> CANNOT_USE_AT_CRYSTALLIZER = backMath("cannot_use_at_crystallizer");
 
         // Melony Tags
         public static final ITag.INamedTag<Item> SHIELDS = melony("shields");

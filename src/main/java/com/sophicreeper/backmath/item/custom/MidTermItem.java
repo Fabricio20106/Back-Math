@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.item.custom;
 
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.crystallizer.item.CrystallizerMaterialItem;
 import com.sophicreeper.backmath.util.BMKeys;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;

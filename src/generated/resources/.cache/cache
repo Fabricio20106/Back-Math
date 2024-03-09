@@ -2194,6 +2194,7 @@ fd1879f2562218356853701e530a6cab9b51f957 data/backmath/tags/items/back_guide_rec
 ea83587e1c3f12609e73490c4a4d637b81d5c013 data/backmath/tags/items/bone_meals.json
 9fe33d1ffc4b41e70ff311edb222256fcde5bef4 data/backmath/tags/items/bottles.json
 ea0387c41c632a2bb92df62a8917c53d2b95417a data/backmath/tags/items/buckets.json
+ee3f8058e220b092d5a21a828c9c9dd7e3685d31 data/backmath/tags/items/cannot_use_at_crystallizer.json
 d13b780bdb8b1594c1084f256c6b3082d3692aee data/backmath/tags/items/cork_oak_logs.json
 553f74ab984dd35d84d4ce42595b8778b09c463f data/backmath/tags/items/crowns.json
 c2dc82f58f81b580fc523082a5394886186495b2 data/backmath/tags/items/crystalline_birch_logs.json

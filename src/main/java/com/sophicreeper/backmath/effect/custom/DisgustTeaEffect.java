@@ -9,7 +9,7 @@ import net.minecraft.potion.Effects;
 
 public class DisgustTeaEffect extends Effect {
     public DisgustTeaEffect() {
-        super(EffectType.NEUTRAL, 0xd2002b);
+        super(EffectType.NEUTRAL, 0xD2002B);
     }
 
     @Override

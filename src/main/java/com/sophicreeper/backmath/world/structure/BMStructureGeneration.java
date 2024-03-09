@@ -16,9 +16,9 @@ import java.util.function.Supplier;
 import static com.sophicreeper.backmath.world.biome.BMBiomes.*;
 
 public class BMStructureGeneration {
-    public static Biome[] ALJAN_BIOMES = new Biome[] {ALJAN_WOODS.get(), CAPPED_HILLS.get(), INSOMNIAN_WOODS.get(), AMARACAMEL_STICKS.get(), ALJAMIC_HIGHLANDS.get(), AVONDALIC_GROVE.get(), ALJAMIC_ORCHARD.get(),
+    public static final Biome[] ALJAN_BIOMES = new Biome[] {ALJAN_WOODS.get(), CAPPED_HILLS.get(), INSOMNIAN_WOODS.get(), AMARACAMEL_STICKS.get(), ALJAMIC_HIGHLANDS.get(), AVONDALIC_GROVE.get(), ALJAMIC_ORCHARD.get(),
             SLEEPISH_OCEAN.get(), DEEP_SLEEPISH_OCEAN.get(), DEEPER_SLEEPISH_OCEAN.get()};
-    public static Biome[] ALJAN_BIOMES_NO_OCEANS = new Biome[] {ALJAN_WOODS.get(), CAPPED_HILLS.get(), INSOMNIAN_WOODS.get(), AMARACAMEL_STICKS.get(), ALJAMIC_HIGHLANDS.get(), AVONDALIC_GROVE.get(), ALJAMIC_ORCHARD.get()};
+    public static final Biome[] ALJAN_BIOMES_NO_OCEANS = new Biome[] {ALJAN_WOODS.get(), CAPPED_HILLS.get(), INSOMNIAN_WOODS.get(), AMARACAMEL_STICKS.get(), ALJAMIC_HIGHLANDS.get(), AVONDALIC_GROVE.get(), ALJAMIC_ORCHARD.get()};
 
     public static void generateStructures(final BiomeLoadingEvent event) {
         List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();

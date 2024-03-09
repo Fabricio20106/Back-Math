@@ -41,7 +41,4 @@ public class DispenseBMBoatBehavior extends DefaultDispenseItemBehavior {
         return stack;
     }
 
-    protected void playDispenseSound(IBlockSource source) {
-        source.getWorld().playEvent(1000, source.getBlockPos(), 0);
-    }
 }

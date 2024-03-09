@@ -54,28 +54,28 @@ public class KnifeItem extends ToolItem {
         if (state.getBlock() == Blocks.PUMPKIN) {
             Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 9));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         }
         if (state.getBlock() == Blocks.CARVED_PUMPKIN) {
             Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         }
         if (state.getBlock() == Blocks.JACK_O_LANTERN) {
             Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
             Block.spawnAsEntity(world, pos, new ItemStack(Items.TORCH));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         }
         if (state.getBlock() == Blocks.MELON) {
             Block.spawnAsEntity(world, pos, new ItemStack(Items.MELON_SLICE, 9));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         }
         if (state.getBlock() == Blocks.HAY_BLOCK) {
             Block.spawnAsEntity(world, pos, new ItemStack(Items.WHEAT, 9));
             world.destroyBlock(pos, false, player);
-            stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
         }
         return super.onItemUse(context);
     }

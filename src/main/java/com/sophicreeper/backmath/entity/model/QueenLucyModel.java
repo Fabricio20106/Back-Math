@@ -10,12 +10,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class QueenLucyModel extends BipedModel<QueenLucy> {
-    public ModelRenderer bipedRightLeg;
-    public ModelRenderer bipedLeftLeg;
-    public ModelRenderer bipedBody;
-    public ModelRenderer bipedRightArm;
-    public ModelRenderer bipedLeftArm;
-    public ModelRenderer bipedHead;
+    public final ModelRenderer bipedRightLeg;
+    public final ModelRenderer bipedLeftLeg;
+    public final ModelRenderer bipedBody;
+    public final ModelRenderer bipedRightArm;
+    public final ModelRenderer bipedLeftArm;
+    public final ModelRenderer bipedHead;
 
     public QueenLucyModel() {
         super(0, 0, 64, 64);

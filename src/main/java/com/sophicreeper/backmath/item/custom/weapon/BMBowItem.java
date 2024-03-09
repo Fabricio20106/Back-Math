@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.item.custom.weapon;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.util.BMKeys;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
@@ -19,6 +21,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class BMBowItem extends ShootableItem {
@@ -174,5 +178,32 @@ public class BMBowItem extends ShootableItem {
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         return enchantment == Enchantments.POWER || enchantment == Enchantments.PUNCH || enchantment == Enchantments.FLAME || enchantment == Enchantments.INFINITY || super.canApplyAtEnchantingTable(stack, enchantment);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        if (flag.isAdvanced()) {
+            if (!BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.bow.hold_shift.not_held"));
+            if (BMKeys.isHoldingShift()) {
+                tooltip.add(new TranslationTextComponent("tooltip.backmath.bow.hold_shift.held"));
+                tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
+                tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.forced_critical_arrow", new TranslationTextComponent(this.forcedCriticalArrow ? "tooltip." + BackMath.MOD_ID + ".false" : "tooltip." + BackMath.MOD_ID + ".true")));
+                tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.can_be_damaged", new TranslationTextComponent(this.canBeDamaged ? "tooltip." + BackMath.MOD_ID + ".false" : "tooltip." + BackMath.MOD_ID + ".true")));
+                tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.additional_arrow_damage", this.additionalArrowDamage));
+                tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.flame_in_seconds", this.flameInTicks / 20));
+                tooltip.add(new TranslationTextComponent(getFireRateDelay(), this.fireRateDelay));
+            }
+        }
+        super.addInformation(stack, world, tooltip, flag);
+    }
+
+    private String getFireRateDelay() {
+        if (this.fireRateDelay == 72000) {
+            return  "tooltip." + BackMath.MOD_ID + ".bow.fire_rate_delay.one_hour";
+        } else if (this.fireRateDelay >= 72001) {
+            return  "tooltip." + BackMath.MOD_ID + ".bow.fire_rate_delay.above_one_hour";
+        } else {
+            return "tooltip." + BackMath.MOD_ID + ".bow.fire_rate_delay.accurate";
+        }
     }
 }

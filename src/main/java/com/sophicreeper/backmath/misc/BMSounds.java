@@ -31,6 +31,7 @@ public class BMSounds {
     // Blocks
     public static SoundEvent BLOCK_CRYSTALLIZER_CRAFT;
     public static SoundEvent BLOCK_CRYSTALLIZER_FAIL_CRAFT;
+    public static SoundEvent BLOCK_CRYSTALLIZER_CHANGE_MOLD;
     public static SoundEvent BLOCK_ALJAN_PORTAL_STAND_FILL;
 
     // Items
@@ -101,6 +102,7 @@ public class BMSounds {
         // Blocks
         BLOCK_CRYSTALLIZER_CRAFT = registerSound("block.crystallizer.craft");
         BLOCK_CRYSTALLIZER_FAIL_CRAFT = registerSound("block.crystallizer.failed_craft");
+        BLOCK_CRYSTALLIZER_CHANGE_MOLD = registerSound("block.crystallizer.change_mold");
         BLOCK_ALJAN_PORTAL_STAND_FILL = registerSound("block.aljan_portal_stand.fill");
 
         // Items

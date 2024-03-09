@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.item.custom.food;
 
+import com.sophicreeper.backmath.block.dispenser.BagDispenseBehavior;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,6 +13,7 @@ import net.minecraft.world.World;
 public class FriedEggBagItem extends Item {
     public FriedEggBagItem(Properties properties) {
         super(properties);
+        DispenserBlock.registerDispenseBehavior(this, new BagDispenseBehavior());
     }
 
     @Override

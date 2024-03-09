@@ -5,7 +5,6 @@ import com.sophicreeper.backmath.entity.custom.ArcherInsomniaSophie;
 import com.sophicreeper.backmath.entity.model.BMBipedModel;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
-import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;

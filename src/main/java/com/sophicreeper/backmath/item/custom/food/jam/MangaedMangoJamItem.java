@@ -53,26 +53,6 @@ public class MangaedMangoJamItem extends JamItem {
         }
     }
 
-    public int getUseDuration(ItemStack stack) {
-        return 40;
-    }
-
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.EAT;
-    }
-
-    public SoundEvent getDrinkSound() {
-        return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
-    }
-
-    public SoundEvent getEatSound() {
-        return SoundEvents.ITEM_HONEY_BOTTLE_DRINK;
-    }
-
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        return DrinkHelper.startDrinking(world, player, hand);
-    }
-
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         tooltip.add(new TranslationTextComponent("messages.backmath.take_armor_off.jam"));

@@ -25,7 +25,7 @@ public class AljanRavineCarver extends CanyonWorldCarver {
         for(int i = minX; i < maxX; ++i) {
             for(int j = minZ; j < maxZ; ++j) {
                 for(int k = minY - 1; k <= maxY + 1; ++k) {
-                    if (BMTags.Fluids.ALJAN_CARVER_REPLACEABLES == chunk.getFluidState(mutablePos.setPos(i + chunkX * 16, k, j + chunkZ * 16)).getFluid()) {
+                    if (BMTags.Fluids.ALJAN_CARVER_REPLACEABLES.equals(chunk.getFluidState(mutablePos.setPos(i + chunkX * 16, k, j + chunkZ * 16)).getFluid())) {
                         return true;
                     }
 

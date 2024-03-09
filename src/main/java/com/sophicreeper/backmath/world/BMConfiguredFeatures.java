@@ -131,7 +131,7 @@ public class BMConfiguredFeatures {
                     .setIgnoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> OAK_TREES = register("back_field_oak_trees", Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(OAK_TREE.withChance(0.2F),
-                    OAK_TREE.withChance(0.1F)), OAK_TREE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(
+                    Features.FANCY_OAK.withChance(0.1F)), OAK_TREE)).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(
                             new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GRAPE_VINE_TREE = register("grape_vine_tree",

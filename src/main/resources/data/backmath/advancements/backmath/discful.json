@@ -39,16 +39,6 @@
         ]
       }
     },
-    "wellerman_disc": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "backmath:wellerman_disc"
-          }
-        ]
-      }
-    },
     "ericwho_disc": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {

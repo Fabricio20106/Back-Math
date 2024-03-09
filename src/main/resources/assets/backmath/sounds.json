@@ -151,6 +151,16 @@
     ],
     "subtitle": "subtitles.block.crystallizer.failed_craft"
   },
+  "block.crystallizer.change_mold": {
+    "category": "block",
+    "sounds": [
+      "entity/itemframe/rotate_item1",
+      "entity/itemframe/rotate_item2",
+      "entity/itemframe/rotate_item3",
+      "entity/itemframe/rotate_item4"
+    ],
+    "subtitle": "subtitles.block.crystallizer.change_mold"
+  },
   "block.aljan_portal_stand.fill": {
     "sounds": [
       "block/end_portal/eyeplace1",

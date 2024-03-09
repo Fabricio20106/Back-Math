@@ -101,10 +101,6 @@ public class PeaceTeaItem extends Item {
         return UseAction.DRINK;
     }
 
-    public SoundEvent getDrinkSound() {
-        return SoundEvents.ENTITY_GENERIC_DRINK;
-    }
-
     public SoundEvent getEatSound() {
         return SoundEvents.ENTITY_GENERIC_DRINK;
     }

@@ -2,7 +2,6 @@ package com.sophicreeper.backmath.data.models;
 
 import com.sophicreeper.backmath.BackMath;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -1191,48 +1190,48 @@ public class BMItemModelProvider extends ItemModelProvider {
         getBuilder("effect_jam").parent(generated).texture("layer0", modLoc("item/effect_jam_overlay")).texture("layer1", modLoc("item/effect_jam_pot"));
     }
 
-    private ItemModelBuilder standard(ModelFile model, String name) {
-        return getBuilder(name).parent(model).texture("layer0", "item/" + name);
+    private void standard(ModelFile model, String name) {
+        getBuilder(name).parent(model).texture("layer0", "item/" + name);
     }
 
-    private ItemModelBuilder standardWithCustom(ModelFile model, String name, String texName) {
-        return getBuilder(name).parent(model).texture("layer0", "item/" + texName);
+    private void standardWithCustom(ModelFile model, String name, String texName) {
+        getBuilder(name).parent(model).texture("layer0", "item/" + texName);
     }
 
-    private ItemModelBuilder block(ModelFile model, String name) {
-        return getBuilder(name).parent(model).texture("layer0", "block/" + name);
+    private void block(ModelFile model, String name) {
+        getBuilder(name).parent(model).texture("layer0", "block/" + name);
     }
 
-    private ItemModelBuilder blockWithCustom(ModelFile model, String fileName, String blockName) {
-        return getBuilder(fileName).parent(model).texture("layer0", "block/" + blockName);
+    private void blockWithCustom(ModelFile model, String fileName, String blockName) {
+        getBuilder(fileName).parent(model).texture("layer0", "block/" + blockName);
     }
 
-    private ItemModelBuilder enchantedGoldenApple(String thing) {
-        return getBuilder("enchanted_golden_apple_" + thing).parent(generated).texture("layer0", "item/golden_apple_" + thing);
+    private void enchantedGoldenApple(String thing) {
+        getBuilder("enchanted_golden_apple_" + thing).parent(generated).texture("layer0", "item/golden_apple_" + thing);
     }
 
-    private ItemModelBuilder milkedSword(String originalSword, boolean isSparey) {
-        return getBuilder("milked_" + originalSword).parent(handheld).texture("layer0", "item/" + originalSword).texture("layer1", isSparey ? "item/milked_sparey_base" : "item/milked_sword_base");
+    private void milkedSword(String originalSword, boolean isSparey) {
+        getBuilder("milked_" + originalSword).parent(handheld).texture("layer0", "item/" + originalSword).texture("layer1", isSparey ? "item/milked_sparey_base" : "item/milked_sword_base");
     }
 
-    private ItemModelBuilder milkedSwordMC(String originalSword) {
-        return getBuilder("milked_" + originalSword).parent(handheld).texture("layer0", "minecraft:item/" + originalSword).texture("layer1", "item/milked_sword_base");
+    private void milkedSwordMC(String originalSword) {
+        getBuilder("milked_" + originalSword).parent(handheld).texture("layer0", "minecraft:item/" + originalSword).texture("layer1", "item/milked_sword_base");
     }
 
-    private ItemModelBuilder compat(String item) {
-        return getBuilder(item).parent(generated).texture("layer0", "item/" + item);
+    private void compat(String item) {
+        getBuilder(item).parent(generated).texture("layer0", "item/" + item);
     }
 
-    private ItemModelBuilder shears(String material) {
-        return getBuilder(material + "_shears").parent(generated).texture("layer0", "item/" + material  + "_shears");
+    private void shears(String material) {
+        getBuilder(material + "_shears").parent(generated).texture("layer0", "item/" + material + "_shears");
     }
 
-    private ItemModelBuilder withExistingParent(String name) {
-        return withExistingParent(name, modLoc("block/" + name));
+    private void withExistingParent(String name) {
+        withExistingParent(name, modLoc("block/" + name));
     }
 
-    private ItemModelBuilder sword(String name) {
+    private void sword(String name) {
         this.milkedSword(name, false);
-        return getBuilder(name).parent(handheld).texture("layer0", "item/" + name);
+        getBuilder(name).parent(handheld).texture("layer0", "item/" + name);
     }
 }

@@ -1,6 +1,6 @@
-package com.sophicreeper.backmath.item.custom;
+package com.sophicreeper.backmath.crystallizer.item;
 
-import com.sophicreeper.backmath.block.dispenser.CrystallizerRecipesDispenseBehavior;
+import com.sophicreeper.backmath.crystallizer.dispenser.CrystallizerRecipesDispenseBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

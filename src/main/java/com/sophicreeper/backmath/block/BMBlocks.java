@@ -2,12 +2,11 @@ package com.sophicreeper.backmath.block;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.custom.*;
-import com.sophicreeper.backmath.block.custom.machine.CrystallineCrystallizerBlock;
-import com.sophicreeper.backmath.block.custom.machine.CrystallizerBlock;
-import com.sophicreeper.backmath.block.custom.machine.MealCookerBlock;
 import com.sophicreeper.backmath.block.custom.variants.BMOreBlock;
 import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassBlock;
 import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassPaneBlock;
+import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
+import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.world.plant.tree.*;
 import net.minecraft.block.*;

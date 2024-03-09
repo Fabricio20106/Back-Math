@@ -314,8 +314,8 @@ public class InsomniaZombie extends MonsterEntity {
 
         if (this.getItemStackFromSlot(EquipmentSlotType.HEAD).isEmpty()) {
             LocalDate localDate = LocalDate.now();
-            int dayOfMonth = localDate.get(ChronoField.DAY_OF_MONTH);
-            int monthOfYear = localDate.get(ChronoField.MONTH_OF_YEAR);
+            int dayOfMonth = localDate.getDayOfMonth();
+            int monthOfYear = localDate.getMonth().getValue();
             if (monthOfYear == 10 && dayOfMonth == 31 && this.rand.nextFloat() < 0.25F) {
                 this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
                 this.inventoryArmorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0;

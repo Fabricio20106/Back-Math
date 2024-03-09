@@ -1,8 +1,8 @@
-package com.sophicreeper.backmath.block.dispenser;
+package com.sophicreeper.backmath.crystallizer.dispenser;
 
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.block.custom.properties.AdvancedMolds;
-import com.sophicreeper.backmath.block.custom.properties.Molds;
+import com.sophicreeper.backmath.crystallizer.Molds;
+import com.sophicreeper.backmath.crystallizer.advanced.AdvancedMolds;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -22,11 +22,12 @@ import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nonnull;
 
-import static com.sophicreeper.backmath.block.custom.machine.CrystallineCrystallizerBlock.ADVANCED_MOLD;
-import static com.sophicreeper.backmath.block.custom.machine.CrystallizerBlock.MOLD;
+import static com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock.ADVANCED_MOLD;
+import static com.sophicreeper.backmath.crystallizer.CrystallizerBlock.MOLD;
 
 public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavior {
     @Override
+    @Nonnull
     protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
         BlockPos pos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
         BlockState state = source.getWorld().getBlockState(pos);

@@ -23,10 +23,10 @@ public class ButterSwordItem extends SwordItem {
     @Override
     public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livEntity) {
         if (livEntity instanceof PlayerEntity) {
-            int experiencePoints = stack.getOrCreateTag().getInt("experience_points");
+            int storedExperience = stack.getOrCreateTag().getInt("stored_experience");
             if (stack.hasTag()) {
-                // Gives the player the amount of points in the "experience_points" tag.
-                ((PlayerEntity) livEntity).giveExperiencePoints(experiencePoints);
+                // Gives the player the amount of points in the "stored_experience" tag.
+                ((PlayerEntity) livEntity).giveExperiencePoints(storedExperience);
             } else {
                 // Gives the player 500 experience points (XP points).
                 ((PlayerEntity) livEntity).giveExperiencePoints(500);
@@ -37,8 +37,10 @@ public class ButterSwordItem extends SwordItem {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        if (stack.hasTag() && stack.getTag().contains("experience_points")) {
-            tooltip.add(new TranslationTextComponent("messages." + BackMath.MOD_ID + ".butter_sword.experience_points", stack.getTag().getInt("experience_points")));
+        if (stack.hasTag() && stack.getTag().contains("stored_experience")) {
+            tooltip.add(new TranslationTextComponent("messages." + BackMath.MOD_ID + ".butter_sword.experience_points", stack.getTag().getInt("stored_experience")));
+        } else {
+            tooltip.add(new TranslationTextComponent("messages." + BackMath.MOD_ID + ".butter_sword.experience_points", 500));
         }
         super.addInformation(stack, world, tooltip, flag);
     }

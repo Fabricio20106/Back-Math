@@ -1,8 +1,6 @@
 package com.sophicreeper.backmath.entity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.sophicreeper.backmath.entity.custom.ArcherLucia;
-import com.sophicreeper.backmath.entity.custom.KarateLucia;
 import com.sophicreeper.backmath.entity.model.BMBipedModel;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
