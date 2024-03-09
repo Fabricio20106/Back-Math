@@ -33,7 +33,7 @@ public class CrystallizerBlock extends HorizontalBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hitResult) {
         ItemStack mainHand = player.getHeldItem(Hand.MAIN_HAND);
         ItemStack offHand = player.getHeldItem(Hand.OFF_HAND);
 
@@ -89,7 +89,7 @@ public class CrystallizerBlock extends HorizontalBlock {
 
         // You can also use the Book of the Regular Molds to cycle through the mold types.
         if (mainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get()) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLIZER.get().getDefaultState().with(MOLD, MoldUtils.getNextMold(state.get(MOLD))).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            world.setBlockState(pos, BMBlocks.CRYSTALLIZER.get().getDefaultState().with(MOLD, MoldUtils.getNext(state.get(MOLD))).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
             playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLIZER_MOLD);
             player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
@@ -140,6 +140,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                     player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
                     return ActionResultType.SUCCESS;
                 }
+                // Mid-Term Ingot = Mid-Term (Singularity)
                 if (mainHand.getItem().isIn(BMTags.Items.INGOTS_MID_TERM)) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM.get()));
@@ -148,6 +149,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                     mainHand.shrink(1);
                     return ActionResultType.SUCCESS;
                 }
+                // Obsidian Infused Mid-Term Ingot = Obsidian Infused Mid-Term (Singularity)
                 if (mainHand.getItem().isIn(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM)) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get()));
@@ -156,6 +158,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                     mainHand.shrink(1);
                     return ActionResultType.SUCCESS;
                 }
+                // Milkllary Ingot = Milkllarity
                 if (mainHand.getItem().isIn(BMTags.Items.INGOTS_MILKLLARY)) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARITY.get()));
@@ -168,8 +171,9 @@ public class CrystallizerBlock extends HorizontalBlock {
                 playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT);
                 return ActionResultType.FAIL;
             }
-            // Mold: Ingot.
+            // MOLD: Ingot
             if (state.get(MOLD) == Molds.INGOT) {
+                // Mid-Term = Mid-Term Ingot
                 if (mainHand.getItem().isIn(BMTags.Items.SINGULARITIES_MID_TERM)) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM_INGOT.get()));
@@ -178,6 +182,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                     mainHand.shrink(1);
                     return ActionResultType.SUCCESS;
                 }
+                // Obsidian Infused Mid-Term (Singularity) = Obsidian Infused Mid-Term Ingot
                 if (mainHand.getItem().isIn(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM)) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get()));
@@ -186,6 +191,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                     mainHand.shrink(1);
                     return ActionResultType.SUCCESS;
                 }
+                // Milkllary Bucket = 2 Milkllary Ingots = Bucket
                 if (mainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARY_INGOT.get(), 2));
@@ -194,6 +200,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                     player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
                     return ActionResultType.SUCCESS;
                 }
+                // Milkllarity = Milkllary Ingot
                 if (mainHand.getItem().isIn(BMTags.Items.SINGULARITIES_MILKLLARY)) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()));
@@ -202,6 +209,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                     mainHand.shrink(1);
                     return ActionResultType.SUCCESS;
                 }
+                // Milkllary Ingot + Hillary Bucket = Two-Thirds Hillary Ingot + Bucket
                 if (mainHand.getItem().isIn(BMTags.Items.INGOTS_MILKLLARY) && offHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()));
@@ -212,6 +220,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                     mainHand.shrink(1);
                     return ActionResultType.SUCCESS;
                 }
+                // Hardened Amaracamel Batter = Hardened Amaracamel Ingot
                 if (mainHand.getItem() == AxolotlTest.HARDENED_AMARACAMEL_BATTER.get()) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()));
@@ -224,11 +233,11 @@ public class CrystallizerBlock extends HorizontalBlock {
                 playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT);
                 return ActionResultType.FAIL;
             }
-            // Mold: Mold.
+            // MOLD: Mold
             if (state.get(MOLD) == Molds.MOLD) {
                 if (mainHand.getItem().isIn(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC) && mainHand.getCount() >= 2) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
-                    player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()));
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()));
                     player.addStat(BMStats.CRAFT_IN_CRYSTALLIZER);
                     player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
                     mainHand.shrink(2);
@@ -239,7 +248,7 @@ public class CrystallizerBlock extends HorizontalBlock {
                 return ActionResultType.FAIL;
             }
         }
-        return super.onBlockActivated(state, world, pos, player, hand, hit);
+        return super.onBlockActivated(state, world, pos, player, hand, hitResult);
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
@@ -259,7 +268,7 @@ public class CrystallizerBlock extends HorizontalBlock {
         builder.add(HORIZONTAL_FACING, MOLD);
     }
 
-    private void playSound(World world, BlockPos pos, SoundEvent craftingSound) {
-         world.playSound(null, pos, craftingSound, SoundCategory.BLOCKS, 1, 1);
+    public static void playSound(World world, BlockPos pos, SoundEvent craftingSound) {
+        world.playSound(null, pos, craftingSound, SoundCategory.BLOCKS, 1, 1);
     }
 }

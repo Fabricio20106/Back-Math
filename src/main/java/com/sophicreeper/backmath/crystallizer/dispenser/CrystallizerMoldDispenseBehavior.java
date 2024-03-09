@@ -1,9 +1,11 @@
 package com.sophicreeper.backmath.crystallizer.dispenser;
 
 import com.sophicreeper.backmath.block.BMBlocks;
+import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
 import com.sophicreeper.backmath.crystallizer.MoldUtils;
 import com.sophicreeper.backmath.crystallizer.Molds;
 import com.sophicreeper.backmath.crystallizer.advanced.AdvancedMolds;
+import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -15,9 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 
-import static com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock.ADVANCED_MOLD;
 import static com.sophicreeper.backmath.crystallizer.CrystallizerBlock.HORIZONTAL_FACING;
-import static com.sophicreeper.backmath.crystallizer.CrystallizerBlock.MOLD;
 
 public class CrystallizerMoldDispenseBehavior extends OptionalDispenseBehavior {
     private final String moldType;
@@ -33,52 +33,52 @@ public class CrystallizerMoldDispenseBehavior extends OptionalDispenseBehavior {
         setSuccessful(true);
         if (state.isIn(BMBlocks.CRYSTALLIZER.get())) {
             if (stack.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get()) {
-                source.getWorld().setBlockState(pos, state.with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)).with(MOLD, MoldUtils.getNextMold(state.get(MOLD))));
+                source.getWorld().setBlockState(pos, state.with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)).with(CrystallizerBlock.MOLD, MoldUtils.getNext(state.get(CrystallizerBlock.MOLD))));
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_SINGULARITY) && state.get(MOLD) != Molds.SINGULARITY) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_SINGULARITY) && state.get(CrystallizerBlock.MOLD) != Molds.SINGULARITY) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLIZED) && state.get(MOLD) != Molds.CRYSTALLIZED) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLIZED) && state.get(CrystallizerBlock.MOLD) != Molds.CRYSTALLIZED) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_INGOT) && state.get(MOLD) != Molds.INGOT) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_INGOT) && state.get(CrystallizerBlock.MOLD) != Molds.INGOT) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_MOLD) && state.get(MOLD) != Molds.MOLD) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_MOLD) && state.get(CrystallizerBlock.MOLD) != Molds.MOLD) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_ROD) && state.get(MOLD) != Molds.ROD) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_ROD) && state.get(CrystallizerBlock.MOLD) != Molds.ROD) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_EMPTY) && state.get(MOLD) != Molds.EMPTY) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_EMPTY) && state.get(CrystallizerBlock.MOLD) != Molds.EMPTY) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
         } else if (state.isIn(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get())) {
             if (stack.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get()) {
-                source.getWorld().setBlockState(pos, state.with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)).with(ADVANCED_MOLD, MoldUtils.getNextAdvancedMold(state.get(ADVANCED_MOLD))));
+                source.getWorld().setBlockState(pos, state.with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)).with(CrystallineCrystallizerBlock.MOLD, MoldUtils.getNextAdvanced(state.get(CrystallineCrystallizerBlock.MOLD))));
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_SINGULARITY) && state.get(ADVANCED_MOLD) != AdvancedMolds.SINGULARITY) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_SINGULARITY) && state.get(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.SINGULARITY) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLIZED) && state.get(ADVANCED_MOLD) != AdvancedMolds.CRYSTALLIZED) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLIZED) && state.get(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLIZED) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_INGOT) && state.get(ADVANCED_MOLD) != AdvancedMolds.INGOT) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_INGOT) && state.get(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.INGOT) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_MOLD) && state.get(ADVANCED_MOLD) != AdvancedMolds.MOLD) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_MOLD) && state.get(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.MOLD) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_ROD) && state.get(ADVANCED_MOLD) != AdvancedMolds.ROD) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_ROD) && state.get(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.ROD) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_EMPTY) && state.get(ADVANCED_MOLD) != AdvancedMolds.EMPTY) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_EMPTY) && state.get(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.EMPTY) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_EMPTY) && state.get(ADVANCED_MOLD) != AdvancedMolds.CRYSTALLINE_EMPTY) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_EMPTY) && state.get(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLINE_EMPTY) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_GEM) && state.get(ADVANCED_MOLD) != AdvancedMolds.CRYSTALLINE_GEM) {
+            if (stack.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_GEM) && state.get(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLINE_GEM) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
         } else {
@@ -89,12 +89,12 @@ public class CrystallizerMoldDispenseBehavior extends OptionalDispenseBehavior {
 
     private static void setMold(Molds mold, BlockPos pos, IBlockSource source) {
         BlockState state = source.getWorld().getBlockState(pos);
-        source.getWorld().setBlockState(pos, state.with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)).with(MOLD, mold));
+        source.getWorld().setBlockState(pos, state.with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)).with(CrystallizerBlock.MOLD, mold));
     }
 
     private static void setAdvancedMold(AdvancedMolds mold, BlockPos pos, IBlockSource source) {
         BlockState state = source.getWorld().getBlockState(pos);
-        source.getWorld().setBlockState(pos, state.with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)).with(ADVANCED_MOLD, mold));
+        source.getWorld().setBlockState(pos, state.with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)).with(CrystallineCrystallizerBlock.MOLD, mold));
     }
 
     @Override

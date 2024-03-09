@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.crystallizer.advanced;
 
+import com.sophicreeper.backmath.crystallizer.MoldUtils;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.item.AxolotlTest;
@@ -15,234 +16,282 @@ import net.minecraft.item.Items;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
 
+import static com.sophicreeper.backmath.crystallizer.CrystallizerBlock.playSound;
+
 public class CrystallineCrystallizerBlock extends HorizontalBlock {
     public static final DirectionProperty HORIZONTAL_FACING = HorizontalBlock.HORIZONTAL_FACING;
-    public static final EnumProperty<AdvancedMolds> ADVANCED_MOLD = EnumProperty.create("advanced_mold", AdvancedMolds.class);
+    public static final EnumProperty<AdvancedMolds> MOLD = EnumProperty.create("mold", AdvancedMolds.class);
 
     public CrystallineCrystallizerBlock(Properties properties) {
         super(properties);
-        this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(ADVANCED_MOLD, AdvancedMolds.EMPTY);
+        this.stateContainer.getBaseState().with(HORIZONTAL_FACING, Direction.NORTH).with(MOLD, AdvancedMolds.EMPTY);
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        ItemStack MainHand = player.getHeldItem(Hand.MAIN_HAND);
-        ItemStack OffHand = player.getHeldItem(Hand.OFF_HAND);
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hitResult) {
+        ItemStack mainHand = player.getHeldItem(Hand.MAIN_HAND);
+        ItemStack offHand = player.getHeldItem(Hand.OFF_HAND);
 
-        // You can set the specific molds for the recipes below using their respective mold items.
-        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_INGOT)) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.INGOT));
+        // Sets the specific molds for the recipes below.
+        if (mainHand.getItem().isIn(BMTags.Items.MOLDS_EMPTY) && state.get(MOLD) != AdvancedMolds.EMPTY) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.EMPTY).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLIZED)) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLIZED));
+        if (BMKeys.isHoldingShift() && state.get(MOLD) != AdvancedMolds.EMPTY) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.EMPTY).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_SINGULARITY)) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.SINGULARITY));
+        if (mainHand.getItem().isIn(BMTags.Items.MOLDS_INGOT) && state.get(MOLD) != AdvancedMolds.INGOT) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.INGOT).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_MOLD)) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.MOLD));
+        if (mainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLIZED) && state.get(MOLD) != AdvancedMolds.CRYSTALLIZED) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.CRYSTALLIZED).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_ROD)) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.ROD));
+        if (mainHand.getItem().isIn(BMTags.Items.MOLDS_SINGULARITY) && state.get(MOLD) != AdvancedMolds.SINGULARITY) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.SINGULARITY).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (BMKeys.isHoldingShift()) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.EMPTY));
+        if (mainHand.getItem().isIn(BMTags.Items.MOLDS_MOLD) && state.get(MOLD) != AdvancedMolds.MOLD) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.MOLD).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_EMPTY)) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLINE_EMPTY));
+        if (mainHand.getItem().isIn(BMTags.Items.MOLDS_ROD) && state.get(MOLD) != AdvancedMolds.ROD) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.ROD).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (MainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_GEM)) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLINE_GEM));
+        if (mainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_EMPTY) && state.get(MOLD) != AdvancedMolds.CRYSTALLINE_EMPTY) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.CRYSTALLINE_EMPTY).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        // Or you can just cycle through it using the Book of the Advanced Molds.
-        if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.EMPTY) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.SINGULARITY));
+        if (mainHand.getItem().isIn(BMTags.Items.MOLDS_CRYSTALLINE_GEM) && state.get(MOLD) != AdvancedMolds.CRYSTALLINE_GEM) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, AdvancedMolds.CRYSTALLINE_GEM).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.SINGULARITY) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLIZED));
+
+        // You can also use the Book of Advanced Molds to cycle through the mold types.
+        if (mainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get()) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, MoldUtils.getNextAdvanced(state.get(MOLD))).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
-        if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.CRYSTALLIZED) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.INGOT));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.INGOT) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.MOLD));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.MOLD) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.ROD));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.ROD) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLINE_EMPTY));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.CRYSTALLINE_EMPTY) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLINE_GEM));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.CRYSTALLINE_GEM) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.EMPTY));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
+
         // But if you use the Book of the Regular Molds, it cannot change it to a higher tier mold.
-        if (MainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.EMPTY) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.SINGULARITY));
+        if (mainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get()) {
+            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(MOLD, MoldUtils.getNextAdvWithoutCrystalline(state.get(MOLD))).with(HORIZONTAL_FACING, state.get(HORIZONTAL_FACING)));
+            playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.SINGULARITY) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.CRYSTALLIZED));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.CRYSTALLIZED) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.INGOT));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.INGOT) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.MOLD));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.MOLD) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.ROD));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
-        }
-        if (MainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get() && state.get(ADVANCED_MOLD) == AdvancedMolds.ROD) {
-            world.setBlockState(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().getDefaultState().with(ADVANCED_MOLD, AdvancedMolds.EMPTY));
-            player.addStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
+            player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+            return ActionResultType.SUCCESS;
         }
 
-        // The aforementioned recipes.
-        // Mold: Empty.
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.EMPTY) {
-            if (MainHand.getItem() == AxolotlTest.ALJAME.get() && MainHand.getCount() == 4 && OffHand.getItem() == Items.BUCKET) {
-                world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL, SoundCategory.BLOCKS, 1, 1);
-                player.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(AxolotlTest.LIQUID_ALJAME_BUCKET.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(4);
+        if (!mainHand.getItem().isIn(BMTags.Items.CANNOT_USE_AT_CRYSTALLIZER)) {
+            // MOLD: Empty
+            if (state.get(MOLD) == AdvancedMolds.EMPTY) {
+                // 4 Aljames + Bucket = Liquid Aljame Bucket
+                if (mainHand.getItem() == AxolotlTest.ALJAME.get() && mainHand.getCount() >= 4 && offHand.getItem() == Items.BUCKET) {
+                    playSound(world, pos, SoundEvents.ITEM_BUCKET_FILL);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.LIQUID_ALJAME_BUCKET.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    player.addStat(Stats.ITEM_USED.get(offHand.getItem()));
+                    offHand.shrink(1);
+                    mainHand.shrink(4);
+                    return ActionResultType.SUCCESS;
+                }
+            } else {
+                playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT);
+                return ActionResultType.FAIL;
             }
-        } else {
-            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1, 1);
+            // MOLD: Rod
+            if (state.get(MOLD) == AdvancedMolds.ROD) {
+                // Hillary Bucket = 4 Hillary Rods + Bucket
+                if (mainHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.HILLARY_ROD.get(), 4));
+                    player.setItemStackToSlot(EquipmentSlotType.MAINHAND, mainHand.getContainerItem());
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    return ActionResultType.SUCCESS;
+                }
+            } else {
+                playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT);
+                return ActionResultType.FAIL;
+            }
+            // MOLD: Singularity
+            if (state.get(MOLD) == AdvancedMolds.SINGULARITY) {
+                // Milkllary Bucket = 2 Milkllarities + Bucket
+                if (mainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARITY.get(), 2));
+                    player.setItemStackToSlot(EquipmentSlotType.MAINHAND, mainHand.getContainerItem());
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    return ActionResultType.SUCCESS;
+                }
+                // Mid-Term Ingot = Mid-Term (Singularity)
+                if (mainHand.getItem().isIn(BMTags.Items.INGOTS_MID_TERM)) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Obsidian Infused Mid-Term Ingot = Obsidian Infused Mid-Term (Singularity)
+                if (mainHand.getItem().isIn(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM)) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Milkllary Ingot = Milkllarity
+                if (mainHand.getItem().isIn(BMTags.Items.INGOTS_MILKLLARY)) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARITY.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Molten Mid-Term Bucket = Mid-Term + Bucket
+                if (mainHand.getItem() == AxolotlTest.MOLTEN_MID_TERM_BUCKET.get()) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM.get()));
+                    player.setItemStackToSlot(EquipmentSlotType.MAINHAND, mainHand.getContainerItem());
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    return ActionResultType.SUCCESS;
+                }
+            } else {
+                playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT);
+                return ActionResultType.FAIL;
+            }
+            // MOLD: Ingot
+            if (state.get(MOLD) == AdvancedMolds.INGOT) {
+                // Mid-Term (Singularity) = Mid-Term Ingot
+                if (mainHand.getItem().isIn(BMTags.Items.SINGULARITIES_MID_TERM)) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM_INGOT.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Obsidian Infused Mid-Term (Singularity) = Obsidian Infused Mid-Term Ingot
+                if (mainHand.getItem().isIn(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM)) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Milkllary Bucket = 2 Milkllary Ingots = Bucket
+                if (mainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARY_INGOT.get(), 2));
+                    player.setItemStackToSlot(EquipmentSlotType.MAINHAND, mainHand.getContainerItem());
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    return ActionResultType.SUCCESS;
+                }
+                // Milkllarity = Milkllary Ingot
+                if (mainHand.getItem().isIn(BMTags.Items.SINGULARITIES_MILKLLARY)) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Milkllary Ingot + Hillary Bucket = Two-Thirds Hillary Ingot + Bucket
+                if (mainHand.getItem().isIn(BMTags.Items.INGOTS_MILKLLARY) && offHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    player.addStat(Stats.ITEM_USED.get(offHand.getItem()));
+                    player.setItemStackToSlot(EquipmentSlotType.OFFHAND, offHand.getContainerItem());
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Hardened Amaracamel Batter = Hardened Amaracamel Ingot
+                if (mainHand.getItem() == AxolotlTest.HARDENED_AMARACAMEL_BATTER.get()) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Molten Mid-Term Bucket = Mid-Term Ingot = Bucket
+                if (mainHand.getItem() == AxolotlTest.MOLTEN_MID_TERM_BUCKET.get()) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM_INGOT.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.setItemStackToSlot(EquipmentSlotType.MAINHAND, mainHand.getContainerItem());
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    return ActionResultType.SUCCESS;
+                }
+            } else {
+                playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT);
+                return ActionResultType.FAIL;
+            }
+            // MOLD: Mold
+            if (state.get(MOLD) == AdvancedMolds.MOLD) {
+                if (mainHand.getItem().isIn(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC) && mainHand.getCount() >= 2) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(2);
+                    return ActionResultType.SUCCESS;
+                }
+            } else {
+                playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT);
+                return ActionResultType.FAIL;
+            }
         }
-        // Mold: Rod
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.ROD) {
-            if (MainHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.HILLARY_ROD.get()));
-                player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-            }
-        } else {
-            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1, 1);
-        }
-        // Mold: Singularity.
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.SINGULARITY) {
-            if (MainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARITY.get()));
-                player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-            }
-            if (MainHand.getItem() == AxolotlTest.MID_TERM_INGOT.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(1);
-            }
-            if (MainHand.getItem() == AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(1);
-            }
-            if (MainHand.getItem() == AxolotlTest.MILKLLARY_INGOT.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARITY.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(1);
-            }
-            if (MainHand.getItem() == AxolotlTest.MOLTEN_MID_TERM_BUCKET.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
-            }
-        } else {
-            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1, 1);
-        }
-        // Mold: Ingot.
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.INGOT) {
-            if (MainHand.getItem() == AxolotlTest.MID_TERM.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM_INGOT.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(1);
-            }
-            if (MainHand.getItem() == AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(1);
-            }
-            if (MainHand.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARY_INGOT.get(), 2));
-                player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-            }
-            if (MainHand.getItem() == AxolotlTest.MILKLLARITY.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(1);
-            }
-            if (MainHand.getItem() == AxolotlTest.MILKLLARY_INGOT.get() && OffHand.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(1);
-                player.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(Items.BUCKET));
-            }
-            if (MainHand.getItem() == AxolotlTest.HARDENED_AMARACAMEL_BATTER.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                MainHand.shrink(1);
-            }
-            if (MainHand.getItem() == AxolotlTest.MOLTEN_MID_TERM_BUCKET.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.addItemStackToInventory(new ItemStack(AxolotlTest.MID_TERM_INGOT.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-                player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BUCKET));
-            }
-        } else {
-            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1, 1);
-        }
-        // Mold: Mold
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.MOLD) {
-            if (MainHand.getItem() == AxolotlTest.CRYSTALLINE_ANGELIC.get()) {
-                world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
-                player.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()));
-                player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
-            }
-        } else {
-            world.playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1, 1);
-        }
-        return super.onBlockActivated(state, world, pos, player, hand, hit);
+        return super.onBlockActivated(state, world, pos, player, hand, hitResult);
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
@@ -259,6 +308,6 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
 
     @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(HORIZONTAL_FACING, ADVANCED_MOLD);
+        builder.add(HORIZONTAL_FACING, MOLD);
     }
 }

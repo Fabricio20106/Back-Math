@@ -41,7 +41,7 @@ public class MoldUtils {
         }
     }
 
-    public static Molds getNextMold(Molds mold) {
+    public static Molds getNext(Molds mold) {
         switch (mold) {
             case EMPTY:
                 return Molds.SINGULARITY;
@@ -59,7 +59,7 @@ public class MoldUtils {
         return Molds.EMPTY;
     }
 
-    public static AdvancedMolds getNextAdvancedMold(AdvancedMolds mold) {
+    public static AdvancedMolds getNextAdvanced(AdvancedMolds mold) {
         switch (mold) {
             case EMPTY:
                 return AdvancedMolds.SINGULARITY;
@@ -76,6 +76,24 @@ public class MoldUtils {
             case CRYSTALLINE_EMPTY:
                 return AdvancedMolds.CRYSTALLINE_GEM;
             case CRYSTALLINE_GEM:
+                return AdvancedMolds.EMPTY;
+        }
+        return AdvancedMolds.EMPTY;
+    }
+
+    public static AdvancedMolds getNextAdvWithoutCrystalline(AdvancedMolds mold) {
+        switch (mold) {
+            case EMPTY:
+                return AdvancedMolds.SINGULARITY;
+            case SINGULARITY:
+                return AdvancedMolds.CRYSTALLIZED;
+            case CRYSTALLIZED:
+                return AdvancedMolds.INGOT;
+            case INGOT:
+                return AdvancedMolds.MOLD;
+            case MOLD:
+                return AdvancedMolds.ROD;
+            case ROD:
                 return AdvancedMolds.EMPTY;
         }
         return AdvancedMolds.EMPTY;

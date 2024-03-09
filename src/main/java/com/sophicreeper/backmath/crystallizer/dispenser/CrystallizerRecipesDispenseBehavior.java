@@ -1,12 +1,15 @@
 package com.sophicreeper.backmath.crystallizer.dispenser;
 
 import com.sophicreeper.backmath.block.BMBlocks;
+import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
 import com.sophicreeper.backmath.crystallizer.Molds;
 import com.sophicreeper.backmath.crystallizer.advanced.AdvancedMolds;
+import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.material.Material;
 import net.minecraft.dispenser.IBlockSource;
@@ -21,9 +24,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nonnull;
-
-import static com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock.ADVANCED_MOLD;
-import static com.sophicreeper.backmath.crystallizer.CrystallizerBlock.MOLD;
 
 public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavior {
     @Override
@@ -46,7 +46,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         IPosition iPos = DispenserBlock.getDispensePosition(source);
 
         // MOLD: Empty
-        if (state.get(MOLD) == Molds.EMPTY) {
+        if (state.get(CrystallizerBlock.MOLD) == Molds.EMPTY) {
             // Places Liquid Aljame below the crystallizer if it's air.
             boolean canPlaceLiquidAljame = source.getWorld().getBlockState(pos.down()).getMaterial() == Material.AIR;
             if (stack.getItem() == AxolotlTest.ALJAME.get() && stack.getCount() >= 4 && canPlaceLiquidAljame) {
@@ -58,7 +58,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         }
 
         // MOLD: Rod
-        if (state.get(MOLD) == Molds.ROD) {
+        if (state.get(CrystallizerBlock.MOLD) == Molds.ROD) {
             if (stack.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
                 source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 doDispense(source.getWorld(), new ItemStack(AxolotlTest.HILLARY_ROD.get(), 4), 6, direction, iPos);
@@ -68,7 +68,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         }
 
         // MOLD: Singularity
-        if (state.get(MOLD) == Molds.SINGULARITY) {
+        if (state.get(CrystallizerBlock.MOLD) == Molds.SINGULARITY) {
             if (stack.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
                 source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 doDispense(source.getWorld(), new ItemStack(AxolotlTest.MILKLLARITY.get()), 6, direction, iPos);
@@ -93,7 +93,14 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         }
 
         // MOLD: Ingot
-        if (state.get(MOLD) == Molds.INGOT) {
+        if (state.get(CrystallizerBlock.MOLD) == Molds.INGOT) {
+            boolean hasHillaryAbove = source.getWorld().getBlockState(pos.up()).isIn(BMBlocks.HILLARY.get());
+            if (stack.getItem().isIn(BMTags.Items.INGOTS_MILKLLARY) && hasHillaryAbove) {
+                source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
+                source.getWorld().setBlockState(pos.up(), Blocks.AIR.getDefaultState());
+                doDispense(source.getWorld(), new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()), 6, direction, iPos);
+                stack.shrink(1);
+            }
             if (stack.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
                 source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 doDispense(source.getWorld(), new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()), 6, direction, iPos);
@@ -129,7 +136,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         }
 
         // MOLD: Mold
-        if (state.get(MOLD) == Molds.MOLD) {
+        if (state.get(CrystallizerBlock.MOLD) == Molds.MOLD) {
             if (stack.getItem().isIn(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC)) {
                 source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 doDispense(source.getWorld(), new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()), 6, direction, iPos);
@@ -145,7 +152,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         IPosition iPos = DispenserBlock.getDispensePosition(source);
 
         // MOLD: Empty
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.EMPTY) {
+        if (state.get(CrystallineCrystallizerBlock.MOLD) == AdvancedMolds.EMPTY) {
             // Places Liquid Aljame below the crystalline crystallizer if it's air.
             boolean canPlaceLiquidAljame = source.getWorld().getBlockState(pos.down()).getMaterial() == Material.AIR;
             if (stack.getItem() == AxolotlTest.ALJAME.get() && stack.getCount() >= 4 && canPlaceLiquidAljame) {
@@ -157,7 +164,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         }
 
         // MOLD: Rod
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.ROD) {
+        if (state.get(CrystallineCrystallizerBlock.MOLD) == AdvancedMolds.ROD) {
             if (stack.getItem() == AxolotlTest.HILLARY_BUCKET.get()) {
                 source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 doDispense(source.getWorld(), new ItemStack(AxolotlTest.HILLARY_ROD.get(), 4), 6, direction, iPos);
@@ -167,7 +174,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         }
 
         // MOLD: Singularity
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.SINGULARITY) {
+        if (state.get(CrystallineCrystallizerBlock.MOLD) == AdvancedMolds.SINGULARITY) {
             if (stack.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
                 source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 doDispense(source.getWorld(), new ItemStack(AxolotlTest.MILKLLARITY.get()), 6, direction, iPos);
@@ -197,7 +204,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         }
 
         // MOLD: Ingot
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.INGOT) {
+        if (state.get(CrystallineCrystallizerBlock.MOLD) == AdvancedMolds.INGOT) {
             if (stack.getItem() == AxolotlTest.MILKLLARY_BUCKET.get()) {
                 source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 doDispense(source.getWorld(), new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()), 6, direction, iPos);
@@ -243,7 +250,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         }
 
         // MOLD: Mold
-        if (state.get(ADVANCED_MOLD) == AdvancedMolds.MOLD) {
+        if (state.get(CrystallineCrystallizerBlock.MOLD) == AdvancedMolds.MOLD) {
             if (stack.getItem().isIn(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC)) {
                 source.getWorld().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 doDispense(source.getWorld(), new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()), 6, direction, iPos);

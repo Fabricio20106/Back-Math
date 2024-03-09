@@ -1,122 +1,122 @@
 {
   "variants": {
-    "facing=north,advanced_mold=empty": {
+    "facing=north,mold=empty": {
       "model": "backmath:block/crystalline_crystallizer_empty_mold"
     },
-    "facing=north,advanced_mold=singularity": {
+    "facing=north,mold=singularity": {
       "model": "backmath:block/crystalline_crystallizer_singularity_mold"
     },
-    "facing=north,advanced_mold=crystallized": {
+    "facing=north,mold=crystallized": {
       "model": "backmath:block/crystalline_crystallizer_crystallized_mold"
     },
-    "facing=north,advanced_mold=ingot": {
+    "facing=north,mold=ingot": {
       "model": "backmath:block/crystalline_crystallizer_ingot_mold"
     },
-    "facing=north,advanced_mold=mold": {
+    "facing=north,mold=mold": {
       "model": "backmath:block/crystalline_crystallizer_mold_mold"
     },
-    "facing=north,advanced_mold=rod": {
+    "facing=north,mold=rod": {
       "model": "backmath:block/crystalline_crystallizer_rod_mold"
     },
-    "facing=north,advanced_mold=crystalline_empty": {
+    "facing=north,mold=crystalline_empty": {
       "model": "backmath:block/crystalline_crystallizer_crystalline_empty_mold"
     },
-    "facing=north,advanced_mold=crystalline_gem": {
+    "facing=north,mold=crystalline_gem": {
       "model": "backmath:block/crystalline_crystallizer_crystalline_gem_mold"
     },
-    "facing=east,advanced_mold=empty": {
+    "facing=east,mold=empty": {
       "model": "backmath:block/crystalline_crystallizer_empty_mold",
       "y": 90
     },
-    "facing=east,advanced_mold=singularity": {
+    "facing=east,mold=singularity": {
       "model": "backmath:block/crystalline_crystallizer_singularity_mold",
       "y": 90
     },
-    "facing=east,advanced_mold=crystallized": {
+    "facing=east,mold=crystallized": {
       "model": "backmath:block/crystalline_crystallizer_crystallized_mold",
       "y": 90
     },
-    "facing=east,advanced_mold=ingot": {
+    "facing=east,mold=ingot": {
       "model": "backmath:block/crystalline_crystallizer_ingot_mold",
       "y": 90
     },
-    "facing=east,advanced_mold=mold": {
+    "facing=east,mold=mold": {
       "model": "backmath:block/crystalline_crystallizer_mold_mold",
       "y": 90
     },
-    "facing=east,advanced_mold=rod": {
+    "facing=east,mold=rod": {
       "model": "backmath:block/crystalline_crystallizer_rod_mold",
       "y": 90
     },
-    "facing=east,advanced_mold=crystalline_empty": {
+    "facing=east,mold=crystalline_empty": {
       "model": "backmath:block/crystalline_crystallizer_crystalline_empty_mold",
       "y": 90
     },
-    "facing=east,advanced_mold=crystalline_gem": {
+    "facing=east,mold=crystalline_gem": {
       "model": "backmath:block/crystalline_crystallizer_crystalline_gem_mold",
       "y": 90
     },
-    "facing=south,advanced_mold=empty": {
+    "facing=south,mold=empty": {
       "model": "backmath:block/crystalline_crystallizer_empty_mold",
       "y": 180
     },
-    "facing=south,advanced_mold=singularity": {
+    "facing=south,mold=singularity": {
       "model": "backmath:block/crystalline_crystallizer_singularity_mold",
       "y": 180
     },
-    "facing=south,advanced_mold=crystallized": {
+    "facing=south,mold=crystallized": {
       "model": "backmath:block/crystalline_crystallizer_crystallized_mold",
       "y": 180
     },
-    "facing=south,advanced_mold=ingot": {
+    "facing=south,mold=ingot": {
       "model": "backmath:block/crystalline_crystallizer_ingot_mold",
       "y": 180
     },
-    "facing=south,advanced_mold=mold": {
+    "facing=south,mold=mold": {
       "model": "backmath:block/crystalline_crystallizer_mold_mold",
       "y": 180
     },
-    "facing=south,advanced_mold=rod": {
+    "facing=south,mold=rod": {
       "model": "backmath:block/crystalline_crystallizer_rod_mold",
       "y": 180
     },
-    "facing=south,advanced_mold=crystalline_empty": {
+    "facing=south,mold=crystalline_empty": {
       "model": "backmath:block/crystalline_crystallizer_crystalline_empty_mold",
       "y": 180
     },
-    "facing=south,advanced_mold=crystalline_gem": {
+    "facing=south,mold=crystalline_gem": {
       "model": "backmath:block/crystalline_crystallizer_crystalline_gem_mold",
       "y": 180
     },
-    "facing=west,advanced_mold=empty": {
+    "facing=west,mold=empty": {
       "model": "backmath:block/crystalline_crystallizer_empty_mold",
       "y": 270
     },
-    "facing=west,advanced_mold=singularity": {
+    "facing=west,mold=singularity": {
       "model": "backmath:block/crystalline_crystallizer_singularity_mold",
       "y": 270
     },
-    "facing=west,advanced_mold=crystallized": {
+    "facing=west,mold=crystallized": {
       "model": "backmath:block/crystalline_crystallizer_crystallized_mold",
       "y": 270
     },
-    "facing=west,advanced_mold=ingot": {
+    "facing=west,mold=ingot": {
       "model": "backmath:block/crystalline_crystallizer_ingot_mold",
       "y": 270
     },
-    "facing=west,advanced_mold=rod": {
+    "facing=west,mold=rod": {
       "model": "backmath:block/crystalline_crystallizer_rod_mold",
       "y": 270
     },
-    "facing=west,advanced_mold=mold": {
+    "facing=west,mold=mold": {
       "model": "backmath:block/crystalline_crystallizer_mold_mold",
       "y": 270
     },
-    "facing=west,advanced_mold=crystalline_empty": {
+    "facing=west,mold=crystalline_empty": {
       "model": "backmath:block/crystalline_crystallizer_crystalline_empty_mold",
       "y": 270
     },
-    "facing=west,advanced_mold=crystalline_gem": {
+    "facing=west,mold=crystalline_gem": {
       "model": "backmath:block/crystalline_crystallizer_crystalline_gem_mold",
       "y": 270
     }
