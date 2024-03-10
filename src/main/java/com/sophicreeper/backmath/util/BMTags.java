@@ -360,6 +360,7 @@ public class BMTags {
 
         // Melony Tags
         public static final ITag.INamedTag<Block> CAMPFIRE_SIGNAL_FIRE_BLOCKS = melony("campfire_signal_fire_blocks");
+        public static final ITag.INamedTag<Block> FARMLAND = melony("farmland");
 
         private static ITag.INamedTag<Block> forge(String path) {
             return BlockTags.makeWrapperTag(new ResourceLocation("forge", path).toString());

@@ -19,14 +19,14 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class MangaedMangoJamItem extends JamItem {
-    public MangaedMangoJamItem(Properties builder) {
-        super(builder);
+    public MangaedMangoJamItem(Properties properties) {
+        super(properties);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        super.onItemUseFinish(stack, world, livingEntity);
-        if (livingEntity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
+    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livEntity) {
+        super.onItemUseFinish(stack, world, livEntity);
+        if (livEntity instanceof ServerPlayerEntity) {
+            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
             serverPlayer.addStat(Stats.ITEM_USED.get(this));
             serverPlayer.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.BAKUGOU_HAIR.get()));
@@ -35,16 +35,16 @@ public class MangaedMangoJamItem extends JamItem {
             serverPlayer.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.BAKUGOU_SHOES.get()));
         }
 
-        if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
             stack.shrink(1);
         }
 
         if (stack.isEmpty()) {
             return new ItemStack(AxolotlTest.JAM_POT.get());
         } else {
-            if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
+            if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
                 ItemStack jamPot = new ItemStack(AxolotlTest.JAM_POT.get());
-                PlayerEntity player = (PlayerEntity) livingEntity;
+                PlayerEntity player = (PlayerEntity) livEntity;
                 if (!player.inventory.addItemStackToInventory(jamPot)) {
                     player.dropItem(jamPot, false);
                 }
