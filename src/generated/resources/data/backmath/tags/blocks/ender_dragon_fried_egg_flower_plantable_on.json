@@ -1,17 +1,12 @@
 {
   "replace": false,
   "values": [
-    "#forge:dirt",
     {
       "id": "variants:ender_nylium",
       "required": false
     },
-    {
-      "id": "variants:ender_farmland",
-      "required": false
-    },
-    "backmath:aljamic_farmland",
-    "minecraft:farmland",
+    "#melony:farmland",
+    "#forge:dirt",
     "minecraft:end_stone",
     "minecraft:end_stone_bricks"
   ]
