@@ -123,20 +123,19 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
 
         // Melony Tags
         this.getOrCreateBuilder(BMTags.Blocks.CAMPFIRE_SIGNAL_FIRE_BLOCKS).add(BMBlocks.CARAMELED_HAY_BALE.get());
-        this.getOrCreateBuilder(BMTags.Blocks.FARMLAND).add(Blocks.FARMLAND).add(BMBlocks.ALJAMIC_FARMLAND.get());
 
         // Back Math Tags
         this.getOrCreateBuilder(BMTags.Blocks.INFINIBURN_ALJAN).add(BMBlocks.CHARJAN_COAL_BLOCK.get()).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);
 
         this.getOrCreateBuilder(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON).addTag(BMTags.Blocks.ALJAN_GROUND).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.getOrCreateBuilder(BMTags.Blocks.ALJAN_CROP_PLANTABLE_ON).add(BMBlocks.ALJAMIC_FARMLAND.get());
-        this.getOrCreateBuilder(BMTags.Blocks.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON).addTag(BMTags.Blocks.FARMLAND).addTag(Tags.Blocks.SAND).addTag(Tags.Blocks.DIRT);
-        this.getOrCreateBuilder(BMTags.Blocks.ENDER_DRAGON_FRIED_EGG_FLOWER_PLANTABLE_ON).addOptional(new ResourceLocation("variants:ender_nylium")).addTag(BMTags.Blocks.FARMLAND).addTag(Tags.Blocks.DIRT).add(Blocks.END_STONE)
-                .add(Blocks.END_STONE_BRICKS);
+        this.getOrCreateBuilder(BMTags.Blocks.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON).addTag(Tags.Blocks.SAND).addTag(Tags.Blocks.DIRT).add(Blocks.FARMLAND).add(BMBlocks.ALJAMIC_FARMLAND.get());
+        this.getOrCreateBuilder(BMTags.Blocks.ENDER_DRAGON_FRIED_EGG_FLOWER_PLANTABLE_ON).addTag(Tags.Blocks.DIRT).addOptional(new ResourceLocation("variants:ender_nylium")).addOptional(new ResourceLocation(
+                "variants:ender_farmland")).add(BMBlocks.ALJAMIC_FARMLAND.get()).add(Blocks.FARMLAND).add(Blocks.END_STONE).add(Blocks.END_STONE_BRICKS);
         this.getOrCreateBuilder(BMTags.Blocks.MINEABLE_KNIVES).addTag(BlockTags.SAPLINGS).addTag(BlockTags.FLOWERS).add(Blocks.GRASS).add(Blocks.TALL_GRASS).add(Blocks.FERN).add(Blocks.LARGE_FERN).add(Blocks.SEAGRASS).add(Blocks.TALL_SEAGRASS)
-                .add(Blocks.KELP).add(Blocks.KELP_PLANT).add(Blocks.BAMBOO_SAPLING).add(Blocks.BAMBOO).add(Blocks.CRIMSON_ROOTS).add(Blocks.WARPED_ROOTS).add(Blocks.CRIMSON_FUNGUS).add(Blocks.WARPED_FUNGUS).add(Blocks.NETHER_SPROUTS)
-                .add(Blocks.WHEAT).add(Blocks.CARROTS).add(Blocks.POTATOES).add(Blocks.BEETROOTS).add(Blocks.NETHER_WART).add(Blocks.SWEET_BERRY_BUSH).add(BMBlocks.CARAMELED_WHEAT.get()).add(BMBlocks.WILD_CARAMELED_WHEAT.get())
-                .add(BMBlocks.ALJAMIC_ONIONS.get()).add(BMBlocks.WILD_ALJAMIC_ONIONS.get());
+                .add(Blocks.KELP).add(Blocks.KELP_PLANT).add(Blocks.CRIMSON_ROOTS).add(Blocks.WARPED_ROOTS).add(Blocks.CRIMSON_FUNGUS).add(Blocks.WARPED_FUNGUS).add(Blocks.NETHER_SPROUTS).add(Blocks.WHEAT).add(Blocks.CARROTS)
+                .add(Blocks.POTATOES).add(Blocks.BEETROOTS).add(Blocks.NETHER_WART).add(Blocks.SWEET_BERRY_BUSH).add(BMBlocks.CARAMELED_WHEAT.get()).add(BMBlocks.WILD_CARAMELED_WHEAT.get()).add(BMBlocks.ALJAMIC_ONIONS.get())
+                .add(BMBlocks.WILD_ALJAMIC_ONIONS.get());
         this.getOrCreateBuilder(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES).addTag(BMTags.Blocks.BASE_STONE_ALJAN).addTag(BMTags.Blocks.ALJAN_GROUND).add(BMBlocks.ALJAMIC_SAND.get()).add(Blocks.GRASS_BLOCK).add(Blocks.DIRT);
         this.getOrCreateBuilder(BMTags.Blocks.ALJAN_TELEPORTER_REPLACEABLES).add(BMBlocks.ALJAN_TULIP.get()).add(BMBlocks.POISON_ROSE.get()).add(BMBlocks.INSOMNIAN_TULIP.get()).add(Blocks.GRASS);
         this.getOrCreateBuilder(BMTags.Blocks.ALJAN_GROUND).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get());

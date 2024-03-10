@@ -1,10 +1,8 @@
 package com.sophicreeper.backmath.item.custom.tea;
 
-import com.sophicreeper.backmath.block.dispenser.TeaDispenseBehavior;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.effect.BMEffects;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -26,7 +24,6 @@ import java.util.List;
 public class MoodTeaItem extends Item {
     public MoodTeaItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new TeaDispenseBehavior());
     }
 
     @Override

@@ -7,9 +7,6 @@ import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.enchantment.IVanishable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -29,8 +26,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Supplier;
 
-// The Queen Lucy's Summoner Staff is mostly a copy of the BMSpawnEggItem class
-public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanishable {
+// The Queen Lucy's Summoner Staff is a copy of the BMSpawnEggItem class
+public class QueenLucySummonerStaffItem extends SpawnEggItem {
     private static final List<QueenLucySummonerStaffItem> BACKMATH_EGGS = Lists.newArrayList();
     private final Supplier<? extends EntityType<? extends Entity>> typeSupplier;
     private final Multimap<Attribute, AttributeModifier> attributeModifiers;
@@ -74,6 +71,7 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
                 return EntityType.byKey(entityTag.getString("id")).orElse(this.typeSupplier.get());
             }
         }
+
         return this.typeSupplier.get();
     }
 
@@ -88,11 +86,5 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
         // Terraria like tooltip, also says what food is used to tame her. Like parrots that don't like cookies, QSP's don't like aljame.
         tooltip.add(new TranslationTextComponent("tooltip.backmath.qlss_desc"));
         tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
-    }
-
-    @Override
-    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment == Enchantments.SHARPNESS || enchantment == Enchantments.LOOTING || enchantment == Enchantments.FIRE_ASPECT || enchantment == Enchantments.SMITE || enchantment == Enchantments.BANE_OF_ARTHROPODS ||
-                enchantment == Enchantments.SWEEPING  || enchantment == Enchantments.KNOCKBACK || super.canApplyAtEnchantingTable(stack, enchantment);
     }
 }

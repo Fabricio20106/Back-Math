@@ -29,6 +29,14 @@ public class MidTermArmorItem extends ArmorItem {
         super.onArmorTick(stack, world, player);
     }
 
+    // For testing purposes, I don't know if the method above works or not yet.
+    /*@Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
+        LivingEntity livingEntity = (LivingEntity) entity;
+        stack.damageItem(1, livingEntity, (entity1) -> entity1.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+        super.inventoryTick(stack, world, entity, itemSlot, isSelected);
+    }*/
+
     @Override
     public boolean hasEffect(ItemStack stack) {
         return true;

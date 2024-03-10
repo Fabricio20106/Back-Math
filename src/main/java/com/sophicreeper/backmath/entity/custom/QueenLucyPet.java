@@ -31,10 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ChatType;
-import net.minecraft.util.text.IFormattableTextComponent;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -88,21 +85,6 @@ public class QueenLucyPet extends TameableEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class ,10, false, false, (livEntity) -> livEntity.getType().isContained(BMTags.EntityTypes.QLP_TARGETS_TAMED)));
         this.targetSelector.addGoal(3, new NonTamedTargetGoal<>(this, LivingEntity.class, false, NON_TAMED_TARGETS));
         super.registerGoals();
-    }
-
-    private static ITextComponent func_233573_b_(ITextComponent name) {
-        IFormattableTextComponent textComponent = name.copyRaw().setStyle(name.getStyle().setClickEvent(null));
-
-        for(ITextComponent component : name.getSiblings()) {
-            textComponent.append(func_233573_b_(component));
-        }
-
-        return textComponent;
-    }
-
-    @Override
-    public ITextComponent getName() {
-        return this.getCustomName() != null ? func_233573_b_(this.getCustomName()) : new TranslationTextComponent("entity." + BackMath.MOD_ID + ".queen_lucy_pet." + this.getVariant());
     }
 
     @Nullable

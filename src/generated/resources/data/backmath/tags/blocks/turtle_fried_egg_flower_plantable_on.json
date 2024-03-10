@@ -1,8 +1,9 @@
 {
   "replace": false,
   "values": [
-    "#melony:farmland",
     "#forge:sand",
-    "#forge:dirt"
+    "#forge:dirt",
+    "minecraft:farmland",
+    "backmath:aljamic_farmland"
   ]
 }
