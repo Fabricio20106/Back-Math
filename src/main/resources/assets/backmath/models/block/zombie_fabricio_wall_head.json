@@ -1,7 +1,6 @@
 {
   "parent": "backmath:block/template_bm_wall_head_no_overlay",
   "textures": {
-    "side": "backmath:block/zombie_fabricio_head_side",
-    "top": "backmath:block/zombie_fabricio_head_top"
+    "skin": "backmath:entity/zombie/zombie_fabricio"
   }
 }

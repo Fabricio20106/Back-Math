@@ -1,19 +1,67 @@
 {
   "variants": {
-    "facing=east": {
+    "rotation=0": {
+      "model": "backmath:block/insomnia_sophie_head"
+    },
+    "rotation=1": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 22.5
+    },
+    "rotation=2": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 45
+    },
+    "rotation=3": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 67.5
+    },
+    "rotation=4": {
       "model": "backmath:block/insomnia_sophie_head",
       "y": 90
     },
-    "facing=north": {
-      "model": "backmath:block/insomnia_sophie_head"
+    "rotation=5": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 112.5
     },
-    "facing=south": {
+    "rotation=6": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 135
+    },
+    "rotation=7": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 157.5
+    },
+    "rotation=8": {
       "model": "backmath:block/insomnia_sophie_head",
       "y": 180
     },
-    "facing=west": {
+    "rotation=9": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 202.5
+    },
+    "rotation=10": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 235
+    },
+    "rotation=11": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 257.5
+    },
+    "rotation=12": {
       "model": "backmath:block/insomnia_sophie_head",
       "y": 270
+    },
+    "rotation=13": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 292.5
+    },
+    "rotation=14": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 315
+    },
+    "rotation=15": {
+      "model": "backmath:block/insomnia_sophie_head",
+      "y": 337.5
     }
   }
 }

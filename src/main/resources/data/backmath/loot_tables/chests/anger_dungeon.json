@@ -5,15 +5,41 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
-          "name": "minecraft:map",
-          "functions": [
+          "type": "minecraft:group",
+          "children": [
             {
-              "function": "minecraft:exploration_map",
-              "destination": "backmath:sophie_tower",
-              "decoration": "target_x",
-              "zoom": 1,
-              "skip_existing_chunks": false
+              "type": "minecraft:item",
+              "name": "minecraft:map",
+              "functions": [
+                {
+                  "function": "minecraft:exploration_map",
+                  "destination": "backmath:sophie_tower",
+                  "decoration": "target_x",
+                  "zoom": 1,
+                  "skip_existing_chunks": false
+                },
+                {
+                  "function": "minecraft:set_nbt",
+                  "tag": "{display:{MapColor:4007551}}"
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "name": "minecraft:map",
+              "functions": [
+                {
+                  "function": "minecraft:exploration_map",
+                  "destination": "backmath:fabricio_hideout_dungeon",
+                  "decoration": "target_point",
+                  "zoom": 1,
+                  "skip_existing_chunks": false
+                },
+                {
+                  "function": "minecraft:set_nbt",
+                  "tag": "{display:{MapColor:10537417}}"
+                }
+              ]
             }
           ]
         }

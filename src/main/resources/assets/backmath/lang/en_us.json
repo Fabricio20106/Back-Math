@@ -1552,6 +1552,8 @@
   "item.backmath.spice_pot": "Spice Pot",
   "item.backmath.oregano_pot": "Oregano Pot",
   "item.backmath.amaracamelarity": "Amaracamelarity",
+  "item.backmath.milkllary_warrior_helmet": "Milkllary Warrior Helmet",
+  "item.backmath.jantiquified_moonering_warrior_helmet": "Jantiquified Moonering Warrior Helmet",
 
   "item.minecraft.potion.effect.insomnia": "Potion of Insomnia",
   "item.minecraft.potion.effect.long_insomnia": "Potion of Insomnia",
@@ -1611,6 +1613,7 @@
   "upgrade_token.backmath.crystallizer_upg": "Crystallizer Upgrade Upgrade Token",
 
   "filled_map.backmath:sophie_tower": "Sophie Tower Explorer Map",
+  "filled_map.backmath:fabricio_hideout_dungeon": "Hideout Dungeon Explorer Map",
 
   "material.silentgear.devil": "Devil",
   "material.silentgear.angelic": "Angelic",

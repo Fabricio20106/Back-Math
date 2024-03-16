@@ -21,6 +21,7 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.common.Tags;
 
 import static com.sophicreeper.backmath.crystallizer.CrystallizerBlock.playSound;
 
@@ -258,6 +259,15 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
                 if (mainHand.getItem() == AxolotlTest.HARDENED_AMARACAMEL_BATTER.get()) {
                     playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
                     player.addItemStackToInventory(new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()));
+                    player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
+                    player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
+                    mainHand.shrink(1);
+                    return ActionResultType.SUCCESS;
+                }
+                // Obsidian = Obsidian Ingot
+                if (mainHand.getItem().isIn(Tags.Items.OBSIDIAN)) {
+                    playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT);
+                    player.addItemStackToInventory(new ItemStack(AxolotlTest.OBSIDIAN_INGOT.get()));
                     player.addStat(BMStats.CRAFT_IN_CRYSTALLINE_CRYSTALLIZER);
                     player.addStat(Stats.ITEM_USED.get(mainHand.getItem()));
                     mainHand.shrink(1);

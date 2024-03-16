@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.entity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sophicreeper.backmath.entity.model.BMBipedModel;
-import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
@@ -31,19 +30,19 @@ public class BMBipedRenderer<T extends CreatureEntity> extends BipedRenderer<T, 
     }
 
     @Override
-    public void render(T mob, float yaw, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight) {
+    public void render(T mob, float yaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight) {
         this.setModelVisibilities(mob);
-        super.render(mob, yaw, partialTicks, matrixStack, buffer, packedLight);
+        super.render(mob, yaw, partialTicks, stack, buffer, packedLight);
     }
 
     @Override
-    protected void preRenderCallback(T mob, MatrixStack matrixStack, float partialTickTime) {
-        matrixStack.scale(0.9375F, 0.9375F, 0.9375F);
+    protected void preRenderCallback(T mob, MatrixStack stack, float partialTickTime) {
+        stack.scale(0.9375F, 0.9375F, 0.9375F);
     }
 
     private BipedModel.ArmPose getArmPose(T mob, Hand hand) {
         ItemStack heldStack = mob.getHeldItem(hand);
-        boolean acceptableCrossbows = heldStack.getItem() == Items.CROSSBOW || heldStack.getItem() == AxolotlTest.DEVIL_CROSSBOW.get() || heldStack.getItem() == AxolotlTest.ANGELIC_CROSSBOW.get();
+        boolean acceptableCrossbows = heldStack.getItem().isIn(BMTags.Items.CROSSBOWS);
 
         if (heldStack.isEmpty()) {
             return BipedModel.ArmPose.EMPTY;

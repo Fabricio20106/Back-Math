@@ -31,7 +31,7 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.2d));
+        this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.2D));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.1D, false));
         this.goalSelector.addGoal(4, new LookAtGoal(this, QueenLucy.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
@@ -55,7 +55,7 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
 
     public static AttributeModifierMap.MutableAttribute createWarriorSophieAttributes() {
         return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 6).createMutableAttribute(Attributes.MAX_HEALTH, 36).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25f);
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25F);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
     protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
         int i = this.rand.nextInt(3);
         if (i == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.MILKLLARY_HELMET.get()));
+            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.MILKLLARY_WARRIOR_HELMET.get()));
             this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.MILKLLARY_CHESTPLATE.get()));
             this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.MILKLLARY_LEGGINGS.get()));
             this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.MILKLLARY_BOOTS.get()));

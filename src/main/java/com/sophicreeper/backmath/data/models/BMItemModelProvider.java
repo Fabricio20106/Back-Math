@@ -1186,6 +1186,8 @@ public class BMItemModelProvider extends ItemModelProvider {
         blockWithCustom(generated, "insomnian_stained_glass_pane", "insomnian_stained_glass");
         compat("amaracamelarity");
         standard(handheld, "tabu_sword");
+        compat("milkllary_warrior_helmet");
+        compat("jantiquified_moonering_warrior_helmet");
 
         getBuilder("effect_jam").parent(generated).texture("layer0", modLoc("item/effect_jam_overlay")).texture("layer1", modLoc("item/effect_jam_pot"));
     }

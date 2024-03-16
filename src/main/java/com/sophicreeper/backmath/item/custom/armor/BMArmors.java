@@ -218,8 +218,13 @@ public class BMArmors implements IArmorMaterial {
     }
     public static class WarriorObsidianInfusedMidTermHelmet extends BMArmors {
         public WarriorObsidianInfusedMidTermHelmet() {
-            super(BackMath.MOD_ID + ":warrior_obsidian_infused_mid_term",53, new int[] {12, 18, 16, 12}, 42, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 15, 0.5f, () ->
+            super(BackMath.MOD_ID + ":warrior_obsidian_infused_mid_term",53, new int[] {12, 18, 16, 12}, 42, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 15, 0.5F, () ->
                     Ingredient.fromTag(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM));
+        }
+    }
+    public static class WarriorMilkllaryHelmet extends BMArmors {
+        public WarriorMilkllaryHelmet() {
+            super(BackMath.MOD_ID + ":warrior_milkllary", 18, new int[] {4, 7, 6, 4}, 21, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0, 0, () -> Ingredient.fromTag(BMTags.Items.INGOTS_MILKLLARY));
         }
     }
     public static class WarriorAljameedHelmet extends BMArmors {
@@ -230,6 +235,12 @@ public class BMArmors implements IArmorMaterial {
     public static class WarriorMooneringHelmet extends BMArmors {
         public WarriorMooneringHelmet() {
             super(BackMath.MOD_ID + ":warrior_moonering", 33, new int[] {4, 8, 6, 3}, 10, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, 0, 0, () -> Ingredient.fromTag(BMTags.Items.INGOTS_MOONERING));
+        }
+    }
+    public static class WarriorJantiquifiedMooneringHelmet extends BMArmors {
+        public WarriorJantiquifiedMooneringHelmet() {
+            super(BackMath.MOD_ID + ":warrior_jantiquified_moonering", 40, new int[] {5, 10, 8, 5}, 14, SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3, 0.05F, () -> Ingredient.fromTag(
+                    BMTags.Items.INGOTS_MOONERING));
         }
     }
 }

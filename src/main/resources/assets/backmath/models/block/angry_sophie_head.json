@@ -1,9 +1,6 @@
 {
   "parent": "backmath:block/template_bm_head_ground",
   "textures": {
-    "side": "backmath:block/angry_sophie_head_side",
-    "top": "backmath:block/angry_sophie_head_top",
-    "overlay_side": "backmath:block/angry_sophie_head_overlay_side",
-    "overlay_top": "backmath:block/angry_sophie_head_overlay_top"
+    "skin": "backmath:entity/angry_sophie"
   }
 }
