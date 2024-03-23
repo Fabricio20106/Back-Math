@@ -6,6 +6,7 @@ import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
 import com.sophicreeper.backmath.world.renderer.AljanRenderInfo;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -34,9 +35,9 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.HILLARY_LANTERN.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.MID_TERM_HILLARY_LANTERN.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.MID_TERM_DOOR.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMBlocks.RED_YELLOW_FLOWER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.RED_YELLOW_ALLIUM.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_FRIED_EGG_FLOWER.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_RED_YELLOW_FLOWER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_RED_YELLOW_ALLIUM.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.DEVIL_STAINED_GLASS.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.DEVIL_STAINED_GLASS_PANE.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_GUARANA_OAK_SAPLING.get(), RenderType.getCutout());
@@ -196,7 +197,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_MANGAED_MANGO_OAK_SAPLING.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER.get(), RenderType.getCutout());
-        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_LADDER.get(), RenderType.getCutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_BIRCH_LADDER.get(), RenderType.getTranslucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.GOLDENWOOD_LADDER.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIA_SOPHIE_HEAD.get(), RenderType.getCutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIA_SOPHIE_WALL_HEAD.get(), RenderType.getCutout());
@@ -274,9 +275,9 @@ public class ClientProxy extends CommonProxy {
         makeShield(AxolotlTest.ALJAMEED_SHIELD.get());
         makeShield(AxolotlTest.MOONERING_SHIELD.get());
 
-        makeBow(AxolotlTest.DEVIL_BOW.get());
-        makeBow(AxolotlTest.ANGELIC_BOW.get());
-        makeBow(AxolotlTest.MID_TERM_BOW.get());
+        makeBow((BMBowItem) AxolotlTest.DEVIL_BOW.get());
+        makeBow((BMBowItem) AxolotlTest.ANGELIC_BOW.get());
+        makeBow((BMBowItem) AxolotlTest.MID_TERM_BOW.get());
 
         makeCrossbow(AxolotlTest.DEVIL_CROSSBOW.get());
         makeCrossbow(AxolotlTest.ANGELIC_CROSSBOW.get());

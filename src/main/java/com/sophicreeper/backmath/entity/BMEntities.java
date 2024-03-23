@@ -39,7 +39,7 @@ public class BMEntities {
             EntityType.Builder.create(ShyFabricio::new, EntityClassification.AMBIENT).size(0.6F, 1.8F).trackingRange(32).build(BackMath.resourceLoc("shy_fabricio").toString()));
 
     public static final RegistryObject<EntityType<QueenLucyPet>> QUEEN_LUCY_PET = ENTITIES.register("queen_sophie_pet", () ->
-            EntityType.Builder.create(QueenLucyPet::new, EntityClassification.CREATURE).trackingRange(10).immuneToFire().size(0.3f, 0.9f).build(BackMath.resourceLoc("queen_sophie_pet").toString()));
+            EntityType.Builder.create(QueenLucyPet::new, EntityClassification.CREATURE).trackingRange(10).immuneToFire().size(0.3F, 0.9F).build(BackMath.resourceLoc("queen_sophie_pet").toString()));
 
     // BM 1.7.0: Aljamic Wars Creatures and Enemies
     public static final RegistryObject<EntityType<InsomniaZombie>> INSOMNIA_ZOMBIE = ENTITIES.register("insomnia_zombie", () ->

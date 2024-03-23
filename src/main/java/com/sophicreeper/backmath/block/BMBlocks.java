@@ -7,6 +7,7 @@ import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassBlock;
 import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassPaneBlock;
 import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
 import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
+import com.sophicreeper.backmath.item.custom.tool.KnifeItem;
 import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.world.plant.tree.*;
 import net.minecraft.block.*;
@@ -52,8 +53,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> DEVIL_PRESSURE_PLATE = BLOCKS.register("devil_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.from(DEVIL_BLOCK.get()).doesNotBlockMovement()));
     public static final RegistryObject<Block> DEVIL_BUTTON = BLOCKS.register("devil_button", () -> new StoneButtonBlock(AbstractBlock.Properties.from(DEVIL_BLOCK.get()).doesNotBlockMovement()));
     public static final RegistryObject<Block> DEVIL_DOOR = BLOCKS.register("devil_door", () -> new DoorBlock(AbstractBlock.Properties.from(DEVIL_BLOCK.get()).notSolid()));
-    public static final RegistryObject<Block> FRIED_EGG_FLOWER = BLOCKS.register("cooked_egg_flower", () -> new FlowerBlock(Effects.GLOWING, 5, AbstractBlock.Properties.from(Blocks.POPPY).sound(SoundType.CROP)));
-    public static final RegistryObject<Block> TURTLE_FRIED_EGG_FLOWER = BLOCKS.register("turtle_fried_egg_flower", () -> new TurtleFriedEggFlowerBlock(Effects.WATER_BREATHING, 12, AbstractBlock.Properties.from(Blocks.POPPY).sound(SoundType.CROP)));
+    public static final RegistryObject<Block> FRIED_EGG_FLOWER = BLOCKS.register("cooked_egg_flower", () -> new FlowerBlock(Effects.GLOWING, 5, AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.SNOW).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> TURTLE_FRIED_EGG_FLOWER = BLOCKS.register("turtle_fried_egg_flower", () -> new TurtleFriedEggFlowerBlock(Effects.WATER_BREATHING, 12, AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.SNOW).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> MID_TERM_DOOR = BLOCKS.register("mid_term_door", () -> new DoorBlock(AbstractBlock.Properties.from(MID_TERM_BLOCK.get()).notSolid()));
     public static final RegistryObject<Block> RAW_ANGELIC_BLOCK = BLOCKS.register("raw_angelic_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.SNOW).harvestLevel(2).hardnessAndResistance(5, 6)));
     public static final RegistryObject<Block> ANGELIC_BLOCK = BLOCKS.register("angelic_block", () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.SNOW).harvestLevel(2).setRequiresTool().hardnessAndResistance(3, 6).sound(SoundType.METAL)));
@@ -64,13 +65,13 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJAME_BIRCH_LEAVES = BLOCKS.register("aljame_birch_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.BIRCH_LEAVES).notSolid()));
     public static final RegistryObject<Block> GRAPE_VINE_LEAVES = BLOCKS.register("grape_vine_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.SPRUCE_LEAVES).notSolid()));
     public static final RegistryObject<Block> PINEAPPLE_OAK_LEAVES = BLOCKS.register("pineapple_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES).notSolid()));
-    public static final RegistryObject<Block> GUARANA_OAK_SAPLING = BLOCKS.register("guarana_oak_sapling", () -> new SaplingBlock(new GuaranaOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> MANGO_OAK_SAPLING = BLOCKS.register("mango_oak_sapling", () -> new SaplingBlock(new MangoOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> GRAPE_VINE_SAPLING = BLOCKS.register("grape_vine_sapling", () -> new SaplingBlock(new GrapeVineGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> GUARANA_OAK_SAPLING = BLOCKS.register("guarana_oak_sapling", () -> new SaplingBlock(new GuaranaOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
+    public static final RegistryObject<Block> MANGO_OAK_SAPLING = BLOCKS.register("mango_oak_sapling", () -> new SaplingBlock(new MangoOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
+    public static final RegistryObject<Block> GRAPE_VINE_SAPLING = BLOCKS.register("grape_vine_sapling", () -> new SaplingBlock(new GrapeVineGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> ALJAME_BIRCH_SAPLING = BLOCKS.register("aljame_birch_sapling", () -> new SaplingBlock(new AljameBirchGrower(), AbstractBlock.Properties.from(Blocks.BIRCH_SAPLING)));
-    public static final RegistryObject<Block> PINEAPPLE_OAK_SAPLING = BLOCKS.register("pineapple_oak_sapling", () -> new SaplingBlock(new PineappleOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> PINEAPPLE_OAK_SAPLING = BLOCKS.register("pineapple_oak_sapling", () -> new SaplingBlock(new PineappleOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> LEMON_OAK_LEAVES = BLOCKS.register("lemon_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES)));
-    public static final RegistryObject<Block> LEMON_OAK_SAPLING = BLOCKS.register("lemon_oak_sapling", () -> new SaplingBlock(new LemonOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> LEMON_OAK_SAPLING = BLOCKS.register("lemon_oak_sapling", () -> new SaplingBlock(new LemonOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> OAK_GRAPE_VINE_POST = BLOCKS.register("oak_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(Blocks.OAK_PLANKS).tickRandomly().hardnessAndResistance(0.5F).sound(SoundType.SWEET_BERRY_BUSH).notSolid()));
     public static final RegistryObject<Block> SPRUCE_GRAPE_VINE_POST = BLOCKS.register("spruce_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(Blocks.SPRUCE_PLANKS).tickRandomly().hardnessAndResistance(0.5F).sound(SoundType.SWEET_BERRY_BUSH).notSolid()));
     public static final RegistryObject<Block> BIRCH_GRAPE_VINE_POST = BLOCKS.register("birch_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(Blocks.BIRCH_PLANKS).tickRandomly().hardnessAndResistance(0.5F).sound(SoundType.SWEET_BERRY_BUSH).notSolid()));
@@ -83,7 +84,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> MID_TERM_HILLARY_LANTERN = BLOCKS.register("hilary_mid_term_lantern", () -> new LanternBlock(AbstractBlock.Properties.from(Blocks.LANTERN).harvestLevel(3).setRequiresTool().hardnessAndResistance(50, 1200)));
     public static final RegistryObject<Block> MID_TERM_LANTERN = BLOCKS.register("mid_term_lantern", () -> new LanternBlock(AbstractBlock.Properties.from(Blocks.LANTERN).harvestLevel(3).setRequiresTool().hardnessAndResistance(50, 1200)));
     public static final RegistryObject<Block> MID_TERM_SOUL_LANTERN = BLOCKS.register("mid_term_soul_lantern", () -> new LanternBlock(AbstractBlock.Properties.from(Blocks.SOUL_LANTERN).harvestLevel(3).setRequiresTool().hardnessAndResistance(50, 1200)));
-    public static final RegistryObject<Block> RED_YELLOW_FLOWER = BLOCKS.register("red_yellow_flower", () -> new FlowerBlock(Effects.FIRE_RESISTANCE, 5, AbstractBlock.Properties.from(Blocks.POPPY).sound(SoundType.CROP)));
+    public static final RegistryObject<Block> RED_YELLOW_ALLIUM = BLOCKS.register("red_yellow_flower", () -> new FlowerBlock(Effects.FIRE_RESISTANCE, 5, AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.RED).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> DEVIL_CONCRETE = BLOCKS.register("devil_concrete", () -> new Block(AbstractBlock.Properties.from(Blocks.RED_CONCRETE)));
     public static final RegistryObject<Block> DEVIL_CONCRETE_POWDER = BLOCKS.register("devil_concrete_powder", () -> new ConcretePowderBlock(DEVIL_CONCRETE.get(), AbstractBlock.Properties.from(Blocks.RED_CONCRETE_POWDER)));
     public static final RegistryObject<Block> DEVIL_TERRACOTTA = BLOCKS.register("devil_terracotta", () -> new Block(AbstractBlock.Properties.from(Blocks.RED_TERRACOTTA)));
@@ -132,7 +133,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_DOOR = BLOCKS.register("crystalline_birch_door", () -> new DoorBlock(AbstractBlock.Properties.from(CRYSTALLINE_BIRCH_PLANKS.get()).hardnessAndResistance(3)));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_TRAPDOOR = BLOCKS.register("crystalline_birch_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.from(CRYSTALLINE_BIRCH_PLANKS.get()).hardnessAndResistance(2)));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_LEAVES = BLOCKS.register("crystalline_birch_leaves", () -> new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES, MaterialColor.GOLD).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT).notSolid().setAllowsSpawn(BMBlocks::allowsSpawnOnLeaves).setSuffocates(BMBlocks::isntSolid).setBlocksVision(BMBlocks::isntSolid)));
-    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_SAPLING = BLOCKS.register("crystalline_birch_sapling", () -> new SaplingBlock(new CrystallineBirchGrower(), AbstractBlock.Properties.from(Blocks.BIRCH_SAPLING)));
+    public static final RegistryObject<Block> CRYSTALLINE_BIRCH_SAPLING = BLOCKS.register("crystalline_birch_sapling", () -> new SaplingBlock(new CrystallineBirchGrower(), AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.GOLD).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT)));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_STAIRS = BLOCKS.register("crystalline_birch_stairs", () -> new StairsBlock(() -> CRYSTALLINE_BIRCH_PLANKS.get().getDefaultState(), AbstractBlock.Properties.from(CRYSTALLINE_BIRCH_PLANKS.get())));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_SLAB = BLOCKS.register("crystalline_birch_slab", () -> new SlabBlock(AbstractBlock.Properties.from(CRYSTALLINE_BIRCH_PLANKS.get())));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_FENCE = BLOCKS.register("crystalline_birch_fence", () -> new FenceBlock(AbstractBlock.Properties.from(CRYSTALLINE_BIRCH_PLANKS.get())));
@@ -147,11 +148,11 @@ public class BMBlocks {
     public static final RegistryObject<Block> TITO = BLOCKS.register("tito", () -> new EmotionalSquidBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.PINK).hardnessAndResistance(0.8F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> TOTI = BLOCKS.register("toti", () -> new EmotionalSquidBlock(AbstractBlock.Properties.create(Material.WOOL, MaterialColor.LIGHT_BLUE).hardnessAndResistance(0.8F).sound(SoundType.CLOTH)));
     public static final RegistryObject<Block> ORANGE_OAK_LEAVES = BLOCKS.register("orange_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.OAK_LEAVES)));
-    public static final RegistryObject<Block> ORANGE_OAK_SAPLING = BLOCKS.register("orange_oak_sapling", () -> new SaplingBlock(new OrangeOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> ORANGE_OAK_SAPLING = BLOCKS.register("orange_oak_sapling", () -> new SaplingBlock(new OrangeOakGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> BANANA_JUNGLE_LEAVES = BLOCKS.register("banana_jungle_leaves", () -> new LeavesBlock(AbstractBlock.Properties.from(Blocks.JUNGLE_LEAVES)));
     public static final RegistryObject<Block> BANANA_JUNGLE_SAPLING = BLOCKS.register("banana_jungle_sapling", () -> new SaplingBlock(new BananaJungleGrower(), AbstractBlock.Properties.from(Blocks.JUNGLE_SAPLING)));
     public static final RegistryObject<Block> POTTED_FRIED_EGG_FLOWER = BLOCKS.register("potted_cooked_egg_flower", () -> new FlowerPotBlock(FRIED_EGG_FLOWER.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
-    public static final RegistryObject<Block> POTTED_RED_YELLOW_FLOWER = BLOCKS.register("potted_red_yellow_flower", () -> new FlowerPotBlock(RED_YELLOW_FLOWER.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
+    public static final RegistryObject<Block> POTTED_RED_YELLOW_ALLIUM = BLOCKS.register("potted_red_yellow_flower", () -> new FlowerPotBlock(RED_YELLOW_ALLIUM.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
     public static final RegistryObject<Block> POTTED_GUARANA_OAK_SAPLING = BLOCKS.register("potted_guarana_oak_sapling", () -> new FlowerPotBlock(GUARANA_OAK_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> POTTED_MANGO_OAK_SAPLING = BLOCKS.register("potted_mango_oak_sapling", () -> new FlowerPotBlock(MANGO_OAK_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> POTTED_GRAPE_VINE_SAPLING = BLOCKS.register("potted_grape_vine_sapling", () -> new FlowerPotBlock(GRAPE_VINE_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
@@ -185,9 +186,9 @@ public class BMBlocks {
     public static final RegistryObject<Block> MILKLLARY_BLOCK = BLOCKS.register("milkllary_block", () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.SNOW).setRequiresTool().hardnessAndResistance(5, 6).harvestTool(ToolType.PICKAXE).sound(SoundType.METAL)));
     public static final RegistryObject<Block> RAW_ALJAMEED_BLOCK = BLOCKS.register("raw_aljameed_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, BMMaterials.ALJAN).harvestLevel(1).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5, 6)));
     public static final RegistryObject<Block> RAW_MOONER_BLOCK = BLOCKS.register("raw_mooner_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.PURPLE).harvestLevel(1).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(5, 6)));
-    public static final RegistryObject<Block> ALJAN_TULIP = BLOCKS.register("aljan_tulip", () -> new FlowerBlock(Effects.WEAKNESS, 6, AbstractBlock.Properties.from(Blocks.POPPY).sound(SoundType.CROP)));
-    public static final RegistryObject<Block> INSOMNIAN_TULIP = BLOCKS.register("insomnian_tulip", () -> new InsomnianTulipBlock(Effects.GLOWING, 10, AbstractBlock.Properties.from(Blocks.POPPY).sound(SoundType.CROP)));
-    public static final RegistryObject<Block> POISON_ROSE = BLOCKS.register("poison_rose", () -> new PoisonRoseBlock(Effects.POISON, 10, AbstractBlock.Properties.from(Blocks.POPPY).sound(SoundType.CROP)));
+    public static final RegistryObject<Block> ALJAN_TULIP = BLOCKS.register("aljan_tulip", () -> new FlowerBlock(Effects.WEAKNESS, 6, AbstractBlock.Properties.create(Material.PLANTS, BMMaterials.ALJAN).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> POISON_ROSE = BLOCKS.register("poison_rose", () -> new PoisonRoseBlock(Effects.POISON, 10, AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.BROWN_TERRACOTTA).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.CROP)));
+    public static final RegistryObject<Block> INSOMNIAN_TULIP = BLOCKS.register("insomnian_tulip", () -> new InsomnianTulipBlock(Effects.GLOWING, 10, AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.BLUE).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> ALJANSHROOM = BLOCKS.register("aljanshroom", () -> new MushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, BMMaterials.ALJAN).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT).setLightLevel((state) -> 1)));
     public static final RegistryObject<Block> SLEEPSHROOM = BLOCKS.register("sleepshroom", () -> new MushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.PURPLE).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT).setNeedsPostProcessing(BMBlocks::needsPostProcessing)));
     public static final RegistryObject<Block> SLEEPYSHROOM = BLOCKS.register("sleepyshroom", () -> new MushroomBlock(AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.LIGHT_BLUE).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT).setNeedsPostProcessing(BMBlocks::needsPostProcessing)));
@@ -228,7 +229,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> STICKY_AMARACAMEL_BLOCK = BLOCKS.register("sticky_amaracamel_block", () -> new StickyAmaracamelBlock(AbstractBlock.Properties.create(Material.CLAY, MaterialColor.ADOBE).slipperiness(0.8F).sound(SoundType.HONEY).notSolid()));
 
     // 1.7.0: Aljanstone:
-    public static final RegistryObject<Block> ALJANSTONE = BLOCKS.register("aljanstone", () -> new Block(AbstractBlock.Properties.create(BMMaterials.ALJAN_ROCK).setRequiresTool().hardnessAndResistance(1.5F, 6)));
+    public static final RegistryObject<Block> ALJANSTONE = BLOCKS.register("aljanstone", () -> new Block(AbstractBlock.Properties.create(BMMaterials.ALJAN_ROCK).setRequiresTool().harvestTool(ToolType.PICKAXE).hardnessAndResistance(1.5F, 6)));
     public static final RegistryObject<Block> ALJANSTONE_STAIRS = BLOCKS.register("aljanstone_stairs", () -> new StairsBlock(() -> ALJANSTONE.get().getDefaultState(), AbstractBlock.Properties.from(ALJANSTONE.get())));
     public static final RegistryObject<Block> ALJANSTONE_SLAB = BLOCKS.register("aljanstone_slab", () -> new SlabBlock(AbstractBlock.Properties.from(ALJANSTONE.get())));
     public static final RegistryObject<Block> ALJANSTONE_WALL = BLOCKS.register("aljanstone_wall", () -> new WallBlock(AbstractBlock.Properties.from(ALJANSTONE.get())));
@@ -249,7 +250,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> COBBLED_ALJANSTONE_WALL = BLOCKS.register("cobbled_aljanstone_wall", () -> new WallBlock(AbstractBlock.Properties.from(CHISELED_ALJANSTONE_FABRICIO.get())));
 
     // 1.7.0: Sleepingstone:
-    public static final RegistryObject<Block> SLEEPINGSTONE = BLOCKS.register("sleepingstone", () -> new Block(AbstractBlock.Properties.create(BMMaterials.SLEEPINGSTONE_ROCK).setRequiresTool().hardnessAndResistance(1.5F, 6)));
+    public static final RegistryObject<Block> SLEEPINGSTONE = BLOCKS.register("sleepingstone", () -> new Block(AbstractBlock.Properties.create(BMMaterials.SLEEPINGSTONE_ROCK).harvestTool(ToolType.PICKAXE).setRequiresTool().hardnessAndResistance(1.5F, 6)));
     public static final RegistryObject<Block> SLEEPINGSTONE_STAIRS = BLOCKS.register("sleepingstone_stairs", () -> new StairsBlock(() -> SLEEPINGSTONE.get().getDefaultState(), AbstractBlock.Properties.from(SLEEPINGSTONE.get())));
     public static final RegistryObject<Block> SLEEPINGSTONE_SLAB = BLOCKS.register("sleepingstone_slab", () -> new SlabBlock(AbstractBlock.Properties.from(SLEEPINGSTONE.get())));
     public static final RegistryObject<Block> SLEEPINGSTONE_WALL = BLOCKS.register("sleepingstone_wall", () -> new WallBlock(AbstractBlock.Properties.from(SLEEPINGSTONE.get())));
@@ -275,7 +276,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> STRIPPED_ALJANWOOD_LOG = BLOCKS.register("stripped_aljanwood_log", () -> createLogBlock(MaterialColor.BROWN_TERRACOTTA, MaterialColor.BROWN_TERRACOTTA));
     public static final RegistryObject<Block> STRIPPED_ALJANWOOD_WOOD = BLOCKS.register("stripped_aljanwood_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, BMMaterials.ALJAN).hardnessAndResistance(2).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> ALJANWOOD_LEAVES = BLOCKS.register("aljanwood_leaves", () -> createLeavesBlock(MaterialColor.LIGHT_GRAY));
-    public static final RegistryObject<Block> ALJANWOOD_SAPLING = BLOCKS.register("aljanwood_sapling", () -> new SaplingBlock(new AljanwoodTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> ALJANWOOD_SAPLING = BLOCKS.register("aljanwood_sapling", () -> new SaplingBlock(new AljanwoodTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> POTTED_ALJANWOOD_SAPLING = BLOCKS.register("potted_aljanwood_sapling", () -> new FlowerPotBlock(ALJANWOOD_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> ALJANWOOD_PLANKS = BLOCKS.register("aljanwood_planks", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, BMMaterials.ALJAN).hardnessAndResistance(2, 3).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> ALJANWOOD_STAIRS = BLOCKS.register("aljanwood_stairs", () -> new StairsBlock(() -> ALJANWOOD_PLANKS.get().getDefaultState(), AbstractBlock.Properties.from(ALJANWOOD_PLANKS.get())));
@@ -298,7 +299,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> STRIPPED_ALJANCAP_WOOD = BLOCKS.register("stripped_aljancap_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(2).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> ALJANCAP_LEAVES = BLOCKS.register("aljancap_leaves", () -> createLeavesBlock(MaterialColor.CYAN));
     public static final RegistryObject<Block> AMARACAP_LEAVES = BLOCKS.register("amaracap_leaves", () -> createLeavesBlock(MaterialColor.ADOBE));
-    public static final RegistryObject<Block> ALJANCAP_SAPLING = BLOCKS.register("aljancap_sapling", () -> new SaplingBlock(new AljancapTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> ALJANCAP_SAPLING = BLOCKS.register("aljancap_sapling", () -> new SaplingBlock(new AljancapTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> POTTED_ALJANCAP_SAPLING = BLOCKS.register("potted_aljancap_sapling", () -> new FlowerPotBlock(ALJANCAP_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> ALJANCAP_PLANKS = BLOCKS.register("aljancap_planks", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(2, 3).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> ALJANCAP_STAIRS = BLOCKS.register("aljancap_stairs", () -> new StairsBlock(() -> ALJANCAP_PLANKS.get().getDefaultState(), AbstractBlock.Properties.from(ALJANCAP_PLANKS.get())));
@@ -355,7 +356,7 @@ public class BMBlocks {
 
     // 1.8.0: Cork Oak Wood:
     public static final RegistryObject<Block> CORK_OAK_LEAVES = BLOCKS.register("cork_oak_leaves", () -> createLeavesBlock(MaterialColor.FOLIAGE));
-    public static final RegistryObject<Block> CORK_OAK_SAPLING = BLOCKS.register("cork_oak_sapling", () -> new SaplingBlock(new CorkOakTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> CORK_OAK_SAPLING = BLOCKS.register("cork_oak_sapling", () -> new SaplingBlock(new CorkOakTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> POTTED_CORK_OAK_SAPLING = BLOCKS.register("potted_cork_oak_sapling", () -> new FlowerPotBlock(BMBlocks.CORK_OAK_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> CORK_OAK_LOG = BLOCKS.register("cork_oak_log", () -> createLogBlock(MaterialColor.NETHERRACK, MaterialColor.BROWN));
     public static final RegistryObject<Block> CORK_OAK_WOOD = BLOCKS.register("cork_oak_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN).hardnessAndResistance(2).sound(SoundType.WOOD)));
@@ -375,7 +376,7 @@ public class BMBlocks {
 
     // 1.8.0: Guava Wood:
     public static final RegistryObject<Block> GUAVA_LEAVES = BLOCKS.register("guava_leaves", () -> createLeavesBlock(MaterialColor.LIME_TERRACOTTA));
-    public static final RegistryObject<Block> GUAVA_SAPLING = BLOCKS.register("guava_sapling", () -> new SaplingBlock(new GuavaTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> GUAVA_SAPLING = BLOCKS.register("guava_sapling", () -> new SaplingBlock(new GuavaTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> POTTED_GUAVA_SAPLING = BLOCKS.register("potted_guava_sapling", () -> new FlowerPotBlock(BMBlocks.GUAVA_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> GUAVA_LOG = BLOCKS.register("guava_log", () -> createLogBlock(MaterialColor.NETHERRACK, MaterialColor.BROWN_TERRACOTTA, 1.5F, 4));
     public static final RegistryObject<Block> GUAVA_WOOD = BLOCKS.register("guava_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(1.5F, 4).sound(SoundType.WOOD)));
@@ -395,7 +396,7 @@ public class BMBlocks {
 
     // 1.8.0: Jabuticaba Wood:
     public static final RegistryObject<Block> JABUTICABA_LEAVES = BLOCKS.register("jabuticaba_leaves", () -> createLeavesBlock(MaterialColor.FOLIAGE));
-    public static final RegistryObject<Block> JABUTICABA_SAPLING = BLOCKS.register("jabuticaba_sapling", () -> new SaplingBlock(new JabuticabaTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> JABUTICABA_SAPLING = BLOCKS.register("jabuticaba_sapling", () -> new SaplingBlock(new JabuticabaTreeGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> POTTED_JABUTICABA_SAPLING = BLOCKS.register("potted_jabuticaba_sapling", () -> new FlowerPotBlock(BMBlocks.JABUTICABA_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> JABUTICABA_LOG = BLOCKS.register("jabuticaba_log", () -> createLogBlock(MaterialColor.BLACK_TERRACOTTA, MaterialColor.BROWN_TERRACOTTA));
     public static final RegistryObject<Block> JABUTICABA_WOOD = BLOCKS.register("jabuticaba_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.BROWN_TERRACOTTA).hardnessAndResistance(2).sound(SoundType.WOOD)));
@@ -416,8 +417,8 @@ public class BMBlocks {
     // 1.8.0: Goldenwood Wood:
     public static final RegistryObject<Block> GOLDENWOOD_LEAVES = BLOCKS.register("goldenwood_leaves", () -> createLeavesBlock(MaterialColor.GOLD));
     public static final RegistryObject<Block> ENCHANTED_GOLDENWOOD_LEAVES = BLOCKS.register("enchanted_goldenwood_leaves", () -> createLeavesBlock(MaterialColor.MAGENTA));
-    public static final RegistryObject<Block> GOLDENWOOD_SAPLING = BLOCKS.register("goldenwood_sapling", () -> new SaplingBlock(new GoldenwoodGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
-    public static final RegistryObject<Block> ENCHANTED_GOLDENWOOD_SAPLING = BLOCKS.register("enchanted_goldenwood_sapling", () -> new SaplingBlock(new EnchantedGoldenwoodGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> GOLDENWOOD_SAPLING = BLOCKS.register("goldenwood_sapling", () -> new SaplingBlock(new GoldenwoodGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
+    public static final RegistryObject<Block> ENCHANTED_GOLDENWOOD_SAPLING = BLOCKS.register("enchanted_goldenwood_sapling", () -> new SaplingBlock(new EnchantedGoldenwoodGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> POTTED_GOLDENWOOD_SAPLING = BLOCKS.register("potted_goldenwood_sapling", () -> new FlowerPotBlock(BMBlocks.GOLDENWOOD_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> POTTED_ENCHANTED_GOLDENWOOD_SAPLING = BLOCKS.register("potted_enchanted_goldenwood_sapling", () -> new FlowerPotBlock(BMBlocks.ENCHANTED_GOLDENWOOD_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> GOLDENWOOD_LOG = BLOCKS.register("goldenwood_log", () -> createLogBlock(MaterialColor.GOLD, MaterialColor.GRAY_TERRACOTTA));
@@ -448,7 +449,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_LOG = BLOCKS.register("stripped_crystalline_birch_log", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.SNOW).hardnessAndResistance(2).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> STRIPPED_CRYSTALLINE_BIRCH_WOOD = BLOCKS.register("stripped_crystalline_birch_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.SNOW).hardnessAndResistance(2).sound(SoundType.WOOD).notSolid()));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_GRAPE_VINE_POST = BLOCKS.register("crystalline_birch_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.from(CRYSTALLINE_BIRCH_PLANKS.get()).tickRandomly().hardnessAndResistance(0.5F).sound(SoundType.SWEET_BERRY_BUSH).notSolid()));
-    public static final RegistryObject<Block> ENDER_DRAGON_FRIED_EGG_FLOWER = BLOCKS.register("ender_dragon_fried_egg_flower", () -> new EnderDragonFriedEggFlowerBlock(Effects.LEVITATION, 10, AbstractBlock.Properties.from(Blocks.POPPY).sound(SoundType.CROP)));
+    public static final RegistryObject<Block> ENDER_DRAGON_FRIED_EGG_FLOWER = BLOCKS.register("ender_dragon_fried_egg_flower", () -> new EnderDragonFriedEggFlowerBlock(Effects.LEVITATION, 10, AbstractBlock.Properties.create(Material.PLANTS, MaterialColor.BLACK).doesNotBlockMovement().zeroHardnessAndResistance().sound(SoundType.CROP)));
     public static final RegistryObject<Block> POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER = BLOCKS.register("potted_ender_dragon_fried_egg_flower", () -> new FlowerPotBlock(ENDER_DRAGON_FRIED_EGG_FLOWER.get(), AbstractBlock.Properties.from(Blocks.POTTED_POPPY)));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_LADDER = BLOCKS.register("crystalline_birch_ladder", () -> new LadderBlock(AbstractBlock.Properties.from(Blocks.LADDER)));
     public static final RegistryObject<Block> ANGELIC_PILLAR = BLOCKS.register("angelic_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.from(ANGELIC_BLOCK.get())));
@@ -519,7 +520,7 @@ public class BMBlocks {
     // 1.8.0: Avondalic Willow Wood:
     public static final RegistryObject<Block> AVONDALIC_NYLIUM = BLOCKS.register("avondalic_nylium", () -> new AljamicGrassBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.PURPLE).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT).harvestTool(ToolType.SHOVEL)));
     public static final RegistryObject<Block> AVONDALIC_WILLOW_LEAVES = BLOCKS.register("avondalic_willow_leaves", () -> createLeavesBlock(MaterialColor.MAGENTA));
-    public static final RegistryObject<Block> AVONDALIC_WILLOW_SAPLING = BLOCKS.register("avondalic_willow_sapling", () -> new SaplingBlock(new AvondalicWillowGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING)));
+    public static final RegistryObject<Block> AVONDALIC_WILLOW_SAPLING = BLOCKS.register("avondalic_willow_sapling", () -> new SaplingBlock(new AvondalicWillowGrower(), AbstractBlock.Properties.from(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> POTTED_AVONDALIC_WILLOW_SAPLING = BLOCKS.register("potted_avondalic_willow_sapling", () -> new FlowerPotBlock(BMBlocks.AVONDALIC_WILLOW_SAPLING.get(), AbstractBlock.Properties.from(Blocks.POTTED_OAK_SAPLING)));
     public static final RegistryObject<Block> AVONDALIC_WILLOW_LOG = BLOCKS.register("avondalic_willow_log", () -> createLogBlock(MaterialColor.MAGENTA, MaterialColor.WARPED_HYPHAE));
     public static final RegistryObject<Block> AVONDALIC_WILLOW_WOOD = BLOCKS.register("avondalic_willow_wood", () -> new RotatedPillarBlock(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.WARPED_HYPHAE).hardnessAndResistance(2).sound(SoundType.WOOD)));

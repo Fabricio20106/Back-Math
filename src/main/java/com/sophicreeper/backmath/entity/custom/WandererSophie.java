@@ -260,7 +260,11 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
             // Variant 3: Hardened Amaracamel Helmet, Hardened Amaracamel Chestplate and Butter Sword
             this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_HELMET.get()));
             this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_CHESTPLATE.get()));
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.BUTTER_SWORD.get()));
+
+            ItemStack butterSword = new ItemStack(AxolotlTest.BUTTER_SWORD.get());
+            CompoundNBT tag = butterSword.getOrCreateTag();
+            tag.putInt("stored_experience", 55);
+            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, butterSword);
         }
     }
 

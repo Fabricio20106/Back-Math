@@ -193,7 +193,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
                 .add(BMBlocks.ALJAMIC_GLASS.get());
         this.getOrCreateBuilder(BlockTags.PIGLIN_REPELLENTS).add(BMBlocks.MID_TERM_SOUL_LANTERN.get());
         this.getOrCreateBuilder(BlockTags.SAND).add(BMBlocks.ALJAMIC_SAND.get());
-        this.getOrCreateBuilder(BlockTags.SMALL_FLOWERS).add(BMBlocks.RED_YELLOW_FLOWER.get()).add(BMBlocks.FRIED_EGG_FLOWER.get()).add(BMBlocks.TURTLE_FRIED_EGG_FLOWER.get()).add(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get())
+        this.getOrCreateBuilder(BlockTags.SMALL_FLOWERS).add(BMBlocks.RED_YELLOW_ALLIUM.get()).add(BMBlocks.FRIED_EGG_FLOWER.get()).add(BMBlocks.TURTLE_FRIED_EGG_FLOWER.get()).add(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get())
                 .add(BMBlocks.ALJAN_TULIP.get()).add(BMBlocks.POISON_ROSE.get()).add(BMBlocks.INSOMNIAN_TULIP.get());
         this.getOrCreateBuilder(BlockTags.VALID_SPAWN).addTag(BMTags.Blocks.ALJAN_GROUND).add(BMBlocks.ALJAMIC_SAND.get());
 
@@ -245,7 +245,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
                 .add(BMBlocks.POTTED_BANANA_JUNGLE_SAPLING.get()).add(BMBlocks.POTTED_GUAVA_SAPLING.get()).add(BMBlocks.POTTED_JABUTICABA_SAPLING.get()).add(BMBlocks.POTTED_ALJAME_BIRCH_SAPLING.get())
                 .add(BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.POTTED_GOLDENWOOD_SAPLING.get()).add(BMBlocks.POTTED_ENCHANTED_GOLDENWOOD_SAPLING.get()).add(BMBlocks.POTTED_CORK_OAK_SAPLING.get())
                 .add(BMBlocks.POTTED_ALJANWOOD_SAPLING.get()).add(BMBlocks.POTTED_ALJANCAP_SAPLING.get()).add(BMBlocks.POTTED_INSOMNIAN_SAPLING.get()).add(BMBlocks.POTTED_AVONDALIC_WILLOW_SAPLING.get())
-                .add(BMBlocks.POTTED_RED_YELLOW_FLOWER.get()).add(BMBlocks.POTTED_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_TURTLE_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER.get())
+                .add(BMBlocks.POTTED_RED_YELLOW_ALLIUM.get()).add(BMBlocks.POTTED_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_TURTLE_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER.get())
                 .add(BMBlocks.POTTED_ALJAN_TULIP.get()).add(BMBlocks.POTTED_POISON_ROSE.get()).add(BMBlocks.POTTED_INSOMNIAN_TULIP.get()).add(BMBlocks.POTTED_ALJANSHROOM.get()).add(BMBlocks.POTTED_SLEEPSHROOM.get())
                 .add(BMBlocks.POTTED_SLEEPYSHROOM.get());
         this.getOrCreateBuilder(BlockTags.SAPLINGS).add(BMBlocks.GUARANA_OAK_SAPLING.get()).add(BMBlocks.MANGO_OAK_SAPLING.get()).add(BMBlocks.MANGAED_MANGO_OAK_SAPLING.get())

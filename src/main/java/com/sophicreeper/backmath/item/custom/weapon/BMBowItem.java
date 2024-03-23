@@ -130,7 +130,6 @@ public class BMBowItem extends ShootableItem {
         if (trueCharge > 1) {
             trueCharge = 1;
         }
-
         return trueCharge;
     }
 

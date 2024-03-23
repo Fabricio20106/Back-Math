@@ -2,9 +2,13 @@ package com.sophicreeper.backmath.block.custom;
 
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
@@ -14,17 +18,19 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 
 import java.util.stream.Stream;
 
-public class ToyBlock extends HorizontalBlock {
+public class ToyBlock extends HorizontalBlock implements IWaterLoggable {
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
     private final Type type;
 
     public ToyBlock(Type type) {
         super(AbstractBlock.Properties.create(Material.WOOL).hardnessAndResistance(0.5F).sound(SoundType.CLOTH).notSolid());
         this.type = type;
-        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH));
+        this.setDefaultState(this.stateContainer.getBaseState().with(FACING, Direction.NORTH).with(WATERLOGGED, false));
     }
 
     @Override
@@ -55,21 +61,35 @@ public class ToyBlock extends HorizontalBlock {
         return ToyShapes.DEFAULT_SHAPE;
     }
 
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite());
+    @Override
+    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        if (state.get(WATERLOGGED)) world.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+        return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
     }
 
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        return this.getDefaultState().with(FACING, context.getPlacementHorizontalFacing().getOpposite()).with(WATERLOGGED, context.getWorld().getFluidState(context.getPos()).getFluid() == Fluids.WATER);
+    }
+
+    @Override
     public BlockState rotate(BlockState state, Rotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
+    @Override
     public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.toRotation(state.get(FACING)));
     }
 
     @Override
+    public FluidState getFluidState(BlockState state) {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+    }
+
+    @Override
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, WATERLOGGED);
     }
 
     public static class ToyShapes {

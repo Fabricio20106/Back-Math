@@ -117,10 +117,10 @@ public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> e
                 if (!canSeeOther && this.seeTime < -60) {
                     this.entity.resetActiveHand();
                 } else if (canSeeOther) {
-                    int i = this.entity.getItemInUseMaxCount();
-                    if (i >= 20) {
+                    int countForItemInUse = this.entity.getItemInUseMaxCount();
+                    if (countForItemInUse >= 20) {
                         this.entity.resetActiveHand();
-                        this.entity.attackEntityWithRangedAttack(livingEntity, BMBowItem.getArrowVelocity(i));
+                        this.entity.attackEntityWithRangedAttack(livingEntity, BMBowItem.getArrowVelocity(countForItemInUse));
                         this.attackTime = this.attackCooldown;
                     }
                 }

@@ -6,10 +6,9 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.IItemTier;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.SwordItem;
+import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -49,5 +48,19 @@ public class MilkedButterSwordItem extends SwordItem {
             tooltip.add(new TranslationTextComponent("messages." + BackMath.MOD_ID + ".butter_sword.experience_points", 500));
         }
         super.addInformation(stack, world, tooltip, flag);
+    }
+
+    @Override
+    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.isInGroup(group)) {
+            // Default Butter Sword (500 XP)
+            items.add(new ItemStack(this));
+
+            // Actual Butter Sword (55 XP)
+            ItemStack stack = new ItemStack(this);
+            CompoundNBT tag = stack.getOrCreateTag();
+            tag.putInt("stored_experience", 55);
+            items.add(stack);
+        }
     }
 }

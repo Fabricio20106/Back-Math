@@ -54,7 +54,7 @@ public class BMBlockStateProvider extends BlockStateProvider {
         wallBlock((WallBlock) BMBlocks.DEVIL_WALL.get(), modLoc("block/devil_block"));
         doorBlock((DoorBlock) BMBlocks.DEVIL_DOOR.get(), modLoc("block/devil_door_bottom"), modLoc("block/devil_door_top"));
         simpleBlock(BMBlocks.FRIED_EGG_FLOWER.get(), models().cross("cooked_egg_flower", modLoc("block/cooked_egg_flower")));
-        simpleBlock(BMBlocks.RED_YELLOW_FLOWER.get(), models().cross("red_yellow_flower", modLoc("block/red_yellow_flower")));
+        simpleBlock(BMBlocks.RED_YELLOW_ALLIUM.get(), models().cross("red_yellow_flower", modLoc("block/red_yellow_flower")));
         trapdoorBlock((TrapDoorBlock) BMBlocks.ANGELIC_TRAPDOOR.get(), modLoc("block/angelic_trapdoor"), true);
         simpleBlock(BMBlocks.GUARANA_OAK_LEAVES.get(), models().withExistingParent("guarana_oak_leaves", modLoc("block/template_fruit_leaves")).texture("leaf",
                 "backmath:block/oak_fruit_leaves").texture("fruit", "backmath:block/guarana_fruit_leaves"));
@@ -67,7 +67,7 @@ public class BMBlockStateProvider extends BlockStateProvider {
         simpleBlock(BMBlocks.GRAPE_VINE_SAPLING.get(), models().cross("grape_vine_sapling", modLoc("block/grape_vine_sapling")));
         doorBlock((DoorBlock) BMBlocks.MID_TERM_DOOR.get(), modLoc("block/mid_term_door_bottom"), modLoc("block/mid_term_door_top"));
         simpleBlock(BMBlocks.MID_TERM_ORE.get());
-        simpleBlock(BMBlocks.POTTED_RED_YELLOW_FLOWER.get(), models().withExistingParent("potted_red_yellow_flower",
+        simpleBlock(BMBlocks.POTTED_RED_YELLOW_ALLIUM.get(), models().withExistingParent("potted_red_yellow_flower",
                 "block/flower_pot_cross").texture("plant", "block/red_yellow_flower"));
         simpleBlock(BMBlocks.POTTED_FRIED_EGG_FLOWER.get(), models().withExistingParent("potted_cooked_egg_flower",
                 "block/flower_pot_cross").texture("plant", "block/cooked_egg_flower"));

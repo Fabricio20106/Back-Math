@@ -495,7 +495,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> WARPED_GRAPE_VINE_POST = ITEMS.register("warped_grape_vine_post", () -> new BlockItem(BMBlocks.WARPED_GRAPE_VINE_POST.get(), new Item.Properties().group(BMBlockTab.TAB)));
 
     // Plants (Flowers, Mushrooms & Wild Crops):
-    public static final RegistryObject<Item> RED_YELLOW_FLOWER = ITEMS.register("red_yellow_flower", () -> new BlockItem(BMBlocks.RED_YELLOW_FLOWER.get(), new Item.Properties().group(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> RED_YELLOW_FLOWER = ITEMS.register("red_yellow_flower", () -> new BlockItem(BMBlocks.RED_YELLOW_ALLIUM.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> FRIED_EGG_FLOWER = ITEMS.register("cooked_egg_flower", () -> new BlockItem(BMBlocks.FRIED_EGG_FLOWER.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> TURTLE_FRIED_EGG_FLOWER = ITEMS.register("turtle_fried_egg_flower", () -> new BlockItem(BMBlocks.TURTLE_FRIED_EGG_FLOWER.get(), new Item.Properties().group(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ENDER_DRAGON_FRIED_EGG_FLOWER = ITEMS.register("ender_dragon_fried_egg_flower", () -> new BlockItem(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get(), new Item.Properties().group(BMBlockTab.TAB)));

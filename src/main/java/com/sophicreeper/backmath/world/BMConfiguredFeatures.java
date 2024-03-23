@@ -152,7 +152,7 @@ public class BMConfiguredFeatures {
                     new SimpleBlockStateProvider(Blocks.BIRCH_LOG.getDefaultState()),
                     new SimpleBlockStateProvider(BMBlocks.ALJAME_BIRCH_LEAVES.get().getDefaultState()),
                     new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
-                    new StraightTrunkPlacer(4, 2, 0),
+                    new StraightTrunkPlacer(5, 2, 0),
                     new TwoLayerFeature(1, 0, 1)))
                     .setIgnoreVines().build()));
 
@@ -165,7 +165,7 @@ public class BMConfiguredFeatures {
     // Flowers
     private static final ImmutableList<Supplier<ConfiguredFeature<?, ?>>> BACK_FIELD_FLOWERS_LIST = ImmutableList.of(
             () -> Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.FRIED_EGG_FLOWER.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()),
-            () -> Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.RED_YELLOW_FLOWER.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
+            () -> Feature.RANDOM_PATCH.withConfiguration(new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(BMBlocks.RED_YELLOW_ALLIUM.get().getDefaultState()), new SimpleBlockPlacer()).tries(64).func_227317_b_().build()));
 
     public static final ConfiguredFeature<?, ?> BACK_FIELD_FLOWER_PATCH = register("back_field_flower_patch", Feature.SIMPLE_RANDOM_SELECTOR.withConfiguration(new SingleRandomFeature(BACK_FIELD_FLOWERS_LIST)).func_242730_a(
             FeatureSpread.func_242253_a(-3, 4)).withPlacement(Features.Placements.VEGETATION_PLACEMENT).withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).func_242731_b(5));
