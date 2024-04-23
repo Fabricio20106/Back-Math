@@ -16,12 +16,12 @@ public class InsomniaZombieRenderer extends BipedRenderer<InsomniaZombie, BMZomb
     public static final ResourceLocation INSOMNIA_ZOMBIE_LOCATION = BackMath.resourceLoc("textures/entity/zombie/insomnia_zombie.png");
 
     public InsomniaZombieRenderer(EntityRendererManager entityRendererManager) {
-        super(entityRendererManager, new BMZombieBipedModel<>(0.0F, 0.0F, 64, 64), 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMZombieBipedModel<>(0.5F, 0.0F, 64, 32), new BMZombieBipedModel<>(1.0F, 0.0F, 64, 32)));
+        super(entityRendererManager, new BMZombieBipedModel<>(0, 0, 64, 64), 0.5F);
+        this.addLayer(new BipedArmorLayer<>(this, new BMZombieBipedModel<>(0.5F, 0, 64, 32), new BMZombieBipedModel<>(1, 0, 64, 32)));
         this.addLayer(new ElytraLayer<>(this));
     }
 
-    public ResourceLocation getEntityTexture(InsomniaZombie insomniaZombie) {
+    public ResourceLocation getTextureLocation(InsomniaZombie insomniaZombie) {
         return INSOMNIA_ZOMBIE_LOCATION;
     }
 }

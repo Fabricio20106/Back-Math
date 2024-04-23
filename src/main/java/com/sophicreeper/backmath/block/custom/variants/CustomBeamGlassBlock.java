@@ -48,8 +48,8 @@ public class CustomBeamGlassBlock extends AbstractGlassBlock implements IBeaconB
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable IBlockReader world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        if (ModList.get().isLoaded("variants")) tooltip.add(new TranslationTextComponent("tooltip.variants.glass_beam_color", String.format("#%06X", beamColor)).mergeStyle(Style.EMPTY.setColor(Color.fromInt(beamColor))));
-        super.addInformation(stack, world, tooltip, flag);
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        if (ModList.get().isLoaded("variants")) tooltip.add(new TranslationTextComponent("tooltip.variants.glass_beam_color", String.format("#%06X", beamColor)).withStyle(Style.EMPTY.withColor(Color.fromRgb(beamColor))));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

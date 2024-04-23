@@ -16,7 +16,7 @@ public class AngrySophieRenderer extends BMBipedRenderer<AngrySophie> {
         this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
     }
 
-    public ResourceLocation getEntityTexture(AngrySophie angrySophie) {
+    public ResourceLocation getTextureLocation(AngrySophie angrySophie) {
         return BackMath.resourceLoc("textures/entity/angry_sophie.png");
     }
 }

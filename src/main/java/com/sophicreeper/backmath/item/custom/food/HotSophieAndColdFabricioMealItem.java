@@ -12,8 +12,8 @@ public class HotSophieAndColdFabricioMealItem extends Item {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        livingEntity.attackEntityFrom(BMDamageSources.HOT_AND_COLD_MEAL, Float.MAX_VALUE);
-        return super.onItemUseFinish(stack, world, livingEntity);
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livingEntity) {
+        livingEntity.hurt(BMDamageSources.HOT_AND_COLD_MEAL, Float.MAX_VALUE);
+        return super.finishUsingItem(stack, world, livingEntity);
     }
 }

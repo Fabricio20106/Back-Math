@@ -14,18 +14,18 @@ public class AljanRavineCarver extends CanyonWorldCarver {
     }
 
     @Override
-    public boolean isCarvable(BlockState state) {
-        return state.isIn(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES);
+    public boolean canReplaceBlock(BlockState state) {
+        return state.is(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES);
     }
 
     @Override
-    protected boolean func_222700_a(IChunk chunk, int chunkX, int chunkZ, int minX, int maxX, int minY, int maxY, int minZ, int maxZ) {
+    protected boolean hasWater(IChunk chunk, int chunkX, int chunkZ, int minX, int maxX, int minY, int maxY, int minZ, int maxZ) {
         BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
         for(int i = minX; i < maxX; ++i) {
             for(int j = minZ; j < maxZ; ++j) {
                 for(int k = minY - 1; k <= maxY + 1; ++k) {
-                    if (BMTags.Fluids.ALJAN_CARVER_REPLACEABLES.equals(chunk.getFluidState(mutablePos.setPos(i + chunkX * 16, k, j + chunkZ * 16)).getFluid())) {
+                    if (BMTags.Fluids.ALJAN_CARVER_REPLACEABLES.equals(chunk.getFluidState(mutablePos.set(i + chunkX * 16, k, j + chunkZ * 16)).getType())) {
                         return true;
                     }
 

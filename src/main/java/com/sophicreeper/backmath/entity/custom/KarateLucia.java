@@ -27,8 +27,8 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
     }
 
     @Override
-    public boolean isOnSameTeam(Entity entity) {
-        if (super.isOnSameTeam(entity)) {
+    public boolean isAlliedTo(Entity entity) {
+        if (super.isAlliedTo(entity)) {
             return true;
         } else return entity instanceof ISophieFriendlies;
     }
@@ -57,11 +57,11 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
     }
 
     public static AttributeModifierMap.MutableAttribute createKarateLuciaAttributes() {
-        return CreatureEntity.func_233666_p_()
+        return CreatureEntity.createMobAttributes()
                 // Old karate Lucia health was 50.0d.
                 // Old new karate Lucia health was 28.0d.
-                .createMutableAttribute(Attributes.MAX_HEALTH, 20).createMutableAttribute(Attributes.FOLLOW_RANGE, 32).createMutableAttribute(Attributes.ATTACK_DAMAGE, 6).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F)
-                .createMutableAttribute(Attributes.ARMOR, 3);
+                .add(Attributes.MAX_HEALTH, 20).add(Attributes.FOLLOW_RANGE, 32).add(Attributes.ATTACK_DAMAGE, 6).add(Attributes.MOVEMENT_SPEED, 0.23F)
+                .add(Attributes.ARMOR, 3);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -70,9 +70,9 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        this.setEquipmentBasedOnDifficulty(difficulty);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.populateDefaultEquipmentEnchantments(difficulty);
+        this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;
     }
 
@@ -80,24 +80,24 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
     public void tick() {
         super.tick();
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
-    public void livingTick() {
-        this.updateArmSwingProgress();
-        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+    public void aiStep() {
+        this.updateSwingTime();
+        if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
                 this.heal(1);
             }
         }
-        super.livingTick();
+        super.aiStep();
     }
 
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
         }
     }
 
@@ -120,9 +120,9 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
         return new ItemStack(AxolotlTest.KARATE_LUCIA_SPAWN_EGG.get());
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.KARATE_TRAINING_STICK.get()));
-        this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.YELLOW_KARATE_BAND.get()));
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(difficulty);
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.KARATE_TRAINING_STICK.get()));
+        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.YELLOW_KARATE_BAND.get()));
     }
 }

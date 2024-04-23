@@ -13,16 +13,16 @@ public class HotSophieItem extends Item {
         super(properties);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        super.onItemUseFinish(stack, world, livingEntity);
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livingEntity) {
+        super.finishUsingItem(stack, world, livingEntity);
         if (livingEntity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.addStat(Stats.ITEM_USED.get(this));
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        if (!world.isRemote) {
-            livingEntity.setFire(5);
+        if (!world.isClientSide) {
+            livingEntity.setSecondsOnFire(5);
         }
         return stack;
     }

@@ -19,36 +19,36 @@ public class QueenLucyModel extends BipedModel<QueenLucy> {
 
     public QueenLucyModel() {
         super(0, 0, 64, 64);
-        textureWidth = 64;
-        textureHeight = 64;
+        texWidth = 64;
+        texHeight = 64;
 
         this.bipedRightLeg = new ModelRenderer(this, 0, 0);
-        this.bipedRightLeg.setRotationPoint(0, 24, 0);
-        this.bipedRightLeg.setTextureOffset(0, 16).addBox(-4, -12, -2, 4, 12, 4, 0, false);
+        this.bipedRightLeg.setPos(0, 24, 0);
+        this.bipedRightLeg.texOffs(0, 16).addBox(-4, -12, -2, 4, 12, 4, 0, false);
 
         this.bipedLeftLeg = new ModelRenderer(this, 0, 0);
-        this.bipedLeftLeg.setRotationPoint(0, 24, 0);
-        this.bipedLeftLeg.setTextureOffset(0, 16).addBox(0, -12, -2, 4, 12, 4, 0, false);
+        this.bipedLeftLeg.setPos(0, 24, 0);
+        this.bipedLeftLeg.texOffs(0, 16).addBox(0, -12, -2, 4, 12, 4, 0, false);
 
         this.bipedBody = new ModelRenderer(this, 0, 0);
-        this.bipedBody.setRotationPoint(0, 24, 0);
-        this.bipedBody.setTextureOffset(16, 16).addBox(-4, -24, -2, 8, 12, 4, 0, false);
+        this.bipedBody.setPos(0, 24, 0);
+        this.bipedBody.texOffs(16, 16).addBox(-4, -24, -2, 8, 12, 4, 0, false);
 
         this.bipedRightArm = new ModelRenderer(this, 0, 0);
-        this.bipedRightArm.setRotationPoint(0, 24, 0);
-        this.bipedRightArm.setTextureOffset(40, 16).addBox(-7, -24, -2, 3, 12, 4, 0, false);
+        this.bipedRightArm.setPos(0, 24, 0);
+        this.bipedRightArm.texOffs(40, 16).addBox(-7, -24, -2, 3, 12, 4, 0, false);
 
         this.bipedLeftArm = new ModelRenderer(this, 0, 0);
-        this.bipedLeftArm.setRotationPoint(.00F, 24, 0);
-        this.bipedLeftArm.setTextureOffset(40, 16).addBox(4, -24, -2, 3, 12, 4, 0, false);
+        this.bipedLeftArm.setPos(.00F, 24, 0);
+        this.bipedLeftArm.texOffs(40, 16).addBox(4, -24, -2, 3, 12, 4, 0, false);
 
         this.bipedHead = new ModelRenderer(this, 0, 0);
-        this.bipedHead.setRotationPoint(0, 24, 0);
-        this.bipedHead.setTextureOffset(0, 0).addBox(-4, -32, -4, 8, 8, 8, 0, false);
-        this.bipedHead.setTextureOffset(0, 32).addBox(-3, -37, -3, 0, 5, 6, 0, false);
-        this.bipedHead.setTextureOffset(12, 32).addBox(3, -37, -3, 0, 5, 6, 0, false);
-        this.bipedHead.setTextureOffset(6, 38).addBox(-3, -37, -3, 6, 5, 0, 0, false);
-        this.bipedHead.setTextureOffset(18, 38).addBox(-3, -37, 3, 6, 5, 0, 0, false);
+        this.bipedHead.setPos(0, 24, 0);
+        this.bipedHead.texOffs(0, 0).addBox(-4, -32, -4, 8, 8, 8, 0, false);
+        this.bipedHead.texOffs(0, 32).addBox(-3, -37, -3, 0, 5, 6, 0, false);
+        this.bipedHead.texOffs(12, 32).addBox(3, -37, -3, 0, 5, 6, 0, false);
+        this.bipedHead.texOffs(6, 38).addBox(-3, -37, -3, 6, 5, 0, 0, false);
+        this.bipedHead.texOffs(18, 38).addBox(-3, -37, 3, 6, 5, 0, 0, false);
     }
 
     /*@Override
@@ -128,7 +128,7 @@ public class QueenLucyModel extends BipedModel<QueenLucy> {
     }*/
 
     @Override
-    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
         bipedRightLeg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
         bipedLeftLeg.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
         bipedBody.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);

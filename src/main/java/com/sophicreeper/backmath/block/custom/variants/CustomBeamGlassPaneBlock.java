@@ -24,7 +24,7 @@ public class CustomBeamGlassPaneBlock extends PaneBlock implements IBeaconBeamCo
     public CustomBeamGlassPaneBlock(int beamColor, Properties properties) {
         super(properties);
         this.beamColor = beamColor;
-        this.setDefaultState(this.stateContainer.getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(WATERLOGGED, false));
     }
 
     @Nullable
@@ -48,8 +48,8 @@ public class CustomBeamGlassPaneBlock extends PaneBlock implements IBeaconBeamCo
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable IBlockReader world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        if (ModList.get().isLoaded("variants")) tooltip.add(new TranslationTextComponent("tooltip.variants.glass_beam_color", String.format("#%06X", beamColor)).mergeStyle(Style.EMPTY.setColor(Color.fromInt(beamColor))));
-        super.addInformation(stack, world, tooltip, flag);
+    public void appendHoverText(ItemStack stack, @Nullable IBlockReader world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        if (ModList.get().isLoaded("variants")) tooltip.add(new TranslationTextComponent("tooltip.variants.glass_beam_color", String.format("#%06X", beamColor)).withStyle(Style.EMPTY.withColor(Color.fromRgb(beamColor))));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

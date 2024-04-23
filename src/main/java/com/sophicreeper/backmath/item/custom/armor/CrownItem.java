@@ -11,7 +11,7 @@ import javax.annotation.Nullable;
 public class CrownItem extends Item {
     public CrownItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, ArmorItem.DISPENSER_BEHAVIOR);
+        DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
     }
 
     @Nullable

@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "#backmath:tempt_items/wanderer_sophie",
-    "#backmath:tempt_items/queen_lucy_pet",
-    "#backmath:tempt_items/archer_lucia",
-    "#backmath:tempt_items/shy_fabricio"
+    "#backmath:wanderer_sophie_tempt_items",
+    "#backmath:queen_lucy_pet_tempt_items",
+    "#backmath:archer_lucia_tempt_items",
+    "#backmath:shy_fabricio_tempt_items"
   ]
 }

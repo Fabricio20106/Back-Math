@@ -7,6 +7,6 @@ import net.minecraft.item.BoneMealItem;
 public class SleepishFertilizerItem extends BoneMealItem {
     public SleepishFertilizerItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new BoneMealDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new BoneMealDispenseBehavior());
     }
 }

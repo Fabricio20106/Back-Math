@@ -29,16 +29,16 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeConfig;
 
 import javax.annotation.Nullable;
 import java.time.LocalDate;
-import java.time.temporal.ChronoField;
 import java.util.function.Predicate;
 
 public class ZombieFabricio extends MonsterEntity {
     private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (difficulty) -> difficulty == Difficulty.HARD;
     private final BreakDoorGoal breakDoor = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
-    private boolean isBreakDoorsTaskSet;
+    private boolean canBreakDoors;
 
     public ZombieFabricio(EntityType<ZombieFabricio> type, World world) {
         super(type, world);
@@ -47,10 +47,10 @@ public class ZombieFabricio extends MonsterEntity {
     protected void registerGoals() {
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-        this.applyEntityAI();
+        this.addAttackTargets();
     }
 
-    protected void applyEntityAI() {
+    protected void addAttackTargets() {
         this.goalSelector.addGoal(2, new ZombieFabricioAttackGoal(this, 1, false));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
@@ -69,109 +69,104 @@ public class ZombieFabricio extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createZombieFabricioAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.FOLLOW_RANGE, 35).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3)
-                .createMutableAttribute(Attributes.ARMOR, 2);
+        return MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.ATTACK_DAMAGE, 3)
+                .add(Attributes.ARMOR, 2);
     }
 
-    public boolean isBreakDoorsTaskSet() {
-        return this.isBreakDoorsTaskSet;
+    public boolean canBreakDoors() {
+        return this.canBreakDoors;
     }
 
     // Sets or removes EntityAIBreakDoor task.
     public void setBreakDoorsAITask(boolean enabled) {
-        if (this.canBreakDoors() && GroundPathHelper.isGroundNavigator(this)) {
-            if (this.isBreakDoorsTaskSet != enabled) {
-                this.isBreakDoorsTaskSet = enabled;
-                ((GroundPathNavigator) this.getNavigator()).setBreakDoors(enabled);
+        if (this.supportsBreakDoorGoal() && GroundPathHelper.hasGroundPathNavigation(this)) {
+            if (this.canBreakDoors != enabled) {
+                this.canBreakDoors = enabled;
+                ((GroundPathNavigator) this.getNavigation()).setCanOpenDoors(enabled);
                 if (enabled) {
                     this.goalSelector.addGoal(1, this.breakDoor);
                 } else {
                     this.goalSelector.removeGoal(this.breakDoor);
                 }
             }
-        } else if (this.isBreakDoorsTaskSet) {
+        } else if (this.canBreakDoors) {
             this.goalSelector.removeGoal(this.breakDoor);
-            this.isBreakDoorsTaskSet = false;
+            this.canBreakDoors = false;
         }
     }
 
-    protected boolean canBreakDoors() {
+    protected boolean supportsBreakDoorGoal() {
         return true;
     }
 
     // Get the experience points the entity currently has.
-    protected int getExperiencePoints(PlayerEntity player) {
-        if (this.isChild()) {
-            this.experienceValue = (int)((float)this.experienceValue * 2.5F);
-        }
+    protected int getExperienceReward(PlayerEntity player) {
+        if (this.isBaby()) this.xpReward = (int) ((float) this.xpReward * 2.5F);
 
-        return super.getExperiencePoints(player);
+        return super.getExperienceReward(player);
     }
 
     // Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
-    public void livingTick() {
+    public void aiStep() {
         if (this.isAlive()) {
-            boolean canBurn = this.shouldBurnInDay() && this.isInDaylight();
-            if (canBurn) {
-                ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
+            boolean shouldBurn = this.shouldBurnInDay() && this.isSunBurnTick();
+            if (shouldBurn) {
+                ItemStack headStack = this.getItemBySlot(EquipmentSlotType.HEAD);
                 if (!headStack.isEmpty()) {
-                    if (headStack.isDamageable()) {
-                        headStack.setDamage(headStack.getDamage() + this.rand.nextInt(2));
-                        if (headStack.getDamage() >= headStack.getMaxDamage()) {
-                            this.sendBreakAnimation(EquipmentSlotType.HEAD);
-                            this.setItemStackToSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
+                    if (headStack.isDamageableItem()) {
+                        headStack.setDamageValue(headStack.getDamageValue() + this.random.nextInt(2));
+                        if (headStack.getDamageValue() >= headStack.getMaxDamage()) {
+                            this.broadcastBreakEvent(EquipmentSlotType.HEAD);
+                            this.setItemSlot(EquipmentSlotType.HEAD, ItemStack.EMPTY);
                         }
                     }
-
-                    canBurn = false;
+                    shouldBurn = false;
                 }
 
-                if (canBurn) {
-                    this.setFire(8);
+                if (shouldBurn) {
+                    this.setSecondsOnFire(8);
                 }
             }
         }
-
-        super.livingTick();
+        super.aiStep();
     }
 
     protected boolean shouldBurnInDay() {
         return true;
     }
 
-    public boolean attackEntityAsMob(Entity entity) {
-        boolean flag = super.attackEntityAsMob(entity);
-        if (flag) {
-            float locationDifficulty = this.world.getDifficultyForLocation(this.getPosition()).getAdditionalDifficulty();
-            if (this.getHeldItemMainhand().isEmpty() && this.isBurning() && this.rand.nextFloat() < locationDifficulty * 0.3F) {
-                entity.setFire(2 * (int) locationDifficulty);
+    public boolean doHurtTarget(Entity entity) {
+        boolean sup = super.doHurtTarget(entity);
+        if (sup) {
+            float locationDifficulty = this.level.getCurrentDifficultyAt(this.blockPosition()).getSpecialMultiplier();
+            if (this.getMainHandItem().isEmpty() && this.isOnFire() && this.random.nextFloat() < locationDifficulty * 0.3F) {
+                entity.setSecondsOnFire(2 * (int) locationDifficulty);
             }
         }
-
-        return flag;
+        return sup;
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_ZOMBIE_AMBIENT;
+        return SoundEvents.ZOMBIE_AMBIENT;
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_ZOMBIE_HURT;
+        return SoundEvents.ZOMBIE_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_ZOMBIE_DEATH;
+        return SoundEvents.ZOMBIE_DEATH;
     }
 
     protected SoundEvent getStepSound() {
-        return SoundEvents.ENTITY_ZOMBIE_STEP;
+        return SoundEvents.ZOMBIE_STEP;
     }
 
     protected void playStepSound(BlockPos pos, BlockState state) {
         this.playSound(this.getStepSound(), 0.15F, 1);
     }
 
-    public CreatureAttribute getCreatureAttribute() {
+    public CreatureAttribute getMobType() {
         return CreatureAttribute.UNDEAD;
     }
 
@@ -180,36 +175,34 @@ public class ZombieFabricio extends MonsterEntity {
         return new ItemStack(AxolotlTest.ZOMBIE_FABRICIO_SPAWN_EGG.get());
     }
 
-    protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
-        if (this.rand.nextFloat() < 0.15F * difficulty.getClampedAdditionalDifficulty()) {
-            int i = this.rand.nextInt(2);
-            float f = this.world.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-            if (this.rand.nextFloat() < 0.095F) {
+    protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
+        if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
+            int i = this.random.nextInt(2);
+            float f = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
-            if (this.rand.nextFloat() < 0.095F) {
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
-            if (this.rand.nextFloat() < 0.095F) {
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
             boolean flag = true;
 
             for(EquipmentSlotType equipmentSlots : EquipmentSlotType.values()) {
-                if (equipmentSlots.getSlotType() == EquipmentSlotType.Group.ARMOR) {
-                    ItemStack armorSlotStacks = this.getItemStackFromSlot(equipmentSlots);
-                    if (!flag && this.rand.nextFloat() < f) {
-                        break;
-                    }
+                if (equipmentSlots.getType() == EquipmentSlotType.Group.ARMOR) {
+                    ItemStack armorSlotStacks = this.getItemBySlot(equipmentSlots);
+                    if (!flag && this.random.nextFloat() < f) break;
 
                     flag = false;
                     if (armorSlotStacks.isEmpty()) {
-                        Item item = getAljanArmorByChance(equipmentSlots, i);
-                        if (item != null) {
-                            this.setItemStackToSlot(equipmentSlots, new ItemStack(item));
+                        Item aljanArmor = getAljanArmorByChance(equipmentSlots, i);
+                        if (aljanArmor != null) {
+                            this.setItemSlot(equipmentSlots, new ItemStack(aljanArmor));
                         }
                     }
                 }
@@ -272,27 +265,27 @@ public class ZombieFabricio extends MonsterEntity {
         }
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        this.setEquipmentBasedOnDifficultyCustom(difficulty);
-        if (this.rand.nextFloat() < (this.world.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
-            int i = this.rand.nextInt(3);
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        this.populateAljanEquipmentSlots(difficulty);
+        if (this.random.nextFloat() < (this.level.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
+            int i = this.random.nextInt(3);
             if (i == 0) {
-                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_BLADE.get()));
+                this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_BLADE.get()));
             } else {
-                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_SHOVEL.get()));
+                this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_SHOVEL.get()));
             }
         }
     }
 
-    public void writeAdditional(CompoundNBT tag) {
-        super.writeAdditional(tag);
-        tag.putBoolean("CanBreakDoors", this.isBreakDoorsTaskSet());
+    public void addAdditionalSaveData(CompoundNBT tag) {
+        super.addAdditionalSaveData(tag);
+        tag.putBoolean("can_break_doors", this.canBreakDoors());
     }
 
     // (abstract) Protected helper method to read subclass entity data from NBT.
-    public void readAdditional(CompoundNBT tag) {
-        super.readAdditional(tag);
-        this.setBreakDoorsAITask(tag.getBoolean("CanBreakDoors"));
+    public void readAdditionalSaveData(CompoundNBT tag) {
+        super.readAdditionalSaveData(tag);
+        this.setBreakDoorsAITask(tag.getBoolean("can_break_doors"));
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -300,22 +293,22 @@ public class ZombieFabricio extends MonsterEntity {
     }
 
     @Nullable
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        spawnData = super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
-        float clampedAdditionalDifficulty = difficulty.getClampedAdditionalDifficulty();
-        this.setCanPickUpLoot(this.rand.nextFloat() < 0.55F * clampedAdditionalDifficulty);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+        float clampedAdditionalDifficulty = difficulty.getSpecialMultiplier();
+        this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * clampedAdditionalDifficulty);
 
-        this.setBreakDoorsAITask(this.canBreakDoors() && this.rand.nextFloat() < clampedAdditionalDifficulty * 0.1F);
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
+        this.setBreakDoorsAITask(this.supportsBreakDoorGoal() && this.random.nextFloat() < clampedAdditionalDifficulty * 0.1F);
+        this.populateDefaultEquipmentSlots(difficulty);
+        this.populateDefaultEquipmentEnchantments(difficulty);
 
-        if (this.getItemStackFromSlot(EquipmentSlotType.HEAD).isEmpty()) {
+        if (this.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
             LocalDate localDate = LocalDate.now();
             int dayOfMonth = localDate.getDayOfMonth();
             int monthOfYear = localDate.getMonth().getValue();
-            if (monthOfYear == 10 && dayOfMonth == 31 && this.rand.nextFloat() < 0.25F) {
-                this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(this.rand.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
-                this.inventoryArmorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0;
+            if (monthOfYear == 10 && dayOfMonth == 31 && this.random.nextFloat() < 0.25F) {
+                this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(this.random.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
+                this.armorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0;
             }
         }
 
@@ -324,39 +317,45 @@ public class ZombieFabricio extends MonsterEntity {
     }
 
     protected void applyAttributeBonuses(float difficulty) {
-        this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).applyPersistentModifier(new AttributeModifier("Random Knockback Res. Bonus", this.rand.nextDouble() * (double) 0.05F, AttributeModifier.Operation.ADDITION));
-        double d0 = this.rand.nextDouble() * 1.5D * (double) difficulty;
+        this.randomizeReinforcementsChance();
+        this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).addPermanentModifier(new AttributeModifier("Random Knockback Res. Bonus", this.random.nextDouble() * (double) 0.05F, AttributeModifier.Operation.ADDITION));
+        double d0 = this.random.nextDouble() * 1.5D * (double) difficulty;
         if (d0 > 1) {
-            this.getAttribute(Attributes.FOLLOW_RANGE).applyPersistentModifier(new AttributeModifier("Random Follow Range Bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            this.getAttribute(Attributes.FOLLOW_RANGE).addPermanentModifier(new AttributeModifier("Random Follow Range Bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
 
-        if (this.rand.nextFloat() < difficulty * 0.05F) {
-            this.getAttribute(Attributes.MAX_HEALTH).applyPersistentModifier(new AttributeModifier("Leader Zombie Fabricio Bonus", this.rand.nextDouble() * 3 + 1, AttributeModifier.Operation.MULTIPLY_TOTAL));
-            this.setBreakDoorsAITask(this.canBreakDoors());
+        if (this.random.nextFloat() < difficulty * 0.05F) {
+            this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).addPermanentModifier(new AttributeModifier("Leader Zombie Fabricio Bonus", this.random.nextDouble() * 0.25D + 0.5D, AttributeModifier.Operation.ADDITION));
+            this.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("Leader Zombie Fabricio Bonus", this.random.nextDouble() * 3 + 1, AttributeModifier.Operation.MULTIPLY_TOTAL));
+            this.setBreakDoorsAITask(this.supportsBreakDoorGoal());
         }
+    }
+
+    protected void randomizeReinforcementsChance() {
+        this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).setBaseValue(this.random.nextDouble() * ForgeConfig.SERVER.zombieBaseSummonChance.get());
     }
 
     // Returns the Y Offset of this entity.
-    public double getYOffset() {
+    public double getMyRidingOffset() {
         return -0.45D;
     }
 
-    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
-        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
-        Entity entity = source.getTrueSource();
+    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
+        Entity entity = source.getEntity();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
-            if (creeper.ableToCauseSkullDrop()) {
-                ItemStack skullStack = this.getSkullDrop();
+            if (creeper.canDropMobsSkull()) {
+                ItemStack skullStack = this.getHeadDrop();
                 if (!skullStack.isEmpty()) {
-                    creeper.incrementDroppedSkulls();
-                    this.entityDropItem(skullStack);
+                    creeper.increaseDroppedSkulls();
+                    this.spawnAtLocation(skullStack);
                 }
             }
         }
     }
 
-    protected ItemStack getSkullDrop() {
+    protected ItemStack getHeadDrop() {
         return new ItemStack(AxolotlTest.ZOMBIE_FABRICIO_HEAD.get());
     }
 }

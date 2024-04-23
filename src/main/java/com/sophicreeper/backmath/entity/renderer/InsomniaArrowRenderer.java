@@ -10,13 +10,11 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class InsomniaArrowRenderer extends ArrowRenderer<InsomniaArrow> {
-    public static final ResourceLocation INSOMNIA_ARROW = BackMath.resourceLoc("textures/entity/insomnia_arrow.png");
-
-    public InsomniaArrowRenderer(EntityRendererManager renderManager) {
-        super(renderManager);
+    public InsomniaArrowRenderer(EntityRendererManager manager) {
+        super(manager);
     }
 
-    public ResourceLocation getEntityTexture(InsomniaArrow arrow) {
-        return INSOMNIA_ARROW;
+    public ResourceLocation getTextureLocation(InsomniaArrow arrow) {
+        return BackMath.resourceLoc("textures/entity/insomnia_arrow.png");
     }
 }

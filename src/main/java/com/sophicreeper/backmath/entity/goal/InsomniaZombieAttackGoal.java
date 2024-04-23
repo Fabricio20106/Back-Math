@@ -12,19 +12,19 @@ public class InsomniaZombieAttackGoal extends MeleeAttackGoal {
         this.zombie = zombie;
     }
 
-    public void startExecuting() {
-        super.startExecuting();
+    public void start() {
+        super.start();
         this.raisedArmTicks = 0;
     }
 
-    public void resetTask() {
-        super.resetTask();
-        this.zombie.setAggroed(false);
+    public void stop() {
+        super.stop();
+        this.zombie.setAggressive(false);
     }
 
     public void tick() {
         super.tick();
         ++this.raisedArmTicks;
-        this.zombie.setAggroed(this.raisedArmTicks >= 5 && this.func_234041_j_() < this.func_234042_k_() / 2);
+        this.zombie.setAggressive(this.raisedArmTicks >= 5 && this.getTicksUntilNextAttack() < this.getAttackInterval() / 2);
     }
 }

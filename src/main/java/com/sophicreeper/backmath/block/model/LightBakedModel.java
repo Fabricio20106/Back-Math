@@ -25,14 +25,14 @@ public class LightBakedModel implements IBakedModel {
     @Nonnull
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, @Nonnull Random rand, @Nonnull IModelData extraData) {
         List<BakedQuad> quads = this.lightBakedModel.getQuads(state, side, rand, extraData);
-        if(MinecraftForgeClient.getRenderLayer() == RenderType.getTranslucent()) {
+        if(MinecraftForgeClient.getRenderLayer() == RenderType.translucent()) {
             for(int i = 0; i < quads.size(); i++) {
                 BakedQuad quad = quads.get(i);
-                int[] vertexData = quad.getVertexData();
+                int[] vertexData = quad.getVertices();
                 for(int j = 0; j < 4; j++) {
                     vertexData[8 * j + 6] = getLightValue();
                 }
-                quads.set(i, new BakedQuad(vertexData, quad.getTintIndex(), quad.getFace(), quad.getSprite(), quad.applyDiffuseLighting()));
+                quads.set(i, new BakedQuad(vertexData, quad.getTintIndex(), quad.getDirection(), quad.getSprite(), quad.isShade()));
             }
         }
         return quads;
@@ -52,13 +52,13 @@ public class LightBakedModel implements IBakedModel {
 
     // getParticleTexture is used directly when player is inside the block. The game will crash if you don't use something meaningful here.
     @Override
-    public TextureAtlasSprite getParticleTexture() {
-        return lightBakedModel.getParticleTexture();
+    public TextureAtlasSprite getParticleIcon() {
+        return lightBakedModel.getParticleIcon();
     }
 
     @Override
-    public boolean isAmbientOcclusion() {
-        return lightBakedModel.isAmbientOcclusion();
+    public boolean useAmbientOcclusion() {
+        return lightBakedModel.useAmbientOcclusion();
     }
 
     @Override
@@ -67,14 +67,14 @@ public class LightBakedModel implements IBakedModel {
     }
 
     @Override
-    public boolean isSideLit() {
+    public boolean usesBlockLight() {
         // Related to item "diffuselighting".
-        return lightBakedModel.isSideLit();
+        return lightBakedModel.usesBlockLight();
     }
 
     @Override
-    public boolean isBuiltInRenderer() {
-        return lightBakedModel.isBuiltInRenderer();
+    public boolean isCustomRenderer() {
+        return lightBakedModel.isCustomRenderer();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class LightBakedModel implements IBakedModel {
     }
 
     @Override
-    public ItemCameraTransforms getItemCameraTransforms() {
-        return lightBakedModel.getItemCameraTransforms();
+    public ItemCameraTransforms getTransforms() {
+        return lightBakedModel.getTransforms();
     }
 }

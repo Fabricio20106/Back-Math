@@ -13,8 +13,8 @@ public class WaterTalcPowderItem extends SwordItem {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livEntity) {
-        livEntity.attackEntityFrom(BMDamageSources.WATER_TALC_POWDER, Float.MAX_VALUE);
-        return super.onItemUseFinish(stack, world, livEntity);
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
+        livEntity.hurt(BMDamageSources.WATER_TALC_POWDER, Float.MAX_VALUE);
+        return super.finishUsingItem(stack, world, livEntity);
     }
 }

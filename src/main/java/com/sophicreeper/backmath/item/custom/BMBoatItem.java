@@ -21,53 +21,53 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class BMBoatItem extends BoatItem {
-    private static final Predicate<Entity> CAN_COLLIDE_WITH_ENTITY = EntityPredicates.NOT_SPECTATING.and(Entity::canBeCollidedWith);
+    private static final Predicate<Entity> CAN_COLLIDE_WITH_ENTITY = EntityPredicates.NO_SPECTATORS.and(Entity::canBeCollidedWith);
     private final String woodType;
 
     public BMBoatItem(Properties properties, String woodType) {
         super(null, properties);
         this.woodType = woodType;
-        DispenserBlock.registerDispenseBehavior(this, new DispenseBMBoatBehavior(woodType));
+        DispenserBlock.registerBehavior(this, new DispenseBMBoatBehavior(woodType));
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        RayTraceResult fluidRayTrace = rayTrace(world, player, RayTraceContext.FluidMode.ANY);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        RayTraceResult fluidRayTrace = getPlayerPOVHitResult(world, player, RayTraceContext.FluidMode.ANY);
         if (fluidRayTrace.getType() == RayTraceResult.Type.MISS) {
-            return ActionResult.resultPass(heldItem);
+            return ActionResult.pass(heldItem);
         } else {
-            Vector3d vec3D = player.getLook(1);
-            List<Entity> list = world.getEntitiesInAABBexcluding(player, player.getBoundingBox().expand(vec3D.scale(5)).grow(1), CAN_COLLIDE_WITH_ENTITY);
+            Vector3d vec3D = player.getViewVector(1);
+            List<Entity> list = world.getEntities(player, player.getBoundingBox().expandTowards(vec3D.scale(5)).inflate(1), CAN_COLLIDE_WITH_ENTITY);
             if (!list.isEmpty()) {
                 Vector3d vector3D1 = player.getEyePosition(1);
 
                 for(Entity entity : list) {
-                    AxisAlignedBB axisAlignedBB = entity.getBoundingBox().grow(entity.getCollisionBorderSize());
+                    AxisAlignedBB axisAlignedBB = entity.getBoundingBox().inflate(entity.getPickRadius());
                     if (axisAlignedBB.contains(vector3D1)) {
-                        return ActionResult.resultPass(heldItem);
+                        return ActionResult.pass(heldItem);
                     }
                 }
             }
 
             if (fluidRayTrace.getType() == RayTraceResult.Type.BLOCK) {
-                BMBoat backMathBoat = new BMBoat(world, fluidRayTrace.getHitVec().x, fluidRayTrace.getHitVec().y, fluidRayTrace.getHitVec().z);
+                BMBoat backMathBoat = new BMBoat(world, fluidRayTrace.getLocation().x, fluidRayTrace.getLocation().y, fluidRayTrace.getLocation().z);
                 backMathBoat.setWoodType(woodType);
-                backMathBoat.rotationYaw = player.rotationYaw;
-                if (!world.hasNoCollisions(backMathBoat, backMathBoat.getBoundingBox().grow(-0.1D))) {
-                    return ActionResult.resultFail(heldItem);
+                backMathBoat.yRot = player.yRot;
+                if (!world.noCollision(backMathBoat, backMathBoat.getBoundingBox().inflate(-0.1D))) {
+                    return ActionResult.fail(heldItem);
                 } else {
-                    if (!world.isRemote) {
-                        world.addEntity(backMathBoat);
-                        if (!player.abilities.isCreativeMode) {
+                    if (!world.isClientSide) {
+                        world.addFreshEntity(backMathBoat);
+                        if (!player.abilities.instabuild) {
                             heldItem.shrink(1);
                         }
                     }
 
-                    player.addStat(Stats.ITEM_USED.get(this));
-                    return ActionResult.func_233538_a_(heldItem, world.isRemote());
+                    player.awardStat(Stats.ITEM_USED.get(this));
+                    return ActionResult.sidedSuccess(heldItem, world.isClientSide);
                 }
             } else {
-                return ActionResult.resultPass(heldItem);
+                return ActionResult.pass(heldItem);
             }
         }
     }

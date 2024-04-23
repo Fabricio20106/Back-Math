@@ -11,13 +11,14 @@ public class PatienceTeaEffect  extends Effect {
     }
 
     @Override
-    public void performEffect(LivingEntity livEntity, int amplifier) {
+    public void applyEffectTick(LivingEntity livEntity, int amplifier) {
         // Player was poisoned by Player's tea
-        livEntity.attackEntityFrom(BMDamageSources.PATIENCE_TEA, (float) (6 << amplifier));
+        livEntity.hurt(BMDamageSources.PATIENCE_TEA, (float) (6 << amplifier));
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
-        return duration % 10 == 0; // perform effect with 1s of delay
+    public boolean isDurationEffectTick(int duration, int amplifier) {
+        // Perform effect with 1 second of delay.
+        return duration % 10 == 0;
     }
 }

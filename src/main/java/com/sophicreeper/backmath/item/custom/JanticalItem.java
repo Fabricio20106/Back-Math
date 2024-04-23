@@ -27,22 +27,22 @@ import java.util.List;
 public class JanticalItem extends Item {
     public JanticalItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new JanticalDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new JanticalDispenseBehavior());
     }
 
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
-        BlockPos pos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        World world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
         BlockState state = world.getBlockState(pos);
-        if (state.isIn(BMBlocks.ALJAN_PORTAL_STAND.get()) && !state.get(AljanPortalStandBlock.JANTICAL)) {
-            if (world.isRemote) {
+        if (state.is(BMBlocks.ALJAN_PORTAL_STAND.get()) && !state.getValue(AljanPortalStandBlock.JANTICAL)) {
+            if (world.isClientSide) {
                 return ActionResultType.SUCCESS;
             } else {
-                BlockState withJantical = state.with(AljanPortalStandBlock.JANTICAL, true);
-                Block.nudgeEntitiesWithNewState(state, withJantical, world, pos);
-                world.setBlockState(pos, withJantical, 2);
-                world.updateComparatorOutputLevel(pos, BMBlocks.ALJAN_PORTAL_STAND.get());
-                context.getItem().shrink(1);
+                BlockState withJantical = state.setValue(AljanPortalStandBlock.JANTICAL, true);
+                Block.pushEntitiesUp(state, withJantical, world, pos);
+                world.setBlock(pos, withJantical, 2);
+                world.updateNeighbourForOutputSignal(pos, BMBlocks.ALJAN_PORTAL_STAND.get());
+                context.getItemInHand().shrink(1);
 
                 world.playSound(null, pos, BMSounds.BLOCK_ALJAN_PORTAL_STAND_FILL, SoundCategory.BLOCKS, 1, 1);
                 for(int k1 = 0; k1 < 16; ++k1) {
@@ -60,11 +60,11 @@ public class JanticalItem extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         if (!BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.not_held"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.held"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip."  + BackMath.MOD_ID + ".jantical"));
-        super.addInformation(stack, world, tooltip, flag);
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

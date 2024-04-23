@@ -23,30 +23,30 @@ public class MangaedMangoJamItem extends JamItem {
         super(properties);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livEntity) {
-        super.onItemUseFinish(stack, world, livEntity);
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
+        super.finishUsingItem(stack, world, livEntity);
         if (livEntity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.addStat(Stats.ITEM_USED.get(this));
-            serverPlayer.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.BAKUGOU_HAIR.get()));
-            serverPlayer.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.BAKUGOU_BLOUSE.get()));
-            serverPlayer.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.BAKUGOU_PANTS.get()));
-            serverPlayer.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.BAKUGOU_SHOES.get()));
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
+            serverPlayer.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.BAKUGOU_HAIR.get()));
+            serverPlayer.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.BAKUGOU_BLOUSE.get()));
+            serverPlayer.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.BAKUGOU_PANTS.get()));
+            serverPlayer.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.BAKUGOU_SHOES.get()));
         }
 
-        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
             stack.shrink(1);
         }
 
         if (stack.isEmpty()) {
             return new ItemStack(AxolotlTest.JAM_POT.get());
         } else {
-            if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+            if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
                 ItemStack jamPot = new ItemStack(AxolotlTest.JAM_POT.get());
                 PlayerEntity player = (PlayerEntity) livEntity;
-                if (!player.inventory.addItemStackToInventory(jamPot)) {
-                    player.dropItem(jamPot, false);
+                if (!player.inventory.add(jamPot)) {
+                    player.drop(jamPot, false);
                 }
             }
             return stack;
@@ -54,8 +54,8 @@ public class MangaedMangoJamItem extends JamItem {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         tooltip.add(new TranslationTextComponent("messages.backmath.take_armor_off.jam"));
-        super.addInformation(stack, world, tooltip, flag);
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

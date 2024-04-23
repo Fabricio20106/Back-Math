@@ -37,7 +37,7 @@ public class WandererSophieRenderer extends BMBipedRenderer<WandererSophie> {
         this.addLayer(new WandererSophieCapeLayer(this));
     }
 
-    public ResourceLocation getEntityTexture(WandererSophie wandererSophie) {
+    public ResourceLocation getTextureLocation(WandererSophie wandererSophie) {
         return WANDERER_SOPHIE_LOCATIONS[wandererSophie.getVariant()];
     }
 }

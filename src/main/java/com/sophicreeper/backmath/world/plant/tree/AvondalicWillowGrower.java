@@ -11,13 +11,13 @@ import java.util.Random;
 public class AvondalicWillowGrower extends BigTree {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getHugeTreeFeature(Random rand) {
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredMegaFeature(Random rand) {
         return BMConfiguredFeatures.MEGA_AVONDALIC_WILLOW_TREE;
     }
 
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random rand, boolean hasBeehive) {
         return BMConfiguredFeatures.AVONDALIC_WILLOW_TREE;
     }
 }

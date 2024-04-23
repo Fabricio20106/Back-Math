@@ -10,12 +10,12 @@ public class MoodTeaEffect extends Effect {
     }
 
     @Override
-    public void performEffect(LivingEntity livEntity, int amplifier) {
-        livEntity.getActivePotionEffects().removeIf(effectInstance -> !effectInstance.getPotion().isBeneficial());
+    public void applyEffectTick(LivingEntity livEntity, int amplifier) {
+        livEntity.getActiveEffects().removeIf(effectInstance -> !effectInstance.getEffect().isBeneficial());
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration % 10 == 0;
     }
 }

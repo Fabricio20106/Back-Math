@@ -14,11 +14,11 @@ public class BMShieldItem extends ShieldItem {
 
     @Override
     public boolean isShield(ItemStack stack, @Nullable LivingEntity livEntity) {
-        return stack.getItem().isIn(BMTags.Items.SHIELDS);
+        return stack.getItem().is(BMTags.Items.SHIELDS);
     }
 
     @Override
-    public String getTranslationKey(ItemStack stack) {
-        return this.getTranslationKey();
+    public String getDescriptionId(ItemStack stack) {
+        return this.getDescriptionId();
     }
 }

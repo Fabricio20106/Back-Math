@@ -18,12 +18,12 @@ public class PoisonRoseBlock extends FlowerBlock {
         super(effect, duration, properties);
     }
 
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (!world.isRemote && world.getDifficulty() != Difficulty.PEACEFUL) {
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (!world.isClientSide && world.getDifficulty() != Difficulty.PEACEFUL) {
             if (entity instanceof LivingEntity) {
                 LivingEntity livEntity = (LivingEntity) entity;
                 if (!livEntity.isInvulnerableTo(BMDamageSources.POISON_ROSE) || !livEntity.isInvulnerableTo(DamageSource.MAGIC)) {
-                    livEntity.addPotionEffect(new EffectInstance(Effects.POISON, 100));
+                    livEntity.addEffect(new EffectInstance(Effects.POISON, 100));
                 }
             }
         }

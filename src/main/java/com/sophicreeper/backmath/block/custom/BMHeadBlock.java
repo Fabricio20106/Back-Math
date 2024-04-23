@@ -24,23 +24,24 @@ import net.minecraft.world.IWorld;
 
 public class BMHeadBlock extends HorizontalBlock implements IArmorVanishable {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_0_15;
-    protected static final VoxelShape SHAPE = Block.makeCuboidShape(4, 0, 4, 12, 8, 12);
+    public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
+    protected static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 8, 12);
 
     public BMHeadBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(ROTATION, 0).with(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0).setValue(WATERLOGGED, false));
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        if (state.get(WATERLOGGED)) world.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        if (state.getValue(WATERLOGGED)) world.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.getDefaultState().with(ROTATION, MathHelper.floor((double) (context.getPlacementYaw() * 16 / 360) + 0.5D) & 15).with(WATERLOGGED, context.getWorld().getFluidState(context.getPos()).getFluid() == Fluids.WATER);
+        return this.defaultBlockState().setValue(ROTATION, MathHelper.floor((double) (context.getRotation() * 16 / 360) + 0.5D) & 15).setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() ==
+                Fluids.WATER);
     }
 
     @Override
@@ -50,26 +51,26 @@ public class BMHeadBlock extends HorizontalBlock implements IArmorVanishable {
 
     @Override
     public BlockState rotate(BlockState state, Rotation rotation) {
-        return state.with(ROTATION, rotation.rotate(state.get(ROTATION), 16));
+        return state.setValue(ROTATION, rotation.rotate(state.getValue(ROTATION), 16));
     }
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirror) {
-        return state.with(ROTATION, mirror.mirrorRotation(state.get(ROTATION), 16));
+        return state.setValue(ROTATION, mirror.mirror(state.getValue(ROTATION), 16));
     }
 
     @Override
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(ROTATION, WATERLOGGED);
     }
 
     @Override
-    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
         return false;
     }
 }

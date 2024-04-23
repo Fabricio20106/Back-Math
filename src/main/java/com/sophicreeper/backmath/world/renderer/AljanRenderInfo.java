@@ -10,12 +10,12 @@ public class AljanRenderInfo extends DimensionRenderInfo {
     }
 
     @Override
-    public Vector3d func_230494_a_(Vector3d vec3D, float f) {
-        return vec3D.mul(f * 0.94F + 0.06F, f * 0.94F + 0.06F, f * 0.91F + 0.09F);
+    public Vector3d getBrightnessDependentFogColor(Vector3d vec3D, float f) {
+        return vec3D.multiply(f * 0.94F + 0.06F, f * 0.94F + 0.06F, f * 0.91F + 0.09F);
     }
 
     @Override
-    public boolean func_230493_a_(int i, int i1) {
+    public boolean isFoggyAt(int i, int i1) {
         return false;
     }
 

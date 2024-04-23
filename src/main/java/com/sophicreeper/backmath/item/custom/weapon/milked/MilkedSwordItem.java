@@ -15,7 +15,7 @@ public class MilkedSwordItem extends SwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (BMConfigs.COMMON_CONFIGS.milkedSwordsEnabled.get()) player.addItemStackToInventory(new ItemStack(Items.MILK_BUCKET));
+        if (BMConfigs.COMMON_CONFIGS.milkedSwordsEnabled.get()) player.addItem(new ItemStack(Items.MILK_BUCKET));
         return super.onLeftClickEntity(stack, player, entity);
     }
 }

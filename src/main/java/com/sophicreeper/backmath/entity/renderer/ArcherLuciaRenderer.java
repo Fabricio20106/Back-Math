@@ -16,7 +16,7 @@ public class ArcherLuciaRenderer extends BMBipedRenderer<ArcherLucia> {
         this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
     }
 
-    public ResourceLocation getEntityTexture(ArcherLucia archerLucia) {
+    public ResourceLocation getTextureLocation(ArcherLucia archerLucia) {
         return BackMath.resourceLoc("textures/entity/archer_lucia.png");
     }
 }

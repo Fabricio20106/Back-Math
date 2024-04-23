@@ -32,10 +32,10 @@ public class Janticle extends MonsterEntity {
 
     public Janticle(EntityType<Janticle> entity, World world) {
         super(entity, world);
-        this.moveController = new FlyingMovementController(this, 10, false);
-        this.setPathPriority(PathNodeType.DANGER_FIRE, -1);
-        this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1);
-        this.setPathPriority(PathNodeType.COCOA, -1);
+        this.moveControl = new FlyingMovementController(this, 10, false);
+        this.setPathfindingMalus(PathNodeType.DANGER_FIRE, -1);
+        this.setPathfindingMalus(PathNodeType.DAMAGE_FIRE, -1);
+        this.setPathfindingMalus(PathNodeType.COCOA, -1);
     }
 
     @Override
@@ -67,33 +67,33 @@ public class Janticle extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createJanticleAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.3).createMutableAttribute(Attributes.MAX_HEALTH, 15).createMutableAttribute(Attributes.FLYING_SPEED, 0.4f)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 2);
+        return MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.3).add(Attributes.MAX_HEALTH, 15).add(Attributes.FLYING_SPEED, 0.4f)
+                .add(Attributes.ATTACK_DAMAGE, 2);
     }
 
     public void tick() {
-        Vector3d vec3D = this.getMotion();
-        if (this.world.isRemote) {
-            this.world.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.DIAMOND_BLOCK.getDefaultState()), this.getPosX() - vec3D.x, this.getPosY() - vec3D.y + 0.15D, this.getPosZ() - vec3D.z, 0, 0, 0);
-            this.world.addParticle(ParticleTypes.WARPED_SPORE, this.getPosX() - vec3D.x, this.getPosY() - vec3D.y + 0.15D, this.getPosZ() - vec3D.z, 0, 0, 0);
+        Vector3d vec3D = this.getDeltaMovement();
+        if (this.level.isClientSide) {
+            this.level.addParticle(new BlockParticleData(ParticleTypes.BLOCK, Blocks.DIAMOND_BLOCK.defaultBlockState()), this.getX() - vec3D.x, this.getY() - vec3D.y + 0.15D, this.getZ() - vec3D.z, 0, 0, 0);
+            this.level.addParticle(ParticleTypes.WARPED_SPORE, this.getX() - vec3D.x, this.getY() - vec3D.y + 0.15D, this.getZ() - vec3D.z, 0, 0, 0);
         }
         super.tick();
     }
 
     @Override
-    public boolean onLivingFall(float distance, float damageMultiplier) {
+    public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
     }
 
     @Override
-    protected void updateFallState(double y, boolean onGround, BlockState state, BlockPos pos) {}
+    protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {}
 
     @Override
-    protected PathNavigator createNavigator(World world) {
-        FlyingPathNavigator flyingPathNavigator = new FlyingPathNavigator(this, world);
-        flyingPathNavigator.setCanSwim(true);
-        flyingPathNavigator.setCanEnterDoors(true);
-        return flyingPathNavigator;
+    protected PathNavigator createNavigation(World world) {
+        FlyingPathNavigator pathNavigator = new FlyingPathNavigator(this, world);
+        pathNavigator.setCanFloat(true);
+        pathNavigator.setCanOpenDoors(true);
+        return pathNavigator;
     }
 
     @Override

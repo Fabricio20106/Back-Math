@@ -14,16 +14,16 @@ public class MidTermShieldItem extends BMShieldItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
-            LivingEntity livEntity = (LivingEntity) entity;
-            livEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
-            entity.setFire(10);
+            LivingEntity livingEntity = (LivingEntity) entity;
+            livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2));
+            entity.setSecondsOnFire(10);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

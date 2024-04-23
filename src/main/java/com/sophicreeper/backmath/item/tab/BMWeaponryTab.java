@@ -12,7 +12,7 @@ public class BMWeaponryTab extends ItemGroup {
     }
 
     @Override
-    public ItemStack createIcon() {
+    public ItemStack makeIcon() {
         return new ItemStack(AxolotlTest.MID_TERM_BREASTPLATE.get());
     }
 }

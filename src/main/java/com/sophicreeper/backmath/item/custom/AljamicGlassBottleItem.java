@@ -22,15 +22,15 @@ import net.minecraft.world.server.ServerWorld;
 public class AljamicGlassBottleItem extends Item {
     public AljamicGlassBottleItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new OptionalDispenseBehavior() {
+        DispenserBlock.registerBehavior(this, new OptionalDispenseBehavior() {
             private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
 
-            private ItemStack glassBottleFill(IBlockSource source, ItemStack empty, ItemStack filled) {
+            private ItemStack takeLiquid(IBlockSource source, ItemStack empty, ItemStack filled) {
                 empty.shrink(1);
                 if (empty.isEmpty()) {
                     return filled.copy();
                 } else {
-                    if (source.<DispenserTileEntity>getBlockTileEntity().addItemStack(filled.copy()) < 0) {
+                    if (source.<DispenserTileEntity>getEntity().addItem(filled.copy()) < 0) {
                         this.defaultBehaviour.dispense(source, filled.copy());
                     }
 
@@ -38,44 +38,44 @@ public class AljamicGlassBottleItem extends Item {
                 }
             }
 
-            public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
-                this.setSuccessful(false);
-                ServerWorld world = source.getWorld();
-                BlockPos pos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
-                if (world.getFluidState(pos).isTagged(BMTags.Fluids.SLEEPISHWATER)) {
-                    this.setSuccessful(true);
-                    return this.glassBottleFill(source, stack, new ItemStack(AxolotlTest.SLEEPISHWATER_BOTTLE.get()));
+            public ItemStack execute(IBlockSource source, ItemStack stack) {
+                this.setSuccess(false);
+                ServerWorld world = source.getLevel();
+                BlockPos pos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+                if (world.getFluidState(pos).is(BMTags.Fluids.SLEEPISHWATER)) {
+                    this.setSuccess(true);
+                    return this.takeLiquid(source, stack, new ItemStack(AxolotlTest.SLEEPISHWATER_BOTTLE.get()));
                 } else {
-                    return super.dispenseStack(source, stack);
+                    return super.execute(source, stack);
                 }
             }
         });
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        BlockRayTraceResult hitResult = rayTrace(world, player, RayTraceContext.FluidMode.SOURCE_ONLY);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        BlockRayTraceResult hitResult = getPlayerPOVHitResult(world, player, RayTraceContext.FluidMode.SOURCE_ONLY);
         if (hitResult.getType() == RayTraceResult.Type.MISS) {
-            return ActionResult.resultPass(heldItem);
+            return ActionResult.pass(heldItem);
         } else {
             if (hitResult.getType() == RayTraceResult.Type.BLOCK) {
-                BlockPos hitResultPos = hitResult.getPos();
-                if (!world.isBlockModifiable(player, hitResultPos)) {
-                    return ActionResult.resultPass(heldItem);
+                BlockPos hitResultPos = hitResult.getBlockPos();
+                if (!world.mayInteract(player, hitResultPos)) {
+                    return ActionResult.pass(heldItem);
                 }
 
-                if (world.getFluidState(hitResultPos).isTagged(BMTags.Fluids.SLEEPISHWATER)) {
-                    world.playSound(player, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1, 1);
-                    return ActionResult.func_233538_a_(turnBottleIntoItem(heldItem, player, new ItemStack(AxolotlTest.SLEEPISHWATER_BOTTLE.get())), world.isRemote());
+                if (world.getFluidState(hitResultPos).is(BMTags.Fluids.SLEEPISHWATER)) {
+                    world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.BOTTLE_FILL, SoundCategory.NEUTRAL, 1, 1);
+                    return ActionResult.sidedSuccess(turnBottleIntoItem(heldItem, player, new ItemStack(AxolotlTest.SLEEPISHWATER_BOTTLE.get())), world.isClientSide);
                 }
             }
-            return super.onItemRightClick(world, player, hand);
+            return super.use(world, player, hand);
         }
     }
 
     protected ItemStack turnBottleIntoItem(ItemStack bottleStack, PlayerEntity player, ItemStack stack) {
-        player.addStat(Stats.ITEM_USED.get(this));
-        return DrinkHelper.fill(bottleStack, player, stack);
+        player.awardStat(Stats.ITEM_USED.get(this));
+        return DrinkHelper.createFilledResult(bottleStack, player, stack);
     }
 }

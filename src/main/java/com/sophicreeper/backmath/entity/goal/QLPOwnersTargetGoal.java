@@ -17,20 +17,20 @@ public class QLPOwnersTargetGoal extends TargetGoal {
     public QLPOwnersTargetGoal(QueenLucyPet queenLucyPet) {
         super(queenLucyPet, false);
         this.queenLucyPet = queenLucyPet;
-        this.setMutexFlags(EnumSet.of(Goal.Flag.TARGET));
+        this.setFlags(EnumSet.of(Goal.Flag.TARGET));
     }
 
     // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
-    public boolean shouldExecute() {
-        if (this.queenLucyPet.isTamed() && !this.queenLucyPet.isSitting()) {
+    public boolean canUse() {
+        if (this.queenLucyPet.isTame() && !this.queenLucyPet.isOrderedToSit()) {
             LivingEntity qlpOwner = this.queenLucyPet.getOwner();
             if (qlpOwner == null) {
                 return false;
             } else {
-                this.attacker = qlpOwner.getLastAttackedEntity();
-                int timeSinceAttackedMob = qlpOwner.getLastAttackedEntityTime();
-                return timeSinceAttackedMob != this.timestamp && this.isSuitableTarget(this.attacker, EntityPredicate.DEFAULT) && this.isSuitableTarget(this.attacker, EntityPredicate.DEFAULT.setCustomPredicate((livEntity -> !livEntity.getType().isContained(
-                        BMTags.EntityTypes.QLP_CANNOT_TARGET)))) && this.queenLucyPet.shouldAttackEntity(this.attacker, qlpOwner);
+                this.attacker = qlpOwner.getLastHurtMob();
+                int timeSinceAttackedMob = qlpOwner.getLastHurtMobTimestamp();
+                return timeSinceAttackedMob != this.timestamp && this.canAttack(this.attacker, EntityPredicate.DEFAULT) && this.canAttack(this.attacker, EntityPredicate.DEFAULT.selector((livEntity -> !livEntity.getType().is(
+                        BMTags.EntityTypes.QLP_CANNOT_TARGET)))) && this.queenLucyPet.wantsToAttack(this.attacker, qlpOwner);
             }
         } else {
             return false;
@@ -38,10 +38,10 @@ public class QLPOwnersTargetGoal extends TargetGoal {
     }
 
     // Execute a one shot task or start executing a continuous task.
-    public void startExecuting() {
-        this.goalOwner.setAttackTarget(this.attacker);
+    public void start() {
+        this.mob.setTarget(this.attacker);
         LivingEntity qlpOwner = this.queenLucyPet.getOwner();
-        if (qlpOwner != null) this.timestamp = qlpOwner.getLastAttackedEntityTime();
-        super.startExecuting();
+        if (qlpOwner != null) this.timestamp = qlpOwner.getLastHurtMobTimestamp();
+        super.start();
     }
 }

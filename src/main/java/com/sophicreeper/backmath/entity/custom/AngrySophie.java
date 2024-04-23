@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
 public class AngrySophie extends MonsterEntity {
     public AngrySophie(EntityType<AngrySophie> type, World world) {
         super(type, world);
-        this.experienceValue = 3 + this.world.rand.nextInt(5);
+        this.xpReward = 3 + this.level.random.nextInt(5);
     }
 
     @Override
@@ -53,15 +53,15 @@ public class AngrySophie extends MonsterEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createAngrySophieAttributes() {
-        return MonsterEntity.func_233666_p_()
+        return MonsterEntity.createMonsterAttributes()
                 // She had 75 health at first (I think) now it's 45, but I think it still a lot.
                 // But now she'll have 28 health, because it was still too much.
-                .createMutableAttribute(Attributes.MAX_HEALTH, 28).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F).createMutableAttribute(Attributes.FOLLOW_RANGE, 12).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
+                .add(Attributes.MAX_HEALTH, 28).add(Attributes.ATTACK_KNOCKBACK, 0.25F).add(Attributes.FOLLOW_RANGE, 12).add(Attributes.ATTACK_DAMAGE, 3)
+                .add(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
     @Override
-    protected int getExperiencePoints(PlayerEntity player) {
+    protected int getExperienceReward(PlayerEntity player) {
         return 10;
     }
 
@@ -90,41 +90,40 @@ public class AngrySophie extends MonsterEntity {
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        spawnData = super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+        this.populateDefaultEquipmentSlots(difficulty);
+        this.populateDefaultEquipmentEnchantments(difficulty);
+        return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
         }
     }
 
     @Override
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_HELMET.get()));
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(difficulty);
+        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_HELMET.get()));
     }
 
-    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
-        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
-        Entity entity = source.getTrueSource();
+    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
+        Entity entity = source.getEntity();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
-            if (creeper.ableToCauseSkullDrop()) {
+            if (creeper.canDropMobsSkull()) {
                 ItemStack skullStack = this.getSkullDrop();
                 if (!skullStack.isEmpty()) {
-                    creeper.incrementDroppedSkulls();
-                    this.entityDropItem(skullStack);
+                    creeper.increaseDroppedSkulls();
+                    this.spawnAtLocation(skullStack);
                 }
             }
         }
-
     }
 
     protected ItemStack getSkullDrop() {

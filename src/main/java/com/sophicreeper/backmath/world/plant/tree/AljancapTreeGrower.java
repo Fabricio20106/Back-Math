@@ -11,7 +11,7 @@ import java.util.Random;
 public class AljancapTreeGrower extends Tree {
     @Nullable
     @Override
-    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random rand, boolean hasBeehive) {
+    protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random rand, boolean hasBeehive) {
         if (rand.nextInt(10) == 0) {
             return BMConfiguredFeatures.FANCY_ALJANCAP_TREE;
         } else {

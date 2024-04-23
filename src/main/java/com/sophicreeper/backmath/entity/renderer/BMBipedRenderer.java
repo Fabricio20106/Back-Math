@@ -36,19 +36,19 @@ public class BMBipedRenderer<T extends CreatureEntity> extends BipedRenderer<T, 
     }
 
     @Override
-    protected void preRenderCallback(T mob, MatrixStack stack, float partialTickTime) {
+    protected void scale(T mob, MatrixStack stack, float partialTickTime) {
         stack.scale(0.9375F, 0.9375F, 0.9375F);
     }
 
     private BipedModel.ArmPose getArmPose(T mob, Hand hand) {
-        ItemStack heldStack = mob.getHeldItem(hand);
-        boolean acceptableCrossbows = heldStack.getItem().isIn(BMTags.Items.CROSSBOWS);
+        ItemStack heldStack = mob.getItemInHand(hand);
+        boolean acceptableCrossbows = heldStack.getItem().is(BMTags.Items.CROSSBOWS);
 
         if (heldStack.isEmpty()) {
             return BipedModel.ArmPose.EMPTY;
         } else {
-            if (mob.getActiveHand() == hand && mob.getItemInUseCount() > 0) {
-                UseAction useAction = heldStack.getUseAction();
+            if (mob.getUsedItemHand() == hand && mob.getUseItemRemainingTicks() > 0) {
+                UseAction useAction = heldStack.getUseAnimation();
                 if (useAction == UseAction.BLOCK) {
                     return BipedModel.ArmPose.BLOCK;
                 }
@@ -61,10 +61,10 @@ public class BMBipedRenderer<T extends CreatureEntity> extends BipedRenderer<T, 
                     return BipedModel.ArmPose.THROW_SPEAR;
                 }
 
-                if (useAction == UseAction.CROSSBOW && hand == mob.getActiveHand()) {
+                if (useAction == UseAction.CROSSBOW && hand == mob.getUsedItemHand()) {
                     return BipedModel.ArmPose.CROSSBOW_CHARGE;
                 }
-            } else if (!mob.isSwingInProgress && acceptableCrossbows && CrossbowItem.isCharged(heldStack)) {
+            } else if (!mob.swinging && acceptableCrossbows && CrossbowItem.isCharged(heldStack)) {
                 return BipedModel.ArmPose.CROSSBOW_HOLD;
             }
 
@@ -73,17 +73,17 @@ public class BMBipedRenderer<T extends CreatureEntity> extends BipedRenderer<T, 
     }
 
     private void setModelVisibilities(T mob) {
-        BMBipedModel<T> mobModel = this.getEntityModel();
+        BMBipedModel<T> mobModel = this.getModel();
 
-        mobModel.setVisible(true);
+        mobModel.setAllVisible(true);
         BipedModel.ArmPose mainHandPose = getArmPose(mob, Hand.MAIN_HAND);
         BipedModel.ArmPose offHandPose = getArmPose(mob, Hand.OFF_HAND);
 
-        if (mainHandPose.func_241657_a_()) {
-            offHandPose = mob.getHeldItemOffhand().isEmpty() ? BipedModel.ArmPose.EMPTY : BipedModel.ArmPose.ITEM;
+        if (mainHandPose.isTwoHanded()) {
+            offHandPose = mob.getOffhandItem().isEmpty() ? BipedModel.ArmPose.EMPTY : BipedModel.ArmPose.ITEM;
         }
 
-        if (mob.getPrimaryHand() == HandSide.RIGHT) {
+        if (mob.getMainArm() == HandSide.RIGHT) {
             mobModel.rightArmPose = mainHandPose;
             mobModel.leftArmPose = offHandPose;
         } else {

@@ -12,7 +12,7 @@ public class TurtleFriedEggFlowerBlock extends FlowerBlock {
         super(effect, duration, properties);
     }
 
-    protected boolean isValidGround(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.isIn(BMTags.Blocks.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON);
+    protected boolean mayPlaceOn(BlockState state, IBlockReader world, BlockPos pos) {
+        return state.is(BMTags.Blocks.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON);
     }
 }

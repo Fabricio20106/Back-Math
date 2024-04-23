@@ -22,18 +22,18 @@ public class TotiItem extends BlockItem {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         tooltip.add(new TranslationTextComponent("messages.backmath.can_be_placed"));
-        super.addInformation(stack, world, tooltip, flag);
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        if (!world.isRemote && BMKeys.isHoldingShift()) {
-            player.addItemStackToInventory(new ItemStack(AxolotlTest.TITO.get()));
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        if (!world.isClientSide && BMKeys.isHoldingShift()) {
+            player.addItem(new ItemStack(AxolotlTest.TITO.get()));
             heldItem.shrink(1);
         }
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 }

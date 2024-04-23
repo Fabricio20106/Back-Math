@@ -20,7 +20,7 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class AljanUnderwaterCaveCarver extends UnderwaterCaveWorldCarver {
-    public static final FluidState SLEEPISHWATER = BMFluids.SLEEPISHWATER.get().getDefaultState();
+    public static final FluidState SLEEPISHWATER = BMFluids.SLEEPISHWATER.get().defaultFluidState();
 
     public AljanUnderwaterCaveCarver(Codec<ProbabilityConfig> codec) {
         super(codec);
@@ -39,40 +39,40 @@ public class AljanUnderwaterCaveCarver extends UnderwaterCaveWorldCarver {
                 return false;
             } else {
                 carvingMask.set(lvt_13_1_);
-                mutable.setPos(posX, posY, posZ);
+                mutable.set(posX, posY, posZ);
                 BlockState state = chunk.getBlockState(mutable);
-                if (!worldCarver.isCarvable(state)) {
+                if (!worldCarver.canReplaceBlock(state)) {
                     return false;
                 } else if (posY == 10) {
                     float randFloat = rand.nextFloat();
                     if ((double) randFloat < 0.25) {
-                        chunk.setBlockState(mutable, Blocks.MAGMA_BLOCK.getDefaultState(), false);
-                        chunk.getBlocksToBeTicked().scheduleTick(mutable, Blocks.MAGMA_BLOCK, 0);
+                        chunk.setBlockState(mutable, Blocks.MAGMA_BLOCK.defaultBlockState(), false);
+                        chunk.getBlockTicks().scheduleTick(mutable, Blocks.MAGMA_BLOCK, 0);
                     } else {
-                        chunk.setBlockState(mutable, Blocks.OBSIDIAN.getDefaultState(), false);
+                        chunk.setBlockState(mutable, Blocks.OBSIDIAN.defaultBlockState(), false);
                     }
 
                     return true;
                 } else if (posY < 10) {
-                    chunk.setBlockState(mutable, Blocks.LAVA.getDefaultState(), false);
+                    chunk.setBlockState(mutable, Blocks.LAVA.defaultBlockState(), false);
                     return false;
                 } else {
                     boolean flag = false;
 
                     for (Direction direction : Direction.Plane.HORIZONTAL) {
-                        int xOffset = posX + direction.getXOffset();
-                        int zOffset = posZ + direction.getZOffset();
-                        if (xOffset >> 4 != p_222728_6_ || zOffset >> 4 != p_222728_7_ || chunk.getBlockState(mutable.setPos(xOffset, posY, zOffset)).isAir()) {
-                            chunk.setBlockState(mutable, SLEEPISHWATER.getBlockState(), false);
-                            chunk.getFluidsToBeTicked().scheduleTick(mutable, SLEEPISHWATER.getFluid(), 0);
+                        int xOffset = posX + direction.getStepX();
+                        int zOffset = posZ + direction.getStepZ();
+                        if (xOffset >> 4 != p_222728_6_ || zOffset >> 4 != p_222728_7_ || chunk.getBlockState(mutable.set(xOffset, posY, zOffset)).isAir()) {
+                            chunk.setBlockState(mutable, SLEEPISHWATER.createLegacyBlock(), false);
+                            chunk.getLiquidTicks().scheduleTick(mutable, SLEEPISHWATER.getType(), 0);
                             flag = true;
                             break;
                         }
                     }
 
-                    mutable.setPos(posX, posY, posZ);
+                    mutable.set(posX, posY, posZ);
                     if (!flag) {
-                        chunk.setBlockState(mutable, SLEEPISHWATER.getBlockState(), false);
+                        chunk.setBlockState(mutable, SLEEPISHWATER.createLegacyBlock(), false);
                     }
                     return true;
                 }
@@ -81,7 +81,7 @@ public class AljanUnderwaterCaveCarver extends UnderwaterCaveWorldCarver {
     }
 
     @Override
-    public boolean isCarvable(BlockState state) {
-        return state.isIn(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES);
+    public boolean canReplaceBlock(BlockState state) {
+        return state.is(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES);
     }
 }

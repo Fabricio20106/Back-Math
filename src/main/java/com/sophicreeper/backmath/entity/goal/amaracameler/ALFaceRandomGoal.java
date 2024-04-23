@@ -1,0 +1,35 @@
+package com.sophicreeper.backmath.entity.goal.amaracameler;
+
+import com.sophicreeper.backmath.entity.custom.Amaracameler;
+import net.minecraft.entity.ai.goal.Goal;
+import net.minecraft.potion.Effects;
+
+import java.util.EnumSet;
+
+public class ALFaceRandomGoal extends Goal {
+    private final Amaracameler amaracameler;
+    private float chosenDegrees;
+    private int nextRandomizeTime;
+
+    public ALFaceRandomGoal(Amaracameler amaracameler) {
+        this.setFlags(EnumSet.of(Flag.LOOK));
+        this.amaracameler = amaracameler;
+    }
+
+    // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+    @Override
+    public boolean canUse() {
+        return this.amaracameler.getTarget() == null && (this.amaracameler.isOnGround() || this.amaracameler.isInWater() || this.amaracameler.isInLava() || this.amaracameler.hasEffect(Effects.LEVITATION)) && this.amaracameler.getMoveControl() instanceof AmaracamelerMovementHelperController;
+    }
+
+    // Keep ticking a continuous task that has already been started.
+    @Override
+    public void tick() {
+        if (--this.nextRandomizeTime <= 0) {
+            this.nextRandomizeTime = 40 + this.amaracameler.getRandom().nextInt(60);
+            this.chosenDegrees = (float) this.amaracameler.getRandom().nextInt(360);
+        }
+
+        ((AmaracamelerMovementHelperController) this.amaracameler.getMoveControl()).setDirection(this.chosenDegrees, false);
+    }
+}

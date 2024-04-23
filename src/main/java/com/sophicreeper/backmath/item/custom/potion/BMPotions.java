@@ -38,13 +38,13 @@ public class BMPotions {
         public BMBrewingRecipe(Potion potion, Item ingredient, Potion output) {
             this.bottleInput = potion;
             this.itemInput = ingredient;
-            this.output = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), output);
+            this.output = PotionUtils.setPotion(new ItemStack(Items.POTION), output);
         }
 
         // Checks the item where the potion would go.
         @Override
         public boolean isInput(ItemStack input) {
-            return PotionUtils.getPotionFromItem(input).equals(this.bottleInput);
+            return PotionUtils.getPotion(input).equals(this.bottleInput);
         }
 
         // Checks the item where the nether wart would go.

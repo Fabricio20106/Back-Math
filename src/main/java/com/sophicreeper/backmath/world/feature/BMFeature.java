@@ -11,5 +11,5 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class BMFeature {
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, BackMath.MOD_ID);
 
-    public static final RegistryObject<Feature<NoFeatureConfig>> ALJAN_DUNGEON = FEATURES.register("aljan_dungeon", () -> new AljanDungeonFeature(NoFeatureConfig.field_236558_a_));
+    public static final RegistryObject<Feature<NoFeatureConfig>> ALJAN_DUNGEON = FEATURES.register("aljan_dungeon", () -> new AljanDungeonFeature(NoFeatureConfig.CODEC));
 }

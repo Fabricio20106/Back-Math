@@ -16,7 +16,7 @@ public class DevilSwordItem extends SwordItem {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livEntity = (LivingEntity) entity;
-            livEntity.setFire(5);
+            livEntity.setSecondsOnFire(5);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

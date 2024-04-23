@@ -16,17 +16,17 @@ public class DevilSpareySwordItem extends SwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity target) {
-        if (target.getType().isContained(BMTags.EntityTypes.DEVIL_SPAREY_EFFECTIVES)) {
-            player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 50, 2));
+        if (target.getType().is(BMTags.EntityTypes.DEVIL_SPAREY_EFFECTIVES)) {
+            player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 50, 2));
             // If the sword user hits one of these:
             // - Wanderer Sophie, Insomnia Sophie, Karate Lucia, Archer Lucia, Shy Fabricio or Warrior Sophie
             // Give player Strength III effect for 2.5 secs (or 3 secs rounded)
         } else {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200, 1));
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 200, 1));
             // Give user Weakness II for 10 secs.
         }
-        if (target.getType().isContained(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
+        if (target.getType().is(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
             // Give sword user hitting Queen Lucy Weakness LXIII (63) for 30 secs.
         }
         return super.onLeftClickEntity(stack, player, target);

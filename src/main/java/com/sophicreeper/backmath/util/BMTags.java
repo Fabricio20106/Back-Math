@@ -5,13 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.tags.ITag;
-import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.*;
 import net.minecraft.util.ResourceLocation;
-
-import static net.minecraft.tags.EntityTypeTags.getTagById;
 
 public class BMTags {
     public static class Items {
@@ -121,13 +116,13 @@ public class BMTags {
         public static final ITag.INamedTag<Item> POPSICLES = backMath("popsicles");
         public static final ITag.INamedTag<Item> ALJANSTONE_CRAFTING_MATERIALS = backMath("aljanstone_crafting_materials");
         public static final ITag.INamedTag<Item> BONE_MEALS = backMath("bone_meals");
-        public static final ITag.INamedTag<Item> ARCHER_LUCIA_PICKUPABLES = backMath("archer_lucia_pickupables");
+        public static final ITag.INamedTag<Item> ARCHER_LUCIA_PICKUPABLES = backMath("archer_lucia_can_pickup");
         public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TAME_ITEMS = backMath("queen_lucy_pet_tame_items");
         public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_DEADLY_ITEMS = backMath("queen_lucy_pet_deadly_items");
         public static final ITag.INamedTag<Item> TABU_SMELTABLES = backMath("tabu_smeltables");
         public static final ITag.INamedTag<Item> MID_TERM_MATERIALS = backMath("mid_term_materials");
         public static final ITag.INamedTag<Item> OIMT_MATERIALS = backMath("oimt_materials");
-        public static final ITag.INamedTag<Item> CANNOT_USE_AT_CRYSTALLIZER = backMath("cannot_use_at_crystallizer");
+        public static final ITag.INamedTag<Item> CANNOT_USE_AT_CRYSTALLIZER = backMath("cannot_craft_with_at_crystallizer");
 
         // Melony Tags
         public static final ITag.INamedTag<Item> SHIELDS = melony("shields");
@@ -138,17 +133,17 @@ public class BMTags {
         public static final ITag.INamedTag<Item> PROVIDES_RESISTANCE = melony("provides_effect/resistance");
 
         // Mob Related Tags
-        public static final ITag.INamedTag<Item> MOB_TEMPT_ITEMS = backMath("tempt_items");
-        public static final ITag.INamedTag<Item> WANDERER_SOPHIE_TEMPT_ITEMS = backMath("tempt_items/wanderer_sophie");
-        public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TEMPT_ITEMS = backMath("tempt_items/queen_lucy_pet");
-        public static final ITag.INamedTag<Item> ARCHER_LUCIA_TEMPT_ITEMS = backMath("tempt_items/archer_lucia");
-        public static final ITag.INamedTag<Item> SHY_FABRICIO_TEMPT_ITEMS = backMath("tempt_items/shy_fabricio");
+        public static final ITag.INamedTag<Item> TEMPT_ITEMS = backMath("tempt_items");
+        public static final ITag.INamedTag<Item> WANDERER_SOPHIE_TEMPT_ITEMS = backMath("wanderer_sophie_tempt_items");
+        public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TEMPT_ITEMS = backMath("queen_lucy_pet_tempt_items");
+        public static final ITag.INamedTag<Item> ARCHER_LUCIA_TEMPT_ITEMS = backMath("archer_lucia_tempt_items");
+        public static final ITag.INamedTag<Item> SHY_FABRICIO_TEMPT_ITEMS = backMath("shy_fabricio_tempt_items");
 
         // Tag Migration
         public static final ITag.INamedTag<Item> ALJAN_RECIPE_STICKS = backMath("aljan_recipe_sticks");
         public static final ITag.INamedTag<Item> BACK_GUIDE_RECIPE_ACCEPTABLES = backMath("back_guide_recipe_acceptables");
         public static final ITag.INamedTag<Item> MATERIALS = backMath("materials");
-        public static final ITag.INamedTag<Item> MATERIALS_HARDENED_AMARACAMEL = backMath("materials/hardened_amaracamel");
+        public static final ITag.INamedTag<Item> MATERIALS_HARDENED_AMARACAMEL = backMath("hardened_amaracamel_materials");
         public static final ITag.INamedTag<Item> CROWNS = backMath("crowns");
         public static final ITag.INamedTag<Item> FOOD_BAGS = backMath("food_bags");
         public static final ITag.INamedTag<Item> ENERGETICS = backMath("energetics");
@@ -264,15 +259,15 @@ public class BMTags {
         public static final ITag.INamedTag<Item> DYES_INSOMNIAN = forge("dyes/insomnian");
 
         private static ITag.INamedTag<Item> forge(String path) {
-            return ItemTags.makeWrapperTag(new ResourceLocation("forge", path).toString());
+            return ItemTags.bind(new ResourceLocation("forge", path).toString());
         }
 
         private static ITag.INamedTag<Item> melony(String path) {
-            return ItemTags.makeWrapperTag(new ResourceLocation("melony", path).toString());
+            return ItemTags.bind(new ResourceLocation("melony", path).toString());
         }
 
         private static ITag.INamedTag<Item> backMath(String path) {
-            return ItemTags.makeWrapperTag(BackMath.resourceLoc(path).toString());
+            return ItemTags.bind(BackMath.resourceLoc(path).toString());
         }
     }
 
@@ -363,15 +358,15 @@ public class BMTags {
         public static final ITag.INamedTag<Block> FARMLAND = melony("farmland");
 
         private static ITag.INamedTag<Block> forge(String path) {
-            return BlockTags.makeWrapperTag(new ResourceLocation("forge", path).toString());
+            return BlockTags.bind(new ResourceLocation("forge", path).toString());
         }
 
         private static ITag.INamedTag<Block> melony(String path) {
-            return BlockTags.makeWrapperTag(new ResourceLocation("melony", path).toString());
+            return BlockTags.bind(new ResourceLocation("melony", path).toString());
         }
 
         private static ITag.INamedTag<Block> backMath(String path) {
-            return BlockTags.makeWrapperTag(BackMath.resourceLoc(path).toString());
+            return BlockTags.bind(BackMath.resourceLoc(path).toString());
         }
 
         public Blocks() {}
@@ -388,29 +383,37 @@ public class BMTags {
         public static final ITag.INamedTag<Fluid> ALJAN_CARVER_REPLACEABLES = backMath("aljan_carver_replaceables");
 
         private static ITag.INamedTag<Fluid> backMath(String path) {
-            return FluidTags.makeWrapperTag(BackMath.resourceLoc(path).toString());
+            return FluidTags.bind(BackMath.resourceLoc(path).toString());
         }
     }
 
     public static class EntityTypes {
-        public static final ITag.INamedTag<EntityType<?>> SOPHIE_IDEA = getTagById("backmath:sophie_idea");
-        public static final ITag.INamedTag<EntityType<?>> ALJAMIC_WARS_IDEA = getTagById("backmath:sophie_idea/aljamic_wars");
+        public static final ITag.INamedTag<EntityType<?>> SOPHIE_IDEA = backMath("sophie_idea");
+        public static final ITag.INamedTag<EntityType<?>> ALJAMIC_WARS_IDEA = backMath("sophie_idea/aljamic_wars");
 
-        public static final ITag.INamedTag<EntityType<?>> PLAYER_LIKE = getTagById("backmath:player_like");
-        public static final ITag.INamedTag<EntityType<?>> SOPHIES = getTagById("backmath:sophies");
-        public static final ITag.INamedTag<EntityType<?>> LUCIAS = getTagById("backmath:lucias");
-        public static final ITag.INamedTag<EntityType<?>> FABRICIOS = getTagById("backmath:fabricios");
+        public static final ITag.INamedTag<EntityType<?>> PLAYER_LIKE = backMath("player_like");
+        public static final ITag.INamedTag<EntityType<?>> SOPHIES = backMath("sophies");
+        public static final ITag.INamedTag<EntityType<?>> LUCIAS = backMath("lucias");
+        public static final ITag.INamedTag<EntityType<?>> FABRICIOS = backMath("fabricios");
 
-        public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_TAMED = getTagById("backmath:qlp_targets/tamed");
-        public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_NOT_TAMED = getTagById("backmath:qlp_targets/not_tamed");
-        public static final ITag.INamedTag<EntityType<?>> QLP_CANNOT_TARGET = getTagById("backmath:qlp_targets/disallowed");
-        public static final ITag.INamedTag<EntityType<?>> MALAIKA_TARGETS = getTagById("backmath:malaika_targets");
-        public static final ITag.INamedTag<EntityType<?>> DEVIL_SPAREY_EFFECTIVES = getTagById("backmath:devil_sparey_effectives");
-        public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = getTagById("backmath:sparey_effectives");
-        public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = getTagById("backmath:sparey_prohibited");
-        public static final ITag.INamedTag<EntityType<?>> SHY_FABRICIO_FRIENDLIES = getTagById("backmath:shy_fabricio_friendlies");
+        public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_TAMED = backMath("qlp_targets/tamed");
+        public static final ITag.INamedTag<EntityType<?>> QLP_TARGETS_NOT_TAMED = backMath("qlp_targets/not_tamed");
+        public static final ITag.INamedTag<EntityType<?>> QLP_CANNOT_TARGET = backMath("qlp_targets/disallowed");
+        public static final ITag.INamedTag<EntityType<?>> MALAIKA_TARGETS = backMath("malaika_targets");
+        public static final ITag.INamedTag<EntityType<?>> DEVIL_SPAREY_EFFECTIVES = backMath("devil_sparey_effectives");
+        public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = backMath("sparey_effectives");
+        public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = backMath("sparey_prohibited");
+        public static final ITag.INamedTag<EntityType<?>> SHY_FABRICIO_FRIENDLIES = backMath("shy_fabricio_friendlies");
 
         // Melony Tags
-        public static final ITag.INamedTag<EntityType<?>> CAN_SPAWN_ON_LEAVES = getTagById("melony:can_spawn_on_leaves");
+        public static final ITag.INamedTag<EntityType<?>> CAN_SPAWN_ON_LEAVES = melony("can_spawn_on_leaves");
+
+        private static ITag.INamedTag<EntityType<?>> backMath(String path) {
+            return EntityTypeTags.bind(BackMath.resourceLoc(path).toString());
+        }
+
+        private static ITag.INamedTag<EntityType<?>> melony(String path) {
+            return EntityTypeTags.bind(new ResourceLocation("melony", path).toString());
+        }
     }
 }

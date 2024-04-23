@@ -18,7 +18,7 @@ public class MalaikaRenderer extends BMBipedRenderer<Malaika> {
 
     // Returns the location of an entity's texture.
     @Override
-    public ResourceLocation getEntityTexture(Malaika malaika) {
+    public ResourceLocation getTextureLocation(Malaika malaika) {
         return BackMath.resourceLoc("textures/entity/malaika.png");
     }
 }

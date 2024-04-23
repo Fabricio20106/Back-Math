@@ -97,7 +97,7 @@ public class BMBlockStateProvider extends BlockStateProvider {
 
         simpleBlock(BMBlocks.HILLARY_TORCH.get(), models().torch("hillary_torch", modLoc("block/hillary_torch")));
         getVariantBuilder(BMBlocks.HILLARY_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("hillary_wall_torch",
-                        modLoc("block/hillary_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                        modLoc("block/hillary_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.RAW_ANGELIC_BLOCK.get());
         simpleBlock(BMBlocks.RAW_MID_TERM_BLOCK.get());
         simpleBlock(BMBlocks.DEEPSLATE_ANGELIC_ORE.get());
@@ -266,16 +266,16 @@ public class BMBlockStateProvider extends BlockStateProvider {
         simpleBlock(BMBlocks.CRYSTALLINE_ANGELIC_BLOCK.get());
         simpleBlock(BMBlocks.CHARJAN_WOOD_TORCH.get(), models().torch("charjan_wood_torch", modLoc("block/charjan_wood_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_WOOD_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_wood_wall_torch",
-                modLoc("block/charjan_wood_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                modLoc("block/charjan_wood_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.CHARJAN_ALJANWOOD_TORCH.get(), models().torch("charjan_aljanwood_torch", modLoc("block/charjan_aljanwood_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_ALJANWOOD_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_aljanwood_wall_torch",
-                modLoc("block/charjan_aljanwood_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                modLoc("block/charjan_aljanwood_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.CHARJAN_ALJANCAP_TORCH.get(), models().torch("charjan_aljancap_torch", modLoc("block/charjan_aljancap_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_ALJANCAP_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_aljancap_wall_torch",
-                modLoc("block/charjan_aljancap_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                modLoc("block/charjan_aljancap_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.CHARJAN_INSOMNIAN_TORCH.get(), models().torch("charjan_insomnian_torch", modLoc("block/charjan_insomnian_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_INSOMNIAN_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_insomnian_wall_torch",
-                modLoc("block/charjan_insomnian_torch"))).rotationY((int) state.get(BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+                modLoc("block/charjan_insomnian_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
         simpleBlock(BMBlocks.AMARACAP_LEAVES.get(), models().withExistingParent("amaracap_leaves", mcLoc("block/leaves")).texture("all",
                 "minecraft:block/acacia_leaves"));
         simpleBlock(BMBlocks.INSOGRAVEL.get());
@@ -288,11 +288,11 @@ public class BMBlockStateProvider extends BlockStateProvider {
         simpleBlock(BMBlocks.SLEEPINGSTONE_ALJAMIC_TIN_ORE.get());
 
         getVariantBuilder(BMBlocks.ALJAMIC_ONIONS.get()).forAllStates(state -> {
-            int cropAgeIndex = potatoAgeIndex(state.get(CropsBlock.AGE));
+            int cropAgeIndex = potatoAgeIndex(state.getValue(CropsBlock.AGE));
             return ConfiguredModel.builder().modelFile(models().crop("aljamic_onions_stage" + cropAgeIndex, modLoc("block/aljamic_onions_stage" + cropAgeIndex))).build();
         });
         getVariantBuilder(BMBlocks.CARAMELED_WHEAT.get()).forAllStates(state -> {
-            int cropAgeIndex = wheatAgeIndex(state.get(CropsBlock.AGE));
+            int cropAgeIndex = wheatAgeIndex(state.getValue(CropsBlock.AGE));
             return ConfiguredModel.builder().modelFile(models().crop("carameled_wheat_stage" + cropAgeIndex, modLoc("block/carameled_wheat_stage" + cropAgeIndex))).build();
         });
         simpleBlock(BMBlocks.WILD_CARAMELED_WHEAT.get(), models().withExistingParent("wild_carameled_wheat", "backmath:block/template_wild_crop").texture("crop", "block/wild_carameled_wheat"));
@@ -466,8 +466,8 @@ public class BMBlockStateProvider extends BlockStateProvider {
 
     public void charjanTorch(Block standingTorch, Block wallTorch, String material) {
         simpleBlock(standingTorch, models().torch("charjan_" + material + "_torch", modLoc("block/charjan_" + material + "_torch")));
-        getVariantBuilder(wallTorch).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_" + material + "_wall_torch", modLoc("block/charjan_" + material + "_torch"))).rotationY((int) state.get(
-                BlockStateProperties.HORIZONTAL_FACING).getHorizontalAngle() + 90).build());
+        getVariantBuilder(wallTorch).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_" + material + "_wall_torch", modLoc("block/charjan_" + material + "_torch"))).rotationY((int) state.getValue(
+                BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
     }
 
     // Methods below were taken from my other mod Variants.

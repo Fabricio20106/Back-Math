@@ -19,12 +19,12 @@ public class BMCrossbowItem extends CrossbowItem {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity && this.isDevilCrossbow) {
             LivingEntity livEntity = (LivingEntity) entity;
-            livEntity.setFire(5);
+            livEntity.setSecondsOnFire(5);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }
 
-    public boolean isCrossbow(ItemStack stack) {
-        return stack.getItem().isIn(BMTags.Items.CROSSBOWS);
+    public boolean useOnRelease(ItemStack stack) {
+        return stack.getItem().is(BMTags.Items.CROSSBOWS);
     }
 }

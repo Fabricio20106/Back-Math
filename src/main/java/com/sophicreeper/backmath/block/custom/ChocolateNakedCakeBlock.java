@@ -33,20 +33,20 @@ public class ChocolateNakedCakeBlock extends Block {
 
     public VoxelShape makeShape(){
         VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.0625, 0, 0.0625, 0.9375, 0.75, 0.9375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.05625, 0.125, 0.05625, 0.94375, 0.25, 0.94375), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.125, 0.75, 0.125, 0.875, 0.875, 0.875), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.1875, 0.75, 0.1875, 0.8125, 0.88125, 0.8125), IBooleanFunction.OR);
-        shape = VoxelShapes.combineAndSimplify(shape, VoxelShapes.create(0.05625, 0.4375, 0.05625, 0.94375, 0.5625, 0.94375), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.0625, 0, 0.0625, 0.9375, 0.75, 0.9375), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.05625, 0.125, 0.05625, 0.94375, 0.25, 0.94375), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.125, 0.75, 0.125, 0.875, 0.875, 0.875), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.1875, 0.75, 0.1875, 0.8125, 0.88125, 0.8125), IBooleanFunction.OR);
+        shape = VoxelShapes.join(shape, VoxelShapes.box(0.05625, 0.4375, 0.05625, 0.94375, 0.5625, 0.94375), IBooleanFunction.OR);
 
         return shape;
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
-        if (world.isRemote) {
-            ItemStack heldItem = player.getHeldItem(hand);
-            if (this.eatWholeCake(world, pos, player).isSuccessOrConsume()) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult) {
+        if (world.isClientSide) {
+            ItemStack heldItem = player.getItemInHand(hand);
+            if (this.eatWholeCake(world, pos, player).consumesAction()) {
                 return ActionResultType.SUCCESS;
             }
             if (heldItem.isEmpty()) {
@@ -60,8 +60,8 @@ public class ChocolateNakedCakeBlock extends Block {
         if (!player.canEat(false)) {
             return ActionResultType.PASS;
         } else {
-            player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(35, 4.2F);
+            player.awardStat(Stats.EAT_CAKE_SLICE);
+            player.getFoodData().eat(35, 4.2F);
             world.removeBlock(pos, false);
         }
 
@@ -71,15 +71,15 @@ public class ChocolateNakedCakeBlock extends Block {
     // Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
     // For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
     // Note that this method should ideally consider only the specific face passed in.
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        return facing == Direction.DOWN && !state.isValidPosition(world, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        return facing == Direction.DOWN && !state.canSurvive(world, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
-        return world.getBlockState(pos.down()).getMaterial().isSolid();
+    public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
+        return world.getBlockState(pos.below()).getMaterial().isSolid();
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
         return false;
     }
 }

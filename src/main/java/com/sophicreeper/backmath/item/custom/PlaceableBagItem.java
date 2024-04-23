@@ -8,6 +8,6 @@ import net.minecraft.item.BlockItem;
 public class PlaceableBagItem extends BlockItem {
     public PlaceableBagItem(Block block, Properties properties) {
         super(block, properties);
-        DispenserBlock.registerDispenseBehavior(this, new BagDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new BagDispenseBehavior());
     }
 }

@@ -24,6 +24,7 @@ public class BMItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
+        withExistingParent("devil_block", modLoc("block/devil_block"));
         withExistingParent("devil_stairs", modLoc("block/devil_stairs"));
         withExistingParent("nether_devil_ore", modLoc("block/nether_devil_ore"));
         withExistingParent("devil_trapdoor", modLoc("block/devil_trapdoor_bottom"));

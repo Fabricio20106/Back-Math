@@ -16,7 +16,7 @@ public class ShyFabricioRenderer extends BMBipedRenderer<ShyFabricio> {
         this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
     }
 
-    public ResourceLocation getEntityTexture(ShyFabricio shyFabricio) {
+    public ResourceLocation getTextureLocation(ShyFabricio shyFabricio) {
         return BackMath.resourceLoc("textures/entity/shy_fabricio.png");
     }
 }

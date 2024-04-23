@@ -29,22 +29,22 @@ public class BMSpawnEggItem extends SpawnEggItem {
     public static void initBackMathEggs() {
         DefaultDispenseItemBehavior dispenseItemBehavior = new DefaultDispenseItemBehavior() {
             @Override
-            protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
-                Direction direction = source.getBlockState().get(DispenserBlock.FACING);
+            protected ItemStack execute(IBlockSource source, ItemStack stack) {
+                Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
                 EntityType<?> type = ((SpawnEggItem) stack.getItem()).getType(stack.getTag());
-                type.spawn(source.getWorld(), stack, null, source.getBlockPos().offset(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
+                type.spawn(source.getLevel(), stack, null, source.getPos().relative(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
                 stack.shrink(1);
                 return stack;
             }
         };
 
         for (final SpawnEggItem spawnEggs : BACKMATH_EGGS) {
-            EGGS.put(spawnEggs.getType(null), spawnEggs);
-            DispenserBlock.registerDispenseBehavior(spawnEggs, dispenseItemBehavior);
+            BY_ID.put(spawnEggs.getType(null), spawnEggs);
+            DispenserBlock.registerBehavior(spawnEggs, dispenseItemBehavior);
         }
 
         BACKMATH_EGGS.clear();
-        EGGS.remove(null);
+        BY_ID.remove(null);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class BMSpawnEggItem extends SpawnEggItem {
         if (tag != null && tag.contains("EntityTag", 10)) {
             CompoundNBT entityTagNBT = tag.getCompound("EntityTag");
             if (entityTagNBT.contains("id", 8)) {
-                return EntityType.byKey(entityTagNBT.getString("id")).orElse(this.typeSupplier.get());
+                return EntityType.byString(entityTagNBT.getString("id")).orElse(this.typeSupplier.get());
             }
         }
 

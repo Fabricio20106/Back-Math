@@ -15,13 +15,13 @@ public class MilkedSpareySwordItem extends MilkedSwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (entity.getType().isContained(BMTags.EntityTypes.SPAREY_EFFECTIVES)) {
-            player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 200, 1));
+        if (entity.getType().is(BMTags.EntityTypes.SPAREY_EFFECTIVES)) {
+            player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 200, 1));
         } else {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
         }
-        if (entity.getType().isContained(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
+        if (entity.getType().is(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

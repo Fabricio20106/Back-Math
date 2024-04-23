@@ -21,11 +21,11 @@ public class UpgradeTokenItem extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent("upgrade_token." + BackMath.MOD_ID + "." + upgradeToken).mergeStyle(TextFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        tooltip.add(new TranslationTextComponent("upgrade_token." + BackMath.MOD_ID + "." + upgradeToken).withStyle(TextFormatting.GRAY));
         tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".empty"));
-        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".upgrade_token.applies_to").mergeStyle(TextFormatting.GRAY));
-        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".upgrade_token_" + upgradeToken + ".applies_to").mergeStyle(TextFormatting.BLUE));
-        super.addInformation(stack, world, tooltip, flag);
+        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".upgrade_token.applies_to").withStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".upgrade_token_" + upgradeToken + ".applies_to").withStyle(TextFormatting.BLUE));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

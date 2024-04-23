@@ -12,7 +12,7 @@ public class SophiesCursedFoods extends ItemGroup {
     }
 
     @Override
-    public ItemStack createIcon() {
+    public ItemStack makeIcon() {
         return new ItemStack(AxolotlTest.FRIED_EGG.get());
     }
 }

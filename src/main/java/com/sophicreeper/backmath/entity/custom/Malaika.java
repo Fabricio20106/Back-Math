@@ -28,7 +28,7 @@ import java.util.Random;
 public class Malaika extends CreatureEntity implements ISophieFriendlies {
     public Malaika(EntityType<Malaika> entity, World world) {
         super(entity, world);
-        this.experienceValue = 2;
+        this.xpReward = 2;
     }
 
     @Override
@@ -43,18 +43,13 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
     }
 
     protected void entityAttackTargets() {
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().isContained(BMTags.EntityTypes.MALAIKA_TARGETS)));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(BMTags.EntityTypes.MALAIKA_TARGETS)));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1, true));
     }
 
     public static AttributeModifierMap.MutableAttribute createMalaikaAttributes() {
-        return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 15).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 1.25F)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 16).createMutableAttribute(Attributes.ATTACK_DAMAGE, 3);
-    }
-
-    @Override
-    protected int getExperiencePoints(PlayerEntity player) {
-        return 2;
+        return CreatureEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 15).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.ATTACK_KNOCKBACK, 1.25F)
+                .add(Attributes.FOLLOW_RANGE, 16).add(Attributes.ATTACK_DAMAGE, 3);
     }
 
     @Override
@@ -62,36 +57,36 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
         return 1.62F;
     }
 
-    public double getYOffset() {
+    public double getMyRidingOffset() {
         return -0.35D;
     }
 
     @Override
     public void tick() {
         super.tick();
-        ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.PROVIDES_WATER_BREATHING);
+        ItemStack headStack = this.getItemBySlot(EquipmentSlotType.HEAD);
+        boolean acceptableHelmets = headStack.getItem().is(BMTags.Items.PROVIDES_WATER_BREATHING);
 
-        if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
-            this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
+        if (acceptableHelmets && !this.isEyeInFluid(FluidTags.WATER)) {
+            this.addEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
     }
 
-    public void livingTick() {
-        this.updateArmSwingProgress();
-        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+    public void aiStep() {
+        this.updateSwingTime();
+        if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
                 this.heal(1);
             }
         }
-        super.livingTick();
+        super.aiStep();
     }
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.populateDefaultEquipmentSlots(difficulty);
+        this.populateDefaultEquipmentEnchantments(difficulty);
         return spawnData;
     }
 
@@ -115,27 +110,27 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
     }
 
     protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
-        if (this.rand.nextFloat() < 0.15F * difficulty.getClampedAdditionalDifficulty()) {
-            int i = this.rand.nextInt(2);
-            float f = this.world.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-            if (this.rand.nextFloat() < 0.095F) {
+        if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
+            int i = this.random.nextInt(2);
+            float f = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
-            if (this.rand.nextFloat() < 0.095F) {
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
-            if (this.rand.nextFloat() < 0.095F) {
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
             boolean flag = true;
 
             for(EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
-                if (equipmentSlotType.getSlotType() == EquipmentSlotType.Group.ARMOR) {
-                    ItemStack stack = this.getItemStackFromSlot(equipmentSlotType);
-                    if (!flag && this.rand.nextFloat() < f) {
+                if (equipmentSlotType.getType() == EquipmentSlotType.Group.ARMOR) {
+                    ItemStack stack = this.getItemBySlot(equipmentSlotType);
+                    if (!flag && this.random.nextFloat() < f) {
                         break;
                     }
 
@@ -143,13 +138,12 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
                     if (stack.isEmpty()) {
                         Item item = getAljanArmorByChance(equipmentSlotType, i);
                         if (item != null) {
-                            this.setItemStackToSlot(equipmentSlotType, new ItemStack(item));
+                            this.setItemSlot(equipmentSlotType, new ItemStack(item));
                         }
                     }
                 }
             }
         }
-
     }
 
     @Nullable
@@ -208,18 +202,18 @@ public class Malaika extends CreatureEntity implements ISophieFriendlies {
         }
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         this.setEquipmentBasedOnDifficultyCustom(difficulty);
-        this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.ALJAMEED_BOOTS.get()));
-        this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.GOLDEN_HALO.get()));
-        if (rand.nextInt(2) == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANWOOD_SWORD.get()));
+        this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.ALJAMEED_BOOTS.get()));
+        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.GOLDEN_HALO.get()));
+        if (random.nextInt(2) == 0) {
+            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANWOOD_SWORD.get()));
         } else {
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANSTONE_SWORD.get()));
+            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANSTONE_SWORD.get()));
         }
     }
 
-    public static boolean canMalaikaSpawnOn(EntityType<Malaika> malaika, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
-        return world.getBlockState(pos.down()).isIn(BMTags.Blocks.MALAIKA_SPAWNABLE_ON) && world.getLightSubtracted(pos, 0) > 8;
+    public static boolean checkMalaikaSpawnRules(EntityType<Malaika> malaika, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        return world.getBlockState(pos.below()).is(BMTags.Blocks.MALAIKA_SPAWNABLE_ON) && world.getRawBrightness(pos, 0) > 8;
     }
 }

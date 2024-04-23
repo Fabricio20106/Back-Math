@@ -12,11 +12,11 @@ public class DevilBlock extends Block {
     }
 
     @Override
-    public void onEntityWalk(World world, BlockPos pos, Entity entity) {
+    public void stepOn(World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livEntity = (LivingEntity) entity;
-            livEntity.setFire(5);
+            livEntity.setSecondsOnFire(5);
         }
-        super.onEntityWalk(world, pos, entity);
+        super.stepOn(world, pos, entity);
     }
 }

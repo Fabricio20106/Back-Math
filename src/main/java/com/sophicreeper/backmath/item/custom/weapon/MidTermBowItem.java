@@ -15,7 +15,7 @@ public class MidTermBowItem extends BMBowItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
@@ -23,8 +23,8 @@ public class MidTermBowItem extends BMBowItem {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livEntity = (LivingEntity) entity;
-            livEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
-            entity.setFire(10);
+            livEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2));
+            entity.setSecondsOnFire(10);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }
@@ -32,7 +32,7 @@ public class MidTermBowItem extends BMBowItem {
     @Override
     public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
         if (count == 1) {
-            this.onPlayerStoppedUsing(stack, player.world, player, count);
+            this.onPlayerStoppedUsing(stack, player.level, player, count);
         }
     }
 

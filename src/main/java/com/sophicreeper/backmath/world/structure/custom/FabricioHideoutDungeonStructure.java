@@ -29,23 +29,23 @@ import org.apache.logging.log4j.LogManager;
 
 public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> {
     public FabricioHideoutDungeonStructure() {
-        super(NoFeatureConfig.field_236558_a_);
+        super(NoFeatureConfig.CODEC);
     }
 
     @Override
-    public GenerationStage.Decoration getDecorationStage() {
+    public GenerationStage.Decoration step() {
         return GenerationStage.Decoration.UNDERGROUND_STRUCTURES;
     }
 
     @Override
-    protected boolean func_230363_a_(ChunkGenerator chunkGenerator, BiomeProvider biomeProvider, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig featureConfig) {
+    protected boolean isFeatureChunk(ChunkGenerator chunkGenerator, BiomeProvider biomeProvider, long seed, SharedSeedRandom chunkRandom, int chunkX, int chunkZ, Biome biome, ChunkPos chunkPos, NoFeatureConfig featureConfig) {
         BlockPos centerOfChunk = new BlockPos(chunkX, 0, chunkZ);
-        int landHeight = chunkGenerator.getHeight(centerOfChunk.getX(), centerOfChunk.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
+        int landHeight = chunkGenerator.getBaseHeight(centerOfChunk.getX(), centerOfChunk.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 
-        IBlockReader columnOfBlocks = chunkGenerator.func_230348_a_(centerOfChunk.getX(), centerOfChunk.getZ());
-        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.up(landHeight));
+        IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(centerOfChunk.getX(), centerOfChunk.getZ());
+        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight));
 
-        return topBlock.getFluidState().isEmpty() || topBlock.isIn(Blocks.BEDROCK);
+        return topBlock.getFluidState().isEmpty() || topBlock.is(Blocks.BEDROCK);
     }
 
     @Override
@@ -59,29 +59,27 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
         }
 
         @Override
-        // generatePieces
-        public void func_230364_a_(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig config) {
+        public void generatePieces(DynamicRegistries dynamicRegistryManager, ChunkGenerator chunkGenerator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome, NoFeatureConfig config) {
             // Turns chunk coordinates into actual coordinates we can use by getting the center of that chunk.
             int x = (chunkX << 4) + 7;
             int z = (chunkZ << 4) + 7;
 
             BlockPos pos = new BlockPos(x, 0, z);
 
-            // addPieces()
-            JigsawManager.func_242837_a(dynamicRegistryManager, new VillageConfig(() -> dynamicRegistryManager.getRegistry(Registry.JIGSAW_POOL_KEY).getOrDefault(BackMath.resourceLoc(
-                    "fabricio_hideout_dungeon/start_pool")), 10), AbstractVillagePiece::new, chunkGenerator, templateManager, pos, this.components, this.rand, false,
+            JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> dynamicRegistryManager.registry(Registry.TEMPLATE_POOL_REGISTRY).get().get(BackMath.resourceLoc(
+                            "fabricio_hideout_dungeon/start_pool")), 10), AbstractVillagePiece::new, chunkGenerator, templateManager, pos, this.pieces, this.random, false,
                     true);
 
-            this.components.forEach(piece -> piece.offset(0, BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get(), 0));
-            this.components.forEach(piece -> piece.getBoundingBox().minY -= BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get());
+            this.pieces.forEach(piece -> piece.move(0, BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get(), 0));
+            this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get());
 
-            this.recalculateStructureSize();
+            this.calculateBoundingBox();
 
             if (BMConfigs.COMMON_CONFIGS.logStructureLocationMessages.get()) {
-                LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("messages.backmath.fabricio_hideout_location",
-                        this.components.get(0).getBoundingBox().minX,
-                        this.components.get(0).getBoundingBox().minY + BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get(),
-                        this.components.get(0).getBoundingBox().minZ).getString());
+                LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("messages.backmath.fabricio_hideout_dungeon_location",
+                        this.pieces.get(0).getBoundingBox().x0,
+                        this.pieces.get(0).getBoundingBox().y0 + BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get(),
+                        this.pieces.get(0).getBoundingBox().z0).getString());
             }
         }
     }

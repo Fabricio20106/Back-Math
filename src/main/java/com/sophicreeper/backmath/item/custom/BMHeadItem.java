@@ -8,12 +8,12 @@ import net.minecraft.item.WallOrFloorItem;
 
 import javax.annotation.Nullable;
 
-import static net.minecraft.item.ArmorItem.DISPENSER_BEHAVIOR;
+import static net.minecraft.item.ArmorItem.DISPENSE_ITEM_BEHAVIOR;
 
 public class BMHeadItem extends WallOrFloorItem {
     public BMHeadItem(Block floorBlock, Block wallBlock, Properties properties) {
         super(floorBlock, wallBlock, properties);
-        DispenserBlock.registerDispenseBehavior(this, DISPENSER_BEHAVIOR);
+        DispenserBlock.registerBehavior(this, DISPENSE_ITEM_BEHAVIOR);
     }
 
     @Nullable

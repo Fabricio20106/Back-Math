@@ -16,7 +16,7 @@ public class MidTermAxeItem extends AxeItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
@@ -24,8 +24,8 @@ public class MidTermAxeItem extends AxeItem {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livingEntity = (LivingEntity) entity;
-            livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
-            entity.setFire(10);
+            livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2));
+            entity.setSecondsOnFire(10);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

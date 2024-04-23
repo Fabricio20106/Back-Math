@@ -13,20 +13,20 @@ public class DisgustTeaEffect extends Effect {
     }
 
     @Override
-    public void performEffect(LivingEntity livEntity, int amplifier) {
+    public void applyEffectTick(LivingEntity livEntity, int amplifier) {
         if (livEntity instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) livEntity;
-            int hunger = player.getFoodStats().getFoodLevel();
-            float saturation = player.getFoodStats().getSaturationLevel();
+            int hunger = player.getFoodData().getFoodLevel();
+            float saturation = player.getFoodData().getSaturationLevel();
 
-            if (player.getFoodStats().getFoodLevel() != hunger || player.getFoodStats().getSaturationLevel() != saturation) {
-                livEntity.addPotionEffect(new EffectInstance(Effects.NAUSEA, 300));
+            if (player.getFoodData().getFoodLevel() != hunger || player.getFoodData().getSaturationLevel() != saturation) {
+                livEntity.addEffect(new EffectInstance(Effects.CONFUSION, 300));
             }
         }
     }
 
     @Override
-    public boolean isReady(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
 }

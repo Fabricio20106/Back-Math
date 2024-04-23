@@ -12,7 +12,7 @@ public class BackLayer extends ItemGroup {
     }
 
     @Override
-    public ItemStack createIcon() {
+    public ItemStack makeIcon() {
         return new ItemStack(AxolotlTest.GOLDEN_PLATED.get());
     }
 }

@@ -7,6 +7,6 @@ import net.minecraft.item.ShearsItem;
 public class BMShearsItem extends ShearsItem {
     public BMShearsItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new BeehiveDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new BeehiveDispenseBehavior());
     }
 }

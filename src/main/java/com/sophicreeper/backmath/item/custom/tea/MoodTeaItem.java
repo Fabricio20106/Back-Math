@@ -26,63 +26,63 @@ import java.util.List;
 public class MoodTeaItem extends Item {
     public MoodTeaItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new TeaDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new TeaDispenseBehavior());
     }
 
     @Override
-    public ActionResultType itemInteractionForEntity(ItemStack stack, PlayerEntity player, LivingEntity livEntity, Hand hand) {
+    public ActionResultType interactLivingEntity(ItemStack stack, PlayerEntity player, LivingEntity livEntity, Hand hand) {
         if (livEntity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.addStat(Stats.ITEM_USED.get(this));
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
-        livEntity.addPotionEffect(new EffectInstance(BMEffects.MOOD.get(), 6000));
+        livEntity.addEffect(new EffectInstance(BMEffects.MOOD.get(), 6000));
 
-        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
             stack.shrink(1);
         }
         return ActionResultType.SUCCESS;
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livEntity) {
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
         if (livEntity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.addStat(Stats.ITEM_USED.get(this));
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
-        livEntity.addPotionEffect(new EffectInstance(BMEffects.MOOD.get(), 6000));
+        livEntity.addEffect(new EffectInstance(BMEffects.MOOD.get(), 6000));
 
-        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.isCreativeMode) {
+        if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
             stack.shrink(1);
         }
-        return super.onItemUseFinish(stack, world, livEntity);
+        return super.finishUsingItem(stack, world, livEntity);
     }
 
     public int getUseDuration(ItemStack stack) {
         return 32;
     }
 
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.DRINK;
     }
 
-    public SoundEvent getEatSound() {
-        return SoundEvents.ENTITY_GENERIC_DRINK;
+    public SoundEvent getEatingSound() {
+        return SoundEvents.GENERIC_DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        return DrinkHelper.startDrinking(world, player, hand);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        return DrinkHelper.useDrink(world, player, hand);
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".quote").mergeStyle(TextFormatting.GRAY));
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".quote").withStyle(TextFormatting.GRAY));
         if (!BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.not_held"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.held"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
-        if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc").mergeStyle(TextFormatting.GRAY).mergeStyle(TextFormatting.ITALIC));
-        if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".bug").mergeStyle(TextFormatting.DARK_RED));
-        super.addInformation(stack, world, tooltip, flag);
+        if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".desc").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
+        if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".bug").withStyle(TextFormatting.DARK_RED));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

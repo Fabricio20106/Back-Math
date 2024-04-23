@@ -8,7 +8,7 @@ public class GlisteringCrownItem extends CrownItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

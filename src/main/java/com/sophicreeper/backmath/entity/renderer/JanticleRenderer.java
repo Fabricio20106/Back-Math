@@ -17,7 +17,7 @@ public class JanticleRenderer extends EntityRenderer<Janticle> {
     }
 
     @Override
-    public ResourceLocation getEntityTexture(Janticle janticle) {
+    public ResourceLocation getTextureLocation(Janticle janticle) {
         return JANTICLE_LOCATION;
     }
 }

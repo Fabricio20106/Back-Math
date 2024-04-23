@@ -7,6 +7,6 @@ import net.minecraft.item.Item;
 public class MealCookerIngredientItem extends Item {
     public MealCookerIngredientItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new MealCookingDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new MealCookingDispenseBehavior());
     }
 }

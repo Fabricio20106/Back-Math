@@ -43,7 +43,7 @@ public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPet, QueenLucyP
     }
 
     @Override
-    public ResourceLocation getEntityTexture(QueenLucyPet queenLucyPet) {
+    public ResourceLocation getTextureLocation(QueenLucyPet queenLucyPet) {
         return QUEEN_LUCY_PET_LOCATIONS[queenLucyPet.getVariant()];
     }
 }

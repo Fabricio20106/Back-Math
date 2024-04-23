@@ -37,17 +37,17 @@ import java.util.stream.Stream;
 public class AljanPortalStandBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty JANTICAL = BMBlockStateProperties.JANTICAL;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final VoxelShape SHAPE_WITHOUT_JANTICAL = Stream.of(Block.makeCuboidShape(4, 0, 4, 12, 1, 12), Block.makeCuboidShape(5, 1, 5, 11, 2, 11), Block.makeCuboidShape(6, 2, 6, 10, 10, 10), Block.makeCuboidShape(3, 11, 3, 13, 16, 13), Block.makeCuboidShape(5, 10, 5, 11, 11, 11), Block.makeCuboidShape(3, 16, 5, 4, 18, 11), Block.makeCuboidShape(12, 16, 5, 13, 18, 11), Block.makeCuboidShape(5, 16, 3, 11, 18, 4), Block.makeCuboidShape(5, 16, 12, 11, 18, 13)).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
-    public static final VoxelShape SHAPE_WITH_JANTICAL = Stream.of(Block.makeCuboidShape(4, 0, 4, 12, 1, 12), Block.makeCuboidShape(5, 1, 5, 11, 2, 11), Block.makeCuboidShape(6, 2, 6, 10, 10, 10), Block.makeCuboidShape(3, 11, 3, 13, 16, 13), Block.makeCuboidShape(5, 10, 5, 11, 11, 11), Block.makeCuboidShape(3, 16, 5, 4, 18, 11), Block.makeCuboidShape(12, 16, 5, 13, 18, 11), Block.makeCuboidShape(5, 16, 3, 11, 18, 4), Block.makeCuboidShape(5, 16, 12, 11, 18, 13), Block.makeCuboidShape(4, 16, 4, 12, 19, 12)).reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, IBooleanFunction.OR)).get();
+    public static final VoxelShape SHAPE_WITHOUT_JANTICAL = Stream.of(Block.box(4, 0, 4, 12, 1, 12), Block.box(5, 1, 5, 11, 2, 11), Block.box(6, 2, 6, 10, 10, 10), Block.box(3, 11, 3, 13, 16, 13), Block.box(5, 10, 5, 11, 11, 11), Block.box(3, 16, 5, 4, 18, 11), Block.box(12, 16, 5, 13, 18, 11), Block.box(5, 16, 3, 11, 18, 4), Block.box(5, 16, 12, 11, 18, 13)).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+    public static final VoxelShape SHAPE_WITH_JANTICAL = Stream.of(Block.box(4, 0, 4, 12, 1, 12), Block.box(5, 1, 5, 11, 2, 11), Block.box(6, 2, 6, 10, 10, 10), Block.box(3, 11, 3, 13, 16, 13), Block.box(5, 10, 5, 11, 11, 11), Block.box(3, 16, 5, 4, 18, 11), Block.box(12, 16, 5, 13, 18, 11), Block.box(5, 16, 3, 11, 18, 4), Block.box(5, 16, 12, 11, 18, 13), Block.box(4, 16, 4, 12, 19, 12)).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
 
     public AljanPortalStandBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(JANTICAL, false).with(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(JANTICAL, false).setValue(WATERLOGGED, false));
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-        if (state.get(JANTICAL)) {
+        if (state.getValue(JANTICAL)) {
             return SHAPE_WITH_JANTICAL;
         } else {
             return SHAPE_WITHOUT_JANTICAL;
@@ -55,20 +55,20 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        if (state.get(JANTICAL) && BMConfigs.COMMON_CONFIGS.aljanEnabledThroughStand.get()) {
-            if (!world.isRemote()) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+        if (state.getValue(JANTICAL) && BMConfigs.COMMON_CONFIGS.aljanEnabledThroughStand.get()) {
+            if (!world.isClientSide) {
                 if (!player.isCrouching()) {
                     MinecraftServer server = world.getServer();
 
                     if (server != null) {
-                        if (world.getDimensionKey() == BMDimensions.THE_ALJAN) {
-                            ServerWorld overworld = server.getWorld(World.OVERWORLD);
+                        if (world.dimension() == BMDimensions.THE_ALJAN) {
+                            ServerWorld overworld = server.getLevel(World.OVERWORLD);
                             if (overworld != null) {
                                 player.changeDimension(overworld, new TheAljanTeleporter(pos, false));
                             }
                         } else {
-                            ServerWorld theAljan = server.getWorld(BMDimensions.THE_ALJAN);
+                            ServerWorld theAljan = server.getLevel(BMDimensions.THE_ALJAN);
                             if (theAljan != null) {
                                 player.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
                             }
@@ -79,24 +79,24 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
             }
         }
 
-        return super.onBlockActivated(state, world, pos, player, hand, hit);
+        return super.use(state, world, pos, player, hand, hit);
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, World world, BlockPos pos, Entity entity) {
         if (BMConfigs.COMMON_CONFIGS.standingAljanTeleport.get() && BMConfigs.COMMON_CONFIGS.aljanEnabledThroughStand.get()) {
-            if (state.get(JANTICAL)) {
-                if (!world.isRemote()) {
+            if (state.getValue(JANTICAL)) {
+                if (!world.isClientSide) {
                     MinecraftServer server = world.getServer();
 
                     if (server != null) {
-                        if (world.getDimensionKey() == BMDimensions.THE_ALJAN) {
-                            ServerWorld overworld = server.getWorld(World.OVERWORLD);
+                        if (world.dimension() == BMDimensions.THE_ALJAN) {
+                            ServerWorld overworld = server.getLevel(World.OVERWORLD);
                             if (overworld != null) {
                                 entity.changeDimension(overworld, new TheAljanTeleporter(pos, false));
                             }
                         } else {
-                            ServerWorld theAljan = server.getWorld(BMDimensions.THE_ALJAN);
+                            ServerWorld theAljan = server.getLevel(BMDimensions.THE_ALJAN);
                             if (theAljan != null) {
                                 entity.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
                             }
@@ -106,33 +106,33 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
             }
         }
 
-        super.onEntityCollision(state, world, pos, entity);
+        super.entityInside(state, world, pos, entity);
     }
 
     public FluidState getFluidState(BlockState state) {
-        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        if (state.get(WATERLOGGED)) {
-            world.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        if (state.getValue(WATERLOGGED)) {
+            world.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
-        return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+        return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        FluidState fluidState = context.getWorld().getFluidState(context.getPos());
-        return this.getDefaultState().with(WATERLOGGED, fluidState.isTagged(FluidTags.WATER) && fluidState.getLevel() == 8);
+        FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
+        return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader reader, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader reader, BlockPos pos, PathType type) {
         return false;
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(JANTICAL, WATERLOGGED);
     }
 }

@@ -12,17 +12,17 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 public class QueenLucyBattlePackItem extends Item {
-    public QueenLucyBattlePackItem() {
-        super(new Properties().isImmuneToFire().group(SophiesCursedFoods.TAB));
-        DispenserBlock.registerDispenseBehavior(this, new BagDispenseBehavior());
+    public QueenLucyBattlePackItem(Properties properties) {
+        super(properties);
+        DispenserBlock.registerBehavior(this, new BagDispenseBehavior());
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.QUEEN_LUCY_SPAWN_EGG.get()));
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.QUEEN_LUCY_BATTLE_INFO.get()));
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        player.addItem(new ItemStack(AxolotlTest.QUEEN_LUCY_SPAWN_EGG.get()));
+        player.addItem(new ItemStack(AxolotlTest.QUEEN_LUCY_BATTLE_INFO.get()));
         heldItem.shrink(1);
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 }

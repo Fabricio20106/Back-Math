@@ -15,14 +15,14 @@ public class MilkedDevilSpareySwordItem extends MilkedSwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (entity.getType().isContained(BMTags.EntityTypes.DEVIL_SPAREY_EFFECTIVES)) {
-            player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 50, 2));
+        if (entity.getType().is(BMTags.EntityTypes.DEVIL_SPAREY_EFFECTIVES)) {
+            player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 50, 2));
         } else {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 200, 1));
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 200, 1));
         }
         // Queen Lucy
-        if (entity.getType().isContained(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
+        if (entity.getType().is(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

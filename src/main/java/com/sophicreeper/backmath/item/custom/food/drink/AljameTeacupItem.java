@@ -12,22 +12,22 @@ import net.minecraft.world.World;
 public class AljameTeacupItem extends Item {
     public AljameTeacupItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new TeaDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new TeaDispenseBehavior());
     }
 
     public int getUseDuration(ItemStack stack) {
         return 32;
     }
 
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.DRINK;
     }
 
-    public SoundEvent getEatSound() {
-        return SoundEvents.ENTITY_GENERIC_DRINK;
+    public SoundEvent getEatingSound() {
+        return SoundEvents.GENERIC_DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        return DrinkHelper.startDrinking(world, player, hand);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        return DrinkHelper.useDrink(world, player, hand);
     }
 }

@@ -11,7 +11,7 @@ public class DamageableCraftingToolItem extends Item {
     @Override
     public ItemStack getContainerItem(ItemStack stack) {
         ItemStack container = stack.copy();
-        if (container.attemptDamageItem(1, random, null)) {
+        if (container.hurt(1, random, null)) {
             return ItemStack.EMPTY;
         } else {
             return container;

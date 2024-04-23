@@ -24,7 +24,7 @@ public class ButterSwordItem extends SwordItem {
 
     // When player stops using item (i.e. stops using a bow (shooting), finished eating/drinking):
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livEntity) {
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
         if (livEntity instanceof PlayerEntity) {
             int storedExperience = stack.getOrCreateTag().getInt("stored_experience");
             if (stack.hasTag()) {
@@ -35,22 +35,22 @@ public class ButterSwordItem extends SwordItem {
                 ((PlayerEntity) livEntity).giveExperiencePoints(500);
             }
         }
-        return super.onItemUseFinish(stack, world, livEntity);
+        return super.finishUsingItem(stack, world, livEntity);
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         if (stack.hasTag() && stack.getTag().contains("stored_experience")) {
             tooltip.add(new TranslationTextComponent("messages." + BackMath.MOD_ID + ".butter_sword.experience_points", stack.getTag().getInt("stored_experience")));
         } else {
             tooltip.add(new TranslationTextComponent("messages." + BackMath.MOD_ID + ".butter_sword.experience_points", 500));
         }
-        super.addInformation(stack, world, tooltip, flag);
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items) {
-        if (this.isInGroup(group)) {
+    public void fillItemCategory(ItemGroup group, NonNullList<ItemStack> items) {
+        if (this.allowdedIn(group)) {
             // Default Butter Sword (500 XP)
             items.add(new ItemStack(this));
 

@@ -15,13 +15,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class QueenLucyRenderer extends BipedRenderer<QueenLucy, QueenLucyModel> {
     public QueenLucyRenderer(EntityRendererManager manager) {
-        super(manager, new QueenLucyModel(), 0.5f);
+        super(manager, new QueenLucyModel(), 0.5F);
         this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
         this.addLayer(new ElytraLayer<>(this));
     }
 
     @Override
-    public ResourceLocation getEntityTexture(QueenLucy queenSophie) {
+    public ResourceLocation getTextureLocation(QueenLucy queenLucy) {
         return BackMath.resourceLoc("textures/entity/queen_lucy.png");
     }
 }

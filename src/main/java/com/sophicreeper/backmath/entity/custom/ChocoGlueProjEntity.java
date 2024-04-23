@@ -18,6 +18,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import java.util.Random;
+
 public class ChocoGlueProjEntity extends ProjectileItemEntity {
     public ChocoGlueProjEntity(EntityType<? extends ProjectileItemEntity> type, World world) {
         super(type, world);
@@ -34,32 +36,32 @@ public class ChocoGlueProjEntity extends ProjectileItemEntity {
 
     @OnlyIn(Dist.CLIENT)
     private IParticleData makeParticle() {
-        ItemStack stack = this.func_213882_k();
+        ItemStack stack = this.getItemRaw();
         return stack.isEmpty() ? ParticleTypes.ITEM_SNOWBALL : new ItemParticleData(ParticleTypes.ITEM, stack);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void handleStatusUpdate(byte id) {
+    public void handleEntityEvent(byte id) {
         if (id == 3) {
             IParticleData particleData = this.makeParticle();
 
             for (int i = 0; i < 8; ++i) {
-                this.world.addParticle(particleData, this.getPosX(), this.getPosY(), this.getPosZ(), 0, 0, 0);
+                this.level.addParticle(particleData, this.getX(), this.getY(), this.getZ(), 0, 0, 0);
             }
         }
     }
 
-    protected void onEntityHit(EntityRayTraceResult result) {
-        super.onEntityHit(result);
+    protected void onHitEntity(EntityRayTraceResult result) {
+        super.onHitEntity(result);
         Entity entity = result.getEntity();
-        int random = rand.nextInt(5);
-        entity.attackEntityFrom(BMDamageSources.CHOCOGLUED, random);
+        int rand = random.nextInt(5);
+        entity.hurt(BMDamageSources.CHOCOGLUED, rand);
     }
 
-    protected void onImpact(RayTraceResult result) {
-        super.onImpact(result);
-        if (!this.world.isRemote) {
-            this.world.setEntityState(this, (byte) 3);
+    protected void onHit(RayTraceResult result) {
+        super.onHit(result);
+        if (!this.level.isClientSide) {
+            this.level.broadcastEntityEvent(this, (byte) 3);
             this.remove();
         }
     }

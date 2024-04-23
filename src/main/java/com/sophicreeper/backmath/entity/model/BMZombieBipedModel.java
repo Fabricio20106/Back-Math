@@ -13,9 +13,9 @@ public class BMZombieBipedModel<T extends MonsterEntity> extends BipedModel<T> {
     }
 
     // Sets this entity's model rotation angles.
-    public void setRotationAngles(T zombie, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        super.setRotationAngles(zombie, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-        ModelHelper.func_239105_a_(this.bipedLeftArm, this.bipedRightArm, this.isAggressive(zombie), this.swingProgress, ageInTicks);
+    public void setupAnim(T zombie, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+        super.setupAnim(zombie, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+        ModelHelper.animateZombieArms(this.leftArm, this.rightArm, this.isAggressive(zombie), this.attackTime, ageInTicks);
     }
 
     public boolean isAggressive(T zombie) {

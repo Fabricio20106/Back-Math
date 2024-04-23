@@ -17,21 +17,21 @@ public class ChocoGlueItem extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldStack = player.getHeldItem(hand);
-        world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), BMSounds.ITEM_CHOCOGLUE_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-        if (!world.isRemote) {
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldStack = player.getItemInHand(hand);
+        world.playSound(null, player.getX(), player.getY(), player.getZ(), BMSounds.ITEM_CHOCOGLUE_SHOOT, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+        if (!world.isClientSide) {
             ChocoGlueProjEntity chocoGlueProj = new ChocoGlueProjEntity(world, player);
             chocoGlueProj.setItem(heldStack);
-            chocoGlueProj.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0, 1.5F, 1);
-            world.addEntity(chocoGlueProj);
+            chocoGlueProj.shootFromRotation(player, player.xRot, player.yRot, 0, 1.5F, 1);
+            world.addFreshEntity(chocoGlueProj);
         }
 
-        player.addStat(Stats.ITEM_USED.get(this));
-        if (!player.abilities.isCreativeMode) {
+        player.awardStat(Stats.ITEM_USED.get(this));
+        if (!player.abilities.instabuild) {
             heldStack.shrink(1);
         }
 
-        return ActionResult.func_233538_a_(heldStack, world.isRemote());
+        return ActionResult.sidedSuccess(heldStack, world.isClientSide());
     }
 }

@@ -13,11 +13,11 @@ public class JanticOreBlock extends BMOreBlock {
     }
 
     @Override
-    public void spawnAdditionalDrops(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
-        if (!world.isRemote) {
+    public void spawnAfterBreak(BlockState state, ServerWorld world, BlockPos pos, ItemStack stack) {
+        if (!world.isClientSide) {
             Janticle janticle = new Janticle(world);
-            world.addEntity(janticle);
+            world.addFreshEntity(janticle);
         }
-        super.spawnAdditionalDrops(state, world, pos, stack);
+        super.spawnAfterBreak(state, world, pos, stack);
     }
 }

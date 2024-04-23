@@ -17,42 +17,42 @@ import net.minecraft.util.math.vector.Vector3f;
 import javax.annotation.Nullable;
 
 public interface IBMCrossbowUser extends ICrossbowUser {
-    void setCharging(boolean isCharging);
+    void setChargingCrossbow(boolean isCharging);
 
-    void func_230284_a_(LivingEntity livEntity, ItemStack stack, ProjectileEntity projectile, float distanceFactor);
+    void shootCrossbowProjectile(LivingEntity livEntity, ItemStack stack, ProjectileEntity projectile, float distanceFactor);
 
     // Gets the active target the Task system uses for tracking.
     @Nullable
-    LivingEntity getAttackTarget();
+    LivingEntity getTarget();
 
-    void func_230283_U__();
+    void onCrossbowAttackPerformed();
 
-    default void func_234281_b_(LivingEntity livEntity, float velocity) {
-        Hand hand = ProjectileHelper.getHandWith(livEntity, AxolotlTest.ANGELIC_CROSSBOW.get());
-        ItemStack heldStack = livEntity.getHeldItem(hand);
-        if (livEntity.canEquip(AxolotlTest.ANGELIC_CROSSBOW.get())) {
-            CrossbowItem.fireProjectiles(livEntity.world, livEntity, hand, heldStack, velocity, (float) (14 - livEntity.world.getDifficulty().getId() * 4));
+    default void performCrossbowAttack(LivingEntity livEntity, float velocity) {
+        Hand hand = ProjectileHelper.getWeaponHoldingHand(livEntity, AxolotlTest.ANGELIC_CROSSBOW.get());
+        ItemStack heldStack = livEntity.getItemInHand(hand);
+        if (livEntity.isHolding(AxolotlTest.ANGELIC_CROSSBOW.get())) {
+            CrossbowItem.performShooting(livEntity.level, livEntity, hand, heldStack, velocity, (float) (14 - livEntity.level.getDifficulty().getId() * 4));
         }
 
-        this.func_230283_U__();
+        this.onCrossbowAttackPerformed();
     }
 
-    default void func_234279_a_(LivingEntity shooter, LivingEntity target, ProjectileEntity arrow, float distanceFactor, float velocity) {
-        double targetX = target.getPosX() - shooter.getPosX();
-        double targetZ = target.getPosZ() - shooter.getPosZ();
+    default void shootCrossbowProjectile(LivingEntity shooter, LivingEntity target, ProjectileEntity arrow, float distanceFactor, float velocity) {
+        double targetX = target.getX() - shooter.getX();
+        double targetZ = target.getZ() - shooter.getZ();
         double sqrtTargetLoc = MathHelper.sqrt(targetX * targetX + targetZ * targetZ);
-        double d3 = target.getPosYHeight(0.3333333333333333D) - arrow.getPosY() + sqrtTargetLoc * (double) 0.2F;
+        double d3 = target.getY(0.3333333333333333D) - arrow.getY() + sqrtTargetLoc * (double) 0.2F;
 
-        Vector3f vec3F = this.func_234280_a_(shooter, new Vector3d(targetX, d3, targetZ), distanceFactor);
-        arrow.shoot(vec3F.getX(), vec3F.getY(), vec3F.getZ(), velocity, (float) (14 - shooter.world.getDifficulty().getId() * 4));
-        shooter.playSound(SoundEvents.ITEM_CROSSBOW_SHOOT, 1, 1 / (shooter.getRNG().nextFloat() * 0.4F + 0.8F));
+        Vector3f vec3F = this.getProjectileShotVector(shooter, new Vector3d(targetX, d3, targetZ), distanceFactor);
+        arrow.shoot(vec3F.x(), vec3F.y(), vec3F.z(), velocity, (float) (14 - shooter.level.getDifficulty().getId() * 4));
+        shooter.playSound(SoundEvents.CROSSBOW_SHOOT, 1, 1 / (shooter.getRandom().nextFloat() * 0.4F + 0.8F));
     }
 
-    default Vector3f func_234280_a_(LivingEntity livEntity, Vector3d vec3D, float distanceFactor) {
+    default Vector3f getProjectileShotVector(LivingEntity livEntity, Vector3d vec3D, float distanceFactor) {
         Vector3d normVec3D = vec3D.normalize();
-        Vector3d crossedVec3D = normVec3D.crossProduct(new Vector3d(0, 1, 0));
-        if (crossedVec3D.lengthSquared() <= 1.0E-7D) {
-            crossedVec3D = normVec3D.crossProduct(livEntity.getUpVector(1));
+        Vector3d crossedVec3D = normVec3D.cross(new Vector3d(0, 1, 0));
+        if (crossedVec3D.lengthSqr() <= 1.0E-7D) {
+            crossedVec3D = normVec3D.cross(livEntity.getUpVector(1));
         }
 
         Quaternion quaternion = new Quaternion(new Vector3f(crossedVec3D), 90, true);

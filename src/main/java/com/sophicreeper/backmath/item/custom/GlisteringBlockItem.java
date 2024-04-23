@@ -10,7 +10,7 @@ public class GlisteringBlockItem extends BlockItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

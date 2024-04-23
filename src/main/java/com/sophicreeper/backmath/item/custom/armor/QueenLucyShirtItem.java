@@ -23,9 +23,9 @@ public class QueenLucyShirtItem extends ArmorItem {
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".queen_lucy_shirt.design").mergeStyle(TextFormatting.GRAY));
-        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".queen_lucy_shirt_" + shirtDesign + ".desc").mergeStyle(TextFormatting.BLUE));
-        super.addInformation(stack, world, tooltip, flag);
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".queen_lucy_shirt.design").withStyle(TextFormatting.GRAY));
+        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".queen_lucy_shirt_" + shirtDesign + ".desc").withStyle(TextFormatting.BLUE));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

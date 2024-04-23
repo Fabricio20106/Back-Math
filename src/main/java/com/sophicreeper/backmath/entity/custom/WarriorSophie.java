@@ -35,11 +35,11 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.1D, false));
         this.goalSelector.addGoal(4, new LookAtGoal(this, QueenLucy.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
-        this.applyMobAI();
+        this.addAttackTargets();
         super.registerGoals();
     }
 
-    protected void applyMobAI() {
+    protected void addAttackTargets() {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
@@ -54,28 +54,28 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
     }
 
     public static AttributeModifierMap.MutableAttribute createWarriorSophieAttributes() {
-        return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 6).createMutableAttribute(Attributes.MAX_HEALTH, 36).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25F);
+        return CreatureEntity.createMobAttributes().add(Attributes.ATTACK_DAMAGE, 6).add(Attributes.MAX_HEALTH, 36).add(Attributes.FOLLOW_RANGE, 12)
+                .add(Attributes.MOVEMENT_SPEED, 0.25F);
     }
 
     @Override
     public void tick() {
         super.tick();
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
-    public void livingTick() {
-        this.updateArmSwingProgress();
-        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+    public void aiStep() {
+        this.updateSwingTime();
+        if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
                 this.heal(1);
             }
         }
-        super.livingTick();
+        super.aiStep();
     }
 
-    public double getYOffset() {
+    public double getMyRidingOffset() {
         return -0.35D;
     }
 
@@ -97,8 +97,8 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
         return BMSounds.ENTITY_SOPHIE_DEATH;
     }
 
-    public boolean isOnSameTeam(Entity entity) {
-        if (super.isOnSameTeam(entity)) {
+    public boolean isAlliedTo(Entity entity) {
+        if (super.isAlliedTo(entity)) {
             return true;
         } else return entity instanceof ISophieFriendlies;
     }
@@ -109,15 +109,15 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity) {
-        if (!super.attackEntityAsMob(entity)) {
+    public boolean doHurtTarget(Entity entity) {
+        if (!super.doHurtTarget(entity)) {
             return false;
         } else {
-            if (entity instanceof LivingEntity && !entity.isImmuneToFire()) {
+            if (entity instanceof LivingEntity && !entity.fireImmune()) {
                 ItemStack devilSword = new ItemStack(AxolotlTest.DEVIL_SWORD.get());
-                if (this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).equals(devilSword)) {
+                if (this.getItemBySlot(EquipmentSlotType.MAINHAND).equals(devilSword)) {
                     LivingEntity livEntity = (LivingEntity) entity;
-                    livEntity.setFire(5);
+                    livEntity.setSecondsOnFire(5);
                 }
             }
         }
@@ -126,42 +126,42 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.populateDefaultEquipmentSlots(difficulty);
+        this.populateDefaultEquipmentEnchantments(difficulty);
+        return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
         }
     }
 
     @Override
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        int i = this.rand.nextInt(3);
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        int i = this.random.nextInt(3);
         if (i == 0) {
-            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.MILKLLARY_WARRIOR_HELMET.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.MILKLLARY_CHESTPLATE.get()));
-            this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.MILKLLARY_LEGGINGS.get()));
-            this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.MILKLLARY_BOOTS.get()));
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.MILKLLARY_SWORD.get()));
+            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.MILKLLARY_WARRIOR_HELMET.get()));
+            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.MILKLLARY_CHESTPLATE.get()));
+            this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.MILKLLARY_LEGGINGS.get()));
+            this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.MILKLLARY_BOOTS.get()));
+            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.MILKLLARY_SWORD.get()));
         } else if (i == 1) {
-            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_WARRIOR_HELMET.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()));
-            this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.ANGELIC_LEGGINGS.get()));
-            this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.ANGELIC_BOOTS.get()));
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
+            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_WARRIOR_HELMET.get()));
+            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()));
+            this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.ANGELIC_LEGGINGS.get()));
+            this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.ANGELIC_BOOTS.get()));
+            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
         } else {
-            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.DEVIL_WARRIOR_HELMET.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()));
-            this.setItemStackToSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.DEVIL_LEGGINGS.get()));
-            this.setItemStackToSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.DEVIL_BOOTS.get()));
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.DEVIL_SWORD.get()));
+            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.DEVIL_WARRIOR_HELMET.get()));
+            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()));
+            this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.DEVIL_LEGGINGS.get()));
+            this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.DEVIL_BOOTS.get()));
+            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.DEVIL_SWORD.get()));
         }
-        super.setEquipmentBasedOnDifficulty(difficulty);
+        super.populateDefaultEquipmentSlots(difficulty);
     }
 }

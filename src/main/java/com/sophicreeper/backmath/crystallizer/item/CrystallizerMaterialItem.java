@@ -7,6 +7,6 @@ import net.minecraft.item.Item;
 public class CrystallizerMaterialItem extends Item {
     public CrystallizerMaterialItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new CrystallizerRecipesDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new CrystallizerRecipesDispenseBehavior());
     }
 }

@@ -21,18 +21,18 @@ public class KnifeItem extends ToolItem {
     public static final ToolType KNIFE = ToolType.get("knife");
 
     public KnifeItem(float attackDamage, float swingSpeed, IItemTier tier, Properties properties) {
-        super(attackDamage, swingSpeed, tier, EFFECTIVE_ON, properties.addToolType(KNIFE, tier.getHarvestLevel()));
+        super(attackDamage, swingSpeed, tier, EFFECTIVE_ON, properties.addToolType(KNIFE, tier.getLevel()));
     }
 
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return efficiency;
-        return state.isIn(BMTags.Blocks.MINEABLE_KNIVES) ? this.efficiency : 1;
+        if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return speed;
+        return state.is(BMTags.Blocks.MINEABLE_KNIVES) ? this.speed : 1;
     }
 
     @Override
     public ItemStack getContainerItem(ItemStack stack) {
         ItemStack container = stack.copy();
-        if (container.attemptDamageItem(1, random, null)) {
+        if (container.hurt(1, random, null)) {
             return ItemStack.EMPTY;
         } else {
             return container;
@@ -45,38 +45,38 @@ public class KnifeItem extends ToolItem {
     }
 
     @Override
-    public ActionResultType onItemUse(ItemUseContext context) {
-        BlockPos pos = context.getPos();
-        World world = context.getWorld();
+    public ActionResultType useOn(ItemUseContext context) {
+        BlockPos pos = context.getClickedPos();
+        World world = context.getLevel();
         BlockState state = world.getBlockState(pos);
         PlayerEntity player = context.getPlayer();
-        ItemStack stack = context.getItem();
+        ItemStack stack = context.getItemInHand();
         if (state.getBlock() == Blocks.PUMPKIN) {
-            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 9));
+            Block.popResource(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 9));
             world.destroyBlock(pos, false, player);
-            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.hurtAndBreak(1, player, a -> a.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
         }
         if (state.getBlock() == Blocks.CARVED_PUMPKIN) {
-            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
+            Block.popResource(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
             world.destroyBlock(pos, false, player);
-            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.hurtAndBreak(1, player, a -> a.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
         }
         if (state.getBlock() == Blocks.JACK_O_LANTERN) {
-            Block.spawnAsEntity(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
-            Block.spawnAsEntity(world, pos, new ItemStack(Items.TORCH));
+            Block.popResource(world, pos, new ItemStack(AxolotlTest.PUMPKIN_SLICE.get(), 8));
+            Block.popResource(world, pos, new ItemStack(Items.TORCH));
             world.destroyBlock(pos, false, player);
-            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.hurtAndBreak(1, player, a -> a.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
         }
         if (state.getBlock() == Blocks.MELON) {
-            Block.spawnAsEntity(world, pos, new ItemStack(Items.MELON_SLICE, 9));
+            Block.popResource(world, pos, new ItemStack(Items.MELON_SLICE, 9));
             world.destroyBlock(pos, false, player);
-            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.hurtAndBreak(1, player, a -> a.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
         }
         if (state.getBlock() == Blocks.HAY_BLOCK) {
-            Block.spawnAsEntity(world, pos, new ItemStack(Items.WHEAT, 9));
+            Block.popResource(world, pos, new ItemStack(Items.WHEAT, 9));
             world.destroyBlock(pos, false, player);
-            if (player != null) stack.damageItem(1, player, a -> a.sendBreakAnimation(EquipmentSlotType.MAINHAND));
+            if (player != null) stack.hurtAndBreak(1, player, a -> a.broadcastBreakEvent(EquipmentSlotType.MAINHAND));
         }
-        return super.onItemUse(context);
+        return super.useOn(context);
     }
 }

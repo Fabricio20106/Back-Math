@@ -19,32 +19,32 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
     }
 
     // Whether this IGrowable can grow.
-    public boolean canGrow(IBlockReader world, BlockPos pos, BlockState state, boolean isClient) {
-        return world.getBlockState(pos.up()).isAir();
+    public boolean isValidBonemealTarget(IBlockReader world, BlockPos pos, BlockState state, boolean isClient) {
+        return world.getBlockState(pos.above()).isAir();
     }
 
-    public boolean canUseBonemeal(World world, Random rand, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(World world, Random rand, BlockPos pos, BlockState state) {
         return true;
     }
 
-    public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
-        BlockPos abovePos = pos.up();
-        BlockState grass = Blocks.GRASS.getDefaultState();
+    public void performBonemeal(ServerWorld world, Random rand, BlockPos pos, BlockState state) {
+        BlockPos abovePos = pos.above();
+        BlockState grass = Blocks.GRASS.defaultBlockState();
 
         label48:
         for(int i = 0; i < 128; ++i) {
             BlockPos abovePos1 = abovePos;
 
             for(int j = 0; j < i / 16; ++j) {
-                abovePos1 = abovePos1.add(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
-                if (!world.getBlockState(abovePos1.down()).isIn(this) || world.getBlockState(abovePos1).hasOpaqueCollisionShape(world, abovePos1)) {
+                abovePos1 = abovePos1.offset(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
+                if (!world.getBlockState(abovePos1.below()).is(this) || world.getBlockState(abovePos1).isCollisionShapeFullBlock(world, abovePos1)) {
                     continue label48;
                 }
             }
 
             BlockState aboveState = world.getBlockState(abovePos1);
-            if (aboveState.isIn(grass.getBlock()) && rand.nextInt(10) == 0) {
-                ((IGrowable) grass.getBlock()).grow(world, rand, abovePos1, aboveState);
+            if (aboveState.is(grass.getBlock()) && rand.nextInt(10) == 0) {
+                ((IGrowable) grass.getBlock()).performBonemeal(world, rand, abovePos1, aboveState);
             }
 
             if (aboveState.isAir()) {
@@ -57,13 +57,13 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
 
                     ConfiguredFeature<?, ?> configuredFeature = list.get(0);
                     FlowersFeature flowersFeature = (FlowersFeature) configuredFeature.feature;
-                    stateToPlace = flowersFeature.getFlowerToPlace(rand, abovePos1, configuredFeature.getConfig());
+                    stateToPlace = flowersFeature.getRandomFlower(rand, abovePos1, configuredFeature.config());
                 } else {
                     stateToPlace = grass;
                 }
 
-                if (stateToPlace.isValidPosition(world, abovePos1)) {
-                    world.setBlockState(abovePos1, stateToPlace, 3);
+                if (stateToPlace.canSurvive(world, abovePos1)) {
+                    world.setBlock(abovePos1, stateToPlace, 3);
                 }
             }
         }

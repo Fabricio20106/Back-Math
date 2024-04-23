@@ -13,14 +13,14 @@ public abstract class AbstractWildCropBlock extends BushBlock {
         super(properties);
     }
 
-    protected boolean isValidGround(BlockState state, IBlockReader reader, BlockPos pos) {
-        return state.isIn(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON);
+    protected boolean mayPlaceOn(BlockState state, IBlockReader reader, BlockPos pos) {
+        return state.is(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON);
     }
 
     public abstract IItemProvider getSeedItem();
 
     @Override
-    public ItemStack getItem(IBlockReader reader, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(IBlockReader reader, BlockPos pos, BlockState state) {
         return new ItemStack(this.getSeedItem());
     }
 }

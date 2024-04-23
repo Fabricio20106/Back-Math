@@ -47,31 +47,31 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createSleepishSkeletonAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25);
+        return MonsterEntity.createMonsterAttributes().add(Attributes.MOVEMENT_SPEED, 0.25);
     }
 
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.ENTITY_SKELETON_AMBIENT;
+        return SoundEvents.SKELETON_AMBIENT;
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {
-        return SoundEvents.ENTITY_SKELETON_HURT;
+        return SoundEvents.SKELETON_HURT;
     }
 
     protected SoundEvent getDeathSound() {
-        return SoundEvents.ENTITY_SKELETON_DEATH;
+        return SoundEvents.SKELETON_DEATH;
     }
 
     protected SoundEvent getStepSound() {
-        return SoundEvents.ENTITY_SKELETON_STEP;
+        return SoundEvents.SKELETON_STEP;
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity) {
-        if (!super.attackEntityAsMob(entity)) {
+    public boolean doHurtTarget(Entity entity) {
+        if (!super.doHurtTarget(entity)) {
             return false;
         } else {
-            ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 600));
+            ((LivingEntity) entity).addEffect(new EffectInstance(Effects.BLINDNESS, 600));
             return true;
         }
     }
@@ -82,27 +82,27 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
     }
 
     protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
-        if (this.rand.nextFloat() < 0.15F * difficulty.getClampedAdditionalDifficulty()) {
-            int i = this.rand.nextInt(2);
-            float f = this.world.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-            if (this.rand.nextFloat() < 0.095F) {
+        if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
+            int i = this.random.nextInt(2);
+            float f = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
-            if (this.rand.nextFloat() < 0.095F) {
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
-            if (this.rand.nextFloat() < 0.095F) {
+            if (this.random.nextFloat() < 0.095F) {
                 ++i;
             }
 
             boolean flag = true;
 
             for(EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
-                if (equipmentSlotType.getSlotType() == EquipmentSlotType.Group.ARMOR) {
-                    ItemStack stack = this.getItemStackFromSlot(equipmentSlotType);
-                    if (!flag && this.rand.nextFloat() < f) {
+                if (equipmentSlotType.getType() == EquipmentSlotType.Group.ARMOR) {
+                    ItemStack stack = this.getItemBySlot(equipmentSlotType);
+                    if (!flag && this.random.nextFloat() < f) {
                         break;
                     }
 
@@ -110,13 +110,12 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
                     if (stack.isEmpty()) {
                         Item item = getAljanArmorByChance(equipmentSlotType, i);
                         if (item != null) {
-                            this.setItemStackToSlot(equipmentSlotType, new ItemStack(item));
+                            this.setItemSlot(equipmentSlotType, new ItemStack(item));
                         }
                     }
                 }
             }
         }
-
     }
 
     @Nullable
@@ -175,14 +174,14 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
         }
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        super.setEquipmentBasedOnDifficulty(difficulty);
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(difficulty);
         this.setEquipmentBasedOnDifficultyCustom(difficulty);
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BOW));
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BOW));
     }
 
-    protected AbstractArrowEntity fireArrow(ItemStack arrowStack, float distanceFactor) {
-        AbstractArrowEntity arrow = super.fireArrow(arrowStack, distanceFactor);
+    protected AbstractArrowEntity getArrow(ItemStack arrowStack, float distanceFactor) {
+        AbstractArrowEntity arrow = super.getArrow(arrowStack, distanceFactor);
         if (arrow instanceof ArrowEntity) {
             ((ArrowEntity) arrow).addEffect(new EffectInstance(Effects.POISON, 100));
             ((ArrowEntity) arrow).addEffect(new EffectInstance(Effects.BLINDNESS, 600));

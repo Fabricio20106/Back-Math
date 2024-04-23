@@ -17,22 +17,22 @@ public class SleepishwaterBottleItem extends Item {
         super(properties);
     }
 
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
-        super.onItemUseFinish(stack, world, livingEntity);
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livingEntity) {
+        super.finishUsingItem(stack, world, livingEntity);
         if (livingEntity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.addStat(Stats.ITEM_USED.get(this));
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
         if (stack.isEmpty()) {
             return new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get());
         } else {
-            if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
+            if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.instabuild) {
                 ItemStack aljamicGlassBottle = new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get());
                 PlayerEntity player = (PlayerEntity) livingEntity;
-                if (!player.inventory.addItemStackToInventory(aljamicGlassBottle)) {
-                    player.dropItem(aljamicGlassBottle, false);
+                if (!player.inventory.add(aljamicGlassBottle)) {
+                    player.drop(aljamicGlassBottle, false);
                 }
             }
 
@@ -44,15 +44,15 @@ public class SleepishwaterBottleItem extends Item {
         return 32;
     }
 
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.DRINK;
     }
 
-    public SoundEvent getEatSound() {
-        return SoundEvents.ENTITY_GENERIC_DRINK;
+    public SoundEvent getEatingSound() {
+        return SoundEvents.GENERIC_DRINK;
     }
 
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        return DrinkHelper.startDrinking(world, player, hand);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        return DrinkHelper.useDrink(world, player, hand);
     }
 }

@@ -25,14 +25,14 @@ import javax.annotation.Nullable;
 public class ShyFabricio extends CreatureEntity {
     public ShyFabricio(EntityType<ShyFabricio> type, World world) {
         super(type, world);
-        this.stepHeight = 1;
+        this.maxUpStep = 1;
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.fromTag(BMTags.Items.SHY_FABRICIO_TEMPT_ITEMS), true));
-        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, LivingEntity.class, 24, 1.6D, 2.6D, (livEntity) -> !(livEntity.getType().isContained(BMTags.EntityTypes.SHY_FABRICIO_FRIENDLIES))));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.of(BMTags.Items.SHY_FABRICIO_TEMPT_ITEMS), true));
+        this.goalSelector.addGoal(2, new AvoidEntityGoal<>(this, LivingEntity.class, 24, 1.6D, 2.6D, (livEntity) -> !(livEntity.getType().is(BMTags.EntityTypes.SHY_FABRICIO_FRIENDLIES))));
         this.goalSelector.addGoal(2, new PanicGoal(this, 2.1D));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
@@ -43,16 +43,14 @@ public class ShyFabricio extends CreatureEntity {
     }
 
     public static AttributeModifierMap.MutableAttribute createShyFabricioAttributes() {
-        return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 20)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
+        return CreatureEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62F;
     }
 
-    public double getYOffset() {
+    public double getMyRidingOffset() {
         return -0.35D;
     }
 
@@ -78,37 +76,37 @@ public class ShyFabricio extends CreatureEntity {
     @Override
     public void tick() {
         super.tick();
-        ItemStack headStack = this.getItemStackFromSlot(EquipmentSlotType.HEAD);
-        boolean acceptableHelmets = headStack.getItem().isIn(BMTags.Items.PROVIDES_WATER_BREATHING);
-        if (acceptableHelmets && !this.areEyesInFluid(FluidTags.WATER)) {
-            this.addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
+        ItemStack headStack = this.getItemBySlot(EquipmentSlotType.HEAD);
+        boolean acceptableHelmets = headStack.getItem().is(BMTags.Items.PROVIDES_WATER_BREATHING);
+        if (acceptableHelmets && !this.isEyeInFluid(FluidTags.WATER)) {
+            this.addEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
     }
 
-    public void livingTick() {
-        this.updateArmSwingProgress();
-        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+    public void aiStep() {
+        this.updateSwingTime();
+        if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
                 this.heal(1);
             }
         }
-        super.livingTick();
+        super.aiStep();
     }
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        spawnData = super.onInitialSpawn(world, difficulty, reason, spawnData, dataTag);
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
+        this.populateDefaultEquipmentSlots(difficulty);
+        this.populateDefaultEquipmentEnchantments(difficulty);
         return spawnData;
     }
 
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
         }
     }
 }

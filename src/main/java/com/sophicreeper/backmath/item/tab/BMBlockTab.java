@@ -12,7 +12,7 @@ public class BMBlockTab extends ItemGroup {
     }
 
     @Override
-    public ItemStack createIcon() {
+    public ItemStack makeIcon() {
         return new ItemStack(AxolotlTest.MEAL_COOKER.get());
     }
 }

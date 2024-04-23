@@ -18,8 +18,8 @@ public class MidTermGreatswordItem extends MidTermSwordItem {
     public MidTermGreatswordItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
         super(tier, attackDamage, swingSpeed, properties);
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Mid-Term Greatsword Damage Modifier", attackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(ATTACK_SPEED_MODIFIER, "Mid-Term Greatsword Swing Speed Modifier", swingSpeed, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Mid-Term Greatsword Damage Modifier", attackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Mid-Term Greatsword Swing Speed Modifier", swingSpeed, AttributeModifier.Operation.ADDITION));
         if (ForgeMod.REACH_DISTANCE.isPresent()) {
             builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mid-Term Greatsword Reach Modifier", BMConfigs.COMMON_CONFIGS.midTermGreatswordReachIncrease.get(),
                     AttributeModifier.Operation.ADDITION));
@@ -28,7 +28,7 @@ public class MidTermGreatswordItem extends MidTermSwordItem {
     }
 
     @Override
-    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlotType slot) {
-        return slot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getAttributeModifiers(slot);
+    public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType slot) {
+        return slot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getDefaultAttributeModifiers(slot);
     }
 }

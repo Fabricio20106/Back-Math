@@ -13,37 +13,37 @@ public class StickyAmaracamelBlock extends BreakableBlock {
         super(properties);
     }
 
-    public void onFallenUpon(World world, BlockPos pos, Entity entity, float distance) {
+    public void fallOn(World world, BlockPos pos, Entity entity, float distance) {
         if (entity.isSuppressingBounce()) {
-            super.onFallenUpon(world, pos, entity, distance);
+            super.fallOn(world, pos, entity, distance);
         } else {
-            entity.onLivingFall(distance, 0);
+            entity.causeFallDamage(distance, 0);
         }
     }
 
-    public void onLanded(IBlockReader reader, Entity entity) {
+    public void updateEntityAfterFallOn(IBlockReader reader, Entity entity) {
         if (entity.isSuppressingBounce()) {
-            super.onLanded(reader, entity);
+            super.updateEntityAfterFallOn(reader, entity);
         } else {
             this.bounceEntity(entity);
         }
     }
 
     private void bounceEntity(Entity entity) {
-        Vector3d vector3D = entity.getMotion();
+        Vector3d vector3D = entity.getDeltaMovement();
         if (vector3D.y < 0) {
             double d0 = entity instanceof LivingEntity ? 1 : 0.8;
-            entity.setMotion(vector3D.x, -vector3D.y * d0, vector3D.z);
+            entity.setDeltaMovement(vector3D.x, -vector3D.y * d0, vector3D.z);
         }
     }
 
-    public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-        double d0 = Math.abs(entity.getMotion().y);
+    public void stepOn(World world, BlockPos pos, Entity entity) {
+        double d0 = Math.abs(entity.getDeltaMovement().y);
         if (d0 < 0.1 && !entity.isSteppingCarefully()) {
             double d1 = 0.4 + d0 * 0.2;
-            entity.setMotion(entity.getMotion().mul(d1, 1, d1));
+            entity.setDeltaMovement(entity.getDeltaMovement().multiply(d1, 1, d1));
         }
 
-        super.onEntityWalk(world, pos, entity);
+        super.stepOn(world, pos, entity);
     }
 }

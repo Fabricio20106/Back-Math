@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
     public InsomniaSophie(EntityType<InsomniaSophie> type, World world) {
         super(type, world);
-        this.experienceValue = 3 + this.world.rand.nextInt(6);
+        this.xpReward = 3 + this.level.random.nextInt(6);
     }
 
     @Override
@@ -59,19 +59,19 @@ public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
     }
 
     public static AttributeModifierMap.MutableAttribute createInsomniaSophieAttributes() {
-        return MonsterEntity.func_234295_eP_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 4).createMutableAttribute(Attributes.MAX_HEALTH, 28).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23f);
+        return MonsterEntity.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 4).add(Attributes.MAX_HEALTH, 28).add(Attributes.FOLLOW_RANGE, 12)
+                .add(Attributes.MOVEMENT_SPEED, 0.23f);
     }
 
     @Override
     public void tick() {
         super.tick();
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
-    public boolean isOnSameTeam(Entity entity) {
-        if (super.isOnSameTeam(entity)) {
+    public boolean isAlliedTo(Entity entity) {
+        if (super.isAlliedTo(entity)) {
             return true;
         } else return entity instanceof ISophieFriendlies;
     }
@@ -101,48 +101,49 @@ public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        this.setEquipmentBasedOnDifficulty(difficulty);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.populateDefaultEquipmentEnchantments(difficulty);
+        this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;
     }
 
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
         }
     }
 
     @Override
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(difficulty);
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity) {
-        if (!super.attackEntityAsMob(entity)) {
+    public boolean doHurtTarget(Entity entity) {
+        if (!super.doHurtTarget(entity)) {
             return false;
         } else {
             if (entity instanceof LivingEntity && !(entity instanceof InsomniaSophie || entity instanceof ArcherInsomniaSophie)) {
-                ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.POISON, 200));
-                ((LivingEntity) entity).addPotionEffect(new EffectInstance(Effects.BLINDNESS, 600));
+                ((LivingEntity) entity).addEffect(new EffectInstance(Effects.POISON, 200));
+                ((LivingEntity) entity).addEffect(new EffectInstance(Effects.BLINDNESS, 600));
             }
             return true;
         }
     }
 
-    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
-        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
-        Entity entity = source.getTrueSource();
+    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
+        Entity entity = source.getEntity();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
-            if (creeper.ableToCauseSkullDrop()) {
+            if (creeper.canDropMobsSkull()) {
                 ItemStack skullStack = this.getSkullDrop();
                 if (!skullStack.isEmpty()) {
-                    creeper.incrementDroppedSkulls();
-                    this.entityDropItem(skullStack);
+                    creeper.increaseDroppedSkulls();
+                    this.spawnAtLocation(skullStack);
                 }
             }
         }

@@ -22,22 +22,22 @@ public class AmaracamelerRenderer extends MobRenderer<Amaracameler, Amaracameler
 
     @Override
     public void render(Amaracameler amaracameler, float yaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight) {
-        this.shadowSize = 0.25F * (float) amaracameler.getAmaracamelerSize();
+        this.shadowRadius = 0.25F * (float) amaracameler.getSize();
         super.render(amaracameler, yaw, partialTicks, stack, buffer, packedLight);
     }
 
     @Override
-    protected void preRenderCallback(Amaracameler amaracameler, MatrixStack matrixStack, float partialTickTime) {
+    protected void scale(Amaracameler amaracameler, MatrixStack matrixStack, float partialTickTime) {
         matrixStack.scale(0.999F, 0.999F, 0.999F);
         matrixStack.translate(0, 0.0010000000474974513, 0);
-        float amaracamelerSize = (float) amaracameler.getAmaracamelerSize();
-        float squishFactor = MathHelper.lerp(partialTickTime, amaracameler.prevSquishFactor, amaracameler.squishFactor) / (amaracamelerSize * 0.5F + 1);
+        float amaracamelerSize = (float) amaracameler.getSize();
+        float squishFactor = MathHelper.lerp(partialTickTime, amaracameler.previousSquishFactor, amaracameler.squishFactor) / (amaracamelerSize * 0.5F + 1);
         float f3 = 1 / (squishFactor + 1);
         matrixStack.scale(f3 * amaracamelerSize, 1 / f3 * amaracamelerSize, f3 * amaracamelerSize);
     }
 
     @Override
-    public ResourceLocation getEntityTexture(Amaracameler amaracameler) {
+    public ResourceLocation getTextureLocation(Amaracameler amaracameler) {
         return BackMath.resourceLoc("textures/entity/amaracameler.png");
     }
 }

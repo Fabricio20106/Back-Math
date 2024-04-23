@@ -33,7 +33,7 @@ logoFile="backmath.png" #optional
 # A text field displayed in the mod UI
 authors="SophiCreeper and JuneTheWoods" #optional
 # The description text for the mod (multi line!) (#mandatory)
-description='''Back Math just received a new update called "Bountifully Expansive", this update includes a bunch of new items, blocks and a few mobs, and for an almost complete changelog, see: assets/backmath/changelogs/changelog_1.8.0.txt'''
+description="Back Math just received a new update called \"Bountifully Expansive\", this update includes a bunch of new items, blocks and a few mobs, and for an almost complete changelog, see: assets/backmath/changelogs/changelog_1.8.0.txt"
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.backmath]] #optional
     # the modid of the dependency
@@ -51,6 +51,6 @@ description='''Back Math just received a new update called "Bountifully Expansiv
     modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[1.16.4,1.16.5,1.17)"
+    versionRange="[1.16.4,1.16.5)"
     ordering="NONE"
     side="BOTH"

@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class WandererSophie extends CreatureEntity implements ISophieFriendlies {
-    private static final DataParameter<Integer> VARIANT = EntityDataManager.createKey(WandererSophie.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(WandererSophie.class, DataSerializers.INT);
     public double prevChasingPosX;
     public double prevChasingPosY;
     public double prevChasingPosZ;
@@ -43,9 +43,9 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     }
 
     @Override
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(VARIANT, 0);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(VARIANT, 0);
     }
 
     @Override
@@ -53,56 +53,56 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
         super.tick();
         this.updateCape();
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
-    public void livingTick() {
-        this.updateArmSwingProgress();
+    public void aiStep() {
+        this.updateSwingTime();
 
         this.prevCameraYaw = this.cameraYaw;
 
         float f;
-        if (this.onGround && !this.getShouldBeDead() && !this.isSwimming()) {
-            f = Math.min(0.1F, MathHelper.sqrt(horizontalMag(this.getMotion())));
+        if (this.onGround && !this.isDeadOrDying() && !this.isSwimming()) {
+            f = Math.min(0.1F, MathHelper.sqrt(getHorizontalDistanceSqr(this.getDeltaMovement())));
         } else {
             f = 0;
         }
         this.cameraYaw += (f - this.cameraYaw) * 0.4F;
 
-        if (this.world.getDifficulty() == Difficulty.PEACEFUL && this.world.getGameRules().getBoolean(GameRules.NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.ticksExisted % 20 == 0) {
+        if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
+            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
                 this.heal(1);
             }
         }
-        super.livingTick();
+        super.aiStep();
     }
 
-    public double getYOffset() {
+    public double getMyRidingOffset() {
         return -0.35D;
     }
 
-    public void writeAdditional(CompoundNBT tag) {
-        super.writeAdditional(tag);
+    public void addAdditionalSaveData(CompoundNBT tag) {
+        super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getVariant());
         // tag.putBoolean("CustomNameVisible", true);
     }
 
-    public void readAdditional(CompoundNBT tag) {
-        super.readAdditional(tag);
+    public void readAdditionalSaveData(CompoundNBT tag) {
+        super.readAdditionalSaveData(tag);
         this.setVariant(tag.getInt("Variant"));
         // this.setCustomNameVisible(tag.getBoolean("CustomNameVisible"));
     }
 
     public int getVariant() {
-        return MathHelper.clamp(this.dataManager.get(VARIANT), 0, 15);
+        return MathHelper.clamp(this.entityData.get(VARIANT), 0, 15);
     }
 
     public void setVariant(int variant) {
-        this.dataManager.set(VARIANT, variant);
+        this.entityData.set(VARIANT, variant);
     }
 
-    public boolean isOnSameTeam(Entity entity) {
-        if (super.isOnSameTeam(entity)) {
+    public boolean isAlliedTo(Entity entity) {
+        if (super.isAlliedTo(entity)) {
             return true;
         } else return entity instanceof ISophieFriendlies;
     }
@@ -110,15 +110,15 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.fromTag(BMTags.Items.WANDERER_SOPHIE_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.of(BMTags.Items.WANDERER_SOPHIE_TEMPT_ITEMS), false));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.applyEntityAI();
+        this.addAttackTargets();
         super.registerGoals();
     }
 
-    protected void applyEntityAI() {
+    protected void addAttackTargets() {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
@@ -133,8 +133,8 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     public static AttributeModifierMap.MutableAttribute createWandererSophieAttributes() {
         // Old wanderer Sophie health was 70.
         // Old new wanderer Sophie health was 35.
-        return CreatureEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 20).createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3).createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.25F);
+        return CreatureEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.ATTACK_KNOCKBACK, 0.25F).add(Attributes.FOLLOW_RANGE, 12)
+                .add(Attributes.ATTACK_DAMAGE, 3).add(Attributes.MOVEMENT_SPEED, 0.25F);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -143,19 +143,19 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        spawnData = super.onInitialSpawn(world, difficulty, reason, spawnData, dataTag);
-        this.setVariant(this.rand.nextInt(16));
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        this.setEquipmentBasedOnDifficulty(difficulty);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
+        this.setVariant(this.random.nextInt(16));
+        this.populateDefaultEquipmentEnchantments(difficulty);
+        this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;
     }
 
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
             this.prevCameraYaw = this.cameraYaw;
             this.cameraYaw = 0;
         }
@@ -179,37 +179,37 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
         this.prevChasingPosX = this.chasingPosX;
         this.prevChasingPosY = this.chasingPosY;
         this.prevChasingPosZ = this.chasingPosZ;
-        double d0 = this.getPosX() - this.chasingPosX;
-        double d1 = this.getPosY() - this.chasingPosY;
-        double d2 = this.getPosZ() - this.chasingPosZ;
+        double d0 = this.getX() - this.chasingPosX;
+        double d1 = this.getY() - this.chasingPosY;
+        double d2 = this.getZ() - this.chasingPosZ;
 
         if (d0 > 10) {
-            this.chasingPosX = this.getPosX();
+            this.chasingPosX = this.getX();
             this.prevChasingPosX = this.chasingPosX;
         }
 
         if (d2 > 10) {
-            this.chasingPosZ = this.getPosZ();
+            this.chasingPosZ = this.getZ();
             this.prevChasingPosZ = this.chasingPosZ;
         }
 
         if (d1 > 10) {
-            this.chasingPosY = this.getPosY();
+            this.chasingPosY = this.getY();
             this.prevChasingPosY = this.chasingPosY;
         }
 
         if (d0 < -10) {
-            this.chasingPosX = this.getPosX();
+            this.chasingPosX = this.getX();
             this.prevChasingPosX = this.chasingPosX;
         }
 
         if (d2 < -10) {
-            this.chasingPosZ = this.getPosZ();
+            this.chasingPosZ = this.getZ();
             this.prevChasingPosZ = this.chasingPosZ;
         }
 
         if (d1 < -10) {
-            this.chasingPosY = this.getPosY();
+            this.chasingPosY = this.getY();
             this.prevChasingPosY = this.chasingPosY;
         }
 
@@ -222,7 +222,7 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     // Returns: If this mob can be leashed.
     // Old Back Math shenanigans.
     @Override
-    public boolean canBeLeashedTo(PlayerEntity player) {
+    public boolean canBeLeashed(PlayerEntity player) {
         return false;
     }
 
@@ -232,43 +232,43 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     }
 
     @Override
-    public boolean attackEntityAsMob(Entity entity) {
+    public boolean doHurtTarget(Entity entity) {
         if (entity instanceof LivingEntity && !entity.isInvulnerableTo(DamageSource.IN_FIRE)) {
             ItemStack devilSword = new ItemStack(AxolotlTest.DEVIL_SWORD.get());
-            if (this.getItemStackFromSlot(EquipmentSlotType.MAINHAND).equals(devilSword)) {
+            if (this.getItemBySlot(EquipmentSlotType.MAINHAND).equals(devilSword)) {
                 LivingEntity livEntity = (LivingEntity) entity;
-                livEntity.setFire(5);
+                livEntity.setSecondsOnFire(5);
             }
         }
-        return super.attackEntityAsMob(entity);
+        return super.doHurtTarget(entity);
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        super.setEquipmentBasedOnDifficulty(difficulty);
-        int i = this.rand.nextInt(3);
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(difficulty);
+        int i = this.random.nextInt(3);
         if (i == 0) {
             // Variant 1: Angelic Sword, Angelic Chestplate and Cat Tiara
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
-            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.CAT_TIARA.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()));
+            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
+            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.CAT_TIARA.get()));
+            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()));
         } else if (i == 1) {
             // Variant 2: Devil Sword, Devil Chestplate and Tito
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.DEVIL_SWORD.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()));
-            this.setItemStackToSlot(EquipmentSlotType.OFFHAND, new ItemStack(AxolotlTest.TITO.get()));
+            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.DEVIL_SWORD.get()));
+            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()));
+            this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(AxolotlTest.TITO.get()));
         } else {
             // Variant 3: Hardened Amaracamel Helmet, Hardened Amaracamel Chestplate and Butter Sword
-            this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_HELMET.get()));
-            this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_CHESTPLATE.get()));
+            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_HELMET.get()));
+            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_CHESTPLATE.get()));
 
             ItemStack butterSword = new ItemStack(AxolotlTest.BUTTER_SWORD.get());
             CompoundNBT tag = butterSword.getOrCreateTag();
             tag.putInt("stored_experience", 55);
-            this.setItemStackToSlot(EquipmentSlotType.MAINHAND, butterSword);
+            this.setItemSlot(EquipmentSlotType.MAINHAND, butterSword);
         }
     }
 
-    public static boolean canSophieSpawnOn(EntityType<? extends CreatureEntity> termianFriendly, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
-        return world.getBlockState(pos.down()).isIn(BMTags.Blocks.SOPHIES_SPAWNABLE_ON) && world.getLightSubtracted(pos, 0) > 8;
+    public static boolean checkSophieSpawnRules(EntityType<? extends CreatureEntity> termianFriendly, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        return world.getBlockState(pos.below()).is(BMTags.Blocks.SOPHIES_SPAWNABLE_ON) && world.getRawBrightness(pos, 0) > 8;
     }
 }

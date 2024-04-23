@@ -8,11 +8,11 @@ import net.minecraft.item.ItemStack;
 public class GlisteringCrystallizerMaterialItem extends Item {
     public GlisteringCrystallizerMaterialItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new CrystallizerRecipesDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new CrystallizerRecipesDispenseBehavior());
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 }

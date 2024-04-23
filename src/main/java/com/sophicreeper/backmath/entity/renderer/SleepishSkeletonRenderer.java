@@ -13,15 +13,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class SleepishSkeletonRenderer extends BipedRenderer<AbstractSkeletonEntity, SkeletonModel<AbstractSkeletonEntity>> {
-    private static final ResourceLocation SLEEPISH_SKELETON_LOCATION = BackMath.resourceLoc("textures/entity/skeleton/sleepish_skeleton.png");
-
     public SleepishSkeletonRenderer(EntityRendererManager rendererManager) {
         super(rendererManager, new SkeletonModel<>(), 0.5F);
         this.addLayer(new BipedArmorLayer<>(this, new SkeletonModel<>(0.5F, true), new SkeletonModel<>(1.0F, true)));
         this.addLayer(new ElytraLayer<>(this));
     }
 
-    public ResourceLocation getEntityTexture(AbstractSkeletonEntity aljamicBones) {
-        return SLEEPISH_SKELETON_LOCATION;
+    public ResourceLocation getTextureLocation(AbstractSkeletonEntity sleepishSkeleton) {
+        return BackMath.resourceLoc("textures/entity/skeleton/sleepish_skeleton.png");
     }
 }

@@ -24,17 +24,17 @@ public class BMStructureGeneration {
         List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
         if (Objects.equals(BMBiomes.ORIGINAL_BACK_FIELDS.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.MODIFIED_BACK_FIELDS.get().getRegistryName(), event.getName())) {
-            if (BMConfigs.COMMON_CONFIGS.sophieTowerGeneration.get()) structures.add(() -> BMStructures.SOPHIE_TOWER.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
-            if (BMConfigs.COMMON_CONFIGS.angerDungeonsInBackFields.get()) event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ANGER_DUNGEON);
+            if (BMConfigs.COMMON_CONFIGS.sophieTowerGeneration.get()) structures.add(() -> BMStructures.SOPHIE_TOWER.get().configured(IFeatureConfig.NONE));
+            if (BMConfigs.COMMON_CONFIGS.angerDungeonsInBackFields.get()) event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ANGER_DUNGEON);
         }
 
         for (Biome biome : ALJAN_BIOMES) {
             if (!(Objects.equals(biome.getRegistryName(), event.getName())) && event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND) {
-                if (BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonGeneration.get()) structures.add(() -> BMStructures.FABRICIO_HIDEOUT_DUNGEON.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+                if (BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonGeneration.get()) structures.add(() -> BMStructures.FABRICIO_HIDEOUT_DUNGEON.get().configured(IFeatureConfig.NONE));
             }
 
             if (Objects.equals(biome.getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.aljanDungeonsInAljan.get()) {
-                event.getGeneration().withFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ALJAN_DUNGEON);
+                event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ALJAN_DUNGEON);
             }
         }
     }

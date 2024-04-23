@@ -13,15 +13,15 @@ import net.minecraft.world.World;
 public class LagustaBagItem extends Item {
     public LagustaBagItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new BagDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new BagDispenseBehavior());
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.EMPTY_LAGUSTA_BAG.get()));
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.LAGUSTA.get()));
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        player.addItem(new ItemStack(AxolotlTest.EMPTY_LAGUSTA_BAG.get()));
+        player.addItem(new ItemStack(AxolotlTest.LAGUSTA.get()));
         heldItem.shrink(1);
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 }

@@ -24,13 +24,13 @@ import java.util.Random;
 
 public class AngerDungeonFeature extends Feature<NoFeatureConfig> {
     private static final EntityType<?>[] SPAWNER_ENTITIES = new EntityType[] {BMEntities.ANGRY_SOPHIE.get(), BMEntities.ANGRY_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get()};
-    private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.getDefaultState();
+    private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.defaultBlockState();
 
     public AngerDungeonFeature(Codec<NoFeatureConfig> codec) {
         super(codec);
     }
 
-    public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
+    public boolean place(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
         int j = rand.nextInt(2) + 2;
         int k = -j - 1;
         int l = j + 1;
@@ -42,7 +42,7 @@ public class AngerDungeonFeature extends Feature<NoFeatureConfig> {
         for(int k2 = k; k2 <= l; ++k2) {
             for(int l2 = -1; l2 <= 4; ++l2) {
                 for(int i3 = l1; i3 <= i2; ++i3) {
-                    BlockPos pos1 = pos.add(k2, l2, i3);
+                    BlockPos pos1 = pos.offset(k2, l2, i3);
                     Material material = reader.getBlockState(pos1).getMaterial();
                     boolean flag = material.isSolid();
                     if (l2 == -1 && !flag) {
@@ -53,7 +53,7 @@ public class AngerDungeonFeature extends Feature<NoFeatureConfig> {
                         return false;
                     }
 
-                    if ((k2 == k || k2 == l || i3 == l1 || i3 == i2) && l2 == 0 && reader.isAirBlock(pos1) && reader.isAirBlock(pos1.up())) {
+                    if ((k2 == k || k2 == l || i3 == l1 || i3 == i2) && l2 == 0 && reader.isEmptyBlock(pos1) && reader.isEmptyBlock(pos1.above())) {
                         ++j2;
                     }
                 }
@@ -64,19 +64,19 @@ public class AngerDungeonFeature extends Feature<NoFeatureConfig> {
             for(int k3 = k; k3 <= l; ++k3) {
                 for(int i4 = 3; i4 >= -1; --i4) {
                     for(int k4 = l1; k4 <= i2; ++k4) {
-                        BlockPos pos1 = pos.add(k3, i4, k4);
+                        BlockPos pos1 = pos.offset(k3, i4, k4);
                         BlockState state = reader.getBlockState(pos1);
                         if (k3 != k && i4 != -1 && k4 != l1 && k3 != l && i4 != 4 && k4 != i2) {
-                            if (!state.isIn(Blocks.CHEST) && !state.isIn(Blocks.SPAWNER)) {
-                                reader.setBlockState(pos1, CAVE_AIR, 2);
+                            if (!state.is(Blocks.CHEST) && !state.is(Blocks.SPAWNER)) {
+                                reader.setBlock(pos1, CAVE_AIR, 2);
                             }
-                        } else if (pos1.getY() >= 0 && !reader.getBlockState(pos1.down()).getMaterial().isSolid()) {
-                            reader.setBlockState(pos1, CAVE_AIR, 2);
-                        } else if (state.getMaterial().isSolid() && !state.isIn(Blocks.CHEST)) {
+                        } else if (pos1.getY() >= 0 && !reader.getBlockState(pos1.below()).getMaterial().isSolid()) {
+                            reader.setBlock(pos1, CAVE_AIR, 2);
+                        } else if (state.getMaterial().isSolid() && !state.is(Blocks.CHEST)) {
                             if (i4 == -1 && rand.nextInt(4) != 0) {
-                                reader.setBlockState(pos1, BMBlocks.MOSSY_ANGELIC_BRICKS.get().getDefaultState(), 2);
+                                reader.setBlock(pos1, BMBlocks.MOSSY_ANGELIC_BRICKS.get().defaultBlockState(), 2);
                             } else {
-                                reader.setBlockState(pos1, BMBlocks.ANGELIC_BRICKS.get().getDefaultState(), 2);
+                                reader.setBlock(pos1, BMBlocks.ANGELIC_BRICKS.get().defaultBlockState(), 2);
                             }
                         }
                     }
@@ -89,17 +89,17 @@ public class AngerDungeonFeature extends Feature<NoFeatureConfig> {
                     int i5 = pos.getY();
                     int j5 = pos.getZ() + rand.nextInt(k1 * 2 + 1) - k1;
                     BlockPos pos1 = new BlockPos(l4, i5, j5);
-                    if (reader.isAirBlock(pos1)) {
+                    if (reader.isEmptyBlock(pos1)) {
                         int j3 = 0;
 
                         for(Direction direction : Direction.Plane.HORIZONTAL) {
-                            if (reader.getBlockState(pos1.offset(direction)).getMaterial().isSolid()) {
+                            if (reader.getBlockState(pos1.relative(direction)).getMaterial().isSolid()) {
                                 ++j3;
                             }
                         }
 
                         if (j3 == 1) {
-                            reader.setBlockState(pos1, StructurePiece.correctFacing(reader, pos1, Blocks.CHEST.getDefaultState()), 2);
+                            reader.setBlock(pos1, StructurePiece.reorient(reader, pos1, Blocks.CHEST.defaultBlockState()), 2);
                             LockableLootTileEntity.setLootTable(reader, rand, pos1, BMResourceLocations.ANGER_DUNGEON_LOOT);
                             break;
                         }
@@ -107,10 +107,10 @@ public class AngerDungeonFeature extends Feature<NoFeatureConfig> {
                 }
             }
 
-            reader.setBlockState(pos, Blocks.SPAWNER.getDefaultState(), 2);
-            TileEntity blockEntity = reader.getTileEntity(pos);
+            reader.setBlock(pos, Blocks.SPAWNER.defaultBlockState(), 2);
+            TileEntity blockEntity = reader.getBlockEntity(pos);
             if (blockEntity instanceof MobSpawnerTileEntity) {
-                ((MobSpawnerTileEntity) blockEntity).getSpawnerBaseLogic().setEntityType(SPAWNER_ENTITIES[rand.nextInt(SPAWNER_ENTITIES.length)]);
+                ((MobSpawnerTileEntity) blockEntity).getSpawner().setEntityId(SPAWNER_ENTITIES[rand.nextInt(SPAWNER_ENTITIES.length)]);
             } else {
                 BackMath.LOGGER.error("Back Math: Failed to fetch Spawner block entity at ({}, {}, {}).", pos.getX(), pos.getY(), pos.getZ());
             }

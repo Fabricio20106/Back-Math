@@ -13,15 +13,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class AljamicBonesRenderer extends BipedRenderer<AbstractSkeletonEntity, SkeletonModel<AbstractSkeletonEntity>> {
-    private static final ResourceLocation ALJAMIC_BONES_LOCATION = BackMath.resourceLoc("textures/entity/skeleton/aljamic_bones.png");
-
     public AljamicBonesRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, new SkeletonModel<>(), 0.5f);
-        this.addLayer(new BipedArmorLayer<>(this, new SkeletonModel<>(0.5f, true), new SkeletonModel<>(1, true)));
+        super(rendererManager, new SkeletonModel<>(), 0.5F);
+        this.addLayer(new BipedArmorLayer<>(this, new SkeletonModel<>(0.5F, true), new SkeletonModel<>(1, true)));
         this.addLayer(new ElytraLayer<>(this));
     }
 
-    public ResourceLocation getEntityTexture(AbstractSkeletonEntity aljamicBones) {
-        return ALJAMIC_BONES_LOCATION;
+    public ResourceLocation getTextureLocation(AbstractSkeletonEntity aljamicBones) {
+        return BackMath.resourceLoc("textures/entity/skeleton/aljamic_bones.png");
     }
 }

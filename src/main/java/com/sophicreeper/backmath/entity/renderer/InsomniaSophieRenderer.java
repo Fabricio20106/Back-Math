@@ -16,7 +16,7 @@ public class InsomniaSophieRenderer extends BMBipedRenderer<InsomniaSophie> {
         this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
     }
 
-    public ResourceLocation getEntityTexture(InsomniaSophie insomniaSophie) {
+    public ResourceLocation getTextureLocation(InsomniaSophie insomniaSophie) {
         return BackMath.resourceLoc("textures/entity/insomnia_sophie.png");
     }
 }

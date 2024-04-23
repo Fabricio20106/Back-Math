@@ -25,20 +25,20 @@ import net.minecraft.world.server.ServerWorld;
 public class JantiquifiedPearlItem extends Item {
     public JantiquifiedPearlItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new OptionalDispenseBehavior() {
+        DispenserBlock.registerBehavior(this, new OptionalDispenseBehavior() {
             @Override
-            protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
-                BlockPos pos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
-                BlockPos strongholdPos = source.getWorld().getChunkProvider().getChunkGenerator().func_235956_a_(source.getWorld(), Structure.STRONGHOLD, source.getBlockPos(), 100, false);
+            protected ItemStack execute(IBlockSource source, ItemStack stack) {
+                BlockPos pos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+                BlockPos strongholdPos = source.getLevel().getChunkSource().getGenerator().findNearestMapFeature(source.getLevel(), Structure.STRONGHOLD, source.getPos(), 100, false);
                 if (strongholdPos != null) {
-                    EyeOfEnderEntity enderEye = new EyeOfEnderEntity(source.getWorld(), pos.getX(), pos.getY(), pos.getZ());
-                    enderEye.func_213863_b(new ItemStack(AxolotlTest.JANTIQUIFIED_PEARL.get()));
-                    enderEye.moveTowards(strongholdPos);
-                    source.getWorld().addEntity(enderEye);
-                    source.getWorld().playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-                    source.getWorld().playEvent(null, 1003, source.getBlockPos(), 0);
+                    EyeOfEnderEntity enderEye = new EyeOfEnderEntity(source.getLevel(), pos.getX(), pos.getY(), pos.getZ());
+                    enderEye.setItem(new ItemStack(AxolotlTest.JANTIQUIFIED_PEARL.get()));
+                    enderEye.signalTo(strongholdPos);
+                    source.getLevel().addFreshEntity(enderEye);
+                    source.getLevel().playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+                    source.getLevel().levelEvent(null, 1003, source.getPos(), 0);
                     stack.shrink(1);
-                    setSuccessful(true);
+                    setSuccess(true);
                 }
                 return stack;
             }
@@ -46,31 +46,31 @@ public class JantiquifiedPearlItem extends Item {
     }
 
     // Called when this item is used when targeting a block.
-    public ActionResultType onItemUse(ItemUseContext context) {
-        World world = context.getWorld();
-        BlockPos pos = context.getPos();
+    public ActionResultType useOn(ItemUseContext context) {
+        World world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
         BlockState state = world.getBlockState(pos);
-        if (state.isIn(Blocks.END_PORTAL_FRAME) && !state.get(EndPortalFrameBlock.EYE)) {
-            if (world.isRemote) {
+        if (state.is(Blocks.END_PORTAL_FRAME) && !state.getValue(EndPortalFrameBlock.HAS_EYE)) {
+            if (world.isClientSide) {
                 return ActionResultType.SUCCESS;
             } else {
-                BlockState filledPortalFrame = state.with(EndPortalFrameBlock.EYE, true);
-                Block.nudgeEntitiesWithNewState(state, filledPortalFrame, world, pos);
-                world.setBlockState(pos, filledPortalFrame, 2);
-                world.updateComparatorOutputLevel(pos, Blocks.END_PORTAL_FRAME);
-                context.getItem().shrink(1);
-                world.playEvent(1503, pos, 0);
-                BlockPattern.PatternHelper endPortalPatternHelper = EndPortalFrameBlock.getOrCreatePortalShape().match(world, pos);
+                BlockState filledPortalFrame = state.setValue(EndPortalFrameBlock.HAS_EYE, true);
+                Block.pushEntitiesUp(state, filledPortalFrame, world, pos);
+                world.setBlock(pos, filledPortalFrame, 2);
+                world.updateNeighbourForOutputSignal(pos, Blocks.END_PORTAL_FRAME);
+                context.getItemInHand().shrink(1);
+                world.levelEvent(1503, pos, 0);
+                BlockPattern.PatternHelper endPortalPatternHelper = EndPortalFrameBlock.getOrCreatePortalShape().find(world, pos);
                 if (endPortalPatternHelper != null) {
-                    BlockPos frontTopLeftPos = endPortalPatternHelper.getFrontTopLeft().add(-3, 0, -3);
+                    BlockPos frontTopLeftPos = endPortalPatternHelper.getFrontTopLeft().offset(-3, 0, -3);
 
                     for(int i = 0; i < 3; ++i) {
                         for(int j = 0; j < 3; ++j) {
-                            world.setBlockState(frontTopLeftPos.add(i, 0, j), Blocks.END_PORTAL.getDefaultState(), 2);
+                            world.setBlock(frontTopLeftPos.offset(i, 0, j), Blocks.END_PORTAL.defaultBlockState(), 2);
                         }
                     }
 
-                    world.playBroadcastSound(1038, frontTopLeftPos.add(1, 0, 1), 0);
+                    world.globalLevelEvent(1038, frontTopLeftPos.offset(1, 0, 1), 0);
                 }
 
                 return ActionResultType.CONSUME;
@@ -81,37 +81,37 @@ public class JantiquifiedPearlItem extends Item {
     }
 
     // Called to trigger the item's "innate" right-click behavior. To handle when this item is used on a block, see "onItemUse".
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        ItemStack handStack = player.getHeldItem(hand);
-        BlockRayTraceResult hitResult = rayTrace(world, player, RayTraceContext.FluidMode.NONE);
-        if (hitResult.getType() == RayTraceResult.Type.BLOCK && world.getBlockState(hitResult.getPos()).isIn(Blocks.END_PORTAL_FRAME)) {
-            return ActionResult.resultPass(handStack);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        ItemStack handStack = player.getItemInHand(hand);
+        BlockRayTraceResult hitResult = getPlayerPOVHitResult(world, player, RayTraceContext.FluidMode.NONE);
+        if (hitResult.getType() == RayTraceResult.Type.BLOCK && world.getBlockState(hitResult.getBlockPos()).is(Blocks.END_PORTAL_FRAME)) {
+            return ActionResult.pass(handStack);
         } else {
-            player.setActiveHand(hand);
+            player.startUsingItem(hand);
             if (world instanceof ServerWorld) {
-                BlockPos strongholdPos = ((ServerWorld) world).getChunkProvider().getChunkGenerator().func_235956_a_((ServerWorld) world, Structure.STRONGHOLD, player.getPosition(), 100, false);
+                BlockPos strongholdPos = ((ServerWorld) world).getChunkSource().getGenerator().findNearestMapFeature((ServerWorld) world, Structure.STRONGHOLD, player.blockPosition(), 100, false);
                 if (strongholdPos != null) {
-                    EyeOfEnderEntity enderEye = new EyeOfEnderEntity(world, player.getPosX(), player.getPosYHeight(0.5D), player.getPosZ());
-                    enderEye.func_213863_b(handStack);
-                    enderEye.moveTowards(strongholdPos);
-                    world.addEntity(enderEye);
+                    EyeOfEnderEntity enderEye = new EyeOfEnderEntity(world, player.getX(), player.getY(0.5D), player.getZ());
+                    enderEye.setItem(handStack);
+                    enderEye.signalTo(strongholdPos);
+                    world.addFreshEntity(enderEye);
                     if (player instanceof ServerPlayerEntity) {
                         CriteriaTriggers.USED_ENDER_EYE.trigger((ServerPlayerEntity) player, strongholdPos);
                     }
 
-                    world.playSound(null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
-                    world.playEvent(null, 1003, player.getPosition(), 0);
-                    if (!player.abilities.isCreativeMode) {
+                    world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
+                    world.levelEvent(null, 1003, player.blockPosition(), 0);
+                    if (!player.abilities.instabuild) {
                         handStack.shrink(1);
                     }
 
-                    player.addStat(Stats.ITEM_USED.get(this));
+                    player.awardStat(Stats.ITEM_USED.get(this));
                     player.swing(hand, true);
-                    return ActionResult.resultSuccess(handStack);
+                    return ActionResult.success(handStack);
                 }
             }
 
-            return ActionResult.resultConsume(handStack);
+            return ActionResult.consume(handStack);
         }
     }
 }

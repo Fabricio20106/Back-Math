@@ -16,21 +16,21 @@ public class MidTermSpareySwordItem extends SwordItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity target) {
-        if (target.getType().isContained(BMTags.EntityTypes.SPAREY_EFFECTIVES)) {
-            player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 200, 1));
+        if (target.getType().is(BMTags.EntityTypes.SPAREY_EFFECTIVES)) {
+            player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 200, 1));
             // Gives the sword user Strength II effect for 10 secs.
         } else {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
             // Gives the sword user Weakness III effect for 2.5 secs (or 3 secs rounded).
         }
-        if (target.getType().isContained(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
+        if (target.getType().is(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
             // Gives Weakness LXIII (63) for 30 secs.
         }
         return super.onLeftClickEntity(stack, player, target);

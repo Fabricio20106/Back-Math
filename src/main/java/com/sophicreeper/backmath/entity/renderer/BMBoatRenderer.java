@@ -22,43 +22,43 @@ public class BMBoatRenderer extends EntityRenderer<BMBoat> {
 
     public BMBoatRenderer(EntityRendererManager renderManager) {
         super(renderManager);
-        this.shadowSize = 0.8F;
+        this.shadowRadius = 0.8F;
     }
 
     @Override
     public void render(BMBoat boat, float entityYaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight) {
-        stack.push();
+        stack.pushPose();
         stack.translate(0, 0.375D, 0);
-        stack.rotate(Vector3f.YP.rotationDegrees(180 - entityYaw));
-        float hurtTime = (float) boat.getTimeSinceHit() - partialTicks;
-        float damage = boat.getDamageTaken() - partialTicks;
+        stack.mulPose(Vector3f.YP.rotationDegrees(180 - entityYaw));
+        float hurtTime = (float) boat.getHurtTime() - partialTicks;
+        float damage = boat.getDamage() - partialTicks;
         if (damage < 0) damage = 0;
 
         if (hurtTime > 0) {
-            stack.rotate(Vector3f.XP.rotationDegrees(MathHelper.sin(hurtTime) * hurtTime * damage / 10 * (float) boat.getForwardDirection()));
+            stack.mulPose(Vector3f.XP.rotationDegrees(MathHelper.sin(hurtTime) * hurtTime * damage / 10 * (float) boat.getHurtDir()));
         }
 
-        float rockingAngle = boat.getRockingAngle(partialTicks);
-        if (!MathHelper.epsilonEquals(rockingAngle, 0)) {
-            stack.rotate(new Quaternion(new Vector3f(1, 0, 1), boat.getRockingAngle(partialTicks), true));
+        float bubbleAngle = boat.getBubbleAngle(partialTicks);
+        if (!MathHelper.equal(bubbleAngle, 0)) {
+            stack.mulPose(new Quaternion(new Vector3f(1, 0, 1), boat.getBubbleAngle(partialTicks), true));
         }
 
         stack.scale(-1, -1, 1);
-        stack.rotate(Vector3f.YP.rotationDegrees(90));
-        this.model.setRotationAngles(boat, partialTicks, 0, -0.1F, 0, 0);
-        IVertexBuilder vertexBuilder = buffer.getBuffer(this.model.getRenderType(this.getEntityTexture(boat)));
-        this.model.render(stack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
-        if (!boat.canSwim()) {
-            IVertexBuilder vertexBuilder1 = buffer.getBuffer(RenderType.getWaterMask());
-            this.model.func_228245_c_().render(stack, vertexBuilder1, packedLight, OverlayTexture.NO_OVERLAY);
+        stack.mulPose(Vector3f.YP.rotationDegrees(90));
+        this.model.setupAnim(boat, partialTicks, 0, -0.1F, 0, 0);
+        IVertexBuilder vertexBuilder = buffer.getBuffer(this.model.renderType(this.getTextureLocation(boat)));
+        this.model.renderToBuffer(stack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+        if (!boat.isUnderWater()) {
+            IVertexBuilder vertexBuilder1 = buffer.getBuffer(RenderType.waterMask());
+            this.model.waterPatch().render(stack, vertexBuilder1, packedLight, OverlayTexture.NO_OVERLAY);
         }
 
-        stack.pop();
+        stack.popPose();
         super.render(boat, entityYaw, partialTicks, stack, buffer, packedLight);
     }
 
     @Override
-    public ResourceLocation getEntityTexture(BMBoat boat) {
+    public ResourceLocation getTextureLocation(BMBoat boat) {
         switch (boat.getWoodType()) {
             case "aljanwood":
             default:

@@ -18,15 +18,15 @@ public class SpareySwordItem extends SwordItem {
     // When you hit an entity
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity hitTarget) {
-        if (hitTarget.getType().isContained(BMTags.EntityTypes.SPAREY_EFFECTIVES)) {
-            player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 200, 1));
+        if (hitTarget.getType().is(BMTags.EntityTypes.SPAREY_EFFECTIVES)) {
+            player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 200, 1));
             // Gives Strength II effect for 10 secs.
         } else {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
             // Gives Weakness III effect for 2.5 secs, but it rounds it up to 3 secs.
         }
-        if (hitTarget.getType().isContained(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
+        if (hitTarget.getType().is(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
             // Gives Weakness LXIII (63) for 30 secs.
         }
         return super.onLeftClickEntity(stack, player, hitTarget);

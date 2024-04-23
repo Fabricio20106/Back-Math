@@ -13,15 +13,15 @@ import static com.sophicreeper.backmath.block.custom.AljanPortalStandBlock.WATER
 
 public class JanticalDispenseBehavior extends OptionalDispenseBehavior {
     @Override
-    protected ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
-        BlockPos pos = source.getBlockPos().offset(source.getBlockState().get(DispenserBlock.FACING));
-        BlockState state = source.getWorld().getBlockState(pos);
-        setSuccessful(true);
-        if (state.isIn(BMBlocks.ALJAN_PORTAL_STAND.get()) && !state.get(JANTICAL)) {
-            source.getWorld().setBlockState(pos, state.with(WATERLOGGED, state.get(WATERLOGGED)).with(JANTICAL, true));
+    protected ItemStack execute(IBlockSource source, ItemStack stack) {
+        BlockPos pos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
+        BlockState state = source.getLevel().getBlockState(pos);
+        setSuccess(true);
+        if (state.is(BMBlocks.ALJAN_PORTAL_STAND.get()) && !state.getValue(JANTICAL)) {
+            source.getLevel().setBlockAndUpdate(pos, state.setValue(WATERLOGGED, state.getValue(WATERLOGGED)).setValue(JANTICAL, true));
             stack.shrink(1);
         } else {
-            return super.dispenseStack(source, stack);
+            return super.execute(source, stack);
         }
         return stack;
     }

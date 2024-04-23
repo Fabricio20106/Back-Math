@@ -10,6 +10,6 @@ import java.util.function.Supplier;
 public class BMBucketItem extends BucketItem {
     public BMBucketItem(Supplier<? extends Fluid> fluid, Properties properties) {
         super(fluid, properties);
-        DispenserBlock.registerDispenseBehavior(this, new BucketDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new BucketDispenseBehavior());
     }
 }

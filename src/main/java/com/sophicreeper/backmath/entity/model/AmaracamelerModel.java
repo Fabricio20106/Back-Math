@@ -27,12 +27,11 @@ public class AmaracamelerModel<T extends Entity> extends SegmentedModel<T> {
         } else {
             this.slimeBodies.addBox(-4, 16, -4, 8, 8, 8);
         }
-
     }
 
-    public void setRotationAngles(T amaracameler, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {}
+    public void setupAnim(T amaracameler, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {}
 
-    public Iterable<ModelRenderer> getParts() {
+    public Iterable<ModelRenderer> parts() {
         return ImmutableList.of(this.slimeBodies, this.slimeRightEye, this.slimeLeftEye, this.slimeMouth);
     }
 }

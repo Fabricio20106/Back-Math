@@ -21,50 +21,50 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nonnull;
 
 public class BMBoat extends BoatEntity {
-    private static final DataParameter<String> WOOD_TYPE = EntityDataManager.createKey(BMBoat.class, DataSerializers.STRING);
+    private static final DataParameter<String> WOOD_TYPE = EntityDataManager.defineId(BMBoat.class, DataSerializers.STRING);
 
     public BMBoat(EntityType<? extends BoatEntity> type, World world) {
         super(type, world);
-        this.preventEntitySpawning = true;
+        this.blocksBuilding = true;
     }
 
     public BMBoat(World world, double x, double y, double z) {
         this(BMEntities.BACK_MATH_BOAT.get(), world);
-        this.setPosition(x, y, z);
-        this.setMotion(Vector3d.ZERO);
-        this.prevPosX = x;
-        this.prevPosY = y;
-        this.prevPosZ = z;
+        this.setPos(x, y, z);
+        this.setDeltaMovement(Vector3d.ZERO);
+        this.xo = x;
+        this.yo = y;
+        this.zo = z;
     }
 
     @Override
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(WOOD_TYPE, "aljanwood");
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(WOOD_TYPE, "aljanwood");
     }
 
     @Override
-    protected void readAdditional(CompoundNBT tag) {
-        super.readAdditional(tag);
+    protected void readAdditionalSaveData(CompoundNBT tag) {
+        super.readAdditionalSaveData(tag);
         this.setWoodType(tag.getString("Type"));
     }
 
     @Override
-    protected void writeAdditional(CompoundNBT tag) {
-        super.writeAdditional(tag);
+    protected void addAdditionalSaveData(CompoundNBT tag) {
+        super.addAdditionalSaveData(tag);
         tag.putString("Type", this.getWoodType());
     }
 
     public String getWoodType() {
-        return this.dataManager.get(WOOD_TYPE);
+        return this.entityData.get(WOOD_TYPE);
     }
 
     public void setWoodType(String wood) {
-        this.dataManager.set(WOOD_TYPE, wood);
+        this.entityData.set(WOOD_TYPE, wood);
     }
 
     @Override
-    public Item getItemBoat() {
+    public Item getDropItem() {
         switch(this.getWoodType()) {
             case "aljanwood":
             default:
@@ -83,7 +83,7 @@ public class BMBoat extends BoatEntity {
 
     @Nonnull
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

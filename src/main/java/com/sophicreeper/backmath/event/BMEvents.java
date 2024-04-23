@@ -59,8 +59,8 @@ public class BMEvents {
 
     @SubscribeEvent
     public static void onModelBakeEvent(ModelBakeEvent event) {
-        for (BlockState blockState : BMBlocks.INSOMNIAN_TULIP.get().getStateContainer().getValidStates()) {
-            ModelResourceLocation variantMRL = BlockModelShapes.getModelLocation(blockState);
+        for (BlockState blockState : BMBlocks.INSOMNIAN_TULIP.get().getStateDefinition().getPossibleStates()) {
+            ModelResourceLocation variantMRL = BlockModelShapes.stateToModelLocation(blockState);
             IBakedModel existingModel = event.getModelRegistry().get(variantMRL);
             if (existingModel == null) {
                 LOGGER.warn(new TranslationTextComponent("messages.backmath.it_baked_model_not_found").getString());
@@ -81,28 +81,28 @@ public class BMEvents {
 
             try {
                 Method GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-                ResourceLocation chunkGeneratorRL = Registry.CHUNK_GENERATOR_CODEC.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkProvider().generator));
+                ResourceLocation chunkGeneratorRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkSource().generator));
 
                 if (chunkGeneratorRL != null && chunkGeneratorRL.getNamespace().equals("terraforged")) {
                     return;
                 }
             } catch (Exception exception) {
-                String message = new TranslationTextComponent("messages.backmath.terraforged_chunk_generator", serverWorld.getDimensionKey().getLocation()).getString();
+                String message = new TranslationTextComponent("messages.backmath.terraforged_chunk_generator", serverWorld.dimension().location()).getString();
                 LogManager.getLogger().error(message);
             }
 
             // Prevent spawning our structure in Vanilla's superflat world.
-            if (serverWorld.getChunkProvider().generator instanceof FlatChunkGenerator && serverWorld.getDimensionKey().equals(World.OVERWORLD)) {
+            if (serverWorld.getChunkSource().generator instanceof FlatChunkGenerator && serverWorld.dimension().equals(World.OVERWORLD)) {
                 return;
             }
             // Who cares about structures not generating in Superflat?
             // Ok, maybe this was causing issues with Superflat worlds.
 
             // Adding our structure to the Map.
-            Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkProvider().generator.func_235957_b_().func_236195_a_());
-            tempMap.putIfAbsent(BMStructures.SOPHIE_TOWER.get(), DimensionStructuresSettings.field_236191_b_.get(BMStructures.SOPHIE_TOWER.get()));
-            tempMap.putIfAbsent(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get(), DimensionStructuresSettings.field_236191_b_.get(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get()));
-            serverWorld.getChunkProvider().generator.func_235957_b_().field_236193_d_ = tempMap;
+            Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
+            tempMap.putIfAbsent(BMStructures.SOPHIE_TOWER.get(), DimensionStructuresSettings.DEFAULTS.get(BMStructures.SOPHIE_TOWER.get()));
+            tempMap.putIfAbsent(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get(), DimensionStructuresSettings.DEFAULTS.get(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get()));
+            serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
     }
 
@@ -112,38 +112,38 @@ public class BMEvents {
 
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.GUARANA_OAK_SAPLING.get(), 1),
                 // Max Trades, XP, Price Multiplier
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.CRYSTALLINE_BIRCH_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.MANGO_OAK_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.MANGAED_MANGO_OAK_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.GRAPE_VINE_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.LEMON_OAK_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.PINEAPPLE_OAK_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.ORANGE_OAK_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.BANANA_JUNGLE_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.ALJAME_BIRCH_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.GUAVA_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.JABUTICABA_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(AxolotlTest.CORK_OAK_SAPLING.get(), 1),
-                8, 1, 0.05f));
+                8, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(AxolotlTest.RED_YELLOW_FLOWER.get(), 1),
-                12, 1, 0.05f));
+                12, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(AxolotlTest.FRIED_EGG_FLOWER.get(), 1),
-                12, 1, 0.05f));
+                12, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(AxolotlTest.TURTLE_FRIED_EGG_FLOWER.get(), 1),
-                12, 1, 0.05f));
+                12, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(AxolotlTest.DEVIL_DYE.get(), 3),
-                12, 1, 0.05f));
+                12, 1, 0.05F));
     }
 }

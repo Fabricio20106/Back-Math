@@ -7,6 +7,6 @@ import net.minecraft.item.Rarity;
 
 public class MealItem extends Item {
     public MealItem(int nutrition) {
-        super(new Properties().group(SophiesCursedFoods.TAB).maxStackSize(8).rarity(Rarity.UNCOMMON).food(new Food.Builder().hunger(nutrition).saturation(4.75F).build()));
+        super(new Properties().tab(SophiesCursedFoods.TAB).stacksTo(8).rarity(Rarity.UNCOMMON).food(new Food.Builder().nutrition(nutrition).saturationMod(4.75F).build()));
     }
 }

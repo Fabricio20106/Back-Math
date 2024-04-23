@@ -43,12 +43,12 @@ public class BMStructures {
     // This method is called by setupStructures method above.
     public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean terraformSurroundingTerrain) {
         // Add our structures into the map in Structure class.
-        Structure.NAME_STRUCTURE_BIMAP.put(structure.getRegistryName().toString(), structure);
+        Structure.STRUCTURES_REGISTRY.put(structure.getRegistryName().toString(), structure);
 
         // Whether surrounding land will be modified automatically to conform to the bottom of the structure.
         // Basically, it adds land at the base of the structure like it does for Villages and Pillager Outposts.
         // Doesn't work well on structure that have pieces stacked vertically or change in heights.
-        if (terraformSurroundingTerrain) Structure.field_236384_t_ = ImmutableList.<Structure<?>>builder().addAll(Structure.field_236384_t_).add(structure).build();
+        if (terraformSurroundingTerrain) Structure.NOISE_AFFECTING_FEATURES = ImmutableList.<Structure<?>>builder().addAll(Structure.NOISE_AFFECTING_FEATURES).add(structure).build();
 
         // This is the map that holds the default spacing of all structures.
         // Always add your structure to here so that other mods can utilize it if needed.
@@ -61,15 +61,15 @@ public class BMStructures {
         // We also use our entry in DimensionStructuresSettings.DEFAULTS in WorldEvent.Load as well.
 
         // DEFAULTS requires AccessTransformer (See resources/META-INF/accesstransformer.cfg)
-        DimensionStructuresSettings.field_236191_b_ = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.field_236191_b_).put(structure, structureSeparationSettings).build();
+        DimensionStructuresSettings.DEFAULTS = ImmutableMap.<Structure<?>, StructureSeparationSettings>builder().putAll(DimensionStructuresSettings.DEFAULTS).put(structure, structureSeparationSettings).build();
 
         // There are very few mods that relies on seeing your structure in the noise settings registry before the world is made.
 
-        // You may see some mods add their spacings to DimensionSettings.BUILTIN_OVERWORLD instead of the NOISE_SETTINGS loop below but that field
+        // You may see some mods add their spacings to DimensionSettings.BUILTIN_OVERWORLD instead of the NOISE_GENERATOR_SETTINGS loop below but that field
         // only applies for the default overworld and won't add to other world types or dimensions, such as amplified or the Nether.
-        // So yeah, don't use DimensionSettings.BUILTIN_OVERWORLD. Use the NOISE_SETTINGS loop below instead if you must.
-        WorldGenRegistries.NOISE_SETTINGS.getEntries().forEach(settings -> {
-            Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().getStructures().func_236195_a_();
+        // So yeah, don't use DimensionSettings.BUILTIN_OVERWORLD. Use the NOISE_GENERATOR_SETTINGS loop below instead if you must.
+        WorldGenRegistries.NOISE_GENERATOR_SETTINGS.entrySet().forEach(settings -> {
+            Map<Structure<?>, StructureSeparationSettings> structureMap = settings.getValue().structureSettings().structureConfig();
 
             // Pre-caution in case a mod makes the structure map immutable like datapacks do.
             // I take no chances myself. You never know what other mods do...
@@ -78,7 +78,7 @@ public class BMStructures {
             if (structureMap instanceof ImmutableMap) {
                 Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(structureMap);
                 tempMap.put(structure, structureSeparationSettings);
-                settings.getValue().getStructures().func_236195_a_();
+                settings.getValue().structureSettings().structureConfig();
             } else {
                 structureMap.put(structure, structureSeparationSettings);
             }

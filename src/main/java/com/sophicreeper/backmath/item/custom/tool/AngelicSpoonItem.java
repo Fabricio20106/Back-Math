@@ -8,6 +8,6 @@ import net.minecraft.item.ShovelItem;
 public class AngelicSpoonItem extends ShovelItem {
     public AngelicSpoonItem(IItemTier tier, float attackDamage, float swingSpeed, Properties properties) {
         super(tier, attackDamage, swingSpeed, properties);
-        DispenserBlock.registerDispenseBehavior(this, new MealCookingDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new MealCookingDispenseBehavior());
     }
 }

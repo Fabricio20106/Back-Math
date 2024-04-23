@@ -15,14 +15,14 @@ import javax.annotation.Nonnull;
 public class AljameTeaBoxItem extends Item {
     public AljameTeaBoxItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new BagDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new BagDispenseBehavior());
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, @Nonnull PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getHeldItem(hand);
-        player.addItemStackToInventory(new ItemStack(AxolotlTest.ALJAME_TEA.get(), 4));
+    public ActionResult<ItemStack> use(World world, @Nonnull PlayerEntity player, Hand hand) {
+        ItemStack heldItem = player.getItemInHand(hand);
+        player.addItem(new ItemStack(AxolotlTest.ALJAME_TEA.get(), 4));
         heldItem.shrink(1);
-        return super.onItemRightClick(world, player, hand);
+        return super.use(world, player, hand);
     }
 }

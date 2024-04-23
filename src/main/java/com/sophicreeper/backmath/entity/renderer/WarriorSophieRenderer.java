@@ -16,7 +16,7 @@ public class WarriorSophieRenderer extends BMBipedRenderer<WarriorSophie> {
         this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
     }
 
-    public ResourceLocation getEntityTexture(WarriorSophie warriorSophie) {
+    public ResourceLocation getTextureLocation(WarriorSophie warriorSophie) {
         return BackMath.resourceLoc("textures/entity/warrior_sophie.png");
     }
 }

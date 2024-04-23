@@ -22,15 +22,15 @@ public class MidTermArmorItem extends ArmorItem {
     // Needs more testing/changing to work.
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
-        if (stack.getMaxDamage() <= stack.getDamage()) {
+        if (stack.getMaxDamage() <= stack.getDamageValue()) {
             stack.shrink(1);
-            world.createExplosion(player, BMDamageSources.MID_TERM_ARMOR_INSTABILITY, null, player.getPosX(), player.getPosY(), player.getPosZ(), 8, false, Explosion.Mode.DESTROY);
+            world.explode(player, BMDamageSources.MID_TERM_ARMOR_INSTABILITY, null, player.getX(), player.getY(), player.getZ(), 8, false, Explosion.Mode.DESTROY);
         }
         super.onArmorTick(stack, world, player);
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
@@ -38,8 +38,8 @@ public class MidTermArmorItem extends ArmorItem {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livingEntity = (LivingEntity) entity;
-            livingEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 20, 2));
-            entity.setFire(10);
+            livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2));
+            entity.setSecondsOnFire(10);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

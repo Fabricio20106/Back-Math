@@ -35,49 +35,49 @@ import javax.annotation.Nullable;
 public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttackMob, ISophieFriendlies {
     private final BMRangedBowAttackGoal<ArcherInsomniaSophie> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1, 20, 15);
     private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) {
-        public void resetTask() {
-            super.resetTask();
-            ArcherInsomniaSophie.this.setAggroed(false);
+        public void stop() {
+            super.stop();
+            ArcherInsomniaSophie.this.setAggressive(false);
         }
 
-        public void startExecuting() {
-            super.startExecuting();
-            ArcherInsomniaSophie.this.setAggroed(true);
+        public void start() {
+            super.start();
+            ArcherInsomniaSophie.this.setAggressive(true);
         }
     };
 
     public ArcherInsomniaSophie(EntityType<ArcherInsomniaSophie> type, World world) {
         super(type, world);
-        this.setCombatTask();
-        this.experienceValue = 3 + this.world.rand.nextInt(6);
+        this.reassessWeaponGoal();
+        this.xpReward = 3 + this.level.random.nextInt(6);
     }
 
     @Override
     public void tick() {
         super.tick();
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62F;
     }
 
-    public double getYOffset() {
+    public double getMyRidingOffset() {
         return -0.35D;
     }
 
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
         }
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        super.setEquipmentBasedOnDifficulty(difficulty);
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_BOW.get()));
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(difficulty);
+        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_BOW.get()));
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {
@@ -101,22 +101,22 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        spawnData = super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        this.setCombatTask();
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+        this.populateDefaultEquipmentSlots(difficulty);
+        this.populateDefaultEquipmentEnchantments(difficulty);
+        this.reassessWeaponGoal();
         return spawnData;
     }
 
-    public void setCombatTask() {
-        if (this.world != null && !this.world.isRemote) {
+    public void reassessWeaponGoal() {
+        if (this.level != null && !this.level.isClientSide) {
             this.goalSelector.removeGoal(this.aiAttackOnCollide);
             this.goalSelector.removeGoal(this.aiArrowAttack);
-            ItemStack bowStack = this.getHeldItem(ProjectileHelper.getHandWith(this, AxolotlTest.ANGELIC_BOW.get()));
+            ItemStack bowStack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, AxolotlTest.ANGELIC_BOW.get()));
             if (bowStack.getItem() instanceof BMBowItem) {
                 int attackCooldown = 20;
-                if (this.world.getDifficulty() != Difficulty.HARD) {
+                if (this.level.getDifficulty() != Difficulty.HARD) {
                     attackCooldown = 40;
                 }
 
@@ -125,12 +125,11 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
             } else {
                 this.goalSelector.addGoal(4, this.aiAttackOnCollide);
             }
-
         }
     }
 
-    public boolean isOnSameTeam(Entity entity) {
-        if (super.isOnSameTeam(entity)) {
+    public boolean isAlliedTo(Entity entity) {
+        if (super.isAlliedTo(entity)) {
             return true;
         } else return entity instanceof ISophieFriendlies;
     }
@@ -156,45 +155,45 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
     }
 
-    public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
-        ItemStack ammoStack = this.findAmmo(this.getHeldItem(ProjectileHelper.getHandWith(this, AxolotlTest.ANGELIC_BOW.get())));
+    public void performRangedAttack(LivingEntity target, float distanceFactor) {
+        ItemStack ammoStack = this.getProjectile(this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, AxolotlTest.ANGELIC_BOW.get())));
         AbstractArrowEntity arrow = this.fireArrow(ammoStack, distanceFactor);
 
-        if (this.getHeldItemMainhand().getItem() instanceof BMBowItem) arrow = ((BMBowItem) this.getHeldItemMainhand().getItem()).customArrow(arrow);
+        if (this.getMainHandItem().getItem() instanceof BMBowItem) arrow = ((BMBowItem) this.getMainHandItem().getItem()).customArrow(arrow);
 
-        double d0 = target.getPosX() - this.getPosX();
-        double d1 = target.getPosYHeight(0.3333333333333333D) - arrow.getPosY();
-        double d2 = target.getPosZ() - this.getPosZ();
+        double d0 = target.getX() - this.getX();
+        double d1 = target.getY(0.3333333333333333D) - arrow.getY();
+        double d2 = target.getZ() - this.getZ();
         double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
-        arrow.shoot(d0, d1 + d3 * (double) 0.2F, d2, 1.6F, (float) (14 - this.world.getDifficulty().getId() * 4));
+        arrow.shoot(d0, d1 + d3 * (double) 0.2F, d2, 1.6F, (float) (14 - this.level.getDifficulty().getId() * 4));
 
-        this.playSound(BMSounds.ENTITY_SOPHIE_SHOOT, 1, 1 / (this.getRNG().nextFloat() * 0.4F + 0.8F));
-        this.world.addEntity(arrow);
+        this.playSound(BMSounds.ENTITY_SOPHIE_SHOOT, 1, 1 / (this.getRandom().nextFloat() * 0.4F + 0.8F));
+        this.level.addFreshEntity(arrow);
     }
 
     protected AbstractArrowEntity fireArrow(ItemStack arrowStack, float distanceFactor) {
-        return ProjectileHelper.fireArrow(this, arrowStack, distanceFactor);
+        return ProjectileHelper.getMobArrow(this, arrowStack, distanceFactor);
     }
 
-    public boolean func_230280_a_(ShootableItem shootableItem) {
+    public boolean canFireProjectileWeapon(ShootableItem shootableItem) {
         return shootableItem instanceof BMBowItem || shootableItem instanceof BowItem;
     }
 
     public static AttributeModifierMap.MutableAttribute createArcherInsomniaSophieAttributes() {
-        return MonsterEntity.func_233666_p_().createMutableAttribute(Attributes.ATTACK_DAMAGE, 4).createMutableAttribute(Attributes.MAX_HEALTH, 28).createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
+        return MonsterEntity.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 4).add(Attributes.MAX_HEALTH, 28).add(Attributes.FOLLOW_RANGE, 12)
+                .add(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
-    protected void dropSpecialItems(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
-        super.dropSpecialItems(source, lootingLevel, wasRecentlyHit);
-        Entity entity = source.getTrueSource();
+    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
+        Entity entity = source.getEntity();
         if (entity instanceof CreeperEntity) {
             CreeperEntity creeper = (CreeperEntity) entity;
-            if (creeper.ableToCauseSkullDrop()) {
+            if (creeper.canDropMobsSkull()) {
                 ItemStack skullStack = this.getHeadDrop();
                 if (!skullStack.isEmpty()) {
-                    creeper.incrementDroppedSkulls();
-                    this.entityDropItem(skullStack);
+                    creeper.increaseDroppedSkulls();
+                    this.spawnAtLocation(skullStack);
                 }
             }
         }

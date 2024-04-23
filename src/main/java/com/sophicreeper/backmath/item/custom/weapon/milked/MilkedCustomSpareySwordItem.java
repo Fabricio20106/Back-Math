@@ -15,16 +15,16 @@ public class MilkedCustomSpareySwordItem extends MilkedSwordItem {
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean isFoil(ItemStack stack) {
         return true;
     }
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof AngrySophie) {
-            player.addPotionEffect(new EffectInstance(Effects.STRENGTH, 200, 1));
+            player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 200, 1));
         } else {
-            player.addPotionEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
+            player.addEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

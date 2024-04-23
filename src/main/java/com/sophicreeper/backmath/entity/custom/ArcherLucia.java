@@ -44,24 +44,24 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISophieFriendlies {
-    private static final DataParameter<Boolean> IS_CHARGING_CROSSBOW = EntityDataManager.createKey(ArcherLucia.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> IS_CHARGING_CROSSBOW = EntityDataManager.defineId(ArcherLucia.class, DataSerializers.BOOLEAN);
     private final Inventory inventory = new Inventory(5);
 
     public ArcherLucia(EntityType<ArcherLucia> entity, World world) {
         super(entity, world);
     }
 
-    protected void registerData() {
-        super.registerData();
-        this.dataManager.register(IS_CHARGING_CROSSBOW, false);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(IS_CHARGING_CROSSBOW, false);
     }
 
     @Override
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new BMRangedCrossbowAttackGoal<>(this, 1.1d, 12));
-        this.goalSelector.addGoal(2, new TemptGoal(this, 1.1d, Ingredient.fromTag(BMTags.Items.ARCHER_LUCIA_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(1, new BMRangedCrossbowAttackGoal<>(this, 1.1D, 12));
+        this.goalSelector.addGoal(2, new TemptGoal(this, 1.1D, Ingredient.of(BMTags.Items.ARCHER_LUCIA_TEMPT_ITEMS), false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
@@ -80,25 +80,25 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
     }
 
-    public void writeAdditional(CompoundNBT tag) {
-        super.writeAdditional(tag);
+    public void addAdditionalSaveData(CompoundNBT tag) {
+        super.addAdditionalSaveData(tag);
         ListNBT inventoryNBTList = new ListNBT();
 
-        for(int i = 0; i < this.inventory.getSizeInventory(); ++i) {
-            ItemStack stack = this.inventory.getStackInSlot(i);
+        for(int i = 0; i < this.inventory.getContainerSize(); ++i) {
+            ItemStack stack = this.inventory.getItem(i);
             if (!stack.isEmpty()) {
-                inventoryNBTList.add(stack.write(new CompoundNBT()));
+                inventoryNBTList.add(stack.save(new CompoundNBT()));
             }
         }
-        tag.put("Inventory", inventoryNBTList);
+        tag.put("inventory", inventoryNBTList);
     }
 
-    public void readAdditional(CompoundNBT tag) {
-        super.readAdditional(tag);
-        ListNBT inventoryNBTList = tag.getList("Inventory", 10);
+    public void readAdditionalSaveData(CompoundNBT tag) {
+        super.readAdditionalSaveData(tag);
+        ListNBT inventoryNBTList = tag.getList("inventory", 10);
 
         for(int i = 0; i < inventoryNBTList.size(); ++i) {
-            ItemStack stack = ItemStack.read(inventoryNBTList.getCompound(i));
+            ItemStack stack = ItemStack.of(inventoryNBTList.getCompound(i));
             if (!stack.isEmpty()) {
                 this.inventory.addItem(stack);
             }
@@ -110,37 +110,37 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
     public void tick() {
         super.tick();
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
-        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.RESISTANCE);
+        this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
     @Override
-    public ItemStack findAmmo(ItemStack shootable) {
+    public ItemStack getProjectile(ItemStack shootable) {
         if (shootable.getItem() instanceof ShootableItem) {
-            Predicate<ItemStack> predicate = ((ShootableItem) shootable.getItem()).getAmmoPredicate();
-            ItemStack ammoStack = ShootableItem.getHeldAmmo(this, predicate);
+            Predicate<ItemStack> predicate = ((ShootableItem) shootable.getItem()).getAllSupportedProjectiles();
+            ItemStack ammoStack = ShootableItem.getHeldProjectile(this, predicate);
             return ammoStack.isEmpty() ? new ItemStack(Items.ARROW) : ammoStack;
         } else {
             return ItemStack.EMPTY;
         }
     }
 
-    public double getYOffset() {
+    public double getMyRidingOffset() {
         return -0.35D;
     }
 
-    public void func_230283_U__() {
-        this.idleTime = 0;
+    public void onCrossbowAttackPerformed() {
+        this.noActionTime = 0;
     }
 
-    public void setCharging(boolean isCharging) {
-        this.dataManager.set(IS_CHARGING_CROSSBOW, isCharging);
+    public void setChargingCrossbow(boolean isCharging) {
+        this.entityData.set(IS_CHARGING_CROSSBOW, isCharging);
     }
 
-    protected void func_241844_w(float f) {
-        super.func_241844_w(f);
-        if (this.rand.nextInt(300) == 0) {
-            ItemStack heldStack = this.getHeldItemMainhand();
-            if (heldStack.getItem().isIn(BMTags.Items.CROSSBOWS)) {
+    protected void enchantSpawnedWeapon(float chance) {
+        super.enchantSpawnedWeapon(chance);
+        if (this.random.nextInt(300) == 0) {
+            ItemStack heldStack = this.getMainHandItem();
+            if (heldStack.getItem().is(BMTags.Items.CROSSBOWS)) {
                 Map<Enchantment, Integer> crossbowEnchantsMap = EnchantmentHelper.getEnchantments(heldStack);
                 crossbowEnchantsMap.putIfAbsent(Enchantments.PIERCING, 1);
                 EnchantmentHelper.setEnchantments(crossbowEnchantsMap, heldStack);
@@ -149,19 +149,15 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         }
     }
 
-    public boolean isOnSameTeam(Entity entity) {
-        if (super.isOnSameTeam(entity)) {
+    public boolean isAlliedTo(Entity entity) {
+        if (super.isAlliedTo(entity)) {
             return true;
         } else return entity instanceof ISophieFriendlies;
     }
 
     public static AttributeModifierMap.MutableAttribute createArcherLuciaAttributes() {
-        return CreatureEntity.func_233666_p_()
-                .createMutableAttribute(Attributes.MAX_HEALTH, 25)
-                .createMutableAttribute(Attributes.ATTACK_KNOCKBACK, 0.25F)
-                .createMutableAttribute(Attributes.FOLLOW_RANGE, 12)
-                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 3)
-                .createMutableAttribute(Attributes.MOVEMENT_SPEED, 0.23F);
+        return CreatureEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 25).add(Attributes.ATTACK_KNOCKBACK, 0.25F).add(Attributes.FOLLOW_RANGE, 12).add(Attributes.ATTACK_DAMAGE, 3)
+                .add(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -182,7 +178,6 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         return BMSounds.ENTITY_LUCIA_DEATH;
     }
 
-
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.ARCHER_LUCIA_SPAWN_EGG.get());
@@ -190,22 +185,22 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        this.setEquipmentBasedOnDifficulty(difficulty);
-        this.setEnchantmentBasedOnDifficulty(difficulty);
-        return super.onInitialSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        this.populateDefaultEquipmentSlots(difficulty);
+        this.populateDefaultEquipmentEnchantments(difficulty);
+        return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
-    public void updateRidden() {
-        super.updateRidden();
-        if (this.getRidingEntity() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getRidingEntity();
-            this.renderYawOffset = entity.renderYawOffset;
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
         }
     }
 
-    protected void setEquipmentBasedOnDifficulty(DifficultyInstance difficulty) {
-        super.setEquipmentBasedOnDifficulty(difficulty);
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        super.populateDefaultEquipmentSlots(difficulty);
         this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ARCHER_LUCIA_HOOD.get()));
         this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ARCHER_LUCIA_VEST.get()));
         this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_CROSSBOW.get()));
@@ -213,34 +208,34 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
 
     // Why were Back Math mobs leashable? (29/07/23)
     @Override
-    public boolean canBeLeashedTo(PlayerEntity player) {
+    public boolean canBeLeashed(PlayerEntity player) {
         return false;
     }
 
-    public boolean func_230280_a_(ShootableItem shootableItem) {
-        return shootableItem.isIn(BMTags.Items.CROSSBOWS);
+    public boolean canFireProjectileWeapon(ShootableItem shootableItem) {
+        return shootableItem.is(BMTags.Items.CROSSBOWS);
     }
 
     public void setItemStackToSlot(EquipmentSlotType slot, ItemStack stack) {
-        super.setItemStackToSlot(slot, stack);
+        super.setItemSlot(slot, stack);
     }
 
-    public void attackEntityWithRangedAttack(LivingEntity target, float distanceFactor) {
-        this.func_234281_b_(this, 1.6f);
+    public void performRangedAttack(LivingEntity target, float distanceFactor) {
+        this.performCrossbowAttack(this, 1.6F);
     }
 
-    public void func_230284_a_(LivingEntity livEntity, ItemStack stack, ProjectileEntity arrow, float distanceFactor) {
-        this.func_234279_a_(this, livEntity, arrow, distanceFactor, 1.6f);
+    public void shootCrossbowProjectile(LivingEntity livEntity, ItemStack stack, ProjectileEntity arrow, float distanceFactor) {
+        this.shootCrossbowProjectile(this, livEntity, arrow, distanceFactor, 1.6F);
     }
 
-    protected void updateEquipmentIfNeeded(ItemEntity itemEntity) {
+    protected void pickUpItem(ItemEntity itemEntity) {
         ItemStack stack = itemEntity.getItem();
         if (stack.getItem() instanceof BMArmorItem) {
-            super.updateEquipmentIfNeeded(itemEntity);
+            super.pickUpItem(itemEntity);
         } else {
             Item item = stack.getItem();
-            if (this.pickupableItems(item)) {
-                this.triggerItemPickupTrigger(itemEntity);
+            if (this.wantsItem(item)) {
+                this.onItemPickup(itemEntity);
                 ItemStack stack1 = this.inventory.addItem(stack);
                 if (stack1.isEmpty()) {
                     itemEntity.remove();
@@ -251,17 +246,17 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         }
     }
 
-    private boolean pickupableItems(Item item) {
-        return item instanceof BMArmorItem || item instanceof BMCrossbowItem || item.isIn(BMTags.Items.ARCHER_LUCIA_PICKUPABLES);
+    private boolean wantsItem(Item item) {
+        return item instanceof BMArmorItem || item instanceof BMCrossbowItem || item.is(BMTags.Items.ARCHER_LUCIA_PICKUPABLES);
     }
 
-    public boolean replaceItemInInventory(int inventorySlot, ItemStack stack) {
-        if (super.replaceItemInInventory(inventorySlot, stack)) {
+    public boolean setSlot(int inventorySlot, ItemStack stack) {
+        if (super.setSlot(inventorySlot, stack)) {
             return true;
         } else {
             int i = inventorySlot - 300;
-            if (i >= 0 && i < this.inventory.getSizeInventory()) {
-                this.inventory.setInventorySlotContents(i, stack);
+            if (i >= 0 && i < this.inventory.getContainerSize()) {
+                this.inventory.setItem(i, stack);
                 return true;
             } else {
                 return false;

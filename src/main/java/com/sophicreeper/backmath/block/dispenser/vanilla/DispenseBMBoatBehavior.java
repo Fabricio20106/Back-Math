@@ -18,27 +18,26 @@ public class DispenseBMBoatBehavior extends DefaultDispenseItemBehavior {
         this.woodType = woodType;
     }
 
-    public ItemStack dispenseStack(IBlockSource source, ItemStack stack) {
-        Direction direction = source.getBlockState().get(DispenserBlock.FACING);
-        World world = source.getWorld();
-        double x = source.getX() + (double)((float)direction.getXOffset() * 1.125F);
-        double y = source.getY() + (double)((float)direction.getYOffset() * 1.125F);
-        double z = source.getZ() + (double)((float)direction.getZOffset() * 1.125F);
-        BlockPos pos = source.getBlockPos().offset(direction);
+    public ItemStack execute(IBlockSource source, ItemStack stack) {
+        Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
+        World world = source.getLevel();
+        double x = source.x() + (double) ((float) direction.getStepX() * 1.125F);
+        double y = source.y() + (double) ((float) direction.getStepY() * 1.125F);
+        double z = source.z() + (double) ((float) direction.getStepZ() * 1.125F);
+        BlockPos pos = source.getPos().relative(direction);
         double boatHeight;
-        if (world.getFluidState(pos).isTagged(FluidTags.WATER)) {
+        if (world.getFluidState(pos).is(FluidTags.WATER)) {
             boatHeight = 1;
         } else {
-            if (!world.getBlockState(pos).isAir() || !world.getFluidState(pos.down()).isTagged(FluidTags.WATER)) return this.dispenseBehavior.dispense(source, stack);
+            if (!world.getBlockState(pos).isAir() || !world.getFluidState(pos.below()).is(FluidTags.WATER)) return this.dispenseBehavior.dispense(source, stack);
             boatHeight = 0;
         }
 
         BMBoat bmBoat = new BMBoat(world, x, y + boatHeight, z);
         bmBoat.setWoodType(this.woodType);
-        bmBoat.rotationYaw = direction.getHorizontalAngle();
-        world.addEntity(bmBoat);
+        bmBoat.yRot = direction.toYRot();
+        world.addFreshEntity(bmBoat);
         stack.shrink(1);
         return stack;
     }
-
 }

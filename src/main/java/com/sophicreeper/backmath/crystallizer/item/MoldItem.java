@@ -7,6 +7,6 @@ import net.minecraft.item.Item;
 public class MoldItem extends Item {
     public MoldItem(String type, Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new CrystallizerMoldDispenseBehavior(type));
+        DispenserBlock.registerBehavior(this, new CrystallizerMoldDispenseBehavior(type));
     }
 }

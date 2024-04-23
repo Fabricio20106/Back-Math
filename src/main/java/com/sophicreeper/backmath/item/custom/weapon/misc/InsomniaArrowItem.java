@@ -14,11 +14,11 @@ import net.minecraft.world.World;
 public class InsomniaArrowItem extends ArrowItem {
     public InsomniaArrowItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerDispenseBehavior(this, new ProjectileDispenseBehavior() {
+        DispenserBlock.registerBehavior(this, new ProjectileDispenseBehavior() {
             @Override
-            protected ProjectileEntity getProjectileEntity(World world, IPosition pos, ItemStack stack) {
-                InsomniaArrow insomniaArrow = new InsomniaArrow(world, pos.getX(), pos.getY(), pos.getZ());
-                insomniaArrow.pickupStatus = AbstractArrowEntity.PickupStatus.ALLOWED;
+            protected ProjectileEntity getProjectile(World world, IPosition pos, ItemStack stack) {
+                InsomniaArrow insomniaArrow = new InsomniaArrow(world, pos.x(), pos.y(), pos.z());
+                insomniaArrow.pickup = AbstractArrowEntity.PickupStatus.ALLOWED;
                 return insomniaArrow;
             }
         });

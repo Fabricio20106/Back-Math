@@ -22,22 +22,17 @@ public class ToddyItem extends Item {
     }
 
     @Override
-    public ItemStack onItemUseFinish(ItemStack stack, World world, LivingEntity livingEntity) {
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livingEntity) {
         if (livingEntity instanceof ServerPlayerEntity) {
             ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.addStat(Stats.ITEM_USED.get(this));
+            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
         }
 
-        if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.isCreativeMode) {
+        if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.instabuild) {
             stack.shrink(1);
         }
-        return super.onItemUseFinish(stack, world, livingEntity);
-    }
-
-    @Override
-    public SoundEvent getEatSound() {
-        return SoundEvents.ENTITY_GENERIC_DRINK;
+        return super.finishUsingItem(stack, world, livingEntity);
     }
 
     @Override
@@ -45,18 +40,21 @@ public class ToddyItem extends Item {
         return 32;
     }
 
-    @Override
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.DRINK;
     }
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
-        return DrinkHelper.startDrinking(world, player, hand);
+    public SoundEvent getEatingSound() {
+        return SoundEvents.GENERIC_DRINK;
     }
 
-    @Override
-    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT compoundNBT) {
-        return new FluidBucketWrapper(stack);
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        return DrinkHelper.useDrink(world, player, hand);
     }
+
+    // Why does a Toddy need a fluid bucket wrapper? - June 12/04/24
+//    @Override
+//    public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundNBT compoundNBT) {
+//        return new FluidBucketWrapper(stack);
+//    }
 }

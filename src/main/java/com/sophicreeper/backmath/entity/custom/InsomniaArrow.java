@@ -30,18 +30,18 @@ public class InsomniaArrow extends AbstractArrowEntity {
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getPickupItem() {
         return new ItemStack(AxolotlTest.INSOMNIA_ARROW.get());
     }
 
-    protected void arrowHit(LivingEntity livEntity) {
-        super.arrowHit(livEntity);
-        livEntity.addPotionEffect(new EffectInstance(Effects.POISON, this.poisonDuration, 0));
-        livEntity.addPotionEffect(new EffectInstance(Effects.BLINDNESS, this.blindnessDuration, 0));
+    protected void doPostHurtEffects(LivingEntity livEntity) {
+        super.doPostHurtEffects(livEntity);
+        livEntity.addEffect(new EffectInstance(Effects.POISON, this.poisonDuration, 0));
+        livEntity.addEffect(new EffectInstance(Effects.BLINDNESS, this.blindnessDuration, 0));
     }
 
-    public void writeAdditional(CompoundNBT tag) {
-        super.writeAdditional(tag);
+    public void addAdditionalSaveData(CompoundNBT tag) {
+        super.addAdditionalSaveData(tag);
         if (tag.contains("poison_duration")) {
             this.poisonDuration = tag.getInt("poison_duration");
         }
@@ -50,19 +50,19 @@ public class InsomniaArrow extends AbstractArrowEntity {
         }
     }
 
-    public void readAdditional(CompoundNBT tag) {
-        super.readAdditional(tag);
+    public void readAdditionalSaveData(CompoundNBT tag) {
+        super.readAdditionalSaveData(tag);
         tag.putInt("poison_duration", this.poisonDuration);
         tag.putInt("blindness_duration", this.blindnessDuration);
     }
 
     @Override
     public void checkDespawn() {
-        if (this.timeInGround > 1200) this.remove();
+        if (this.inGroundTime > 1200) this.remove();
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

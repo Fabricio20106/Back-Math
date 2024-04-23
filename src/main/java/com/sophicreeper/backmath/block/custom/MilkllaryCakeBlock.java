@@ -23,29 +23,29 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
 public class MilkllaryCakeBlock extends Block {
-    public static final IntegerProperty BITES = BlockStateProperties.BITES_0_6;
+    public static final IntegerProperty BITES = BlockStateProperties.BITES;
     protected static final VoxelShape[] SHAPES = new VoxelShape[] {
-            Block.makeCuboidShape(1, 0, 1, 15, 8, 15),
-            Block.makeCuboidShape(3, 0, 1, 15, 8, 15),
-            Block.makeCuboidShape(5, 0, 1, 15, 8, 15),
-            Block.makeCuboidShape(7, 0, 1, 15, 8, 15),
-            Block.makeCuboidShape(9, 0, 1, 15, 8, 15),
-            Block.makeCuboidShape(11, 0, 1, 15, 8, 15),
-            Block.makeCuboidShape(13, 0, 1, 15, 8, 15)};
+            Block.box(1, 0, 1, 15, 8, 15),
+            Block.box(3, 0, 1, 15, 8, 15),
+            Block.box(5, 0, 1, 15, 8, 15),
+            Block.box(7, 0, 1, 15, 8, 15),
+            Block.box(9, 0, 1, 15, 8, 15),
+            Block.box(11, 0, 1, 15, 8, 15),
+            Block.box(13, 0, 1, 15, 8, 15)};
 
     public MilkllaryCakeBlock(Properties properties) {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(BITES, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(BITES, 0));
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
-        return SHAPES[state.get(BITES)];
+        return SHAPES[state.getValue(BITES)];
     }
 
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
-        if (world.isRemote) {
-            ItemStack heldItem = player.getHeldItem(hand);
-            if (this.eatSlice(world, pos, state, player).isSuccessOrConsume()) {
+    public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+        if (world.isClientSide) {
+            ItemStack heldItem = player.getItemInHand(hand);
+            if (this.eatSlice(world, pos, state, player).consumesAction()) {
                 return ActionResultType.SUCCESS;
             }
 
@@ -61,11 +61,11 @@ public class MilkllaryCakeBlock extends Block {
         if (!player.canEat(false)) {
             return ActionResultType.PASS;
         } else {
-            player.addStat(Stats.EAT_CAKE_SLICE);
-            player.getFoodStats().addStats(5, 0.6F);
-            int bitesState = state.get(BITES);
+            player.awardStat(Stats.EAT_CAKE_SLICE);
+            player.getFoodData().eat(5, 0.6F);
+            int bitesState = state.getValue(BITES);
             if (bitesState < 6) {
-                world.setBlockState(pos, state.with(BITES, bitesState + 1), 3);
+                world.setBlock(pos, state.setValue(BITES, bitesState + 1), 3);
             } else {
                 world.removeBlock(pos, false);
             }
@@ -77,27 +77,27 @@ public class MilkllaryCakeBlock extends Block {
     // Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
     // For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately returns its solidified counterpart.
     // Note that this method should ideally consider only the specific face passed in.
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        return facing == Direction.DOWN && !state.isValidPosition(world, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
+    public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
+        return facing == Direction.DOWN && !state.canSurvive(world, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
-        return world.getBlockState(pos.down()).getMaterial().isSolid();
+    public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
+        return world.getBlockState(pos.below()).getMaterial().isSolid();
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
         builder.add(BITES);
     }
 
-    public int getComparatorInputOverride(BlockState blockState, World world, BlockPos pos) {
-        return (7 - blockState.get(BITES)) * 2;
+    public int getAnalogOutputSignal(BlockState blockState, World world, BlockPos pos) {
+        return (7 - blockState.getValue(BITES)) * 2;
     }
 
-    public boolean hasComparatorInputOverride(BlockState state) {
+    public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
-    public boolean allowsMovement(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
         return false;
     }
 }

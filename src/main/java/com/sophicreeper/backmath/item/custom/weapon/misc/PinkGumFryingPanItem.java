@@ -24,15 +24,15 @@ public class PinkGumFryingPanItem extends Item {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livEntity = (LivingEntity) entity;
-            livEntity.addPotionEffect(new EffectInstance(Effects.SLOWNESS, 10, 3));
-            livEntity.addPotionEffect(new EffectInstance(Effects.INSTANT_DAMAGE, 10, 0));
+            livEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 10, 3));
+            livEntity.addEffect(new EffectInstance(Effects.HARM, 10, 0));
         }
         return super.onLeftClickEntity(stack, player, entity);
     }
 
     @Override
-    public void addInformation(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent(this.getTranslationKey() + ".desc"));
-        super.addInformation(stack, world, tooltip, flag);
+    public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".desc"));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }
