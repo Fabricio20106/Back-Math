@@ -117,7 +117,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.MATERIALS_HARDENED_AMARACAMEL)) {
+            if (stack.getItem().is(BMTags.Items.HARDENED_AMARACAMEL_MATERIALS)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
@@ -226,7 +226,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.MATERIALS_HARDENED_AMARACAMEL)) {
+            if (stack.getItem().is(BMTags.Items.HARDENED_AMARACAMEL_MATERIALS)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);

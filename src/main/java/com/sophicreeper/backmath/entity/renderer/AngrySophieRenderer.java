@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class AngrySophieRenderer extends BMBipedRenderer<AngrySophie> {
     public AngrySophieRenderer(EntityRendererManager renderManager) {
         super(renderManager, 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32, true), new BMBipedModel<>(1, 0, 64, 32, true)));
     }
 
     public ResourceLocation getTextureLocation(AngrySophie angrySophie) {

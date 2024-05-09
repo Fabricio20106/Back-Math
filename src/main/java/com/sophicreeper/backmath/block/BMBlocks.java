@@ -141,10 +141,10 @@ public class BMBlocks {
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_BUTTON = BLOCKS.register("crystalline_birch_button", () -> new WoodButtonBlock(AbstractBlock.Properties.copy(CRYSTALLINE_BIRCH_PLANKS.get()).noCollission().strength(0.5F)));
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_PRESSURE_PLATE = BLOCKS.register("crystalline_birch_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.copy(CRYSTALLINE_BIRCH_PLANKS.get()).noCollission().strength(0.5F)));
     public static final RegistryObject<Block> ANGELIC_BRICKS = BLOCKS.register("angelic_bricks", () -> new Block(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
-    public static final RegistryObject<Block> ANGELIC_BRICK_SLAB = BLOCKS.register("angelic_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
-    public static final RegistryObject<Block> ANGELIC_BRICK_STAIRS = BLOCKS.register("angelic_brick_stairs", () -> new StairsBlock(() -> ANGELIC_BLOCK.get().defaultBlockState(), AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
-    public static final RegistryObject<Block> ANGELIC_BRICK_WALL = BLOCKS.register("angelic_brick_wall", () -> new WallBlock(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
-    public static final RegistryObject<Block> CRACKED_ANGELIC_BRICKS = BLOCKS.register("cracked_angelic_bricks", () -> new Block(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
+    public static final RegistryObject<Block> ANGELIC_BRICK_SLAB = BLOCKS.register("angelic_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(ANGELIC_BRICKS.get())));
+    public static final RegistryObject<Block> ANGELIC_BRICK_STAIRS = BLOCKS.register("angelic_brick_stairs", () -> new StairsBlock(() -> ANGELIC_BRICKS.get().defaultBlockState(), AbstractBlock.Properties.copy(ANGELIC_BRICKS.get())));
+    public static final RegistryObject<Block> ANGELIC_BRICK_WALL = BLOCKS.register("angelic_brick_wall", () -> new WallBlock(AbstractBlock.Properties.copy(ANGELIC_BRICKS.get())));
+    public static final RegistryObject<Block> CRACKED_ANGELIC_BRICKS = BLOCKS.register("cracked_angelic_bricks", () -> new Block(AbstractBlock.Properties.copy(ANGELIC_BRICKS.get())));
     public static final RegistryObject<Block> TITO = BLOCKS.register("tito", () -> new EmotionalSquidBlock(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_PINK).strength(0.8F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> TOTI = BLOCKS.register("toti", () -> new EmotionalSquidBlock(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_BLUE).strength(0.8F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> ORANGE_OAK_LEAVES = BLOCKS.register("orange_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.OAK_LEAVES)));
@@ -454,9 +454,9 @@ public class BMBlocks {
     public static final RegistryObject<Block> CRYSTALLINE_BIRCH_LADDER = BLOCKS.register("crystalline_birch_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
     public static final RegistryObject<Block> ANGELIC_PILLAR = BLOCKS.register("angelic_pillar", () -> new RotatedPillarBlock(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
     public static final RegistryObject<Block> MOSSY_ANGELIC_BRICKS = BLOCKS.register("mossy_angelic_bricks", () -> new Block(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
-    public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_STAIRS = BLOCKS.register("mossy_angelic_brick_stairs", () -> new StairsBlock(() -> MOSSY_ANGELIC_BRICKS.get().defaultBlockState(), AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
-    public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_SLAB = BLOCKS.register("mossy_angelic_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
-    public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_WALL = BLOCKS.register("mossy_angelic_brick_wall", () -> new WallBlock(AbstractBlock.Properties.copy(ANGELIC_BLOCK.get())));
+    public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_STAIRS = BLOCKS.register("mossy_angelic_brick_stairs", () -> new StairsBlock(() -> MOSSY_ANGELIC_BRICKS.get().defaultBlockState(), AbstractBlock.Properties.copy(MOSSY_ANGELIC_BRICKS.get())));
+    public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_SLAB = BLOCKS.register("mossy_angelic_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(MOSSY_ANGELIC_BRICKS.get())));
+    public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_WALL = BLOCKS.register("mossy_angelic_brick_wall", () -> new WallBlock(AbstractBlock.Properties.copy(MOSSY_ANGELIC_BRICKS.get())));
     public static final RegistryObject<Block> INSOMNIA_SOPHIE_HEAD = BLOCKS.register("insomnia_sophie_head", () -> new BMHeadBlock(AbstractBlock.Properties.copy(Blocks.PLAYER_HEAD)));
     public static final RegistryObject<Block> INSOMNIA_SOPHIE_WALL_HEAD = BLOCKS.register("insomnia_sophie_wall_head", () -> new BMWallHeadBlock(AbstractBlock.Properties.copy(Blocks.PLAYER_WALL_HEAD).lootFrom(BMBlocks.INSOMNIA_SOPHIE_HEAD)));
     public static final RegistryObject<Block> EMERIOND_BLOCK = BLOCKS.register("emeriond_block", () -> new Block(AbstractBlock.Properties.copy(Blocks.DIAMOND_BLOCK)));

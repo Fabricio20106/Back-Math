@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.entity.goal.queenlucy;
+package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.ArcherInsomniaSophie;

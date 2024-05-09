@@ -143,7 +143,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BMTags.Blocks.MALAIKA_SPAWNABLE_ON).addTag(BMTags.Blocks.BASE_STONE_ALJAN).addTag(BMTags.Blocks.ALJAN_GROUND).add(BMBlocks.ALJAMIC_SAND.get()).add(Blocks.GRASS_BLOCK);
         this.tag(BMTags.Blocks.SOPHIES_SPAWNABLE_ON).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.LOGS).addTag(BlockTags.PLANKS).addTag(Tags.Blocks.DIRT);
         this.tag(BMTags.Blocks.OBSIDIAN_REPLACEABLES).add(Blocks.OBSIDIAN).add(Blocks.CRYING_OBSIDIAN);
-        this.tag(BMTags.Blocks.AIR_REPLACEABLES).add(Blocks.AIR).add(Blocks.CAVE_AIR).add(Blocks.VOID_AIR);
+        this.tag(BMTags.Blocks.AIR_REPLACEABLES).add(Blocks.AIR).add(Blocks.CAVE_AIR);
 
         // Logs & Woods
         this.tag(BMTags.Blocks.CRYSTALLINE_BIRCH_LOGS).add(BMBlocks.CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get());

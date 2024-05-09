@@ -7,6 +7,8 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.ElytraLayer;
+import net.minecraft.client.renderer.entity.layers.HeadLayer;
+import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.item.CrossbowItem;
@@ -20,7 +22,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class BMBipedRenderer<T extends CreatureEntity> extends BipedRenderer<T, BMBipedModel<T>> {
     public BMBipedRenderer(EntityRendererManager manager, float shadowSize) {
-        this(manager, new BMBipedModel<>(0, 0, 64, 64), shadowSize);
+        this(manager, new BMBipedModel<>(0, 0, 64, 64, true), shadowSize);
+        this.addLayer(new HeldItemLayer<>(this));
+        this.addLayer(new HeadLayer<>(this));
         this.addLayer(new ElytraLayer<>(this));
     }
 

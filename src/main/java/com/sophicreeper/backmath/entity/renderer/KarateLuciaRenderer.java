@@ -12,8 +12,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class KarateLuciaRenderer extends BMBipedRenderer<KarateLucia> {
     public KarateLuciaRenderer(EntityRendererManager manager) {
-        super(manager, new BMBipedModel<>(0, 0, 64, 32), 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
+        super(manager, new BMBipedModel<>(0, 0, 64, 32, false), 0.5F);
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32, false), new BMBipedModel<>(1, 0, 64, 32, false)));
     }
 
     public ResourceLocation getTextureLocation(KarateLucia karateLucia) {

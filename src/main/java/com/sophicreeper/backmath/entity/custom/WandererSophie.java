@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -27,7 +28,7 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class WandererSophie extends CreatureEntity implements ISophieFriendlies {
+public class WandererSophie extends TermianMemberEntity implements ISophieFriendlies {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(WandererSophie.class, DataSerializers.INT);
     public double prevChasingPosX;
     public double prevChasingPosY;
@@ -46,6 +47,19 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(VARIANT, 0);
+    }
+
+    @Override
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
+        this.enchantSpawnedWeapon(1);
+        for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
+            if (slotType.getType() == EquipmentSlotType.Group.ARMOR) this.enchantSpawnedArmor(1, slotType);
+        }
+    }
+
+    @Override
+    public SoundEvent getCelebrationSound() {
+        return BMSounds.ENTITY_SOPHIE_CELEBRATE;
     }
 
     @Override
@@ -109,13 +123,13 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
 
     @Override
     protected void registerGoals() {
+        super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.of(BMTags.Items.WANDERER_SOPHIE_TEMPT_ITEMS), false));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
-        this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
-        this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
+        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
+        this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.addAttackTargets();
-        super.registerGoals();
     }
 
     protected void addAttackTargets() {
@@ -144,6 +158,7 @@ public class WandererSophie extends CreatureEntity implements ISophieFriendlies 
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         this.setVariant(this.random.nextInt(16));
         this.populateDefaultEquipmentEnchantments(difficulty);

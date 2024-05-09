@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.entity.goal.queenlucy;
+package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
 import com.sophicreeper.backmath.entity.custom.QueenLucy;
 import net.minecraft.inventory.EquipmentSlotType;

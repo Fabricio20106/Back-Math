@@ -30,12 +30,12 @@ public class TheAljanTeleporter implements ITeleporter {
     @Override
     public Entity placeEntity(Entity entity, ServerWorld currentWorld, ServerWorld destinationWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
         entity = repositionEntity.apply(false);
-        // Used to be 61, then 63, then 0, now 1.
+        // Used to be 61, then 63, then 0, now 1, now 0 again.
         double y = 0;
 
         if (!insideDimension) {
             y = thisPos.getY();
-            if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Using last dimension's stand Y level, so the Y level is now {}", y);
+            if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Using last dimension's stand Y level; current Y level is {}", y);
         }
 
         BlockPos destinationPos = new BlockPos(thisPos.getX(), y, thisPos.getZ());
@@ -71,17 +71,19 @@ public class TheAljanTeleporter implements ITeleporter {
             }
             if (doSetBlock) {
                 if (COMMON_CONFIGS.safeAljan.get()) {
-                    if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Placing the Aljan Portal Stand (with a Jantical) at X: {}, Y: {}, Y: {}", destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
+                    if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Placing the Aljan Portal Stand (with a Jantical) at X: {}, Y: {}, Z: {}", destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
                     destinationWorld.setBlockAndUpdate(destinationPos, BMBlocks.ALJAN_PORTAL_STAND.get().defaultBlockState().setValue(BMBlockStateProperties.JANTICAL, true));
                 } else {
-                    if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Placing the Aljan Portal Stand (without a Jantical) at X: {}, Y: {}, Y: {}", destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
+                    if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Placing the Aljan Portal Stand (without a Jantical) at X: {}, Y: {}, Z: {}", destinationPos.getX(), destinationPos.getY(), destinationPos.getZ());
                     destinationWorld.setBlockAndUpdate(destinationPos, BMBlocks.ALJAN_PORTAL_STAND.get().defaultBlockState());
                 }
-                // Places a Polished Sleepingstone below the stand when above water or sleepishwater
+                // Places a Polished Sleepingstone below the stand when above water or sleepishwater.
                 if (destinationWorld.getFluidState(destinationPos.below()).is(BMTags.Fluids.ALJAN_CARVER_REPLACEABLES)) {
-                    if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Placing a Polished Sleepingstone at X: {}, Y: {}, Y: {}", destinationPos.getX(), destinationPos.below().getY(), destinationPos.getZ());
+                    if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Placing a Polished Sleepingstone at X: {}, Y: {}, Z: {}", destinationPos.getX(), destinationPos.below().getY(), destinationPos.getZ());
                     destinationWorld.setBlockAndUpdate(destinationPos.below(), BMBlocks.POLISHED_SLEEPINGSTONE.get().defaultBlockState());
                 }
+            } else {
+                LOGGER.debug("No need to place another Aljan Portal Stand.");
             }
         }
 

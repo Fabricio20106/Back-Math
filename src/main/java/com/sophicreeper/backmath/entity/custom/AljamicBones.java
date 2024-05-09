@@ -65,7 +65,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
         return new ItemStack(AxolotlTest.ALJAMIC_BONES_SPAWN_EGG.get());
     }
 
-    protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
+    protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
         if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
             int i = this.random.nextInt(2);
             float f = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
@@ -161,7 +161,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
     // Gives armor or weapon for entity based on given DifficultyInstance.
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
-        this.setEquipmentBasedOnDifficultyCustom(difficulty);
+        this.populateAljanEquipmentSlots(difficulty);
         if (random.nextInt(2) == 0) {
             this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANSTONE_SWORD.get()));
         } else {

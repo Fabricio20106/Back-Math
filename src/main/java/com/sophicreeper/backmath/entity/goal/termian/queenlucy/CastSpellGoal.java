@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.entity.goal.queenlucy;
+package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
 import com.sophicreeper.backmath.entity.custom.QueenLucy;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -22,7 +22,7 @@ public abstract class CastSpellGoal extends Goal {
 
     public boolean canUse() {
         LivingEntity lucyTarget = this.queenLucy.getTarget();
-        if (lucyTarget != null && lucyTarget.isAlive() && this.queenLucy.getSpellTicks() > 0) {
+        if (lucyTarget != null && lucyTarget.isAlive()) {
             if (this.queenLucy.isCastingSpell()) {
                 return false;
             } else {
@@ -40,7 +40,7 @@ public abstract class CastSpellGoal extends Goal {
 
     public void start() {
         this.spellWarmup = this.getCastWarmupTime();
-        this.queenLucy.spellTicks = this.getCastingTime();
+        this.queenLucy.spellCooldownTicks = this.getCastingTime();
         this.spellCooldown = this.queenLucy.tickCount + this.getCastingInterval();
         SoundEvent prepareSpellSound = this.getSpellPrepareSound();
         if (prepareSpellSound != null) this.queenLucy.playSound(prepareSpellSound, 1, 1);

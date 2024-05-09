@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.proxy.ClientProxy;
 import com.sophicreeper.backmath.proxy.CommonProxy;
 import com.sophicreeper.backmath.proxy.ServerProxy;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -21,6 +22,7 @@ public class BackMath {
 
     public BackMath() {
         MinecraftForge.EVENT_BUS.register(this);
+        ForgeMod.enableMilkFluid();
         proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> ServerProxy::new);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BMConfigs.COMMON_SPEC, "backmath-common.toml");
         BMConfigs.init();

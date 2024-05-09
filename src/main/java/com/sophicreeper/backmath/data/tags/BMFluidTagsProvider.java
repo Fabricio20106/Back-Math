@@ -6,6 +6,7 @@ import com.sophicreeper.backmath.block.BMFluids;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.FluidTagsProvider;
 import net.minecraft.tags.FluidTags;
+import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
@@ -33,5 +34,7 @@ public class BMFluidTagsProvider extends FluidTagsProvider {
                 .addTag(BMTags.Fluids.LIQUEFIED_MONSTER).addTag(BMTags.Fluids.SLEEPISHWATER);
 
         this.tag(BMTags.Fluids.ALJAN_CARVER_REPLACEABLES).addTag(BMTags.Fluids.SLEEPISHWATER).addTag(FluidTags.WATER);
+
+        this.tag(BMTags.Fluids.MILK).add(ForgeMod.MILK.get()).add(ForgeMod.FLOWING_MILK.get());
     }
 }

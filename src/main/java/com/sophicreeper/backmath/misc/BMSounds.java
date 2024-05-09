@@ -44,6 +44,7 @@ public class BMSounds {
     public static SoundEvent ENTITY_SOPHIE_HURT;
     public static SoundEvent ENTITY_SOPHIE_DEATH;
     public static SoundEvent ENTITY_SOPHIE_SHOOT;
+    public static SoundEvent ENTITY_SOPHIE_CELEBRATE;
     public static SoundEvent ENTITY_QUEEN_LUCY_CAST_SPELL;
     public static SoundEvent ENTITY_QUEEN_LUCY_PREPARE_SUMMON;
     public static SoundEvent ENTITY_QUEEN_LUCY_PREPARE_HEAL;
@@ -115,6 +116,7 @@ public class BMSounds {
         ENTITY_SOPHIE_HURT = registerSound("entity.sophie.hurt");
         ENTITY_SOPHIE_DEATH = registerSound("entity.sophie.death");
         ENTITY_SOPHIE_SHOOT = registerSound("entity.sophie.shoot");
+        ENTITY_SOPHIE_CELEBRATE = registerSound("entity.sophie.celebrate");
         ENTITY_QUEEN_LUCY_CAST_SPELL = registerSound("entity.queen_lucy.cast_spell");
         ENTITY_QUEEN_LUCY_PREPARE_HEAL = registerSound("entity.queen_lucy.prepare_heal");
         ENTITY_QUEEN_LUCY_PREPARE_SUMMON = registerSound("entity.queen_lucy.prepare_summon");

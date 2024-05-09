@@ -145,7 +145,7 @@ public class QueenLucyPet extends TameableEntity {
             }
 
             return ActionResultType.sidedSuccess(this.level.isClientSide);
-        } else if (heldItem.getItem().is(BMTags.Items.QUEEN_LUCY_PET_DEADLY_ITEMS)) {
+        } else if (heldItem.getItem().is(BMTags.Items.QUEEN_LUCY_PET_POISONOUS_ITEMS)) {
             if (!player.abilities.instabuild) {
                 heldItem.shrink(1);
             }

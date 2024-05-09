@@ -2136,7 +2136,7 @@ a7c7d6719a1db4e0dbad8539e9f891c14564d10b assets/backmath/models/item/yin_yang.js
 1e3910296f959cc10e2dab404136ae9af6763677 assets/backmath/models/item/ze_droplet_bread.json
 85cceb0cdeb860aab02cd04373ada2da5e4f5f82 assets/backmath/models/item/zombie_fabricio_spawn_egg.json
 5785080655be6f43ffa4031baef4920236c89f9f assets/backmath/models/item/zonibus_disc.json
-80e9a4ce4fe41ad2c8f9f1e3c392a0ff129ac1c7 data/backmath/tags/blocks/air_replaceables.json
+26bd9219e5f484a44f81e722ef4832ca45401232 data/backmath/tags/blocks/air_replaceables.json
 9539c58f016d239d7b312931389685f9c7648733 data/backmath/tags/blocks/aljan_carver_replaceables.json
 534caa317939201ea3c385a7a3ef5340d74f5c43 data/backmath/tags/blocks/aljan_crop_plantable_on.json
 0384533b6f1d08b988660da0e1be3a8c8f795cfa data/backmath/tags/blocks/aljan_ground.json
@@ -2165,6 +2165,7 @@ cefabec47fc8e9b9a1f5950bbca3c82d215801b6 data/backmath/tags/blocks/sophies_spawn
 77582597002d8f4586f204f221dee84af552e1ca data/backmath/tags/blocks/toys.json
 dba5570068a04c7b0693f50c6253abb3015006c8 data/backmath/tags/blocks/turtle_fried_egg_flower_plantable_on.json
 d8e07bb69220107d26a34a303d5ba9a1e1f246b4 data/backmath/tags/blocks/wild_crops_plantable_on.json
+74700d556ca80c7a1db5fd4efb09c3ddb26cad66 data/backmath/tags/entity_types/cannot_join_sophie_raid.json
 e525d95710af7d387ec0039491210b938fa219ee data/backmath/tags/entity_types/devil_sparey_effectives.json
 93b719dd2051f927dacc81e180c1039a7bee0a3b data/backmath/tags/entity_types/fabricios.json
 db8a013e4ee8c15e35b5d8bd666ca7ed7b874f0e data/backmath/tags/entity_types/lucias.json
@@ -2179,6 +2180,7 @@ d42faaacaa0e5bd16e49d623e164ec5e1a9bd9e9 data/backmath/tags/entity_types/sophie_
 13ef40d98080d86e0e02e0f4fdf8d2d9449b9c1f data/backmath/tags/entity_types/sophies.json
 73c281160f0a95b0c10870320bd3a66be139ebbb data/backmath/tags/entity_types/sparey_effectives.json
 05fc71ccfd9b84c19fb6d7a94546b32d521fb2ca data/backmath/tags/entity_types/sparey_prohibited.json
+1b04b0153e756e971bb0333da8046a83c07f33fa data/backmath/tags/entity_types/termian_raiders_attack.json
 ba757a51b891a8ce945a699f5efff669e289f0bf data/backmath/tags/fluids/aljan_carver_replaceables.json
 5cc892ce9fdb68bacd4d8aeb0dedd99b2f8c4cbb data/backmath/tags/fluids/hillary.json
 e8d411a14e2f9792eeda45e6f389a8cbbaa32a35 data/backmath/tags/fluids/liquefied_monster.json
@@ -2233,19 +2235,20 @@ ef5204ad071dc602047b5277931c30f794fbc41f data/backmath/tags/items/molds/empty.js
 6b2ff57c3da66b00a30c08bb200170886407746c data/backmath/tags/items/mortar_and_pestles.json
 61df5a8ac82dbd26e10a537d5cf28453afa68d6a data/backmath/tags/items/oimt_materials.json
 8e83b0d33736bde1e32e0ca3c4a86d91c801b22f data/backmath/tags/items/popsicles.json
-60282791284a14fd22c776cf53c47f2c37a77174 data/backmath/tags/items/queen_lucy_pet_deadly_items.json
+60282791284a14fd22c776cf53c47f2c37a77174 data/backmath/tags/items/queen_lucy_pet_poisonous_items.json
 5b311ebda6865137ab47c1ac8936cbf07cd0238a data/backmath/tags/items/queen_lucy_pet_tame_items.json
 0a027adf5b76def076bfd622467c36e37570f01a data/backmath/tags/items/queen_lucy_pet_tempt_items.json
 a983d267afab1b2cf06e281baa32757ba62354b8 data/backmath/tags/items/shy_fabricio_tempt_items.json
 b51441590546c08da7e09fccd162d0f77765f8af data/backmath/tags/items/sophie_idea.json
 315335f7dab2927770cc8fb7b6416f17345c3f54 data/backmath/tags/items/sophie_idea/aljamic_wars.json
 69df0684bebb16bef853a786ab6055ca53255cdf data/backmath/tags/items/sophie_idea/alpha.json
-8784e9a311d619bdc46a9903440862a7477ce8f0 data/backmath/tags/items/sophie_idea/bountifully_expansive.json
+16e177693554ed064ecf6ac13682bcbeb4438712 data/backmath/tags/items/sophie_idea/bountifully_expansive.json
 cb1c7da0410eec63cd80c035f309801f32271596 data/backmath/tags/items/sophie_idea/sophies_take_over.json
 3a230b2e7ddc66a438caa7bc74a3e830f25b2526 data/backmath/tags/items/squids.json
 5250650d84575fa9807d1f508cd5bf09eb3866ec data/backmath/tags/items/stripped_woods.json
 a8260fd567091d14a68782dc9f35900d09e61e17 data/backmath/tags/items/tabu_smeltables.json
 d5d84c39752714eddf5975850fc5946775f021f2 data/backmath/tags/items/tempt_items.json
+8595ec7144fc700cbb7df4f7477c58bd664b9ac9 data/backmath/tags/items/termian_raider_can_pickup.json
 77582597002d8f4586f204f221dee84af552e1ca data/backmath/tags/items/toys.json
 0515507002acb76865c28672056eba2fcbdbbef8 data/backmath/tags/items/wanderer_sophie_tempt_items.json
 a3637298c3c3ecae1ed0ccdf6b1391efe676f4c8 data/forge/tags/blocks/cobblestone.json
@@ -2306,6 +2309,7 @@ e72998c1f2f5ea23e283de5d4c7d8c6f1f5ca2a3 data/forge/tags/blocks/storage_blocks/r
 8ddfb0f236339524cced16d74e46fc89a6ee0137 data/forge/tags/blocks/storage_blocks/raw_mid_term.json
 18cbd7f3f7b3f47422920196c6602e202737d74f data/forge/tags/blocks/storage_blocks/raw_moonering.json
 8cfd276665821df4a2897ade4fcdb5556b32265c data/forge/tags/blocks/storage_blocks/warmterm.json
+63fbe5209fbf0a43696d2782123fb795a4e30fa0 data/forge/tags/fluids/milk.json
 d1979be8a5860b4470ccbb50674616161d4b22a7 data/forge/tags/items/armors/boots.json
 943104d3a6550740c982d358b6a69c20b4d52e48 data/forge/tags/items/bones.json
 3371385529f0b8ca1b8c3874b731596da541b733 data/forge/tags/items/dusts.json
@@ -2329,6 +2333,7 @@ aa4ff72e55aad10eca56edeb8e386a57f38525ff data/forge/tags/items/dyes/aljan_light_
 740d4e8709b7dce5d62c5f600e664683637474ba data/forge/tags/items/dyes/devil.json
 02b9ad545f5fa8755646064c66b9921ceef552af data/forge/tags/items/dyes/insomnian.json
 165f60c48176ba85cf5cf09465f6b206b7a419e2 data/forge/tags/items/dyes/poison_brown.json
+a4b2d8ccf233d044b1f0e5c2e49ba1db235fd229 data/forge/tags/items/elytra.json
 ba9edb8dfba4deb7f13efbf21e2de919a7833cc4 data/forge/tags/items/fence_gates.json
 c88874034226d550fdf78b3dbb6381e733d93e91 data/forge/tags/items/fence_gates/devil.json
 03b217c9d65d26d1c39935e541b4ff4f9db2fb5e data/forge/tags/items/fence_gates/wooden.json

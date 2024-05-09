@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 public class InsomniaArrow extends AbstractArrowEntity {
+    private ItemStack arrowItem = new ItemStack(AxolotlTest.INSOMNIA_ARROW.get());
     private int poisonDuration = 200;
     private int blindnessDuration = 600;
 
@@ -31,7 +32,7 @@ public class InsomniaArrow extends AbstractArrowEntity {
 
     @Override
     protected ItemStack getPickupItem() {
-        return new ItemStack(AxolotlTest.INSOMNIA_ARROW.get());
+        return this.arrowItem.copy();
     }
 
     protected void doPostHurtEffects(LivingEntity livEntity) {
@@ -42,18 +43,16 @@ public class InsomniaArrow extends AbstractArrowEntity {
 
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
-        if (tag.contains("poison_duration")) {
-            this.poisonDuration = tag.getInt("poison_duration");
-        }
-        if (tag.contains("blindness_duration")) {
-            this.blindnessDuration = tag.getInt("blindness_duration");
-        }
+        tag.put("item", this.arrowItem.save(new CompoundNBT()));
+        tag.putInt("poison_duration", this.poisonDuration);
+        tag.putInt("blindness_duration", this.blindnessDuration);
     }
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        tag.putInt("poison_duration", this.poisonDuration);
-        tag.putInt("blindness_duration", this.blindnessDuration);
+        if (tag.contains("item", 10)) this.arrowItem = ItemStack.of(tag.getCompound("item"));
+        this.poisonDuration = tag.getInt("poison_duration");
+        this.blindnessDuration = tag.getInt("blindness_duration");
     }
 
     @Override

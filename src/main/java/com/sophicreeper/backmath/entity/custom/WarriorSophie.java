@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -23,20 +24,20 @@ import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
-public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
+public class WarriorSophie extends TermianMemberEntity implements ISophieFriendlies {
     public WarriorSophie(EntityType<WarriorSophie> type, World world) {
         super(type, world);
     }
 
     @Override
     protected void registerGoals() {
+        super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.2D));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.1D, false));
         this.goalSelector.addGoal(4, new LookAtGoal(this, QueenLucy.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.addAttackTargets();
-        super.registerGoals();
     }
 
     protected void addAttackTargets() {
@@ -51,6 +52,24 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
+    }
+
+    @Override
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
+        for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
+            if (slotType.getType() == EquipmentSlotType.Group.ARMOR) {
+                this.enchantSpawnedArmor(0.5F * currentWave, slotType);
+            }
+        }
+    }
+
+    @Override
+    public ArmPose getArmPose() {
+        if (this.isAggressive()) {
+            return ArmPose.ATTACKING;
+        } else {
+            return this.isCelebrating() ? ArmPose.CELEBRATING : ArmPose.NEUTRAL;
+        }
     }
 
     public static AttributeModifierMap.MutableAttribute createWarriorSophieAttributes() {
@@ -73,10 +92,6 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
             }
         }
         super.aiStep();
-    }
-
-    public double getMyRidingOffset() {
-        return -0.35D;
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -126,10 +141,15 @@ public class WarriorSophie extends CreatureEntity implements ISophieFriendlies {
 
     @Nullable
     @Override
-    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData entityData, @Nullable CompoundNBT dataTag) {
         this.populateDefaultEquipmentSlots(difficulty);
         this.populateDefaultEquipmentEnchantments(difficulty);
-        return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+        return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
+    }
+
+    @Override
+    public SoundEvent getCelebrationSound() {
+        return BMSounds.ENTITY_SOPHIE_CELEBRATE;
     }
 
     public void rideTick() {

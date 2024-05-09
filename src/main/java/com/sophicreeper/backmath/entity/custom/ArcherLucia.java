@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.armor.BMArmorItem;
@@ -49,6 +50,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
 
     public ArcherLucia(EntityType<ArcherLucia> entity, World world) {
         super(entity, world);
+        this.setCanPickUpLoot(true);
     }
 
     protected void defineSynchedData() {
@@ -95,7 +97,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        ListNBT inventoryNBTList = tag.getList("inventory", 10);
+        ListNBT inventoryNBTList = BMTagFixes.fixInventoryTag(tag);
 
         for(int i = 0; i < inventoryNBTList.size(); ++i) {
             ItemStack stack = ItemStack.of(inventoryNBTList.getCompound(i));
@@ -247,7 +249,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
     }
 
     private boolean wantsItem(Item item) {
-        return item instanceof BMArmorItem || item instanceof BMCrossbowItem || item.is(BMTags.Items.ARCHER_LUCIA_PICKUPABLES);
+        return item instanceof BMArmorItem || item instanceof BMCrossbowItem || item.is(BMTags.Items.ARCHER_LUCIA_CAN_PICKUP);
     }
 
     public boolean setSlot(int inventorySlot, ItemStack stack) {

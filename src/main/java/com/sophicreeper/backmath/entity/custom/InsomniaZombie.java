@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.InsomniaZombieAttackGoal;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
@@ -31,7 +32,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfig;
 
 import javax.annotation.Nullable;
 import java.time.LocalDate;
@@ -290,7 +290,7 @@ public class InsomniaZombie extends MonsterEntity {
     // (abstract) Protected helper method to read subclass entity data from NBT.
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.setCanBreakDoors(tag.getBoolean("can_break_doors"));
+        this.setCanBreakDoors(BMTagFixes.fixCanBreakDoorsTag(tag));
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -322,7 +322,6 @@ public class InsomniaZombie extends MonsterEntity {
     }
 
     protected void applyAttributeBonuses(float difficulty) {
-        this.randomizeReinforcementsChance();
         this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).addPermanentModifier(new AttributeModifier("Random Knockback Res. Bonus", this.random.nextDouble() * (double) 0.05F, AttributeModifier.Operation.ADDITION));
         double d0 = this.random.nextDouble() * 1.5D * (double) difficulty;
         if (d0 > 1) {
@@ -334,10 +333,6 @@ public class InsomniaZombie extends MonsterEntity {
             this.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("Leader Insomnia Zombie Bonus", this.random.nextDouble() * 3 + 1, AttributeModifier.Operation.MULTIPLY_TOTAL));
             this.setCanBreakDoors(this.supportsBreakDoorGoal());
         }
-    }
-
-    protected void randomizeReinforcementsChance() {
-        this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).setBaseValue(this.random.nextDouble() * ForgeConfig.SERVER.zombieBaseSummonChance.get());
     }
 
     // Returns the Y Offset of this entity.

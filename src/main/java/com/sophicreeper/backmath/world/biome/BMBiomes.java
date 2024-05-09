@@ -9,6 +9,7 @@ import com.sophicreeper.backmath.world.biome.custom.BMDefaultBiomeFeatures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.client.audio.BackgroundMusicTracks;
 import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Features;
@@ -117,6 +118,8 @@ public class BMBiomes {
 
         DefaultBiomeFeatures.addDefaultOverworldLandStructures(settings);
         settings.addStructureStart(StructureFeatures.RUINED_PORTAL_MOUNTAIN);
+        settings.addStructureStart(StructureFeatures.OCEAN_RUIN_COLD);
+        settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, Features.SEAGRASS_DEEP);
 
         DefaultBiomeFeatures.addDefaultCarvers(settings);
         DefaultBiomeFeatures.addDefaultOres(settings);
@@ -130,10 +133,18 @@ public class BMBiomes {
         DefaultBiomeFeatures.addDefaultMonsterRoom(settings);
         DefaultBiomeFeatures.addDefaultLakes(settings);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(settings);
+        DefaultBiomeFeatures.addSurfaceFreezing(settings);
+        DefaultBiomeFeatures.addDefaultSeagrass(settings);
+        DefaultBiomeFeatures.addColdOceanExtraVegetation(settings);
 
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.CRYSTALLINE_BIRCH_TREES);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(1.5F).scale(0.025F).temperature(0.7F).downfall(0.8F).specialEffects(new BiomeAmbience.Builder().waterColor(0x77BAE8)
+        spawns.addSpawn(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(EntityType.SQUID, 3, 1, 4));
+        spawns.addSpawn(EntityClassification.WATER_CREATURE, new MobSpawnInfo.Spawners(EntityType.DOLPHIN, 1, 1, 2));
+        spawns.addSpawn(EntityClassification.WATER_AMBIENT, new MobSpawnInfo.Spawners(EntityType.COD, 15, 3, 6));
+        spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(EntityType.DROWNED, 100, 1, 1));
+
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(-1.8F).scale(2).temperature(0.7F).downfall(0.8F).specialEffects(new BiomeAmbience.Builder().waterColor(0x77BAE8)
                 .waterFogColor(0x77BAE8).fogColor(0xB9D1FF).foliageColorOverride(0xFFEC4F).skyColor(0x82A8FF).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_OVERWORLD_ANGELIC_WOODS))
                 .ambientMoodSound(MoodSoundAmbience.LEGACY_CAVE_SETTINGS).grassColorOverride(0xD4EAEA).build()).mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }

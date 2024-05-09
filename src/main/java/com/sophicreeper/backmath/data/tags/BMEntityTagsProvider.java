@@ -49,6 +49,9 @@ public class BMEntityTagsProvider extends EntityTypeTagsProvider {
 
         this.tag(BMTags.EntityTypes.SHY_FABRICIO_FRIENDLIES).add(BMEntities.SHY_FABRICIO.get()).add(EntityType.ARMOR_STAND);
 
+        this.tag(BMTags.EntityTypes.TERMIAN_RAIDERS_ATTACK).add(EntityType.IRON_GOLEM).add(EntityType.PLAYER);
+        this.tag(BMTags.EntityTypes.CANNOT_JOIN_SOPHIE_RAID);
+
         // Melony Tags
         this.tag(BMTags.EntityTypes.CAN_SPAWN_ON_LEAVES).add(EntityType.OCELOT).add(EntityType.PARROT);
 

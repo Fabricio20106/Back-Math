@@ -221,6 +221,9 @@
     ],
     "subtitle": "subtitles.entity.sophie.shoot"
   },
+  "item.sophie.celebrate": {
+    "sounds": []
+  },
   "entity.lucia.hurt": {
     "sounds": [
       "damage/hit1",

@@ -81,7 +81,7 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
         return new ItemStack(AxolotlTest.SLEEPISH_SKELETON_SPAWN_EGG.get());
     }
 
-    protected void setEquipmentBasedOnDifficultyCustom(DifficultyInstance difficulty) {
+    protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
         if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
             int i = this.random.nextInt(2);
             float f = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
@@ -176,7 +176,7 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
 
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
-        this.setEquipmentBasedOnDifficultyCustom(difficulty);
+        this.populateAljanEquipmentSlots(difficulty);
         this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BOW));
     }
 

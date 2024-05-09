@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.WandererSophie;
 import com.sophicreeper.backmath.entity.model.BMBipedModel;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
@@ -12,7 +13,6 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,7 +27,7 @@ public class WandererSophieCapeLayer extends LayerRenderer<WandererSophie, BMBip
     public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight, WandererSophie sophie, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if (!sophie.isInvisible()) {
             ItemStack chestStack = sophie.getItemBySlot(EquipmentSlotType.CHEST);
-            if (chestStack.getItem() != Items.ELYTRA) {
+            if (!chestStack.getItem().is(BMTags.Items.ELYTRA)) {
                 matrixStack.pushPose();
                 matrixStack.translate(0, 0, 0.125D);
                 double d0 = MathHelper.lerp(partialTicks, sophie.prevChasingPosX, sophie.chasingPosX) - MathHelper.lerp(partialTicks, sophie.xo, sophie.getX());

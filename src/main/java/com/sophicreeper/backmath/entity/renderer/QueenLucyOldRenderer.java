@@ -13,10 +13,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class QueenLucyRenderer extends BipedRenderer<QueenLucy, QueenLucyModel> {
-    public QueenLucyRenderer(EntityRendererManager manager) {
+public class QueenLucyOldRenderer extends BipedRenderer<QueenLucy, QueenLucyModel> {
+    public QueenLucyOldRenderer(EntityRendererManager manager) {
         super(manager, new QueenLucyModel(), 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0, 0, 64, 32, true), new BMBipedModel<>(1, 0, 64, 32, true)));
         this.addLayer(new ElytraLayer<>(this));
     }
 

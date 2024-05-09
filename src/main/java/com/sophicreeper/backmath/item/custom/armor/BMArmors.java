@@ -170,7 +170,7 @@ public class BMArmors implements IArmorMaterial {
     public static class HardenedAmaracamel extends BMArmors {
         public HardenedAmaracamel() {
             super(BackMath.MOD_ID + ":hardened_amaracamel", 17, new int[] {2, 5, 6, 2}, 12, SoundEvents.ARMOR_EQUIP_CHAIN, 0, 0, () ->
-                    Ingredient.of(BMTags.Items.MATERIALS_HARDENED_AMARACAMEL));
+                    Ingredient.of(BMTags.Items.HARDENED_AMARACAMEL_MATERIALS));
         }
     }
     public static class CandyYellowTurtle extends BMArmors {
@@ -198,7 +198,7 @@ public class BMArmors implements IArmorMaterial {
     public static class WarriorHardenedAmaracamelHelmet extends BMArmors {
         public WarriorHardenedAmaracamelHelmet() {
             super(BackMath.MOD_ID + ":warrior_hardened_amaracamel", 17, new int[] {2, 5, 6, 2}, 12, SoundEvents.ARMOR_EQUIP_CHAIN, 0, 0, () ->
-                    Ingredient.of(BMTags.Items.MATERIALS_HARDENED_AMARACAMEL));
+                    Ingredient.of(BMTags.Items.HARDENED_AMARACAMEL_MATERIALS));
         }
     }
     public static class WarriorDevilHelmet extends BMArmors {

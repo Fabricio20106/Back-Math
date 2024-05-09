@@ -101,7 +101,7 @@ public class BMOreGeneration {
             generateOre(event.getGeneration(), ALJANSTONE_REPLACEABLES, BMBlocks.ALJAMIC_TIN_ORE.get().defaultBlockState(), 7, 36, 132, 12);
         }
 
-        if (Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName()) || BMConfigs.COMMON_CONFIGS.aljamicHighlandsAbundantJanticOreGen.get()) {
+        if (Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName()) || BMConfigs.COMMON_CONFIGS.abundantJanticOreGen.get()) {
             generateOre(event.getGeneration(), ALJANSTONE_REPLACEABLES, BMBlocks.JANTIC_ORE.get().defaultBlockState(), 5, 70, 96, 3);
         }
     }
@@ -142,7 +142,7 @@ public class BMOreGeneration {
             generateOre(event.getGeneration(), SLEEPINGSTONE_REPLACEABLES, BMBlocks.SLEEPINGSTONE_ALJAMIC_TIN_ORE.get().defaultBlockState(), 7, 36, 132, 12);
         }
 
-        if (Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName()) || BMConfigs.COMMON_CONFIGS.aljamicHighlandsAbundantJanticOreGen.get()) {
+        if (Objects.equals(BMBiomes.ALJAMIC_HIGHLANDS.get().getRegistryName(), event.getName()) || BMConfigs.COMMON_CONFIGS.abundantJanticOreGen.get()) {
             generateOre(event.getGeneration(), SLEEPINGSTONE_REPLACEABLES, BMBlocks.SLEEPINGSTONE_JANTIC_ORE.get().defaultBlockState(), 5, 70, 96, 3);
         }
     }

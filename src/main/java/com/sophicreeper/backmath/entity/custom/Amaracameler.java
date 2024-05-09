@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.amaracameler.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -90,12 +91,12 @@ public class Amaracameler extends MobEntity implements IMob {
 
     // (abstract) Protected helper method to read subclass entity data from NBT.
     public void readAdditionalSaveData(CompoundNBT tag) {
-        int sizeTag = tag.getInt("size");
+        int sizeTag = BMTagFixes.fixSizeTag(tag);
         if (sizeTag < 0) sizeTag = 0;
 
         this.setSize(sizeTag + 1, false);
         super.readAdditionalSaveData(tag);
-        this.wasOnGround = tag.getBoolean("was_on_ground");
+        this.wasOnGround = BMTagFixes.fixWasOnGroundTag(tag);
     }
 
     public boolean isSmallAmaracameler() {

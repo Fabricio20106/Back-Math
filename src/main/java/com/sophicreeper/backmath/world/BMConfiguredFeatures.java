@@ -113,7 +113,7 @@ public class BMConfiguredFeatures {
                     new SimpleBlockStateProvider(BMBlocks.CRYSTALLINE_BIRCH_LOG.get().defaultBlockState()),
                     new SimpleBlockStateProvider(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get().defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
-                    new StraightTrunkPlacer(4, 2, 0),
+                    new StraightTrunkPlacer(6, 2, 0),
                     new TwoLayerFeature(1, 0, 1)))
                     .ignoreVines().build()));
 

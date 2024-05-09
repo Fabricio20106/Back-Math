@@ -96,7 +96,7 @@ public class CrystallizerBlock extends HorizontalBlock {
             return ActionResultType.SUCCESS;
         }
 
-        if (!mainHand.getItem().is(BMTags.Items.CANNOT_USE_AT_CRYSTALLIZER)) {
+        if (!mainHand.getItem().is(BMTags.Items.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER)) {
             // MOLD: Empty
             if (state.getValue(MOLD) == Molds.EMPTY) {
                 // 4 Aljames + Bucket = Liquid Aljame Bucket
@@ -261,6 +261,16 @@ public class CrystallizerBlock extends HorizontalBlock {
 
     public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(HORIZONTAL_FACING)));
+    }
+
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, World world, BlockPos pos) {
+        return state.getValue(MOLD).ordinal();
     }
 
     @Override

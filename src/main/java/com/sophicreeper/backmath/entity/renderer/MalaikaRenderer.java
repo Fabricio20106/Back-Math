@@ -12,8 +12,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class MalaikaRenderer extends BMBipedRenderer<Malaika> {
     public MalaikaRenderer(EntityRendererManager manager) {
-        super(manager, 0.5f);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5f, 0.5f, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
+        super(manager, 0.5F);
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0.5F, 64, 32, false), new BMBipedModel<>(1, 0, 64, 32, false)));
     }
 
     // Returns the location of an entity's texture.

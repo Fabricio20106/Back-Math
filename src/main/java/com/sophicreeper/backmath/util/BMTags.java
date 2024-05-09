@@ -116,13 +116,14 @@ public class BMTags {
         public static final ITag.INamedTag<Item> POPSICLES = backMath("popsicles");
         public static final ITag.INamedTag<Item> ALJANSTONE_CRAFTING_MATERIALS = backMath("aljanstone_crafting_materials");
         public static final ITag.INamedTag<Item> BONE_MEALS = backMath("bone_meals");
-        public static final ITag.INamedTag<Item> ARCHER_LUCIA_PICKUPABLES = backMath("archer_lucia_can_pickup");
+        public static final ITag.INamedTag<Item> ARCHER_LUCIA_CAN_PICKUP = backMath("archer_lucia_can_pickup");
+        public static final ITag.INamedTag<Item> TERMIAN_RAIDER_CAN_PICKUP = backMath("termian_raider_can_pickup");
         public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TAME_ITEMS = backMath("queen_lucy_pet_tame_items");
-        public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_DEADLY_ITEMS = backMath("queen_lucy_pet_deadly_items");
+        public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_POISONOUS_ITEMS = backMath("queen_lucy_pet_poisonous_items");
         public static final ITag.INamedTag<Item> TABU_SMELTABLES = backMath("tabu_smeltables");
         public static final ITag.INamedTag<Item> MID_TERM_MATERIALS = backMath("mid_term_materials");
         public static final ITag.INamedTag<Item> OIMT_MATERIALS = backMath("oimt_materials");
-        public static final ITag.INamedTag<Item> CANNOT_USE_AT_CRYSTALLIZER = backMath("cannot_craft_with_at_crystallizer");
+        public static final ITag.INamedTag<Item> CANNOT_CRAFT_WITH_AT_CRYSTALLIZER = backMath("cannot_craft_with_at_crystallizer");
 
         // Melony Tags
         public static final ITag.INamedTag<Item> SHIELDS = melony("shields");
@@ -143,7 +144,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> ALJAN_RECIPE_STICKS = backMath("aljan_recipe_sticks");
         public static final ITag.INamedTag<Item> BACK_GUIDE_RECIPE_ACCEPTABLES = backMath("back_guide_recipe_acceptables");
         public static final ITag.INamedTag<Item> MATERIALS = backMath("materials");
-        public static final ITag.INamedTag<Item> MATERIALS_HARDENED_AMARACAMEL = backMath("hardened_amaracamel_materials");
+        public static final ITag.INamedTag<Item> HARDENED_AMARACAMEL_MATERIALS = backMath("hardened_amaracamel_materials");
         public static final ITag.INamedTag<Item> CROWNS = backMath("crowns");
         public static final ITag.INamedTag<Item> FOOD_BAGS = backMath("food_bags");
         public static final ITag.INamedTag<Item> ENERGETICS = backMath("energetics");
@@ -239,6 +240,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> RAW_MATERIALS_MOONERING = forge("raw_materials/moonering");
 
         public static final ITag.INamedTag<Item> ARMORS_BOOTS = forge("armors/boots");
+        public static final ITag.INamedTag<Item> ELYTRA = forge("elytra");
         public static final ITag.INamedTag<Item> KNIVES = forge("knives");
         public static final ITag.INamedTag<Item> MILK = forge("milk");
         public static final ITag.INamedTag<Item> FENCE_GATES_DEVIL = forge("fence_gates/devil");
@@ -382,6 +384,12 @@ public class BMTags {
 
         public static final ITag.INamedTag<Fluid> ALJAN_CARVER_REPLACEABLES = backMath("aljan_carver_replaceables");
 
+        public static final ITag.INamedTag<Fluid> MILK = forge("milk");
+
+        private static ITag.INamedTag<Fluid> forge(String path) {
+            return FluidTags.bind(new ResourceLocation("forge", path).toString());
+        }
+
         private static ITag.INamedTag<Fluid> backMath(String path) {
             return FluidTags.bind(BackMath.resourceLoc(path).toString());
         }
@@ -404,6 +412,10 @@ public class BMTags {
         public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = backMath("sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = backMath("sparey_prohibited");
         public static final ITag.INamedTag<EntityType<?>> SHY_FABRICIO_FRIENDLIES = backMath("shy_fabricio_friendlies");
+
+        // Raider-related Tags
+        public static final ITag.INamedTag<EntityType<?>> TERMIAN_RAIDERS_ATTACK = backMath("termian_raiders_attack");
+        public static final ITag.INamedTag<EntityType<?>> CANNOT_JOIN_SOPHIE_RAID = backMath("cannot_join_sophie_raid");
 
         // Melony Tags
         public static final ITag.INamedTag<EntityType<?>> CAN_SPAWN_ON_LEAVES = melony("can_spawn_on_leaves");

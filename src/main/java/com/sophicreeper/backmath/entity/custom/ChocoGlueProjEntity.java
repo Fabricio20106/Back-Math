@@ -18,8 +18,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Random;
-
 public class ChocoGlueProjEntity extends ProjectileItemEntity {
     public ChocoGlueProjEntity(EntityType<? extends ProjectileItemEntity> type, World world) {
         super(type, world);

@@ -250,7 +250,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.SHY_FABRICIO.get(), ShyFabricioRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.KARATE_LUCIA.get(), KarateLuciaRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_SOPHIE.get(), InsomniaSophieRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(BMEntities.QUEEN_LUCY.get(), QueenLucyRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BMEntities.QUEEN_LUCY.get(), QueenLucyOldRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WARRIOR_SOPHIE.get(), WarriorSophieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.QUEEN_LUCY_PET.get(), QueenLucyPetRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), ArcherInsomniaSophieRenderer::new);

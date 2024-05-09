@@ -33,7 +33,7 @@ public class WandererSophieRenderer extends BMBipedRenderer<WandererSophie> {
 
     public WandererSophieRenderer(EntityRendererManager rendererManager) {
         super(rendererManager, 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32, false), new BMBipedModel<>(1, 0, 64, 32, false)));
         this.addLayer(new WandererSophieCapeLayer(this));
     }
 

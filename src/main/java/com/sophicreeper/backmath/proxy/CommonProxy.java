@@ -22,17 +22,18 @@ import com.sophicreeper.backmath.world.feature.BMFeature;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
-import net.minecraft.entity.ai.attributes.GlobalEntityTypeAttributes;
 import net.minecraft.entity.monster.MonsterEntity;
-import net.minecraft.entity.monster.SlimeEntity;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
 public class CommonProxy {
     CommonProxy() {
@@ -43,6 +44,7 @@ public class CommonProxy {
         BMEntities.ENTITIES.register(eventBus);
         BMEffects.EFFECTS.register(eventBus);
         BMFluids.FLUIDS.register(eventBus);
+        new BMFeature();
         BMFeature.FEATURES.register(eventBus);
         BMWorldCarvers.WORLD_CARVERS.register(eventBus);
         BMBiomes.BIOMES.register(eventBus);
@@ -51,7 +53,6 @@ public class CommonProxy {
         BMStructures.STRUCTURES.register(eventBus);
         BMStats.init();
         BMSounds.registerSounds();
-        new BMFeature();
 
         eventBus.addListener(this::commonSetup);
     }
@@ -63,9 +64,18 @@ public class CommonProxy {
         RegistryKey<Biome> angelicWoodsKey = RegistryKey.create(ForgeRegistries.Keys.BIOMES, BMBiomes.ANGELIC_WOODS.getId());
 
         if (BMConfigs.COMMON_CONFIGS.backFieldGen.get()) BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(backFieldKey, 5));
-        if (BMConfigs.COMMON_CONFIGS.originalBackFieldsGen.get()) BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(originalBackFieldsKey, 15));
-        if (BMConfigs.COMMON_CONFIGS.modifiedBackFieldsGen.get()) BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(modifiedBackFieldsKey, 10));
-        if (BMConfigs.COMMON_CONFIGS.angelicWoodsGen.get()) BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(angelicWoodsKey, 12));
+        if (BMConfigs.COMMON_CONFIGS.originalBackFieldsGen.get()) {
+            BiomeDictionary.addTypes(angelicWoodsKey, FOREST, OVERWORLD, DENSE);
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(originalBackFieldsKey, 15));
+        }
+        if (BMConfigs.COMMON_CONFIGS.modifiedBackFieldsGen.get()) {
+            BiomeDictionary.addTypes(angelicWoodsKey, FOREST, OVERWORLD, MODIFIED, DENSE);
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(modifiedBackFieldsKey, 10));
+        }
+        if (BMConfigs.COMMON_CONFIGS.angelicWoodsGen.get()) {
+            BiomeDictionary.addTypes(angelicWoodsKey, OVERWORLD, LUSH, OCEAN, SPARSE);
+            BiomeManager.addBiome(BiomeManager.BiomeType.COOL, new BiomeManager.BiomeEntry(angelicWoodsKey, 12));
+        }
 
         event.enqueueWork(() -> {
             // Entity Spawning, but it now works! I just needed both the old and this new code together instead of deleting the old code.
@@ -88,25 +98,6 @@ public class CommonProxy {
                 EntitySpawnPlacementRegistry.register(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
             }
         });
-
-        // Entity Attributes
-        GlobalEntityTypeAttributes.put(BMEntities.WANDERER_SOPHIE.get(), WandererSophie.createWandererSophieAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.ARCHER_LUCIA.get(), ArcherLucia.createArcherLuciaAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.ANGRY_SOPHIE.get(), AngrySophie.createAngrySophieAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.SHY_FABRICIO.get(), ShyFabricio.createShyFabricioAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.KARATE_LUCIA.get(), KarateLucia.createKarateLuciaAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.INSOMNIA_SOPHIE.get(), InsomniaSophie.createInsomniaSophieAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_LUCY.get(), QueenLucy.createQueenLucyAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.WARRIOR_SOPHIE.get(), WarriorSophie.createWarriorSophieAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.QUEEN_LUCY_PET.get(), QueenLucyPet.createQueenLucyPetAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), ArcherInsomniaSophie.createArcherInsomniaSophieAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.INSOMNIA_ZOMBIE.get(), InsomniaZombie.createInsomniaZombieAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.ZOMBIE_FABRICIO.get(), ZombieFabricio.createZombieFabricioAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.AMARACAMELER.get(), MonsterEntity.createMonsterAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.MALAIKA.get(), Malaika.createMalaikaAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.JANTICLE.get(), Janticle.createJanticleAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.ALJAMIC_BONES.get(), AljamicBones.createAljamicBonesAttributes().build());
-        GlobalEntityTypeAttributes.put(BMEntities.SLEEPISH_SKELETON.get(), SleepishSkeleton.createSleepishSkeletonAttributes().build());
 
         // Other Things to Load
         BMPotions.addPotionRecipes();

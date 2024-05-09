@@ -1,8 +1,9 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.sophicreeper.backmath.entity.goal.queenlucy.*;
+import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
+import com.sophicreeper.backmath.entity.goal.termian.queenlucy.*;
+import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.*;
@@ -10,14 +11,13 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -26,19 +26,20 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerBossInfo;
-import net.minecraft.world.server.ServerWorld;
+import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nullable;
+import java.util.Locale;
 
-public class QueenLucy extends MonsterEntity implements ISophieFriendlies {
+public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies, IMob {
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
     private static final DataParameter<String> SPELL = EntityDataManager.defineId(QueenLucy.class, DataSerializers.STRING);
-    public int spellTicks;
+    public int spellCooldownTicks;
+    public CompoundNBT lucySpellsTag;
 
     public QueenLucy(EntityType<QueenLucy> type, World world) {
         super(type, world);
@@ -52,39 +53,59 @@ public class QueenLucy extends MonsterEntity implements ISophieFriendlies {
         this.entityData.define(SPELL, "none");
     }
 
+    @Override
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
+
+    }
+
+    @Override
+    public SoundEvent getCelebrationSound() {
+        return BMSounds.ENTITY_SOPHIE_CELEBRATE;
+    }
+
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.spellTicks = tag.getInt("spell_ticks");
+
+        CompoundNBT spellsTag = tag.getCompound("lucy_spells");
+        if (QueenLucySpells.isValidSpell(spellsTag.getString("current_spell"))) {
+            LogManager.getLogger().debug("Tried to set spell type for Queen Lucy: {}", QueenLucySpells.setFromString(spellsTag.getString("current_spell")));
+            this.setSpellType(QueenLucySpells.setFromString(spellsTag.getString("current_spell").toLowerCase(Locale.ROOT)));
+        } else {
+            LogManager.getLogger().error("Back Math: Tried to read invalid spell type: \"{}\"", spellsTag.getString("current_spell"));
+            this.setSpellType(QueenLucySpells.NONE);
+        }
+
+        this.spellCooldownTicks = BMTagFixes.fixSpellTicksTag(tag);
+        this.lucySpellsTag = spellsTag;
     }
 
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
-        tag.putInt("spell_ticks", this.spellTicks);
+        CompoundNBT spellsTag = new CompoundNBT();
+        spellsTag.putString("current_spell", this.entityData.get(SPELL).toLowerCase(Locale.ROOT));
+        spellsTag.putInt("spell_cooldown_ticks", this.spellCooldownTicks);
+        tag.put("lucy_spells", spellsTag);
     }
 
     public boolean isCastingSpell() {
         if (this.level.isClientSide) {
             return !this.entityData.get(SPELL).equals("none");
         } else {
-            return this.spellTicks > 0;
+            return this.spellCooldownTicks > 0;
         }
     }
 
-    public int getSpellTicks() {
-        return this.spellTicks;
-    }
-
     public void setSpellType(QueenLucySpells spells) {
-        this.entityData.set(SPELL, spells.name());
+        this.entityData.set(SPELL, spells.getName());
     }
 
     @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new WaterAvoidingRandomWalkingGoal(this, 1.2D));
-        this.goalSelector.addGoal(2, new SummonWarriorSophiesGoal(this));
-        this.goalSelector.addGoal(2, new SummonArcherInsomniaSophiesGoal(this));
-        this.goalSelector.addGoal(2, new SummonInsomniaSophiesGoal(this));
+        this.goalSelector.addGoal(1, new SummonWarriorSophiesGoal(this));
+        this.goalSelector.addGoal(1, new SummonArcherInsomniaSophiesGoal(this));
+        this.goalSelector.addGoal(1, new SummonInsomniaSophiesGoal(this));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.2D));
         this.goalSelector.addGoal(3, new EquipArmorAndHealGoal(this));
         this.goalSelector.addGoal(5, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookAtGoal(this, WarriorSophie.class, 6));
@@ -97,8 +118,8 @@ public class QueenLucy extends MonsterEntity implements ISophieFriendlies {
 
     protected void addAttackTargets() {
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
+        this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
@@ -112,7 +133,7 @@ public class QueenLucy extends MonsterEntity implements ISophieFriendlies {
 
     protected void customServerAiStep() {
         super.customServerAiStep();
-        if (this.spellTicks > 0) --this.spellTicks;
+        if (this.spellCooldownTicks > 0) --this.spellCooldownTicks;
         if (this.tickCount % 20 == 0) this.heal(2);
         if (this.tickCount % 30 == 0) this.heal(3);
         this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
@@ -212,6 +233,21 @@ public class QueenLucy extends MonsterEntity implements ISophieFriendlies {
             CreatureEntity entity = (CreatureEntity) this.getVehicle();
             this.yBodyRot = entity.yBodyRot;
         }
+    }
+
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return true;
+    }
+
+    @Override
+    protected boolean shouldDropExperience() {
+        return true;
+    }
+
+    @Override
+    protected boolean shouldDropLoot() {
+        return true;
     }
 
     public SoundEvent getSpellSound() {

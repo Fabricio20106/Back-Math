@@ -4,7 +4,7 @@
       "type": "forge:not",
       "value": {
         "type": "forge:tag_empty",
-        "tag": "backmath:materials/hardened_amaracamel"
+        "tag": "backmath:hardened_amaracamel_materials"
       }
     }
   ],
@@ -15,7 +15,7 @@
   },
   "crafting_items": {
     "main": {
-      "tag": "backmath:materials/hardened_amaracamel"
+      "tag": "backmath:hardened_amaracamel_materials"
     }
   },
   "name": {

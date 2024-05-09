@@ -21,6 +21,10 @@ public class BMItemModelProperties {
     }
 
     public static void makeCrossbow(Item crossbow) {
+        register(crossbow, new ResourceLocation("pull"), (stack, world, livEntity) -> {
+            if (livEntity != null) return CrossbowItem.isCharged(stack) ? 0 : (float) (stack.getUseDuration() - livEntity.getUseItemRemainingTicks()) / (float) CrossbowItem.getChargeDuration(stack);
+            return 0;
+        });
         register(crossbow, new ResourceLocation("pulling"), (stack, world, livEntity) -> livEntity != null && livEntity.isUsingItem() && livEntity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1 : 0);
         register(crossbow, new ResourceLocation("charged"), (stack, world, livEntity) -> livEntity != null && CrossbowItem.isCharged(stack) ? 1 : 0);
         register(crossbow, new ResourceLocation("firework"), (stack, world, livEntity) -> livEntity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1 : 0);

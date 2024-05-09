@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "tag": "backmath:materials/hardened_amaracamel"
+      "tag": "backmath:hardened_amaracamel_materials"
     }
   ],
   "result": {

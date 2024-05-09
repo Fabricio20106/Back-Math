@@ -13,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ShyFabricioRenderer extends BMBipedRenderer<ShyFabricio> {
     public ShyFabricioRenderer(EntityRendererManager manager) {
         super(manager, 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0, 0, 64, 32), new BMBipedModel<>(1, 0, 64, 32)));
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0, 0, 64, 32, false), new BMBipedModel<>(1, 0, 64, 32, false)));
     }
 
     public ResourceLocation getTextureLocation(ShyFabricio shyFabricio) {
