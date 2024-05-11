@@ -1,24 +1,23 @@
 {
   "type": "create:filling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
   "ingredients": [
     {
       "item": "minecraft:glass_bottle"
     },
     {
-      "fluid": "backmath:milklary_fluid",
-      "nbt": {},
+      "fluidTag": "backmath:milkllary",
       "amount": 250
     }
   ],
   "results": [
     {
       "item": "backmath:milkllary_bottle"
-    }
-  ],
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "create"
     }
   ]
 }

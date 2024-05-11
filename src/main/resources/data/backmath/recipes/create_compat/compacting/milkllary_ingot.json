@@ -9,7 +9,6 @@
   "ingredients": [
     {
       "fluid": "backmath:milklary_fluid",
-      "nbt": {},
       "amount": 500
     }
   ],

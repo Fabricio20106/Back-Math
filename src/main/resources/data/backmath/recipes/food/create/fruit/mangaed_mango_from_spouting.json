@@ -1,24 +1,23 @@
 {
   "type": "create:filling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
   "ingredients": [
     {
       "item": "backmath:mango"
     },
     {
       "fluid": "backmath:liquid_manga",
-      "nbt": {},
       "amount": 500
     }
   ],
   "results": [
     {
       "item": "backmath:mangaed_mango"
-    }
-  ],
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "create"
     }
   ]
 }

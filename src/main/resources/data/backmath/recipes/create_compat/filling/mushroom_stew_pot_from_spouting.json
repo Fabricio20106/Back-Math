@@ -1,20 +1,5 @@
 {
   "type": "create:filling",
-  "ingredients": [
-    {
-      "item": "backmath:jam_pot"
-    },
-    {
-      "fluid": "variants:mushroom_stew",
-      "nbt": {},
-      "amount": 500
-    }
-  ],
-  "results": [
-    {
-      "item": "backmath:mushroom_stew_pot"
-    }
-  ],
   "conditions": [
     {
       "type": "forge:mod_loaded",
@@ -23,6 +8,20 @@
     {
       "type": "forge:mod_loaded",
       "modid": "variants"
+    }
+  ],
+  "ingredients": [
+    {
+      "item": "backmath:jam_pot"
+    },
+    {
+      "fluidTag": "variants:mushroom_stew",
+      "amount": 500
+    }
+  ],
+  "results": [
+    {
+      "item": "backmath:mushroom_stew_pot"
     }
   ]
 }

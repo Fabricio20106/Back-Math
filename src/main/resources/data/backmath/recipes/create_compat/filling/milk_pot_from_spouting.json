@@ -1,24 +1,23 @@
 {
   "type": "create:filling",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    }
+  ],
   "ingredients": [
     {
       "item": "backmath:jam_pot"
     },
     {
-      "fluid": "create:milk",
-      "nbt": {},
+      "fluidTag": "forge:milk",
       "amount": 500
     }
   ],
   "results": [
     {
       "item": "backmath:milk_pot"
-    }
-  ],
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "create"
     }
   ]
 }

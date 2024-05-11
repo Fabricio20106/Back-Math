@@ -6,7 +6,6 @@
     },
     {
       "fluid": "create:chocolate",
-      "nbt": {},
       "amount": 500
     }
   ],

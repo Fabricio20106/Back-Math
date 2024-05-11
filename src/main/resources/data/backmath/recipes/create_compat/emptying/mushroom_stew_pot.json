@@ -1,5 +1,15 @@
 {
   "type": "create:emptying",
+  "conditions": [
+    {
+      "type": "forge:mod_loaded",
+      "modid": "create"
+    },
+    {
+      "type": "forge:mod_loaded",
+      "modid": "variants"
+    }
+  ],
   "ingredients": [
     {
       "item": "backmath:mushroom_stew_pot"
@@ -12,16 +22,6 @@
     {
       "fluid": "variants:mushroom_stew",
       "amount": 500
-    }
-  ],
-  "conditions": [
-    {
-      "type": "forge:mod_loaded",
-      "modid": "create"
-    },
-    {
-      "type": "forge:mod_loaded",
-      "modid": "variants"
     }
   ]
 }

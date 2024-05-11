@@ -11,14 +11,13 @@
       "item": "backmath:jam_pot"
     },
     {
-      "fluid": "backmath:hilary_fluid",
-      "nbt": {},
+      "fluid": "backmath:liquid_aljame",
       "amount": 500
     }
   ],
   "results": [
     {
-      "item": "backmath:hilary_jam"
+      "item": "backmath:aljame_jam"
     }
   ]
 }
