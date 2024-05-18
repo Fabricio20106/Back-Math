@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
+import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
 
 public enum QueenLucySpells {
@@ -36,7 +37,7 @@ public enum QueenLucySpells {
             case "none":
                 return QueenLucySpells.NONE;
             default:
-                LogManager.getLogger().error("Back Math: Tried to read unknown Queen Lucy spell type from NBT: \"{}\"", spellName);
+                LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_spells.unknown_spell", spellName)).getString());
                 return QueenLucySpells.NONE;
         }
     }

@@ -78,13 +78,13 @@ public class BMBlockStateProvider extends BlockStateProvider {
         simpleBlock(BMBlocks.POTTED_GRAPE_VINE_SAPLING.get(), models().withExistingParent("potted_grape_vine_sapling",
                 "block/flower_pot_cross").texture("plant", "block/grape_vine_sapling"));
         simpleBlock(BMBlocks.RAW_DEVIL_BLOCK.get());
-        simpleBlock(BMBlocks.DEVIL_STAINED_GLASS.get());
-        paneBlock((PaneBlock) BMBlocks.DEVIL_STAINED_GLASS_PANE.get(), modLoc("block/devil_stained_glass"), modLoc("block/devil_stained_glass_pane_top"));
-        simpleBlock(BMBlocks.DEVIL_CONCRETE.get());
-        simpleBlock(BMBlocks.DEVIL_CONCRETE_POWDER.get());
-        simpleBlock(BMBlocks.DEVIL_WOOL.get());
-        simpleBlock(BMBlocks.DEVIL_TERRACOTTA.get());
-        horizontalBlock(BMBlocks.DEVIL_GLAZED_TERRACOTTA.get(), modLoc("block/devil_glazed_terracotta"), modLoc("block/devil_glazed_terracotta"), modLoc("block/devil_glazed_terracotta"));
+        simpleBlock(BMBlocks.RED_YELLOW_STAINED_GLASS.get());
+        paneBlock((PaneBlock) BMBlocks.RED_YELLOW_STAINED_GLASS_PANE.get(), modLoc("block/devil_stained_glass"), modLoc("block/devil_stained_glass_pane_top"));
+        simpleBlock(BMBlocks.RED_YELLOW_CONCRETE.get());
+        simpleBlock(BMBlocks.RED_YELLOW_CONCRETE_POWDER.get());
+        simpleBlock(BMBlocks.RED_YELLOW_WOOL.get());
+        simpleBlock(BMBlocks.RED_YELLOW_TERRACOTTA.get());
+        horizontalBlock(BMBlocks.RED_YELLOW_GLAZED_TERRACOTTA.get(), modLoc("block/devil_glazed_terracotta"), modLoc("block/devil_glazed_terracotta"), modLoc("block/devil_glazed_terracotta"));
         simpleBlock(BMBlocks.ANGELIC_BLOCK.get());
         simpleBlock(BMBlocks.ANGELIC_ORE.get());
         simpleBlock(BMBlocks.CHRISTIAN_MID_TERM_BLOCK.get());

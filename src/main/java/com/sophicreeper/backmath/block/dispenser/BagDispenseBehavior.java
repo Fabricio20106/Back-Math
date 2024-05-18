@@ -19,10 +19,14 @@ public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
         return stack;
     }
 
+    // TODO: Fix dispensers bag drops still being hardcoded (make into loot tables like BagItem).
     private void dispenseBagContents(ItemStack stack, IBlockSource source, Direction direction, IPosition iPos) {
+        // Collection<ItemStack> lootTableDrops = this.getLootTableDrops(stack, source);
+
         if (stack.getItem() == AxolotlTest.AMARACAMEL_BATTER_BAG.get()) {
             spawnItem(source.getLevel(), new ItemStack(AxolotlTest.EMPTY_AMARACAMEL_BATTER_BAG.get()), 6, direction, iPos);
             spawnItem(source.getLevel(), new ItemStack(AxolotlTest.AMARACAMEL_BATTER.get()), 6, direction, iPos);
+            // lootTableDrops.forEach(stack1 -> spawnItem(source.getLevel(), stack1, 6, direction, iPos));
         }
         if (stack.getItem() == AxolotlTest.FRIED_EGG_BAG.get()) {
             spawnItem(source.getLevel(), new ItemStack(AxolotlTest.EMPTY_FRIED_EGG_BAG.get()), 6, direction, iPos);
@@ -52,4 +56,21 @@ public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
             spawnItem(source.getLevel(), new ItemStack(BMTags.Items.ARMORS_BOOTS.getRandomElement(source.getLevel().random)), 6, direction, iPos);
         }
     }
+
+    /*protected ResourceLocation getLootTable(ItemStack stack) {
+        if (stack.getItem() instanceof BagItem) {
+            BagItem bagItem = (BagItem) stack.getItem();
+            CompoundNBT bagLoot = bagItem.getStack().getOrCreateTagElement("bag_loot");
+            if (bagLoot.contains("loot_table")) {
+                String lootTable = bagLoot.getString("loot_table");
+                ResourceLocation tableLoc = ResourceLocation.tryParse(lootTable);
+                if (tableLoc != null) return tableLoc;
+            }
+        }
+        return LootTables.EMPTY;
+    }
+
+    protected Collection<ItemStack> getLootTableDrops(ItemStack handStack, IBlockSource source) {
+        return BMLootTableUtils.giftFromDispenser(getLootTable(handStack), source);
+    }*/
 }

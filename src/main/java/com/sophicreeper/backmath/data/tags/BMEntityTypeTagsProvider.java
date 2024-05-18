@@ -9,16 +9,18 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class BMEntityTagsProvider extends EntityTypeTagsProvider {
-    public BMEntityTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper fileHelper) {
+public class BMEntityTypeTagsProvider extends EntityTypeTagsProvider {
+    public BMEntityTypeTagsProvider(DataGenerator generator, @Nullable ExistingFileHelper fileHelper) {
         super(generator, BackMath.MOD_ID, fileHelper);
     }
 
     @Override
+    @Nonnull
     public String getName() {
-        return "Back Math - Entity Tags";
+        return "Back Math - Entity Type Tags";
     }
 
     @Override
@@ -51,6 +53,9 @@ public class BMEntityTagsProvider extends EntityTypeTagsProvider {
 
         this.tag(BMTags.EntityTypes.TERMIAN_RAIDERS_ATTACK).add(EntityType.IRON_GOLEM).add(EntityType.PLAYER);
         this.tag(BMTags.EntityTypes.CANNOT_JOIN_SOPHIE_RAID);
+
+        this.tag(BMTags.EntityTypes.ANGER_DUNGEON_MOBS).add(BMEntities.ANGRY_SOPHIE.get()).add(BMEntities.ANGRY_SOPHIE.get()).add(BMEntities.INSOMNIA_SOPHIE.get()).add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get());
+        this.tag(BMTags.EntityTypes.ALJAN_DUNGEON_MOBS).add(BMEntities.ALJAMIC_BONES.get()).add(BMEntities.SLEEPISH_SKELETON.get()).add(BMEntities.SLEEPISH_SKELETON.get()).add(BMEntities.INSOMNIA_ZOMBIE.get());
 
         // Melony Tags
         this.tag(BMTags.EntityTypes.CAN_SPAWN_ON_LEAVES).add(EntityType.OCELOT).add(EntityType.PARROT);

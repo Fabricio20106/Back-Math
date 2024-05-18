@@ -1,6 +1,9 @@
 package com.sophicreeper.backmath.crystallizer;
 
 import com.sophicreeper.backmath.crystallizer.advanced.AdvancedMolds;
+import net.minecraft.util.text.TranslationTextComponent;
+
+import static com.sophicreeper.backmath.BackMath.*;
 
 public class MoldUtils {
     public static Molds getMoldFromString(String mold) {
@@ -15,7 +18,10 @@ public class MoldUtils {
                 return Molds.MOLD;
             case "rod":
                 return Molds.ROD;
+            case "empty":
+                return Molds.EMPTY;
             default:
+                LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.crystallizer.invalid_mold", mold)).getString());
                 return Molds.EMPTY;
         }
     }
@@ -36,7 +42,10 @@ public class MoldUtils {
                 return AdvancedMolds.CRYSTALLINE_EMPTY;
             case "crystalline_gem":
                 return AdvancedMolds.CRYSTALLINE_GEM;
+            case "empty":
+                return AdvancedMolds.EMPTY;
             default:
+                LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.crystalline_crystallizer.invalid_mold", mold)).getString());
                 return AdvancedMolds.EMPTY;
         }
     }

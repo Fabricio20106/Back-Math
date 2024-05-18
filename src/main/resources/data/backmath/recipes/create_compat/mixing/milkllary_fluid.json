@@ -8,7 +8,7 @@
   ],
   "ingredients": [
     {
-      "fluidTag": "backmath:hillary",
+      "fluid": "backmath:hilary_fluid",
       "amount": 250
     },
     {

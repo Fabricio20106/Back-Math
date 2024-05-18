@@ -129,6 +129,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> SHIELDS = melony("shields");
         public static final ITag.INamedTag<Item> BOWS = melony("bows");
         public static final ITag.INamedTag<Item> CROSSBOWS = melony("crossbows");
+        public static final ITag.INamedTag<Item> VILLAGER_PLANTABLE_SEEDS = melony("villager_plantable_seeds");
         public static final ITag.INamedTag<Item> PROVIDES_EFFECT = melony("provides_effect");
         public static final ITag.INamedTag<Item> PROVIDES_WATER_BREATHING = melony("provides_effect/water_breathing");
         public static final ITag.INamedTag<Item> PROVIDES_RESISTANCE = melony("provides_effect/resistance");
@@ -358,6 +359,7 @@ public class BMTags {
         // Melony Tags
         public static final ITag.INamedTag<Block> CAMPFIRE_SIGNAL_FIRE_BLOCKS = melony("campfire_signal_fire_blocks");
         public static final ITag.INamedTag<Block> FARMLAND = melony("farmland");
+        public static final ITag.INamedTag<Block> FARMLAND_TRANSPARENT = melony("farmland_transparent");
 
         private static ITag.INamedTag<Block> forge(String path) {
             return BlockTags.bind(new ResourceLocation("forge", path).toString());
@@ -412,6 +414,8 @@ public class BMTags {
         public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = backMath("sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = backMath("sparey_prohibited");
         public static final ITag.INamedTag<EntityType<?>> SHY_FABRICIO_FRIENDLIES = backMath("shy_fabricio_friendlies");
+        public static final ITag.INamedTag<EntityType<?>> ANGER_DUNGEON_MOBS = backMath("anger_dungeon_mobs");
+        public static final ITag.INamedTag<EntityType<?>> ALJAN_DUNGEON_MOBS = backMath("aljan_dungeon_mobs");
 
         // Raider-related Tags
         public static final ITag.INamedTag<EntityType<?>> TERMIAN_RAIDERS_ATTACK = backMath("termian_raiders_attack");

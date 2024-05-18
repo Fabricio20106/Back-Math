@@ -5,7 +5,7 @@
       "type": "forge:mod_loaded",
       "modid": "create"
     }
-  ]
+  ],
   "ingredients": [
     {
       "item": "minecraft:glass_bottle"

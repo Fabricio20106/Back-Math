@@ -3,13 +3,16 @@ package com.sophicreeper.backmath.item.custom;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
@@ -23,16 +26,21 @@ public class TotiItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent("messages.backmath.can_be_placed"));
+        tooltip.add(new TranslationTextComponent("tooltip.backmath.can_be_placed").withStyle(TextFormatting.ITALIC).withStyle(TextFormatting.GRAY));
         super.appendHoverText(stack, world, tooltip, flag);
     }
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getItemInHand(hand);
+        ItemStack handStack = player.getItemInHand(hand);
         if (!world.isClientSide && BMKeys.isHoldingShift()) {
+            handStack.shrink(1);
             player.addItem(new ItemStack(AxolotlTest.TITO.get()));
-            heldItem.shrink(1);
+            if (player instanceof ServerPlayerEntity) {
+                ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+                BMUtils.playItemPickupSound(serverPlayer);
+            }
+            return ActionResult.success(handStack);
         }
         return super.use(world, player, hand);
     }

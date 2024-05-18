@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.block.BMBlocks;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.BlockItemUseContext;
@@ -46,7 +47,7 @@ public class AljamicFarmlandBlock extends Block {
 
     public boolean canSurvive(BlockState state, IWorldReader worldReader, BlockPos pos) {
         BlockState aboveBlock = worldReader.getBlockState(pos.above());
-        return !aboveBlock.getMaterial().isSolid() || aboveBlock.getBlock() instanceof FenceGateBlock || aboveBlock.getBlock() instanceof MovingPistonBlock;
+        return !aboveBlock.getMaterial().isSolid() || aboveBlock.is(BMTags.Blocks.FARMLAND_TRANSPARENT);
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {

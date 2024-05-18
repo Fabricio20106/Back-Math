@@ -22,6 +22,7 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.Direction;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
@@ -86,7 +87,7 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         // Terraria like tooltip, also says what food is used to tame her. Like parrots that don't like cookies, QSP's don't like aljame.
-        tooltip.add(new TranslationTextComponent("tooltip.backmath.qlss_desc"));
+        tooltip.add(new TranslationTextComponent("tooltip.backmath.queen_lucy_summoner_staff").withStyle(TextFormatting.ITALIC));
         tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
     }
 

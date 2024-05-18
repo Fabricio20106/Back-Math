@@ -5,7 +5,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
 public class BMWeaponryTab extends ItemGroup {
-    public static final BMWeaponryTab TAB = new BMWeaponryTab("backmath.weaponry_tab");
+    public static final BMWeaponryTab TAB = new BMWeaponryTab("backmath.weaponry");
 
     public BMWeaponryTab(String label) {
         super(label);

@@ -96,7 +96,7 @@ public class CrystallizerBlock extends HorizontalBlock {
             return ActionResultType.SUCCESS;
         }
 
-        if (!mainHand.getItem().is(BMTags.Items.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER)) {
+        if (!mainHand.getItem().is(BMTags.Items.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER) || !mainHand.isEmpty()) {
             // MOLD: Empty
             if (state.getValue(MOLD) == Molds.EMPTY) {
                 // 4 Aljames + Bucket = Liquid Aljame Bucket

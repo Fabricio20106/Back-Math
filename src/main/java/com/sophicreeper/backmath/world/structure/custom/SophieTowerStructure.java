@@ -1,9 +1,9 @@
 package com.sophicreeper.backmath.world.structure.custom;
 
 import com.google.common.collect.ImmutableList;
-import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.BMEntities;
+import com.sophicreeper.backmath.util.BMResourceLocations;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -64,6 +64,11 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
     }
 
     @Override
+    public List<MobSpawnInfo.Spawners> getDefaultSpawnList() {
+        return STRUCTURE_CREATURES;
+    }
+
+    @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
         return SophieTowerStructure.Start::new;
     }
@@ -81,9 +86,8 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
 
             BlockPos pos = new BlockPos(x, 0, z);
 
-            JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> dynamicRegistryManager.registry(Registry.TEMPLATE_POOL_REGISTRY).get().get(BackMath.resourceLoc(
-                            "sophie_tower/start_pool")), 10), AbstractVillagePiece::new, chunkGenerator, templateManager, pos, this.pieces, this.random,false,
-                    true);
+            JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> dynamicRegistryManager.registry(Registry.TEMPLATE_POOL_REGISTRY).get().get(BMResourceLocations.SOPHIE_TOWER_START_POOL), 10), AbstractVillagePiece::new,
+                    chunkGenerator, templateManager, pos, this.pieces, this.random,false, true);
 
             this.pieces.forEach(piece -> piece.move(0, BMConfigs.COMMON_CONFIGS.sophieTowerYOffset.get(), 0));
             this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= BMConfigs.COMMON_CONFIGS.sophieTowerYOffset.get());
@@ -91,7 +95,7 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
             this.calculateBoundingBox();
 
             if (BMConfigs.COMMON_CONFIGS.logStructureLocationMessages.get()) {
-                LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("messages.backmath.sophie_tower_location",
+                LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("console.backmath.sophie_tower_location",
                         this.pieces.get(0).getBoundingBox().x0,
                         this.pieces.get(0).getBoundingBox().y0 + BMConfigs.COMMON_CONFIGS.sophieTowerYOffset.get(),
                         this.pieces.get(0).getBoundingBox().z0).getString());

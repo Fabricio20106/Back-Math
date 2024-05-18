@@ -1,29 +1,28 @@
 package com.sophicreeper.backmath.world.feature.custom;
 
 import com.mojang.serialization.Codec;
-import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityType;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.MobSpawnerTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
+import org.apache.logging.log4j.LogManager;
 
 import java.util.Random;
 
 public class AngerDungeonFeature extends Feature<NoFeatureConfig> {
-    private static final EntityType<?>[] SPAWNER_ENTITIES = new EntityType[] {BMEntities.ANGRY_SOPHIE.get(), BMEntities.ANGRY_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get()};
     private static final BlockState CAVE_AIR = Blocks.CAVE_AIR.defaultBlockState();
 
     public AngerDungeonFeature(Codec<NoFeatureConfig> codec) {
@@ -108,11 +107,11 @@ public class AngerDungeonFeature extends Feature<NoFeatureConfig> {
             }
 
             reader.setBlock(pos, Blocks.SPAWNER.defaultBlockState(), 2);
-            TileEntity blockEntity = reader.getBlockEntity(pos);
-            if (blockEntity instanceof MobSpawnerTileEntity) {
-                ((MobSpawnerTileEntity) blockEntity).getSpawner().setEntityId(SPAWNER_ENTITIES[rand.nextInt(SPAWNER_ENTITIES.length)]);
+            TileEntity spawner = reader.getBlockEntity(pos);
+            if (spawner instanceof MobSpawnerTileEntity) {
+                ((MobSpawnerTileEntity) spawner).getSpawner().setEntityId(BMTags.EntityTypes.ANGER_DUNGEON_MOBS.getRandomElement(rand));
             } else {
-                BackMath.LOGGER.error("Back Math: Failed to fetch Spawner block entity at ({}, {}, {}).", pos.getX(), pos.getY(), pos.getZ());
+                LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.dungeon_feature.spawner_fetch", pos.getX(), pos.getY(), pos.getZ())).getString());
             }
 
             return true;

@@ -11,6 +11,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class BMItemTagsProvider extends ItemTagsProvider {
@@ -19,6 +20,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
     }
 
     @Override
+    @Nonnull
     public String getName() {
         return "Back Math - Item Tags";
     }
@@ -270,16 +272,16 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(Tags.Items.GLASS).addTag(BMTags.Items.GLASS_DEVIL).addTag(BMTags.Items.GLASS_ALJAN_LIGHT_BLUE).addTag(BMTags.Items.GLASS_POISON_BROWN).addTag(BMTags.Items.GLASS_INSOMNIAN);
         this.tag(Tags.Items.GLASS_PANES).addTag(BMTags.Items.GLASS_PANES_DEVIL).addTag(BMTags.Items.GLASS_PANES_ALJAN_LIGHT_BLUE).addTag(BMTags.Items.GLASS_PANES_POISON_BROWN)
                 .addTag(BMTags.Items.GLASS_PANES_INSOMNIAN);
-        this.tag(BMTags.Items.GLASS_DEVIL).add(AxolotlTest.DEVIL_STAINED_GLASS.get());
+        this.tag(BMTags.Items.GLASS_DEVIL).add(AxolotlTest.RED_YELLOW_STAINED_GLASS.get());
         this.tag(BMTags.Items.GLASS_ALJAN_LIGHT_BLUE).add(AxolotlTest.ALJAN_LIGHT_BLUE_STAINED_GLASS.get());
         this.tag(BMTags.Items.GLASS_POISON_BROWN).add(AxolotlTest.POISON_BROWN_STAINED_GLASS.get());
         this.tag(BMTags.Items.GLASS_INSOMNIAN).add(AxolotlTest.INSOMNIAN_STAINED_GLASS.get());
-        this.tag(BMTags.Items.GLASS_PANES_DEVIL).add(AxolotlTest.DEVIL_STAINED_GLASS_PANE.get());
+        this.tag(BMTags.Items.GLASS_PANES_DEVIL).add(AxolotlTest.RED_YELLOW_STAINED_GLASS_PANE.get());
         this.tag(BMTags.Items.GLASS_PANES_ALJAN_LIGHT_BLUE).add(AxolotlTest.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get());
         this.tag(BMTags.Items.GLASS_PANES_POISON_BROWN).add(AxolotlTest.POISON_BROWN_STAINED_GLASS_PANE.get());
         this.tag(BMTags.Items.GLASS_PANES_INSOMNIAN).add(AxolotlTest.INSOMNIAN_STAINED_GLASS_PANE.get());
-        this.tag(Tags.Items.STAINED_GLASS).add(AxolotlTest.DEVIL_STAINED_GLASS.get()).add(AxolotlTest.ALJAN_LIGHT_BLUE_STAINED_GLASS.get()).add(AxolotlTest.POISON_BROWN_STAINED_GLASS.get()).add(AxolotlTest.INSOMNIAN_STAINED_GLASS.get());
-        this.tag(Tags.Items.STAINED_GLASS_PANES).add(AxolotlTest.DEVIL_STAINED_GLASS_PANE.get()).add(AxolotlTest.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get()).add(AxolotlTest.POISON_BROWN_STAINED_GLASS_PANE.get())
+        this.tag(Tags.Items.STAINED_GLASS).add(AxolotlTest.RED_YELLOW_STAINED_GLASS.get()).add(AxolotlTest.ALJAN_LIGHT_BLUE_STAINED_GLASS.get()).add(AxolotlTest.POISON_BROWN_STAINED_GLASS.get()).add(AxolotlTest.INSOMNIAN_STAINED_GLASS.get());
+        this.tag(Tags.Items.STAINED_GLASS_PANES).add(AxolotlTest.RED_YELLOW_STAINED_GLASS_PANE.get()).add(AxolotlTest.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get()).add(AxolotlTest.POISON_BROWN_STAINED_GLASS_PANE.get())
                 .add(AxolotlTest.INSOMNIAN_STAINED_GLASS_PANE.get());
 
         this.tag(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_ANGELIC);
@@ -299,7 +301,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(Tags.Items.DUSTS).addTag(BMTags.Items.DUSTS_WATER);
 
         // Dyes
-        this.tag(BMTags.Items.DYES_DEVIL).add(AxolotlTest.DEVIL_DYE.get());
+        this.tag(BMTags.Items.DYES_DEVIL).add(AxolotlTest.RED_YELLOW_DYE.get());
         this.tag(BMTags.Items.DYES_ALJAN_LIGHT_BLUE).add(AxolotlTest.ALJAN_LIGHT_BLUE_DYE.get());
         this.tag(BMTags.Items.DYES_POISON_BROWN).add(AxolotlTest.POISON_BROWN_DYE.get());
         this.tag(BMTags.Items.DYES_INSOMNIAN).add(AxolotlTest.INSOMNIAN_DYE.get());
@@ -334,7 +336,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(BMTags.Items.TABU_SMELTABLES).add(AxolotlTest.TABU.get()).add(AxolotlTest.CUBIC_TABU.get()).add(AxolotlTest.TABU_MOSAIC.get()).add(AxolotlTest.TABU_PILLAR.get());
         this.tag(BMTags.Items.MID_TERM_MATERIALS).addTag(BMTags.Items.SINGULARITIES_MID_TERM).addTag(BMTags.Items.INGOTS_MID_TERM);
         this.tag(BMTags.Items.OIMT_MATERIALS).addTag(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM);
-        this.tag(BMTags.Items.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER).addTag(BMTags.Items.MOLDS).add(AxolotlTest.REGULAR_MOLDS_BOOK.get()).add(AxolotlTest.ADVANCED_MOLDS_BOOK.get()).add(Items.AIR);
+        this.tag(BMTags.Items.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER).addTag(BMTags.Items.MOLDS).add(AxolotlTest.REGULAR_MOLDS_BOOK.get()).add(AxolotlTest.ADVANCED_MOLDS_BOOK.get());
+        this.tag(BMTags.Items.VILLAGER_PLANTABLE_SEEDS).add(AxolotlTest.CARAMELED_WHEAT_SEEDS.get()).add(AxolotlTest.ALJAMIC_ONION.get());
         this.tag(BMTags.Items.FENCE_GATES_DEVIL).add(AxolotlTest.DEVIL_FENCE_GATE.get());
         this.tag(Tags.Items.FENCE_GATES).addTag(BMTags.Items.FENCE_GATES_DEVIL);
 
@@ -481,11 +484,11 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.GOLDEN_APPLE_POPSICLE.get()).add(AxolotlTest.GOLDEN_APPLE_JAM.get()).add(AxolotlTest.GOLDEN_APPLE_JAM_BREAD.get()).add(AxolotlTest.CUT_GOLDEN_APPLE.get()).add(AxolotlTest.ENCHANTED_GOLDEN_APPLE_JUICE.get())
                 .add(AxolotlTest.ENCHANTED_GOLDEN_APPLE_POPSICLE.get()).add(AxolotlTest.ENCHANTED_GOLDEN_APPLE_JAM.get()).add(AxolotlTest.ENCHANTED_GOLDEN_APPLE_JAM_BREAD.get()).add(AxolotlTest.CUT_ENCHANTED_GOLDEN_APPLE.get());
 
-        this.tag(ItemTags.WOOL).add(AxolotlTest.DEVIL_WOOL.get());
-        this.tag(ItemTags.CARPETS).add(AxolotlTest.DEVIL_CARPET.get());
+        this.tag(ItemTags.WOOL).add(AxolotlTest.RED_YELLOW_WOOL.get());
+        this.tag(ItemTags.CARPETS).add(AxolotlTest.RED_YELLOW_CARPET.get());
         this.tag(ItemTags.PIGLIN_REPELLENTS).add(AxolotlTest.MID_TERM_SOUL_LANTERN.get());
         this.tag(ItemTags.SAND).add(AxolotlTest.ALJAMIC_SAND.get());
-        this.tag(ItemTags.SMALL_FLOWERS).add(AxolotlTest.RED_YELLOW_FLOWER.get()).add(AxolotlTest.FRIED_EGG_FLOWER.get()).add(AxolotlTest.TURTLE_FRIED_EGG_FLOWER.get()).add(AxolotlTest.ENDER_DRAGON_FRIED_EGG_FLOWER.get())
+        this.tag(ItemTags.SMALL_FLOWERS).add(AxolotlTest.RED_YELLOW_ALLIUM.get()).add(AxolotlTest.FRIED_EGG_FLOWER.get()).add(AxolotlTest.TURTLE_FRIED_EGG_FLOWER.get()).add(AxolotlTest.ENDER_DRAGON_FRIED_EGG_FLOWER.get())
                 .add(AxolotlTest.ALJAN_TULIP.get()).add(AxolotlTest.POISON_ROSE.get()).add(AxolotlTest.INSOMNIAN_TULIP.get());
 
         this.tag(ItemTags.STAIRS).add(AxolotlTest.DEVIL_STAIRS.get()).add(AxolotlTest.DEVIL_BRICK_STAIRS.get()).add(AxolotlTest.ANGELIC_BRICK_STAIRS.get()).add(AxolotlTest.MOSSY_ANGELIC_BRICK_STAIRS.get())

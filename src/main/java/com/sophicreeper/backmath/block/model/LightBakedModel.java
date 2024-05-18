@@ -47,7 +47,7 @@ public class LightBakedModel implements IBakedModel {
     @Override
     public List<BakedQuad> getQuads(@Nullable BlockState state, @Nullable Direction side, Random rand) {
         // throw new AssertionError("IBakedModel::getQuads should never be called, only IForgeBakedModel::getQuads");
-        throw new AssertionError(new TranslationTextComponent("messages.backmath.get_quads_error").getString());
+        throw new AssertionError(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.assertion_exception.get_quads").getString()));
     }
 
     // getParticleTexture is used directly when player is inside the block. The game will crash if you don't use something meaningful here.

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "name": "forge:armors/boots",
+          "expand": true
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "backmath:empty_boot_pack"
+        }
+      ]
+    }
+  ]
+}

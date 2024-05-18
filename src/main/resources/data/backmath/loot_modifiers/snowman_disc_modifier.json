@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/igloo_chest"
+    }
+  ],
+  "addition": {
+    "id": "backmath:snowman_disc",
+    "count": 1
+  },
+  "chance": 0.75
+}

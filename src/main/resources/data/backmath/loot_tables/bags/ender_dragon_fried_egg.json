@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:gift",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "backmath:ender_dragon_fried_egg"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "backmath:empty_ender_dragon_fried_egg_bag"
+        }
+      ]
+    }
+  ]
+}

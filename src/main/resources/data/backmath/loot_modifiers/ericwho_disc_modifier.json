@@ -1,0 +1,13 @@
+{
+  "conditions": [
+    {
+      "condition": "forge:loot_table_id",
+      "loot_table_id": "minecraft:chests/village/village_plains_house"
+    }
+  ],
+  "addition": {
+    "id": "backmath:ericwho_disc",
+    "count": 1
+  },
+  "chance": 0.3
+}

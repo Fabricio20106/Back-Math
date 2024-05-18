@@ -23,8 +23,8 @@ public class BMVanillaCompatibility {
         flammable(BMBlocks.ALJANCAP_LEAVES.get(), 30, 60);
         flammable(BMBlocks.AMARACAP_LEAVES.get(), 30, 60);
         flammable(BMBlocks.INSOMNIAN_LEAVES.get(), 30, 60);
-        flammable(BMBlocks.DEVIL_WOOL.get(), 30, 60);
-        flammable(BMBlocks.DEVIL_CARPET.get(), 60, 20);
+        flammable(BMBlocks.RED_YELLOW_WOOL.get(), 30, 60);
+        flammable(BMBlocks.RED_YELLOW_CARPET.get(), 60, 20);
         flammable(BMBlocks.RED_YELLOW_ALLIUM.get(), 60, 100);
         flammable(BMBlocks.FRIED_EGG_FLOWER.get(), 60, 100);
         flammable(BMBlocks.TURTLE_FRIED_EGG_FLOWER.get(), 60, 100);

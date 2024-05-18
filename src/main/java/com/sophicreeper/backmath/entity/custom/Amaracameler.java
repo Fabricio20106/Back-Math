@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.amaracameler.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
@@ -11,7 +12,6 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -245,7 +245,7 @@ public class Amaracameler extends MobEntity implements IMob {
     }
 
     protected ResourceLocation getDefaultLootTable() {
-        return this.getSize() == 1 ? this.getType().getDefaultLootTable() : LootTables.EMPTY;
+        return this.getSize() == 1 ? BMResourceLocations.SMALL_AMARACAMELER : BMResourceLocations.MEDIUM_OR_LARGE_AMARACAMELER;
     }
 
     public static boolean checkAmaracamelerSpawnRules(EntityType<Amaracameler> amaracameler, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {

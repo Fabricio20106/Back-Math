@@ -11,13 +11,16 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class DescriptiveItem extends Item {
-    public DescriptiveItem(Properties properties) {
+    private final ITextComponent description;
+
+    public DescriptiveItem(ITextComponent description, Properties properties) {
         super(properties);
+        this.description = description;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".desc"));
+        tooltip.add(this.description);
         super.appendHoverText(stack, world, tooltip, flag);
     }
 }

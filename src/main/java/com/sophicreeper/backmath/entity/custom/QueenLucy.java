@@ -28,6 +28,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerBossInfo;
 import org.apache.logging.log4j.LogManager;
@@ -68,10 +69,11 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
 
         CompoundNBT spellsTag = tag.getCompound("lucy_spells");
         if (QueenLucySpells.isValidSpell(spellsTag.getString("current_spell"))) {
-            LogManager.getLogger().debug("Tried to set spell type for Queen Lucy: {}", QueenLucySpells.setFromString(spellsTag.getString("current_spell")));
+            LogManager.getLogger().debug(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("console.backmath.queen_lucy.set_spell", QueenLucySpells.setFromString(spellsTag.getString(
+                    "current_spell")))).getString());
             this.setSpellType(QueenLucySpells.setFromString(spellsTag.getString("current_spell").toLowerCase(Locale.ROOT)));
         } else {
-            LogManager.getLogger().error("Back Math: Tried to read invalid spell type: \"{}\"", spellsTag.getString("current_spell"));
+            LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy.invalid_spell", spellsTag.getString("current_spell"))).getString());
             this.setSpellType(QueenLucySpells.NONE);
         }
 

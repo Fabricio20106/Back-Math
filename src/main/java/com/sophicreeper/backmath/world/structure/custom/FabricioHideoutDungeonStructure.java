@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.world.structure.custom;
 
-import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.util.BMResourceLocations;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.SharedSeedRandom;
@@ -66,9 +66,8 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
 
             BlockPos pos = new BlockPos(x, 0, z);
 
-            JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> dynamicRegistryManager.registry(Registry.TEMPLATE_POOL_REGISTRY).get().get(BackMath.resourceLoc(
-                            "fabricio_hideout_dungeon/start_pool")), 10), AbstractVillagePiece::new, chunkGenerator, templateManager, pos, this.pieces, this.random, false,
-                    true);
+            JigsawManager.addPieces(dynamicRegistryManager, new VillageConfig(() -> dynamicRegistryManager.registry(Registry.TEMPLATE_POOL_REGISTRY).get().get(BMResourceLocations.HIDEOUT_DUNGEON_START_POOL), 10), AbstractVillagePiece::new,
+                    chunkGenerator, templateManager, pos, this.pieces, this.random, false, true);
 
             this.pieces.forEach(piece -> piece.move(0, BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get(), 0));
             this.pieces.forEach(piece -> piece.getBoundingBox().y0 -= BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get());
@@ -76,7 +75,7 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
             this.calculateBoundingBox();
 
             if (BMConfigs.COMMON_CONFIGS.logStructureLocationMessages.get()) {
-                LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("messages.backmath.fabricio_hideout_dungeon_location",
+                LogManager.getLogger().log(Level.DEBUG, new TranslationTextComponent("console.backmath.fabricio_hideout_dungeon_location",
                         this.pieces.get(0).getBoundingBox().x0,
                         this.pieces.get(0).getBoundingBox().y0 + BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonYOffset.get(),
                         this.pieces.get(0).getBoundingBox().z0).getString());

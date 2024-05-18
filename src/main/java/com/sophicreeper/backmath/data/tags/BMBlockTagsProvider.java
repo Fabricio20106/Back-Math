@@ -66,17 +66,17 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BMTags.Blocks.ORES_TIN).add(BMBlocks.ALJAMIC_TIN_ORE.get()).add(BMBlocks.SLEEPINGSTONE_ALJAMIC_TIN_ORE.get());
         this.tag(BMTags.Blocks.BASE_STONE_ALJAN).add(BMBlocks.ALJANSTONE.get()).add(BMBlocks.SLEEPINGSTONE.get()).add(BMBlocks.INSOGRAVEL.get());
 
-        this.tag(BMTags.Blocks.GLASS_DEVIL).add(BMBlocks.DEVIL_STAINED_GLASS.get());
+        this.tag(BMTags.Blocks.GLASS_DEVIL).add(BMBlocks.RED_YELLOW_STAINED_GLASS.get());
         this.tag(BMTags.Blocks.GLASS_ALJAN_LIGHT_BLUE).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get());
         this.tag(BMTags.Blocks.GLASS_POISON_BROWN).add(BMBlocks.POISON_BROWN_STAINED_GLASS.get());
         this.tag(BMTags.Blocks.GLASS_INSOMNIAN).add(BMBlocks.INSOMNIAN_STAINED_GLASS.get());
-        this.tag(BMTags.Blocks.GLASS_PANES_DEVIL).add(BMBlocks.DEVIL_STAINED_GLASS_PANE.get());
+        this.tag(BMTags.Blocks.GLASS_PANES_DEVIL).add(BMBlocks.RED_YELLOW_STAINED_GLASS_PANE.get());
         this.tag(BMTags.Blocks.GLASS_PANES_ALJAN_LIGHT_BLUE).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get());
         this.tag(BMTags.Blocks.GLASS_PANES_POISON_BROWN).add(BMBlocks.POISON_BROWN_STAINED_GLASS_PANE.get());
         this.tag(BMTags.Blocks.GLASS_PANES_INSOMNIAN).add(BMBlocks.INSOMNIAN_STAINED_GLASS_PANE.get());
-        this.tag(Tags.Blocks.STAINED_GLASS).add(BMBlocks.DEVIL_STAINED_GLASS.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS.get())
+        this.tag(Tags.Blocks.STAINED_GLASS).add(BMBlocks.RED_YELLOW_STAINED_GLASS.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS.get())
                 .add(BMBlocks.INSOMNIAN_STAINED_GLASS.get());
-        this.tag(Tags.Blocks.STAINED_GLASS_PANES).add(BMBlocks.DEVIL_STAINED_GLASS_PANE.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS_PANE.get())
+        this.tag(Tags.Blocks.STAINED_GLASS_PANES).add(BMBlocks.RED_YELLOW_STAINED_GLASS_PANE.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS_PANE.get())
                 .add(BMBlocks.INSOMNIAN_STAINED_GLASS_PANE.get());
 
         this.tag(Tags.Blocks.STORAGE_BLOCKS).addTag(BMTags.Blocks.STORAGE_BLOCKS_DEVIL);
@@ -124,6 +124,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         // Melony Tags
         this.tag(BMTags.Blocks.CAMPFIRE_SIGNAL_FIRE_BLOCKS).add(BMBlocks.CARAMELED_HAY_BALE.get());
         this.tag(BMTags.Blocks.FARMLAND).add(Blocks.FARMLAND).add(BMBlocks.ALJAMIC_FARMLAND.get());
+        this.tag(BMTags.Blocks.FARMLAND_TRANSPARENT).addTag(Tags.Blocks.FENCE_GATES).addTag(BlockTags.FENCE_GATES).add(Blocks.MOVING_PISTON);
 
         // Back Math Tags
         this.tag(BMTags.Blocks.INFINIBURN_ALJAN).add(BMBlocks.CHARJAN_COAL_BLOCK.get()).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);
@@ -186,10 +187,10 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.BAMBOO_PLANTABLE_ON).addTag(BMTags.Blocks.ALJAN_GROUND);
         this.tag(BlockTags.ENDERMAN_HOLDABLE).addTag(BMTags.Blocks.ALJAN_GROUND);
         this.tag(BlockTags.MUSHROOM_GROW_BLOCK).addTag(BMTags.Blocks.ALJAN_GROUND);
-        this.tag(BlockTags.WOOL).add(BMBlocks.DEVIL_WOOL.get());
-        this.tag(BlockTags.CARPETS).add(BMBlocks.DEVIL_CARPET.get());
+        this.tag(BlockTags.WOOL).add(BMBlocks.RED_YELLOW_WOOL.get());
+        this.tag(BlockTags.CARPETS).add(BMBlocks.RED_YELLOW_CARPET.get());
         this.tag(BlockTags.CROPS).add(BMBlocks.CARAMELED_WHEAT.get()).add(BMBlocks.WILD_CARAMELED_WHEAT.get()).add(BMBlocks.ALJAMIC_ONIONS.get()).add(BMBlocks.WILD_ALJAMIC_ONIONS.get());
-        this.tag(BlockTags.IMPERMEABLE).add(BMBlocks.DEVIL_STAINED_GLASS.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS.get()).add(BMBlocks.INSOMNIAN_STAINED_GLASS.get())
+        this.tag(BlockTags.IMPERMEABLE).add(BMBlocks.RED_YELLOW_STAINED_GLASS.get()).add(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get()).add(BMBlocks.POISON_BROWN_STAINED_GLASS.get()).add(BMBlocks.INSOMNIAN_STAINED_GLASS.get())
                 .add(BMBlocks.ALJAMIC_GLASS.get());
         this.tag(BlockTags.PIGLIN_REPELLENTS).add(BMBlocks.MID_TERM_SOUL_LANTERN.get());
         this.tag(BlockTags.SAND).add(BMBlocks.ALJAMIC_SAND.get());

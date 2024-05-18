@@ -93,6 +93,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
             }
         }
         tag.put("inventory", inventoryNBTList);
+        tag.putBoolean("is_charging_crossbow", this.entityData.get(IS_CHARGING_CROSSBOW));
     }
 
     public void readAdditionalSaveData(CompoundNBT tag) {
@@ -106,6 +107,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
             }
         }
         this.setCanPickUpLoot(true);
+        this.entityData.set(IS_CHARGING_CROSSBOW, tag.getBoolean("is_charging_crossbow"));
     }
 
     @Override
