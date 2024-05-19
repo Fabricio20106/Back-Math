@@ -1551,6 +1551,10 @@
   "item.backmath.amaracamelarity": "Amaracamelarity",
   "item.backmath.milkllary_warrior_helmet": "Milkllary Warrior Helmet",
   "item.backmath.jantiquified_moonering_warrior_helmet": "Jantiquified Moonering Warrior Helmet",
+  "item.backmath.obsidian_infused_mid_term_crown": "Obsidian Infused Mid-Term Crown",
+  "item.backmath.aljameed_crown": "Aljameed Crown",
+  "item.backmath.moonering_crown": "Moonering Crown",
+  "item.backmath.jantical_crown": "Jantical Crown",
 
   "item.minecraft.potion.effect.insomnia": "Potion of Insomnia",
   "item.minecraft.potion.effect.long_insomnia": "Potion of Insomnia",
@@ -1609,7 +1613,7 @@
   "upgrade_token.backmath.flame": "Flame Upgrade Token",
   "upgrade_token.backmath.crystallizer_upg": "Crystallizer Upgrade Upgrade Token",
 
-  "filled_map.backmath:sophie_tower": "Sophie Tower Explorer Map",
+  "filled_map.backmath:sophie_tower": "Back Fields Explorer Map",
   "filled_map.backmath:fabricio_hideout_dungeon": "Hideout Dungeon Explorer Map",
 
   "material.silentgear.devil": "Devil",
@@ -1624,7 +1628,7 @@
 
   "backmath.message_template": "Back Math: %s",
 
-  "tooltip.backmath.empty": "",
+  "tooltip.backmath.empty": " ",
   "tooltip.backmath.queen_lucy_summoner_staff": "The Queen Lucy Pet will fight for you. Needs to be tamed with any Back Math fruits first (except aljames).",
   "tooltip.backmath.queen_lucy_battle_info": "§7Minimum Recommended Gear: Fully §fenchanted netherite armor§7 and §fweapons§7, Aljame Teacups and food. It's better to fight her in an arena, because she will run away and spawn many mobs in the process.",
   "tooltip.backmath.butter_sword.experience_points": "Experience Points: %s",
@@ -1640,6 +1644,7 @@
   "console.backmath.queen_lucy.set_spell": "Tried to set spell type for Queen Lucy: '%s'",
 
   "error.backmath.assertion_exception.get_quads": "'IBakedModel::getQuads' should never be called, only 'IForgeBakedModel::getQuads'",
+  "error.backmath.illegal_argument.null_parameter_set": "Loot Table parameter set '%s' is already registered",
   "error.backmath.crystallizer.invalid_mold": "Could not parse invalid mold '%s'. Possible values are: 'singularity', 'crystallized', 'ingot', 'mold', 'rod' and 'empty'",
   "error.backmath.crystalline_crystallizer.invalid_mold": "Could not parse invalid mold '%s'. Possible values are: 'singularity', 'crystallized', 'ingot', 'mold', 'rod', 'crystalline_empty', 'crystalline_gem' and 'empty'",
   "error.backmath.insomnian_tulip.model_not_found": "Did not find the expected vanilla baked model(s) for 'insomnian_tulip' in registry",

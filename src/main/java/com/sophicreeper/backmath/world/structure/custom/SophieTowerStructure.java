@@ -69,6 +69,11 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
     }
 
     @Override
+    public boolean getDefaultRestrictsSpawnsToInside() {
+        return true;
+    }
+
+    @Override
     public IStartFactory<NoFeatureConfig> getStartFactory() {
         return SophieTowerStructure.Start::new;
     }

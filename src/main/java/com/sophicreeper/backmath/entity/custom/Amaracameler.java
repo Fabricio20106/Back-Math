@@ -19,10 +19,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.particles.IParticleData;
 import net.minecraft.particles.ItemParticleData;
 import net.minecraft.particles.ParticleTypes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SharedSeedRandom;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -97,6 +94,12 @@ public class Amaracameler extends MobEntity implements IMob {
         this.setSize(sizeTag + 1, false);
         super.readAdditionalSaveData(tag);
         this.wasOnGround = BMTagFixes.fixWasOnGroundTag(tag);
+    }
+
+    // Fix MC-118616 for amaracamelers (https://bugs.mojang.com/browse/MC-118616)
+    @Override
+    public SoundCategory getSoundSource() {
+        return SoundCategory.HOSTILE;
     }
 
     public boolean isSmallAmaracameler() {

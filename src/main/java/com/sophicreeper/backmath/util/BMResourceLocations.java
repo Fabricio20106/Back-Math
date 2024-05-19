@@ -45,10 +45,12 @@ public class BMResourceLocations {
     public static final ResourceLocation MEDIUM_OR_LARGE_AMARACAMELER = BackMath.resourceLoc("entities/medium_or_large_amaracameler");
 
     // Bags
+    public static final ResourceLocation AMARACAMEL_BATTER_BAG = BackMath.resourceLoc("bags/amaracamel_batter");
     public static final ResourceLocation FRIED_EGG_BAG = BackMath.resourceLoc("bags/fried_egg");
     public static final ResourceLocation TURTLE_FRIED_EGG_BAG = BackMath.resourceLoc("bags/turtle_fried_egg");
     public static final ResourceLocation ENDER_DRAGON_FRIED_EGG_BAG = BackMath.resourceLoc("bags/ender_dragon_fried_egg");
     public static final ResourceLocation LAGUSTA_BAG = BackMath.resourceLoc("bags/lagusta");
     public static final ResourceLocation QUEEN_LUCY_BATTLE_PACK = BackMath.resourceLoc("bags/queen_lucy_battle");
     public static final ResourceLocation ALJAME_TEA_BOX = BackMath.resourceLoc("bags/aljame_tea");
+    public static final ResourceLocation BOOT_PACK = BackMath.resourceLoc("bags/boot");
 }

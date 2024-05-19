@@ -1,6 +1,5 @@
 package com.sophicreeper.backmath.item.custom;
 
-import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.dispenser.BagDispenseBehavior;
 import com.sophicreeper.backmath.loot.BMLootTableUtils;
 import com.sophicreeper.backmath.util.BMUtils;
@@ -15,10 +14,8 @@ import net.minecraft.util.*;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.Collection;
@@ -72,7 +69,7 @@ public class BagItem extends Item {
                 handStack.getItem().getRegistryName(), getLootTable(handStack))).getString());
         if (lootTableDrops.isEmpty()) {
             player.displayClientMessage(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.bag.no_drops",
-                    new StringTextComponent(handStack.getItem().getRegistryName().toString()).withStyle((style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM, new HoverEvent.ItemHover(handStack))))),
+                    new StringTextComponent(handStack.getItem().getRegistryName().toString()).withStyle((style -> style.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_ITEM, new HoverEvent.ItemHover(handStack))).withUnderlined(true))),
                     getLootTable(handStack)))
                     .withStyle(TextFormatting.ITALIC).withStyle(TextFormatting.GRAY), false);
         }

@@ -2204,7 +2204,7 @@ ea83587e1c3f12609e73490c4a4d637b81d5c013 data/backmath/tags/items/bone_meals.jso
 ea0387c41c632a2bb92df62a8917c53d2b95417a data/backmath/tags/items/buckets.json
 023644f7407efdb24a0feacb4ca0623a7d796550 data/backmath/tags/items/cannot_craft_with_at_crystallizer.json
 d13b780bdb8b1594c1084f256c6b3082d3692aee data/backmath/tags/items/cork_oak_logs.json
-553f74ab984dd35d84d4ce42595b8778b09c463f data/backmath/tags/items/crowns.json
+1f31affef37714c33e6b8de0d4403f83c7ebf21a data/backmath/tags/items/crowns.json
 c2dc82f58f81b580fc523082a5394886186495b2 data/backmath/tags/items/crystalline_birch_logs.json
 2fad67c7c1c7a8193c841b734ff6e81046468461 data/backmath/tags/items/cut_fruits.json
 1bd9780024507f7d934942dcacb92c768a539adb data/backmath/tags/items/discs.json
@@ -2221,7 +2221,6 @@ bd9056747e90b3add8b9337014270784de49df7e data/backmath/tags/items/item_sacs.json
 8acda300198a77f4dde669aa03918bdd9d8abd0b data/backmath/tags/items/jabuticaba_logs.json
 462971117d1d7c67e54e18035e2d0f63bbcb17e0 data/backmath/tags/items/jams.json
 d0ed241fbb1452a188f3fa54995a02a9acd0866b data/backmath/tags/items/juices.json
-18bc7a5e2711e45ad4405675210d7b15c0a37352 data/backmath/tags/items/materials.json
 8c54198021d749214211694a2e728795ae96431c data/backmath/tags/items/mid_term_materials.json
 555b8f1c6c8237dc5df3775304557c262409bbaa data/backmath/tags/items/milked_spareys.json
 1704963d70fa3ca771de5d7e6ae3f0c2d6df828a data/backmath/tags/items/milked_swords.json
@@ -2249,7 +2248,6 @@ cb1c7da0410eec63cd80c035f309801f32271596 data/backmath/tags/items/sophie_idea/so
 3a230b2e7ddc66a438caa7bc74a3e830f25b2526 data/backmath/tags/items/squids.json
 5250650d84575fa9807d1f508cd5bf09eb3866ec data/backmath/tags/items/stripped_woods.json
 a8260fd567091d14a68782dc9f35900d09e61e17 data/backmath/tags/items/tabu_smeltables.json
-d5d84c39752714eddf5975850fc5946775f021f2 data/backmath/tags/items/tempt_items.json
 8595ec7144fc700cbb7df4f7477c58bd664b9ac9 data/backmath/tags/items/termian_raider_can_pickup.json
 77582597002d8f4586f204f221dee84af552e1ca data/backmath/tags/items/toys.json
 0515507002acb76865c28672056eba2fcbdbbef8 data/backmath/tags/items/wanderer_sophie_tempt_items.json

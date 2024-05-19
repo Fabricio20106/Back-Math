@@ -832,9 +832,13 @@ public class AxolotlTest {
     public static final RegistryObject<Item> ANGELIC_CROWN = ITEMS.register("angelic_crown", () -> new CrownItem(new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> GOLDEN_CROWN = ITEMS.register("golden_crown", () -> new CrownItem(new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MID_TERM_CROWN = ITEMS.register("mid_term_crown", () -> new GlisteringCrownItem(new Item.Properties().rarity(Rarity.RARE).fireResistant().tab(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_CROWN = ITEMS.register("obsidian_infused_mid_term_crown", () -> new GlisteringCrownItem(new Item.Properties().rarity(Rarity.EPIC).fireResistant().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> CHRISTIAN_MID_TERM_CROWN = ITEMS.register("christian_mid_term_crown", () -> new CrownItem(new Item.Properties().rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> CRYSTALLINE_ANGELIC_CROWN = ITEMS.register("crystalline_angelic_crown", () -> new CrownItem(new Item.Properties().rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MILKLLARY_CROWN = ITEMS.register("milkllary_crown", () -> new CrownItem(new Item.Properties().rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> ALJAMEED_CROWN = ITEMS.register("aljameed_crown", () -> new CrownItem(new Item.Properties().tab(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> MOONERING_CROWN = ITEMS.register("moonering_crown", () -> new CrownItem(new Item.Properties().tab(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> JANTICAL_CROWN = ITEMS.register("jantical_crown", () -> new CrownItem(new Item.Properties().rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MID_TERM_GREATSWORD = ITEMS.register("mid_term_greatsword", () -> new MidTermGreatswordItem(MID_TERM_SET, 12, -3.4F, new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MILKED_WOODEN_SWORD = ITEMS.register("milked_wooden_sword", () -> new MilkedSwordItem(ItemTier.WOOD, 3, -2.4F, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MILKED_STONE_SWORD = ITEMS.register("milked_stone_sword", () -> new MilkedSwordItem(ItemTier.STONE, 3, -2.4F, new Item.Properties().tab(BMWeaponryTab.TAB)));

@@ -11,6 +11,7 @@ import com.sophicreeper.backmath.item.custom.BMSpawnEggItem;
 import com.sophicreeper.backmath.item.custom.potion.BMPotions;
 import com.sophicreeper.backmath.item.custom.weapon.misc.QueenLucySummonerStaffItem;
 import com.sophicreeper.backmath.loot.BMLootModifiers;
+import com.sophicreeper.backmath.loot.BMLootParameterSets;
 import com.sophicreeper.backmath.misc.BMMotives;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStats;
@@ -54,6 +55,7 @@ public class CommonProxy {
         BMStructures.STRUCTURES.register(eventBus);
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);
         BMStats.init();
+        BMLootParameterSets.init();
         BMSounds.registerSounds();
 
         eventBus.addListener(this::commonSetup);

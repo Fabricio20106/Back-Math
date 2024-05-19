@@ -135,7 +135,6 @@ public class BMTags {
         public static final ITag.INamedTag<Item> PROVIDES_RESISTANCE = melony("provides_effect/resistance");
 
         // Mob Related Tags
-        public static final ITag.INamedTag<Item> TEMPT_ITEMS = backMath("tempt_items");
         public static final ITag.INamedTag<Item> WANDERER_SOPHIE_TEMPT_ITEMS = backMath("wanderer_sophie_tempt_items");
         public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TEMPT_ITEMS = backMath("queen_lucy_pet_tempt_items");
         public static final ITag.INamedTag<Item> ARCHER_LUCIA_TEMPT_ITEMS = backMath("archer_lucia_tempt_items");
@@ -144,7 +143,6 @@ public class BMTags {
         // Tag Migration
         public static final ITag.INamedTag<Item> ALJAN_RECIPE_STICKS = backMath("aljan_recipe_sticks");
         public static final ITag.INamedTag<Item> BACK_GUIDE_RECIPE_ACCEPTABLES = backMath("back_guide_recipe_acceptables");
-        public static final ITag.INamedTag<Item> MATERIALS = backMath("materials");
         public static final ITag.INamedTag<Item> HARDENED_AMARACAMEL_MATERIALS = backMath("hardened_amaracamel_materials");
         public static final ITag.INamedTag<Item> CROWNS = backMath("crowns");
         public static final ITag.INamedTag<Item> FOOD_BAGS = backMath("food_bags");

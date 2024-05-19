@@ -5,15 +5,18 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.model.LightBakedModel;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
 import com.sophicreeper.backmath.world.plant.BMPlantGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructureGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructures;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
+import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -29,6 +32,7 @@ import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
@@ -102,6 +106,17 @@ public class BMEvents {
             tempMap.putIfAbsent(BMStructures.SOPHIE_TOWER.get(), DimensionStructuresSettings.DEFAULTS.get(BMStructures.SOPHIE_TOWER.get()));
             tempMap.putIfAbsent(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get(), DimensionStructuresSettings.DEFAULTS.get(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get()));
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
+        }
+    }
+
+    @SubscribeEvent
+    public static void addVillagerTrades(VillagerTradesEvent event) {
+        if (event.getType() == VillagerProfession.CARTOGRAPHER) {
+            Int2ObjectMap<List<VillagerTrades.ITrade>> trades = event.getTrades();
+
+            // Level 3 "Journeyman"
+            trades.get(3).add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 8), new ItemStack(Items.COMPASS), BMUtils.makeBackFieldsExplorerMap(trader),
+                    12, 10, 0.2F));
         }
     }
 

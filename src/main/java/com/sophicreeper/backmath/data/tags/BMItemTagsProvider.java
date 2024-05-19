@@ -345,8 +345,6 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(BMTags.Items.QUEEN_LUCY_PET_TEMPT_ITEMS).add(AxolotlTest.GUARANA.get(), Items.CAKE);
         this.tag(BMTags.Items.ARCHER_LUCIA_TEMPT_ITEMS).add(Items.APPLE);
         this.tag(BMTags.Items.SHY_FABRICIO_TEMPT_ITEMS).add(AxolotlTest.HONEYED_BREAD.get());
-        this.tag(BMTags.Items.TEMPT_ITEMS).addTag(BMTags.Items.WANDERER_SOPHIE_TEMPT_ITEMS).addTag(BMTags.Items.QUEEN_LUCY_PET_TEMPT_ITEMS).addTag(BMTags.Items.ARCHER_LUCIA_TEMPT_ITEMS)
-                .addTag(BMTags.Items.SHY_FABRICIO_TEMPT_ITEMS);
 
         this.tag(Tags.Items.NUGGETS).addTag(BMTags.Items.NUGGETS_DEVIL).addTag(BMTags.Items.NUGGETS_ANGELIC).addTag(BMTags.Items.NUGGETS_CHRISTIAN_MID_TERM)
                 .addTag(BMTags.Items.NUGGETS_MID_TERM).addTag(BMTags.Items.NUGGETS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMTags.Items.NUGGETS_ALJAMEED).addTag(BMTags.Items.NUGGETS_MOONERING)
@@ -412,9 +410,9 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 BMTags.Items.RODS_AVONDALIC_WILLOW);
         this.tag(BMTags.Items.BACK_GUIDE_RECIPE_ACCEPTABLES).addTag(BMTags.Items.FRUITS).add(AxolotlTest.ALJAME.get(), AxolotlTest.ALJAMIC_ONION.get(), AxolotlTest.CARAMELED_WHEAT.get());
         this.tag(BMTags.Items.HARDENED_AMARACAMEL_MATERIALS).addTag(BMTags.Items.INGOTS_HARDENED_AMARACAMEL).add(AxolotlTest.HARDENED_AMARACAMEL_BATTER.get());
-        this.tag(BMTags.Items.MATERIALS).addTag(BMTags.Items.HARDENED_AMARACAMEL_MATERIALS);
-        this.tag(BMTags.Items.CROWNS).add(AxolotlTest.GOLDEN_CROWN.get()).add(AxolotlTest.DEVIL_CROWN.get()).add(AxolotlTest.ANGELIC_CROWN.get())
-                .add(AxolotlTest.CHRISTIAN_MID_TERM_CROWN.get()).add(AxolotlTest.MID_TERM_CROWN.get()).add(AxolotlTest.MILKLLARY_CROWN.get()).add(AxolotlTest.CRYSTALLINE_ANGELIC_CROWN.get());
+        this.tag(BMTags.Items.CROWNS).add(AxolotlTest.GOLDEN_CROWN.get()).add(AxolotlTest.DEVIL_CROWN.get()).add(AxolotlTest.ANGELIC_CROWN.get()).add(AxolotlTest.CHRISTIAN_MID_TERM_CROWN.get()).add(AxolotlTest.MID_TERM_CROWN.get())
+                .add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CROWN.get()).add(AxolotlTest.MILKLLARY_CROWN.get()).add(AxolotlTest.CRYSTALLINE_ANGELIC_CROWN.get()).add(AxolotlTest.ALJAMEED_CROWN.get()).add(AxolotlTest.MOONERING_CROWN.get())
+                .add(AxolotlTest.JANTICAL_CROWN.get());
         this.tag(BMTags.Items.FOOD_BAGS).add(AxolotlTest.FOOD_BAG.get()).add(AxolotlTest.FOOD_BAG_ALT.get());
         this.tag(BMTags.Items.ENERGETICS).add(AxolotlTest.ENERGETIC_MONSTER.get()).add(AxolotlTest.MONSTER_ENERGY_DRINK.get());
         this.tag(BMTags.Items.MORTAR_AND_PESTLES).add(AxolotlTest.MORTAR_AND_PESTLE.get()).add(AxolotlTest.CRYSTALLINE_BIRCH_MORTAR_AND_PESTLE.get())

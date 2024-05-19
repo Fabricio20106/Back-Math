@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -30,6 +31,8 @@ import java.util.Random;
 
 public class WandererSophie extends TermianMemberEntity implements ISophieFriendlies {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(WandererSophie.class, DataSerializers.INT);
+    private static final DataParameter<String> CAPE_TEXTURE = EntityDataManager.defineId(WandererSophie.class, DataSerializers.STRING);
+    public boolean showCape = true;
     public double prevChasingPosX;
     public double prevChasingPosY;
     public double prevChasingPosZ;
@@ -47,6 +50,7 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(VARIANT, 0);
+        this.entityData.define(CAPE_TEXTURE, BackMath.resourceLoc("cape/cherry_blossom").toString());
     }
 
     @Override
@@ -98,13 +102,25 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getVariant());
+        tag.putString("cape_texture", this.entityData.get(CAPE_TEXTURE));
+        tag.putBoolean("show_cape", this.showCape);
         // tag.putBoolean("CustomNameVisible", true);
     }
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
         this.setVariant(tag.getInt("Variant"));
+        this.entityData.set(CAPE_TEXTURE, tag.getString("cape_texture"));
+        this.showCape = tag.getBoolean("show_cape");
         // this.setCustomNameVisible(tag.getBoolean("CustomNameVisible"));
+    }
+
+    public String getCapeTexture() {
+        return this.entityData.get(CAPE_TEXTURE);
+    }
+
+    public void setCapeTexture(String capeTexture) {
+        this.entityData.set(CAPE_TEXTURE, capeTexture);
     }
 
     public int getVariant() {
@@ -161,6 +177,22 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
         super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         this.setVariant(this.random.nextInt(16));
+        int randomCape = this.random.nextInt(8);
+        if (randomCape == 0) {
+            this.setCapeTexture(BackMath.resourceLoc("cape/migrator").toString());
+        } else if (randomCape == 1) {
+            this.setCapeTexture(BackMath.resourceLoc("cape/vanilla").toString());
+        } else if (randomCape == 2) {
+            this.setCapeTexture(BackMath.resourceLoc("cape/cherry_blossom").toString());
+        } else if (randomCape == 3) {
+            this.setCapeTexture(BackMath.resourceLoc("cape/followers").toString());
+        } else if (randomCape == 4) {
+            this.setCapeTexture(BackMath.resourceLoc("cape/purple_glitch").toString());
+        } else if (randomCape == 5) {
+            this.setCapeTexture(BackMath.resourceLoc("cape/15th_anniversary").toString());
+        } else if (randomCape == 6) {
+            this.setCapeTexture(BackMath.resourceLoc("cape/pan").toString());
+        }
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;

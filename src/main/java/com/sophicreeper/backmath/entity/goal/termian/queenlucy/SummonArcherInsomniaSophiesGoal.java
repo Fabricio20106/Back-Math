@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.entity.custom.ArcherInsomniaSophie;
 import com.sophicreeper.backmath.entity.custom.QueenLucy;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
@@ -34,6 +35,10 @@ public class SummonArcherInsomniaSophiesGoal extends CastSpellGoal {
             BlockPos pos = this.queenLucy.blockPosition().offset(-2 + this.queenLucy.getRandom().nextInt(5), 1, -2 + this.queenLucy.getRandom().nextInt(5));
             ArcherInsomniaSophie archerInsomniaSophie = BMEntities.ARCHER_INSOMNIA_SOPHIE.get().create(this.queenLucy.level);
             archerInsomniaSophie.moveTo(pos, 0, 0);
+            archerInsomniaSophie.setNoAi(this.queenLucy.isNoAi());
+            archerInsomniaSophie.setInvulnerable(this.queenLucy.isInvulnerable());
+            if (this.queenLucy.isPersistenceRequired()) archerInsomniaSophie.setPersistenceRequired();
+            if (this.queenLucy.getTeam() != null) archerInsomniaSophie.level.getScoreboard().addPlayerToTeam(archerInsomniaSophie.getStringUUID(), (ScorePlayerTeam) this.queenLucy.getTeam()); // Fix MC-118403 for Queen Lucy (https://bugs.mojang.com/browse/MC-118403)
             archerInsomniaSophie.finalizeSpawn(world, this.queenLucy.level.getCurrentDifficultyAt(pos), SpawnReason.MOB_SUMMONED, null, null);
             world.addFreshEntity(archerInsomniaSophie);
         }

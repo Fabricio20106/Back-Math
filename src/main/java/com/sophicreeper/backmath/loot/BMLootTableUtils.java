@@ -18,15 +18,15 @@ public class BMLootTableUtils {
         MinecraftServer server = serverPlayer.level.getServer();
         if (server == null) return ImmutableList.of();
 
-        LootContext lootContext = new LootContext.Builder(serverPlayer.getLevel()).withParameter(LootParameters.THIS_ENTITY, serverPlayer).withParameter(LootParameters.ORIGIN, serverPlayer.position()).withLuck(serverPlayer.getLuck()).create(LootParameterSets.GIFT);
+        LootContext lootContext = new LootContext.Builder(serverPlayer.getLevel()).withParameter(LootParameters.THIS_ENTITY, serverPlayer).withParameter(LootParameters.ORIGIN, serverPlayer.position()).withLuck(serverPlayer.getLuck()).create(BMLootParameterSets.BAG);
         return server.getLootTables().get(lootTable).getRandomItems(lootContext);
     }
 
     public static Collection<ItemStack> giftFromDispenser(ResourceLocation lootTable, IBlockSource source) {
         MinecraftServer server = source.getLevel().getServer();
 
-        LootContext lootContext = new LootContext.Builder(source.getLevel()).withParameter(LootParameters.BLOCK_ENTITY, source.getEntity()).withParameter(LootParameters.THIS_ENTITY, null).withParameter(LootParameters.ORIGIN, new Vector3d(source.x(), source.y(), source.z()))
-                .withLuck(source.getLevel().getCurrentDifficultyAt(source.getPos()).getSpecialMultiplier()).create(LootParameterSets.GIFT);
+        LootContext lootContext = new LootContext.Builder(source.getLevel()).withParameter(LootParameters.BLOCK_STATE, source.getBlockState()).withParameter(LootParameters.BLOCK_ENTITY, source.getEntity()).withParameter(LootParameters.ORIGIN, new Vector3d(
+                source.x(), source.y(), source.z())).withLuck(source.getLevel().getCurrentDifficultyAt(source.getPos()).getSpecialMultiplier()).create(BMLootParameterSets.BAG);
         return server.getLootTables().get(lootTable).getRandomItems(lootContext);
     }
 }

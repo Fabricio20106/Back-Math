@@ -25,7 +25,7 @@ public class BMBipedRenderer<T extends CreatureEntity> extends BipedRenderer<T, 
         this(manager, new BMBipedModel<>(0, 0, 64, 64, true), shadowSize);
         this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new HeadLayer<>(this));
-        this.addLayer(new ElytraLayer<>(this));
+        // this.addLayer(new ElytraLayer<>(this));
     }
 
     public BMBipedRenderer(EntityRendererManager manager, BMBipedModel<T> model, float shadowSize) {

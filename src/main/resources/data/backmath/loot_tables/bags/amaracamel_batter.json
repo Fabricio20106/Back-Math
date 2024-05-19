@@ -1,12 +1,12 @@
 {
-  "type": "minecraft:gift",
+  "type": "backmath:bag",
   "pools": [
     {
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "backmath:amaracamel_batter_bread"
+          "name": "backmath:amaracamel_batter"
         }
       ]
     },

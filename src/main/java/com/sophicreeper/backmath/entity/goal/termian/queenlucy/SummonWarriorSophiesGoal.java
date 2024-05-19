@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.entity.custom.QueenLucy;
 import com.sophicreeper.backmath.entity.custom.WarriorSophie;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.scoreboard.ScorePlayerTeam;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.server.ServerWorld;
 
@@ -34,6 +35,10 @@ public class SummonWarriorSophiesGoal extends CastSpellGoal {
             BlockPos pos = this.queenLucy.blockPosition().offset(-2 + this.queenLucy.getRandom().nextInt(5), 1, -2 + this.queenLucy.getRandom().nextInt(5));
             WarriorSophie warriorSophie = BMEntities.WARRIOR_SOPHIE.get().create(this.queenLucy.level);
             warriorSophie.moveTo(pos, 0, 0);
+            warriorSophie.setNoAi(this.queenLucy.isNoAi());
+            warriorSophie.setInvulnerable(this.queenLucy.isInvulnerable());
+            if (this.queenLucy.isPersistenceRequired()) warriorSophie.setPersistenceRequired();
+            if (this.queenLucy.getTeam() != null) warriorSophie.level.getScoreboard().addPlayerToTeam(warriorSophie.getStringUUID(), (ScorePlayerTeam) this.queenLucy.getTeam()); // Fix MC-118403 for Queen Lucy (https://bugs.mojang.com/browse/MC-118403)
             warriorSophie.finalizeSpawn(world, this.queenLucy.level.getCurrentDifficultyAt(pos), SpawnReason.MOB_SUMMONED, null, null);
             world.addFreshEntity(warriorSophie);
         }

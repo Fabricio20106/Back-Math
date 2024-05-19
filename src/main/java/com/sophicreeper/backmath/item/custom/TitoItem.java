@@ -34,8 +34,8 @@ public class TitoItem extends BlockItem {
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);
         if (!world.isClientSide && BMKeys.isHoldingShift()) {
-            handStack.shrink(1);
             player.addItem(new ItemStack(AxolotlTest.TOTI.get()));
+            handStack.shrink(1);
             if (player instanceof ServerPlayerEntity) {
                 ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
                 BMUtils.playItemPickupSound(serverPlayer);

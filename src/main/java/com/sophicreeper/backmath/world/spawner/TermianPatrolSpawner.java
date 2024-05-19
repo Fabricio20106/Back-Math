@@ -104,7 +104,7 @@ public class TermianPatrolSpawner implements ISpecialSpawner {
                 }
 
                 termianPatroller.setPos(pos.getX(), pos.getY(), pos.getZ());
-                if(ForgeHooks.canEntitySpawn(termianPatroller, world, pos.getX(), pos.getY(), pos.getZ(), null, SpawnReason.PATROL) == -1) return false;
+                if (ForgeHooks.canEntitySpawn(termianPatroller, world, pos.getX(), pos.getY(), pos.getZ(), null, SpawnReason.PATROL) == -1) return false;
                 termianPatroller.finalizeSpawn(world, world.getCurrentDifficultyAt(pos), SpawnReason.PATROL, null, null);
                 world.addFreshEntityWithPassengers(termianPatroller);
                 return true;

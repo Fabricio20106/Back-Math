@@ -1,5 +1,5 @@
 {
-  "type": "minecraft:gift",
+  "type": "backmath:bag",
   "pools": [
     {
       "rolls": 1,
