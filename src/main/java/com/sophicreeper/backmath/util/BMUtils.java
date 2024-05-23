@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.util;
 
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.WandererSophie;
+import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import net.minecraft.entity.Entity;
@@ -20,6 +22,7 @@ import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
 
 import java.util.Locale;
+import java.util.Random;
 
 // Just generalized methods that are used more than twice throughout the code.
 public class BMUtils {
@@ -66,13 +69,33 @@ public class BMUtils {
         return new ItemStack(Items.MAP);
     }
 
-    // Returns the resource location for a Wanderer Sophie's cape.
-    public static ResourceLocation getWandererSophieCape(WandererSophie sophie) {
-        String capeNamespace = new ResourceLocation(sophie.getCapeTexture()).getNamespace();
-        String capePath = new ResourceLocation(sophie.getCapeTexture()).getPath();
+    // Returns the resource location for a Termian Patroller's cape.
+    public static ResourceLocation getTermianPatrollerCape(TermianPatrollerEntity patroller) {
+        String capeNamespace = new ResourceLocation(patroller.getCapeTexture()).getNamespace();
+        String capePath = new ResourceLocation(patroller.getCapeTexture()).getPath();
 
         if (capePath.isEmpty()) capePath = "cape/cherry_blossom";
 
         return new ResourceLocation(capeNamespace, "textures/entity/" + capePath + ".png");
+    }
+
+    // Sets a random cape to a Termian Patroller entity (out of the 7 vanilla/default capes).
+    public static void setRandomCape(TermianPatrollerEntity patroller, Random rand) {
+        int randomCape = rand.nextInt(8);
+        if (randomCape == 0) {
+            patroller.setCapeTexture(BackMath.resourceLoc("cape/migrator").toString());
+        } else if (randomCape == 1) {
+            patroller.setCapeTexture(BackMath.resourceLoc("cape/vanilla").toString());
+        } else if (randomCape == 2) {
+            patroller.setCapeTexture(BackMath.resourceLoc("cape/cherry_blossom").toString());
+        } else if (randomCape == 3) {
+            patroller.setCapeTexture(BackMath.resourceLoc("cape/followers").toString());
+        } else if (randomCape == 4) {
+            patroller.setCapeTexture(BackMath.resourceLoc("cape/purple_heart").toString());
+        } else if (randomCape == 5) {
+            patroller.setCapeTexture(BackMath.resourceLoc("cape/15th_anniversary").toString());
+        } else if (randomCape == 6) {
+            patroller.setCapeTexture(BackMath.resourceLoc("cape/pan").toString());
+        }
     }
 }

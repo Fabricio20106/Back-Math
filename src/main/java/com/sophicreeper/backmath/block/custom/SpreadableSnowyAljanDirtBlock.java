@@ -1,7 +1,9 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.block.BMBlocks;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.block.*;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -29,12 +31,19 @@ public class SpreadableSnowyAljanDirtBlock extends SnowyDirtBlock {
         }
     }
 
+    @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context) {
+        BlockState aboveState = context.getLevel().getBlockState(context.getClickedPos().above());
+        return this.defaultBlockState().setValue(SNOWY, aboveState.is(BMTags.Blocks.MAKES_GRASS_BLOCKS_SNOWY));
+    }
+
     private static boolean isSnowyAndNotUnderwater(BlockState state, IWorldReader world, BlockPos pos) {
         BlockPos abovePos = pos.above();
         return isSnowyConditions(state, world, pos) && !world.getFluidState(abovePos).is(FluidTags.WATER);
     }
 
     // Performs a random tick on a block.
+    @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if (!isSnowyConditions(state, world, pos)) {
             if (!world.isAreaLoaded(pos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading.
@@ -46,11 +55,10 @@ public class SpreadableSnowyAljanDirtBlock extends SnowyDirtBlock {
                 for(int i = 0; i < 4; ++i) {
                     BlockPos pos1 = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                     if (world.getBlockState(pos1).is(BMBlocks.ALJAMIC_DIRT.get()) && isSnowyAndNotUnderwater(state1, world, pos1)) {
-                        world.setBlockAndUpdate(pos1, state1.setValue(SNOWY, world.getBlockState(pos1.above()).is(Blocks.SNOW)));
+                        world.setBlockAndUpdate(pos1, state1.setValue(SNOWY, world.getBlockState(pos1.above()).is(BMTags.Blocks.MAKES_GRASS_BLOCKS_SNOWY)));
                     }
                 }
             }
-
         }
     }
 }

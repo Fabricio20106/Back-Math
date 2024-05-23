@@ -17,8 +17,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class AmaracamelerGelLayer<T extends LivingEntity> extends LayerRenderer<T, AmaracamelerModel<T>> {
     private final EntityModel<T> amaracamelerModel = new AmaracamelerModel<>(0);
 
-    public AmaracamelerGelLayer(IEntityRenderer<T, AmaracamelerModel<T>> entityRenderer) {
-        super(entityRenderer);
+    public AmaracamelerGelLayer(IEntityRenderer<T, AmaracamelerModel<T>> renderer) {
+        super(renderer);
     }
 
     @Override

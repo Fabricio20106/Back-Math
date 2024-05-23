@@ -36,31 +36,34 @@ public class BMEntityTypeTagsProvider extends EntityTypeTagsProvider {
         this.tag(BMTags.EntityTypes.PLAYER_LIKE).addTag(BMTags.EntityTypes.SOPHIES).addTag(BMTags.EntityTypes.LUCIAS).addTag(BMTags.EntityTypes.FABRICIOS).add(BMEntities.MALAIKA.get());
 
         this.tag(BMTags.EntityTypes.QLP_TARGETS_TAMED).addTag(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED).addTag(EntityTypeTags.RAIDERS).addTag(EntityTypeTags.SKELETONS).add(BMEntities.INSOMNIA_SOPHIE.get())
-                .add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get()).add(BMEntities.WARRIOR_SOPHIE.get()).add(BMEntities.ARCHER_LUCIA.get()).add(BMEntities.JANTICLE.get()).add(BMEntities.INSOMNIA_ZOMBIE.get()).add(BMEntities.ZOMBIE_FABRICIO.get())
-                .add(BMEntities.AMARACAMELER.get()).add(EntityType.ZOMBIE).add(EntityType.HUSK).add(EntityType.DROWNED).add(EntityType.ZOMBIE_VILLAGER).add(EntityType.ZOMBIFIED_PIGLIN).add(EntityType.VEX);
-        this.tag(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED).add(BMEntities.ANGRY_SOPHIE.get()).add(BMEntities.SHY_FABRICIO.get());
+                .add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get()).add(BMEntities.WARRIOR_SOPHIE.get(), BMEntities.ARCHER_LUCIA.get(), BMEntities.JANTICLE.get(), BMEntities.INSOMNIA_ZOMBIE.get(), BMEntities.ZOMBIE_FABRICIO.get())
+                .add(BMEntities.AMARACAMELER.get(), EntityType.ZOMBIE, EntityType.HUSK, EntityType.DROWNED, EntityType.ZOMBIE_VILLAGER, EntityType.ZOMBIFIED_PIGLIN, EntityType.VEX);
+        this.tag(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED).add(BMEntities.ANGRY_SOPHIE.get(), BMEntities.SHY_FABRICIO.get());
         this.tag(BMTags.EntityTypes.QLP_CANNOT_TARGET).add(BMEntities.QUEEN_LUCY_PET.get());
 
-        this.tag(BMTags.EntityTypes.MALAIKA_TARGETS).add(BMEntities.INSOMNIA_ZOMBIE.get()).add(BMEntities.ZOMBIE_FABRICIO.get()).add(BMEntities.ALJAMIC_BONES.get()).add(BMEntities.SLEEPISH_SKELETON.get()).add(BMEntities.AMARACAMELER.get())
+        this.tag(BMTags.EntityTypes.MALAIKA_TARGETS).add(BMEntities.INSOMNIA_ZOMBIE.get(), BMEntities.ZOMBIE_FABRICIO.get(), BMEntities.ALJAMIC_BONES.get(), BMEntities.SLEEPISH_SKELETON.get(), BMEntities.AMARACAMELER.get())
                 .add(BMEntities.JANTICLE.get());
 
-        this.tag(BMTags.EntityTypes.DEVIL_SPAREY_EFFECTIVES).add(BMEntities.WANDERER_SOPHIE.get()).add(BMEntities.INSOMNIA_SOPHIE.get()).add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get()).add(BMEntities.WARRIOR_SOPHIE.get())
-                .add(BMEntities.QUEEN_LUCY_PET.get()).add(BMEntities.ARCHER_LUCIA.get()).add(BMEntities.KARATE_LUCIA.get()).add(BMEntities.SHY_FABRICIO.get()).add(BMEntities.MALAIKA.get());
+        this.tag(BMTags.EntityTypes.DEVIL_SPAREY_EFFECTIVES).add(BMEntities.WANDERER_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), BMEntities.WARRIOR_SOPHIE.get())
+                .add(BMEntities.QUEEN_LUCY_PET.get(), BMEntities.ARCHER_LUCIA.get(), BMEntities.KARATE_LUCIA.get(), BMEntities.SHY_FABRICIO.get(), BMEntities.MALAIKA.get());
         this.tag(BMTags.EntityTypes.SPAREY_EFFECTIVES).add(BMEntities.ANGRY_SOPHIE.get());
         this.tag(BMTags.EntityTypes.SPAREYS_PROHIBITED).add(BMEntities.QUEEN_LUCY.get());
 
-        this.tag(BMTags.EntityTypes.SHY_FABRICIO_FRIENDLIES).add(BMEntities.SHY_FABRICIO.get()).add(EntityType.ARMOR_STAND);
+        this.tag(BMTags.EntityTypes.SHY_FABRICIO_FRIENDLIES).add(BMEntities.SHY_FABRICIO.get(), EntityType.ARMOR_STAND);
 
-        this.tag(BMTags.EntityTypes.TERMIAN_RAIDERS_ATTACK).add(EntityType.IRON_GOLEM).add(EntityType.PLAYER);
+        this.tag(BMTags.EntityTypes.TERMIAN_RAIDERS_ATTACK).add(EntityType.IRON_GOLEM, EntityType.PLAYER);
         this.tag(BMTags.EntityTypes.CANNOT_JOIN_SOPHIE_RAID);
 
-        this.tag(BMTags.EntityTypes.ANGER_DUNGEON_MOBS).add(BMEntities.ANGRY_SOPHIE.get()).add(BMEntities.ANGRY_SOPHIE.get()).add(BMEntities.INSOMNIA_SOPHIE.get()).add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get());
-        this.tag(BMTags.EntityTypes.ALJAN_DUNGEON_MOBS).add(BMEntities.ALJAMIC_BONES.get()).add(BMEntities.SLEEPISH_SKELETON.get()).add(BMEntities.SLEEPISH_SKELETON.get()).add(BMEntities.INSOMNIA_ZOMBIE.get());
+        this.tag(BMTags.EntityTypes.SOPHIE_ALLIES).add(BMEntities.WANDERER_SOPHIE.get(), BMEntities.WARRIOR_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), BMEntities.QUEEN_LUCY.get(),
+                BMEntities.ARCHER_LUCIA.get(), BMEntities.KARATE_LUCIA.get(), BMEntities.MALAIKA.get());
+
+        this.tag(BMTags.EntityTypes.ANGER_DUNGEON_MOBS).add(BMEntities.ANGRY_SOPHIE.get(), BMEntities.ANGRY_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get());
+        this.tag(BMTags.EntityTypes.ALJAN_DUNGEON_MOBS).add(BMEntities.ALJAMIC_BONES.get(), BMEntities.SLEEPISH_SKELETON.get(), BMEntities.SLEEPISH_SKELETON.get(), BMEntities.INSOMNIA_ZOMBIE.get());
 
         // Melony Tags
-        this.tag(BMTags.EntityTypes.CAN_SPAWN_ON_LEAVES).add(EntityType.OCELOT).add(EntityType.PARROT);
+        this.tag(BMTags.EntityTypes.CAN_SPAWN_ON_LEAVES).add(EntityType.OCELOT, EntityType.PARROT);
 
-        this.tag(EntityTypeTags.SKELETONS).add(BMEntities.ALJAMIC_BONES.get()).add(BMEntities.SLEEPISH_SKELETON.get());
+        this.tag(EntityTypeTags.SKELETONS).add(BMEntities.ALJAMIC_BONES.get(), BMEntities.SLEEPISH_SKELETON.get());
         this.tag(EntityTypeTags.ARROWS).add(BMEntities.INSOMNIA_ARROW.get());
         this.tag(EntityTypeTags.IMPACT_PROJECTILES).add(BMEntities.CHOCOGLUE_PROJECTILE.get());
     }

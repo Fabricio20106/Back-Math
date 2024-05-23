@@ -29,7 +29,17 @@ public class BMBipedModel<T extends CreatureEntity> extends BipedModel<T> {
         super(RenderType::entityTranslucent, modelSize, yOffset, textureWidth, textureHeight);
         this.slimArms = slimArms;
 
+        this.cape = new ModelRenderer(this, 0, 0);
+        this.cape.setTexSize(64, 32);
+        this.cape.addBox(-5, 0, -1, 10, 16, 1, modelSize);
+
         if (slimArms) {
+            this.leftArm = new ModelRenderer(this, 32, 48);
+            this.leftArm.addBox(-1, -2, -2, 3, 12, 4, modelSize);
+            this.leftArm.setPos(5, 2.5F, 0);
+            this.rightArm = new ModelRenderer(this, 40, 16);
+            this.rightArm.addBox(-2, -2, -2, 3, 12, 4, modelSize);
+            this.rightArm.setPos(-5, 2.5F, 0);
             this.leftSleeve = new ModelRenderer(this, 48, 48);
             this.leftSleeve.addBox(-1, -2, -2, 3, 12, 4, modelSize + 0.25F);
             this.leftSleeve.setPos(5, 2.5F, 0);
@@ -37,6 +47,9 @@ public class BMBipedModel<T extends CreatureEntity> extends BipedModel<T> {
             this.rightSleeve.addBox(-2, -2, -2, 3, 12, 4, modelSize + 0.25F);
             this.rightSleeve.setPos(-5, 2.5F, 10);
         } else {
+            this.leftArm = new ModelRenderer(this, 32, 48);
+            this.leftArm.addBox(-1, -2, -2, 4, 12, 4, modelSize);
+            this.leftArm.setPos(5, 2, 0);
             this.leftSleeve = new ModelRenderer(this, 48, 48);
             this.leftSleeve.addBox(-1, -2, -2, 4, 12, 4, modelSize + 0.25F);
             this.leftSleeve.setPos(5, 2, 0);
@@ -54,10 +67,6 @@ public class BMBipedModel<T extends CreatureEntity> extends BipedModel<T> {
         this.jacket = new ModelRenderer(this, 16, 32);
         this.jacket.addBox(-4, 0, -2, 8, 12, 4, modelSize + 0.25F);
         this.jacket.setPos(0, 0, 0);
-
-        this.cape = new ModelRenderer(this, 0, 0);
-        this.cape.setTexSize(64, 32);
-        this.cape.addBox(-5, 0, -1, 10, 16, 1, modelSize);
     }
 
     @Override

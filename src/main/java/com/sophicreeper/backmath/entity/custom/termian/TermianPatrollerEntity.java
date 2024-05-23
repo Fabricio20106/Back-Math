@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.entity.custom.termian;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.termian.TermianPatrolGoal;
+import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ILivingEntityData;
@@ -13,8 +15,13 @@ import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.BannerPattern;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.Color;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -23,13 +30,32 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.Random;
 
+import static net.minecraft.entity.monster.MonsterEntity.isDarkEnoughToSpawn;
+
 public abstract class TermianPatrollerEntity extends CreatureEntity {
+    private static final DataParameter<String> CAPE_TEXTURE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.STRING);
+    private static final DataParameter<Boolean> CAPE_VISIBILITY = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.BOOLEAN);
     private BlockPos patrolTarget;
     private boolean patrolLeader;
     private boolean patrolling;
+    public double prevChasingPosX;
+    public double prevChasingPosY;
+    public double prevChasingPosZ;
+    public double chasingPosX;
+    public double chasingPosY;
+    public double chasingPosZ;
+    public float prevCameraYaw;
+    public float cameraYaw;
 
     public TermianPatrollerEntity(EntityType<? extends CreatureEntity> mob, World world) {
         super(mob, world);
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(CAPE_TEXTURE, BackMath.resourceLoc("cape/cherry_blossom").toString());
+        this.entityData.define(CAPE_VISIBILITY, true);
     }
 
     @Override
@@ -44,6 +70,10 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         if (this.patrolTarget != null) tag.put("patrol_target", NBTUtil.writeBlockPos(this.patrolTarget));
         tag.putBoolean("patrol_leader", this.patrolLeader);
         tag.putBoolean("is_patrolling", this.patrolling);
+        CompoundNBT capeTag = new CompoundNBT();
+        capeTag.putString("texture", this.entityData.get(CAPE_TEXTURE));
+        capeTag.putBoolean("visible", this.entityData.get(CAPE_VISIBILITY));
+        tag.put("cape", capeTag);
     }
 
     @Override
@@ -52,6 +82,36 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         if (tag.contains("patrol_target")) this.patrolTarget = NBTUtil.readBlockPos(tag.getCompound("patrol_target"));
         this.patrolLeader = tag.getBoolean("patrol_leader");
         this.patrolling = tag.getBoolean("is_patrolling");
+        this.entityData.set(CAPE_TEXTURE, tag.getCompound("cape").getString("texture"));
+        this.entityData.set(CAPE_VISIBILITY, tag.getCompound("cape").getBoolean("visible"));
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.updateCape();
+    }
+
+    @Override
+    public void aiStep() {
+        this.prevCameraYaw = this.cameraYaw;
+        float f;
+        if (this.onGround && !this.isDeadOrDying() && !this.isSwimming()) {
+            f = Math.min(0.1F, MathHelper.sqrt(getHorizontalDistanceSqr(this.getDeltaMovement())));
+        } else {
+            f = 0;
+        }
+        this.cameraYaw += (f - this.cameraYaw) * 0.4F;
+        super.aiStep();
+    }
+
+    @Override
+    public void rideTick() {
+        super.rideTick();
+        if (this.getVehicle() instanceof CreatureEntity) {
+            CreatureEntity entity = (CreatureEntity) this.getVehicle();
+            this.yBodyRot = entity.yBodyRot;
+        }
     }
 
     @Override
@@ -73,6 +133,10 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
             this.setDropChance(EquipmentSlotType.HEAD, 2);
         }
         if (reason == SpawnReason.PATROL) this.patrolling = true;
+
+        // Capes
+        this.setCapeVisibility(this.random.nextInt(16) != 0);
+        BMUtils.setRandomCape(this, this.random);
 
         return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
     }
@@ -96,8 +160,27 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         return world.getDifficulty() != Difficulty.PEACEFUL && checkMobSpawnRules(mob, world, reason, pos, rand);
     }
 
+    public static boolean checkMonsterSpawnRules(EntityType<? extends CreatureEntity> mob, IServerWorld world, SpawnReason reason, BlockPos pos, Random rand) {
+        return world.getDifficulty() != Difficulty.PEACEFUL && isDarkEnoughToSpawn(world, pos, rand) && checkMobSpawnRules(mob, world, reason, pos, rand);
+    }
+
     public boolean removeWhenFarAway(double distance) {
         return !this.patrolling || distance > 16384;
+    }
+
+    @Override
+    protected SoundEvent getSwimSound() {
+        return BMSounds.ENTITY_TERMIAN_SWIM;
+    }
+
+    @Override
+    protected SoundEvent getSwimSplashSound() {
+        return BMSounds.ENTITY_TERMIAN_SPLASH;
+    }
+
+    @Override
+    protected SoundEvent getSwimHighSpeedSplashSound() {
+        return BMSounds.ENTITY_TERMIAN_SPLASH_HIGH_SPEED;
     }
 
     public void setPatrolTarget(BlockPos pos) {
@@ -137,5 +220,64 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
 
     public void setPatrolling(boolean patrolling) {
         this.patrolling = patrolling;
+    }
+
+    public String getCapeTexture() {
+        return this.entityData.get(CAPE_TEXTURE);
+    }
+
+    public void setCapeTexture(String capeTexture) {
+        this.entityData.set(CAPE_TEXTURE, capeTexture);
+    }
+
+    public boolean getCapeVisibility() {
+        return this.entityData.get(CAPE_VISIBILITY);
+    }
+
+    public void setCapeVisibility(boolean visible) {
+        this.entityData.set(CAPE_VISIBILITY, visible);
+    }
+
+    private void updateCape() {
+        this.prevChasingPosX = this.chasingPosX;
+        this.prevChasingPosY = this.chasingPosY;
+        this.prevChasingPosZ = this.chasingPosZ;
+        double d0 = this.getX() - this.chasingPosX;
+        double d1 = this.getY() - this.chasingPosY;
+        double d2 = this.getZ() - this.chasingPosZ;
+
+        if (d0 > 10) {
+            this.chasingPosX = this.getX();
+            this.prevChasingPosX = this.chasingPosX;
+        }
+
+        if (d2 > 10) {
+            this.chasingPosZ = this.getZ();
+            this.prevChasingPosZ = this.chasingPosZ;
+        }
+
+        if (d1 > 10) {
+            this.chasingPosY = this.getY();
+            this.prevChasingPosY = this.chasingPosY;
+        }
+
+        if (d0 < -10) {
+            this.chasingPosX = this.getX();
+            this.prevChasingPosX = this.chasingPosX;
+        }
+
+        if (d2 < -10) {
+            this.chasingPosZ = this.getZ();
+            this.prevChasingPosZ = this.chasingPosZ;
+        }
+
+        if (d1 < -10) {
+            this.chasingPosY = this.getY();
+            this.prevChasingPosY = this.chasingPosY;
+        }
+
+        this.chasingPosX += d0 * 0.25D;
+        this.chasingPosZ += d2 * 0.25D;
+        this.chasingPosY += d1 * 0.25D;
     }
 }

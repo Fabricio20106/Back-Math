@@ -12,7 +12,6 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
-import net.minecraft.entity.monster.CreeperEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -338,24 +337,5 @@ public class InsomniaZombie extends MonsterEntity {
     // Returns the Y Offset of this entity.
     public double getMyRidingOffset() {
         return -0.45D;
-    }
-
-    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
-        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
-        Entity entity = source.getEntity();
-        if (entity instanceof CreeperEntity) {
-            CreeperEntity creeper = (CreeperEntity) entity;
-            if (creeper.canDropMobsSkull()) {
-                ItemStack skullStack = this.getHeadDrop();
-                if (!skullStack.isEmpty()) {
-                    creeper.increaseDroppedSkulls();
-                    this.spawnAtLocation(skullStack);
-                }
-            }
-        }
-    }
-
-    protected ItemStack getHeadDrop() {
-        return new ItemStack(Items.ZOMBIE_HEAD);
     }
 }

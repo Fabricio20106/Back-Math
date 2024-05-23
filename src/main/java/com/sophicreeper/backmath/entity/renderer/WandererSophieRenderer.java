@@ -3,16 +3,13 @@ package com.sophicreeper.backmath.entity.renderer;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.WandererSophie;
 import com.sophicreeper.backmath.entity.model.BMBipedModel;
-import com.sophicreeper.backmath.entity.renderer.layer.WandererSophieCapeLayer;
-import com.sophicreeper.backmath.entity.renderer.layer.WandererSophieElytraLayer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class WandererSophieRenderer extends BMBipedRenderer<WandererSophie> {
+public class WandererSophieRenderer extends TermianBipedRenderer<WandererSophie> {
     public static final ResourceLocation[] WANDERER_SOPHIE_LOCATIONS = new ResourceLocation[] {
             BackMath.resourceLoc("textures/entity/wanderer_sophie/yellow_axolotl.png"),
             BackMath.resourceLoc("textures/entity/wanderer_sophie/cyan_axolotl.png"),
@@ -32,11 +29,8 @@ public class WandererSophieRenderer extends BMBipedRenderer<WandererSophie> {
             BackMath.resourceLoc("textures/entity/wanderer_sophie/entrepreneur.png")
     };
 
-    public WandererSophieRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0.5F, 0, 64, 32, false), new BMBipedModel<>(1, 0, 64, 32, false)));
-        this.addLayer(new WandererSophieElytraLayer<>(this));
-        this.addLayer(new WandererSophieCapeLayer(this));
+    public WandererSophieRenderer(EntityRendererManager manager) {
+        super(manager, 0.5F, true);
     }
 
     public ResourceLocation getTextureLocation(WandererSophie sophie) {

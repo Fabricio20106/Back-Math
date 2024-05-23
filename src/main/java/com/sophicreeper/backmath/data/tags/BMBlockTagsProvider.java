@@ -125,6 +125,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BMTags.Blocks.CAMPFIRE_SIGNAL_FIRE_BLOCKS).add(BMBlocks.CARAMELED_HAY_BALE.get());
         this.tag(BMTags.Blocks.FARMLAND).add(Blocks.FARMLAND).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.tag(BMTags.Blocks.FARMLAND_TRANSPARENT).addTag(Tags.Blocks.FENCE_GATES).addTag(BlockTags.FENCE_GATES).add(Blocks.MOVING_PISTON);
+        this.tag(BMTags.Blocks.MAKES_GRASS_BLOCKS_SNOWY).add(Blocks.SNOW_BLOCK, Blocks.SNOW);
 
         // Back Math Tags
         this.tag(BMTags.Blocks.INFINIBURN_ALJAN).add(BMBlocks.CHARJAN_COAL_BLOCK.get()).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);

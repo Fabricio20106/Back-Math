@@ -10,14 +10,12 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class JanticleRenderer extends EntityRenderer<Janticle> {
-    public static final ResourceLocation JANTICLE_LOCATION = BackMath.resourceLoc("textures/entity/janticle.png");
-
-    public JanticleRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager);
+    public JanticleRenderer(EntityRendererManager manager) {
+        super(manager);
     }
 
     @Override
     public ResourceLocation getTextureLocation(Janticle janticle) {
-        return JANTICLE_LOCATION;
+        return BackMath.resourceLoc("textures/entity/janticle.png");
     }
 }

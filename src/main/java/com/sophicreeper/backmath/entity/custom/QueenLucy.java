@@ -12,6 +12,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.monster.VexEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,6 +25,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
@@ -55,9 +57,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
     }
 
     @Override
-    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
-
-    }
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {}
 
     @Override
     public SoundEvent getCelebrationSound() {
@@ -102,6 +102,16 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
     }
 
     @Override
+    public ArmPose getArmPose() {
+        return isCastingSpell() ? ArmPose.CASTING_SPELL : super.getArmPose();
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 1.62F;
+    }
+
+    @Override
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new SummonWarriorSophiesGoal(this));
@@ -121,7 +131,9 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
     protected void addAttackTargets() {
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
@@ -199,9 +211,12 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         return CreatureEntity.createMobAttributes().add(Attributes.ATTACK_DAMAGE, 8).add(Attributes.MAX_HEALTH, 250).add(Attributes.FOLLOW_RANGE, 100).add(Attributes.MOVEMENT_SPEED, 0.30F);
     }
 
+    @Nullable
     @Override
-    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+    public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData entityData, @Nullable CompoundNBT dataTag) {
+        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.GOLDEN_CROWN.get()));
         this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get()));
+        return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {
@@ -221,7 +236,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
     public boolean isAlliedTo(Entity entity) {
         if (super.isAlliedTo(entity)) {
             return true;
-        } else return entity instanceof ISophieFriendlies;
+        } else return entity.getType().is(BMTags.EntityTypes.SOPHIE_ALLIES);
     }
 
     @Override

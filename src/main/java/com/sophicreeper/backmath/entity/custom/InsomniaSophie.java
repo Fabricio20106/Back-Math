@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -7,9 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.AbstractIllagerEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.passive.WolfEntity;
@@ -19,7 +18,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
@@ -28,7 +29,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
+public class InsomniaSophie extends TermianMemberEntity implements ISophieFriendlies {
     public InsomniaSophie(EntityType<InsomniaSophie> type, World world) {
         super(type, world);
         this.xpReward = 3 + this.level.random.nextInt(6);
@@ -45,7 +46,8 @@ public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombie.class, true));
@@ -56,6 +58,14 @@ public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
+    }
+
+    @Override
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
+        this.enchantSpawnedWeapon(1);
+        for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
+            if (slotType.getType() == EquipmentSlotType.Group.ARMOR) this.enchantSpawnedArmor(1, slotType);
+        }
     }
 
     public static AttributeModifierMap.MutableAttribute createInsomniaSophieAttributes() {
@@ -70,10 +80,17 @@ public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
+    @Override
+    public void aiStep() {
+        this.updateSwingTime();
+        this.updateNoActionTime();
+        super.aiStep();
+    }
+
     public boolean isAlliedTo(Entity entity) {
         if (super.isAlliedTo(entity)) {
             return true;
-        } else return entity instanceof ISophieFriendlies;
+        } else return entity.getType().is(BMTags.EntityTypes.SOPHIE_ALLIES);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -107,12 +124,9 @@ public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
         return spawnData;
     }
 
-    public void rideTick() {
-        super.rideTick();
-        if (this.getVehicle() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getVehicle();
-            this.yBodyRot = entity.yBodyRot;
-        }
+    @Override
+    public SoundEvent getCelebrationSound() {
+        return BMSounds.ENTITY_SOPHIE_CELEBRATE;
     }
 
     @Override
@@ -134,22 +148,28 @@ public class InsomniaSophie extends MonsterEntity implements ISophieFriendlies {
         }
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
-        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
-        Entity entity = source.getEntity();
-        if (entity instanceof CreeperEntity) {
-            CreeperEntity creeper = (CreeperEntity) entity;
-            if (creeper.canDropMobsSkull()) {
-                ItemStack skullStack = this.getSkullDrop();
-                if (!skullStack.isEmpty()) {
-                    creeper.increaseDroppedSkulls();
-                    this.spawnAtLocation(skullStack);
-                }
-            }
-        }
+    @Override
+    public SoundCategory getSoundSource() {
+        return SoundCategory.HOSTILE;
     }
 
-    protected ItemStack getSkullDrop() {
-        return new ItemStack(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get());
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return true;
+    }
+
+    @Override
+    protected boolean shouldDropExperience() {
+        return true;
+    }
+
+    @Override
+    protected boolean shouldDropLoot() {
+        return true;
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        return !this.isInvulnerableTo(source) && super.hurt(source, amount);
     }
 }

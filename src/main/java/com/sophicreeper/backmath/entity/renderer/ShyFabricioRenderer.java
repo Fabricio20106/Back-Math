@@ -12,11 +12,10 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 @OnlyIn(Dist.CLIENT)
 public class ShyFabricioRenderer extends BMBipedRenderer<ShyFabricio> {
     public ShyFabricioRenderer(EntityRendererManager manager) {
-        super(manager, 0.5F);
-        this.addLayer(new BipedArmorLayer<>(this, new BMBipedModel<>(0, 0, 64, 32, false), new BMBipedModel<>(1, 0, 64, 32, false)));
+        super(manager, 0.5F, false);
     }
 
-    public ResourceLocation getTextureLocation(ShyFabricio shyFabricio) {
+    public ResourceLocation getTextureLocation(ShyFabricio fabricio) {
         return BackMath.resourceLoc("textures/entity/shy_fabricio.png");
     }
 }

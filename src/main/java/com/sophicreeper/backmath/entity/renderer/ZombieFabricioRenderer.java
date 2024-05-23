@@ -13,13 +13,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ZombieFabricioRenderer extends BipedRenderer<ZombieFabricio, BMZombieBipedModel<ZombieFabricio>> {
-    public ZombieFabricioRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, new BMZombieBipedModel<>(0, 0, 64, 64), 0.5F);
+    public ZombieFabricioRenderer(EntityRendererManager manager) {
+        super(manager, new BMZombieBipedModel<>(0, 0, 64, 64), 0.5F);
         this.addLayer(new BipedArmorLayer<>(this, new BMZombieBipedModel<>(0.5F, 0, 64, 32), new BMZombieBipedModel<>(1, 0, 64, 32)));
         this.addLayer(new ElytraLayer<>(this));
     }
 
-    public ResourceLocation getTextureLocation(ZombieFabricio zombieFabricio) {
+    public ResourceLocation getTextureLocation(ZombieFabricio zombie) {
         return BackMath.resourceLoc("textures/entity/zombie/zombie_fabricio.png");
     }
 }

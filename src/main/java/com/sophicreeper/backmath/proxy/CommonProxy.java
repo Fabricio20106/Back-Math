@@ -6,10 +6,12 @@ import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.effect.BMEffects;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.*;
+import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.BMSpawnEggItem;
 import com.sophicreeper.backmath.item.custom.potion.BMPotions;
 import com.sophicreeper.backmath.item.custom.weapon.misc.QueenLucySummonerStaffItem;
+import com.sophicreeper.backmath.loot.BMLootFunctions;
 import com.sophicreeper.backmath.loot.BMLootModifiers;
 import com.sophicreeper.backmath.loot.BMLootParameterSets;
 import com.sophicreeper.backmath.misc.BMMotives;
@@ -54,9 +56,10 @@ public class CommonProxy {
         BMPotions.POTIONS.register(eventBus);
         BMStructures.STRUCTURES.register(eventBus);
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);
-        BMStats.init();
         BMLootParameterSets.init();
+        BMLootFunctions.init();
         BMSounds.registerSounds();
+        BMStats.init();
 
         eventBus.addListener(this::commonSetup);
     }
@@ -98,8 +101,8 @@ public class CommonProxy {
                 EntitySpawnPlacementRegistry.register(BMEntities.SHY_FABRICIO.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophie::checkSophieSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.KARATE_LUCIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophie::checkSophieSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.ANGRY_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
-                EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
-                EntitySpawnPlacementRegistry.register(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
+                EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkMonsterSpawnRules);
+                EntitySpawnPlacementRegistry.register(BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkMonsterSpawnRules);
             }
         });
 

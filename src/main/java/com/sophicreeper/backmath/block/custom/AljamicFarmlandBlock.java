@@ -9,7 +9,6 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -104,7 +103,7 @@ public class AljamicFarmlandBlock extends Block {
 
     private static boolean hasWater(IWorldReader world, BlockPos pos) {
         for(BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
-            if (world.getFluidState(blockPos).is(FluidTags.WATER)) {
+            if (world.getFluidState(blockPos).is(BMTags.Fluids.HYDRATES_FARMLAND)) {
                 return true;
             }
         }

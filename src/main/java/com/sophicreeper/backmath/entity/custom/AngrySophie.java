@@ -33,11 +33,11 @@ public class AngrySophie extends MonsterEntity {
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.applyEntityAI();
+        this.addAttackTargets();
         super.registerGoals();
     }
 
-    protected void applyEntityAI() {
+    protected void addAttackTargets() {
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenLucy.class, true));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, true));
         this.targetSelector.addGoal(0, new NearestAttackableTargetGoal<>(this, WarriorSophie.class, true));
@@ -109,24 +109,5 @@ public class AngrySophie extends MonsterEntity {
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
         this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_HELMET.get()));
-    }
-
-    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
-        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
-        Entity entity = source.getEntity();
-        if (entity instanceof CreeperEntity) {
-            CreeperEntity creeper = (CreeperEntity) entity;
-            if (creeper.canDropMobsSkull()) {
-                ItemStack skullStack = this.getSkullDrop();
-                if (!skullStack.isEmpty()) {
-                    creeper.increaseDroppedSkulls();
-                    this.spawnAtLocation(skullStack);
-                }
-            }
-        }
-    }
-
-    protected ItemStack getSkullDrop() {
-        return new ItemStack(AxolotlTest.ANGRY_SOPHIE_HEAD.get());
     }
 }

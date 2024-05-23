@@ -88,8 +88,12 @@
               "treasure": false
             },
             {
-              "function": "minecraft:set_nbt",
-              "tag": "{stored_experience:55}"
+              "function": "backmath:set_stored_experience",
+              "type": "range",
+              "stored_experience": {
+                "min": 25,
+                "max": 75
+              }
             }
           ]
         },

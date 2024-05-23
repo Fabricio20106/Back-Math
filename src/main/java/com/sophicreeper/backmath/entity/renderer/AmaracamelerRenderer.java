@@ -15,8 +15,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class AmaracamelerRenderer extends MobRenderer<Amaracameler, AmaracamelerModel<Amaracameler>> {
-    public AmaracamelerRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, new AmaracamelerModel<>(16), 0.25F);
+    public AmaracamelerRenderer(EntityRendererManager manager) {
+        super(manager, new AmaracamelerModel<>(16), 0.25F);
         this.addLayer(new AmaracamelerGelLayer<>(this));
     }
 
@@ -27,11 +27,11 @@ public class AmaracamelerRenderer extends MobRenderer<Amaracameler, Amaracameler
     }
 
     @Override
-    protected void scale(Amaracameler amaracameler, MatrixStack matrixStack, float partialTickTime) {
+    protected void scale(Amaracameler amaracameler, MatrixStack matrixStack, float partialTicks) {
         matrixStack.scale(0.999F, 0.999F, 0.999F);
         matrixStack.translate(0, 0.0010000000474974513, 0);
         float amaracamelerSize = (float) amaracameler.getSize();
-        float squishFactor = MathHelper.lerp(partialTickTime, amaracameler.previousSquishFactor, amaracameler.squishFactor) / (amaracamelerSize * 0.5F + 1);
+        float squishFactor = MathHelper.lerp(partialTicks, amaracameler.previousSquishFactor, amaracameler.squishFactor) / (amaracamelerSize * 0.5F + 1);
         float f3 = 1 / (squishFactor + 1);
         matrixStack.scale(f3 * amaracamelerSize, 1 / f3 * amaracamelerSize, f3 * amaracamelerSize);
     }

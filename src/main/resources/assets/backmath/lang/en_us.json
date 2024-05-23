@@ -1645,6 +1645,7 @@
 
   "error.backmath.assertion_exception.get_quads": "'IBakedModel::getQuads' should never be called, only 'IForgeBakedModel::getQuads'",
   "error.backmath.illegal_argument.null_parameter_set": "Loot Table parameter set '%s' is already registered",
+  "error.backmath.validation_tracker.invalid_type": "Type can only be 'constant' or 'range', but found %s",
   "error.backmath.crystallizer.invalid_mold": "Could not parse invalid mold '%s'. Possible values are: 'singularity', 'crystallized', 'ingot', 'mold', 'rod' and 'empty'",
   "error.backmath.crystalline_crystallizer.invalid_mold": "Could not parse invalid mold '%s'. Possible values are: 'singularity', 'crystallized', 'ingot', 'mold', 'rod', 'crystalline_empty', 'crystalline_gem' and 'empty'",
   "error.backmath.insomnian_tulip.model_not_found": "Did not find the expected vanilla baked model(s) for 'insomnian_tulip' in registry",

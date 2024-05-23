@@ -13,15 +13,13 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class InsomniaZombieRenderer extends BipedRenderer<InsomniaZombie, BMZombieBipedModel<InsomniaZombie>> {
-    public static final ResourceLocation INSOMNIA_ZOMBIE_LOCATION = BackMath.resourceLoc("textures/entity/zombie/insomnia_zombie.png");
-
-    public InsomniaZombieRenderer(EntityRendererManager entityRendererManager) {
-        super(entityRendererManager, new BMZombieBipedModel<>(0, 0, 64, 64), 0.5F);
+    public InsomniaZombieRenderer(EntityRendererManager rendererManager) {
+        super(rendererManager, new BMZombieBipedModel<>(0, 0, 64, 64), 0.5F);
         this.addLayer(new BipedArmorLayer<>(this, new BMZombieBipedModel<>(0.5F, 0, 64, 32), new BMZombieBipedModel<>(1, 0, 64, 32)));
         this.addLayer(new ElytraLayer<>(this));
     }
 
-    public ResourceLocation getTextureLocation(InsomniaZombie insomniaZombie) {
-        return INSOMNIA_ZOMBIE_LOCATION;
+    public ResourceLocation getTextureLocation(InsomniaZombie zombie) {
+        return BackMath.resourceLoc("textures/entity/zombie/insomnia_zombie.png");
     }
 }

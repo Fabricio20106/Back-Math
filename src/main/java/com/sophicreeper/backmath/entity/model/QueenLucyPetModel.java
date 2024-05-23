@@ -30,7 +30,7 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPet> {
 	private final ModelRenderer leftWingR1;
 
 	public QueenLucyPetModel() {
-		super(0.25f, 0, 32, 32);
+		super(0.25F, 0, 32, 32);
 		texWidth = 32;
 		texHeight = 32;
 
@@ -115,15 +115,15 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPet> {
 		return ImmutableList.of(this.body, this.rightLeg, this.leftLeg, this.rightArm, this.leftArm, this.rightWing, this.leftWing);
 	}
 
-	// Sets this entity's model rotation angles
-	public void setupAnim(QueenLucyPet queenLucyPet, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	// Sets this entity's model rotation angles.
+	public void setupAnim(QueenLucyPet lucy, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.yRot = netHeadYaw * 0.017453292f;
 		this.head.xRot = headPitch * 0.017453292f;
 
 		this.body.yRot = 0;
 
-		this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662f + 3.1415927f) * 2 * limbSwingAmount * 0.5f;
-		this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662f) * 2 * limbSwingAmount * 0.5f;
+		this.rightArm.xRot = MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 2 * limbSwingAmount * 0.5F;
+		this.leftArm.xRot = MathHelper.cos(limbSwing * 0.6662F) * 2 * limbSwingAmount * 0.5F;
 		this.rightArm.zRot = 0;
 		this.leftArm.zRot = 0;
 		this.rightLeg.yRot = 0;
@@ -156,13 +156,13 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPet> {
 		this.body.y = 24;
 		this.rightArm.y = 0;
 		this.leftArm.y = 0;
-		super.setupAnim(queenLucyPet, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+		super.setupAnim(lucy, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 	}
 
 	@Override
-	public void renderToBuffer(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-		head.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-		body.render(matrixStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+	public void renderToBuffer(MatrixStack stack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		head.render(stack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+		body.render(stack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

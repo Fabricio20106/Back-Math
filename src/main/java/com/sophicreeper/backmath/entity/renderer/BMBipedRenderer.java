@@ -1,36 +1,44 @@
 package com.sophicreeper.backmath.entity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.sophicreeper.backmath.entity.model.BMBipedArmorModel;
 import com.sophicreeper.backmath.entity.model.BMBipedModel;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.CreatureEntity;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.HandSide;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class BMBipedRenderer<T extends CreatureEntity> extends BipedRenderer<T, BMBipedModel<T>> {
-    public BMBipedRenderer(EntityRendererManager manager, float shadowSize) {
-        this(manager, new BMBipedModel<>(0, 0, 64, 64, true), shadowSize);
-        this.addLayer(new HeldItemLayer<>(this));
-        this.addLayer(new HeadLayer<>(this));
-        // this.addLayer(new ElytraLayer<>(this));
+    public boolean enableDefaultElytra = true;
+
+    public BMBipedRenderer(EntityRendererManager manager, float shadowSize, boolean slimArms) {
+        this(manager, new BMBipedModel<>(0, 0, 64, 64, slimArms), shadowSize);
     }
 
     public BMBipedRenderer(EntityRendererManager manager, BMBipedModel<T> model, float shadowSize) {
         super(manager, model, shadowSize);
-        this.addLayer(new ElytraLayer<>(this));
+        this.addLayer(new BipedArmorLayer<>(this, new BMBipedArmorModel<>(0.5F, 0, 64, 32), new BMBipedArmorModel<>(1, 0, 64, 32)));
+        this.addLayer(new HeldItemLayer<>(this));
+        this.addLayer(new HeadLayer<>(this));
+        if (this.enableDefaultElytra) this.addLayer(new ElytraLayer<>(this));
     }
 
     @Override
@@ -42,6 +50,37 @@ public class BMBipedRenderer<T extends CreatureEntity> extends BipedRenderer<T, 
     @Override
     protected void scale(T mob, MatrixStack stack, float partialTickTime) {
         stack.scale(0.9375F, 0.9375F, 0.9375F);
+    }
+
+    @Override
+    protected void setupRotations(T mob, MatrixStack stack, float ageInTicks, float yaw, float partialTicks) {
+        float swimAmount = mob.getSwimAmount(partialTicks);
+        if (mob.isFallFlying()) {
+            super.setupRotations(mob, stack, ageInTicks, yaw, partialTicks);
+            float fallFlyingTicks = (float) mob.getFallFlyingTicks() + partialTicks;
+            float f = MathHelper.clamp(fallFlyingTicks * fallFlyingTicks / 100, 0, 1);
+            if (!mob.isAutoSpinAttack()) stack.mulPose(Vector3f.XP.rotationDegrees(f * (-90 - mob.xRot)));
+
+            Vector3d viewVector = mob.getViewVector(partialTicks);
+            Vector3d deltaMovement = mob.getDeltaMovement();
+            double deltaMovementSqr = Entity.getHorizontalDistanceSqr(deltaMovement);
+            double viewVectorSqr = Entity.getHorizontalDistanceSqr(viewVector);
+            if (deltaMovementSqr > 0 && viewVectorSqr > 0) {
+                double d1 = (deltaMovement.x * viewVector.x + deltaMovement.z * viewVector.z) / Math.sqrt(deltaMovementSqr * viewVectorSqr);
+                double d2 = deltaMovement.x * viewVector.z - deltaMovement.z * viewVector.x;
+                stack.mulPose(Vector3f.YP.rotation((float)(Math.signum(d2) * Math.acos(d1))));
+            }
+        } else if (swimAmount > 0) {
+            super.setupRotations(mob, stack, ageInTicks, yaw, partialTicks);
+            float f1 = mob.isInWater() ? -90 - mob.xRot : -90;
+            float f2 = MathHelper.lerp(swimAmount, 0, f1);
+            stack.mulPose(Vector3f.XP.rotationDegrees(f2));
+            if (mob.isVisuallySwimming()) {
+                stack.translate(0, -1, 0.3F);
+            }
+        } else {
+            super.setupRotations(mob, stack, ageInTicks, yaw, partialTicks);
+        }
     }
 
     private BipedModel.ArmPose getArmPose(T mob, Hand hand) {

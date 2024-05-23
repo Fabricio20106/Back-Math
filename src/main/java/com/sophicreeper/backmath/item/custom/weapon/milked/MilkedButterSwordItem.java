@@ -9,10 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -45,10 +42,11 @@ public class MilkedButterSwordItem extends SwordItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         if (stack.hasTag() && stack.getTag().contains("stored_experience")) {
-            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent("" + stack.getTag().getInt("stored_experience")).withStyle(TextFormatting.GREEN))
-                    .withStyle(TextFormatting.GRAY));
+            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent("" + stack.getTag().getInt("stored_experience")).withStyle(Style.EMPTY.withColor(
+                    Color.fromRgb(8453920)))).withStyle(TextFormatting.GRAY));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent("" + 500).withStyle(TextFormatting.GREEN)).withStyle(TextFormatting.GRAY));
+            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent("" + 500).withStyle(Style.EMPTY.withColor(Color.fromRgb(8453920)))
+                    .withStyle(TextFormatting.GRAY)));
         }
         super.appendHoverText(stack, world, tooltip, flag);
     }

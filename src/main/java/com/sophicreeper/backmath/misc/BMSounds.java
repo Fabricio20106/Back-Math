@@ -38,6 +38,10 @@ public class BMSounds {
     public static SoundEvent ITEM_CHOCOGLUE_SHOOT;
 
     // Entities
+    public static SoundEvent ENTITY_TERMIAN_SWIM;
+    public static SoundEvent ENTITY_TERMIAN_SPLASH;
+    public static SoundEvent ENTITY_TERMIAN_SPLASH_HIGH_SPEED;
+
     public static SoundEvent ENTITY_SOPHIE_HURT_ON_FIRE;
     public static SoundEvent ENTITY_SOPHIE_HURT_DROWN;
     public static SoundEvent ENTITY_SOPHIE_HURT_BERRY_BUSH;
@@ -54,6 +58,7 @@ public class BMSounds {
     public static SoundEvent ENTITY_LUCIA_HURT_BERRY_BUSH;
     public static SoundEvent ENTITY_LUCIA_HURT;
     public static SoundEvent ENTITY_LUCIA_DEATH;
+    public static SoundEvent ENTITY_LUCIA_CELEBRATE;
 
     public static SoundEvent ENTITY_FABRICIO_HURT_ON_FIRE;
     public static SoundEvent ENTITY_FABRICIO_HURT_DROWN;
@@ -110,6 +115,10 @@ public class BMSounds {
         ITEM_CHOCOGLUE_SHOOT = registerSound("item.chocoglue.shoot");
 
         // Entities
+        ENTITY_TERMIAN_SWIM = registerSound("entity.termian.swim");
+        ENTITY_TERMIAN_SPLASH = registerSound("entity.termian.splash");
+        ENTITY_TERMIAN_SPLASH_HIGH_SPEED = registerSound("entity.termian.splash.high_speed");
+
         ENTITY_SOPHIE_HURT_ON_FIRE = registerSound("entity.sophie.hurt.on_fire");
         ENTITY_SOPHIE_HURT_DROWN = registerSound("entity.sophie.hurt.drown");
         ENTITY_SOPHIE_HURT_BERRY_BUSH = registerSound("entity.sophie.hurt.berry_bush");
@@ -126,6 +135,7 @@ public class BMSounds {
         ENTITY_LUCIA_HURT_BERRY_BUSH = registerSound("entity.lucia.hurt.berry_bush");
         ENTITY_LUCIA_HURT = registerSound("entity.lucia.hurt");
         ENTITY_LUCIA_DEATH = registerSound("entity.lucia.death");
+        ENTITY_LUCIA_CELEBRATE = registerSound("entity.lucia.celebrate");
 
         ENTITY_FABRICIO_HURT_ON_FIRE = registerSound("entity.fabricio.hurt.on_fire");
         ENTITY_FABRICIO_HURT_DROWN = registerSound("entity.fabricio.hurt.drown");

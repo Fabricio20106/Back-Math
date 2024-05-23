@@ -1,6 +1,5 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -9,6 +8,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.monster.VexEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -19,6 +19,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -31,16 +32,6 @@ import java.util.Random;
 
 public class WandererSophie extends TermianMemberEntity implements ISophieFriendlies {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(WandererSophie.class, DataSerializers.INT);
-    private static final DataParameter<String> CAPE_TEXTURE = EntityDataManager.defineId(WandererSophie.class, DataSerializers.STRING);
-    public boolean showCape = true;
-    public double prevChasingPosX;
-    public double prevChasingPosY;
-    public double prevChasingPosZ;
-    public double chasingPosX;
-    public double chasingPosY;
-    public double chasingPosZ;
-    public float prevCameraYaw;
-    public float cameraYaw;
 
     public WandererSophie(EntityType<WandererSophie> type, World world) {
         super(type, world);
@@ -50,7 +41,6 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(VARIANT, 0);
-        this.entityData.define(CAPE_TEXTURE, BackMath.resourceLoc("cape/cherry_blossom").toString());
     }
 
     @Override
@@ -69,24 +59,12 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     @Override
     public void tick() {
         super.tick();
-        this.updateCape();
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
     public void aiStep() {
         this.updateSwingTime();
-
-        this.prevCameraYaw = this.cameraYaw;
-
-        float f;
-        if (this.onGround && !this.isDeadOrDying() && !this.isSwimming()) {
-            f = Math.min(0.1F, MathHelper.sqrt(getHorizontalDistanceSqr(this.getDeltaMovement())));
-        } else {
-            f = 0;
-        }
-        this.cameraYaw += (f - this.cameraYaw) * 0.4F;
-
         if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
             if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
                 this.heal(1);
@@ -102,25 +80,13 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getVariant());
-        tag.putString("cape_texture", this.entityData.get(CAPE_TEXTURE));
-        tag.putBoolean("show_cape", this.showCape);
-        // tag.putBoolean("CustomNameVisible", true);
+        // tag.putBoolean("CustomNameVisible", tag.getBoolean("CustomNameVisible"));
     }
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
         this.setVariant(tag.getInt("Variant"));
-        this.entityData.set(CAPE_TEXTURE, tag.getString("cape_texture"));
-        this.showCape = tag.getBoolean("show_cape");
         // this.setCustomNameVisible(tag.getBoolean("CustomNameVisible"));
-    }
-
-    public String getCapeTexture() {
-        return this.entityData.get(CAPE_TEXTURE);
-    }
-
-    public void setCapeTexture(String capeTexture) {
-        this.entityData.set(CAPE_TEXTURE, capeTexture);
     }
 
     public int getVariant() {
@@ -134,7 +100,7 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     public boolean isAlliedTo(Entity entity) {
         if (super.isAlliedTo(entity)) {
             return true;
-        } else return entity instanceof ISophieFriendlies;
+        } else return entity.getType().is(BMTags.EntityTypes.SOPHIE_ALLIES);
     }
 
     @Override
@@ -151,6 +117,8 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     protected void addAttackTargets() {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombie.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieFabricio.class, true));
@@ -177,22 +145,6 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
         super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         this.setVariant(this.random.nextInt(16));
-        int randomCape = this.random.nextInt(8);
-        if (randomCape == 0) {
-            this.setCapeTexture(BackMath.resourceLoc("cape/migrator").toString());
-        } else if (randomCape == 1) {
-            this.setCapeTexture(BackMath.resourceLoc("cape/vanilla").toString());
-        } else if (randomCape == 2) {
-            this.setCapeTexture(BackMath.resourceLoc("cape/cherry_blossom").toString());
-        } else if (randomCape == 3) {
-            this.setCapeTexture(BackMath.resourceLoc("cape/followers").toString());
-        } else if (randomCape == 4) {
-            this.setCapeTexture(BackMath.resourceLoc("cape/purple_glitch").toString());
-        } else if (randomCape == 5) {
-            this.setCapeTexture(BackMath.resourceLoc("cape/15th_anniversary").toString());
-        } else if (randomCape == 6) {
-            this.setCapeTexture(BackMath.resourceLoc("cape/pan").toString());
-        }
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;
@@ -220,49 +172,6 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
 
     protected SoundEvent getDeathSound() {
         return BMSounds.ENTITY_SOPHIE_DEATH;
-    }
-
-    private void updateCape() {
-        this.prevChasingPosX = this.chasingPosX;
-        this.prevChasingPosY = this.chasingPosY;
-        this.prevChasingPosZ = this.chasingPosZ;
-        double d0 = this.getX() - this.chasingPosX;
-        double d1 = this.getY() - this.chasingPosY;
-        double d2 = this.getZ() - this.chasingPosZ;
-
-        if (d0 > 10) {
-            this.chasingPosX = this.getX();
-            this.prevChasingPosX = this.chasingPosX;
-        }
-
-        if (d2 > 10) {
-            this.chasingPosZ = this.getZ();
-            this.prevChasingPosZ = this.chasingPosZ;
-        }
-
-        if (d1 > 10) {
-            this.chasingPosY = this.getY();
-            this.prevChasingPosY = this.chasingPosY;
-        }
-
-        if (d0 < -10) {
-            this.chasingPosX = this.getX();
-            this.prevChasingPosX = this.chasingPosX;
-        }
-
-        if (d2 < -10) {
-            this.chasingPosZ = this.getZ();
-            this.prevChasingPosZ = this.chasingPosZ;
-        }
-
-        if (d1 < -10) {
-            this.chasingPosY = this.getY();
-            this.prevChasingPosY = this.chasingPosY;
-        }
-
-        this.chasingPosX += d0 * 0.25D;
-        this.chasingPosZ += d2 * 0.25D;
-        this.chasingPosY += d1 * 0.25D;
     }
 
     // If this mob can be leashed.

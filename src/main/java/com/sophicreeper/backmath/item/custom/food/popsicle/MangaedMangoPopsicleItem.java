@@ -4,14 +4,13 @@ import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Food;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 public class MangaedMangoPopsicleItem extends PopsicleItem {
-    public MangaedMangoPopsicleItem(Food food) {
-        super(food);
+    public MangaedMangoPopsicleItem(Properties properties) {
+        super(properties);
     }
 
     @Override

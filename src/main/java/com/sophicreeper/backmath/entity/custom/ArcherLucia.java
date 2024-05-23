@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
@@ -15,9 +16,7 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.AbstractIllagerEntity;
-import net.minecraft.entity.monster.AbstractSkeletonEntity;
-import net.minecraft.entity.monster.ZombieEntity;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -33,6 +32,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISophieFriendlies {
+public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser, ISophieFriendlies {
     private static final DataParameter<Boolean> IS_CHARGING_CROSSBOW = EntityDataManager.defineId(ArcherLucia.class, DataSerializers.BOOLEAN);
     private final Inventory inventory = new Inventory(5);
 
@@ -53,9 +53,18 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         this.setCanPickUpLoot(true);
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(IS_CHARGING_CROSSBOW, false);
+    }
+
+    @Override
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
+        this.enchantSpawnedWeapon(1);
+        for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
+            if (slotType.getType() == EquipmentSlotType.Group.ARMOR) this.enchantSpawnedArmor(1, slotType);
+        }
     }
 
     @Override
@@ -68,7 +77,8 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
@@ -128,10 +138,6 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         }
     }
 
-    public double getMyRidingOffset() {
-        return -0.35D;
-    }
-
     public void onCrossbowAttackPerformed() {
         this.noActionTime = 0;
     }
@@ -156,7 +162,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
     public boolean isAlliedTo(Entity entity) {
         if (super.isAlliedTo(entity)) {
             return true;
-        } else return entity instanceof ISophieFriendlies;
+        } else return entity.getType().is(BMTags.EntityTypes.SOPHIE_ALLIES);
     }
 
     public static AttributeModifierMap.MutableAttribute createArcherLuciaAttributes() {
@@ -193,6 +199,11 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         this.populateDefaultEquipmentSlots(difficulty);
         this.populateDefaultEquipmentEnchantments(difficulty);
         return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+    }
+
+    @Override
+    public SoundEvent getCelebrationSound() {
+        return BMSounds.ENTITY_LUCIA_CELEBRATE;
     }
 
     public void rideTick() {
@@ -232,7 +243,7 @@ public class ArcherLucia extends CreatureEntity implements IBMCrossbowUser, ISop
         this.shootCrossbowProjectile(this, livEntity, arrow, distanceFactor, 1.6F);
     }
 
-    protected void pickUpItem(ItemEntity itemEntity) {
+    public void pickUpItem(ItemEntity itemEntity) {
         ItemStack stack = itemEntity.getItem();
         if (stack.getItem() instanceof BMArmorItem) {
             super.pickUpItem(itemEntity);

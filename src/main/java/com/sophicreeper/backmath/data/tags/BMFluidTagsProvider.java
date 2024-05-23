@@ -35,6 +35,8 @@ public class BMFluidTagsProvider extends FluidTagsProvider {
 
         this.tag(BMTags.Fluids.ALJAN_CARVER_REPLACEABLES).addTag(BMTags.Fluids.SLEEPISHWATER).addTag(FluidTags.WATER);
 
+        this.tag(BMTags.Fluids.HYDRATES_FARMLAND).addTag(FluidTags.WATER);
+
         this.tag(BMTags.Fluids.MILK).add(ForgeMod.MILK.get()).add(ForgeMod.FLOWING_MILK.get());
     }
 }

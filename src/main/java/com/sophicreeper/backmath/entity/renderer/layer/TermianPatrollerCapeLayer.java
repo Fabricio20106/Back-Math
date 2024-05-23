@@ -2,8 +2,7 @@ package com.sophicreeper.backmath.entity.renderer.layer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.entity.custom.WandererSophie;
+import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.entity.model.BMBipedModel;
 import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.BMUtils;
@@ -14,30 +13,27 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Objects;
-
 @OnlyIn(Dist.CLIENT)
-public class WandererSophieCapeLayer extends LayerRenderer<WandererSophie, BMBipedModel<WandererSophie>> {
-    public WandererSophieCapeLayer(IEntityRenderer<WandererSophie, BMBipedModel<WandererSophie>> wandererSophie) {
-        super(wandererSophie);
+public class TermianPatrollerCapeLayer<T extends TermianPatrollerEntity> extends LayerRenderer<T, BMBipedModel<T>> {
+    public TermianPatrollerCapeLayer(IEntityRenderer<T, BMBipedModel<T>> patroller) {
+        super(patroller);
     }
 
-    public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight, WandererSophie sophie, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if (!sophie.isInvisible()) {
-            ItemStack chestStack = sophie.getItemBySlot(EquipmentSlotType.CHEST);
-            if (!chestStack.getItem().is(BMTags.Items.ELYTRA) && sophie.showCape) {
+    public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight, T patroller, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        if (!patroller.isInvisible()) {
+            ItemStack chestStack = patroller.getItemBySlot(EquipmentSlotType.CHEST);
+            if (!chestStack.getItem().is(BMTags.Items.ELYTRA) && patroller.getCapeVisibility()) {
                 matrixStack.pushPose();
                 matrixStack.translate(0, 0, 0.125D);
-                double d0 = MathHelper.lerp(partialTicks, sophie.prevChasingPosX, sophie.chasingPosX) - MathHelper.lerp(partialTicks, sophie.xo, sophie.getX());
-                double d1 = MathHelper.lerp(partialTicks, sophie.prevChasingPosY, sophie.chasingPosY) - MathHelper.lerp(partialTicks, sophie.yo, sophie.getY());
-                double d2 = MathHelper.lerp(partialTicks, sophie.prevChasingPosZ, sophie.chasingPosZ) - MathHelper.lerp(partialTicks, sophie.zo, sophie.getZ());
-                float f = sophie.yBodyRotO + (sophie.yBodyRot - sophie.yBodyRotO);
+                double d0 = MathHelper.lerp(partialTicks, patroller.prevChasingPosX, patroller.chasingPosX) - MathHelper.lerp(partialTicks, patroller.xo, patroller.getX());
+                double d1 = MathHelper.lerp(partialTicks, patroller.prevChasingPosY, patroller.chasingPosY) - MathHelper.lerp(partialTicks, patroller.yo, patroller.getY());
+                double d2 = MathHelper.lerp(partialTicks, patroller.prevChasingPosZ, patroller.chasingPosZ) - MathHelper.lerp(partialTicks, patroller.zo, patroller.getZ());
+                float f = patroller.yBodyRotO + (patroller.yBodyRot - patroller.yBodyRotO);
                 double d3 = MathHelper.sin(f * ((float) Math.PI / 180));
                 double d4 = -MathHelper.cos(f * ((float) Math.PI / 180));
                 float f1 = (float) d1 * 10;
@@ -50,14 +46,14 @@ public class WandererSophieCapeLayer extends LayerRenderer<WandererSophie, BMBip
                     f2 = 0;
                 }
 
-                float f4 = MathHelper.lerp(partialTicks, sophie.prevCameraYaw, sophie.cameraYaw);
-                f1 = f1 + MathHelper.sin(MathHelper.lerp(partialTicks, sophie.walkDistO, sophie.walkDist) * 6) * 32 * f4;
-                if (sophie.isCrouching()) f1 += 25;
+                float f4 = MathHelper.lerp(partialTicks, patroller.prevCameraYaw, patroller.cameraYaw);
+                f1 = f1 + MathHelper.sin(MathHelper.lerp(partialTicks, patroller.walkDistO, patroller.walkDist) * 6) * 32 * f4;
+                if (patroller.isCrouching()) f1 += 25;
 
                 matrixStack.mulPose(Vector3f.XP.rotationDegrees(6 + f2 / 2 + f1));
                 matrixStack.mulPose(Vector3f.ZP.rotationDegrees(f3 / 2));
                 matrixStack.mulPose(Vector3f.YP.rotationDegrees(180 - f3 / 2));
-                IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.entitySolid(BMUtils.getWandererSophieCape(sophie)));
+                IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.entitySolid(BMUtils.getTermianPatrollerCape(patroller)));
                 this.getParentModel().renderCape(matrixStack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY);
                 matrixStack.popPose();
             }

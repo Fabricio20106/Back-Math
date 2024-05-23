@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.BMRangedBowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
@@ -9,9 +10,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.monster.AbstractIllagerEntity;
-import net.minecraft.entity.monster.CreeperEntity;
-import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
@@ -21,7 +20,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -32,7 +33,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttackMob, ISophieFriendlies {
+public class ArcherInsomniaSophie extends TermianMemberEntity implements IRangedAttackMob, ISophieFriendlies {
     private final BMRangedBowAttackGoal<ArcherInsomniaSophie> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1, 20, 15);
     private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) {
         public void stop() {
@@ -109,6 +110,11 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         return spawnData;
     }
 
+    @Override
+    public SoundEvent getCelebrationSound() {
+        return BMSounds.ENTITY_SOPHIE_CELEBRATE;
+    }
+
     public void reassessWeaponGoal() {
         if (this.level != null && !this.level.isClientSide) {
             this.goalSelector.removeGoal(this.aiAttackOnCollide);
@@ -131,7 +137,7 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
     public boolean isAlliedTo(Entity entity) {
         if (super.isAlliedTo(entity)) {
             return true;
-        } else return entity instanceof ISophieFriendlies;
+        } else return entity.getType().is(BMTags.EntityTypes.SOPHIE_ALLIES);
     }
 
     @Override
@@ -143,7 +149,8 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractIllagerEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
@@ -153,6 +160,14 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SleepishSkeleton.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, ShyFabricio.class, true));
+    }
+
+    @Override
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
+        this.enchantSpawnedWeapon(1);
+        for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
+            if (slotType.getType() == EquipmentSlotType.Group.ARMOR) this.enchantSpawnedArmor(1, slotType);
+        }
     }
 
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
@@ -184,22 +199,28 @@ public class ArcherInsomniaSophie extends MonsterEntity implements IRangedAttack
                 .add(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
-    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
-        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
-        Entity entity = source.getEntity();
-        if (entity instanceof CreeperEntity) {
-            CreeperEntity creeper = (CreeperEntity) entity;
-            if (creeper.canDropMobsSkull()) {
-                ItemStack skullStack = this.getHeadDrop();
-                if (!skullStack.isEmpty()) {
-                    creeper.increaseDroppedSkulls();
-                    this.spawnAtLocation(skullStack);
-                }
-            }
-        }
+    @Override
+    public SoundCategory getSoundSource() {
+        return SoundCategory.HOSTILE;
     }
 
-    protected ItemStack getHeadDrop() {
-        return new ItemStack(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get());
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return true;
+    }
+
+    @Override
+    protected boolean shouldDropExperience() {
+        return true;
+    }
+
+    @Override
+    protected boolean shouldDropLoot() {
+        return true;
+    }
+
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        return !this.isInvulnerableTo(source) && super.hurt(source, amount);
     }
 }

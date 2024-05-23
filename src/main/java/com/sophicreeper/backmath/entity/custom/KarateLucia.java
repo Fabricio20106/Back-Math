@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
@@ -8,12 +9,14 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
+import net.minecraft.entity.monster.VexEntity;
 import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.Effects;
+import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
@@ -21,7 +24,7 @@ import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
-public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
+public class KarateLucia extends TermianMemberEntity implements ISophieFriendlies {
     public KarateLucia(EntityType<KarateLucia> type, World world) {
         super(type, world);
     }
@@ -30,7 +33,7 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
     public boolean isAlliedTo(Entity entity) {
         if (super.isAlliedTo(entity)) {
             return true;
-        } else return entity instanceof ISophieFriendlies;
+        } else return entity.getType().is(BMTags.EntityTypes.SOPHIE_ALLIES);
     }
 
     @Override
@@ -39,11 +42,19 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
-        this.applyEntityAI();
+        this.addAttackTargets();
         super.registerGoals();
     }
 
-    protected void applyEntityAI() {
+    @Override
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
+        this.enchantSpawnedWeapon(1);
+        for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
+            if (slotType.getType() == EquipmentSlotType.Group.ARMOR) this.enchantSpawnedArmor(1, slotType);
+        }
+    }
+
+    protected void addAttackTargets() {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophie.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, ZombieEntity.class, true));
@@ -52,14 +63,16 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicBones.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, SleepishSkeleton.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Amaracameler.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.5D, false));
     }
 
     public static AttributeModifierMap.MutableAttribute createKarateLuciaAttributes() {
         return CreatureEntity.createMobAttributes()
-                // Old karate Lucia health was 50.0d.
-                // Old new karate Lucia health was 28.0d.
+                // Old karate Lucia health was 50.0D.
+                // Old new karate Lucia health was 28.0D.
                 .add(Attributes.MAX_HEALTH, 20).add(Attributes.FOLLOW_RANGE, 32).add(Attributes.ATTACK_DAMAGE, 6).add(Attributes.MOVEMENT_SPEED, 0.23F)
                 .add(Attributes.ARMOR, 3);
     }
@@ -74,6 +87,11 @@ public class KarateLucia extends CreatureEntity implements ISophieFriendlies {
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;
+    }
+
+    @Override
+    public SoundEvent getCelebrationSound() {
+        return BMSounds.ENTITY_LUCIA_CELEBRATE;
     }
 
     @Override

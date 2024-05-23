@@ -49,6 +49,26 @@
           "looting_multiplier": 0.01
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:zombie_head",
+          "conditions": [
+            {
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "source_entity": {
+                  "type": "minecraft:creeper",
+                  "nbt": "{powered:1b}"
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -358,6 +358,7 @@ public class BMTags {
         public static final ITag.INamedTag<Block> CAMPFIRE_SIGNAL_FIRE_BLOCKS = melony("campfire_signal_fire_blocks");
         public static final ITag.INamedTag<Block> FARMLAND = melony("farmland");
         public static final ITag.INamedTag<Block> FARMLAND_TRANSPARENT = melony("farmland_transparent");
+        public static final ITag.INamedTag<Block> MAKES_GRASS_BLOCKS_SNOWY = melony("makes_grass_blocks_snowy");
 
         private static ITag.INamedTag<Block> forge(String path) {
             return BlockTags.bind(new ResourceLocation("forge", path).toString());
@@ -375,6 +376,7 @@ public class BMTags {
     }
 
     public static class Fluids {
+        // Back Math Tags
         public static final ITag.INamedTag<Fluid> HILLARY = backMath("hillary");
         public static final ITag.INamedTag<Fluid> MILKLLARY = backMath("milkllary");
         public static final ITag.INamedTag<Fluid> LIQUID_ALJAME = backMath("liquid_aljame");
@@ -383,6 +385,9 @@ public class BMTags {
         public static final ITag.INamedTag<Fluid> SLEEPISHWATER = backMath("sleepishwater");
 
         public static final ITag.INamedTag<Fluid> ALJAN_CARVER_REPLACEABLES = backMath("aljan_carver_replaceables");
+
+        // Melony Tags
+        public static final ITag.INamedTag<Fluid> HYDRATES_FARMLAND = backMath("hydrates_farmland");
 
         public static final ITag.INamedTag<Fluid> MILK = forge("milk");
 
@@ -412,6 +417,7 @@ public class BMTags {
         public static final ITag.INamedTag<EntityType<?>> SPAREY_EFFECTIVES = backMath("sparey_effectives");
         public static final ITag.INamedTag<EntityType<?>> SPAREYS_PROHIBITED = backMath("sparey_prohibited");
         public static final ITag.INamedTag<EntityType<?>> SHY_FABRICIO_FRIENDLIES = backMath("shy_fabricio_friendlies");
+        public static final ITag.INamedTag<EntityType<?>> SOPHIE_ALLIES = backMath("sophie_allies");
         public static final ITag.INamedTag<EntityType<?>> ANGER_DUNGEON_MOBS = backMath("anger_dungeon_mobs");
         public static final ITag.INamedTag<EntityType<?>> ALJAN_DUNGEON_MOBS = backMath("aljan_dungeon_mobs");
 

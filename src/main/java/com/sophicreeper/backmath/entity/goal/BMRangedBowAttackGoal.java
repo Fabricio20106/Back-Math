@@ -1,17 +1,17 @@
 package com.sophicreeper.backmath.entity.goal;
 
+import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.BowItem;
 
 import java.util.EnumSet;
 
-public class BMRangedBowAttackGoal<T extends MonsterEntity & IRangedAttackMob> extends Goal {
+public class BMRangedBowAttackGoal<T extends TermianPatrollerEntity & IRangedAttackMob> extends Goal {
     private final T entity;
     private final double moveSpeedAmplifier;
     private int attackCooldown;

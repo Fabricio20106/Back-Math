@@ -20,16 +20,16 @@ public class BMBoatRenderer extends EntityRenderer<BMBoat> {
             "textures/entity/boat/insomnian.png")};
     protected final BoatModel model = new BoatModel();
 
-    public BMBoatRenderer(EntityRendererManager renderManager) {
-        super(renderManager);
+    public BMBoatRenderer(EntityRendererManager manager) {
+        super(manager);
         this.shadowRadius = 0.8F;
     }
 
     @Override
-    public void render(BMBoat boat, float entityYaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight) {
+    public void render(BMBoat boat, float yaw, float partialTicks, MatrixStack stack, IRenderTypeBuffer buffer, int packedLight) {
         stack.pushPose();
         stack.translate(0, 0.375D, 0);
-        stack.mulPose(Vector3f.YP.rotationDegrees(180 - entityYaw));
+        stack.mulPose(Vector3f.YP.rotationDegrees(180 - yaw));
         float hurtTime = (float) boat.getHurtTime() - partialTicks;
         float damage = boat.getDamage() - partialTicks;
         if (damage < 0) damage = 0;
@@ -54,7 +54,7 @@ public class BMBoatRenderer extends EntityRenderer<BMBoat> {
         }
 
         stack.popPose();
-        super.render(boat, entityYaw, partialTicks, stack, buffer, packedLight);
+        super.render(boat, yaw, partialTicks, stack, buffer, packedLight);
     }
 
     @Override

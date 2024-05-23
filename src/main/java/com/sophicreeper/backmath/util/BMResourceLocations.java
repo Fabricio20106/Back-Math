@@ -35,6 +35,14 @@ public class BMResourceLocations {
     public static final ResourceLocation HIDEOUT_DUNGEON_START_POOL = BackMath.resourceLoc("fabricio_hideout_dungeon/start_pool");
 
     // Loot Tables
+    // Blocks
+    public static final ResourceLocation CUTTING_PUMPKIN = BackMath.resourceLoc("gameplay/blocks/cutting_pumpkin");
+    public static final ResourceLocation CUTTING_CARVED_PUMPKIN = BackMath.resourceLoc("gameplay/blocks/cutting_carved_pumpkin");
+    public static final ResourceLocation CUTTING_JACK_O_LANTERN = BackMath.resourceLoc("gameplay/blocks/cutting_jack_o_lantern");
+    public static final ResourceLocation CUTTING_MELON = BackMath.resourceLoc("gameplay/blocks/cutting_melon");
+    public static final ResourceLocation CUTTING_HAY_BLOCK = BackMath.resourceLoc("gameplay/blocks/cutting_hay_block");
+    public static final ResourceLocation CUTTING_CARAMELED_HAY_BLOCK = BackMath.resourceLoc("gameplay/blocks/cutting_carameled_hay_block");
+
     // Chests
     public static final ResourceLocation ALJAN_DUNGEON_LOOT = BackMath.resourceLoc("chests/aljan_dungeon");
     public static final ResourceLocation ANGER_DUNGEON_LOOT = BackMath.resourceLoc("chests/anger_dungeon");

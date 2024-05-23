@@ -2177,6 +2177,7 @@ db8a013e4ee8c15e35b5d8bd666ca7ed7b874f0e data/backmath/tags/entity_types/lucias.
 e1ca4945f99ae65357148ecb2bcb7d1d74d575a8 data/backmath/tags/entity_types/qlp_targets/not_tamed.json
 3f7f434e51a0e511c0e391438b218e5bb358bd0c data/backmath/tags/entity_types/qlp_targets/tamed.json
 3a8e345f72a2b906a5601aa55a736c310530fb1f data/backmath/tags/entity_types/shy_fabricio_friendlies.json
+7766181752ae5b49810b13dd04fac12a1a8983be data/backmath/tags/entity_types/sophie_allies.json
 da1c8583622889203ad7a501b55f38d6cbe8af65 data/backmath/tags/entity_types/sophie_idea.json
 d42faaacaa0e5bd16e49d623e164ec5e1a9bd9e9 data/backmath/tags/entity_types/sophie_idea/aljamic_wars.json
 13ef40d98080d86e0e02e0f4fdf8d2d9449b9c1f data/backmath/tags/entity_types/sophies.json
@@ -2185,6 +2186,7 @@ d42faaacaa0e5bd16e49d623e164ec5e1a9bd9e9 data/backmath/tags/entity_types/sophie_
 1b04b0153e756e971bb0333da8046a83c07f33fa data/backmath/tags/entity_types/termian_raiders_attack.json
 ba757a51b891a8ce945a699f5efff669e289f0bf data/backmath/tags/fluids/aljan_carver_replaceables.json
 5cc892ce9fdb68bacd4d8aeb0dedd99b2f8c4cbb data/backmath/tags/fluids/hillary.json
+67d54d52dd971ccf1038461ec0f9052d4df0b92b data/backmath/tags/fluids/hydrates_farmland.json
 e8d411a14e2f9792eeda45e6f389a8cbbaa32a35 data/backmath/tags/fluids/liquefied_monster.json
 faed5fa185e3ebae58267551e3a80cf917e22abe data/backmath/tags/fluids/liquid_aljame.json
 cf24aa314148254573d8ae1124cc15db849a8476 data/backmath/tags/fluids/liquid_manga.json
@@ -2489,6 +2491,7 @@ e72998c1f2f5ea23e283de5d4c7d8c6f1f5ca2a3 data/forge/tags/items/storage_blocks/ra
 7df14844fe6ac4122129ce18a2697dc6cb38a335 data/melony/tags/blocks/campfire_signal_fire_blocks.json
 c75120ed415642b99bd5713f08453705e96db822 data/melony/tags/blocks/farmland.json
 63daba55a4194e1cc26833364eca188d56b22511 data/melony/tags/blocks/farmland_transparent.json
+dba508446c609ebfdabcc55cdf593f6ba7475d8b data/melony/tags/blocks/makes_grass_blocks_snowy.json
 b692a0c80fc4a4804beca7cb8aefd967145713d4 data/melony/tags/entity_types/can_spawn_on_leaves.json
 be65fc5d4c5ee08d8223e56dc4263e3b34201a07 data/melony/tags/items/bows.json
 f4b8476658f2e73c0f5d50b6b8aad1c98d082ca0 data/melony/tags/items/crossbows.json
