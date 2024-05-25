@@ -170,10 +170,6 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
                 .add(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62F;
-    }
-
     protected SoundEvent getHurtSound(DamageSource source) {
         if (source == DamageSource.ON_FIRE) {
             return BMSounds.ENTITY_LUCIA_HURT_ON_FIRE;

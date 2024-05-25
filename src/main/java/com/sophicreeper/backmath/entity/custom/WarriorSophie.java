@@ -94,10 +94,6 @@ public class WarriorSophie extends TermianMemberEntity implements ISophieFriendl
         super.aiStep();
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62F;
-    }
-
     protected SoundEvent getHurtSound(DamageSource source) {
         if (source == DamageSource.ON_FIRE) {
             return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;

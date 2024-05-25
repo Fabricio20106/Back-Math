@@ -1642,10 +1642,11 @@
   "console.backmath.sophie_tower_location": "Sophie Tower located at: /tp @s %s %s %s",
   "console.backmath.fabricio_hideout_dungeon_location": "Fabricio's Hideout Dungeon located at: /tp @s %s %s %s",
   "console.backmath.queen_lucy.set_spell": "Tried to set spell type for Queen Lucy: '%s'",
+  "console.backmath.wanderer_sophie_variant.loaded": "Loaded %s Wanderer Sophie variants",
 
   "error.backmath.assertion_exception.get_quads": "'IBakedModel::getQuads' should never be called, only 'IForgeBakedModel::getQuads'",
   "error.backmath.illegal_argument.null_parameter_set": "Loot Table parameter set '%s' is already registered",
-  "error.backmath.validation_tracker.invalid_type": "Type can only be 'constant' or 'range', but found %s",
+  "error.backmath.json_syntax.invalid_nbt": "Invalid NBT entry: '%s'",
   "error.backmath.crystallizer.invalid_mold": "Could not parse invalid mold '%s'. Possible values are: 'singularity', 'crystallized', 'ingot', 'mold', 'rod' and 'empty'",
   "error.backmath.crystalline_crystallizer.invalid_mold": "Could not parse invalid mold '%s'. Possible values are: 'singularity', 'crystallized', 'ingot', 'mold', 'rod', 'crystalline_empty', 'crystalline_gem' and 'empty'",
   "error.backmath.insomnian_tulip.model_not_found": "Did not find the expected vanilla baked model(s) for 'insomnian_tulip' in registry",
@@ -1653,6 +1654,9 @@
   "error.backmath.bag.no_drops": "BagItem '%s' has no drops; Was using loot table '%s'",
   "error.backmath.queen_lucy.invalid_spell": "Tried to read invalid spell type: '%s'",
   "error.backmath.queen_lucy_spells.unknown_spell": "Tried to read unknown Queen Lucy spell type from NBT: '%s'",
+  "error.backmath.wanderer_sophie_variant.invalid_get": "Tried getting an unknown Wanderer Sophie variant: '%s'",
+  "error.backmath.wanderer_sophie_variant.invalid_set": "Tried setting a Wanderer Sophie's variant to '%s'. This registry does not exist!",
+  "error.backmath.wanderer_sophie_variant.parse_error": "Couldn't parse Wanderer Sophie variant '%s'",
   "error.backmath.dungeon_feature.spawner_fetch": "Failed to fetch Spawner block entity for dungeon at [%s, %s, %s]",
   "error.backmath.using_terraforged_chunk_generator": "Was unable to check if '%s' is using Terraforged's chunk generator",
 

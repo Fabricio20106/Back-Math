@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.model.LightBakedModel;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.registry.wsvariant.WandererSophieVariantManager;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
@@ -32,6 +33,7 @@ import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -159,5 +161,10 @@ public class BMEvents {
                 12, 1, 0.05F));
         genericTrades.add((trader, rand) -> new MerchantOffer(new ItemStack(Items.EMERALD, 1), new ItemStack(AxolotlTest.RED_YELLOW_DYE.get(), 3),
                 12, 1, 0.05F));
+    }
+
+    @SubscribeEvent
+    public static void onResourceReload(AddReloadListenerEvent event) {
+        event.addListener(new WandererSophieVariantManager());
     }
 }

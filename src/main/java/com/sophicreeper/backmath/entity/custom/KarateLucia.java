@@ -71,14 +71,10 @@ public class KarateLucia extends TermianMemberEntity implements ISophieFriendlie
 
     public static AttributeModifierMap.MutableAttribute createKarateLuciaAttributes() {
         return CreatureEntity.createMobAttributes()
-                // Old karate Lucia health was 50.0D.
-                // Old new karate Lucia health was 28.0D.
+                // Old karate Lucia health was 50.
+                // Old new karate Lucia health was 28.
                 .add(Attributes.MAX_HEALTH, 20).add(Attributes.FOLLOW_RANGE, 32).add(Attributes.ATTACK_DAMAGE, 6).add(Attributes.MOVEMENT_SPEED, 0.23F)
                 .add(Attributes.ARMOR, 3);
-    }
-
-    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62F;
     }
 
     @Nullable

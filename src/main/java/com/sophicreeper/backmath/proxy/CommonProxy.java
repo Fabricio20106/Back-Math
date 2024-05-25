@@ -17,6 +17,8 @@ import com.sophicreeper.backmath.loot.BMLootParameterSets;
 import com.sophicreeper.backmath.misc.BMMotives;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStats;
+import com.sophicreeper.backmath.registry.BMRegistries;
+import com.sophicreeper.backmath.registry.wsvariant.BMWandererSophieVariants;
 import com.sophicreeper.backmath.util.BMVanillaCompatibility;
 import com.sophicreeper.backmath.world.biome.BMBiomes;
 import com.sophicreeper.backmath.world.carver.BMConfiguredCarvers;
@@ -56,9 +58,11 @@ public class CommonProxy {
         BMPotions.POTIONS.register(eventBus);
         BMStructures.STRUCTURES.register(eventBus);
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);
+        BMWandererSophieVariants.VARIANTS.register(eventBus);
         BMLootParameterSets.init();
         BMLootFunctions.init();
         BMSounds.registerSounds();
+        BMRegistries.init();
         BMStats.init();
 
         eventBus.addListener(this::commonSetup);

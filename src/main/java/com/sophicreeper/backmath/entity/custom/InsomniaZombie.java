@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.InsomniaZombieAttackGoal;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
@@ -10,9 +11,11 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -20,26 +23,38 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.GroundPathHelper;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeConfig;
+import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 import java.util.function.Predicate;
 
 public class InsomniaZombie extends MonsterEntity {
+    private static final UUID BABY_ZOMBIE_SPEED_MODIFIER_UUID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
+    private static final AttributeModifier BABY_ZOMBIE_SPEED_MODIFIER = new AttributeModifier(BABY_ZOMBIE_SPEED_MODIFIER_UUID, "Baby Insomnia Zombie Speed Bonus", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
+    private static final DataParameter<Boolean> IS_BABY = EntityDataManager.defineId(InsomniaZombie.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> IS_CONVERTING_TO_DROWNED = EntityDataManager.defineId(InsomniaZombie.class, DataSerializers.BOOLEAN);
     private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (difficulty) -> difficulty == Difficulty.HARD;
     private final BreakDoorGoal breakDoor = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
     private boolean canBreakDoors;
+    private int ticksSubmergedInWater;
+    private int drownedConversionTicks;
 
     public InsomniaZombie(EntityType<InsomniaZombie> type, World world) {
         super(type, world);
@@ -73,11 +88,22 @@ public class InsomniaZombie extends MonsterEntity {
 
     public static AttributeModifierMap.MutableAttribute createInsomniaZombieAttributes() {
         return MonsterEntity.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.ATTACK_DAMAGE, 3)
-                .add(Attributes.ARMOR, 2);
+                .add(Attributes.ARMOR, 2).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
     }
 
     public boolean canBreakDoors() {
         return this.canBreakDoors;
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(IS_BABY, false);
+        this.entityData.define(IS_CONVERTING_TO_DROWNED, false);
+    }
+
+    public boolean isConvertingToDrowned() {
+        return this.entityData.get(IS_CONVERTING_TO_DROWNED);
     }
 
     // Sets or removes EntityAIBreakDoor task.
@@ -102,11 +128,59 @@ public class InsomniaZombie extends MonsterEntity {
         return true;
     }
 
+    @Override
+    public boolean isBaby() {
+        return this.entityData.get(IS_BABY);
+    }
+
     // Get the experience points the entity currently has.
     protected int getExperienceReward(PlayerEntity player) {
         if (this.isBaby()) this.xpReward = (int) ((float) this.xpReward * 2.5F);
 
         return super.getExperienceReward(player);
+    }
+
+    @Override
+    public void setBaby(boolean baby) {
+        this.entityData.set(IS_BABY, baby);
+        if (this.level != null && !this.level.isClientSide) {
+            ModifiableAttributeInstance speedAttribute = this.getAttribute(Attributes.MOVEMENT_SPEED);
+            speedAttribute.removeModifier(BABY_ZOMBIE_SPEED_MODIFIER);
+            if (baby) speedAttribute.addTransientModifier(BABY_ZOMBIE_SPEED_MODIFIER);
+        }
+    }
+
+    @Override
+    public void onSyncedDataUpdated(DataParameter<?> parameter) {
+        if (IS_BABY.equals(parameter)) this.refreshDimensions();
+        super.onSyncedDataUpdated(parameter);
+    }
+
+    protected boolean convertsInWater() {
+        return true;
+    }
+
+    @Override
+    public void tick() {
+        if (!this.level.isClientSide && this.isAlive() && !this.isNoAi()) {
+            if (this.isConvertingToDrowned()) {
+                --this.drownedConversionTicks;
+
+                if (this.drownedConversionTicks < 0 && ForgeEventFactory.canLivingConvert(this, EntityType.DROWNED, (timer) -> this.drownedConversionTicks = timer)) {
+                    this.convertToDrowned();
+                }
+            } else if (this.convertsInWater()) {
+                if (this.isEyeInFluid(FluidTags.WATER)) {
+                    ++this.ticksSubmergedInWater;
+                    if (this.ticksSubmergedInWater >= 600) {
+                        this.startConversionToDrowned(300);
+                    }
+                } else {
+                    this.ticksSubmergedInWater = -1;
+                }
+            }
+        }
+        super.tick();
     }
 
     // Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
@@ -132,6 +206,16 @@ public class InsomniaZombie extends MonsterEntity {
             }
         }
         super.aiStep();
+    }
+
+    private void startConversionToDrowned(int conversionTicks) {
+        this.drownedConversionTicks = conversionTicks;
+        this.getEntityData().set(IS_CONVERTING_TO_DROWNED, true);
+    }
+
+    protected void convertToDrowned() {
+        if (!this.isSilent()) this.level.levelEvent(null, 1040, this.blockPosition(), 0);
+        ForgeEventFactory.onLivingConvert(this, EntityType.DROWNED.create(this.level));
     }
 
     protected boolean shouldBurnInDay() {
@@ -178,6 +262,19 @@ public class InsomniaZombie extends MonsterEntity {
         return new ItemStack(AxolotlTest.INSOMNIA_ZOMBIE_SPAWN_EGG.get());
     }
 
+    @Override
+    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
+        this.populateAljanEquipmentSlots(difficulty);
+        if (this.random.nextFloat() < (this.level.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
+            int i = this.random.nextInt(3);
+            if (i == 0) {
+                this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_BLADE.get()));
+            } else {
+                this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_SHOVEL.get()));
+            }
+        }
+    }
+
     protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
         if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
             int i = this.random.nextInt(2);
@@ -215,7 +312,7 @@ public class InsomniaZombie extends MonsterEntity {
 
     @Nullable
     public static Item getAljanArmorByChance(EquipmentSlotType slot, int chance) {
-        switch(slot) {
+        switch (slot) {
             case HEAD:
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();
@@ -269,31 +366,32 @@ public class InsomniaZombie extends MonsterEntity {
         }
     }
 
-    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        this.populateAljanEquipmentSlots(difficulty);
-        if (this.random.nextFloat() < (this.level.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
-            int i = this.random.nextInt(3);
-            if (i == 0) {
-                this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_BLADE.get()));
-            } else {
-                this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_SHOVEL.get()));
-            }
-        }
-    }
-
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
+        tag.putBoolean("is_baby", this.isBaby());
         tag.putBoolean("can_break_doors", this.canBreakDoors());
+        tag.putInt("ticks_submerged_in_water", this.isInWater() ? this.ticksSubmergedInWater : -1);
+        tag.putInt("drowned_conversion_ticks", this.isConvertingToDrowned() ? this.drownedConversionTicks : -1);
     }
 
     // (abstract) Protected helper method to read subclass entity data from NBT.
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
+        this.setBaby(tag.getBoolean("is_baby"));
         this.setCanBreakDoors(BMTagFixes.fixCanBreakDoorsTag(tag));
+        this.ticksSubmergedInWater = tag.getInt("ticks_submerged_in_water");
+        if (tag.contains("drowned_conversion_ticks", 99) && tag.getInt("drowned_conversion_ticks") > -1) {
+            this.startConversionToDrowned(tag.getInt("drowned_conversion_ticks"));
+        }
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.74F;
+        return this.isBaby() ? 0.93F : 1.74F;
+    }
+
+    @Override
+    public boolean canHoldItem(ItemStack stack) {
+        return (!stack.getItem().is(BMTags.Items.CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE) || !this.isBaby() || !this.isPassenger()) && super.canHoldItem(stack);
     }
 
     @Nullable
@@ -301,10 +399,35 @@ public class InsomniaZombie extends MonsterEntity {
         spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
         float clampedAdditionalDifficulty = difficulty.getSpecialMultiplier();
         this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * clampedAdditionalDifficulty);
+        if (spawnData == null) spawnData = new GroupData(getBabySpawnOdds(world.getRandom()), true);
 
-        this.setCanBreakDoors(this.supportsBreakDoorGoal() && this.random.nextFloat() < clampedAdditionalDifficulty * 0.1F);
-        this.populateDefaultEquipmentSlots(difficulty);
-        this.populateDefaultEquipmentEnchantments(difficulty);
+        if (spawnData instanceof GroupData) {
+            GroupData zombieGroupData = (GroupData) spawnData;
+            if (zombieGroupData.isBaby) {
+                this.setBaby(true);
+                if (zombieGroupData.canSpawnJockey) {
+                    if ((double) world.getRandom().nextFloat() < 0.05D) {
+                        List<ChickenEntity> nearbyChickens = world.getEntitiesOfClass(ChickenEntity.class, this.getBoundingBox().inflate(5.0D, 3.0D, 5.0D), EntityPredicates.ENTITY_NOT_BEING_RIDDEN);
+                        if (!nearbyChickens.isEmpty()) {
+                            ChickenEntity nearbyChicken = nearbyChickens.get(0);
+                            nearbyChicken.setChickenJockey(true);
+                            this.startRiding(nearbyChicken);
+                        }
+                    } else if ((double) world.getRandom().nextFloat() < 0.05D) {
+                        ChickenEntity chicken = EntityType.CHICKEN.create(this.level);
+                        chicken.moveTo(this.getX(), this.getY(), this.getZ(), this.yRot, 0);
+                        chicken.finalizeSpawn(world, difficulty, SpawnReason.JOCKEY, null, null);
+                        chicken.setChickenJockey(true);
+                        this.startRiding(chicken);
+                        world.addFreshEntity(chicken);
+                    }
+                }
+            }
+
+            this.setCanBreakDoors(this.supportsBreakDoorGoal() && this.random.nextFloat() < clampedAdditionalDifficulty * 0.1F);
+            this.populateDefaultEquipmentSlots(difficulty);
+            this.populateDefaultEquipmentEnchantments(difficulty);
+        }
 
         if (this.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
             LocalDate localDate = LocalDate.now();
@@ -318,6 +441,10 @@ public class InsomniaZombie extends MonsterEntity {
 
         this.applyAttributeBonuses(clampedAdditionalDifficulty);
         return spawnData;
+    }
+
+    public static boolean getBabySpawnOdds(Random rand) {
+        return rand.nextFloat() < ForgeConfig.SERVER.zombieBabyChance.get();
     }
 
     protected void applyAttributeBonuses(float difficulty) {
@@ -336,6 +463,16 @@ public class InsomniaZombie extends MonsterEntity {
 
     // Returns the Y Offset of this entity.
     public double getMyRidingOffset() {
-        return -0.45D;
+        return this.isBaby() ? 0 : -0.45D;
+    }
+
+    public static class GroupData implements ILivingEntityData {
+        public final boolean isBaby;
+        public final boolean canSpawnJockey;
+
+        public GroupData(boolean isBaby, boolean canSpawnJockey) {
+            this.isBaby = isBaby;
+            this.canSpawnJockey = canSpawnJockey;
+        }
     }
 }

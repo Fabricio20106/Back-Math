@@ -103,7 +103,7 @@ public class AljamicFarmlandBlock extends Block {
 
     private static boolean hasWater(IWorldReader world, BlockPos pos) {
         for(BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
-            if (world.getFluidState(blockPos).is(BMTags.Fluids.HYDRATES_FARMLAND)) {
+            if (world.getFluidState(blockPos).is(BMTags.Fluids.HYDRATES_WATER_BASED_FARMLAND)) {
                 return true;
             }
         }

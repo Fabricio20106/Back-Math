@@ -1,7 +1,8 @@
 package com.sophicreeper.backmath.util;
 
+import com.google.gson.*;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.entity.custom.WandererSophie;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.world.structure.BMStructures;
@@ -12,6 +13,8 @@ import net.minecraft.item.FilledMapItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -21,11 +24,12 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
 
-import java.util.Locale;
-import java.util.Random;
+import java.util.*;
 
 // Just generalized methods that are used more than twice throughout the code.
 public class BMUtils {
+    public static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
+
     // Plays the item pickup sound at a (server) player.
     public static void playItemPickupSound(ServerPlayerEntity serverPlayer) {
         float pitch = ((serverPlayer.getRandom().nextFloat() - serverPlayer.getRandom().nextFloat()) * 0.7F + 1) + 2;
@@ -98,4 +102,29 @@ public class BMUtils {
             patroller.setCapeTexture(BackMath.resourceLoc("cape/pan").toString());
         }
     }
+
+    // Reads the "addition" tag from loot modifiers into a CompoundNBT for an ItemStack.
+    public static CompoundNBT jsonToTag(JsonObject additionTag) {
+        CompoundNBT stackTag = new CompoundNBT();
+        try {
+            JsonElement nbt = additionTag.get("nbt");
+            CompoundNBT tag;
+            if (nbt.isJsonObject()) {
+                tag = JsonToNBT.parseTag(GSON.toJson(nbt));
+            } else {
+                tag = JsonToNBT.parseTag(JSONUtils.convertToString(nbt, "nbt"));
+            }
+            stackTag.put("tag", tag);
+            stackTag.putString("id", new ResourceLocation(JSONUtils.getAsString(additionTag, "id")).toString());
+            stackTag.putInt("Count", additionTag.get("count").getAsInt());
+        } catch (CommandSyntaxException syntaxException) {
+            throw new JsonSyntaxException(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.json_syntax.invalid_nbt", syntaxException)).getString());
+        }
+        return stackTag;
+    }
+
+    // Writes the item NBT into a JSON object for the loot modifier.
+//    public static JsonObject tagToJSON(CompoundNBT tag) {
+//        Set<String> tags = tag.getAllKeys();
+//    }
 }

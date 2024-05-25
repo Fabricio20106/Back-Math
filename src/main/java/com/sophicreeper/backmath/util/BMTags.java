@@ -130,6 +130,7 @@ public class BMTags {
         public static final ITag.INamedTag<Item> BOWS = melony("bows");
         public static final ITag.INamedTag<Item> CROSSBOWS = melony("crossbows");
         public static final ITag.INamedTag<Item> VILLAGER_PLANTABLE_SEEDS = melony("villager_plantable_seeds");
+        public static final ITag.INamedTag<Item> CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE = melony("pickup_disallowed_predicate/chicken_jockey");
         public static final ITag.INamedTag<Item> PROVIDES_EFFECT = melony("provides_effect");
         public static final ITag.INamedTag<Item> PROVIDES_WATER_BREATHING = melony("provides_effect/water_breathing");
         public static final ITag.INamedTag<Item> PROVIDES_RESISTANCE = melony("provides_effect/resistance");
@@ -387,12 +388,16 @@ public class BMTags {
         public static final ITag.INamedTag<Fluid> ALJAN_CARVER_REPLACEABLES = backMath("aljan_carver_replaceables");
 
         // Melony Tags
-        public static final ITag.INamedTag<Fluid> HYDRATES_FARMLAND = backMath("hydrates_farmland");
+        public static final ITag.INamedTag<Fluid> HYDRATES_WATER_BASED_FARMLAND = melony("hydrates_farmland/water");
 
         public static final ITag.INamedTag<Fluid> MILK = forge("milk");
 
         private static ITag.INamedTag<Fluid> forge(String path) {
             return FluidTags.bind(new ResourceLocation("forge", path).toString());
+        }
+
+        private static ITag.INamedTag<Fluid> melony(String path) {
+            return FluidTags.bind(new ResourceLocation("melony", path).toString());
         }
 
         private static ITag.INamedTag<Fluid> backMath(String path) {

@@ -4,10 +4,7 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.termian.TermianPatrolGoal;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
-import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.ILivingEntityData;
-import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
@@ -111,12 +108,19 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         if (this.getVehicle() instanceof CreatureEntity) {
             CreatureEntity entity = (CreatureEntity) this.getVehicle();
             this.yBodyRot = entity.yBodyRot;
+            this.prevCameraYaw = this.cameraYaw;
+            this.cameraYaw = 0;
         }
     }
 
     @Override
     public double getMyRidingOffset() {
         return -0.35D;
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
+        return 1.62F;
     }
 
     public boolean canBePatrolLeader() {

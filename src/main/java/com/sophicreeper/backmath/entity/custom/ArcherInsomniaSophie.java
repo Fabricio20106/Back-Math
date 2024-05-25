@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class ArcherInsomniaSophie extends TermianMemberEntity implements IRangedAttackMob, ISophieFriendlies {
+public class ArcherInsomniaSophie extends TermianMemberEntity implements IRangedAttackMob, ISophieFriendlies, IMob {
     private final BMRangedBowAttackGoal<ArcherInsomniaSophie> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1, 20, 15);
     private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) {
         public void stop() {
@@ -58,14 +58,6 @@ public class ArcherInsomniaSophie extends TermianMemberEntity implements IRanged
         super.tick();
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_WATER_BREATHING, Effects.WATER_BREATHING);
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
-    }
-
-    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62F;
-    }
-
-    public double getMyRidingOffset() {
-        return -0.35D;
     }
 
     public void rideTick() {

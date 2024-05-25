@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class InsomniaSophie extends TermianMemberEntity implements ISophieFriendlies {
+public class InsomniaSophie extends TermianMemberEntity implements ISophieFriendlies, IMob {
     public InsomniaSophie(EntityType<InsomniaSophie> type, World world) {
         super(type, world);
         this.xpReward = 3 + this.level.random.nextInt(6);
@@ -91,10 +91,6 @@ public class InsomniaSophie extends TermianMemberEntity implements ISophieFriend
         if (super.isAlliedTo(entity)) {
             return true;
         } else return entity.getType().is(BMTags.EntityTypes.SOPHIE_ALLIES);
-    }
-
-    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62F;
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {

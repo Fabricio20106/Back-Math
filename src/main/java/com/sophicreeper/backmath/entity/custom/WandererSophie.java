@@ -3,6 +3,8 @@ package com.sophicreeper.backmath.entity.custom;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.registry.wsvariant.BMWandererSophieVariants;
+import com.sophicreeper.backmath.registry.wsvariant.WandererSophieVariantManager;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -21,17 +23,21 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.*;
+import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 public class WandererSophie extends TermianMemberEntity implements ISophieFriendlies {
     private static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(WandererSophie.class, DataSerializers.INT);
+    private static final DataParameter<String> VARIANT_FROM_REGISTRY = EntityDataManager.defineId(WandererSophie.class, DataSerializers.STRING);
 
     public WandererSophie(EntityType<WandererSophie> type, World world) {
         super(type, world);
@@ -41,6 +47,7 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(VARIANT, 0);
+        this.entityData.define(VARIANT_FROM_REGISTRY, BMWandererSophieVariants.YELLOW_AXOLOTL.get().getRegistryName().toString());
     }
 
     @Override
@@ -73,19 +80,17 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
         super.aiStep();
     }
 
-    public double getMyRidingOffset() {
-        return -0.35D;
-    }
-
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getVariant());
+        tag.putString("variant_reg", this.getVariantReg());
         // tag.putBoolean("CustomNameVisible", tag.getBoolean("CustomNameVisible"));
     }
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
         this.setVariant(tag.getInt("Variant"));
+        this.setVariantReg(tag.getString("variant_reg"));
         // this.setCustomNameVisible(tag.getBoolean("CustomNameVisible"));
     }
 
@@ -93,8 +98,30 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
         return MathHelper.clamp(this.entityData.get(VARIANT), 0, 15);
     }
 
+    public String getVariantReg() {
+        WandererSophieVariantManager variantManager = new WandererSophieVariantManager();
+        if (variantManager.getVariantLocations().contains(ResourceLocation.tryParse(this.entityData.get(VARIANT_FROM_REGISTRY)))) {
+//            LogManager.getLogger().debug("Wanderer Sophie variant is '{}'", this.entityData.get(VARIANT_FROM_REGISTRY));
+            return this.entityData.get(VARIANT_FROM_REGISTRY);
+        } else {
+            LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_get", this.entityData.get(VARIANT_FROM_REGISTRY))).getString());
+        }
+        return BMWandererSophieVariants.YELLOW_AXOLOTL.get().getRegistryName().toString();
+    }
+
     public void setVariant(int variant) {
         this.entityData.set(VARIANT, variant);
+    }
+
+    public void setVariantReg(String variant) {
+//        LogManager.getLogger().debug("setVariantReg: '{}'", variant);
+        WandererSophieVariantManager variantManager = new WandererSophieVariantManager();
+        if (variantManager.getVariantLocations().contains(new ResourceLocation(this.entityData.get(VARIANT_FROM_REGISTRY)))) {
+            this.entityData.set(VARIANT_FROM_REGISTRY, variant);
+//            LogManager.getLogger().debug("Set Wanderer Sophie variant to '{}'", this.entityData.get(VARIANT_FROM_REGISTRY));
+        } else {
+            LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_set", variant)).getString());
+        }
     }
 
     public boolean isAlliedTo(Entity entity) {
@@ -135,29 +162,16 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
                 .add(Attributes.ATTACK_DAMAGE, 3).add(Attributes.MOVEMENT_SPEED, 0.25F);
     }
 
-    protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62F;
-    }
-
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         this.setVariant(this.random.nextInt(16));
+        this.setVariantReg(BMWandererSophieVariants.BLUE_AXOLOTL.get().getRegistryName().toString());
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;
-    }
-
-    public void rideTick() {
-        super.rideTick();
-        if (this.getVehicle() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getVehicle();
-            this.yBodyRot = entity.yBodyRot;
-            this.prevCameraYaw = this.cameraYaw;
-            this.cameraYaw = 0;
-        }
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {
