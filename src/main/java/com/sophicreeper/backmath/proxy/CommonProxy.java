@@ -10,7 +10,6 @@ import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.BMSpawnEggItem;
 import com.sophicreeper.backmath.item.custom.potion.BMPotions;
-import com.sophicreeper.backmath.item.custom.weapon.misc.QueenLucySummonerStaffItem;
 import com.sophicreeper.backmath.loot.BMLootFunctions;
 import com.sophicreeper.backmath.loot.BMLootModifiers;
 import com.sophicreeper.backmath.loot.BMLootParameterSets;
@@ -18,6 +17,7 @@ import com.sophicreeper.backmath.misc.BMMotives;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStats;
 import com.sophicreeper.backmath.registry.BMRegistries;
+import com.sophicreeper.backmath.registry.qlpvariant.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.registry.wsvariant.BMWandererSophieVariants;
 import com.sophicreeper.backmath.util.BMVanillaCompatibility;
 import com.sophicreeper.backmath.world.biome.BMBiomes;
@@ -59,6 +59,7 @@ public class CommonProxy {
         BMStructures.STRUCTURES.register(eventBus);
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);
         BMWandererSophieVariants.VARIANTS.register(eventBus);
+        BMQueenLucyPetVariants.VARIANTS.register(eventBus);
         BMLootParameterSets.init();
         BMLootFunctions.init();
         BMSounds.registerSounds();
@@ -120,6 +121,5 @@ public class CommonProxy {
 
         // Spawn Eggs
         BMSpawnEggItem.initBackMathEggs();
-        QueenLucySummonerStaffItem.initQueenLucyPet();
     }
 }

@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.crystallizer.item;
 
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.crystallizer.dispenser.CrystallizerMoldDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.CrystallizerMoldDispenseBehavior;
 import com.sophicreeper.backmath.util.BMKeys;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;

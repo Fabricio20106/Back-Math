@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.crystallizer.item;
 
-import com.sophicreeper.backmath.crystallizer.dispenser.CrystallizerMoldDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.CrystallizerMoldDispenseBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Item;
 

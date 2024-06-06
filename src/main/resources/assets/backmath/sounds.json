@@ -175,6 +175,29 @@
     ],
     "subtitle": "subtitles.item.chocoglue.shoot"
   },
+  "item.queen_lucy_summoner_staff.smash_air": {
+    "sounds": [
+      "backmath:item/queen_lucy_summoner_staff/smash_air1",
+      "backmath:item/queen_lucy_summoner_staff/smash_air2",
+      "backmath:item/queen_lucy_summoner_staff/smash_air3"
+    ],
+    "subtitle": "subtitles.item.queen_lucy_summoner_staff.smash_air"
+  },
+  "item.queen_lucy_summoner_staff.smash_ground": {
+    "sounds": [
+      "backmath:item/queen_lucy_summoner_staff/smash_ground1",
+      "backmath:item/queen_lucy_summoner_staff/smash_ground2",
+      "backmath:item/queen_lucy_summoner_staff/smash_ground3",
+      "backmath:item/queen_lucy_summoner_staff/smash_ground4"
+    ],
+    "subtitle": "subtitles.item.queen_lucy_summoner_staff.smash_ground"
+  },
+  "item.queen_lucy_summoner_staff.smash_ground_heavy": {
+    "sounds": [
+      "backmath:item/queen_lucy_summoner_staff/smash_ground_heavy"
+    ],
+    "subtitle": "subtitles.item.queen_lucy_summoner_staff.smash_ground"
+  },
   "entity.sophie.death": {
     "sounds": [
       "damage/hit1",
@@ -482,6 +505,18 @@
       "mob/slime/small5"
     ],
     "subtitle": "subtitles.entity.amaracameler.squish"
+  },
+  "entity.zombie_fabricio.converted": {
+    "sounds": [
+      "mob/zombie/unfect"
+    ],
+    "subtitle": "subtitles.entity.zombie_fabricio.converted"
+  },
+  "entity.zombie_fabricio.cure": {
+    "sounds": [
+      "mob/zombie/remedy"
+    ],
+    "subtitle": "subtitles.entity.zombie_fabricio.cure"
   },
   "music.overworld.back_fields": {
     "sounds": [

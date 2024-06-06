@@ -22,4 +22,9 @@ public class ZombieFabricioRenderer extends BipedRenderer<ZombieFabricio, BMZomb
     public ResourceLocation getTextureLocation(ZombieFabricio zombie) {
         return BackMath.resourceLoc("textures/entity/zombie/zombie_fabricio.png");
     }
+
+    @Override
+    protected boolean isShaking(ZombieFabricio zombie) {
+        return zombie.isConvertingToFabricio();
+    }
 }

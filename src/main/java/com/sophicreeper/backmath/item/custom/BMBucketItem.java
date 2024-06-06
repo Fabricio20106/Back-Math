@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom;
 
-import com.sophicreeper.backmath.block.dispenser.vanilla.BucketDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.vanilla.BucketDispenseBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.BucketItem;

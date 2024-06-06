@@ -3,9 +3,11 @@ package com.sophicreeper.backmath.entity.custom;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.registry.BMRegistries;
 import com.sophicreeper.backmath.registry.wsvariant.BMWandererSophieVariants;
-import com.sophicreeper.backmath.registry.wsvariant.WandererSophieVariantManager;
+import com.sophicreeper.backmath.registry.wsvariant.WandererSophieVariant;
 import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -83,25 +85,21 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         tag.putInt("Variant", this.getVariant());
-        tag.putString("variant_reg", this.getVariantReg());
-        // tag.putBoolean("CustomNameVisible", tag.getBoolean("CustomNameVisible"));
+        tag.putString("variant_reg", this.getRegistryBasedVariant());
     }
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
         this.setVariant(tag.getInt("Variant"));
-        this.setVariantReg(tag.getString("variant_reg"));
-        // this.setCustomNameVisible(tag.getBoolean("CustomNameVisible"));
+        this.setRegistryBasedVariant(BMRegistries.WANDERER_SOPHIE_VARIANT.getValue(ResourceLocation.tryParse(tag.getString("variant_reg"))));
     }
 
     public int getVariant() {
         return MathHelper.clamp(this.entityData.get(VARIANT), 0, 15);
     }
 
-    public String getVariantReg() {
-        WandererSophieVariantManager variantManager = new WandererSophieVariantManager();
-        if (variantManager.getVariantLocations().contains(ResourceLocation.tryParse(this.entityData.get(VARIANT_FROM_REGISTRY)))) {
-//            LogManager.getLogger().debug("Wanderer Sophie variant is '{}'", this.entityData.get(VARIANT_FROM_REGISTRY));
+    public String getRegistryBasedVariant() {
+        if (BMRegistries.WANDERER_SOPHIE_VARIANT.containsKey(ResourceLocation.tryParse(this.entityData.get(VARIANT_FROM_REGISTRY)))) {
             return this.entityData.get(VARIANT_FROM_REGISTRY);
         } else {
             LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_get", this.entityData.get(VARIANT_FROM_REGISTRY))).getString());
@@ -113,14 +111,11 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
         this.entityData.set(VARIANT, variant);
     }
 
-    public void setVariantReg(String variant) {
-//        LogManager.getLogger().debug("setVariantReg: '{}'", variant);
-        WandererSophieVariantManager variantManager = new WandererSophieVariantManager();
-        if (variantManager.getVariantLocations().contains(new ResourceLocation(this.entityData.get(VARIANT_FROM_REGISTRY)))) {
-            this.entityData.set(VARIANT_FROM_REGISTRY, variant);
-//            LogManager.getLogger().debug("Set Wanderer Sophie variant to '{}'", this.entityData.get(VARIANT_FROM_REGISTRY));
+    public void setRegistryBasedVariant(WandererSophieVariant variant) {
+        if (BMRegistries.WANDERER_SOPHIE_VARIANT.containsValue(variant)) {
+            this.entityData.set(VARIANT_FROM_REGISTRY, variant.getRegistryName().toString());
         } else {
-            LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_set", variant)).getString());
+            LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_set", variant.getRegistryName().toString())).getString());
         }
     }
 
@@ -168,7 +163,7 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
         super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         this.setVariant(this.random.nextInt(16));
-        this.setVariantReg(BMWandererSophieVariants.BLUE_AXOLOTL.get().getRegistryName().toString());
+        BMUtils.setRandomRegistryBasedVariant(this);
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;

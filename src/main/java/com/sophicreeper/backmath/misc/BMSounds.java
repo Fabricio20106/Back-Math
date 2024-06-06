@@ -36,6 +36,9 @@ public class BMSounds {
 
     // Items
     public static SoundEvent ITEM_CHOCOGLUE_SHOOT;
+    public static SoundEvent ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_AIR;
+    public static SoundEvent ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND;
+    public static SoundEvent ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND_HEAVY;
 
     // Entities
     public static SoundEvent ENTITY_TERMIAN_SWIM;
@@ -82,6 +85,8 @@ public class BMSounds {
     public static SoundEvent ENTITY_AMARACAMELER_DEATH_SMALL;
     public static SoundEvent ENTITY_AMARACAMELER_ATTACK;
 
+    public static SoundEvent ENTITY_ZOMBIE_FABRICIO_CURE;
+
     public static void registerSounds() {
         // Music Discs
         RECORD_NATHAN_EVANS_WELLERMAN = registerSound("record.nathan_evans.wellerman");
@@ -113,6 +118,9 @@ public class BMSounds {
 
         // Items
         ITEM_CHOCOGLUE_SHOOT = registerSound("item.chocoglue.shoot");
+        ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND_HEAVY = registerSound("item.queen_lucy_summoner_staff.smash_ground_heavy");
+        ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND = registerSound("item.queen_lucy_summoner_staff.smash_ground");
+        ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_AIR = registerSound("item.queen_lucy_summoner_staff.smash_air");
 
         // Entities
         ENTITY_TERMIAN_SWIM = registerSound("entity.termian.swim");
@@ -158,6 +166,8 @@ public class BMSounds {
         ENTITY_AMARACAMELER_DEATH = registerSound("entity.amaracameler.death");
         ENTITY_AMARACAMELER_DEATH_SMALL = registerSound("entity.amaracameler.death_small");
         ENTITY_AMARACAMELER_ATTACK = registerSound("entity.amaracameler.attack");
+
+        ENTITY_ZOMBIE_FABRICIO_CURE = registerSound("entity.zombie_fabricio.cure");
     }
 
     private static SoundEvent registerSound(String name) {

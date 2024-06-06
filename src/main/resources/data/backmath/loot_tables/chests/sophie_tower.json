@@ -89,7 +89,6 @@
             },
             {
               "function": "backmath:set_stored_experience",
-              "type": "range",
               "stored_experience": {
                 "min": 25,
                 "max": 75

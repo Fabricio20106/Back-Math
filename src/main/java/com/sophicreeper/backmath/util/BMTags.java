@@ -360,6 +360,7 @@ public class BMTags {
         public static final ITag.INamedTag<Block> FARMLAND = melony("farmland");
         public static final ITag.INamedTag<Block> FARMLAND_TRANSPARENT = melony("farmland_transparent");
         public static final ITag.INamedTag<Block> MAKES_GRASS_BLOCKS_SNOWY = melony("makes_grass_blocks_snowy");
+        public static final ITag.INamedTag<Block> HELPS_ON_ZOMBIE_CONVERSION = melony("helps_on_zombie_conversion");
 
         private static ITag.INamedTag<Block> forge(String path) {
             return BlockTags.bind(new ResourceLocation("forge", path).toString());
@@ -425,6 +426,7 @@ public class BMTags {
         public static final ITag.INamedTag<EntityType<?>> SOPHIE_ALLIES = backMath("sophie_allies");
         public static final ITag.INamedTag<EntityType<?>> ANGER_DUNGEON_MOBS = backMath("anger_dungeon_mobs");
         public static final ITag.INamedTag<EntityType<?>> ALJAN_DUNGEON_MOBS = backMath("aljan_dungeon_mobs");
+        public static final ITag.INamedTag<EntityType<?>> ELIGIBLE_TO_CAPES = backMath("eligible_for_capes");
 
         // Raider-related Tags
         public static final ITag.INamedTag<EntityType<?>> TERMIAN_RAIDERS_ATTACK = backMath("termian_raiders_attack");

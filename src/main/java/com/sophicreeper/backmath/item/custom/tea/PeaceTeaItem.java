@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom.tea;
 
-import com.sophicreeper.backmath.block.dispenser.TeaDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.TeaDispenseBehavior;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.effect.BMEffects;

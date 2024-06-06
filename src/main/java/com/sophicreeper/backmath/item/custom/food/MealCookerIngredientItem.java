@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom.food;
 
-import com.sophicreeper.backmath.block.dispenser.MealCookingDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.MealCookingDispenseBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.item.Item;
 

@@ -37,7 +37,7 @@ public class WandererSophieRenderer extends TermianBipedRenderer<WandererSophie>
 
     @Override
     public ResourceLocation getTextureLocation(WandererSophie sophie) {
-        ResourceLocation location = new ResourceLocation(sophie.getVariantReg());
+        ResourceLocation location = new ResourceLocation(sophie.getRegistryBasedVariant());
         return new ResourceLocation(location.getNamespace(), "textures/entity/wanderer_sophie/" + location.getPath() + ".png");
     }
 }

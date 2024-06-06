@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class BMBlockTagsProvider extends BlockTagsProvider {
@@ -19,6 +20,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
     }
 
     @Override
+    @Nonnull
     public String getName() {
         return "Back Math - Block Tags";
     }
@@ -126,6 +128,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BMTags.Blocks.FARMLAND).add(Blocks.FARMLAND).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.tag(BMTags.Blocks.FARMLAND_TRANSPARENT).addTag(Tags.Blocks.FENCE_GATES).addTag(BlockTags.FENCE_GATES).add(Blocks.MOVING_PISTON);
         this.tag(BMTags.Blocks.MAKES_GRASS_BLOCKS_SNOWY).add(Blocks.SNOW_BLOCK, Blocks.SNOW);
+        this.tag(BMTags.Blocks.HELPS_ON_ZOMBIE_CONVERSION).addTag(BlockTags.BEDS).add(Blocks.IRON_BARS);
 
         // Back Math Tags
         this.tag(BMTags.Blocks.INFINIBURN_ALJAN).add(BMBlocks.CHARJAN_COAL_BLOCK.get()).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);

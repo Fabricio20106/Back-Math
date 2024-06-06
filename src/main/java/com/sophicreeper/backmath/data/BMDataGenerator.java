@@ -7,6 +7,7 @@ import com.sophicreeper.backmath.data.tags.BMBlockTagsProvider;
 import com.sophicreeper.backmath.data.tags.BMEntityTypeTagsProvider;
 import com.sophicreeper.backmath.data.tags.BMFluidTagsProvider;
 import com.sophicreeper.backmath.data.tags.BMItemTagsProvider;
+import com.sophicreeper.backmath.data.variant.BMQueenLucyPetVariantsProvider;
 import com.sophicreeper.backmath.data.variant.BMWandererSophieVariantsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -30,5 +31,6 @@ public final class BMDataGenerator {
         generator.addProvider(new BMFluidTagsProvider(generator, fileHelper));
         generator.addProvider(new BMEntityTypeTagsProvider(generator, fileHelper));
         generator.addProvider(new BMWandererSophieVariantsProvider(generator));
+        generator.addProvider(new BMQueenLucyPetVariantsProvider(generator));
     }
 }

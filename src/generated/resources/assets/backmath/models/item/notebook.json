@@ -1,0 +1,8 @@
+{
+  "parent": "backmath:item/template_notebook",
+  "textures": {
+    "bottom": "backmath:block/notebook_bottom",
+    "screen": "backmath:block/notebook_screen",
+    "keyboard": "backmath:block/notebook_keyboard"
+  }
+}

@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom;
 
-import com.sophicreeper.backmath.block.dispenser.vanilla.DispenseBMBoatBehavior;
+import com.sophicreeper.backmath.dispenser.vanilla.DispenseBMBoatBehavior;
 import com.sophicreeper.backmath.entity.custom.BMBoat;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.Entity;

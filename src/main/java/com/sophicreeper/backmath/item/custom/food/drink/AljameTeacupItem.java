@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom.food.drink;
 
-import com.sophicreeper.backmath.block.dispenser.TeaDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.TeaDispenseBehavior;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;

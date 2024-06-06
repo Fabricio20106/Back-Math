@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
 import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.InsomniaZombieAttackGoal;
@@ -14,6 +15,7 @@ import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
+import net.minecraft.entity.monster.DrownedEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
@@ -51,7 +53,7 @@ public class InsomniaZombie extends MonsterEntity {
     private static final DataParameter<Boolean> IS_BABY = EntityDataManager.defineId(InsomniaZombie.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> IS_CONVERTING_TO_DROWNED = EntityDataManager.defineId(InsomniaZombie.class, DataSerializers.BOOLEAN);
     private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (difficulty) -> difficulty == Difficulty.HARD;
-    private final BreakDoorGoal breakDoor = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
+    private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
     private boolean canBreakDoors;
     private int ticksSubmergedInWater;
     private int drownedConversionTicks;
@@ -113,13 +115,13 @@ public class InsomniaZombie extends MonsterEntity {
                 this.canBreakDoors = enabled;
                 ((GroundPathNavigator) this.getNavigation()).setCanOpenDoors(enabled);
                 if (enabled) {
-                    this.goalSelector.addGoal(1, this.breakDoor);
+                    this.goalSelector.addGoal(1, this.breakDoorGoal);
                 } else {
-                    this.goalSelector.removeGoal(this.breakDoor);
+                    this.goalSelector.removeGoal(this.breakDoorGoal);
                 }
             }
         } else if (this.canBreakDoors) {
-            this.goalSelector.removeGoal(this.breakDoor);
+            this.goalSelector.removeGoal(this.breakDoorGoal);
             this.canBreakDoors = false;
         }
     }
@@ -136,7 +138,6 @@ public class InsomniaZombie extends MonsterEntity {
     // Get the experience points the entity currently has.
     protected int getExperienceReward(PlayerEntity player) {
         if (this.isBaby()) this.xpReward = (int) ((float) this.xpReward * 2.5F);
-
         return super.getExperienceReward(player);
     }
 
@@ -166,7 +167,7 @@ public class InsomniaZombie extends MonsterEntity {
             if (this.isConvertingToDrowned()) {
                 --this.drownedConversionTicks;
 
-                if (this.drownedConversionTicks < 0 && ForgeEventFactory.canLivingConvert(this, EntityType.DROWNED, (timer) -> this.drownedConversionTicks = timer)) {
+                if (this.drownedConversionTicks < 0 && ForgeEventFactory.canLivingConvert(this, EntityType.DROWNED, timer -> this.drownedConversionTicks = timer)) {
                     this.convertToDrowned();
                 }
             } else if (this.convertsInWater()) {
@@ -215,7 +216,8 @@ public class InsomniaZombie extends MonsterEntity {
 
     protected void convertToDrowned() {
         if (!this.isSilent()) this.level.levelEvent(null, 1040, this.blockPosition(), 0);
-        ForgeEventFactory.onLivingConvert(this, EntityType.DROWNED.create(this.level));
+        DrownedEntity drowned = this.convertTo(EntityType.DROWNED, true);
+        if (drowned != null) ForgeEventFactory.onLivingConvert(this, EntityType.DROWNED.create(this.level));
     }
 
     protected boolean shouldBurnInDay() {
@@ -277,33 +279,22 @@ public class InsomniaZombie extends MonsterEntity {
 
     protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
         if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
-            int i = this.random.nextInt(2);
-            float f = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
+            int rand = this.random.nextInt(2);
+            float chancePerDifficulty = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            boolean populateArmor = true;
 
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
+            for(EquipmentSlotType equipmentSlot : EquipmentSlotType.values()) {
+                if (equipmentSlot.getType() == EquipmentSlotType.Group.ARMOR) {
+                    ItemStack armorSlotStacks = this.getItemBySlot(equipmentSlot);
+                    if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
 
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
-
-            boolean flag = true;
-
-            for(EquipmentSlotType equipmentSlots : EquipmentSlotType.values()) {
-                if (equipmentSlots.getType() == EquipmentSlotType.Group.ARMOR) {
-                    ItemStack armorSlotStacks = this.getItemBySlot(equipmentSlots);
-                    if (!flag && this.random.nextFloat() < f) break;
-
-                    flag = false;
+                    populateArmor = false;
                     if (armorSlotStacks.isEmpty()) {
-                        Item aljanArmor = getAljanArmorByChance(equipmentSlots, i);
-                        if (aljanArmor != null) {
-                            this.setItemSlot(equipmentSlots, new ItemStack(aljanArmor));
-                        }
+                        Item aljanArmor = getAljanArmorByChance(equipmentSlot, rand);
+                        if (aljanArmor != null) this.setItemSlot(equipmentSlot, new ItemStack(aljanArmor));
                     }
                 }
             }
@@ -399,10 +390,10 @@ public class InsomniaZombie extends MonsterEntity {
         spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
         float clampedAdditionalDifficulty = difficulty.getSpecialMultiplier();
         this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * clampedAdditionalDifficulty);
-        if (spawnData == null) spawnData = new GroupData(getBabySpawnOdds(world.getRandom()), true);
+        if (spawnData == null) spawnData = new ZombieGroupData(getBabySpawnOdds(world.getRandom()), true);
 
-        if (spawnData instanceof GroupData) {
-            GroupData zombieGroupData = (GroupData) spawnData;
+        if (spawnData instanceof ZombieGroupData) {
+            ZombieGroupData zombieGroupData = (ZombieGroupData) spawnData;
             if (zombieGroupData.isBaby) {
                 this.setBaby(true);
                 if (zombieGroupData.canSpawnJockey) {
@@ -464,15 +455,5 @@ public class InsomniaZombie extends MonsterEntity {
     // Returns the Y Offset of this entity.
     public double getMyRidingOffset() {
         return this.isBaby() ? 0 : -0.45D;
-    }
-
-    public static class GroupData implements ILivingEntityData {
-        public final boolean isBaby;
-        public final boolean canSpawnJockey;
-
-        public GroupData(boolean isBaby, boolean canSpawnJockey) {
-            this.isBaby = isBaby;
-            this.canSpawnJockey = canSpawnJockey;
-        }
     }
 }

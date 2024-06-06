@@ -279,6 +279,6 @@ public class CrystallizerBlock extends HorizontalBlock {
     }
 
     public static void playSound(World world, BlockPos pos, SoundEvent craftingSound) {
-        world.playSound(null, pos, craftingSound, SoundCategory.BLOCKS, 1, 1);
+        world.playSound(null, pos, craftingSound, SoundCategory.BLOCKS, 0.5F, 1);
     }
 }

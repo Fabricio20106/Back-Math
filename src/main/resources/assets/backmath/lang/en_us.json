@@ -1665,6 +1665,8 @@
   "subtitles.block.crystallizer.change_mold": "Crystallizer mold changes",
   "subtitles.block.aljan_portal_stand.fill": "Jantical attaches",
   "subtitles.item.chocoglue.shoot": "Chocoglue fires",
+  "subtitles.item.queen_lucy_summoner_staff.smash_air": "Summoner Staff smashes",
+  "subtitles.item.queen_lucy_summoner_staff.smash_ground": "Summoner Staff smashes",
   "subtitles.entity.sophie.death": "Sophie dies",
   "subtitles.entity.sophie.hurt": "Sophie hurts",
   "subtitles.entity.sophie.hurt.drown": "Sophie drowning",
@@ -1689,6 +1691,8 @@
   "subtitles.entity.amaracameler.death": "Amaracameler dies",
   "subtitles.entity.amaracameler.hurt": "Amaracameler hurts",
   "subtitles.entity.amaracameler.squish": "Amaracameler squishes",
+  "subtitles.entity.zombie_fabricio.converted": "Zombie Fabricio vociferates",
+  "subtitles.entity.zombie_fabricio.cure": "Zombie Fabricio snuffles",
 
   "tooltip.backmath.arrow_damage": "Arrow Damage: %s",
   "tooltip.backmath.hold_shift.not_held": "§8Hold <§7Shift§8> for description",

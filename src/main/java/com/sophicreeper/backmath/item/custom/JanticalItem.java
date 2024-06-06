@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.item.custom;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.custom.AljanPortalStandBlock;
-import com.sophicreeper.backmath.block.dispenser.JanticalDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.JanticalDispenseBehavior;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMKeys;
 import net.minecraft.block.Block;

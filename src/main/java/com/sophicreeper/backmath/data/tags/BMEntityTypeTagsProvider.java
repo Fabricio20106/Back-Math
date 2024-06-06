@@ -56,6 +56,8 @@ public class BMEntityTypeTagsProvider extends EntityTypeTagsProvider {
 
         this.tag(BMTags.EntityTypes.SOPHIE_ALLIES).add(BMEntities.WANDERER_SOPHIE.get(), BMEntities.WARRIOR_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), BMEntities.QUEEN_LUCY.get(),
                 BMEntities.ARCHER_LUCIA.get(), BMEntities.KARATE_LUCIA.get(), BMEntities.MALAIKA.get());
+        this.tag(BMTags.EntityTypes.ELIGIBLE_TO_CAPES).add(BMEntities.WANDERER_SOPHIE.get(), BMEntities.WARRIOR_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get(), BMEntities.QUEEN_LUCY.get(),
+                BMEntities.ARCHER_LUCIA.get(), BMEntities.KARATE_LUCIA.get());
 
         this.tag(BMTags.EntityTypes.ANGER_DUNGEON_MOBS).add(BMEntities.ANGRY_SOPHIE.get(), BMEntities.ANGRY_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get());
         this.tag(BMTags.EntityTypes.ALJAN_DUNGEON_MOBS).add(BMEntities.ALJAMIC_BONES.get(), BMEntities.SLEEPISH_SKELETON.get(), BMEntities.SLEEPISH_SKELETON.get(), BMEntities.INSOMNIA_ZOMBIE.get());

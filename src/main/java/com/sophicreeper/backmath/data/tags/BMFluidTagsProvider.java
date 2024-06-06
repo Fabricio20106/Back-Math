@@ -9,6 +9,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class BMFluidTagsProvider extends FluidTagsProvider {
@@ -17,6 +18,7 @@ public class BMFluidTagsProvider extends FluidTagsProvider {
     }
 
     @Override
+    @Nonnull
     public String getName() {
         return "Back Math - Fluid Tags";
     }

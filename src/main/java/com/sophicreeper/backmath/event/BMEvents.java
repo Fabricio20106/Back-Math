@@ -52,6 +52,8 @@ import static com.sophicreeper.backmath.BackMath.LOGGER;
 
 @Mod.EventBusSubscriber(modid = BackMath.MOD_ID)
 public class BMEvents {
+    private static WandererSophieVariantManager MANAGER_INSTANCE;
+
     @SubscribeEvent
     public static void biomeLoadEvent(final BiomeLoadingEvent event) {
         BMOreGeneration.generateOres(event);
@@ -165,6 +167,12 @@ public class BMEvents {
 
     @SubscribeEvent
     public static void onResourceReload(AddReloadListenerEvent event) {
-        event.addListener(new WandererSophieVariantManager());
+        MANAGER_INSTANCE = new WandererSophieVariantManager();
+        event.addListener(MANAGER_INSTANCE);
+    }
+
+    public static WandererSophieVariantManager getWandererSophieVariantManager() {
+        if (MANAGER_INSTANCE != null) return MANAGER_INSTANCE;
+        throw new IllegalStateException("Back Math: Cannot retrieve WandererSophieVariantManager until resources have loaded it.");
     }
 }

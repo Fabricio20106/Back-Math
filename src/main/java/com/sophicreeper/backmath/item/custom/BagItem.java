@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom;
 
-import com.sophicreeper.backmath.block.dispenser.BagDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.BagDispenseBehavior;
 import com.sophicreeper.backmath.loot.BMLootTableUtils;
 import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.block.DispenserBlock;

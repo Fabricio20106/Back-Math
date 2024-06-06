@@ -13,8 +13,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class InsomniaZombieRenderer extends BipedRenderer<InsomniaZombie, BMZombieBipedModel<InsomniaZombie>> {
-    public InsomniaZombieRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, new BMZombieBipedModel<>(0, 0, 64, 64), 0.5F);
+    public InsomniaZombieRenderer(EntityRendererManager manager) {
+        super(manager, new BMZombieBipedModel<>(0, 0, 64, 64), 0.5F);
         this.addLayer(new BipedArmorLayer<>(this, new BMZombieBipedModel<>(0.5F, 0, 64, 32), new BMZombieBipedModel<>(1, 0, 64, 32)));
         this.addLayer(new ElytraLayer<>(this));
     }

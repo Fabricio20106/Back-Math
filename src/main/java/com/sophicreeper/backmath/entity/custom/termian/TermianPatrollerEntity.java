@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.entity.custom.termian;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.termian.TermianPatrolGoal;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -67,10 +68,12 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         if (this.patrolTarget != null) tag.put("patrol_target", NBTUtil.writeBlockPos(this.patrolTarget));
         tag.putBoolean("patrol_leader", this.patrolLeader);
         tag.putBoolean("is_patrolling", this.patrolling);
-        CompoundNBT capeTag = new CompoundNBT();
-        capeTag.putString("texture", this.entityData.get(CAPE_TEXTURE));
-        capeTag.putBoolean("visible", this.entityData.get(CAPE_VISIBILITY));
-        tag.put("cape", capeTag);
+        if (this.getType().is(BMTags.EntityTypes.ELIGIBLE_TO_CAPES)) {
+            CompoundNBT capeTag = new CompoundNBT();
+            capeTag.putString("texture", this.entityData.get(CAPE_TEXTURE));
+            capeTag.putBoolean("visible", this.entityData.get(CAPE_VISIBILITY));
+            tag.put("cape", capeTag);
+        }
     }
 
     @Override
@@ -79,8 +82,10 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         if (tag.contains("patrol_target")) this.patrolTarget = NBTUtil.readBlockPos(tag.getCompound("patrol_target"));
         this.patrolLeader = tag.getBoolean("patrol_leader");
         this.patrolling = tag.getBoolean("is_patrolling");
-        this.entityData.set(CAPE_TEXTURE, tag.getCompound("cape").getString("texture"));
-        this.entityData.set(CAPE_VISIBILITY, tag.getCompound("cape").getBoolean("visible"));
+        if (this.getType().is(BMTags.EntityTypes.ELIGIBLE_TO_CAPES)) {
+            this.entityData.set(CAPE_TEXTURE, tag.getCompound("cape").getString("texture"));
+            this.entityData.set(CAPE_VISIBILITY, tag.getCompound("cape").getBoolean("visible"));
+        }
     }
 
     @Override

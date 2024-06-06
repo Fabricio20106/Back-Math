@@ -115,14 +115,14 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
 
         // But if you use the Book of the Regular Molds, it cannot change it to a higher tier mold.
         if (mainHand.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get()) {
-            world.setBlockAndUpdate(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().defaultBlockState().setValue(MOLD, MoldUtils.getNextAdvWithoutCrystalline(state.getValue(MOLD))).setValue(HORIZONTAL_FACING, state.getValue(HORIZONTAL_FACING)));
+            world.setBlockAndUpdate(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().defaultBlockState().setValue(MOLD, MoldUtils.getNextAdvancedWithoutCrystalline(state.getValue(MOLD))).setValue(HORIZONTAL_FACING, state.getValue(HORIZONTAL_FACING)));
             playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.awardStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             return ActionResultType.SUCCESS;
         }
 
-        if (!mainHand.getItem().is(BMTags.Items.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER)) {
+        if (!mainHand.getItem().is(BMTags.Items.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER) || !mainHand.isEmpty()) {
             // MOLD: Empty
             if (state.getValue(MOLD) == AdvancedMolds.EMPTY) {
                 // 4 Aljames + Bucket = Liquid Aljame Bucket

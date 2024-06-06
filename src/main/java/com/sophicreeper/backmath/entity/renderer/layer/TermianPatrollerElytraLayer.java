@@ -30,7 +30,7 @@ public class TermianPatrollerElytraLayer<T extends TermianPatrollerEntity, M ext
     @Override
     public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T patroller, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack chestStack = patroller.getItemBySlot(EquipmentSlotType.CHEST);
-        if (shouldRender(chestStack)) {
+        if (shouldRender(chestStack) && patroller.getType().is(BMTags.EntityTypes.ELIGIBLE_TO_CAPES)) {
             ResourceLocation elytraTexture;
             if (patroller.getCapeTexture() != null && patroller.getCapeVisibility()) {
                 elytraTexture = BMUtils.getTermianPatrollerCape(patroller);

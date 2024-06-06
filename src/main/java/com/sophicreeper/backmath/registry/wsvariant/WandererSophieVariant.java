@@ -1,12 +1,10 @@
 package com.sophicreeper.backmath.registry.wsvariant;
 
 import com.google.gson.*;
-import com.sophicreeper.backmath.registry.BMRegistries;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
-import javax.annotation.Nullable;
 import java.lang.reflect.Type;
 
 public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryEntry<WandererSophieVariant> {
@@ -22,10 +20,6 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
         return this.textureLocation;
     }
 
-    public WandererSophieVariant readJSON(JsonObject object) {
-        return new WandererSophieVariant(ResourceLocation.tryParse(JSONUtils.getAsString(object, "asset_id")), JSONUtils.getAsBoolean(object, "slim_arms"));
-    }
-
     public JsonObject writeJSON(WandererSophieVariant variant) {
         JsonObject object = new JsonObject();
         object.addProperty("asset_id", variant.textureLocation.toString());
@@ -33,9 +27,9 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
         return object;
     }
 
-    @Nullable
-    public static WandererSophieVariant byName(String name) {
-        return BMRegistries.WANDERER_SOPHIE_VARIANT.getValue(ResourceLocation.tryParse(name));
+    @Override
+    public String toString() {
+        return "[texture_location=" + this.textureLocation + ",slim_arms=" + this.slimArms + "]";
     }
 
     public static class Serializer implements JsonDeserializer<WandererSophieVariant>, JsonSerializer<WandererSophieVariant> {

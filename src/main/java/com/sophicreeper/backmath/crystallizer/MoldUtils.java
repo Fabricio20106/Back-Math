@@ -90,7 +90,7 @@ public class MoldUtils {
         return AdvancedMolds.EMPTY;
     }
 
-    public static AdvancedMolds getNextAdvWithoutCrystalline(AdvancedMolds mold) {
+    public static AdvancedMolds getNextAdvancedWithoutCrystalline(AdvancedMolds mold) {
         switch (mold) {
             case EMPTY:
                 return AdvancedMolds.SINGULARITY;
