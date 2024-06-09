@@ -1,3 +1,6 @@
 {
-  "asset_id": "backmath:sv_modified"
+  "texture_location": "backmath:entity/queen_lucy_pet/qsp_sv_modified",
+  "display_name": {
+    "translate": "entity.backmath.queen_lucy_pet.sv_modified"
+  }
 }

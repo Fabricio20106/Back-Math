@@ -15,7 +15,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShootableItem;
 import net.minecraft.nbt.CompoundNBT;
@@ -111,7 +110,7 @@ public class ArcherInsomniaSophie extends TermianMemberEntity implements IRanged
         if (this.level != null && !this.level.isClientSide) {
             this.goalSelector.removeGoal(this.aiAttackOnCollide);
             this.goalSelector.removeGoal(this.aiArrowAttack);
-            ItemStack bowStack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, AxolotlTest.ANGELIC_BOW.get()));
+            ItemStack bowStack = this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, item -> item.is(BMTags.Items.BOWS)));
             if (bowStack.getItem() instanceof BMBowItem) {
                 int attackCooldown = 20;
                 if (this.level.getDifficulty() != Difficulty.HARD) {
@@ -163,7 +162,7 @@ public class ArcherInsomniaSophie extends TermianMemberEntity implements IRanged
     }
 
     public void performRangedAttack(LivingEntity target, float distanceFactor) {
-        ItemStack ammoStack = this.getProjectile(this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, AxolotlTest.ANGELIC_BOW.get())));
+        ItemStack ammoStack = this.getProjectile(this.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this, item -> item.is(BMTags.Items.BOWS))));
         AbstractArrowEntity arrow = this.fireArrow(ammoStack, distanceFactor);
 
         if (this.getMainHandItem().getItem() instanceof BMBowItem) arrow = ((BMBowItem) this.getMainHandItem().getItem()).customArrow(arrow);
@@ -183,7 +182,7 @@ public class ArcherInsomniaSophie extends TermianMemberEntity implements IRanged
     }
 
     public boolean canFireProjectileWeapon(ShootableItem shootableItem) {
-        return shootableItem instanceof BMBowItem || shootableItem instanceof BowItem;
+        return shootableItem.is(BMTags.Items.BOWS);
     }
 
     public static AttributeModifierMap.MutableAttribute createArcherInsomniaSophieAttributes() {

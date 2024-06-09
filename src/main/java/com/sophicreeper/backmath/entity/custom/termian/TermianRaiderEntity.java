@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.entity.custom.termian;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
 import com.sophicreeper.backmath.entity.goal.termian.PromoteTermianLeaderGoal;
 import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.WolfEntity;
@@ -105,7 +106,7 @@ public abstract class TermianRaiderEntity extends TermianPatrollerEntity {
                     }
                 }
 
-                if (!headStack.isEmpty() && ItemStack.matches(headStack, getTermianBannerInstance()) && player != null) {
+                if (!headStack.isEmpty() && ItemStack.matches(headStack, BMUtils.getTermianBannerInstance()) && player != null) {
                     EffectInstance playerBadOmen = player.getEffect(Effects.BAD_OMEN);
                     int effectLevel = 1;
                     if (playerBadOmen != null) {

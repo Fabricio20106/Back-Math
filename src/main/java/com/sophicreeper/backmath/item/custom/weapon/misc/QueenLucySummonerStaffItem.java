@@ -200,7 +200,7 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
 
                 bool = true;
             }
-            return notSpectator && typeCheck && notSameTeamAs && notBool && bool && entity.distanceToSqr(livEntity) <= Math.pow(3.5, 2);
+            return notSpectator && typeCheck && notSameTeamAs && notBool && bool && entity.distanceToSqr(livEntity) <= Math.pow(3.5, 2) && !entity.getType().is(BMTags.EntityTypes.IMMUNE_TO_SUMMONER_STAFF_SMASHES);
         };
     }
 
@@ -209,6 +209,6 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
     }
 
     public static boolean canDoSmashAttack(LivingEntity livEntity) {
-        return livEntity.fallDistance > 1.5F && !livEntity.isFallFlying();
+        return livEntity.fallDistance > 1.5F && !livEntity.isFallFlying() && !livEntity.getType().is(BMTags.EntityTypes.IMMUNE_TO_SUMMONER_STAFF_SMASHES);
     }
 }

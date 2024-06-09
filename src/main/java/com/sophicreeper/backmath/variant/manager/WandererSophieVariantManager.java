@@ -1,29 +1,28 @@
-package com.sophicreeper.backmath.registry.wsvariant;
+package com.sophicreeper.backmath.variant.manager;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.sophicreeper.backmath.registry.BMRegistries;
+import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
-import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
 // TODO: Make the data-driven wanderer sophie variant files count for the actual registry.
 public class WandererSophieVariantManager extends JsonReloadListener {
-    private static final Gson GSON = createWandererSophieVariantSerializer().create();
     private Map<ResourceLocation, WandererSophieVariant> wandererSophieVariants = ImmutableMap.of();
-    private static final String VARIANTS_FOLDER = "wanderer_sophie_variant";
+    private static final Gson GSON = createWandererSophieVariantSerializer().create();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public WandererSophieVariantManager() {
-        super(GSON, VARIANTS_FOLDER);
+        super(GSON, "wanderer_sophie_variant");
     }
 
     @Override
@@ -33,21 +32,15 @@ public class WandererSophieVariantManager extends JsonReloadListener {
         resourceList.forEach(((location, element) -> {
             try {
                 if (element.isJsonObject()) {
-                    JsonObject object = element.getAsJsonObject();
-                    LogManager.getLogger().debug("Object: {}", object);
                     WandererSophieVariant variant = GSON.fromJson(element, WandererSophieVariant.class);
-                    if (!BMRegistries.WANDERER_SOPHIE_VARIANT.containsValue(variant)) {
-                        BMRegistries.WANDERER_SOPHIE_VARIANT.register(new WandererSophieVariant(ResourceLocation.tryParse(JSONUtils.getAsString(object, "asset_id")), JSONUtils.getAsBoolean(object, "slim_arms"))
-                                .setRegistryName(new ResourceLocation(JSONUtils.getAsString(object, "asset_id"))));
-                    }
                     builder.put(location, variant);
                 }
             } catch (Exception exception) {
-                LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.parse_error", location)).getString(), exception);
+                LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.parse_error", location)).getString(), exception);
             }
         }));
         this.wandererSophieVariants = builder.build();
-        LogManager.getLogger().info(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("console.backmath.wanderer_sophie_variant.loaded", builder.build().size())).getString());
+        LOGGER.info(new TranslationTextComponent("console.backmath.wanderer_sophie_variant.loaded", builder.build().size()).getString());
     }
 
     public static GsonBuilder createWandererSophieVariantSerializer() {

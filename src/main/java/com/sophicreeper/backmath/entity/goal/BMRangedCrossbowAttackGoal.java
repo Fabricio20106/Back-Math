@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.goal;
 
-import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.weapon.BMCrossbowItem;
+import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ICrossbowUser;
 import net.minecraft.entity.IRangedAttackMob;
@@ -36,7 +36,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
     }
 
     private boolean isHoldingCrossbow() {
-        return this.shooter.isHolding(item -> item instanceof BMCrossbowItem);
+        return this.shooter.isHolding(item -> item.is(BMTags.Items.CROSSBOWS));
     }
 
     public boolean canContinueToUse() {
@@ -91,7 +91,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
             this.shooter.getLookControl().setLookAt(target, 30, 30);
             if (this.crossbowState == CrossbowState.UNCHARGED) {
                 if (!flag) {
-                    this.shooter.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.shooter, AxolotlTest.ANGELIC_CROSSBOW.get()));
+                    this.shooter.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.shooter, item -> item.is(BMTags.Items.CROSSBOWS)));
                     this.crossbowState = CrossbowState.CHARGING;
                     this.shooter.setChargingCrossbow(true);
                 }
@@ -115,7 +115,8 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                 }
             } else if (this.crossbowState == CrossbowState.READY_TO_ATTACK && canMobSeeOther) {
                 this.shooter.performRangedAttack(target, 1);
-                ItemStack crossbowStack = this.shooter.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this.shooter, AxolotlTest.ANGELIC_CROSSBOW.get()));
+                this.shooter.getLookControl().setLookAt(target, 10, 70);
+                ItemStack crossbowStack = this.shooter.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this.shooter, item -> item.is(BMTags.Items.CROSSBOWS)));
                 BMCrossbowItem.setCharged(crossbowStack, false);
                 this.crossbowState = CrossbowState.UNCHARGED;
             }

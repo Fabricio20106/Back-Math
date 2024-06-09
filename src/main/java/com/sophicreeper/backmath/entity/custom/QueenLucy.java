@@ -1,15 +1,11 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.google.common.collect.Maps;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.termian.queenlucy.*;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -42,7 +38,6 @@ import org.apache.logging.log4j.LogManager;
 
 import javax.annotation.Nullable;
 import java.util.Locale;
-import java.util.Map;
 
 public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies, IMob {
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
@@ -63,14 +58,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
     }
 
     @Override
-    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
-        ItemStack crossbowStack = new ItemStack(AxolotlTest.ANGELIC_CROSSBOW.get());
-        Map<Enchantment, Integer> enchantmentMap = Maps.newHashMap();
-        enchantmentMap.put(Enchantments.QUICK_CHARGE, 1);
-        enchantmentMap.put(Enchantments.MULTISHOT, 1);
-        EnchantmentHelper.setEnchantments(enchantmentMap, crossbowStack);
-        this.setItemSlot(EquipmentSlotType.MAINHAND, crossbowStack);
-    }
+    public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {}
 
     @Override
     public SoundEvent getCelebrationSound() {

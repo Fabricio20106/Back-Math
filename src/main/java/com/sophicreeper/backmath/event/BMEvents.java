@@ -5,7 +5,8 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.model.LightBakedModel;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.registry.wsvariant.WandererSophieVariantManager;
+import com.sophicreeper.backmath.variant.manager.QueenLucyPetVariantManager;
+import com.sophicreeper.backmath.variant.manager.WandererSophieVariantManager;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
@@ -52,8 +53,6 @@ import static com.sophicreeper.backmath.BackMath.LOGGER;
 
 @Mod.EventBusSubscriber(modid = BackMath.MOD_ID)
 public class BMEvents {
-    private static WandererSophieVariantManager MANAGER_INSTANCE;
-
     @SubscribeEvent
     public static void biomeLoadEvent(final BiomeLoadingEvent event) {
         BMOreGeneration.generateOres(event);
@@ -167,12 +166,7 @@ public class BMEvents {
 
     @SubscribeEvent
     public static void onResourceReload(AddReloadListenerEvent event) {
-        MANAGER_INSTANCE = new WandererSophieVariantManager();
-        event.addListener(MANAGER_INSTANCE);
-    }
-
-    public static WandererSophieVariantManager getWandererSophieVariantManager() {
-        if (MANAGER_INSTANCE != null) return MANAGER_INSTANCE;
-        throw new IllegalStateException("Back Math: Cannot retrieve WandererSophieVariantManager until resources have loaded it.");
+        event.addListener(new WandererSophieVariantManager());
+        event.addListener(new QueenLucyPetVariantManager());
     }
 }

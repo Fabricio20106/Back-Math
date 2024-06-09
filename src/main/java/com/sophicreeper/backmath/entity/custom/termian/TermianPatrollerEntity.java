@@ -7,22 +7,14 @@ import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.Color;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
@@ -138,7 +130,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         if (reason != SpawnReason.PATROL && reason != SpawnReason.EVENT && reason != SpawnReason.STRUCTURE && this.random.nextFloat() < 0.06F && this.canBePatrolLeader()) this.patrolLeader = true;
 
         if (this.isPatrolLeader()) {
-            this.setItemSlot(EquipmentSlotType.HEAD, getTermianBannerInstance());
+            this.setItemSlot(EquipmentSlotType.HEAD, BMUtils.getTermianBannerInstance());
             this.setDropChance(EquipmentSlotType.HEAD, 2);
         }
         if (reason == SpawnReason.PATROL) this.patrolling = true;
@@ -148,17 +140,6 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         BMUtils.setRandomCape(this, this.random);
 
         return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
-    }
-
-    public static ItemStack getTermianBannerInstance() {
-        ItemStack lightBlueBanner = new ItemStack(Items.LIGHT_BLUE_BANNER);
-        CompoundNBT blockEntityTag = lightBlueBanner.getOrCreateTagElement("BlockEntityTag");
-        ListNBT patterns = new BannerPattern.Builder().addPattern(BannerPattern.GRADIENT_UP, DyeColor.PURPLE).addPattern(BannerPattern.STRIPE_CENTER, DyeColor.LIGHT_BLUE).addPattern(
-                BannerPattern.RHOMBUS_MIDDLE, DyeColor.CYAN).addPattern(BannerPattern.FLOWER, DyeColor.RED).addPattern(BannerPattern.FLOWER, DyeColor.YELLOW).toListTag();
-        blockEntityTag.put("Patterns", patterns);
-        lightBlueBanner.hideTooltipPart(ItemStack.TooltipDisplayFlags.ADDITIONAL);
-        lightBlueBanner.setHoverName(new TranslationTextComponent("block." + BackMath.MOD_ID + ".termian_empire_banner").withStyle(Style.EMPTY.withColor(Color.fromRgb(0x1DC2D1)).withItalic(false)));
-        return lightBlueBanner;
     }
 
     public static boolean checkTermianPatrolSpawnRules(EntityType<? extends TermianPatrollerEntity> patroller, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {

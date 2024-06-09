@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.data.variant;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.data.QueenLucyPetVariantProvider;
-import com.sophicreeper.backmath.registry.qlpvariant.BMQueenLucyPetVariants;
+import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import net.minecraft.data.DataGenerator;
 
 import javax.annotation.Nonnull;

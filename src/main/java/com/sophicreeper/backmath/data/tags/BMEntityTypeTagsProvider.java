@@ -62,9 +62,12 @@ public class BMEntityTypeTagsProvider extends EntityTypeTagsProvider {
         this.tag(BMTags.EntityTypes.ANGER_DUNGEON_MOBS).add(BMEntities.ANGRY_SOPHIE.get(), BMEntities.ANGRY_SOPHIE.get(), BMEntities.INSOMNIA_SOPHIE.get(), BMEntities.ARCHER_INSOMNIA_SOPHIE.get());
         this.tag(BMTags.EntityTypes.ALJAN_DUNGEON_MOBS).add(BMEntities.ALJAMIC_BONES.get(), BMEntities.SLEEPISH_SKELETON.get(), BMEntities.SLEEPISH_SKELETON.get(), BMEntities.INSOMNIA_ZOMBIE.get());
 
+        this.tag(BMTags.EntityTypes.IMMUNE_TO_SUMMONER_STAFF_SMASHES);
+
         // Melony Tags
         this.tag(BMTags.EntityTypes.CAN_SPAWN_ON_LEAVES).add(EntityType.OCELOT, EntityType.PARROT);
 
+        // Minecraft Tags
         this.tag(EntityTypeTags.SKELETONS).add(BMEntities.ALJAMIC_BONES.get(), BMEntities.SLEEPISH_SKELETON.get());
         this.tag(EntityTypeTags.ARROWS).add(BMEntities.INSOMNIA_ARROW.get());
         this.tag(EntityTypeTags.IMPACT_PROJECTILES).add(BMEntities.CHOCOGLUE_PROJECTILE.get());

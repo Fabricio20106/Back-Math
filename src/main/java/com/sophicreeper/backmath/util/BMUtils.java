@@ -1,23 +1,30 @@
 package com.sophicreeper.backmath.util;
 
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
 import com.sophicreeper.backmath.entity.custom.WandererSophie;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.registry.BMRegistries;
-import com.sophicreeper.backmath.registry.wsvariant.WandererSophieVariant;
+import com.sophicreeper.backmath.misc.BMRegistries;
+import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
+import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.FilledMapItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
@@ -70,6 +77,18 @@ public class BMUtils {
         return new ItemStack(Items.MAP);
     }
 
+    // Returns a Termian Empire Banner. Used by termian patrollers.
+    public static ItemStack getTermianBannerInstance() {
+        ItemStack lightBlueBanner = new ItemStack(Items.LIGHT_BLUE_BANNER);
+        CompoundNBT blockEntityTag = lightBlueBanner.getOrCreateTagElement("BlockEntityTag");
+        ListNBT patterns = new BannerPattern.Builder().addPattern(BannerPattern.GRADIENT_UP, DyeColor.PURPLE).addPattern(BannerPattern.STRIPE_CENTER, DyeColor.LIGHT_BLUE).addPattern(
+                BannerPattern.RHOMBUS_MIDDLE, DyeColor.CYAN).addPattern(BannerPattern.FLOWER, DyeColor.RED).addPattern(BannerPattern.FLOWER, DyeColor.YELLOW).toListTag();
+        blockEntityTag.put("Patterns", patterns);
+        lightBlueBanner.hideTooltipPart(ItemStack.TooltipDisplayFlags.ADDITIONAL);
+        lightBlueBanner.setHoverName(new TranslationTextComponent("block." + BackMath.MOD_ID + ".termian_empire_banner").withStyle(Style.EMPTY.withColor(Color.fromRgb(0x1DC2D1)).withItalic(false)));
+        return lightBlueBanner;
+    }
+
     // Returns the resource location for a Termian Patroller's cape.
     public static ResourceLocation getTermianPatrollerCape(TermianPatrollerEntity patroller) {
         String capeNamespace = new ResourceLocation(patroller.getCapeTexture()).getNamespace();
@@ -101,8 +120,14 @@ public class BMUtils {
     }
 
     // Sets a random Wanderer Sophie variant from the wanderer_sophie_variant registry.
-    public static void setRandomRegistryBasedVariant(WandererSophie sophie) {
+    public static void setRandomWSRegistryBasedVariant(WandererSophie sophie) {
         WandererSophieVariant[] variants = BMRegistries.WANDERER_SOPHIE_VARIANT.getValues().toArray(new WandererSophieVariant[0]);
-        sophie.setRegistryBasedVariant(variants[sophie.level.random.nextInt(BMRegistries.WANDERER_SOPHIE_VARIANT.getValues().size())]);
+        sophie.setVariant(variants[sophie.level.random.nextInt(BMRegistries.WANDERER_SOPHIE_VARIANT.getValues().size())]);
+    }
+
+    // Sets a random Queen Lucy Pet variant from the queen_lucy_pet_variant registry.
+    public static void setRandomQLPRegistryBasedVariant(QueenLucyPet lucy) {
+        QueenLucyPetVariant[] variants = BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().toArray(new QueenLucyPetVariant[0]);
+        lucy.setVariant(variants[lucy.level.random.nextInt(BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().size())]);
     }
 }

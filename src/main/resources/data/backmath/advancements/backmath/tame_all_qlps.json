@@ -24,7 +24,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:0}"
+          "nbt": "{variant:\"backmath:current\"}"
         }
       }
     },
@@ -33,7 +33,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:1}"
+          "nbt": "{variant:\"backmath:alternate\"}"
         }
       }
     },
@@ -42,7 +42,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:2}"
+          "nbt": "{variant:\"backmath:relic\"}"
         }
       }
     },
@@ -51,7 +51,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:3}"
+          "nbt": "{variant:\"backmath:shy_fabricio\"}"
         }
       }
     },
@@ -60,7 +60,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:4}"
+          "nbt": "{variant:\"backmath:sv_original\"}"
         }
       }
     },
@@ -69,7 +69,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:5}"
+          "nbt": "{variant:\"backmath:sv_modified\"}"
         }
       }
     },
@@ -78,7 +78,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:6}"
+          "nbt": "{variant:\"backmath:sv_creeper\"}"
         }
       }
     },
@@ -87,7 +87,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:7}"
+          "nbt": "{variant:\"backmath:sv_brazil_shirt\"}"
         }
       }
     },
@@ -96,7 +96,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:8}"
+          "nbt": "{variant:\"backmath:sv_pajama\"}"
         }
       }
     },
@@ -105,7 +105,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:9}"
+          "nbt": "{variant:\"backmath:sv_savannah\"}"
         }
       }
     },
@@ -114,7 +114,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:10}"
+          "nbt": "{variant:\"backmath:sv_witcher\"}"
         }
       }
     },
@@ -123,7 +123,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:11}"
+          "nbt": "{variant:\"backmath:sv_maid\"}"
         }
       }
     },
@@ -132,7 +132,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:12}"
+          "nbt": "{variant:\"backmath:sv_yellow_axolotl\"}"
         }
       }
     },
@@ -141,7 +141,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:13}"
+          "nbt": "{variant:\"backmath:sv_cyan_axolotl\"}"
         }
       }
     },
@@ -150,7 +150,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:14}"
+          "nbt": "{variant:\"backmath:sv_ender\"}"
         }
       }
     },
@@ -159,7 +159,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:15}"
+          "nbt": "{variant:\"backmath:sv_worker\"}"
         }
       }
     },
@@ -168,7 +168,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:16}"
+          "nbt": "{variant:\"backmath:sv_empresary2\"}"
         }
       }
     },
@@ -177,7 +177,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:17}"
+          "nbt": "{variant:\"backmath:sv_entrepreneur\"}"
         }
       }
     },
@@ -186,7 +186,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:18}"
+          "nbt": "{variant:\"backmath:sv_blue_axolotl\"}"
         }
       }
     },
@@ -195,7 +195,7 @@
       "conditions": {
         "entity": {
           "type": "backmath:queen_sophie_pet",
-          "nbt": "{Variant:19}"
+          "nbt": "{variant:\"backmath:sv_cyan_axolotl_2\"}"
         }
       }
     }

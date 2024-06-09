@@ -1,8 +1,8 @@
-package com.sophicreeper.backmath.registry;
+package com.sophicreeper.backmath.misc;
 
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.registry.qlpvariant.QueenLucyPetVariant;
-import com.sophicreeper.backmath.registry.wsvariant.WandererSophieVariant;
+import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
+import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 

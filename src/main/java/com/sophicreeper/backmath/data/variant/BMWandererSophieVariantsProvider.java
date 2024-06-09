@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.data.variant;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.data.WandererSophieVariantProvider;
-import com.sophicreeper.backmath.registry.wsvariant.BMWandererSophieVariants;
+import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import net.minecraft.data.DataGenerator;
 
 import javax.annotation.Nonnull;

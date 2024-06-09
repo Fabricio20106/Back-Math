@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.google.common.collect.Maps;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
@@ -21,10 +22,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.ShootableItem;
+import net.minecraft.item.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -39,6 +37,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -65,6 +65,12 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
         for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
             if (slotType.getType() == EquipmentSlotType.Group.ARMOR) this.enchantSpawnedArmor(1, slotType);
         }
+        ItemStack crossbowStack = new ItemStack(AxolotlTest.ANGELIC_CROSSBOW.get());
+        Map<Enchantment, Integer> enchantmentMap = Maps.newHashMap();
+        enchantmentMap.put(Enchantments.QUICK_CHARGE, 1);
+        enchantmentMap.put(Enchantments.MULTISHOT, 1);
+        EnchantmentHelper.setEnchantments(enchantmentMap, crossbowStack);
+        this.setItemSlot(EquipmentSlotType.MAINHAND, crossbowStack);
     }
 
     @Override
@@ -144,6 +150,22 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
 
     public void setChargingCrossbow(boolean isCharging) {
         this.entityData.set(IS_CHARGING_CROSSBOW, isCharging);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public boolean isChargingCrossbow() {
+        return this.entityData.get(IS_CHARGING_CROSSBOW);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public ArmPose getArmPose() {
+        if (this.isChargingCrossbow()) {
+            return ArmPose.CROSSBOW_CHARGE;
+        } else if (this.isHolding(item -> item instanceof CrossbowItem)) {
+            return ArmPose.CROSSBOW_HOLD;
+        } else {
+            return this.isAggressive() ? ArmPose.ATTACKING : ArmPose.NEUTRAL;
+        }
     }
 
     protected void enchantSpawnedWeapon(float chance) {
@@ -265,9 +287,9 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
         if (super.setSlot(inventorySlot, stack)) {
             return true;
         } else {
-            int i = inventorySlot - 300;
-            if (i >= 0 && i < this.inventory.getContainerSize()) {
-                this.inventory.setItem(i, stack);
+            int slotIndex = inventorySlot - 300;
+            if (slotIndex >= 0 && slotIndex < this.inventory.getContainerSize()) {
+                this.inventory.setItem(slotIndex, stack);
                 return true;
             } else {
                 return false;

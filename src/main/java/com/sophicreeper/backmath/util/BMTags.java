@@ -427,6 +427,7 @@ public class BMTags {
         public static final ITag.INamedTag<EntityType<?>> ANGER_DUNGEON_MOBS = backMath("anger_dungeon_mobs");
         public static final ITag.INamedTag<EntityType<?>> ALJAN_DUNGEON_MOBS = backMath("aljan_dungeon_mobs");
         public static final ITag.INamedTag<EntityType<?>> ELIGIBLE_TO_CAPES = backMath("eligible_for_capes");
+        public static final ITag.INamedTag<EntityType<?>> IMMUNE_TO_SUMMONER_STAFF_SMASHES = backMath("immune_to_summoner_staff_smashes");
 
         // Raider-related Tags
         public static final ITag.INamedTag<EntityType<?>> TERMIAN_RAIDERS_ATTACK = backMath("termian_raiders_attack");

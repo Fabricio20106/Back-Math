@@ -230,7 +230,7 @@ public class ZombieFabricio extends MonsterEntity {
     @Override
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);
-        if (handStack.getItem() == Items.GOLDEN_APPLE) {
+        if (handStack.getItem() == AxolotlTest.JANTIQUIFIED_ALJAME.get()) {
             if (this.hasEffect(Effects.BLINDNESS)) {
                 if (!player.abilities.instabuild) handStack.shrink(1);
 

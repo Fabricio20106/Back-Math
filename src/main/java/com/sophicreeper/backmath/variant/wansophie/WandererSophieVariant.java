@@ -1,4 +1,4 @@
-package com.sophicreeper.backmath.registry.wsvariant;
+package com.sophicreeper.backmath.variant.wansophie;
 
 import com.google.gson.*;
 import net.minecraft.util.JSONUtils;
@@ -22,7 +22,7 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
 
     public JsonObject writeJSON(WandererSophieVariant variant) {
         JsonObject object = new JsonObject();
-        object.addProperty("asset_id", variant.textureLocation.toString());
+        object.addProperty("texture_location", variant.textureLocation.toString());
         object.addProperty("slim_arms", variant.slimArms);
         return object;
     }
@@ -36,7 +36,7 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
         @Override
         public WandererSophieVariant deserialize(JsonElement element, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             JsonObject object = element.getAsJsonObject();
-            ResourceLocation textureLocation = ResourceLocation.tryParse(JSONUtils.getAsString(object, "asset_id"));
+            ResourceLocation textureLocation = ResourceLocation.tryParse(JSONUtils.getAsString(object, "texture_location"));
             boolean slimArms = JSONUtils.getAsBoolean(object, "slim_arms");
             return new WandererSophieVariant(textureLocation, slimArms);
         }
@@ -44,7 +44,7 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
         @Override
         public JsonElement serialize(WandererSophieVariant variant, Type sourceType, JsonSerializationContext context) {
             JsonObject object = new JsonObject();
-            object.addProperty("asset_id", variant.textureLocation.toString());
+            object.addProperty("texture_location", variant.textureLocation.toString());
             object.addProperty("slim_arms", variant.slimArms);
             return object;
         }

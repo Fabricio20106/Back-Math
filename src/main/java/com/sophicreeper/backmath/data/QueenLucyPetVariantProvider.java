@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.data;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.sophicreeper.backmath.registry.qlpvariant.QueenLucyPetVariant;
+import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import cpw.mods.modlauncher.api.LamdbaExceptionUtils;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;

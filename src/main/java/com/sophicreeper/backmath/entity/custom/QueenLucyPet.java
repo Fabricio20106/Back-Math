@@ -4,7 +4,12 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.QLPOwnersTargetGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.misc.BMRegistries;
+import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
+import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.BMUtils;
+import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -28,7 +33,6 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.IFormattableTextComponent;
@@ -37,16 +41,16 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public class QueenLucyPet extends TameableEntity {
-    private static final DataParameter<Integer> VARIANT = EntityDataManager.defineId(QueenLucyPet.class, DataSerializers.INT);
-    public static final Predicate<LivingEntity> NON_TAMED_TARGETS = (livEntity) -> {
-        EntityType<?> type = livEntity.getType();
-        return type.is(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED);
-    };
+    public static final Logger LOGGER = LogManager.getLogger();
+    private static final DataParameter<String> VARIANT = EntityDataManager.defineId(QueenLucyPet.class, DataSerializers.STRING);
+    public static final Predicate<LivingEntity> NON_TAMED_TARGETS = livEntity -> livEntity.getType().is(BMTags.EntityTypes.QLP_TARGETS_NOT_TAMED);
 
     public QueenLucyPet(EntityType<QueenLucyPet> type, World world) {
         super(type, world);
@@ -63,7 +67,7 @@ public class QueenLucyPet extends TameableEntity {
 
     public void aiStep() {
         this.updateSwingTime();
-        if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
+        if (this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
             if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
                 this.heal(1);
             }
@@ -101,15 +105,13 @@ public class QueenLucyPet extends TameableEntity {
 
     @Override
     public ITextComponent getName() {
-        return this.getCustomName() != null ? removeAction(this.getCustomName()) : new TranslationTextComponent("entity." + BackMath.MOD_ID + ".queen_lucy_pet." + this.getVariant());
+        return this.getCustomName() != null ? removeAction(this.getCustomName()) : this.getRegistryVariant().getDisplayName();
     }
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        this.setVariant(this.random.nextInt(20));
-        if (spawnData == null) {
-            spawnData = new AgeableEntity.AgeableData(false);
-        }
+        BMUtils.setRandomQLPRegistryBasedVariant(this);
+        if (spawnData == null) spawnData = new AgeableEntity.AgeableData(false);
 
         return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
@@ -129,11 +131,9 @@ public class QueenLucyPet extends TameableEntity {
     protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {}
 
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getItemInHand(hand);
-        if (!this.isTame() && heldItem.getItem().is(BMTags.Items.QUEEN_LUCY_PET_TAME_ITEMS)) {
-            if (!player.abilities.instabuild) {
-                heldItem.shrink(1);
-            }
+        ItemStack handStack = player.getItemInHand(hand);
+        if (!this.isTame() && handStack.getItem().is(BMTags.Items.QUEEN_LUCY_PET_TAME_ITEMS)) {
+            if (!player.abilities.instabuild) handStack.shrink(1);
 
             if (!this.level.isClientSide) {
                 if (this.random.nextInt(10) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
@@ -143,18 +143,12 @@ public class QueenLucyPet extends TameableEntity {
                     this.level.broadcastEntityEvent(this, (byte) 6);
                 }
             }
-
             return ActionResultType.sidedSuccess(this.level.isClientSide);
-        } else if (heldItem.getItem().is(BMTags.Items.QUEEN_LUCY_PET_POISONOUS_ITEMS)) {
-            if (!player.abilities.instabuild) {
-                heldItem.shrink(1);
-            }
+        } else if (handStack.getItem().is(BMTags.Items.QUEEN_LUCY_PET_POISONOUS_ITEMS)) {
+            if (!player.abilities.instabuild) handStack.shrink(1);
 
             this.addEffect(new EffectInstance(Effects.POISON, 900));
-            if (player.isCreative() || !this.isInvulnerable()) {
-                this.hurt(DamageSource.playerAttack(player), Float.MAX_VALUE);
-            }
-
+            if (player.isCreative() || !this.isInvulnerable()) this.hurt(DamageSource.playerAttack(player), Float.MAX_VALUE);
             return ActionResultType.sidedSuccess(this.level.isClientSide);
         } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(player)) {
             if (!this.level.isClientSide) {
@@ -224,27 +218,41 @@ public class QueenLucyPet extends TameableEntity {
         return new ItemStack(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());
     }
 
-    public int getVariant() {
-        return MathHelper.clamp(this.entityData.get(VARIANT), 0, 19);
+    public String getVariant() {
+        if (BMRegistries.QUEEN_LUCY_PET_VARIANT.containsKey(ResourceLocation.tryParse(this.entityData.get(VARIANT)))) {
+            return this.entityData.get(VARIANT);
+        } else {
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.invalid_get", this.entityData.get(VARIANT))).getString());
+        }
+        return BMQueenLucyPetVariants.CURRENT.get().getRegistryName().toString();
     }
 
-    public void setVariant(int variant) {
-        this.entityData.set(VARIANT, variant);
+    public QueenLucyPetVariant getRegistryVariant() {
+        return BMRegistries.QUEEN_LUCY_PET_VARIANT.getValue(ResourceLocation.tryParse(this.entityData.get(VARIANT)));
+    }
+
+    public void setVariant(QueenLucyPetVariant variant) {
+        if (BMRegistries.QUEEN_LUCY_PET_VARIANT.containsValue(variant)) {
+            this.entityData.set(VARIANT, variant.getRegistryName().toString());
+        } else {
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.invalid_set", variant.getRegistryName().toString())).getString());
+        }
     }
 
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(VARIANT, 0);
+        this.entityData.define(VARIANT, BMQueenLucyPetVariants.CURRENT.get().getRegistryName().toString());
     }
 
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
-        tag.putInt("Variant", this.getVariant());
+        tag.putString("variant", this.getVariant());
     }
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.setVariant(tag.getInt("Variant"));
+        this.setVariant(BMTagFixes.fixQueenLucyPetVariantTag(tag));
+        tag.remove("Variant");
     }
 
     public boolean isFlying() {
