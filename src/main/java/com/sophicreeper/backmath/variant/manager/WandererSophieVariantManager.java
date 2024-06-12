@@ -4,10 +4,12 @@ import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
+import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import net.minecraft.client.resources.JsonReloadListener;
 import net.minecraft.profiler.IProfiler;
 import net.minecraft.resources.IResourceManager;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
@@ -33,6 +35,14 @@ public class WandererSophieVariantManager extends JsonReloadListener {
             try {
                 if (element.isJsonObject()) {
                     WandererSophieVariant variant = GSON.fromJson(element, WandererSophieVariant.class);
+                    String assetID = JSONUtils.getAsString(element.getAsJsonObject(), "texture_location").replace("entity/wanderer_sophie/", "");
+                    try {
+                        if (!BMRegistries.WANDERER_SOPHIE_VARIANT.containsKey(ResourceLocation.tryParse(assetID))) {
+                            BMRegistries.WANDERER_SOPHIE_VARIANT.register(variant);
+                        }
+                    } catch (Exception exception) {
+                        LOGGER.error("Back Math: Could not register Wanderer Sophie variant '{}' into the Forge registry", assetID);
+                    }
                     builder.put(location, variant);
                 }
             } catch (Exception exception) {

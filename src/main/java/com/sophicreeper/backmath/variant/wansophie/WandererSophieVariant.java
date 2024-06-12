@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.variant.wansophie;
 
 import com.google.gson.*;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -8,6 +10,8 @@ import net.minecraftforge.registries.ForgeRegistryEntry;
 import java.lang.reflect.Type;
 
 public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryEntry<WandererSophieVariant> {
+    public static final Codec<WandererSophieVariant> CODEC = RecordCodecBuilder.create((instance) -> instance.group(ResourceLocation.CODEC.fieldOf("texture_location").forGetter(WandererSophieVariant::getTextureLocation),
+            Codec.BOOL.fieldOf("slim_arms").forGetter(WandererSophieVariant::hasSlimArms)).apply(instance, WandererSophieVariant::new));
     private final ResourceLocation textureLocation;
     private final boolean slimArms;
 
@@ -18,6 +22,10 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
 
     public ResourceLocation getTextureLocation() {
         return this.textureLocation;
+    }
+
+    public boolean hasSlimArms() {
+        return this.slimArms;
     }
 
     public JsonObject writeJSON(WandererSophieVariant variant) {

@@ -4,10 +4,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -15,17 +13,12 @@ import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
-import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ISkyRenderHandler;
 
 import java.util.Random;
 
-@OnlyIn(Dist.CLIENT)
 public class AljanSkyRenderer implements ISkyRenderHandler {
     private static final ResourceLocation ALJAN_SUN_TEXTURES = BackMath.resourceLoc("textures/environment/aljan_sun.png");
     private final VertexFormat skyVertexFormat = DefaultVertexFormats.POSITION;
@@ -40,11 +33,59 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
-    public void render(int ticks, float partialTicks, MatrixStack matrixStack, ClientWorld world, Minecraft mc) {
-        if (mc.level != null && mc.level.dimension() == BMDimensions.THE_ALJAN) {
+    public void render(int ticks, float partialTicks, MatrixStack stack, ClientWorld world, Minecraft minecraft) {
+        RenderSystem.disableAlphaTest();
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.depthMask(false);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder buffer = tessellator.getBuilder();
+
+        float f11 = 1 - world.getRainLevel(partialTicks);
+        RenderSystem.color4f(1, 1, 1, f11);
+        stack.mulPose(Vector3f.YP.rotationDegrees(-90));
+        stack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360));
+        Matrix4f matrix4F = stack.last().pose();
+
+        RenderSystem.enableTexture();
+        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        stack.pushPose();
+        minecraft.textureManager.bind(ALJAN_SUN_TEXTURES);
+        buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        buffer.vertex(matrix4F, -30, 100, -30).uv(0, 0).endVertex();
+        buffer.vertex(matrix4F, 30, 100, -30).uv(1, 0).endVertex();
+        buffer.vertex(matrix4F, 30, 100, 30).uv(1, 1).endVertex();
+        buffer.vertex(matrix4F, -30, 100, 30).uv(0, 1).endVertex();
+        buffer.end();
+        WorldVertexBufferUploader.end(buffer);
+        RenderSystem.disableTexture();
+        float starBrightness = world.getStarBrightness(partialTicks) * f11;
+        if (starBrightness > 0) {
+            RenderSystem.color4f(starBrightness, starBrightness, starBrightness, starBrightness);
+            this.starVBO.bind();
+            this.skyVertexFormat.setupBufferState(0L);
+            this.starVBO.draw(stack.last().pose(), 7);
+            VertexBuffer.unbind();
+            this.skyVertexFormat.clearBufferState();
+        }
+
+        RenderSystem.color4f(1, 1, 1, 1);
+        RenderSystem.disableBlend();
+        RenderSystem.enableAlphaTest();
+        RenderSystem.enableFog();
+        stack.popPose();
+
+        RenderSystem.depthMask(true);
+        RenderSystem.enableTexture();
+        RenderSystem.disableBlend();
+        RenderSystem.enableAlphaTest();
+    }
+
+    /*@Override
+    public void render(int ticks, float partialTicks, MatrixStack stack, ClientWorld world, Minecraft minecraft) {
+        if (minecraft.level != null && minecraft.level.dimension() == BMDimensions.THE_ALJAN) {
             RenderSystem.disableTexture();
-            Vector3d skyColor = world.getSkyColor(mc.gameRenderer.getMainCamera().getBlockPosition(), partialTicks);
+            Vector3d skyColor = world.getSkyColor(minecraft.gameRenderer.getMainCamera().getBlockPosition(), partialTicks);
             FogRenderer.levelFogColor();
             BufferBuilder bufferBuilder = Tessellator.getInstance().getBuilder();
             RenderSystem.depthMask(false);
@@ -52,7 +93,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
             RenderSystem.color3f((float) skyColor.x, (float) skyColor.y, (float) skyColor.z);
             this.skyVBO.bind();
             this.skyVertexFormat.setupBufferState(0L);
-            this.skyVBO.draw(matrixStack.last().pose(), 7);
+            this.skyVBO.draw(stack.last().pose(), 7);
             VertexBuffer.unbind();
             this.skyVertexFormat.clearBufferState();
             RenderSystem.disableFog();
@@ -63,15 +104,15 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
             if (afloat != null) {
                 RenderSystem.disableTexture();
                 RenderSystem.shadeModel(7425);
-                matrixStack.pushPose();
-                matrixStack.mulPose(Vector3f.XP.rotationDegrees(90));
+                stack.pushPose();
+                stack.mulPose(Vector3f.XP.rotationDegrees(90));
                 float f3 = MathHelper.sin(world.getSunAngle(partialTicks)) < 0 ? 180 : 0;
-                matrixStack.mulPose(Vector3f.ZP.rotationDegrees(f3));
-                matrixStack.mulPose(Vector3f.ZP.rotationDegrees(90));
+                stack.mulPose(Vector3f.ZP.rotationDegrees(f3));
+                stack.mulPose(Vector3f.ZP.rotationDegrees(90));
                 float f4 = afloat[0];
                 float f5 = afloat[1];
                 float f6 = afloat[2];
-                Matrix4f matrix4F = matrixStack.last().pose();
+                Matrix4f matrix4F = stack.last().pose();
                 bufferBuilder.begin(6, DefaultVertexFormats.POSITION_COLOR);
                 bufferBuilder.vertex(matrix4F, 0, 100, 0).color(f4, f5, f6, afloat[3]).endVertex();
 
@@ -84,20 +125,20 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
 
                 bufferBuilder.end();
                 WorldVertexBufferUploader.end(bufferBuilder);
-                matrixStack.popPose();
+                stack.popPose();
                 RenderSystem.shadeModel(7424);
             }
 
             RenderSystem.enableTexture();
             RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-            matrixStack.pushPose();
+            stack.pushPose();
             float f11 = 1 - world.getRainLevel(partialTicks);
             RenderSystem.color4f(1, 1, 1, f11);
-            matrixStack.mulPose(Vector3f.YP.rotationDegrees(-90));
-            matrixStack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360));
-            Matrix4f matrix4F = matrixStack.last().pose();
+            stack.mulPose(Vector3f.YP.rotationDegrees(-90));
+            stack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360));
+            Matrix4f matrix4F = stack.last().pose();
 
-            mc.textureManager.bind(ALJAN_SUN_TEXTURES);
+            minecraft.textureManager.bind(ALJAN_SUN_TEXTURES);
             bufferBuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
             bufferBuilder.vertex(matrix4F, -30, 100, -30).uv(0, 0).endVertex();
             bufferBuilder.vertex(matrix4F, 30, 100, -30).uv(1, 0).endVertex();
@@ -111,7 +152,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
                 RenderSystem.color4f(f10, f10, f10, f10);
                 this.starVBO.bind();
                 this.skyVertexFormat.setupBufferState(0L);
-                this.starVBO.draw(matrixStack.last().pose(), 7);
+                this.starVBO.draw(stack.last().pose(), 7);
                 VertexBuffer.unbind();
                 this.skyVertexFormat.clearBufferState();
             }
@@ -120,19 +161,19 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
             RenderSystem.disableBlend();
             RenderSystem.enableAlphaTest();
             RenderSystem.enableFog();
-            matrixStack.popPose();
+            stack.popPose();
             RenderSystem.disableTexture();
             RenderSystem.color3f(0, 0, 0);
-            double d0 = mc.player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight();
+            double d0 = minecraft.player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight();
             if (d0 < 0) {
-                matrixStack.pushPose();
-                matrixStack.translate(0, 12, 0);
+                stack.pushPose();
+                stack.translate(0, 12, 0);
                 this.sky2VBO.bind();
                 this.skyVertexFormat.setupBufferState(0L);
-                this.sky2VBO.draw(matrixStack.last().pose(), 7);
+                this.sky2VBO.draw(stack.last().pose(), 7);
                 VertexBuffer.unbind();
                 this.skyVertexFormat.clearBufferState();
-                matrixStack.popPose();
+                stack.popPose();
             }
 
             if (world.effects().hasGround()) {
@@ -144,8 +185,18 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
             RenderSystem.enableTexture();
             RenderSystem.depthMask(true);
             RenderSystem.disableFog();
+
+            stack.pushPose();
+            generateSky();
+            stack.popPose();
+            stack.pushPose();
+            generateSky2();
+            stack.popPose();
+            stack.pushPose();
+            generateStars();
+            stack.popPose();
         }
-    }
+    }*/
 
     private void generateSky2() {
         Tessellator tessellator = Tessellator.getInstance();

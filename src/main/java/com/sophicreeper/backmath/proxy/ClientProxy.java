@@ -7,7 +7,7 @@ import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
-import com.sophicreeper.backmath.world.renderer.AljanRenderInfo;
+import com.sophicreeper.backmath.world.renderer.AljanDimensionRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.world.DimensionRenderInfo;
@@ -265,8 +265,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ARROW.get(), InsomniaArrowRenderer::new);
 
         // Aljan Sky
-        AljanRenderInfo renderInfo = new AljanRenderInfo(128, false, DimensionRenderInfo.FogType.NORMAL, false, false);
-        DimensionRenderInfo.EFFECTS.put(BackMath.resourceLoc("the_aljan"), renderInfo);
+        DimensionRenderInfo.EFFECTS.put(BackMath.resourceLoc("the_aljan"), new AljanDimensionRenderer());
 
         // Item Properties
         makeShield(AxolotlTest.DEVIL_SHIELD.get());

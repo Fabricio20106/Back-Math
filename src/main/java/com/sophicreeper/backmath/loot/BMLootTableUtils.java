@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.loot;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.dispenser.IBlockSource;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -42,6 +43,18 @@ public class BMLootTableUtils {
                     context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ())).withParameter(LootParameters.TOOL, context.getPlayer().getItemInHand(Hand.MAIN_HAND)).withParameter(LootParameters.THIS_ENTITY, context.getPlayer())
                     .create(LootParameterSets.BLOCK);
             return server.getLootTables().get(cuttingTable).getRandomItems(lootContext);
+        }
+        return ImmutableList.of();
+    }
+
+    public static Collection<ItemStack> equipGear(ResourceLocation equipmentTable, LivingEntity livEntity) {
+        MinecraftServer server = livEntity.getServer();
+        if (server == null) return ImmutableList.of();
+
+        if (livEntity.level instanceof ServerWorld) {
+            LootContext context = new LootContext.Builder((ServerWorld) livEntity.level).withParameter(LootParameters.ORIGIN, livEntity.position()).withParameter(LootParameters.THIS_ENTITY, livEntity).withLuck(livEntity.level.getCurrentDifficultyAt(livEntity.blockPosition())
+                    .getSpecialMultiplier()).create(BMLootParameterSets.EQUIPMENT);
+            return server.getLootTables().get(equipmentTable).getRandomItems(context);
         }
         return ImmutableList.of();
     }

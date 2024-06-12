@@ -3,7 +3,9 @@ package com.sophicreeper.backmath.entity.custom;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -138,6 +140,7 @@ public class WarriorSophie extends TermianMemberEntity implements ISophieFriendl
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData entityData, @Nullable CompoundNBT dataTag) {
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.WARRIOR_SOPHIE_EQUIPMENT, this);
         this.populateDefaultEquipmentSlots(difficulty);
         this.populateDefaultEquipmentEnchantments(difficulty);
         return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
@@ -154,30 +157,5 @@ public class WarriorSophie extends TermianMemberEntity implements ISophieFriendl
             CreatureEntity entity = (CreatureEntity) this.getVehicle();
             this.yBodyRot = entity.yBodyRot;
         }
-    }
-
-    @Override
-    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        int i = this.random.nextInt(3);
-        if (i == 0) {
-            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.MILKLLARY_WARRIOR_HELMET.get()));
-            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.MILKLLARY_CHESTPLATE.get()));
-            this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.MILKLLARY_LEGGINGS.get()));
-            this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.MILKLLARY_BOOTS.get()));
-            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.MILKLLARY_SWORD.get()));
-        } else if (i == 1) {
-            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_WARRIOR_HELMET.get()));
-            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()));
-            this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.ANGELIC_LEGGINGS.get()));
-            this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.ANGELIC_BOOTS.get()));
-            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
-        } else {
-            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.DEVIL_WARRIOR_HELMET.get()));
-            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()));
-            this.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.DEVIL_LEGGINGS.get()));
-            this.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.DEVIL_BOOTS.get()));
-            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.DEVIL_SWORD.get()));
-        }
-        super.populateDefaultEquipmentSlots(difficulty);
     }
 }

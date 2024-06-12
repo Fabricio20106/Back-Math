@@ -1,5 +1,5 @@
 {
-  "texture_location": "backmath:entity/queen_lucy_pet/qsp_alternate",
+  "texture_location": "backmath:entity/queen_lucy_pet/qsp_alt",
   "display_name": {
     "translate": "entity.backmath.queen_lucy_pet.alternate"
   }

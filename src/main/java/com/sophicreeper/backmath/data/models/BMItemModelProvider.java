@@ -406,7 +406,6 @@ public class BMItemModelProvider extends BMItemModelModels {
         blockItem("orange_oak_sapling");
         blockItem("banana_jungle_sapling");
         blockItem("aljame_birch_sapling");
-        blockItem("grape_vines", "_top");
         grapeVinePost("oak");
         grapeVinePost("spruce");
         grapeVinePost("birch");

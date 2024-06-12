@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -10,7 +12,6 @@ import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.monster.AbstractSkeletonEntity;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -83,35 +84,22 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
 
     protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
         if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
-            int i = this.random.nextInt(2);
-            float f = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
-
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
-
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
-
-            boolean flag = true;
+            int rand = this.random.nextInt(2);
+            float chancePerDifficulty = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            boolean populateArmor = true;
 
             for(EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
                 if (equipmentSlotType.getType() == EquipmentSlotType.Group.ARMOR) {
                     ItemStack stack = this.getItemBySlot(equipmentSlotType);
-                    if (!flag && this.random.nextFloat() < f) {
-                        break;
-                    }
+                    if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
 
-                    flag = false;
+                    populateArmor = false;
                     if (stack.isEmpty()) {
-                        Item item = getAljanArmorByChance(equipmentSlotType, i);
-                        if (item != null) {
-                            this.setItemSlot(equipmentSlotType, new ItemStack(item));
-                        }
+                        Item item = getAljanArmorByChance(equipmentSlotType, rand);
+                        if (item != null) this.setItemSlot(equipmentSlotType, new ItemStack(item));
                     }
                 }
             }
@@ -119,8 +107,8 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
     }
 
     @Nullable
-    public static Item getAljanArmorByChance(EquipmentSlotType slotIn, int chance) {
-        switch(slotIn) {
+    public static Item getAljanArmorByChance(EquipmentSlotType slot, int chance) {
+        switch (slot) {
             case HEAD:
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();
@@ -177,15 +165,10 @@ public class SleepishSkeleton extends AbstractSkeletonEntity {
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
         this.populateAljanEquipmentSlots(difficulty);
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(Items.BOW));
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.SLEEPISH_SKELETON_EQUIPMENT, this);
     }
 
     protected AbstractArrowEntity getArrow(ItemStack arrowStack, float distanceFactor) {
-        AbstractArrowEntity arrow = super.getArrow(arrowStack, distanceFactor);
-        if (arrow instanceof ArrowEntity) {
-            ((ArrowEntity) arrow).addEffect(new EffectInstance(Effects.POISON, 100));
-            ((ArrowEntity) arrow).addEffect(new EffectInstance(Effects.BLINDNESS, 600));
-        }
-        return arrow;
+        return new InsomniaArrow(this.level, this);
     }
 }

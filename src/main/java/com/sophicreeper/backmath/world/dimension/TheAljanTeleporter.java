@@ -83,7 +83,7 @@ public class TheAljanTeleporter implements ITeleporter {
                     destinationWorld.setBlockAndUpdate(destinationPos.below(), BMBlocks.POLISHED_SLEEPINGSTONE.get().defaultBlockState());
                 }
             } else {
-                LOGGER.debug("No need to place another Aljan Portal Stand.");
+                if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("No need to place another Aljan Portal Stand.");
             }
         }
 

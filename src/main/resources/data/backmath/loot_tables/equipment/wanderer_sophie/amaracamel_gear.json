@@ -1,0 +1,41 @@
+{
+  "type": "backmath:equipment",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "backmath:hardened_amaracamel_helmet"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "backmath:hardened_amaracamel_chestplate"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "backmath:espada_de_manteiga",
+          "functions": [
+            {
+              "function": "backmath:set_stored_experience",
+              "stored_experience": {
+                "min": 55,
+                "max": 55
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

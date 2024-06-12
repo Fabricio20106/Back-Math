@@ -48,7 +48,7 @@ public class QueenLucyPetVariant extends ForgeRegistryEntry.UncheckedRegistryEnt
         public QueenLucyPetVariant deserialize(JsonElement element, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             JsonObject object = element.getAsJsonObject();
             ITextComponent displayName = deserializeDisplayName(object);
-            ResourceLocation textureLocation = ResourceLocation.tryParse(JSONUtils.getAsString(object, "textureLocation"));
+            ResourceLocation textureLocation = ResourceLocation.tryParse(JSONUtils.getAsString(object, "texture_location"));
             return new QueenLucyPetVariant(displayName, textureLocation);
         }
 
@@ -71,14 +71,16 @@ public class QueenLucyPetVariant extends ForgeRegistryEntry.UncheckedRegistryEnt
 
         private ITextComponent deserializeDisplayName(JsonObject object) {
             JsonObject displayName = JSONUtils.getAsJsonObject(object, "display_name");
-            StringTextComponent stringComponent = new StringTextComponent(JSONUtils.getAsString(displayName, "text"));
-            TranslationTextComponent translationComponent = new TranslationTextComponent(JSONUtils.getAsString(displayName, "translate"));
+            StringTextComponent stringComponent;
+            TranslationTextComponent translationComponent;
             if (displayName.has("text")) {
+                stringComponent = new StringTextComponent(JSONUtils.getAsString(displayName, "text"));
                 return stringComponent;
             } else if (displayName.has("translate")) {
+                translationComponent = new TranslationTextComponent(JSONUtils.getAsString(displayName, "translate"));
                 return translationComponent;
             }
-            return stringComponent;
+            return new StringTextComponent("No translation.");
         }
     }
 }

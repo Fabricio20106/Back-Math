@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.entity.custom;
 
 import com.google.common.collect.Maps;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
+import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
@@ -153,13 +155,8 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
     }
 
     @OnlyIn(Dist.CLIENT)
-    public boolean isChargingCrossbow() {
-        return this.entityData.get(IS_CHARGING_CROSSBOW);
-    }
-
-    @OnlyIn(Dist.CLIENT)
     public ArmPose getArmPose() {
-        if (this.isChargingCrossbow()) {
+        if (this.entityData.get(IS_CHARGING_CROSSBOW)) {
             return ArmPose.CROSSBOW_CHARGE;
         } else if (this.isHolding(item -> item instanceof CrossbowItem)) {
             return ArmPose.CROSSBOW_HOLD;
@@ -176,7 +173,7 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
                 Map<Enchantment, Integer> crossbowEnchantsMap = EnchantmentHelper.getEnchantments(heldStack);
                 crossbowEnchantsMap.putIfAbsent(Enchantments.PIERCING, 1);
                 EnchantmentHelper.setEnchantments(crossbowEnchantsMap, heldStack);
-                this.setItemStackToSlot(EquipmentSlotType.MAINHAND, heldStack);
+                this.setItemSlot(EquipmentSlotType.MAINHAND, heldStack);
             }
         }
     }
@@ -214,6 +211,7 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.ARCHER_LUCIA_EQUIPMENT, this);
         this.populateDefaultEquipmentSlots(difficulty);
         this.populateDefaultEquipmentEnchantments(difficulty);
         return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
@@ -232,13 +230,6 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
         }
     }
 
-    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        super.populateDefaultEquipmentSlots(difficulty);
-        this.setItemStackToSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ARCHER_LUCIA_HOOD.get()));
-        this.setItemStackToSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ARCHER_LUCIA_VEST.get()));
-        this.setItemStackToSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_CROSSBOW.get()));
-    }
-
     // Why were Back Math mobs leashable? (29/07/23)
     @Override
     public boolean canBeLeashed(PlayerEntity player) {
@@ -247,10 +238,6 @@ public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser,
 
     public boolean canFireProjectileWeapon(ShootableItem shootableItem) {
         return shootableItem.is(BMTags.Items.CROSSBOWS);
-    }
-
-    public void setItemStackToSlot(EquipmentSlotType slot, ItemStack stack) {
-        super.setItemSlot(slot, stack);
     }
 
     public void performRangedAttack(LivingEntity target, float distanceFactor) {

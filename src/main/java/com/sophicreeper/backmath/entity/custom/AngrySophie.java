@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -9,7 +11,6 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.merchant.villager.AbstractVillagerEntity;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.DamageSource;
@@ -65,9 +66,31 @@ public class AngrySophie extends MonsterEntity {
         return 10;
     }
 
+    @Override
+    public double getMyRidingOffset() {
+        return -0.35D;
+    }
+
+    @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62F;
     }
+
+    @Override
+    protected SoundEvent getSwimSound() {
+        return BMSounds.ENTITY_TERMIAN_SWIM;
+    }
+
+    @Override
+    protected SoundEvent getSwimSplashSound() {
+        return BMSounds.ENTITY_TERMIAN_SPLASH;
+    }
+
+    @Override
+    protected SoundEvent getSwimHighSpeedSplashSound() {
+        return BMSounds.ENTITY_TERMIAN_SPLASH_HIGH_SPEED;
+    }
+
 
     protected SoundEvent getHurtSound(DamageSource source) {
         if (source == DamageSource.ON_FIRE) {
@@ -92,22 +115,18 @@ public class AngrySophie extends MonsterEntity {
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.ANGRY_SOPHIE_EQUIPMENT, this);
         this.populateDefaultEquipmentSlots(difficulty);
         this.populateDefaultEquipmentEnchantments(difficulty);
         return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
 
+    @Override
     public void rideTick() {
         super.rideTick();
         if (this.getVehicle() instanceof CreatureEntity) {
             CreatureEntity entity = (CreatureEntity) this.getVehicle();
             this.yBodyRot = entity.yBodyRot;
         }
-    }
-
-    @Override
-    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        super.populateDefaultEquipmentSlots(difficulty);
-        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ANGELIC_HELMET.get()));
     }
 }

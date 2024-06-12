@@ -15,6 +15,6 @@ public class QueenLucyRenderer extends TermianBipedRenderer<QueenLucy> {
 
     @Override
     public ResourceLocation getTextureLocation(QueenLucy lucy) {
-        return BackMath.resourceLoc("textures/entity/queen_lucy.png");
+        return BackMath.resourceLoc("textures/entity/queen_lucy/current.png");
     }
 }

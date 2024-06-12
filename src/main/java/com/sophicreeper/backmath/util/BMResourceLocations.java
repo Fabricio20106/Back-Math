@@ -36,12 +36,12 @@ public class BMResourceLocations {
 
     // Loot Tables
     // Blocks
-    public static final ResourceLocation CUTTING_PUMPKIN = BackMath.resourceLoc("gameplay/blocks/cutting_pumpkin");
-    public static final ResourceLocation CUTTING_CARVED_PUMPKIN = BackMath.resourceLoc("gameplay/blocks/cutting_carved_pumpkin");
-    public static final ResourceLocation CUTTING_JACK_O_LANTERN = BackMath.resourceLoc("gameplay/blocks/cutting_jack_o_lantern");
-    public static final ResourceLocation CUTTING_MELON = BackMath.resourceLoc("gameplay/blocks/cutting_melon");
-    public static final ResourceLocation CUTTING_HAY_BLOCK = BackMath.resourceLoc("gameplay/blocks/cutting_hay_block");
-    public static final ResourceLocation CUTTING_CARAMELED_HAY_BLOCK = BackMath.resourceLoc("gameplay/blocks/cutting_carameled_hay_block");
+    public static final ResourceLocation CUTTING_PUMPKIN = BackMath.resourceLoc("cutting/pumpkin");
+    public static final ResourceLocation CUTTING_CARVED_PUMPKIN = BackMath.resourceLoc("cutting/carved_pumpkin");
+    public static final ResourceLocation CUTTING_JACK_O_LANTERN = BackMath.resourceLoc("cutting/jack_o_lantern");
+    public static final ResourceLocation CUTTING_MELON = BackMath.resourceLoc("cutting/melon");
+    public static final ResourceLocation CUTTING_HAY_BLOCK = BackMath.resourceLoc("cutting/hay_block");
+    public static final ResourceLocation CUTTING_CARAMELED_HAY_BLOCK = BackMath.resourceLoc("cutting/carameled_hay_block");
 
     // Chests
     public static final ResourceLocation ALJAN_DUNGEON_LOOT = BackMath.resourceLoc("chests/aljan_dungeon");
@@ -51,6 +51,21 @@ public class BMResourceLocations {
     // Entities
     public static final ResourceLocation SMALL_AMARACAMELER = BackMath.resourceLoc("entities/small_amaracameler");
     public static final ResourceLocation MEDIUM_OR_LARGE_AMARACAMELER = BackMath.resourceLoc("entities/medium_or_large_amaracameler");
+
+    // Equipment
+    public static final ResourceLocation ANGRY_SOPHIE_EQUIPMENT = BackMath.resourceLoc("equipment/angry_sophie");
+    public static final ResourceLocation WANDERER_SOPHIE_EQUIPMENT = BackMath.resourceLoc("equipment/wanderer_sophie");
+    public static final ResourceLocation WARRIOR_SOPHIE_EQUIPMENT = BackMath.resourceLoc("equipment/warrior_sophie");
+    public static final ResourceLocation INSOMNIA_SOPHIE_EQUIPMENT = BackMath.resourceLoc("equipment/insomnia_sophie");
+    public static final ResourceLocation ARCHER_INSOMNIA_SOPHIE_EQUIPMENT = BackMath.resourceLoc("equipment/archer_insomnia_sophie");
+    public static final ResourceLocation QUEEN_LUCY_EQUIPMENT = BackMath.resourceLoc("equipment/queen_lucy");
+    public static final ResourceLocation ARCHER_LUCIA_EQUIPMENT = BackMath.resourceLoc("equipment/archer_lucia");
+    public static final ResourceLocation KARATE_LUCIA_EQUIPMENT = BackMath.resourceLoc("equipment/karate_lucia");
+    public static final ResourceLocation MALAIKA_EQUIPMENT = BackMath.resourceLoc("equipment/malaika");
+    public static final ResourceLocation ALJAMIC_BONES_EQUIPMENT = BackMath.resourceLoc("equipment/aljamic_bones");
+    public static final ResourceLocation SLEEPISH_SKELETON_EQUIPMENT = BackMath.resourceLoc("equipment/sleepish_skeleton");
+    public static final ResourceLocation ZOMBIE_WEAPONS_HARD_DIFFICULTY = BackMath.resourceLoc("equipment/aljan_zombie/weapons_hard_difficulty");
+    public static final ResourceLocation ZOMBIE_WEAPONS_BELOW_HARD_DIFFICULTY = BackMath.resourceLoc("equipment/aljan_zombie/weapons_below_hard_difficulty");
 
     // Bags
     public static final ResourceLocation AMARACAMEL_BATTER_BAG = BackMath.resourceLoc("bags/amaracamel_batter");

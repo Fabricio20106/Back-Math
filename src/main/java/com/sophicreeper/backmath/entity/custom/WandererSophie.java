@@ -4,6 +4,8 @@ import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMRegistries;
+import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import com.sophicreeper.backmath.util.BMTags;
@@ -158,6 +160,7 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
         super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         BMUtils.setRandomWSRegistryBasedVariant(this);
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.WANDERER_SOPHIE_EQUIPMENT, this);
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;
@@ -200,31 +203,6 @@ public class WandererSophie extends TermianMemberEntity implements ISophieFriend
             }
         }
         return super.doHurtTarget(entity);
-    }
-
-    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        super.populateDefaultEquipmentSlots(difficulty);
-        int i = this.random.nextInt(3);
-        if (i == 0) {
-            // Variant 1: Angelic Sword, Angelic Chestplate and Cat Tiara
-            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_SWORD.get()));
-            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.CAT_TIARA.get()));
-            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()));
-        } else if (i == 1) {
-            // Variant 2: Devil Sword, Devil Chestplate and Tito
-            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.DEVIL_SWORD.get()));
-            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()));
-            this.setItemSlot(EquipmentSlotType.OFFHAND, new ItemStack(AxolotlTest.TITO.get()));
-        } else {
-            // Variant 3: Hardened Amaracamel Helmet, Hardened Amaracamel Chestplate and Butter Sword
-            this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_HELMET.get()));
-            this.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_CHESTPLATE.get()));
-
-            ItemStack butterSword = new ItemStack(AxolotlTest.BUTTER_SWORD.get());
-            CompoundNBT tag = butterSword.getOrCreateTag();
-            tag.putInt("stored_experience", 55);
-            this.setItemSlot(EquipmentSlotType.MAINHAND, butterSword);
-        }
     }
 
     public static boolean checkSophieSpawnRules(EntityType<? extends CreatureEntity> termianFriendly, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {

@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.termian.queenlucy.*;
+import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -17,7 +19,6 @@ import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.SnowGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -210,8 +211,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData entityData, @Nullable CompoundNBT dataTag) {
-        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.GOLDEN_CROWN.get()));
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get()));
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.QUEEN_LUCY_EQUIPMENT, this);
         return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
     }
 

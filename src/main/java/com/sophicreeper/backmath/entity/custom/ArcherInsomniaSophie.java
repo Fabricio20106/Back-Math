@@ -5,7 +5,9 @@ import com.sophicreeper.backmath.entity.goal.BMRangedBowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -67,11 +69,6 @@ public class ArcherInsomniaSophie extends TermianMemberEntity implements IRanged
         }
     }
 
-    protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        super.populateDefaultEquipmentSlots(difficulty);
-        this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ANGELIC_BOW.get()));
-    }
-
     protected SoundEvent getHurtSound(DamageSource source) {
         if (source == DamageSource.ON_FIRE) {
             return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;
@@ -95,6 +92,7 @@ public class ArcherInsomniaSophie extends TermianMemberEntity implements IRanged
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.ARCHER_INSOMNIA_SOPHIE_EQUIPMENT, this);
         this.populateDefaultEquipmentSlots(difficulty);
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.reassessWeaponGoal();

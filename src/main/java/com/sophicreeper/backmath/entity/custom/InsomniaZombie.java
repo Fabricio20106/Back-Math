@@ -1,7 +1,9 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
+import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.InsomniaZombieAttackGoal;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
@@ -267,13 +269,10 @@ public class InsomniaZombie extends MonsterEntity {
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         this.populateAljanEquipmentSlots(difficulty);
-        if (this.random.nextFloat() < (this.level.getDifficulty() == Difficulty.HARD ? 0.05F : 0.01F)) {
-            int i = this.random.nextInt(3);
-            if (i == 0) {
-                this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_BLADE.get()));
-            } else {
-                this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJAMEED_SHOVEL.get()));
-            }
+        if (this.level.getDifficulty() == Difficulty.HARD) {
+            EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_HARD_DIFFICULTY, this);
+        } else {
+            EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_BELOW_HARD_DIFFICULTY, this);
         }
     }
 

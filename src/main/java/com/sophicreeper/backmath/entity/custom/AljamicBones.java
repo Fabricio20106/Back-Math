@@ -1,6 +1,8 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -67,35 +69,22 @@ public class AljamicBones extends AbstractSkeletonEntity {
 
     protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
         if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
-            int i = this.random.nextInt(2);
-            float f = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
-
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
-
-            if (this.random.nextFloat() < 0.095F) {
-                ++i;
-            }
-
-            boolean flag = true;
+            int rand = this.random.nextInt(2);
+            float chancePerDifficulty = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            if (this.random.nextFloat() < 0.095F) ++rand;
+            boolean populateArmor = true;
 
             for(EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
                 if (equipmentSlotType.getType() == EquipmentSlotType.Group.ARMOR) {
                     ItemStack stack = this.getItemBySlot(equipmentSlotType);
-                    if (!flag && this.random.nextFloat() < f) {
-                        break;
-                    }
+                    if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
 
-                    flag = false;
+                    populateArmor = false;
                     if (stack.isEmpty()) {
-                        Item item = getAljanArmorByChance(equipmentSlotType, i);
-                        if (item != null) {
-                            this.setItemSlot(equipmentSlotType, new ItemStack(item));
-                        }
+                        Item item = getAljanArmorByChance(equipmentSlotType, rand);
+                        if (item != null) this.setItemSlot(equipmentSlotType, new ItemStack(item));
                     }
                 }
             }
@@ -104,7 +93,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
 
     @Nullable
     public static Item getAljanArmorByChance(EquipmentSlotType slot, int chance) {
-        switch(slot) {
+        switch (slot) {
             case HEAD:
                 if (chance == 0) {
                     return AxolotlTest.JANTSKIN_HELMET.get();
@@ -161,12 +150,7 @@ public class AljamicBones extends AbstractSkeletonEntity {
     // Gives armor or weapon for entity based on given DifficultyInstance.
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.ALJAMIC_BONES_EQUIPMENT, this);
         this.populateAljanEquipmentSlots(difficulty);
-        if (random.nextInt(2) == 0) {
-            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANSTONE_SWORD.get()));
-        } else {
-            this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANWOOD_SWORD.get()));
-        }
-        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ALJAMIC_BONE_HELMET.get()));
     }
 }

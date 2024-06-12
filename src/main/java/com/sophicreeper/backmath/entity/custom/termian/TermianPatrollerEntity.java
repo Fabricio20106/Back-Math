@@ -155,7 +155,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
     }
 
     public boolean removeWhenFarAway(double distance) {
-        return !this.patrolling || distance > 16384;
+        return !this.patrolling;
     }
 
     @Override
