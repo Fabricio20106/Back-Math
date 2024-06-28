@@ -155,6 +155,26 @@
           }
         ]
       }
+    },
+    "has_fruit_14": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:mangaed_mango"
+          }
+        ]
+      }
+    },
+    "has_fruit_15": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:enchanted_golden_apple"
+          }
+        ]
+      }
     }
   },
   "requirements": [
@@ -199,6 +219,12 @@
     ],
     [
       "has_fruit13"
+    ],
+    [
+      "has_fruit_14"
+    ],
+    [
+      "has_fruit_15"
     ]
   ]
 }

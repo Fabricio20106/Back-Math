@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "backmath:aljamic_grass_block"
+      "item": "minecraft:spruce_log"
     },
     "title": {
       "translate": "advancements.backmath.the_aljan.root.title"
@@ -16,16 +16,18 @@
     "background": "backmath:textures/block/aljanstone.png"
   },
   "criteria": {
-    "entered_aljan": {
-      "trigger": "minecraft:changed_dimension",
+    "locate_hideout_dungeon": {
+      "trigger": "minecraft:location",
       "conditions": {
-        "to": "backmath:the_aljan"
+        "location": {
+          "feature": "backmath:fabricio_hideout_dungeon"
+        }
       }
     }
   },
   "requirements": [
     [
-      "entered_aljan"
+      "locate_hideout_dungeon"
     ]
   ]
 }

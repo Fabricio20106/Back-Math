@@ -25,11 +25,22 @@
           }
         ]
       }
+    },
+    "mid_term_hillary_lamps": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:hilary_mid_term_lantern"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
-      "hillary_lamps"
+      "hillary_lamps",
+      "mid_term_hillary_lamps"
     ]
   ]
 }

@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "banana": {
+    "has_banana": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "banana"
+      "has_banana"
     ]
   ]
 }

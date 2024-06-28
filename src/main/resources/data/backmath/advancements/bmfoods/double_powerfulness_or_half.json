@@ -5,10 +5,10 @@
       "item": "backmath:cut_enchanted_golden_apple"
     },
     "title": {
-      "translate": "advancements.backmath.double_powerfulness_or_half.title"
+      "translate": "advancements.backmath.bm_foods.double_powerfulness_or_half.title"
     },
     "description": {
-      "translate": "advancements.backmath.double_powerfulness_or_half.description"
+      "translate": "advancements.backmath.bm_foods.double_powerfulness_or_half.description"
     },
     "frame": "goal",
     "show_toast": true,
@@ -19,7 +19,7 @@
     }
   },
   "criteria": {
-    "cut_enchanted_golden_apple": {
+    "has_cut_enchanted_golden_apple": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -32,7 +32,7 @@
   },
   "requirements": [
     [
-      "cut_enchanted_golden_apple"
+      "has_cut_enchanted_golden_apple"
     ]
   ]
 }

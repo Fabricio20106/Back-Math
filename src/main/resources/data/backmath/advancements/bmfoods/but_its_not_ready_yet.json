@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_the_item": {
+    "has_pasta": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -25,11 +25,27 @@
           }
         ]
       }
+    },
+    "used_spoon_on_meal_cooker": {
+      "trigger": "minecraft:item_used_on_block",
+      "conditions": {
+        "item": {
+          "item": "backmath:spoon"
+        },
+        "location": {
+          "block": {
+            "block": "backmath:meal_cooker"
+          }
+        }
+      }
     }
   },
   "requirements": [
     [
-      "has_the_item"
+      "has_pasta"
+    ],
+    [
+      "used_spoon_on_meal_cooker"
     ]
   ]
 }

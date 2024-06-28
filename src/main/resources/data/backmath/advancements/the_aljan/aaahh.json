@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "got_jantical": {
+    "has_jantical": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "got_jantical"
+      "has_jantical"
     ]
   ]
 }

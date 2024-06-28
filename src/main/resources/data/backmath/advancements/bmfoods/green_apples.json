@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "green_apples": {
+    "has_green_apple": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "green_apples"
+      "has_green_apple"
     ]
   ]
 }

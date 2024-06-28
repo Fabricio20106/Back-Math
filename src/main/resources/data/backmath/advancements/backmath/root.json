@@ -16,13 +16,20 @@
     "background": "backmath:textures/block/glazed_tabu.png"
   },
   "criteria": {
-    "first_fruits": {
+    "first_guarana": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "backmath:guarana"
-          },
+          }
+        ]
+      }
+    },
+    "first_mango": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "backmath:mango"
           }
@@ -32,7 +39,10 @@
   },
   "requirements": [
     [
-      "first_fruits"
+      "first_guarana"
+    ],
+    [
+      "first_mango"
     ]
   ]
 }

@@ -13,7 +13,10 @@
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false
+    "hidden": false,
+    "rewards": {
+      "experience": 350
+    }
   },
   "criteria": {
     "lapis_rainbow": {

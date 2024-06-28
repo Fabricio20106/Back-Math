@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "mango": {
+    "has_mango": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "mango"
+      "has_mango"
     ]
   ]
 }

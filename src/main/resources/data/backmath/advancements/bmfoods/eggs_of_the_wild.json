@@ -5,10 +5,10 @@
       "item": "backmath:turtle_fried_egg"
     },
     "title": {
-      "translate": "advancements.backmath.eggs_of_the_wild.title"
+      "translate": "advancements.backmath.bm_foods.eggs_of_the_wild.title"
     },
     "description": {
-      "translate": "advancements.backmath.eggs_of_the_wild.description"
+      "translate": "advancements.backmath.bm_foods.eggs_of_the_wild.description"
     },
     "frame": "task",
     "show_toast": true,
@@ -16,22 +16,22 @@
     "hidden": false
   },
   "criteria": {
-    "turtle_fried_egg": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "backmath:turtle_fried_egg"
-          }
-        ]
-      }
-    },
     "fried_egg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "backmath:cooked_egg"
+          }
+        ]
+      }
+    },
+    "turtle_fried_egg": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:turtle_fried_egg"
           }
         ]
       }
@@ -49,10 +49,10 @@
   },
   "requirements": [
     [
-      "turtle_fried_egg"
+      "fried_egg"
     ],
     [
-      "fried_egg"
+      "turtle_fried_egg"
     ],
     [
       "ender_dragon_fried_egg"

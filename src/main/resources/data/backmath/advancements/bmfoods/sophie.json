@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "got_raw_sophie": {
+    "has_sophie": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "got_raw_sophie"
+      "has_sophie"
     ]
   ]
 }

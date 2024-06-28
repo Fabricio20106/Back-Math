@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "guavas": {
+    "has_guava": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "guavas"
+      "has_guava"
     ]
   ]
 }

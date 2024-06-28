@@ -29,11 +29,24 @@
           }
         ]
       }
+    },
+    "has_fabricio": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:fabricio"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
       "killed_shy_fabricio"
+    ],
+    [
+      "has_fabricio"
     ]
   ]
 }

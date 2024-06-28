@@ -1,5 +1,5 @@
 {
-  "parent": "backmath:bmfoods/jams",
+  "parent": "backmath:bmfoods/jam_sweet_berry",
   "display": {
     "icon": {
       "item": "backmath:glow_berry_jam"
@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "jam_pot": {
+    "has_glow_berry_jam": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "jam_pot"
+      "has_glow_berry_jam"
     ]
   ]
 }

@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "got_aljameed_bar": {
+    "has_aljameed_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "got_aljameed_bar"
+      "has_aljameed_ingot"
     ]
   ]
 }

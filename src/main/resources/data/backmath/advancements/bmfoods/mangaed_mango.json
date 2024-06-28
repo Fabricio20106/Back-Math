@@ -2,26 +2,26 @@
   "parent": "backmath:bmfoods/fruit_trees",
   "display": {
     "icon": {
-      "item": "backmath:grapes"
+      "item": "backmath:mangaed_mango"
     },
     "title": {
-      "translate": "advancements.backmath.bm_foods.get_grapes.title"
+      "translate": "advancements.backmath.bm_foods.get_mangaed_mango.title"
     },
     "description": {
-      "translate": "advancements.backmath.bm_foods.get_grapes.description"
+      "translate": "advancements.backmath.bm_foods.get_mangaed_mango.description"
     },
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false
+    "hidden": true
   },
   "criteria": {
-    "has_grapes": {
+    "has_mangaed_mango": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "backmath:grapes"
+            "item": "backmath:mangaed_mango"
           }
         ]
       }
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "has_grapes"
+      "has_mangaed_mango"
     ]
   ]
 }

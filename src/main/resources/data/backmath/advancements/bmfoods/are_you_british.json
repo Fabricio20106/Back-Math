@@ -5,10 +5,10 @@
       "item": "backmath:mood_tea"
     },
     "title": {
-      "translate": "advancements.backmath.are_you_british.title"
+      "translate": "advancements.backmath.bm_foods.are_you_british.title"
     },
     "description": {
-      "translate": "advancements.backmath.are_you_british.description"
+      "translate": "advancements.backmath.bm_foods.are_you_british.description"
     },
     "frame": "task",
     "show_toast": true,

@@ -19,25 +19,60 @@
     }
   },
   "criteria": {
-    "mt_tools": {
+    "sparey": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "backmath:obsidian_infused_mid_term_sparey"
-          },
+          }
+        ]
+      }
+    },
+    "warrior_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "item": "backmath:mid_term_warrior_helmet"
-          },
+            "item": "backmath:obsidian_infused_mid_term_warrior_helmet"
+          }
+        ]
+      }
+    },
+    "breastplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "item": "backmath:mid_term_breastplate"
-          },
+            "item": "backmath:obsidian_infused_mid_term_breastplate"
+          }
+        ]
+      }
+    },
+    "leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "item": "backmath:mid_term_leggings"
-          },
+            "item": "backmath:obsidian_infused_mid_term_leggings"
+          }
+        ]
+      }
+    },
+    "boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "item": "backmath:mid_term_boots"
-          },
+            "item": "backmath:obsidian_infused_mid_term_boots"
+          }
+        ]
+      }
+    },
+    "shield": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "backmath:mid_term_shield"
           }
@@ -47,7 +82,22 @@
   },
   "requirements": [
     [
-      "mt_tools"
+      "sparey"
+    ],
+    [
+      "warrior_helmet"
+    ],
+    [
+      "breastplate"
+    ],
+    [
+      "leggings"
+    ],
+    [
+      "boots"
+    ],
+    [
+      "shield"
     ]
   ]
 }

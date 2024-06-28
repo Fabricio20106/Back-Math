@@ -16,7 +16,7 @@
     "background": "backmath:textures/block/guava_log.png"
   },
   "criteria": {
-    "cooked_egg": {
+    "fried_egg": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-        "cooked_egg"
+      "fried_egg"
     ]
   ]
 }

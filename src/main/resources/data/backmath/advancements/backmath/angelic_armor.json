@@ -2,8 +2,7 @@
   "parent": "backmath:backmath/angelic_ingot",
   "display": {
     "icon": {
-      "item": "backmath:angelic_chestplate",
-      "nbt": "{Damage:0}"
+      "item": "backmath:angelic_chestplate"
     },
     "title": {
       "translate": "advancements.backmath.angelic_armor.title"
@@ -23,13 +22,44 @@
         "items": [
           {
             "item": "backmath:angelic_helmet"
-          },
+          }
+        ]
+      }
+    },
+    "angelic_warrior_helmet": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
-            "item": "backmath:angelic_chestplate"
-          },
+            "item": "backmath:angelic_warrior_helmet"
+          }
+        ]
+      }
+    },
+    "angelic_chestplate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:angelic_helmet"
+          }
+        ]
+      }
+    },
+    "angelic_leggings": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "backmath:angelic_leggings"
-          },
+          }
+        ]
+      }
+    },
+    "angelic_boots": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "backmath:angelic_boots"
           }
@@ -39,7 +69,17 @@
   },
   "requirements": [
     [
-      "angelic_helmet"
+      "angelic_helmet",
+      "angelic_warrior_helmet"
+    ],
+    [
+      "angelic_chestplate"
+    ],
+    [
+      "angelic_leggings"
+    ],
+    [
+      "angelic_boots"
     ]
   ]
 }

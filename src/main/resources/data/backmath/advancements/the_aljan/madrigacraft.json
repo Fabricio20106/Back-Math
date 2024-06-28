@@ -16,13 +16,13 @@
     "hidden": false
   },
   "criteria": {
-    "got_we_dont_talk_about_bruno_disc": {
+    "has_disc": {
       "trigger": "minecraft:impossible"
     }
   },
   "requirements": [
     [
-      "got_we_dont_talk_about_bruno_disc"
+      "has_disc"
     ]
   ]
 }

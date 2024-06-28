@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "has_the_item": {
+    "has_meal_cooker": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "has_the_item"
+      "has_meal_cooker"
     ]
   ]
 }

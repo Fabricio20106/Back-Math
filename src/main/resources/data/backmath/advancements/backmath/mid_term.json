@@ -13,37 +13,86 @@
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": true
-  },
-  "rewards": {
-    "experience": 1200
+    "hidden": true,
+    "rewards": {
+      "experience": 500
+    }
   },
   "criteria": {
-    "mid_term_materials": {
+    "emotional_singularity": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "tag": "forge:singularities/emotional"
-          },
+          }
+        ]
+      }
+    },
+    "heat_singularity": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "item": "backmath:heat_singularity"
-          },
+          }
+        ]
+      }
+    },
+    "christianity_singularity": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "tag": "forge:singularities/christianity"
-          },
+          }
+        ]
+      }
+    },
+    "milkllarity": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "tag": "forge:singularities/milkllary"
-          },
+          }
+        ]
+      }
+    },
+    "meaty_singularity": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "tag": "forge:singularities/meaty"
-          },
+          }
+        ]
+      }
+    },
+    "frutifery_singularity": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "tag": "forge:singularities/frutifery"
-          },
+          }
+        ]
+      }
+    },
+    "vegetably_singularity": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "tag": "forge:singularities/vegetably"
-          },
+          }
+        ]
+      }
+    },
+    "manga_mango_singularity": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "tag": "forge:singularities/manga_mango"
           }
@@ -53,7 +102,28 @@
   },
   "requirements": [
     [
-      "mid_term_materials"
+      "emotional_singularity"
+    ],
+    [
+      "heat_singularity"
+    ],
+    [
+      "christianity_singularity"
+    ],
+    [
+      "milkllarity"
+    ],
+    [
+      "meaty_singularity"
+    ],
+    [
+      "frutifery_singularity"
+    ],
+    [
+      "vegetably_singularity"
+    ],
+    [
+      "manga_mango_singularity"
     ]
   ]
 }

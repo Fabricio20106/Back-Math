@@ -20,7 +20,6 @@ import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import com.sophicreeper.backmath.util.BMVanillaCompatibility;
-import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import com.sophicreeper.backmath.world.biome.BMBiomes;
 import com.sophicreeper.backmath.world.carver.BMConfiguredCarvers;
 import com.sophicreeper.backmath.world.carver.BMWorldCarvers;
@@ -31,7 +30,6 @@ import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.RegistryKey;
-import net.minecraft.util.registry.DynamicRegistries;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraftforge.common.BiomeDictionary;
@@ -113,7 +111,7 @@ public class CommonProxy {
             }
 
             // Dynamic Registries
-            DynamicRegistries.REGISTRIES.put(BMRegistries.WANDERER_SOPHIE_VARIANT_REG, new DynamicRegistries.CodecHolder<>(BMRegistries.WANDERER_SOPHIE_VARIANT_REG, WandererSophieVariant.CODEC, null));
+            // DynamicRegistries.REGISTRIES.put(BMRegistries.WANDERER_SOPHIE_VARIANT_REG, new DynamicRegistries.CodecHolder<>(BMRegistries.WANDERER_SOPHIE_VARIANT_REG, WandererSophieVariant.CODEC, null));
         });
 
         // Other Things to Load

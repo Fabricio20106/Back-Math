@@ -14,16 +14,18 @@ public class EquipmentTableUtils {
         Collection<ItemStack> lootTableDrops = getLootTableDrops(equipmentTable, livEntity);
 
         lootTableDrops.forEach(stack -> {
-            for (EquipmentSlotType slot : EquipmentSlotType.values()) {
-                if (stack.getItem().canEquip(stack, slot, livEntity) && livEntity.getItemBySlot(slot).isEmpty()) {
-                    livEntity.setItemSlot(slot, stack);
+            if (!stack.isEmpty()) {
+                for (EquipmentSlotType slot : EquipmentSlotType.values()) {
+                    if (stack.getItem().canEquip(stack, slot, livEntity) && livEntity.getItemBySlot(slot).isEmpty()) {
+                        livEntity.setItemSlot(slot, stack);
+                    }
                 }
-            }
-            if (stack.getItem().is(BMTags.Items.ALLOWED_IN_MAINHAND) && livEntity.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty()) {
-                livEntity.setItemSlot(EquipmentSlotType.MAINHAND, stack);
-            }
-            if (stack.getItem().is(BMTags.Items.ALLOWED_IN_OFFHAND) && livEntity.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty()) {
-                livEntity.setItemSlot(EquipmentSlotType.OFFHAND, stack);
+                if (stack.getItem().is(BMTags.Items.ALLOWED_IN_MAINHAND) && livEntity.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty()) {
+                    livEntity.setItemSlot(EquipmentSlotType.MAINHAND, stack);
+                }
+                if (stack.getItem().is(BMTags.Items.ALLOWED_IN_OFFHAND) && livEntity.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty()) {
+                    livEntity.setItemSlot(EquipmentSlotType.OFFHAND, stack);
+                }
             }
         });
     }

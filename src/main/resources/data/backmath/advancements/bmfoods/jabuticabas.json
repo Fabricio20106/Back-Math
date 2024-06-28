@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "jabuticabas": {
+    "has_jabuticaba": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "jabuticabas"
+      "has_jabuticaba"
     ]
   ]
 }

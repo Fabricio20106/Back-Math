@@ -5,10 +5,10 @@
       "item": "backmath:wine"
     },
     "title": {
-      "translate": "advancements.backmath.fine_gentlemen.title"
+      "translate": "advancements.backmath.bm_foods.fine_gentlemen.title"
     },
     "description": {
-      "translate": "advancements.backmath.fine_gentlemen.description"
+      "translate": "advancements.backmath.bm_foods.fine_gentlemen.description"
     },
     "frame": "goal",
     "show_toast": true,
@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "wine": {
+    "has_wine": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -25,11 +25,22 @@
           }
         ]
       }
+    },
+    "has_jabuticaba_wine": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "backmath:jabuticaba_wine"
+          }
+        ]
+      }
     }
   },
   "requirements": [
     [
-      "wine"
+      "has_wine",
+      "has_jabuticaba_wine"
     ]
   ]
 }

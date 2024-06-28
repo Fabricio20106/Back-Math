@@ -21,7 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "backmath:devil_angelic_alloy_ingot"
+            "tag": "forge:ingots/devil_angelic"
           }
         ]
       }
@@ -31,7 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "backmath:christian_mid_term_devil_alloy_ingot"
+            "tag": "forge:ingots/christian_mid_term_devil"
           }
         ]
       }
@@ -41,7 +41,7 @@
       "conditions": {
         "items": [
           {
-            "item": "backmath:christian_mid_term_angelic_alloy_ingot"
+            "tag": "forge:ingots/christian_mid_term_angelic"
           }
         ]
       }
@@ -49,8 +49,12 @@
   },
   "requirements": [
     [
-      "devil_angelic_alloy_ingot",
-      "christian_mid_term_devil_alloy_ingot",
+      "devil_angelic_alloy_ingot"
+    ],
+    [
+      "christian_mid_term_devil_alloy_ingot"
+    ],
+    [
       "christian_mid_term_angelic_alloy_ingot"
     ]
   ]

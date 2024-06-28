@@ -16,7 +16,7 @@
     "hidden": false
   },
   "criteria": {
-    "jam_pot": {
+    "has_water_jam": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -29,7 +29,7 @@
   },
   "requirements": [
     [
-      "jam_pot"
+      "has_water_jam"
     ]
   ]
 }

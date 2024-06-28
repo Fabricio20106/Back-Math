@@ -5,10 +5,10 @@
       "item": "backmath:zombie_fabricio_head"
     },
     "title": {
-      "translate": "advancements.backmath.how.title"
+      "translate": "advancements.backmath.the_aljan.how.title"
     },
     "description": {
-      "translate": "advancements.backmath.how.description"
+      "translate": "advancements.backmath.the_aljan.how.description"
     },
     "frame": "challenge",
     "show_toast": true,

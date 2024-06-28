@@ -3,7 +3,7 @@
   "display": {
     "icon": {
       "item": "minecraft:diamond_boots",
-      "nbt": "{Damage:0,Enchantments:[{lvl:1s,id:\"minecraft:protection\"}]}"
+      "nbt": "{Enchantments:[{lvl:4s,id:\"minecraft:protection\"}]}"
     },
     "title": {
       "translate": "advancements.end.adventurer_of_the_seven_voids.title"

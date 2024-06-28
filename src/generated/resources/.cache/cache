@@ -2571,7 +2571,7 @@ d06d69a7097dd3a06ce060f02c08b9284037b910 data/melony/tags/blocks/helps_on_zombie
 dba508446c609ebfdabcc55cdf593f6ba7475d8b data/melony/tags/blocks/makes_grass_blocks_snowy.json
 b692a0c80fc4a4804beca7cb8aefd967145713d4 data/melony/tags/entity_types/can_spawn_on_leaves.json
 67d54d52dd971ccf1038461ec0f9052d4df0b92b data/melony/tags/fluids/hydrates_farmland/water.json
-a442b6a2706f3a1b7536dc269e54ff179311b79f data/melony/tags/items/allowed_in_mainhand.json
+c55238132c988c408110252e6a65ba5e580b4b34 data/melony/tags/items/allowed_in_mainhand.json
 3c5bae7d96a4ce15be063decc7a5a2ec24d5dafc data/melony/tags/items/allowed_in_offhand.json
 be65fc5d4c5ee08d8223e56dc4263e3b34201a07 data/melony/tags/items/bows.json
 f4b8476658f2e73c0f5d50b6b8aad1c98d082ca0 data/melony/tags/items/crossbows.json

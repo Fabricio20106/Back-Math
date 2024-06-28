@@ -13,16 +13,26 @@
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
-    "hidden": false
+    "hidden": false,
+    "rewards": {
+      "experience": 100
+    }
   },
   "criteria": {
-    "got_both_sides": {
+    "jantical": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "tag": "forge:gems/jantical"
-          },
+          }
+        ]
+      }
+    },
+    "mid_term": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
           {
             "tag": "forge:singularities/mid_term"
           }
@@ -32,7 +42,10 @@
   },
   "requirements": [
     [
-      "got_both_sides"
+      "jantical"
+    ],
+    [
+      "mid_term"
     ]
   ]
 }
