@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.entity.custom;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.BMRangedBowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
+import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.BMTags;

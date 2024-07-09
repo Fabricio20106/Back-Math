@@ -9,8 +9,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.RegistryBuilder;
 
 public class BMRegistries {
-    public static final IForgeRegistry<WandererSophieVariant> WANDERER_SOPHIE_VARIANT = new RegistryBuilder<WandererSophieVariant>().setType(WandererSophieVariant.class).tagFolder("wanderer_sophie_variant").setName(BackMath.resourceLoc("wanderer_sophie_variant")).create();
-    public static final IForgeRegistry<QueenLucyPetVariant> QUEEN_LUCY_PET_VARIANT = new RegistryBuilder<QueenLucyPetVariant>().setType(QueenLucyPetVariant.class).tagFolder("queen_lucy_pet_variant").setName(BackMath.resourceLoc("queen_lucy_pet_variant")).create();
+    public static final IForgeRegistry<WandererSophieVariant> WANDERER_SOPHIE_VARIANT = new RegistryBuilder<WandererSophieVariant>().setType(WandererSophieVariant.class).setDefaultKey(BackMath.resourceLoc("yellow_axolotl")).tagFolder("wanderer_sophie_variant").setName(BackMath.resourceLoc("wanderer_sophie_variant")).create();
+    public static final IForgeRegistry<QueenLucyPetVariant> QUEEN_LUCY_PET_VARIANT = new RegistryBuilder<QueenLucyPetVariant>().setType(QueenLucyPetVariant.class).setDefaultKey(BackMath.resourceLoc("current")).tagFolder("queen_lucy_pet_variant").setName(BackMath.resourceLoc("queen_lucy_pet_variant")).create();
 
     public static final RegistryKey<Registry<WandererSophieVariant>> WANDERER_SOPHIE_VARIANT_REG = RegistryKey.createRegistryKey(BackMath.resourceLoc("wanderer_sophie_variant"));
 

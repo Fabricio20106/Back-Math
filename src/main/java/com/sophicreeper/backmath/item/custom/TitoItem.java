@@ -26,8 +26,8 @@ public class TitoItem extends BlockItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(new TranslationTextComponent("tooltip.backmath.can_be_placed").withStyle(TextFormatting.ITALIC).withStyle(TextFormatting.GRAY));
         super.appendHoverText(stack, world, tooltip, flag);
+        tooltip.add(new TranslationTextComponent("tooltip.backmath.can_be_placed").withStyle(TextFormatting.ITALIC).withStyle(TextFormatting.GRAY));
     }
 
     @Override

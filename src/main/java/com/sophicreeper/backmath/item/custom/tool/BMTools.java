@@ -7,6 +7,7 @@ import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 
+import javax.annotation.Nonnull;
 import java.util.function.Supplier;
 
 public class BMTools implements IItemTier {
@@ -46,6 +47,7 @@ public class BMTools implements IItemTier {
         return this.enchantmentValue;
     }
 
+    @Nonnull
     public Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
     }

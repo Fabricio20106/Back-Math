@@ -22,7 +22,6 @@ public class TurtleShellItem extends ArmorItem {
         if (shellStack.getItem().is(BMTags.Items.PROVIDES_WATER_BREATHING) && !player.isEyeInFluid(FluidTags.WATER)) {
             player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
-
         super.onArmorTick(stack, world, player);
     }
 }

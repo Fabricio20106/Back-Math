@@ -6,7 +6,7 @@ import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
+import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
 import com.sophicreeper.backmath.world.renderer.AljanDimensionRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;

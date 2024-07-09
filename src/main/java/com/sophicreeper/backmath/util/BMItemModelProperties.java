@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.util;
 
-import com.sophicreeper.backmath.item.custom.weapon.BMBowItem;
+import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;

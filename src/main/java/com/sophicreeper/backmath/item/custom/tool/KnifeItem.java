@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -51,6 +52,7 @@ public class KnifeItem extends ToolItem {
     }
 
     @Override
+    @Nonnull
     public ActionResultType useOn(ItemUseContext context) {
         BlockPos pos = context.getClickedPos();
         World world = context.getLevel();

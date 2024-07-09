@@ -8,7 +8,7 @@ import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.armor.BMArmorItem;
-import com.sophicreeper.backmath.item.custom.weapon.BMCrossbowItem;
+import com.sophicreeper.backmath.item.custom.tool.BMCrossbowItem;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.enchantment.Enchantment;

@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.dispenser;
 
-import com.sophicreeper.backmath.item.custom.weapon.misc.QueenLucySummonerStaffItem;
+import com.sophicreeper.backmath.item.custom.tool.misc.QueenLucySummonerStaffItem;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;

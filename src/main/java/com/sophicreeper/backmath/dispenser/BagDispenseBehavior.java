@@ -24,10 +24,8 @@ public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
         Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
         IPosition iPos = DispenserBlock.getDispensePosition(source);
         Collection<ItemStack> lootTableDrops = this.getLootTableDrops(stack, source);
-        if (lootTableDrops.isEmpty()) {
-            LogManager.getLogger().warn(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.bag.no_drops",
+        if (lootTableDrops.isEmpty()) LogManager.getLogger().warn(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.bag.no_drops",
                     stack.getItem().getRegistryName(), getLootTable(stack))).getString());
-        }
         lootTableDrops.forEach(stack1 -> spawnItem(source.getLevel(), stack1, 6, direction, iPos));
         stack.shrink(1);
         return stack;

@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.goal;
 
-import com.sophicreeper.backmath.item.custom.weapon.BMCrossbowItem;
+import com.sophicreeper.backmath.item.custom.tool.BMCrossbowItem;
 import com.sophicreeper.backmath.util.BMTags;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ICrossbowUser;

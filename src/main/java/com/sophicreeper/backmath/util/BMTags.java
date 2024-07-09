@@ -2,11 +2,13 @@ package com.sophicreeper.backmath.util;
 
 import com.sophicreeper.backmath.BackMath;
 import net.minecraft.block.Block;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.tags.*;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.ForgeTagHandler;
 
 public class BMTags {
     public static class Items {
@@ -262,16 +264,16 @@ public class BMTags {
         public static final ITag.INamedTag<Item> DYES_POISON_BROWN = forge("dyes/poison_brown");
         public static final ITag.INamedTag<Item> DYES_INSOMNIAN = forge("dyes/insomnian");
 
-        private static ITag.INamedTag<Item> forge(String path) {
-            return ItemTags.bind(new ResourceLocation("forge", path).toString());
+        private static ITag.INamedTag<Item> forge(String name) {
+            return ItemTags.bind(new ResourceLocation("forge", name).toString());
         }
 
-        private static ITag.INamedTag<Item> melony(String path) {
-            return ItemTags.bind(new ResourceLocation("melony", path).toString());
+        private static ITag.INamedTag<Item> melony(String name) {
+            return ItemTags.bind(new ResourceLocation("melony", name).toString());
         }
 
-        private static ITag.INamedTag<Item> backMath(String path) {
-            return ItemTags.bind(BackMath.resourceLoc(path).toString());
+        private static ITag.INamedTag<Item> backMath(String name) {
+            return ItemTags.bind(BackMath.resourceLoc(name).toString());
         }
     }
 
@@ -364,16 +366,16 @@ public class BMTags {
         public static final ITag.INamedTag<Block> MAKES_GRASS_BLOCKS_SNOWY = melony("makes_grass_blocks_snowy");
         public static final ITag.INamedTag<Block> HELPS_ON_ZOMBIE_CONVERSION = melony("helps_on_zombie_conversion");
 
-        private static ITag.INamedTag<Block> forge(String path) {
-            return BlockTags.bind(new ResourceLocation("forge", path).toString());
+        private static ITag.INamedTag<Block> forge(String name) {
+            return BlockTags.bind(new ResourceLocation("forge", name).toString());
         }
 
-        private static ITag.INamedTag<Block> melony(String path) {
-            return BlockTags.bind(new ResourceLocation("melony", path).toString());
+        private static ITag.INamedTag<Block> melony(String name) {
+            return BlockTags.bind(new ResourceLocation("melony", name).toString());
         }
 
-        private static ITag.INamedTag<Block> backMath(String path) {
-            return BlockTags.bind(BackMath.resourceLoc(path).toString());
+        private static ITag.INamedTag<Block> backMath(String name) {
+            return BlockTags.bind(BackMath.resourceLoc(name).toString());
         }
 
         public Blocks() {}
@@ -395,16 +397,16 @@ public class BMTags {
 
         public static final ITag.INamedTag<Fluid> MILK = forge("milk");
 
-        private static ITag.INamedTag<Fluid> forge(String path) {
-            return FluidTags.bind(new ResourceLocation("forge", path).toString());
+        private static ITag.INamedTag<Fluid> forge(String name) {
+            return FluidTags.bind(new ResourceLocation("forge", name).toString());
         }
 
-        private static ITag.INamedTag<Fluid> melony(String path) {
-            return FluidTags.bind(new ResourceLocation("melony", path).toString());
+        private static ITag.INamedTag<Fluid> melony(String name) {
+            return FluidTags.bind(new ResourceLocation("melony", name).toString());
         }
 
-        private static ITag.INamedTag<Fluid> backMath(String path) {
-            return FluidTags.bind(BackMath.resourceLoc(path).toString());
+        private static ITag.INamedTag<Fluid> backMath(String name) {
+            return FluidTags.bind(BackMath.resourceLoc(name).toString());
         }
     }
 
@@ -438,12 +440,20 @@ public class BMTags {
         // Melony Tags
         public static final ITag.INamedTag<EntityType<?>> CAN_SPAWN_ON_LEAVES = melony("can_spawn_on_leaves");
 
-        private static ITag.INamedTag<EntityType<?>> backMath(String path) {
-            return EntityTypeTags.bind(BackMath.resourceLoc(path).toString());
+        private static ITag.INamedTag<EntityType<?>> backMath(String name) {
+            return EntityTypeTags.bind(BackMath.resourceLoc(name).toString());
         }
 
-        private static ITag.INamedTag<EntityType<?>> melony(String path) {
-            return EntityTypeTags.bind(new ResourceLocation("melony", path).toString());
+        private static ITag.INamedTag<EntityType<?>> melony(String name) {
+            return EntityTypeTags.bind(new ResourceLocation("melony", name).toString());
+        }
+    }
+
+    public static class Enchantments {
+        public static final ITag.INamedTag<Enchantment> APPLICABLE_TO_SUMMONER_STAFF = backMath("applicable_to/queen_lucy_summoner_staff");
+
+        private static ITag.INamedTag<Enchantment> backMath(String name) {
+            return ForgeTagHandler.makeWrapperTag(new ResourceLocation("enchantment"), BackMath.resourceLoc(name));
         }
     }
 }
