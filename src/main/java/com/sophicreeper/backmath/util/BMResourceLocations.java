@@ -59,6 +59,7 @@ public class BMResourceLocations {
     public static final ResourceLocation INSOMNIA_SOPHIE_EQUIPMENT = BackMath.resourceLoc("equipment/insomnia_sophie");
     public static final ResourceLocation ARCHER_INSOMNIA_SOPHIE_EQUIPMENT = BackMath.resourceLoc("equipment/archer_insomnia_sophie");
     public static final ResourceLocation QUEEN_LUCY_EQUIPMENT = BackMath.resourceLoc("equipment/queen_lucy");
+    public static final ResourceLocation QUEEN_LUCY_FROM_EQUIP_SPELL_EQUIPMENT = BackMath.resourceLoc("equipment/queen_lucy_from_equip_spell");
     public static final ResourceLocation ARCHER_LUCIA_EQUIPMENT = BackMath.resourceLoc("equipment/archer_lucia");
     public static final ResourceLocation KARATE_LUCIA_EQUIPMENT = BackMath.resourceLoc("equipment/karate_lucia");
     public static final ResourceLocation MALAIKA_EQUIPMENT = BackMath.resourceLoc("equipment/malaika");

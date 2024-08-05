@@ -27,7 +27,7 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class Malaika extends CreatureEntity implements ISophieFriendlies {
+public class Malaika extends CreatureEntity implements SophieFriendlies {
     public Malaika(EntityType<Malaika> entity, World world) {
         super(entity, world);
         this.xpReward = 2;

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser, ISophieFriendlies {
+public class ArcherLucia extends TermianMemberEntity implements IBMCrossbowUser, SophieFriendlies {
     private static final DataParameter<Boolean> IS_CHARGING_CROSSBOW = EntityDataManager.defineId(ArcherLucia.class, DataSerializers.BOOLEAN);
     private final Inventory inventory = new Inventory(5);
 

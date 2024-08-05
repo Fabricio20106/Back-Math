@@ -1,5 +1,5 @@
 {
-  "parent": "backmath:item/angelic_bow",
+  "parent": "backmath:item/template_bow",
   "textures": {
     "layer0": "backmath:item/angelic_bow_pulling_1"
   }

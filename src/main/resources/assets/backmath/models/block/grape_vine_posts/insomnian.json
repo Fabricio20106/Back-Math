@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:block/template_grape_vine_post",
-  "textures": {
-    "plank": "backmath:block/insomnian_planks"
-  }
-}

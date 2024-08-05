@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.data;
 
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.data.models.BMBlockStateProvider;
+import com.sophicreeper.backmath.data.models.BMBlockStateProviderV2;
 import com.sophicreeper.backmath.data.models.BMItemModelProvider;
 import com.sophicreeper.backmath.data.tags.*;
 import com.sophicreeper.backmath.data.variant.BMQueenLucyPetVariantsProvider;
@@ -19,7 +19,8 @@ public final class BMDataGenerator {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
-        generator.addProvider(new BMBlockStateProvider(generator, fileHelper));
+        // generator.addProvider(new BMBlockStateProvider(generator, fileHelper));
+        generator.addProvider(new BMBlockStateProviderV2(generator, fileHelper));
         generator.addProvider(new BMItemModelProvider(generator, fileHelper));
 
         BMBlockTagsProvider bmBlockTags = new BMBlockTagsProvider(generator, fileHelper);

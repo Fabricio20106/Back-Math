@@ -16,14 +16,14 @@ public class EquipmentTableUtils {
         lootTableDrops.forEach(stack -> {
             if (!stack.isEmpty()) {
                 for (EquipmentSlotType slot : EquipmentSlotType.values()) {
-                    if (stack.getItem().canEquip(stack, slot, livEntity) && livEntity.getItemBySlot(slot).isEmpty()) {
+                    if (livEntity.getItemBySlot(slot).isEmpty() && stack.getItem().canEquip(stack, slot, livEntity)) {
                         livEntity.setItemSlot(slot, stack);
                     }
                 }
-                if (stack.getItem().is(BMTags.Items.ALLOWED_IN_MAINHAND) && livEntity.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty()) {
+                if (livEntity.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty() && stack.getItem().is(BMTags.Items.ALLOWED_IN_MAINHAND)) {
                     livEntity.setItemSlot(EquipmentSlotType.MAINHAND, stack);
                 }
-                if (stack.getItem().is(BMTags.Items.ALLOWED_IN_OFFHAND) && livEntity.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty()) {
+                if (livEntity.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty() && stack.getItem().is(BMTags.Items.ALLOWED_IN_OFFHAND)) {
                     livEntity.setItemSlot(EquipmentSlotType.OFFHAND, stack);
                 }
             }

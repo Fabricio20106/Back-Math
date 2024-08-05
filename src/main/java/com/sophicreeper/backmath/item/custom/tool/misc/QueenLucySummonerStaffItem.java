@@ -6,7 +6,7 @@ import com.sophicreeper.backmath.dispenser.QLSSDispenseBehavior;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMTags;
-import com.sophicreeper.backmath.util.NBTUtils;
+import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;
@@ -34,9 +34,11 @@ import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
@@ -65,10 +67,11 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
                 target.hurt(DamageSource.playerAttack(serverPlayer), getAttackDamageBonus(DamageSource.playerAttack(serverPlayer)));
                 if (target.isOnGround()) {
                     // Smash Particles
-                    Vector3d vector3D = Vector3d.atCenterOf(target.blockPosition()).add(0, 0.5, 0);
-                    int particlesPerDistance = (int) MathHelper.clamp(50 * attacker.fallDistance, 0, 500);
-                    world.sendParticles(new BlockParticleData(ParticleTypes.BLOCK, world.getBlockState(target.blockPosition().below())), vector3D.x, vector3D.y, vector3D.z, particlesPerDistance, 0.30000001192092896, 0.30000001192092896,
-                            0.30000001192092896, 0.15000000596046448);
+                    spawnSmashAttackParticles(world, target, 250);
+//                    Vector3d vector3D = Vector3d.atCenterOf(target.blockPosition()).add(0, 0.5, 0);
+//                    int particlesPerDistance = (int) MathHelper.clamp(50 * attacker.fallDistance, 0, 500);
+//                    world.sendParticles(new BlockParticleData(ParticleTypes.BLOCK, world.getBlockState(target.blockPosition().below())), vector3D.x, vector3D.y, vector3D.z, particlesPerDistance, 0.30000001192092896, 0.30000001192092896,
+//                            0.30000001192092896, 0.15000000596046448);
 
                     // Smash Sounds (anvil sounds as of now)
                     SoundEvent smashSound = serverPlayer.fallDistance > 5 ? BMSounds.ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND_HEAVY : BMSounds.ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND;
@@ -115,10 +118,11 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
     }
 
     @Override
+    @Nonnull
     public EntityType<?> getType(@Nullable CompoundNBT tag) {
-        if (tag != null && tag.contains("entity_tag", NBTUtils.COMPOUND)) {
+        if (tag != null && tag.contains("entity_tag", TagTypes.COMPOUND)) {
             CompoundNBT entityTag = tag.getCompound("entity_tag");
-            if (entityTag.contains("id", NBTUtils.STRING)) return EntityType.byString(entityTag.getString("id")).orElse(BMEntities.QUEEN_LUCY_PET.get());
+            if (entityTag.contains("id", TagTypes.STRING)) return EntityType.byString(entityTag.getString("id")).orElse(BMEntities.QUEEN_LUCY_PET.get());
         }
         return BMEntities.QUEEN_LUCY_PET.get();
     }
@@ -157,7 +161,6 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
     }
 
     private static void knockBack(World world, PlayerEntity player, Entity entity) {
-        world.levelEvent(2013, entity.getOnPos(), 750);
         world.getEntitiesOfClass(LivingEntity.class, entity.getBoundingBox().inflate(3.5), knockbackPredicate(player, entity)).forEach((livEntity) -> {
             Vector3d vector3D = livEntity.position().subtract(entity.position());
             double knockbackPower = getKnockbackPower(player, livEntity, vector3D);
@@ -166,14 +169,14 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
         });
     }
 
-    // Mace methods backported from 1.21 Pre-Release 1.
+    // Mace methods backported from 1.21 Pre-Release 1, from Yarn mappings.
     private static Predicate<LivingEntity> knockbackPredicate(PlayerEntity player, Entity entity) {
         return (livEntity) -> {
             boolean bool;
             boolean notSpectator;
             boolean typeCheck;
             boolean notSameTeamAs;
-            label62: {
+            mainChecks: {
                 notSpectator = !livEntity.isSpectator();
                 typeCheck = livEntity != player && livEntity != entity;
                 notSameTeamAs = !player.isAlliedTo(livEntity);
@@ -181,7 +184,7 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
                     TameableEntity tameableEntity = (TameableEntity) livEntity;
                     if (tameableEntity.isTame() && player.getUUID().equals(tameableEntity.getOwnerUUID())) {
                         bool = true;
-                        break label62;
+                        break mainChecks;
                     }
                 }
                 bool = false;
@@ -209,5 +212,41 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
 
     public static boolean canDoSmashAttack(LivingEntity livEntity) {
         return livEntity.fallDistance > 1.5F && !livEntity.isFallFlying() && !livEntity.getType().is(BMTags.EntityTypes.IMMUNE_TO_SUMMONER_STAFF_SMASHES);
+    }
+
+    public static void spawnSmashAttackParticles(IWorld world, LivingEntity target, int particles) {
+        Vector3d vec3D = new Vector3d(target.getOnPos().getX(), target.getOnPos().getY(), target.getOnPos().getZ());
+        BlockParticleData blockParticle = new BlockParticleData(ParticleTypes.BLOCK, world.getBlockState(target.blockPosition().below()));
+
+        int count1;
+        double x;
+        double y;
+        double z;
+        double xSpeed;
+        double ySpeed;
+        double zSpeed;
+
+        if (world instanceof ServerWorld) {
+            ServerWorld serverWorld = (ServerWorld) world;
+            for (count1 = 0; (float) count1 < (float) particles / 3; ++count1) {
+                x = vec3D.x + world.getRandom().nextGaussian() / 2;
+                y = vec3D.y;
+                z = vec3D.z + world.getRandom().nextGaussian() / 2;
+                xSpeed = world.getRandom().nextGaussian() * 0.20000000298023224;
+                ySpeed = world.getRandom().nextGaussian() * 0.20000000298023224;
+                zSpeed = world.getRandom().nextGaussian() * 0.20000000298023224;
+                serverWorld.sendParticles(blockParticle, x, y, z, particles, xSpeed, ySpeed + 1.5, zSpeed, 2);
+            }
+
+            for (count1 = 0; (float) count1 < (float) particles / 1.5F; ++count1) {
+                x = vec3D.x + 3.5 * Math.cos(count1) + world.getRandom().nextGaussian() / 2;
+                y = vec3D.y;
+                z = vec3D.z + 3.5 * Math.sin(count1) + world.getRandom().nextGaussian() / 2;
+                xSpeed = world.getRandom().nextGaussian() * 0.05000000074505806;
+                ySpeed = world.getRandom().nextGaussian() * 0.05000000074505806;
+                zSpeed = world.getRandom().nextGaussian() * 0.05000000074505806;
+                serverWorld.sendParticles(blockParticle, x, y, z, particles, xSpeed, ySpeed + 1.5, zSpeed, 2);
+            }
+        }
     }
 }

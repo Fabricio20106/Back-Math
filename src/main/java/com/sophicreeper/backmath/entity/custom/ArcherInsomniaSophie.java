@@ -34,7 +34,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class ArcherInsomniaSophie extends TermianMemberEntity implements IRangedAttackMob, ISophieFriendlies, IMob {
+public class ArcherInsomniaSophie extends TermianMemberEntity implements IRangedAttackMob, SophieFriendlies, IMob {
     private final BMRangedBowAttackGoal<ArcherInsomniaSophie> aiArrowAttack = new BMRangedBowAttackGoal<>(this, 1, 20, 15);
     private final MeleeAttackGoal aiAttackOnCollide = new MeleeAttackGoal(this, 1.2D, false) {
         public void stop() {

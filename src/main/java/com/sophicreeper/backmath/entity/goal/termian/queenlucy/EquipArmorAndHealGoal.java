@@ -1,9 +1,8 @@
 package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
 import com.sophicreeper.backmath.entity.custom.QueenLucy;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.EquipmentTableUtils;
 
 public class EquipArmorAndHealGoal extends CastSpellGoal {
     private final QueenLucy queenLucy;
@@ -14,23 +13,23 @@ public class EquipArmorAndHealGoal extends CastSpellGoal {
     }
 
     @Override
-    protected void castSpell() {
-        this.queenLucy.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(Items.DIAMOND_CHESTPLATE));
+    public void castSpell() {
+        EquipmentTableUtils.equipWithGear(BMResourceLocations.QUEEN_LUCY_FROM_EQUIP_SPELL_EQUIPMENT, this.queenLucy);
         this.queenLucy.heal(25);
     }
 
     @Override
-    protected int getCastingTime() {
+    public int castingTime() {
         return 100;
     }
 
     @Override
-    protected int getCastingInterval() {
+    public int castingInterval() {
         return 340;
     }
 
     @Override
-    protected QueenLucySpells getSpellType() {
+    public QueenLucySpells spellType() {
         return QueenLucySpells.EQUIP_DIAMOND_CHESTPLATE_AND_HEAL;
     }
 }

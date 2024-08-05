@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.util.fix;
 
 import com.sophicreeper.backmath.misc.BMRegistries;
+import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
@@ -23,10 +24,10 @@ public class BMTagFixes {
     // Updates the old "Inventory" tag of Archer Lucias to the new "inventory" tag.
     public static ListNBT fixInventoryTag(CompoundNBT tag) {
         if (tag.contains("Inventory")) {
-            tag.put("inventory", tag.getList("Inventory", 10));
+            tag.put("inventory", tag.getList("Inventory", TagTypes.COMPOUND));
             tag.remove("Inventory");
         }
-        return tag.getList("inventory", 10);
+        return tag.getList("inventory", TagTypes.COMPOUND);
     }
 
     // Updates the old "CanBreakDoors" tag of Insomnia Zombies and Zombie Fabricios to the new "can_break_doors" tag.

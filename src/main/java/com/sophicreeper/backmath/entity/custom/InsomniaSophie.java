@@ -31,7 +31,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class InsomniaSophie extends TermianMemberEntity implements ISophieFriendlies, IMob {
+public class InsomniaSophie extends TermianMemberEntity implements SophieFriendlies, IMob {
     public InsomniaSophie(EntityType<InsomniaSophie> type, World world) {
         super(type, world);
         this.xpReward = 3 + this.level.random.nextInt(6);
@@ -41,8 +41,8 @@ public class InsomniaSophie extends TermianMemberEntity implements ISophieFriend
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.6f, true));
-        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.6f));
+        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.6F, true));
+        this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1.6F));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(4, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenLucyPet.class, false));
@@ -72,7 +72,7 @@ public class InsomniaSophie extends TermianMemberEntity implements ISophieFriend
 
     public static AttributeModifierMap.MutableAttribute createInsomniaSophieAttributes() {
         return MonsterEntity.createMonsterAttributes().add(Attributes.ATTACK_DAMAGE, 4).add(Attributes.MAX_HEALTH, 28).add(Attributes.FOLLOW_RANGE, 12)
-                .add(Attributes.MOVEMENT_SPEED, 0.23f);
+                .add(Attributes.MOVEMENT_SPEED, 0.23F);
     }
 
     @Override

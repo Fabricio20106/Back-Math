@@ -21,11 +21,11 @@ import java.util.Map;
 public abstract class QueenLucyPetVariantProvider implements IDataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private final Map<String, Tuple<QueenLucyPetVariant, JsonObject>> toSerialize = new HashMap<>();
-    private final DataGenerator generation;
+    private final DataGenerator generator;
     private final String modID;
 
-    public QueenLucyPetVariantProvider(DataGenerator generation, String modID) {
-        this.generation = generation;
+    public QueenLucyPetVariantProvider(DataGenerator generator, String modID) {
+        this.generator = generator;
         this.modID = modID;
     }
 
@@ -45,7 +45,7 @@ public abstract class QueenLucyPetVariantProvider implements IDataProvider {
 
         this.toSerialize.forEach(LamdbaExceptionUtils.rethrowBiConsumer((name, pair) -> {
             entries.add(new ResourceLocation(this.modID, name));
-            Path variantFile = this.generation.getOutputFolder().resolve(variantsPath + name + ".json");
+            Path variantFile = this.generator.getOutputFolder().resolve(variantsPath + name + ".json");
 
             IDataProvider.save(GSON, cache, pair.getB(), variantFile);
         }));

@@ -13,7 +13,7 @@ import com.sophicreeper.backmath.item.custom.potion.BMPotions;
 import com.sophicreeper.backmath.loot.BMLootFunctions;
 import com.sophicreeper.backmath.loot.BMLootModifiers;
 import com.sophicreeper.backmath.loot.BMLootParameterSets;
-import com.sophicreeper.backmath.misc.BMMotives;
+import com.sophicreeper.backmath.misc.BMPaintings;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStats;
 import com.sophicreeper.backmath.misc.BMRegistries;
@@ -54,7 +54,7 @@ public class CommonProxy {
         BMFeature.FEATURES.register(eventBus);
         BMWorldCarvers.WORLD_CARVERS.register(eventBus);
         BMBiomes.BIOMES.register(eventBus);
-        BMMotives.MOTIVES.register(eventBus);
+        BMPaintings.PAINTINGS.register(eventBus);
         BMPotions.POTIONS.register(eventBus);
         BMStructures.STRUCTURES.register(eventBus);
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);

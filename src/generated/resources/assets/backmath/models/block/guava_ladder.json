@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:block/template_ladder",
+  "textures": {
+    "ladder": "backmath:block/guava_ladder"
+  }
+}

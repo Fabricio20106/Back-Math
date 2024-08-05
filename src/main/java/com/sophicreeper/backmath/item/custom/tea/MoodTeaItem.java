@@ -82,7 +82,6 @@ public class MoodTeaItem extends Item {
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.held"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".desc").withStyle(TextFormatting.GRAY).withStyle(TextFormatting.ITALIC));
-        if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".bug").withStyle(TextFormatting.DARK_RED));
         super.appendHoverText(stack, world, tooltip, flag);
     }
 }

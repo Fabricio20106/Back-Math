@@ -101,7 +101,7 @@ public class BMUtils {
 
     // Sets a random cape to a Termian Patroller entity (out of the 7 vanilla/default capes).
     public static void setRandomCape(TermianPatrollerEntity patroller, Random rand) {
-        int randomCape = rand.nextInt(8);
+        int randomCape = rand.nextInt(9);
         if (randomCape == 0) {
             patroller.setCapeTexture(BackMath.resourceLoc("cape/migrator").toString());
         } else if (randomCape == 1) {
@@ -116,6 +116,8 @@ public class BMUtils {
             patroller.setCapeTexture(BackMath.resourceLoc("cape/15th_anniversary").toString());
         } else if (randomCape == 6) {
             patroller.setCapeTexture(BackMath.resourceLoc("cape/pan").toString());
+        } else if (randomCape == 7) {
+            patroller.setCapeTexture(BackMath.resourceLoc("cape/mc_championship").toString());
         }
     }
 

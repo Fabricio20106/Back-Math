@@ -11,6 +11,7 @@ import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
@@ -23,8 +24,8 @@ public class MidTermArmorItem extends ArmorItem {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         if (stack.getMaxDamage() <= stack.getDamageValue()) {
-            stack.shrink(1);
             world.explode(player, BMDamageSources.MID_TERM_ARMOR_INSTABILITY, null, player.getX(), player.getY(), player.getZ(), 8, false, Explosion.Mode.DESTROY);
+            stack.shrink(1);
         }
         super.onArmorTick(stack, world, player);
     }
@@ -37,9 +38,9 @@ public class MidTermArmorItem extends ArmorItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
-            LivingEntity livingEntity = (LivingEntity) entity;
-            livingEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2));
-            entity.setSecondsOnFire(10);
+            LivingEntity livEntity = (LivingEntity) entity;
+            livEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2));
+            if (!livEntity.isInvulnerableTo(DamageSource.IN_FIRE) || !livEntity.isInvulnerableTo(DamageSource.ON_FIRE)) livEntity.setSecondsOnFire(10);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

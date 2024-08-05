@@ -3,6 +3,8 @@ package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
 
+import java.util.Locale;
+
 public enum QueenLucySpells {
     NONE("none"),
     SUMMON_WARRIOR_SOPHIES("summon_warrior_sophies"),
@@ -21,6 +23,7 @@ public enum QueenLucySpells {
     }
 
     public static boolean isValidSpell(String name) {
+        name = name.toLowerCase(Locale.ROOT);
         return name.equals("none") || name.equals("summon_warrior_sophies") || name.equals("summon_archer_insomnia_sophies") || name.equals("summon_insomnia_sophies") || name.equals("equip_diamond_chestplate_and_heal");
     }
 

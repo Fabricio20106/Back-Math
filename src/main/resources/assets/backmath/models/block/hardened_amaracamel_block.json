@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "top": "backmath:block/hardened_amaracamel_block_top",
-    "bottom": "backmath:block/hardened_amaracamel_block_top",
-    "side": "backmath:block/hardened_amaracamel_block_side"
-  }
-}

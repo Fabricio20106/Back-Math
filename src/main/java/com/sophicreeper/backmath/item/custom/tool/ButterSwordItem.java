@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom.tool;
 
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.util.NBTUtils;
+import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +27,7 @@ public class ButterSwordItem extends SwordItem {
     public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
         if (livEntity instanceof PlayerEntity) {
             int storedExperience = stack.getOrCreateTag().getInt("stored_experience");
-            if (stack.getTag() != null && stack.getTag().contains("stored_experience", NBTUtils.INTEGER)) {
+            if (stack.getTag() != null && stack.getTag().contains("stored_experience", TagTypes.INTEGER)) {
                 // Gives the player the amount of points in the "stored_experience" tag.
                 ((PlayerEntity) livEntity).giveExperiencePoints(storedExperience);
             } else {
@@ -41,7 +41,7 @@ public class ButterSwordItem extends SwordItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        if (stack.getTag() != null && stack.getTag().contains("stored_experience", NBTUtils.INTEGER)) {
+        if (stack.getTag() != null && stack.getTag().contains("stored_experience", TagTypes.INTEGER)) {
             tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent("" + stack.getTag().getInt("stored_experience")).withStyle(Style.EMPTY.withColor(
                     Color.fromRgb(8453920)))).withStyle(TextFormatting.GRAY));
         } else {

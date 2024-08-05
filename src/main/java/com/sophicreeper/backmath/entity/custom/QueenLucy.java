@@ -37,10 +37,11 @@ import net.minecraft.world.*;
 import net.minecraft.world.server.ServerBossInfo;
 import org.apache.logging.log4j.LogManager;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Locale;
 
-public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies, IMob {
+public class QueenLucy extends TermianMemberEntity implements SophieFriendlies, IMob {
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
     private static final DataParameter<String> SPELL = EntityDataManager.defineId(QueenLucy.class, DataSerializers.STRING);
     public int spellCooldownTicks;
@@ -53,6 +54,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         this.xpReward = 450;
     }
 
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(SPELL, "none");
@@ -66,13 +68,14 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         return BMSounds.ENTITY_SOPHIE_CELEBRATE;
     }
 
+    @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
 
         CompoundNBT spellsTag = tag.getCompound("lucy_spells");
         if (QueenLucySpells.isValidSpell(spellsTag.getString("current_spell"))) {
             LogManager.getLogger().debug(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("console.backmath.queen_lucy.set_spell", QueenLucySpells.setFromString(spellsTag.getString(
-                    "current_spell")))).getString());
+                    "current_spell")).getName())).getString());
             this.setSpellType(QueenLucySpells.setFromString(spellsTag.getString("current_spell").toLowerCase(Locale.ROOT)));
         } else {
             LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy.invalid_spell", spellsTag.getString("current_spell"))).getString());
@@ -83,6 +86,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         this.lucySpellsTag = spellsTag;
     }
 
+    @Override
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         CompoundNBT spellsTag = new CompoundNBT();
@@ -142,6 +146,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Janticle.class, true));
     }
 
+    @Override
     protected void customServerAiStep() {
         super.customServerAiStep();
         if (this.spellCooldownTicks > 0) --this.spellCooldownTicks;
@@ -157,24 +162,29 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         this.updateEffectHelmet(this, BMTags.Items.PROVIDES_RESISTANCE, Effects.DAMAGE_RESISTANCE);
     }
 
+    @Override
     public void aiStep() {
         this.updateSwingTime();
         super.aiStep();
     }
 
+    @Override
     public boolean causeFallDamage(float distance, float damageMultiplier) {
         return false;
     }
 
+    @Override
     public boolean addEffect(EffectInstance instance) {
-        return false;
+        return instance.getEffect().isBeneficial();
     }
 
+    @Override
     public void setCustomName(@Nullable ITextComponent name) {
         super.setCustomName(name);
         this.bossInfo.setName(this.getDisplayName());
     }
 
+    @Override
     protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
         super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
         ItemEntity staffStack = this.spawnAtLocation(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());
@@ -183,6 +193,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
 
     // Add the given player to the list of players tracking this entity.
     // For instance, a player may track a boss in order to view its associated boss bar.
+    @Override
     public void startSeenByPlayer(ServerPlayerEntity player) {
         super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
@@ -190,11 +201,13 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
 
     // Removes the given player from the list of players tracking this entity.
     // See Entity#addTrackingPlayer(ServerPlayerEntity) for more information on tracking.
+    @Override
     public void stopSeenByPlayer(ServerPlayerEntity player) {
         super.stopSeenByPlayer(player);
         this.bossInfo.removePlayer(player);
     }
 
+    @Override
     public boolean canRide(Entity entity) {
         return false;
     }
@@ -215,6 +228,7 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
     }
 
+    @Override
     protected SoundEvent getHurtSound(DamageSource source) {
         if (source == DamageSource.ON_FIRE) {
             return BMSounds.ENTITY_SOPHIE_HURT_ON_FIRE;
@@ -225,10 +239,12 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         }
     }
 
+    @Override
     protected SoundEvent getDeathSound() {
         return BMSounds.ENTITY_SOPHIE_DEATH;
     }
 
+    @Override
     public boolean isAlliedTo(Entity entity) {
         if (super.isAlliedTo(entity)) {
             return true;
@@ -240,15 +256,8 @@ public class QueenLucy extends TermianMemberEntity implements ISophieFriendlies,
         return new ItemStack(AxolotlTest.QUEEN_LUCY_SPAWN_EGG.get());
     }
 
-    public void rideTick() {
-        super.rideTick();
-        if (this.getVehicle() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getVehicle();
-            this.yBodyRot = entity.yBodyRot;
-        }
-    }
-
     @Override
+    @Nonnull
     public SoundCategory getSoundSource() {
         return SoundCategory.HOSTILE;
     }

@@ -12,7 +12,7 @@ import java.util.EnumSet;
 // Renamed class, and added some code from SpellcastingIllagerEntity.CastingASpellGoal to match the behavior of Evokers more. - June 21/04/24 (Sunday)
 public abstract class CastSpellGoal extends Goal {
     private final QueenLucy queenLucy;
-    protected int spellWarmup;
+    protected int warmupTicks;
     protected int spellCooldown;
 
     public CastSpellGoal(QueenLucy queenLucy) {
@@ -20,6 +20,7 @@ public abstract class CastSpellGoal extends Goal {
         this.queenLucy = queenLucy;
     }
 
+    @Override
     public boolean canUse() {
         LivingEntity lucyTarget = this.queenLucy.getTarget();
         if (lucyTarget != null && lucyTarget.isAlive()) {
@@ -33,18 +34,20 @@ public abstract class CastSpellGoal extends Goal {
         }
     }
 
+    @Override
     public boolean canContinueToUse() {
         LivingEntity lucyTarget = this.queenLucy.getTarget();
-        return lucyTarget != null && lucyTarget.isAlive() && this.spellWarmup > 0;
+        return lucyTarget != null && lucyTarget.isAlive() && this.warmupTicks > 0;
     }
 
+    @Override
     public void start() {
-        this.spellWarmup = this.getCastWarmupTime();
-        this.queenLucy.spellCooldownTicks = this.getCastingTime();
-        this.spellCooldown = this.queenLucy.tickCount + this.getCastingInterval();
+        this.warmupTicks = this.castWarmupTicks();
+        this.queenLucy.spellCooldownTicks = this.castingTime();
+        this.spellCooldown = this.queenLucy.tickCount + this.castingInterval();
         SoundEvent prepareSpellSound = this.getSpellPrepareSound();
         if (prepareSpellSound != null) this.queenLucy.playSound(prepareSpellSound, 1, 1);
-        this.queenLucy.setSpellType(this.getSpellType());
+        this.queenLucy.setSpellType(this.spellType());
     }
 
     @Override
@@ -53,9 +56,10 @@ public abstract class CastSpellGoal extends Goal {
         this.queenLucy.setSpellType(QueenLucySpells.NONE);
     }
 
+    @Override
     public void tick() {
-        --this.spellWarmup;
-        if (this.spellWarmup == 0) {
+        --this.warmupTicks;
+        if (this.warmupTicks == 0) {
             this.castSpell();
             this.queenLucy.playSound(this.queenLucy.getSpellSound(), 1, 1);
         }
@@ -69,15 +73,15 @@ public abstract class CastSpellGoal extends Goal {
         return BMSounds.ENTITY_QUEEN_LUCY_PREPARE_SUMMON;
     }
 
-    protected abstract void castSpell();
+    public abstract void castSpell();
 
-    protected int getCastWarmupTime() {
+    public int castWarmupTicks() {
         return 20;
     }
 
-    protected abstract int getCastingTime();
+    public abstract int castingTime();
 
-    protected abstract int getCastingInterval();
+    public abstract int castingInterval();
 
-    protected abstract QueenLucySpells getSpellType();
+    public abstract QueenLucySpells spellType();
 }

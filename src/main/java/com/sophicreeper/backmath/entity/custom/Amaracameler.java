@@ -29,6 +29,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.*;
 import net.minecraft.world.biome.Biomes;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.Optional;
@@ -169,6 +170,9 @@ public class Amaracameler extends MobEntity implements IMob {
         super.onSyncedDataUpdated(key);
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    @Nonnull
     public EntityType<? extends Amaracameler> getType() {
         return (EntityType<? extends Amaracameler>) super.getType();
     }

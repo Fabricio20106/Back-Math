@@ -12,8 +12,8 @@ public class BMItemModelProvider extends BMItemModelModels {
         super(generator, BackMath.MOD_ID, fileHelper);
     }
 
-    @Nonnull
     @Override
+    @Nonnull
     public String getName() {
         return "Back Math - Item Models";
     }
@@ -23,11 +23,6 @@ public class BMItemModelProvider extends BMItemModelModels {
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
         ModelFile handheld32x = getExistingFile(modLoc("item/handheld_32x"));
-        ModelFile devilBow = getExistingFile(modLoc("item/devil_bow"));
-        ModelFile devilCrossbow = getExistingFile(modLoc("item/devil_crossbow"));
-        ModelFile angelicBow = getExistingFile(modLoc("item/angelic_bow"));
-        ModelFile angelicCrossbow = getExistingFile(modLoc("item/angelic_crossbow"));
-        ModelFile midTermBow = getExistingFile(modLoc("item/mid_term_bow"));
 
         block("crystalline_birch_log");
         block("crystalline_birch_wood");
@@ -421,7 +416,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         blockItem("ender_dragon_fried_egg_flower");
         blockItem("aljan_tulip");
         blockItem("poison_rose");
-        blockItem("insomnian_tulip");
+        blockItem("insomnian_tulip", "_combined");
         blockItem("aljanshroom");
         blockItem("sleepshroom");
         blockItem("sleepyshroom");
@@ -772,28 +767,14 @@ public class BMItemModelProvider extends BMItemModelModels {
         standard(handheld, "mech_mech");
         standard(handheld, "lapis_rainbow");
         standard(handheld, "karate_training_stick");
-        standard(handheld, "queen_sophie_summoner_staff");
+        queenLucySummonerStaff("queen_sophie_summoner_staff");
         standard(generated, "talco_de_agua");
         standard(generated, "aljamic_flint_and_aljansteel");
-        standard(devilBow, "devil_bow_pulling_0");
-        standard(devilBow, "devil_bow_pulling_1");
-        standard(devilBow, "devil_bow_pulling_2");
-        standard(devilCrossbow, "devil_crossbow_pulling_0");
-        standard(devilCrossbow, "devil_crossbow_pulling_1");
-        standard(devilCrossbow, "devil_crossbow_pulling_2");
-        standard(devilCrossbow, "devil_crossbow_arrow");
-        standard(devilCrossbow, "devil_crossbow_firework");
-        standard(angelicBow, "angelic_bow_pulling_0");
-        standard(angelicBow, "angelic_bow_pulling_1");
-        standard(angelicBow, "angelic_bow_pulling_2");
-        standard(angelicCrossbow, "angelic_crossbow_pulling_0");
-        standard(angelicCrossbow, "angelic_crossbow_pulling_1");
-        standard(angelicCrossbow, "angelic_crossbow_pulling_2");
-        standard(angelicCrossbow, "angelic_crossbow_arrow");
-        standard(angelicCrossbow, "angelic_crossbow_firework");
-        standard(midTermBow, "mid_term_bow_pulling_0");
-        standard(midTermBow, "mid_term_bow_pulling_1");
-        standard(midTermBow, "mid_term_bow_pulling_2");
+        bow("devil_bow");
+        crossbow("devil_crossbow");
+        bow("angelic_bow");
+        crossbow("angelic_crossbow");
+        bow("mid_term_bow");
         standard(generated, "chocoglue");
         standard(handheld, "pink_gum_frying_pan");
         standard(generated, "insomnia_arrow");
@@ -818,6 +799,11 @@ public class BMItemModelProvider extends BMItemModelModels {
         standard(generated, "aljansteel_shears");
         standard(generated, "moonering_shears");
         standard(generated, "jantiquified_moonering_shears");
+        shield("devil_shield", modLoc("entity/shield/devil"), modLoc("block/devil_block"));
+        shield("angelic_shield", modLoc("entity/shield/angelic"), modLoc("block/angelic_block"));
+        shield("mid_term_shield", modLoc("entity/shield/mid_term"), modLoc("block/mid_term_block_side"));
+        shield("aljameed_shield", modLoc("entity/shield/aljameed"), modLoc("block/aljameed_block"));
+        shield("moonering_shield", modLoc("entity/shield/moonering"), modLoc("block/moonering_block"));
 
 
         // TODO: Back Math Foods

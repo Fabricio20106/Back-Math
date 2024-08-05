@@ -40,7 +40,7 @@ import org.apache.logging.log4j.Logger;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class WandererSophie extends TermianMemberEntity implements ISophieFriendlies {
+public class WandererSophie extends TermianMemberEntity implements SophieFriendlies {
     public static final Logger LOGGER = LogManager.getLogger();
     private static final DataParameter<String> VARIANT = EntityDataManager.defineId(WandererSophie.class, DataSerializers.STRING);
 

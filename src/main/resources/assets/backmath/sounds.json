@@ -3,7 +3,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/nathan_evans/wellerman",
+        "name": "backmath:music_disc/wellerman",
         "stream": true
       }
     ]
@@ -12,7 +12,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/sia/snowman",
+        "name": "backmath:music_disc/snowman",
         "stream": true
       }
     ]
@@ -21,7 +21,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/ericwho/dadadada_da",
+        "name": "backmath:music_disc/dadadada_da",
         "stream": true
       }
     ]
@@ -30,7 +30,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/duncan_laurence/arcade",
+        "name": "backmath:music_disc/arcade",
         "stream": true
       }
     ]
@@ -39,7 +39,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/hatsune_miku/zonibus",
+        "name": "backmath:music_disc/zonibus",
         "stream": true
       }
     ]
@@ -48,7 +48,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/rihanna/umbrella",
+        "name": "backmath:music/umbrella",
         "stream": true
       }
     ]
@@ -57,7 +57,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/elyotto/sugar_crash",
+        "name": "backmath:music_disc/sugar_crash",
         "stream": true
       }
     ]
@@ -66,7 +66,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/hatsune_miku/levan_polkka",
+        "name": "backmath:music_disc/levan_polkka",
         "stream": true
       }
     ]
@@ -75,7 +75,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/rick_astley/never_gonna_give_you_up",
+        "name": "backmath:music_disc/never_gonna_give_you_up",
         "stream": true
       }
     ]
@@ -84,7 +84,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/maneskin/beggin",
+        "name": "backmath:music_disc/beggin",
         "stream": true
       }
     ]
@@ -93,7 +93,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/justin_bieber/stay",
+        "name": "backmath:music_disc/stay",
         "stream": true
       }
     ]
@@ -102,7 +102,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/sophicreeper/the_flying_arm",
+        "name": "backmath:music_disc/the_flying_arm",
         "stream": true
       }
     ]
@@ -111,7 +111,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/sophicreeper/sophies_dramatic_entrance1",
+        "name": "backmath:music_disc/sophies_dramatic_entrance_1",
         "stream": true
       }
     ]
@@ -120,7 +120,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/sophicreeper/sophies_dramatic_entrance2",
+        "name": "backmath:music_disc/sophies_dramatic_entrance_2",
         "stream": true
       }
     ]
@@ -129,7 +129,7 @@
     "category": "record",
     "sounds": [
       {
-        "name": "backmath:record/sophicreeper/sophies_dramatic_entrance3",
+        "name": "backmath:music_disc/sophies_dramatic_entrance_3",
         "stream": true
       }
     ]
@@ -244,7 +244,7 @@
     ],
     "subtitle": "subtitles.entity.sophie.shoot"
   },
-  "item.sophie.celebrate": {
+  "entity.sophie.celebrate": {
     "sounds": []
   },
   "entity.termian.splash": {
@@ -319,7 +319,7 @@
     ],
     "subtitle": "subtitles.entity.lucia.death"
   },
-  "item.lucia.celebrate": {
+  "entity.lucia.celebrate": {
     "sounds": []
   },
   "entity.fabricio.hurt": {
@@ -523,6 +523,26 @@
       {
         "name": "music.game",
         "type": "event"
+      },
+      {
+        "name": "themato:music/game/trails_and_tales/bromeliad",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "themato:music/game/wild_update/aerie",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "themato:music/game/wild_update/firebugs",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "themato:music/game/wild_update/labyrinthine",
+        "stream": true,
+        "volume": 0.4
       }
     ]
   },
@@ -531,6 +551,26 @@
       {
         "name": "music.game",
         "type": "event"
+      },
+      {
+        "name": "themato:music/game/trails_and_tales/bromeliad",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "themato:music/game/wild_update/aerie",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "themato:music/game/wild_update/firebugs",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "themato:music/game/wild_update/labyrinthine",
+        "stream": true,
+        "volume": 0.4
       }
     ]
   },

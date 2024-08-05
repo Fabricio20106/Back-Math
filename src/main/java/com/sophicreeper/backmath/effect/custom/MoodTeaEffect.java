@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.effect.custom;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.EffectType;
 
 public class MoodTeaEffect extends Effect {
@@ -11,7 +12,9 @@ public class MoodTeaEffect extends Effect {
 
     @Override
     public void applyEffectTick(LivingEntity livEntity, int amplifier) {
-        livEntity.getActiveEffects().removeIf(effectInstance -> !effectInstance.getEffect().isBeneficial());
+        for (EffectInstance instance : livEntity.getActiveEffects()) {
+            if (!instance.getEffect().isBeneficial()) livEntity.removeEffect(instance.getEffect());
+        }
     }
 
     @Override

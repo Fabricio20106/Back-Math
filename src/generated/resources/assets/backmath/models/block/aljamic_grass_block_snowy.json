@@ -1,0 +1,9 @@
+{
+  "parent": "backmath:block/template_grass_block",
+  "textures": {
+    "bottom": "backmath:block/aljamic_dirt",
+    "top": "backmath:block/aljamic_grass_block_top",
+    "side": "backmath:block/aljamic_grass_block_side_snowy",
+    "overlay": "backmath:block/aljamic_grass_block_side_overlay"
+  }
+}

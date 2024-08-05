@@ -1,12 +1,16 @@
 package com.sophicreeper.backmath.data.models;
 
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.loaders.SeparatePerspectiveModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public abstract class BMItemModelModels extends ItemModelProvider {
     private final ModelFile generated = getExistingFile(mcLoc("item/generated"));
+    private final ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
 
     public BMItemModelModels(DataGenerator generator, String modID, ExistingFileHelper fileHelper) {
         super(generator, modID, fileHelper);
@@ -70,6 +74,49 @@ public abstract class BMItemModelModels extends ItemModelProvider {
         getBuilder("milked_" + sword).parent(parent).texture("layer0", mcLoc("item/" + sword)).texture("layer1", modLoc("item/milked_sword_base"));
     }
 
+    public void crossbow(String name) {
+        ModelFile templateCrossbow = getExistingFile(modLoc("item/template_crossbow"));
+        standard(templateCrossbow, name + "_pulling_0");
+        standard(templateCrossbow, name + "_pulling_1");
+        standard(templateCrossbow, name + "_pulling_2");
+        standard(templateCrossbow, name + "_arrow");
+        standard(templateCrossbow, name + "_firework");
+
+        getBuilder(name).parent(templateCrossbow).texture("layer0", modLoc("item/" + name + "_standby"))
+                .override().predicate(pulling(), 1).model(getExistingFile(modLoc("item/" + name + "_pulling_0"))).end()
+                .override().predicate(pulling(), 1).predicate(pullProgress(), 0.58F).model(getExistingFile(modLoc("item/" + name + "_pulling_1"))).end()
+                .override().predicate(pulling(), 1).predicate(pullProgress(), 1).model(getExistingFile(modLoc("item/" + name + "_pulling_2"))).end()
+                .override().predicate(charged(), 1).model(getExistingFile(modLoc("item/" + name + "_arrow"))).end()
+                .override().predicate(charged(), 1).predicate(fireworkRocketLoaded(), 1).model(getExistingFile(modLoc("item/" + name + "_arrow"))).end();
+    }
+
+    public void bow(String name) {
+        ModelFile templateBow = getExistingFile(modLoc("item/template_bow"));
+        standard(templateBow, name + "_pulling_0");
+        standard(templateBow, name + "_pulling_1");
+        standard(templateBow, name + "_pulling_2");
+
+        getBuilder(name).parent(templateBow).texture("layer0", modLoc("item/" + name))
+                .override().predicate(pulling(), 1).model(getExistingFile(modLoc("item/" + name + "_pulling_0"))).end()
+                .override().predicate(pulling(), 1).predicate(pullProgress(), 0.65F).model(getExistingFile(modLoc("item/" + name + "_pulling_1"))).end()
+                .override().predicate(pulling(), 1).predicate(pullProgress(), 0.9F).model(getExistingFile(modLoc("item/" + name + "_pulling_2"))).end();
+    }
+
+    public void shield(String name, ResourceLocation shieldTexture, ResourceLocation particleTexture) {
+        getBuilder(name + "_blocking").parent(getExistingFile(modLoc("item/template_shield_blocking"))).texture("shield", shieldTexture).texture("particle", particleTexture);
+
+        getBuilder(name).parent(getExistingFile(modLoc("item/template_shield"))).texture("shield", shieldTexture).texture("particle", particleTexture).override().predicate(new ResourceLocation("blocking"), 1).model(getExistingFile(modLoc(
+                "item/" + name + "_blocking"))).end();
+    }
+
+    public void queenLucySummonerStaff(String name) {
+        getBuilder(name + "_inventory").parent(this.handheld).texture("layer0", "item/" + name);
+
+        withExistingParent(name, this.generated.getLocation()).customLoader(SeparatePerspectiveModelBuilder::begin).base(nested().parent(getExistingFile(modLoc("item/" + name + "_in_hand"))))
+                .perspective(ItemCameraTransforms.TransformType.GUI, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory"))))
+                .perspective(ItemCameraTransforms.TransformType.GROUND, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory")))).end();
+    }
+
     public void block(String name) {
         withExistingParent(name, modLoc("block/" + name));
     }
@@ -91,7 +138,7 @@ public abstract class BMItemModelModels extends ItemModelProvider {
     }
 
     public void grapeVinePost(String woodName) {
-        withExistingParent(woodName + "_grape_vine_post", modLoc("block/grape_vine_posts/" + woodName));
+        withExistingParent(woodName + "_grape_vine_post", modLoc("block/" + woodName + "_grape_vine_post_age0"));
     }
 
     public void notebook(String name, String bottom, String screen, String keyboard) {
@@ -101,5 +148,21 @@ public abstract class BMItemModelModels extends ItemModelProvider {
     public void stuffedNotebook(String name, String bottom, String screen, String keyboard, String inner) {
         getBuilder(name).parent(getExistingFile(modLoc("item/template_stuffed_cookie_notebook"))).texture("bottom", "block/" + bottom).texture("screen", "block/" + screen).texture("keyboard", "block/" + keyboard)
                 .texture("inner", "block/" + inner);
+    }
+
+    public ResourceLocation pulling() {
+        return new ResourceLocation("pulling");
+    }
+
+    public ResourceLocation pullProgress() {
+        return new ResourceLocation("pull");
+    }
+
+    public ResourceLocation charged() {
+        return new ResourceLocation("charged");
+    }
+
+    public ResourceLocation fireworkRocketLoaded() {
+        return new ResourceLocation("firework");
     }
 }

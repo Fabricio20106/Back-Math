@@ -28,7 +28,7 @@ public class SummonInsomniaSophiesGoal extends CastSpellGoal {
     }
 
     @Override
-    protected void castSpell() {
+    public void castSpell() {
         ServerWorld world = (ServerWorld) this.queenLucy.level;
 
         for (int i = 0; i < 3; ++i) {
@@ -45,17 +45,17 @@ public class SummonInsomniaSophiesGoal extends CastSpellGoal {
     }
 
     @Override
-    protected int getCastingTime() {
+    public int castingTime() {
         return 100;
     }
 
     @Override
-    protected int getCastingInterval() {
+    public int castingInterval() {
         return 340;
     }
 
     @Override
-    protected QueenLucySpells getSpellType() {
+    public QueenLucySpells spellType() {
         return QueenLucySpells.SUMMON_INSOMNIA_SOPHIES;
     }
 }

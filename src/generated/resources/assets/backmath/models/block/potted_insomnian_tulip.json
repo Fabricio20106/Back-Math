@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/flower_pot_cross",
   "textures": {
-    "plant": "backmath:block/insomnian_tulip"
+    "plant": "backmath:block/insomnian_tulip_combined"
   }
 }

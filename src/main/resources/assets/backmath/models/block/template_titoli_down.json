@@ -113,6 +113,5 @@
 				"down": {"uv": [12, 6, 16, 7], "rotation": 270, "texture": "#titoli"}
 			}
 		}
-	],
-	"display": {}
+	]
 }

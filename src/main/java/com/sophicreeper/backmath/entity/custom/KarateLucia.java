@@ -26,7 +26,7 @@ import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
 
-public class KarateLucia extends TermianMemberEntity implements ISophieFriendlies {
+public class KarateLucia extends TermianMemberEntity implements SophieFriendlies {
     public KarateLucia(EntityType<KarateLucia> type, World world) {
         super(type, world);
     }
