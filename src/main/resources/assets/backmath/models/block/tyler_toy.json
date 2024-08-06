@@ -2,8 +2,8 @@
 	"credit": "Made with Blockbench",
 	"parent": "block/block",
 	"textures": {
-		"particle": "backmath:block/tyler_toy",
-		"tyler": "backmath:block/tyler_toy"
+		"tyler": "backmath:block/tyler_toy",
+		"particle": "#tyler"
 	},
 	"elements": [
 		{

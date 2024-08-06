@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.data.models;
 
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.block.custom.EmotionalSquidBlock;
 import com.sophicreeper.backmath.block.custom.GrapeVinePostBlock;
 import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
 import com.sophicreeper.backmath.crystallizer.Molds;
@@ -76,7 +77,7 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
     }
 
     public void grapeVinePost(GrapeVinePostBlock block, ModelFile notGrown, ModelFile preGrown, ModelFile grown) {
-        getVariantBuilder(block).forAllStatesExcept((state) -> {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
             Direction facing = state.getValue(GrapeVinePostBlock.FACING);
             int age = state.getValue(GrapeVinePostBlock.AGE);
             return ConfiguredModel.builder().modelFile(age == 0 || age == 1 ? notGrown : (age == 2 ? preGrown : grown)).rotationY((int) facing.toYRot()).build();
@@ -84,7 +85,7 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
     }
 
     public void grassBlock(Block block, ResourceLocation baseTexture, ResourceLocation bottomTexture) {
-        getVariantBuilder(block).forAllStates((state) -> {
+        getVariantBuilder(block).forAllStates(state -> {
             boolean snowy = state.getValue(GrassBlock.SNOWY);
             ModelFile model = models().withExistingParent(block.getRegistryName().getPath() + (snowy ? "_snowy" : ""), modLoc("block/template_grass_block")).texture("bottom", bottomTexture).texture("top", baseTexture + "_top").texture(
                     "side", baseTexture + "_side" + (snowy ? "_snowy" : "")).texture("overlay", baseTexture + "_side_overlay");
@@ -94,7 +95,7 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
 
     public void crystallizer(Block block) {
         getVariantBuilder(block).forAllStates(state -> {
-            Direction facing = state.getValue(CrystallizerBlock.FACING);
+            Direction facing = state.getValue(HorizontalBlock.FACING);
             Molds mold = state.getValue(CrystallizerBlock.MOLD);
             int rotation = (int) facing.getOpposite().toYRot();
             return ConfiguredModel.builder().modelFile(models().withExistingParent(block.getRegistryName().getPath() + "_" + mold + "_mold", modLoc("block/template_crystallizer")).texture("top", modLoc("block/" + block.getRegistryName().getPath() +
@@ -104,11 +105,48 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
 
     public void crystallineCrystallizer(Block block) {
         getVariantBuilder(block).forAllStates(state -> {
-            Direction facing = state.getValue(CrystallineCrystallizerBlock.FACING);
+            Direction facing = state.getValue(HorizontalBlock.FACING);
             AdvancedMolds mold = state.getValue(CrystallineCrystallizerBlock.MOLD);
             int rotation = (int) facing.getOpposite().toYRot();
             return ConfiguredModel.builder().modelFile(models().withExistingParent(block.getRegistryName().getPath() + "_" + mold + "_mold", modLoc("block/template_crystalline_crystallizer")).texture("mold", modLoc("block/" + block.getRegistryName()
                     .getPath() + "_side_" + mold.getSerializedName()))).rotationY(rotation == 360 ? 0 : rotation).build();
+        });
+    }
+
+    public void emotionalSquid(Block block) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(HorizontalBlock.FACING);
+            boolean hanging = state.getValue(EmotionalSquidBlock.HANGING);
+            String hangingAddition = hanging ? "hanging_" : "";
+            return ConfiguredModel.builder().modelFile(models().withExistingParent(block.getRegistryName().getPath() + (hanging ? "_hanging" : ""), modLoc("block/template_" + hangingAddition + "emotional_squid")).texture("squid", modLoc("block/" + block
+                    .getRegistryName().getPath()))).rotationY((int) facing.getOpposite().toYRot()).build();
+        }, BlockStateProperties.WATERLOGGED);
+    }
+
+    public void toy(Block block) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            Direction facing = state.getValue(HorizontalBlock.FACING);
+            return ConfiguredModel.builder().modelFile(models().withExistingParent(block.getRegistryName().getPath(), modLoc("block/template_toy")).texture("toy", modLoc("block/" + block.getRegistryName().getPath()))).rotationY((int) facing.getOpposite()
+                    .toYRot()).build();
+        }, BlockStateProperties.WATERLOGGED);
+    }
+
+    public void bag(Block block) {
+        getVariantBuilder(block).forAllStatesExcept(state -> {
+            String path = block.getRegistryName().getPath();
+            Direction facing = state.getValue(HorizontalBlock.FACING);
+            return ConfiguredModel.builder().modelFile(models().withExistingParent(path, modLoc("block/template_placed_bag")).texture("part_one", modLoc("block/" + path + "_a")).texture("part_two", modLoc("block/" + path + "_b")).texture(
+                    "particle", modLoc("block/" + path + "_particle"))).rotationY((int) facing.getOpposite().toYRot()).build();
+        }, BlockStateProperties.WATERLOGGED);
+    }
+
+    public void cake(Block block) {
+        getVariantBuilder(block).forAllStates(state -> {
+            String path = block.getRegistryName().getPath();
+            int bites = state.getValue(BlockStateProperties.BITES);
+            String bite = bites == 0 ? "" : "_slice" + bites;
+            ModelFile eatenCake = models().withExistingParent(path + bite, modLoc("block/template_cake" + bite)).texture("inside", modLoc("block/" + path + "_inner")).texture("side", modLoc("block/" + path + "_side")).texture("bottom", modLoc("block/" + path + "_bottom")).texture("top", modLoc("block/" + path + "_top"));
+            return ConfiguredModel.builder().modelFile(eatenCake).build();
         });
     }
 

@@ -118,8 +118,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         simplePlantWithPotted(RED_YELLOW_ALLIUM.get(), POTTED_RED_YELLOW_ALLIUM.get(), modLoc("block/red_yellow_flower"));
         simpleBlock(ANGELIC_ORE.get());
         simpleBlock(DEEPSLATE_ANGELIC_ORE.get());
-        // Hillary Cake
-        // Milkllary Cake
+        cake(HILLARY_CAKE.get());
+        cake(MILKLLARY_CAKE.get());
         fluid(HILLARY.get(), modLoc("fluid/hilary_still"));
         fluid(MILKLLARY.get(), modLoc("fluid/milklary_still"));
         fluid(LIQUID_ALJAME.get(), modLoc("fluid/liquid_aljame"));
@@ -134,7 +134,11 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Angry Sophie Head
         simpleBlock(CRYSTALLINE_ANGELIC_ORE.get());
         simpleBlock(CRYSTALLINE_ANGELIC_BLOCK.get());
-        // Toys
+        toy(ALICE_TOY.get());
+        toy(ALAN_TOY.get());
+        // Innovator Toy
+        // Tyler Toy
+        // Malena Toy
         simpleBlock(ANGELICAL_CASING.get());
         // Meal Cooker
         // Queen Lucy Relic
@@ -142,8 +146,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         simplePlantWithPotted(CRYSTALLINE_BIRCH_SAPLING.get(), POTTED_CRYSTALLINE_BIRCH_SAPLING.get(), modLoc("block/crystalline_birch_sapling"));
         simpleBlock(CRACKED_ANGELIC_BRICKS.get());
         simpleBlock(CRYSTALLINE_BIRCH_LEAVES.get());
-        // Tito
-        // Toti
+        emotionalSquid(TITO.get());
+        emotionalSquid(TOTI.get());
 
         // ---------------------------------------------------
         // TODO: BACK MATH 1.7.0: FABRICIOS TA... I MEAN, ALJAMIC WARS CONTENT
@@ -175,8 +179,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         simplePlantWithPotted(ALJANSHROOM.get(), POTTED_ALJANSHROOM.get(), modLoc("block/aljanshroom"));
         simplePlantWithPotted(SLEEPSHROOM.get(), POTTED_SLEEPSHROOM.get(), modLoc("block/sleepshroom"));
         simplePlantWithPotted(SLEEPYSHROOM.get(), POTTED_SLEEPYSHROOM.get(), modLoc("block/sleepyshroom"));
-        // Amaracamel Batter Bag
-        // Boot Pack
+        bag(AMARACAMEL_BATTER_BAG.get());
+        bag(BOOT_PACK.get());
         grassBlock(ALJAMIC_GRASS_BLOCK.get(), modLoc("block/aljamic_grass_block"), modLoc("block/aljamic_dirt"));
         simpleBlock(ALJAMIC_DIRT.get());
         getVariantBuilder(ALJAMIC_FARMLAND.get()).forAllStates(state -> {

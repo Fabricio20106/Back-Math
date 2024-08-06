@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:block/template_hanging_emotional_squid",
+  "textures": {
+    "squid": "backmath:block/tito"
+  }
+}

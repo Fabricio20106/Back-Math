@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.item.custom.food.jam;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -109,7 +110,7 @@ public class EffectJamItem extends Item {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        PotionUtils.addPotionTooltip(stack, tooltip, 1);
+        BMUtils.addPotionTooltip(stack, tooltip, 1);
     }
 
     // Returns true if this item has an enchantment glint. By default, this returns "stack.isItemEnchanted()", but other items can override it (for instance, written books always return true).

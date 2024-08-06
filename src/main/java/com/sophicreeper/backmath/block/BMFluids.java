@@ -56,7 +56,7 @@ public class BMFluids {
 
     // Fluid Properties
     public static final ForgeFlowingFluid.Properties MILKLLARY_PROPERTIES = new ForgeFlowingFluid.Properties(MILKLLARY, FLOWING_MILKLLARY,
-            FluidAttributes.builder(MILKLLARY_STILL, BMResourceLocations.FLOWING_MILKLLARY).rarity(Rarity.COMMON).sound(SoundEvents.BUCKET_EMPTY).overlay(MILKLLARY_OVERLAY))
+            FluidAttributes.builder(MILKLLARY_STILL, BMResourceLocations.FLOWING_MILKLLARY).rarity(Rarity.UNCOMMON).sound(SoundEvents.BUCKET_EMPTY).overlay(MILKLLARY_OVERLAY))
             .block(BMBlocks.MILKLLARY).bucket(AxolotlTest.MILKLLARY_BUCKET);
 
     public static final ForgeFlowingFluid.Properties HILLARY_PROPERTIES = new ForgeFlowingFluid.Properties(HILLARY, FLOWING_HILLARY,
