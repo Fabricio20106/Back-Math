@@ -8,11 +8,14 @@ import net.minecraft.dispenser.OptionalDispenseBehavior;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nonnull;
+
 import static com.sophicreeper.backmath.block.custom.AljanPortalStandBlock.JANTICAL;
 import static com.sophicreeper.backmath.block.custom.AljanPortalStandBlock.WATERLOGGED;
 
 public class JanticalDispenseBehavior extends OptionalDispenseBehavior {
     @Override
+    @Nonnull
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
         BlockPos pos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
         BlockState state = source.getLevel().getBlockState(pos);

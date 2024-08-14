@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -68,7 +68,7 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hitResult) {
         int age = state.getValue(AGE);
         boolean isFullyGrown = age == 3;
-        if (!isFullyGrown && player.getItemInHand(hand).getItem().is(BMTags.Items.BONE_MEALS) && !state.getValue(WATERLOGGED)) {
+        if (!isFullyGrown && player.getItemInHand(hand).getItem().is(BMItemTags.BONE_MEALS) && !state.getValue(WATERLOGGED)) {
             return ActionResultType.PASS;
         } else if (age > 1) {
             int randInt = 1 + world.random.nextInt(2);

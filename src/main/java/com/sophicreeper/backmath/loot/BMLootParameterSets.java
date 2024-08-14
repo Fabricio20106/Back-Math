@@ -17,7 +17,7 @@ public class BMLootParameterSets {
         LootParameterSet.Builder paramSetBuilder = new LootParameterSet.Builder();
         consumer.accept(paramSetBuilder);
         LootParameterSet paramSet = paramSetBuilder.build();
-        ResourceLocation resourceLoc = BackMath.resourceLoc(name);
+        ResourceLocation resourceLoc = BackMath.backMath(name);
         LootParameterSet paramSet1 = LootParameterSets.REGISTRY.put(resourceLoc, paramSet);
         if (paramSet1 != null) {
             throw new IllegalArgumentException(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.illegal_argument.null_parameter_set", resourceLoc)).getString());

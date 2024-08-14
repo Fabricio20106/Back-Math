@@ -3,8 +3,9 @@ package com.sophicreeper.backmath.entity.renderer.layer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
-import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.BMUtils;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.RenderType;
@@ -30,7 +31,7 @@ public class TermianPatrollerElytraLayer<T extends TermianPatrollerEntity, M ext
     @Override
     public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T patroller, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack chestStack = patroller.getItemBySlot(EquipmentSlotType.CHEST);
-        if (shouldRender(chestStack) && patroller.getType().is(BMTags.EntityTypes.ELIGIBLE_TO_CAPES) && !patroller.getCapeTexture().isEmpty()) {
+        if (shouldRender(chestStack) && patroller.getType().is(BMEntityTypeTags.ELIGIBLE_TO_CAPES) && !patroller.getCapeTexture().isEmpty()) {
             ResourceLocation elytraTexture;
             if (patroller.getCapeTexture() != null && patroller.getCapeVisibility()) {
                 elytraTexture = BMUtils.getTermianPatrollerCape(patroller);
@@ -49,7 +50,7 @@ public class TermianPatrollerElytraLayer<T extends TermianPatrollerEntity, M ext
     }
 
     public boolean shouldRender(ItemStack stack) {
-        return stack.getItem().is(BMTags.Items.ELYTRA);
+        return stack.getItem().is(BMItemTags.ELYTRA);
     }
 
     public ResourceLocation getDefaultElytraTexture() {

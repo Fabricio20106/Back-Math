@@ -4,7 +4,7 @@ import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.util.BMResourceLocations;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
@@ -110,10 +110,10 @@ public class AljanDungeonFeature extends Feature<NoFeatureConfig> {
             reader.setBlock(pos, Blocks.SPAWNER.defaultBlockState(), 2);
             TileEntity spawner = reader.getBlockEntity(pos);
             if (spawner instanceof MobSpawnerTileEntity) {
-                if (BMTags.EntityTypes.ALJAN_DUNGEON_MOBS.getValues().isEmpty()) {
+                if (BMEntityTypeTags.ALJAN_DUNGEON_MOBS.getValues().isEmpty()) {
                     ((MobSpawnerTileEntity) spawner).getSpawner().setEntityId(BMEntities.SLEEPISH_SKELETON.get());
                 } else {
-                    ((MobSpawnerTileEntity) spawner).getSpawner().setEntityId(BMTags.EntityTypes.ALJAN_DUNGEON_MOBS.getRandomElement(rand));
+                    ((MobSpawnerTileEntity) spawner).getSpawner().setEntityId(BMEntityTypeTags.ALJAN_DUNGEON_MOBS.getRandomElement(rand));
                 }
             } else {
                 LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.dungeon_feature.spawner_fetch", pos.getX(), pos.getY(), pos.getZ())).getString());

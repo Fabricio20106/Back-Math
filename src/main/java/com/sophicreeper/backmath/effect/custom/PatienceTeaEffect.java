@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.effect.custom;
 
-import com.sophicreeper.backmath.entity.BMDamageSources;
+import com.sophicreeper.backmath.util.BMDamageSources;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectType;

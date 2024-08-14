@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom.food;
 
-import com.sophicreeper.backmath.entity.BMDamageSources;
+import com.sophicreeper.backmath.util.BMDamageSources;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

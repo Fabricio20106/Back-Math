@@ -1,8 +1,8 @@
 package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
 import com.sophicreeper.backmath.entity.BMEntities;
-import com.sophicreeper.backmath.entity.custom.ArcherInsomniaSophie;
-import com.sophicreeper.backmath.entity.custom.QueenLucy;
+import com.sophicreeper.backmath.entity.custom.ArcherInsomniaSophieEntity;
+import com.sophicreeper.backmath.entity.custom.QueenLucyEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.scoreboard.ScorePlayerTeam;
@@ -11,9 +11,9 @@ import net.minecraft.world.server.ServerWorld;
 
 public class SummonArcherInsomniaSophiesGoal extends CastSpellGoal {
     private final EntityPredicate predicate = new EntityPredicate().range(16).allowInvulnerable().allowSameTeam();
-    private final QueenLucy queenLucy;
+    private final QueenLucyEntity queenLucy;
 
-    public SummonArcherInsomniaSophiesGoal(QueenLucy queenLucy) {
+    public SummonArcherInsomniaSophiesGoal(QueenLucyEntity queenLucy) {
         super(queenLucy);
         this.queenLucy = queenLucy;
     }
@@ -21,7 +21,7 @@ public class SummonArcherInsomniaSophiesGoal extends CastSpellGoal {
     @Override
     public boolean canUse() {
         if (super.canUse()) {
-            int nearbyEntityCount = this.queenLucy.level.getNearbyEntities(ArcherInsomniaSophie.class, this.predicate, this.queenLucy, this.queenLucy.getBoundingBox().inflate(16)).size();
+            int nearbyEntityCount = this.queenLucy.level.getNearbyEntities(ArcherInsomniaSophieEntity.class, this.predicate, this.queenLucy, this.queenLucy.getBoundingBox().inflate(16)).size();
             return this.queenLucy.getRandom().nextInt(8) + 1 > nearbyEntityCount;
         }
         return false;
@@ -33,7 +33,7 @@ public class SummonArcherInsomniaSophiesGoal extends CastSpellGoal {
 
         for (int i = 0; i < 3; ++i) {
             BlockPos pos = this.queenLucy.blockPosition().offset(-2 + this.queenLucy.getRandom().nextInt(5), 1, -2 + this.queenLucy.getRandom().nextInt(5));
-            ArcherInsomniaSophie archerInsomniaSophie = BMEntities.ARCHER_INSOMNIA_SOPHIE.get().create(this.queenLucy.level);
+            ArcherInsomniaSophieEntity archerInsomniaSophie = BMEntities.ARCHER_INSOMNIA_SOPHIE.get().create(this.queenLucy.level);
             archerInsomniaSophie.moveTo(pos, 0, 0);
             archerInsomniaSophie.setNoAi(this.queenLucy.isNoAi());
             archerInsomniaSophie.setInvulnerable(this.queenLucy.isInvulnerable());

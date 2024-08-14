@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.tags.FluidTags;
@@ -34,7 +34,7 @@ public class SpreadableSnowyAljanDirtBlock extends SnowyDirtBlock {
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
         BlockState aboveState = context.getLevel().getBlockState(context.getClickedPos().above());
-        return this.defaultBlockState().setValue(SNOWY, aboveState.is(BMTags.Blocks.MAKES_GRASS_BLOCKS_SNOWY));
+        return this.defaultBlockState().setValue(SNOWY, aboveState.is(BMBlockTags.MAKES_GRASS_BLOCKS_SNOWY));
     }
 
     private static boolean isSnowyAndNotUnderwater(BlockState state, IWorldReader world, BlockPos pos) {
@@ -55,7 +55,7 @@ public class SpreadableSnowyAljanDirtBlock extends SnowyDirtBlock {
                 for(int i = 0; i < 4; ++i) {
                     BlockPos pos1 = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                     if (world.getBlockState(pos1).is(BMBlocks.ALJAMIC_DIRT.get()) && isSnowyAndNotUnderwater(state1, world, pos1)) {
-                        world.setBlockAndUpdate(pos1, state1.setValue(SNOWY, world.getBlockState(pos1.above()).is(BMTags.Blocks.MAKES_GRASS_BLOCKS_SNOWY)));
+                        world.setBlockAndUpdate(pos1, state1.setValue(SNOWY, world.getBlockState(pos1.above()).is(BMBlockTags.MAKES_GRASS_BLOCKS_SNOWY)));
                     }
                 }
             }

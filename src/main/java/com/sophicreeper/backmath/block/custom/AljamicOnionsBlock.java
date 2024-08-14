@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropsBlock;
@@ -27,7 +27,7 @@ public class AljamicOnionsBlock extends CropsBlock {
     }
 
     protected boolean mayPlaceOn(BlockState state, IBlockReader reader, BlockPos pos) {
-        return state.is(BMTags.Blocks.ALJAN_CROP_PLANTABLE_ON);
+        return state.is(BMBlockTags.ALJAN_CROP_PLANTABLE_ON);
     }
 
     protected IItemProvider getBaseSeedId() {

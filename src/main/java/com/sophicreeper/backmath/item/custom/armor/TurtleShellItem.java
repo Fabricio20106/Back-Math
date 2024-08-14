@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom.armor;
 
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
@@ -19,7 +19,7 @@ public class TurtleShellItem extends ArmorItem {
     @Override
     public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
         ItemStack shellStack = player.getItemBySlot(EquipmentSlotType.HEAD);
-        if (shellStack.getItem().is(BMTags.Items.PROVIDES_WATER_BREATHING) && !player.isEyeInFluid(FluidTags.WATER)) {
+        if (shellStack.getItem().is(BMItemTags.PROVIDES_WATER_BREATHING) && !player.isEyeInFluid(FluidTags.WATER)) {
             player.addEffect(new EffectInstance(Effects.WATER_BREATHING, 200, 0, false, false, true));
         }
         super.onArmorTick(stack, world, player);

@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.util;
 
 import com.sophicreeper.backmath.loot.BMLootTableUtils;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
@@ -20,10 +21,10 @@ public class EquipmentTableUtils {
                         livEntity.setItemSlot(slot, stack);
                     }
                 }
-                if (livEntity.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty() && stack.getItem().is(BMTags.Items.ALLOWED_IN_MAINHAND)) {
+                if (livEntity.getItemBySlot(EquipmentSlotType.MAINHAND).isEmpty() && stack.getItem().is(BMItemTags.ALLOWED_IN_MAINHAND)) {
                     livEntity.setItemSlot(EquipmentSlotType.MAINHAND, stack);
                 }
-                if (livEntity.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty() && stack.getItem().is(BMTags.Items.ALLOWED_IN_OFFHAND)) {
+                if (livEntity.getItemBySlot(EquipmentSlotType.OFFHAND).isEmpty() && stack.getItem().is(BMItemTags.ALLOWED_IN_OFFHAND)) {
                     livEntity.setItemSlot(EquipmentSlotType.OFFHAND, stack);
                 }
             }

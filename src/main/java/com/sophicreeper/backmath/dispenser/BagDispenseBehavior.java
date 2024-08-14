@@ -16,17 +16,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 
 public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
     @Override
+    @Nonnull
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
         Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
-        IPosition iPos = DispenserBlock.getDispensePosition(source);
+        IPosition pos = DispenserBlock.getDispensePosition(source);
         Collection<ItemStack> lootTableDrops = this.getLootTableDrops(stack, source);
         if (lootTableDrops.isEmpty()) LogManager.getLogger().warn(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.bag.no_drops",
                     stack.getItem().getRegistryName(), getLootTable(stack))).getString());
-        lootTableDrops.forEach(stack1 -> spawnItem(source.getLevel(), stack1, 6, direction, iPos));
+        lootTableDrops.forEach(stack1 -> spawnItem(source.getLevel(), stack1, 6, direction, pos));
         stack.shrink(1);
         return stack;
     }
@@ -38,10 +40,9 @@ public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
             return BMResourceLocations.BOOT_PACK;
         } else if (stack.getItem() instanceof BagItem) {
             BagItem bagItem = (BagItem) stack.getItem();
-            CompoundNBT bagLoot = bagItem.getStack().getOrCreateTagElement("bag_loot");
-            if (bagLoot.contains("loot_table")) {
-                String lootTable = bagLoot.getString("loot_table");
-                ResourceLocation tableLoc = ResourceLocation.tryParse(lootTable);
+            CompoundNBT tag = bagItem.getStack().getOrCreateTag();
+            if (tag.contains("loot_table")) {
+                ResourceLocation tableLoc = ResourceLocation.tryParse(tag.getString("loot_table"));
                 if (tableLoc != null) return tableLoc;
             }
         }

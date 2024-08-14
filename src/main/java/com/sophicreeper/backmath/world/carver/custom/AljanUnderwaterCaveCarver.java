@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.world.carver.custom;
 
 import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.block.BMFluids;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.FluidState;
@@ -82,6 +82,6 @@ public class AljanUnderwaterCaveCarver extends UnderwaterCaveWorldCarver {
 
     @Override
     public boolean canReplaceBlock(BlockState state) {
-        return state.is(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES);
+        return state.is(BMBlockTags.ALJAN_CARVER_REPLACEABLES);
     }
 }

@@ -5,8 +5,10 @@ import com.google.common.collect.Multimap;
 import com.sophicreeper.backmath.dispenser.QLSSDispenseBehavior;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.TagTypes;
+import com.sophicreeper.backmath.util.tag.BMEnchantmentTags;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.client.util.ITooltipFlag;
@@ -120,14 +122,15 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
     @Override
     @Nonnull
     public EntityType<?> getType(@Nullable CompoundNBT tag) {
-        if (tag != null && tag.contains("entity_tag", TagTypes.COMPOUND)) {
-            CompoundNBT entityTag = tag.getCompound("entity_tag");
+        if (tag != null && tag.contains("entity_data", TagTypes.COMPOUND)) {
+            CompoundNBT entityTag = tag.getCompound("entity_data");
             if (entityTag.contains("id", TagTypes.STRING)) return EntityType.byString(entityTag.getString("id")).orElse(BMEntities.QUEEN_LUCY_PET.get());
         }
         return BMEntities.QUEEN_LUCY_PET.get();
     }
 
     @Override
+    @Nonnull
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(EquipmentSlotType slot) {
         return slot == EquipmentSlotType.MAINHAND ? this.attributeModifiers : super.getDefaultAttributeModifiers(slot);
     }
@@ -144,20 +147,20 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
 
     @Override
     public boolean isValidRepairItem(ItemStack thisStack, ItemStack repairStack) {
-        return repairStack.getItem().is(BMTags.Items.INGOTS_OBSIDIAN);
+        return repairStack.getItem().is(BMItemTags.INGOTS_OBSIDIAN);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        // Terraria like tooltip, also says what food is used to tame her. Like parrots that don't like cookies, QSP's don't like aljame.
+        // Terraria like tooltip, also says what food is used to tame her. Like parrots that don't like cookies, QLPs don't like aljame.
         tooltip.add(new TranslationTextComponent("tooltip.backmath.queen_lucy_summoner_staff").withStyle(TextFormatting.ITALIC));
         tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
     }
 
     @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
-        return enchantment.isIn(BMTags.Enchantments.APPLICABLE_TO_SUMMONER_STAFF) || super.canApplyAtEnchantingTable(stack, enchantment);
+        return enchantment.isIn(BMEnchantmentTags.APPLICABLE_TO_SUMMONER_STAFF) || super.canApplyAtEnchantingTable(stack, enchantment);
     }
 
     private static void knockBack(World world, PlayerEntity player, Entity entity) {
@@ -202,7 +205,7 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
 
                 bool = true;
             }
-            return notSpectator && typeCheck && notSameTeamAs && notBool && bool && entity.distanceToSqr(livEntity) <= Math.pow(3.5, 2) && !entity.getType().is(BMTags.EntityTypes.IMMUNE_TO_SUMMONER_STAFF_SMASHES);
+            return notSpectator && typeCheck && notSameTeamAs && notBool && bool && entity.distanceToSqr(livEntity) <= Math.pow(3.5, 2) && !entity.getType().is(BMEntityTypeTags.IMMUNE_TO_SUMMONER_STAFF_SMASHES);
         };
     }
 
@@ -211,7 +214,7 @@ public class QueenLucySummonerStaffItem extends SpawnEggItem implements IVanisha
     }
 
     public static boolean canDoSmashAttack(LivingEntity livEntity) {
-        return livEntity.fallDistance > 1.5F && !livEntity.isFallFlying() && !livEntity.getType().is(BMTags.EntityTypes.IMMUNE_TO_SUMMONER_STAFF_SMASHES);
+        return livEntity.fallDistance > 1.5F && !livEntity.isFallFlying() && !livEntity.getType().is(BMEntityTypeTags.IMMUNE_TO_SUMMONER_STAFF_SMASHES);
     }
 
     public static void spawnSmashAttackParticles(IWorld world, LivingEntity target, int particles) {

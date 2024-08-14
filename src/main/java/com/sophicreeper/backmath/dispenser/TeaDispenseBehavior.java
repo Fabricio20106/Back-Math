@@ -13,8 +13,11 @@ import net.minecraft.potion.Effects;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nonnull;
+
 public class TeaDispenseBehavior extends OptionalDispenseBehavior {
     @Override
+    @Nonnull
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
         BlockPos pos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
         for (LivingEntity livEntity : source.getLevel().getEntitiesOfClass(LivingEntity.class, new AxisAlignedBB(pos), LivingEntity::isAlive)) {

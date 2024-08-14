@@ -8,7 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class BoneMealDispenseBehavior extends OptionalDispenseBehavior {
+    @Override
+    @Nonnull
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
         this.setSuccess(true);
         World world = source.getLevel();

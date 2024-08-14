@@ -70,9 +70,9 @@ public class TermianPatrolGoal<T extends TermianPatrollerEntity> extends Goal {
         return this.termianMember.level.getEntitiesOfClass(TermianPatrollerEntity.class, this.termianMember.getBoundingBox().inflate(16), (patroller) -> patroller.canJoinPatrol() && !patroller.is(this.termianMember));
     }
 
-    private boolean moveRandomly() {
+    private void moveRandomly() {
         Random rand = this.termianMember.getRandom();
         BlockPos pos = this.termianMember.level.getHeightmapPos(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, this.termianMember.blockPosition().offset(-8 + rand.nextInt(16), 0, -8 + rand.nextInt(16)));
-        return this.termianMember.getNavigation().moveTo(pos.getX(), pos.getY(), pos.getZ(), this.speedModifier);
+        this.termianMember.getNavigation().moveTo(pos.getX(), pos.getY(), pos.getZ(), this.speedModifier);
     }
 }

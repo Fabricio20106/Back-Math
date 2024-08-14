@@ -1,14 +1,14 @@
 package com.sophicreeper.backmath.entity.goal.amaracameler;
 
-import com.sophicreeper.backmath.entity.custom.Amaracameler;
+import com.sophicreeper.backmath.entity.custom.aljan.AmaracamelerEntity;
 import net.minecraft.entity.ai.goal.Goal;
 
 import java.util.EnumSet;
 
 public class ALHopGoal extends Goal {
-    private final Amaracameler amaracameler;
+    private final AmaracamelerEntity amaracameler;
 
-    public ALHopGoal(Amaracameler amaracameler) {
+    public ALHopGoal(AmaracamelerEntity amaracameler) {
         this.setFlags(EnumSet.of(Flag.JUMP, Flag.MOVE));
         this.amaracameler = amaracameler;
     }

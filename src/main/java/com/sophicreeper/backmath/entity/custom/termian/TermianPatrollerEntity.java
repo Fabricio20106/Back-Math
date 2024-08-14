@@ -3,8 +3,8 @@ package com.sophicreeper.backmath.entity.custom.termian;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.termian.TermianPatrolGoal;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.BMUtils;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.nbt.CompoundNBT;
@@ -44,7 +44,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(CAPE_TEXTURE, BackMath.resourceLoc("cape/cherry_blossom").toString());
+        this.entityData.define(CAPE_TEXTURE, BackMath.backMath("cape/cherry_blossom").toString());
         this.entityData.define(CAPE_VISIBILITY, true);
     }
 
@@ -60,7 +60,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         if (this.patrolTarget != null) tag.put("patrol_target", NBTUtil.writeBlockPos(this.patrolTarget));
         tag.putBoolean("patrol_leader", this.patrolLeader);
         tag.putBoolean("is_patrolling", this.patrolling);
-        if (this.getType().is(BMTags.EntityTypes.ELIGIBLE_TO_CAPES)) {
+        if (this.getType().is(BMEntityTypeTags.ELIGIBLE_TO_CAPES)) {
             CompoundNBT capeTag = new CompoundNBT();
             capeTag.putString("texture", this.entityData.get(CAPE_TEXTURE));
             capeTag.putBoolean("visible", this.entityData.get(CAPE_VISIBILITY));
@@ -74,7 +74,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
         if (tag.contains("patrol_target")) this.patrolTarget = NBTUtil.readBlockPos(tag.getCompound("patrol_target"));
         this.patrolLeader = tag.getBoolean("patrol_leader");
         this.patrolling = tag.getBoolean("is_patrolling");
-        if (this.getType().is(BMTags.EntityTypes.ELIGIBLE_TO_CAPES)) {
+        if (this.getType().is(BMEntityTypeTags.ELIGIBLE_TO_CAPES)) {
             this.entityData.set(CAPE_TEXTURE, tag.getCompound("cape").getString("texture"));
             this.entityData.set(CAPE_VISIBILITY, tag.getCompound("cape").getBoolean("visible"));
         }

@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
-import com.sophicreeper.backmath.entity.custom.QueenLucy;
+import com.sophicreeper.backmath.entity.custom.QueenLucyEntity;
 import com.sophicreeper.backmath.misc.BMSounds;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -11,11 +11,11 @@ import java.util.EnumSet;
 
 // Renamed class, and added some code from SpellcastingIllagerEntity.CastingASpellGoal to match the behavior of Evokers more. - June 21/04/24 (Sunday)
 public abstract class CastSpellGoal extends Goal {
-    private final QueenLucy queenLucy;
+    private final QueenLucyEntity queenLucy;
     protected int warmupTicks;
     protected int spellCooldown;
 
-    public CastSpellGoal(QueenLucy queenLucy) {
+    public CastSpellGoal(QueenLucyEntity queenLucy) {
         this.setFlags(EnumSet.of(Flag.MOVE, Flag.LOOK));
         this.queenLucy = queenLucy;
     }

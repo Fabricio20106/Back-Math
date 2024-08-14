@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom;
 
 import com.sophicreeper.backmath.dispenser.vanilla.DispenseBMBoatBehavior;
-import com.sophicreeper.backmath.entity.custom.BMBoat;
+import com.sophicreeper.backmath.entity.custom.misc.BMBoatEntity;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,6 +30,7 @@ public class BMBoatItem extends BoatItem {
         DispenserBlock.registerBehavior(this, new DispenseBMBoatBehavior(woodType));
     }
 
+    @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack heldItem = player.getItemInHand(hand);
         RayTraceResult fluidRayTrace = getPlayerPOVHitResult(world, player, RayTraceContext.FluidMode.ANY);
@@ -41,7 +42,7 @@ public class BMBoatItem extends BoatItem {
             if (!list.isEmpty()) {
                 Vector3d vector3D1 = player.getEyePosition(1);
 
-                for(Entity entity : list) {
+                for (Entity entity : list) {
                     AxisAlignedBB axisAlignedBB = entity.getBoundingBox().inflate(entity.getPickRadius());
                     if (axisAlignedBB.contains(vector3D1)) {
                         return ActionResult.pass(heldItem);
@@ -50,8 +51,8 @@ public class BMBoatItem extends BoatItem {
             }
 
             if (fluidRayTrace.getType() == RayTraceResult.Type.BLOCK) {
-                BMBoat backMathBoat = new BMBoat(world, fluidRayTrace.getLocation().x, fluidRayTrace.getLocation().y, fluidRayTrace.getLocation().z);
-                backMathBoat.setWoodType(woodType);
+                BMBoatEntity backMathBoat = new BMBoatEntity(world, fluidRayTrace.getLocation().x, fluidRayTrace.getLocation().y, fluidRayTrace.getLocation().z);
+                backMathBoat.setWoodType(this.woodType);
                 backMathBoat.yRot = player.yRot;
                 if (!world.noCollision(backMathBoat, backMathBoat.getBoundingBox().inflate(-0.1D))) {
                     return ActionResult.fail(heldItem);

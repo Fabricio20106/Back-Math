@@ -1,17 +1,15 @@
 package com.sophicreeper.backmath.item.custom.tool.midterm;
 
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.item.custom.MidTermToolBehaviors;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShovelItem;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
 
-public class MidTermShovelItem extends ShovelItem {
+public class MidTermShovelItem extends ShovelItem implements MidTermToolBehaviors {
     public MidTermShovelItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
         super(tier, attackDamage, swingSpeed, properties);
     }
@@ -25,8 +23,8 @@ public class MidTermShovelItem extends ShovelItem {
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
         if (entity instanceof LivingEntity) {
             LivingEntity livEntity = (LivingEntity) entity;
-            livEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2));
-            if (!livEntity.isInvulnerableTo(DamageSource.IN_FIRE) || !livEntity.isInvulnerableTo(DamageSource.ON_FIRE)) livEntity.setSecondsOnFire(10);
+            applyTagEffects(stack, livEntity);
+            setOnFire(stack, livEntity, 10);
         }
         return super.onLeftClickEntity(stack, player, entity);
     }

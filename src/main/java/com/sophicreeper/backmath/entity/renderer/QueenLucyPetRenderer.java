@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.renderer;
 
-import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
+import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.model.QueenLucyPetModel;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import net.minecraft.client.renderer.entity.BipedRenderer;
@@ -10,7 +10,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPet, QueenLucyPetModel> {
+public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPetEntity, QueenLucyPetModel> {
     public QueenLucyPetRenderer(EntityRendererManager manager) {
         super(manager, new QueenLucyPetModel(), 0.25F);
         // I'd rather not render the armor than have it render 2x the size of the mob.
@@ -20,7 +20,7 @@ public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPet, QueenLucyP
     }
 
     @Override
-    public ResourceLocation getTextureLocation(QueenLucyPet lucy) {
+    public ResourceLocation getTextureLocation(QueenLucyPetEntity lucy) {
         QueenLucyPetVariant variant = lucy.getRegistryVariant();
         return new ResourceLocation(variant.getTextureLocation().getNamespace(), "textures/" + variant.getTextureLocation().getPath() + ".png");
     }

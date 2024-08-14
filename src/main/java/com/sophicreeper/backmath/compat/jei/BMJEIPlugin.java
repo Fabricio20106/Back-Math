@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 public class BMJEIPlugin implements IModPlugin {
     @Override
     public ResourceLocation getPluginUid() {
-        return BackMath.resourceLoc("jei_plugin");
+        return BackMath.backMath("jei_plugin");
     }
 
     @Override

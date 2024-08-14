@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.block.custom;
 
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BushBlock;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ public abstract class AbstractWildCropBlock extends BushBlock {
     }
 
     protected boolean mayPlaceOn(BlockState state, IBlockReader reader, BlockPos pos) {
-        return state.is(BMTags.Blocks.WILD_CROPS_PLANTABLE_ON);
+        return state.is(BMBlockTags.WILD_CROPS_PLANTABLE_ON);
     }
 
     public abstract IItemProvider getSeedItem();

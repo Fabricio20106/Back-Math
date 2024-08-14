@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.item.custom;
 
 import com.google.common.collect.Lists;
 import com.sophicreeper.backmath.dispenser.BMSpawnEggDispenseBehavior;
+import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -33,8 +34,8 @@ public class BMSpawnEggItem extends SpawnEggItem {
 
     @Override
     public EntityType<?> getType(@Nullable CompoundNBT tag) {
-        if (tag != null && tag.contains("entity_tag", 10)) {
-            CompoundNBT entityTag = tag.getCompound("entity_tag");
+        if (tag != null && tag.contains("entity_data", TagTypes.COMPOUND)) {
+            CompoundNBT entityTag = tag.getCompound("entity_data");
             if (entityTag.contains("id", 8)) return EntityType.byString(entityTag.getString("id")).orElse(this.typeSupplier.get());
         }
         return this.typeSupplier.get();

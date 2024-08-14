@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.dispenser.vanilla;
 
-import com.sophicreeper.backmath.entity.custom.BMBoat;
+import com.sophicreeper.backmath.entity.custom.misc.BMBoatEntity;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
@@ -33,7 +33,7 @@ public class DispenseBMBoatBehavior extends DefaultDispenseItemBehavior {
             boatHeight = 0;
         }
 
-        BMBoat bmBoat = new BMBoat(world, x, y + boatHeight, z);
+        BMBoatEntity bmBoat = new BMBoatEntity(world, x, y + boatHeight, z);
         bmBoat.setWoodType(this.woodType);
         bmBoat.yRot = direction.toYRot();
         world.addFreshEntity(bmBoat);

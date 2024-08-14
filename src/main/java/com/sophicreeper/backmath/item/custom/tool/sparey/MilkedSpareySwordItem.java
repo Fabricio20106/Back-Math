@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom.tool.sparey;
 
 import com.sophicreeper.backmath.item.custom.tool.MilkedSwordItem;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.IItemTier;
@@ -15,15 +15,15 @@ public class MilkedSpareySwordItem extends MilkedSwordItem {
     }
 
     @Override
-    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (entity.getType().is(BMTags.EntityTypes.SPAREY_EFFECTIVES)) {
-            player.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, 200, 1));
+    public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity target) {
+        if (target.getType().is(inSpareyEffectivesTag(stack))) {
+            player.addEffect(getSpareyEffect(new EffectInstance(Effects.DAMAGE_BOOST, 200, 1), stack, player.level, "sparey_strength_effect"));
         } else {
-            player.addEffect(new EffectInstance(Effects.WEAKNESS, 50, 2));
+            player.addEffect(getSpareyEffect(new EffectInstance(Effects.WEAKNESS, 50, 2), stack, player.level, "sparey_weakness_effect"));
         }
-        if (entity.getType().is(BMTags.EntityTypes.SPAREYS_PROHIBITED)) {
-            player.addEffect(new EffectInstance(Effects.WEAKNESS, 600, 64));
+        if (target.getType().is(BMEntityTypeTags.SPAREYS_PROHIBITED)) {
+            player.addEffect(getSpareyEffect(new EffectInstance(Effects.WEAKNESS, 600, 64), stack, player.level, "sparey_prohibition_weakness_effect"));
         }
-        return super.onLeftClickEntity(stack, player, entity);
+        return super.onLeftClickEntity(stack, player, target);
     }
 }

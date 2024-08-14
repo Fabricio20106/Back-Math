@@ -1,9 +1,10 @@
 package com.sophicreeper.backmath.entity.custom.termian;
 
-import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
+import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.goal.termian.PromoteTermianLeaderGoal;
-import com.sophicreeper.backmath.util.BMTags;
 import com.sophicreeper.backmath.util.BMUtils;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.passive.WolfEntity;
@@ -32,7 +33,7 @@ import java.util.function.Predicate;
 
 public abstract class TermianRaiderEntity extends TermianPatrollerEntity {
     public static final DataParameter<Boolean> IS_CELEBRATING = EntityDataManager.defineId(TermianRaiderEntity.class, DataSerializers.BOOLEAN);
-    public static final Predicate<ItemEntity> ALLOWED_ITEMS = (itemEntity) -> !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().getItem().is(BMTags.Items.TERMIAN_RAIDER_CAN_PICKUP);
+    public static final Predicate<ItemEntity> ALLOWED_ITEMS = (itemEntity) -> !itemEntity.hasPickUpDelay() && itemEntity.isAlive() && itemEntity.getItem().getItem().is(BMItemTags.TERMIAN_RAIDER_CAN_PICKUP);
     private int wave;
     private boolean canJoinSophieRaid;
     private int ticksOutsideSophieRaid;
@@ -70,7 +71,7 @@ public abstract class TermianRaiderEntity extends TermianPatrollerEntity {
     public void aiStep() {
         if (this.level instanceof ServerWorld && this.isAlive()) {
             if (this.canJoinSophieRaid()) {
-                if (this.getTarget() != null && (this.getTarget().getType().is(BMTags.EntityTypes.TERMIAN_RAIDERS_ATTACK))) {
+                if (this.getTarget() != null && (this.getTarget().getType().is(BMEntityTypeTags.TERMIAN_RAIDERS_ATTACK))) {
                     this.noActionTime = 0;
                 }
             }
@@ -98,8 +99,8 @@ public abstract class TermianRaiderEntity extends TermianPatrollerEntity {
                     if (wolf.isTame() && wolfOwner instanceof PlayerEntity) {
                         player = (PlayerEntity) wolfOwner;
                     }
-                } else if (killer instanceof QueenLucyPet) {
-                    QueenLucyPet queenLucyPet = (QueenLucyPet) killer;
+                } else if (killer instanceof QueenLucyPetEntity) {
+                    QueenLucyPetEntity queenLucyPet = (QueenLucyPetEntity) killer;
                     LivingEntity qlpOwner = queenLucyPet.getOwner();
                     if (queenLucyPet.isTame() && qlpOwner instanceof PlayerEntity) {
                         player = (PlayerEntity) qlpOwner;
@@ -175,7 +176,7 @@ public abstract class TermianRaiderEntity extends TermianPatrollerEntity {
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData entityData, @Nullable CompoundNBT dataTag) {
-        this.allowJoiningSophieRaid(this.getType().is(BMTags.EntityTypes.CANNOT_JOIN_SOPHIE_RAID) || reason != SpawnReason.NATURAL);
+        this.allowJoiningSophieRaid(this.getType().is(BMEntityTypeTags.CANNOT_JOIN_SOPHIE_RAID) || reason != SpawnReason.NATURAL);
         return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
     }
 

@@ -458,7 +458,7 @@ public class BMConfiguredFeatures {
     // TODO: BACK MATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
 
     public static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
-        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, BackMath.resourceLoc(name), configuredFeature);
+        return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, BackMath.backMath(name), configuredFeature);
     }
 
     public static BlockState getBackFieldTreeLog() {

@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.entity.goal;
 
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -39,7 +39,7 @@ public class BMRangedBowAttackGoal<T extends TermianPatrollerEntity & IRangedAtt
     }
 
     protected boolean isHoldingBow() {
-        return this.shooter.isHolding(item -> item.is(BMTags.Items.BOWS));
+        return this.shooter.isHolding(item -> item.is(BMItemTags.BOWS));
     }
 
     // Returns whether an in-progress EntityAIBase should continue executing.
@@ -125,7 +125,7 @@ public class BMRangedBowAttackGoal<T extends TermianPatrollerEntity & IRangedAtt
                     }
                 }
             } else if (--this.attackTime <= 0 && this.seeTime >= -60) {
-                this.shooter.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.shooter, item -> item.is(BMTags.Items.BOWS)));
+                this.shooter.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.shooter, item -> item.is(BMItemTags.BOWS)));
             }
         }
     }

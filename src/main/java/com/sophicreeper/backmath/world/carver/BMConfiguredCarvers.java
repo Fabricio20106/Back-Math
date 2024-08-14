@@ -12,7 +12,7 @@ public class BMConfiguredCarvers {
     public static final ConfiguredCarver<ProbabilityConfig> ALJAN_RAVINE = register("aljan_ravine", BMWorldCarvers.ALJAN_RAVINE.get().configured(new ProbabilityConfig(0.02F))); // 2%
 
     private static <WC extends ICarverConfig> ConfiguredCarver<WC> register(String name, ConfiguredCarver<WC> carver) {
-        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_CARVER, BackMath.resourceLoc(name), carver);
+        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_CARVER, BackMath.backMath(name), carver);
     }
 
     public static void init() {}

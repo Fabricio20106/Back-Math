@@ -1,13 +1,13 @@
 package com.sophicreeper.backmath.entity.goal;
 
-import com.sophicreeper.backmath.entity.custom.ZombieFabricio;
+import com.sophicreeper.backmath.entity.custom.aljan.ZombieFabricioEntity;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 
 public class ZombieFabricioAttackGoal extends MeleeAttackGoal {
-    private final ZombieFabricio zombie;
+    private final ZombieFabricioEntity zombie;
     private int raisedArmTicks;
 
-    public ZombieFabricioAttackGoal(ZombieFabricio zombie, double speed, boolean useLongMemory) {
+    public ZombieFabricioAttackGoal(ZombieFabricioEntity zombie, double speed, boolean useLongMemory) {
         super(zombie, speed, useLongMemory);
         this.zombie = zombie;
     }

@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom.armor;
 
-import com.sophicreeper.backmath.item.custom.IEquippable;
+import com.sophicreeper.backmath.item.custom.Equippable;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.ModList;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class CrownItem extends Item implements IEquippable {
+public class CrownItem extends Item implements Equippable {
     public CrownItem(Properties properties) {
         super(properties);
         DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);

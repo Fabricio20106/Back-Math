@@ -5,6 +5,10 @@ import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
+import com.sophicreeper.backmath.entity.renderer.aljan.*;
+import com.sophicreeper.backmath.entity.renderer.misc.BMBoatRenderer;
+import com.sophicreeper.backmath.entity.renderer.misc.InsomniaArrowRenderer;
+import com.sophicreeper.backmath.entity.renderer.misc.JanticBoltRenderer;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
 import com.sophicreeper.backmath.world.renderer.AljanDimensionRenderer;
@@ -263,9 +267,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.SLEEPISH_SKELETON.get(), SleepishSkeletonRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.BACK_MATH_BOAT.get(), BMBoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ARROW.get(), InsomniaArrowRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BMEntities.JANTIC_BOLT.get(), JanticBoltRenderer::new);
 
         // Aljan Sky
-        DimensionRenderInfo.EFFECTS.put(BackMath.resourceLoc("the_aljan"), new AljanDimensionRenderer());
+        DimensionRenderInfo.EFFECTS.put(BackMath.backMath("the_aljan"), new AljanDimensionRenderer());
 
         // Item Properties
         makeShield(AxolotlTest.DEVIL_SHIELD.get());
@@ -280,6 +285,7 @@ public class ClientProxy extends CommonProxy {
 
         makeCrossbow(AxolotlTest.DEVIL_CROSSBOW.get());
         makeCrossbow(AxolotlTest.ANGELIC_CROSSBOW.get());
+        makeJanticRailgun(AxolotlTest.JANTIC_RAILGUN.get());
     }
 
     // Double Layer Render Lookup

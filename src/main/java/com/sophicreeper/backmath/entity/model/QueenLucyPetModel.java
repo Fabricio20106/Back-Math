@@ -6,7 +6,7 @@ package com.sophicreeper.backmath.entity.model;
 import com.google.common.collect.ImmutableList;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
+import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class QueenLucyPetModel extends BipedModel<QueenLucyPet> {
+public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 	private final ModelRenderer head;
 	private final ModelRenderer body;
 	private final ModelRenderer arms;
@@ -116,7 +116,7 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPet> {
 	}
 
 	// Sets this entity's model rotation angles.
-	public void setupAnim(QueenLucyPet lucy, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(QueenLucyPetEntity lucy, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.head.yRot = netHeadYaw * 0.017453292f;
 		this.head.xRot = headPitch * 0.017453292f;
 

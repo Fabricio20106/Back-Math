@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom.armor;
 
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.entity.BMDamageSources;
+import com.sophicreeper.backmath.util.BMDamageSources;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;

@@ -775,6 +775,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         bow("angelic_bow");
         crossbow("angelic_crossbow");
         bow("mid_term_bow");
+        janticRailgun("jantic_railgun");
         standard(generated, "chocoglue");
         standard(handheld, "pink_gum_frying_pan");
         standard(generated, "insomnia_arrow");

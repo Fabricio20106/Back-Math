@@ -30,6 +30,7 @@ public class JanticalItem extends Item {
         DispenserBlock.registerBehavior(this, new JanticalDispenseBehavior());
     }
 
+    @Override
     public ActionResultType useOn(ItemUseContext context) {
         World world = context.getLevel();
         BlockPos pos = context.getClickedPos();
@@ -45,7 +46,7 @@ public class JanticalItem extends Item {
                 context.getItemInHand().shrink(1);
 
                 world.playSound(null, pos, BMSounds.BLOCK_ALJAN_PORTAL_STAND_FILL, SoundCategory.BLOCKS, 1, 1);
-                for(int k1 = 0; k1 < 16; ++k1) {
+                for (int k1 = 0; k1 < 16; ++k1) {
                     double particleX = (double) pos.getX() + (5 + random.nextDouble() * 6) / 16;
                     double particleY = (double) pos.getY() + 0.8125D;
                     double particleZ = (double) pos.getZ() + (5 + random.nextDouble() * 6) / 16;
@@ -61,10 +62,10 @@ public class JanticalItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        super.appendHoverText(stack, world, tooltip, flag);
         if (!BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.not_held"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.held"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
         if (BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip."  + BackMath.MOD_ID + ".jantical"));
-        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

@@ -35,15 +35,14 @@ public class BagItem extends Item {
 
     public ItemStack getStack(ResourceLocation lootTable) {
         ItemStack stack = new ItemStack(this);
-        stack.getOrCreateTagElement("bag_loot").putString("loot_table", lootTable.toString());
+        stack.getOrCreateTag().putString("loot_table", lootTable.toString());
         return stack;
     }
 
     protected ResourceLocation getLootTable(ItemStack stack) {
-        CompoundNBT bagLoot = stack.getOrCreateTagElement("bag_loot");
-        if (bagLoot.contains("loot_table")) {
-            String lootTable = bagLoot.getString("loot_table");
-            ResourceLocation tableLoc = ResourceLocation.tryParse(lootTable);
+        CompoundNBT tag = stack.getOrCreateTag();
+        if (tag.contains("loot_table")) {
+            ResourceLocation tableLoc = ResourceLocation.tryParse(tag.getString("loot_table"));
             if (tableLoc != null) return tableLoc;
         }
         return this.defaultLootTable;

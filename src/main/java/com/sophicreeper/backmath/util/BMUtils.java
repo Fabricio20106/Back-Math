@@ -3,8 +3,8 @@ package com.sophicreeper.backmath.util;
 import com.google.common.collect.Lists;
 import com.mojang.datafixers.util.Pair;
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
-import com.sophicreeper.backmath.entity.custom.WandererSophie;
+import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
+import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMRegistries;
@@ -32,17 +32,22 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.*;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 // Just generalized methods that are used more than twice throughout the code.
 public class BMUtils {
     private static final IFormattableTextComponent NO_EFFECT = new TranslationTextComponent("effect.none").withStyle(TextFormatting.GRAY);
+    public static final Style EXPERIENCE = Style.EMPTY.withColor(Color.fromRgb(8453920));
+    public static final int END_PORTAL_OPEN = 1038;
 
     // Plays the item pickup sound at a (server) player.
     public static void playItemPickupSound(ServerPlayerEntity serverPlayer) {
@@ -113,34 +118,76 @@ public class BMUtils {
     public static void setRandomCape(TermianPatrollerEntity patroller, Random rand) {
         int randomCape = rand.nextInt(9);
         if (randomCape == 0) {
-            patroller.setCapeTexture(BackMath.resourceLoc("cape/migrator").toString());
+            patroller.setCapeTexture(BackMath.backMath("cape/migrator").toString());
         } else if (randomCape == 1) {
-            patroller.setCapeTexture(BackMath.resourceLoc("cape/vanilla").toString());
+            patroller.setCapeTexture(BackMath.backMath("cape/vanilla").toString());
         } else if (randomCape == 2) {
-            patroller.setCapeTexture(BackMath.resourceLoc("cape/cherry_blossom").toString());
+            patroller.setCapeTexture(BackMath.backMath("cape/cherry_blossom").toString());
         } else if (randomCape == 3) {
-            patroller.setCapeTexture(BackMath.resourceLoc("cape/followers").toString());
+            patroller.setCapeTexture(BackMath.backMath("cape/followers").toString());
         } else if (randomCape == 4) {
-            patroller.setCapeTexture(BackMath.resourceLoc("cape/purple_heart").toString());
+            patroller.setCapeTexture(BackMath.backMath("cape/purple_heart").toString());
         } else if (randomCape == 5) {
-            patroller.setCapeTexture(BackMath.resourceLoc("cape/15th_anniversary").toString());
+            patroller.setCapeTexture(BackMath.backMath("cape/15th_anniversary").toString());
         } else if (randomCape == 6) {
-            patroller.setCapeTexture(BackMath.resourceLoc("cape/pan").toString());
+            patroller.setCapeTexture(BackMath.backMath("cape/pan").toString());
         } else if (randomCape == 7) {
-            patroller.setCapeTexture(BackMath.resourceLoc("cape/mc_championship").toString());
+            patroller.setCapeTexture(BackMath.backMath("cape/mc_championship").toString());
         }
     }
 
     // Sets a random Wanderer Sophie variant from the wanderer_sophie_variant registry.
-    public static void setRandomWSRegistryBasedVariant(WandererSophie sophie) {
+    public static void setRandomWSRegistryBasedVariant(WandererSophieEntity sophie) {
         WandererSophieVariant[] variants = BMRegistries.WANDERER_SOPHIE_VARIANT.getValues().toArray(new WandererSophieVariant[0]);
         sophie.setVariant(variants[sophie.level.random.nextInt(BMRegistries.WANDERER_SOPHIE_VARIANT.getValues().size())]);
     }
 
     // Sets a random Queen Lucy Pet variant from the queen_lucy_pet_variant registry.
-    public static void setRandomQLPRegistryBasedVariant(QueenLucyPet lucy) {
+    public static void setRandomQLPRegistryBasedVariant(QueenLucyPetEntity lucy) {
         QueenLucyPetVariant[] variants = BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().toArray(new QueenLucyPetVariant[0]);
         lucy.setVariant(variants[lucy.level.random.nextInt(BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().size())]);
+    }
+
+    // Copied from Variants and modified to work with Back Math's tool behaviors.
+    @Nullable
+    public static List<EffectInstance> getAppliedEffectsFromNBT(@Nullable World world, ItemStack stack) {
+        CompoundNBT tag = stack.getTag();
+        List<EffectInstance> effects = Lists.newArrayList();
+
+        if (tag != null && tag.contains("applied_effects", TagTypes.LIST)) {
+            ListNBT effectList = tag.getList("applied_effects", TagTypes.COMPOUND);
+
+            for (int i = 0; i < effectList.size(); ++i) {
+                int duration = 20;
+                int amplifier = 0;
+                boolean ambient = false;
+                boolean showParticles = true;
+                boolean showIcon = true;
+                boolean noCounter = false;
+                List<ItemStack> curativeItems = Lists.newArrayList();
+                CompoundNBT effectTag = effectList.getCompound(i);
+                if (effectTag.contains("duration", TagTypes.INTEGER)) duration = effectTag.getInt("duration");
+                if (effectTag.contains("amplifier", TagTypes.INTEGER)) amplifier = effectTag.getInt("amplifier");
+                if (effectTag.contains("ambient")) ambient = effectTag.getBoolean("ambient");
+                if (effectTag.contains("show_particles")) showParticles = effectTag.getBoolean("show_particles");
+                if (effectTag.contains("show_icon")) showIcon = effectTag.getBoolean("show_icon");
+                if (effectTag.contains("no_counter")) noCounter = effectTag.getBoolean("no_counter");
+                if (effectTag.contains("curative_items", TagTypes.LIST)) {
+                    ListNBT curativeList = effectTag.getList("curative_items", TagTypes.COMPOUND);
+                    for (int b = 0; b < curativeList.size(); b++) curativeItems.add(ItemStack.of(curativeList.getCompound(b)));
+                }
+
+                Effect effect = ForgeRegistries.POTIONS.getValue(ResourceLocation.tryParse(effectTag.getString("id")));
+                if (effect != null) {
+                    EffectInstance instance = new EffectInstance(effect, duration, amplifier, ambient, showParticles, showIcon);
+                    if (world != null && world.isClientSide) instance.setNoCounter(noCounter);
+                    if (!curativeItems.isEmpty()) instance.setCurativeItems(curativeItems);
+                    effects.add(instance);
+                }
+            }
+            return effects;
+        }
+        return null;
     }
 
     // From PotionUtils, copied to change attribute tooltip.

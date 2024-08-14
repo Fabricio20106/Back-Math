@@ -8,7 +8,7 @@ import com.sophicreeper.backmath.crystallizer.advanced.AdvancedMolds;
 import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IBlockSource;
@@ -16,6 +16,9 @@ import net.minecraft.dispenser.OptionalDispenseBehavior;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.util.Constants;
+
+import javax.annotation.Nonnull;
 
 import static com.sophicreeper.backmath.crystallizer.CrystallizerBlock.HORIZONTAL_FACING;
 
@@ -27,6 +30,7 @@ public class CrystallizerMoldDispenseBehavior extends OptionalDispenseBehavior {
     }
 
     @Override
+    @Nonnull
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
         BlockPos pos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
         BlockState state = source.getLevel().getBlockState(pos);
@@ -35,50 +39,50 @@ public class CrystallizerMoldDispenseBehavior extends OptionalDispenseBehavior {
             if (stack.getItem() == AxolotlTest.REGULAR_MOLDS_BOOK.get()) {
                 source.getLevel().setBlockAndUpdate(pos, state.setValue(HORIZONTAL_FACING, state.getValue(HORIZONTAL_FACING)).setValue(CrystallizerBlock.MOLD, MoldUtils.getNext(state.getValue(CrystallizerBlock.MOLD))));
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_SINGULARITY) && state.getValue(CrystallizerBlock.MOLD) != Molds.SINGULARITY) {
+            if (stack.getItem().is(BMItemTags.MOLDS_SINGULARITY) && state.getValue(CrystallizerBlock.MOLD) != Molds.SINGULARITY) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_CRYSTALLIZED) && state.getValue(CrystallizerBlock.MOLD) != Molds.CRYSTALLIZED) {
+            if (stack.getItem().is(BMItemTags.MOLDS_CRYSTALLIZED) && state.getValue(CrystallizerBlock.MOLD) != Molds.CRYSTALLIZED) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_INGOT) && state.getValue(CrystallizerBlock.MOLD) != Molds.INGOT) {
+            if (stack.getItem().is(BMItemTags.MOLDS_INGOT) && state.getValue(CrystallizerBlock.MOLD) != Molds.INGOT) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_MOLD) && state.getValue(CrystallizerBlock.MOLD) != Molds.MOLD) {
+            if (stack.getItem().is(BMItemTags.MOLDS_MOLD) && state.getValue(CrystallizerBlock.MOLD) != Molds.MOLD) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_ROD) && state.getValue(CrystallizerBlock.MOLD) != Molds.ROD) {
+            if (stack.getItem().is(BMItemTags.MOLDS_ROD) && state.getValue(CrystallizerBlock.MOLD) != Molds.ROD) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_EMPTY) && state.getValue(CrystallizerBlock.MOLD) != Molds.EMPTY) {
+            if (stack.getItem().is(BMItemTags.MOLDS_EMPTY) && state.getValue(CrystallizerBlock.MOLD) != Molds.EMPTY) {
                 setMold(MoldUtils.getMoldFromString(this.moldType), pos, source);
             }
         } else if (state.is(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get())) {
             if (stack.getItem() == AxolotlTest.ADVANCED_MOLDS_BOOK.get()) {
                 source.getLevel().setBlockAndUpdate(pos, state.setValue(HORIZONTAL_FACING, state.getValue(HORIZONTAL_FACING)).setValue(CrystallineCrystallizerBlock.MOLD, MoldUtils.getNextAdvanced(state.getValue(CrystallineCrystallizerBlock.MOLD))));
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_SINGULARITY) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.SINGULARITY) {
+            if (stack.getItem().is(BMItemTags.MOLDS_SINGULARITY) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.SINGULARITY) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_CRYSTALLIZED) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLIZED) {
+            if (stack.getItem().is(BMItemTags.MOLDS_CRYSTALLIZED) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLIZED) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_INGOT) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.INGOT) {
+            if (stack.getItem().is(BMItemTags.MOLDS_INGOT) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.INGOT) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_MOLD) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.MOLD) {
+            if (stack.getItem().is(BMItemTags.MOLDS_MOLD) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.MOLD) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_ROD) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.ROD) {
+            if (stack.getItem().is(BMItemTags.MOLDS_ROD) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.ROD) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_EMPTY) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.EMPTY) {
+            if (stack.getItem().is(BMItemTags.MOLDS_EMPTY) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.EMPTY) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_CRYSTALLINE_EMPTY) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLINE_EMPTY) {
+            if (stack.getItem().is(BMItemTags.MOLDS_CRYSTALLINE_EMPTY) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLINE_EMPTY) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
-            if (stack.getItem().is(BMTags.Items.MOLDS_CRYSTALLINE_GEM) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLINE_GEM) {
+            if (stack.getItem().is(BMItemTags.MOLDS_CRYSTALLINE_GEM) && state.getValue(CrystallineCrystallizerBlock.MOLD) != AdvancedMolds.CRYSTALLINE_GEM) {
                 setAdvancedMold(MoldUtils.getAdvancedMoldFromString(this.moldType), pos, source);
             }
         } else {
@@ -102,7 +106,7 @@ public class CrystallizerMoldDispenseBehavior extends OptionalDispenseBehavior {
         if (this.isSuccess()) {
             source.getLevel().playSound(null, source.getPos(), BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD, SoundCategory.BLOCKS, 1, 1);
         } else {
-            source.getLevel().levelEvent(1001, source.getPos(), 0);
+            source.getLevel().levelEvent(Constants.WorldEvents.DISPENSER_FAIL_SOUND, source.getPos(), 0);
         }
     }
 }

@@ -22,13 +22,13 @@ public class AmaracamelerGelLayer<T extends LivingEntity> extends LayerRenderer<
     }
 
     @Override
-    public void render(MatrixStack matrixStack, IRenderTypeBuffer buffer, int packedLight, T mob, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T mob, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if (!mob.isInvisible()) {
             this.getParentModel().copyPropertiesTo(this.amaracamelerModel);
             this.amaracamelerModel.prepareMobModel(mob, limbSwing, limbSwingAmount, partialTicks);
             this.amaracamelerModel.setupAnim(mob, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.entityTranslucent(this.getTextureLocation(mob)));
-            this.amaracamelerModel.renderToBuffer(matrixStack, vertexBuilder, packedLight, LivingRenderer.getOverlayCoords(mob, 0), 1, 1, 1, 1);
+            this.amaracamelerModel.renderToBuffer(stack, vertexBuilder, packedLight, LivingRenderer.getOverlayCoords(mob, 0), 1, 1, 1, 1);
         }
     }
 }

@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.world.ore;
 
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.world.biome.BMBiomes;
 import com.sophicreeper.backmath.block.BMBlocks;
 import net.minecraft.block.BlockState;
@@ -25,11 +25,11 @@ import static net.minecraft.world.gen.feature.OreFeatureConfig.FillerBlockType.N
 
 public class BMOreGeneration {
     public static final RuleTest END_STONE_REPLACEABLES = new TagMatchRuleTest(Tags.Blocks.END_STONES);
-    public static final RuleTest OBSIDIAN_REPLACEABLES = new TagMatchRuleTest(BMTags.Blocks.OBSIDIAN_REPLACEABLES);
-    public static final RuleTest AIR_REPLACEABLES = new TagMatchRuleTest(BMTags.Blocks.AIR_REPLACEABLES);
+    public static final RuleTest OBSIDIAN_REPLACEABLES = new TagMatchRuleTest(BMBlockTags.OBSIDIAN_REPLACEABLES);
+    public static final RuleTest AIR_REPLACEABLES = new TagMatchRuleTest(BMBlockTags.AIR_REPLACEABLES);
     public static final RuleTest ALJANSTONE_REPLACEABLES = new BlockMatchRuleTest(BMBlocks.ALJANSTONE.get());
     public static final RuleTest SLEEPINGSTONE_REPLACEABLES = new BlockMatchRuleTest(BMBlocks.SLEEPINGSTONE.get());
-    public static final RuleTest BASE_STONE_ALJAN = new TagMatchRuleTest(BMTags.Blocks.BASE_STONE_ALJAN);
+    public static final RuleTest BASE_STONE_ALJAN = new TagMatchRuleTest(BMBlockTags.BASE_STONE_ALJAN);
 
     public static void generateOres(final BiomeLoadingEvent event) {
         if (!(event.getCategory().equals(Biome.Category.NETHER) || event.getCategory().equals(Biome.Category.THEEND)) && BMConfigs.COMMON_CONFIGS.devilOreGen.get()) {

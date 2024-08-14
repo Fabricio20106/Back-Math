@@ -19,8 +19,9 @@ import net.minecraftforge.client.ISkyRenderHandler;
 
 import java.util.Random;
 
+@SuppressWarnings("deprecation")
 public class AljanSkyRenderer implements ISkyRenderHandler {
-    private static final ResourceLocation ALJAN_SUN_TEXTURES = BackMath.resourceLoc("textures/environment/aljan_sun.png");
+    private static final ResourceLocation ALJAN_SUN_TEXTURES = BackMath.backMath("textures/environment/aljan_sun.png");
     private final VertexFormat skyVertexFormat = DefaultVertexFormats.POSITION;
     private VertexBuffer skyVBO;
     private VertexBuffer starVBO;
@@ -41,8 +42,8 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuilder();
 
-        float f11 = 1 - world.getRainLevel(partialTicks);
-        RenderSystem.color4f(1, 1, 1, f11);
+        float rainLevel = 1 - world.getRainLevel(partialTicks);
+        RenderSystem.color4f(1, 1, 1, rainLevel);
         stack.mulPose(Vector3f.YP.rotationDegrees(-90));
         stack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360));
         Matrix4f matrix4F = stack.last().pose();
@@ -59,7 +60,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         buffer.end();
         WorldVertexBufferUploader.end(buffer);
         RenderSystem.disableTexture();
-        float starBrightness = world.getStarBrightness(partialTicks) * f11;
+        float starBrightness = world.getStarBrightness(partialTicks) * rainLevel;
         if (starBrightness > 0) {
             RenderSystem.color4f(starBrightness, starBrightness, starBrightness, starBrightness);
             this.starVBO.bind();
@@ -227,13 +228,13 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
     private void renderSky(BufferBuilder bufferBuilder, float posY, boolean reverseX) {
         bufferBuilder.begin(7, DefaultVertexFormats.POSITION);
 
-        for(int k = -384; k <= 384; k += 64) {
-            for(int l = -384; l <= 384; l += 64) {
-                float f = (float)k;
-                float f1 = (float)(k + 64);
+        for (int k = -384; k <= 384; k += 64) {
+            for (int l = -384; l <= 384; l += 64) {
+                float f = (float) k;
+                float f1 = (float) (k + 64);
                 if (reverseX) {
-                    f1 = (float)k;
-                    f = (float)(k + 64);
+                    f1 = (float) k;
+                    f = (float) (k + 64);
                 }
 
                 bufferBuilder.vertex(f, posY, l).endVertex();
@@ -261,7 +262,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         Random random = new Random(10842L);
         bufferBuilderIn.begin(7, DefaultVertexFormats.POSITION);
 
-        for(int i = 0; i < 1500; ++i) {
+        for (int i = 0; i < 1500; ++i) {
             double d0 = random.nextFloat() * 2 - 1;
             double d1 = random.nextFloat() * 2 - 1;
             double d2 = random.nextFloat() * 2 - 1;
@@ -286,8 +287,8 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
                 double d16 = Math.cos(d14);
 
                 for(int j = 0; j < 4; ++j) {
-                    double d18 = (double)((j & 2) - 1) * d3;
-                    double d19 = (double)((j + 1 & 2) - 1) * d3;
+                    double d18 = (double) ((j & 2) - 1) * d3;
+                    double d19 = (double) ((j + 1 & 2) - 1) * d3;
                     double d21 = d18 * d16 - d19 * d15;
                     double d22 = d19 * d16 + d18 * d15;
                     double d23 = d21 * d12 + 0 * d13;

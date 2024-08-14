@@ -7,7 +7,8 @@ import com.sophicreeper.backmath.crystallizer.advanced.AdvancedMolds;
 import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMFluidTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.DispenserBlock;
@@ -74,17 +75,17 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARITY.get()), 6, direction, iPos);
                 return new ItemStack(Items.BUCKET);
             }
-            if (stack.getItem().is(BMTags.Items.INGOTS_MILKLLARY)) {
+            if (stack.getItem().is(BMItemTags.INGOTS_MILKLLARY)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARITY.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.INGOTS_MID_TERM)) {
+            if (stack.getItem().is(BMItemTags.INGOTS_MID_TERM)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MID_TERM.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM)) {
+            if (stack.getItem().is(BMItemTags.INGOTS_OBSIDIAN_INFUSED_MID_TERM)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get()), 6, direction, iPos);
                 stack.shrink(1);
@@ -95,7 +96,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
         // MOLD: Ingot
         if (state.getValue(CrystallizerBlock.MOLD) == Molds.INGOT) {
             boolean hasHillaryAbove = source.getLevel().getBlockState(pos.above()).is(BMBlocks.HILLARY.get());
-            if (stack.getItem().is(BMTags.Items.INGOTS_MILKLLARY) && hasHillaryAbove) {
+            if (stack.getItem().is(BMItemTags.INGOTS_MILKLLARY) && hasHillaryAbove) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 source.getLevel().setBlockAndUpdate(pos.above(), Blocks.AIR.defaultBlockState());
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()), 6, direction, iPos);
@@ -106,28 +107,28 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()), 6, direction, iPos);
                 return new ItemStack(Items.BUCKET);
             }
-            boolean hasHillaryBelowCrystallizer = source.getLevel().getFluidState(pos.below()).is(BMTags.Fluids.HILLARY);
-            if (stack.getItem().is(BMTags.Items.INGOTS_MILKLLARY) && hasHillaryBelowCrystallizer) {
+            boolean hasHillaryBelowCrystallizer = source.getLevel().getFluidState(pos.below()).is(BMFluidTags.HILLARY);
+            if (stack.getItem().is(BMItemTags.INGOTS_MILKLLARY) && hasHillaryBelowCrystallizer) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.SINGULARITIES_MILKLLARY)) {
+            if (stack.getItem().is(BMItemTags.SINGULARITIES_MILKLLARY)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.HARDENED_AMARACAMEL_MATERIALS)) {
+            if (stack.getItem().is(BMItemTags.HARDENED_AMARACAMEL_MATERIALS)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.SINGULARITIES_MID_TERM)) {
+            if (stack.getItem().is(BMItemTags.SINGULARITIES_MID_TERM)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MID_TERM_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM)) {
+            if (stack.getItem().is(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
@@ -137,7 +138,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
 
         // MOLD: Mold
         if (state.getValue(CrystallizerBlock.MOLD) == Molds.MOLD) {
-            if (stack.getItem().is(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC)) {
+            if (stack.getItem().is(BMItemTags.GEMS_CRYSTALLINE_ANGELIC)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()), 6, direction, iPos);
                 stack.shrink(1);
@@ -180,12 +181,12 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARITY.get()), 6, direction, iPos);
                 return new ItemStack(Items.BUCKET);
             }
-            if (stack.getItem().is(BMTags.Items.INGOTS_MILKLLARY)) {
+            if (stack.getItem().is(BMItemTags.INGOTS_MILKLLARY)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARITY.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.INGOTS_MID_TERM)) {
+            if (stack.getItem().is(BMItemTags.INGOTS_MID_TERM)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MID_TERM.get()), 6, direction, iPos);
                 stack.shrink(1);
@@ -195,7 +196,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MID_TERM.get()), 6, direction, iPos);
                 return new ItemStack(Items.BUCKET);
             }
-            if (stack.getItem().is(BMTags.Items.INGOTS_OBSIDIAN_INFUSED_MID_TERM)) {
+            if (stack.getItem().is(BMItemTags.INGOTS_OBSIDIAN_INFUSED_MID_TERM)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get()), 6, direction, iPos);
                 stack.shrink(1);
@@ -210,8 +211,8 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()), 6, direction, iPos);
                 return new ItemStack(Items.BUCKET);
             }
-            boolean hasHillaryBelowCrystallizer = source.getLevel().getFluidState(pos.below()).is(BMTags.Fluids.HILLARY);
-            if (stack.getItem().is(BMTags.Items.INGOTS_MILKLLARY) && hasHillaryBelowCrystallizer) {
+            boolean hasHillaryBelowCrystallizer = source.getLevel().getFluidState(pos.below()).is(BMFluidTags.HILLARY);
+            if (stack.getItem().is(BMItemTags.INGOTS_MILKLLARY) && hasHillaryBelowCrystallizer) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.TWO_THIRDS_HILLARY_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
@@ -221,22 +222,22 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MID_TERM_INGOT.get()), 6, direction, iPos);
                 return new ItemStack(Items.BUCKET);
             }
-            if (stack.getItem().is(BMTags.Items.SINGULARITIES_MILKLLARY)) {
+            if (stack.getItem().is(BMItemTags.SINGULARITIES_MILKLLARY)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MILKLLARY_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.HARDENED_AMARACAMEL_MATERIALS)) {
+            if (stack.getItem().is(BMItemTags.HARDENED_AMARACAMEL_MATERIALS)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.HARDENED_AMARACAMEL_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.SINGULARITIES_MID_TERM)) {
+            if (stack.getItem().is(BMItemTags.SINGULARITIES_MID_TERM)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.MID_TERM_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
             }
-            if (stack.getItem().is(BMTags.Items.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM)) {
+            if (stack.getItem().is(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get()), 6, direction, iPos);
                 stack.shrink(1);
@@ -251,7 +252,7 @@ public class CrystallizerRecipesDispenseBehavior extends OptionalDispenseBehavio
 
         // MOLD: Mold
         if (state.getValue(CrystallineCrystallizerBlock.MOLD) == AdvancedMolds.MOLD) {
-            if (stack.getItem().is(BMTags.Items.GEMS_CRYSTALLINE_ANGELIC)) {
+            if (stack.getItem().is(BMItemTags.GEMS_CRYSTALLINE_ANGELIC)) {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_CRAFT, SoundCategory.BLOCKS, 1, 1);
                 spawnItem(source.getLevel(), new ItemStack(AxolotlTest.CRYSTALLINE_EMPTY_MOLD.get()), 6, direction, iPos);
                 stack.shrink(1);

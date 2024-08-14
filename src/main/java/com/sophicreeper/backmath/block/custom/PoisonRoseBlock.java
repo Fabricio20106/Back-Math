@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.block.custom;
 
-import com.sophicreeper.backmath.entity.BMDamageSources;
+import com.sophicreeper.backmath.util.BMDamageSources;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.Entity;

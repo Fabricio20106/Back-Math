@@ -1,8 +1,8 @@
 package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
 import com.sophicreeper.backmath.entity.BMEntities;
-import com.sophicreeper.backmath.entity.custom.InsomniaSophie;
-import com.sophicreeper.backmath.entity.custom.QueenLucy;
+import com.sophicreeper.backmath.entity.custom.InsomniaSophieEntity;
+import com.sophicreeper.backmath.entity.custom.QueenLucyEntity;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.scoreboard.ScorePlayerTeam;
@@ -11,9 +11,9 @@ import net.minecraft.world.server.ServerWorld;
 
 public class SummonInsomniaSophiesGoal extends CastSpellGoal {
     private final EntityPredicate predicate = new EntityPredicate().range(16).allowInvulnerable().allowSameTeam();
-    private final QueenLucy queenLucy;
+    private final QueenLucyEntity queenLucy;
 
-    public SummonInsomniaSophiesGoal(QueenLucy queenLucy) {
+    public SummonInsomniaSophiesGoal(QueenLucyEntity queenLucy) {
         super(queenLucy);
         this.queenLucy = queenLucy;
     }
@@ -21,7 +21,7 @@ public class SummonInsomniaSophiesGoal extends CastSpellGoal {
     @Override
     public boolean canUse() {
         if (super.canUse()) {
-            int nearbyEntityCount = this.queenLucy.level.getNearbyEntities(InsomniaSophie.class, this.predicate, this.queenLucy, this.queenLucy.getBoundingBox().inflate(16)).size();
+            int nearbyEntityCount = this.queenLucy.level.getNearbyEntities(InsomniaSophieEntity.class, this.predicate, this.queenLucy, this.queenLucy.getBoundingBox().inflate(16)).size();
             return this.queenLucy.getRandom().nextInt(8) + 1 > nearbyEntityCount;
         }
         return false;
@@ -33,7 +33,7 @@ public class SummonInsomniaSophiesGoal extends CastSpellGoal {
 
         for (int i = 0; i < 3; ++i) {
             BlockPos pos = this.queenLucy.blockPosition().offset(-2 + this.queenLucy.getRandom().nextInt(5), 1, -2 + this.queenLucy.getRandom().nextInt(5));
-            InsomniaSophie insomniaSophie = BMEntities.INSOMNIA_SOPHIE.get().create(this.queenLucy.level);
+            InsomniaSophieEntity insomniaSophie = BMEntities.INSOMNIA_SOPHIE.get().create(this.queenLucy.level);
             insomniaSophie.moveTo(pos, 0, 0);
             insomniaSophie.setNoAi(this.queenLucy.isNoAi());
             insomniaSophie.setInvulnerable(this.queenLucy.isInvulnerable());

@@ -1,13 +1,13 @@
 package com.sophicreeper.backmath.entity.goal.termian.queenlucy;
 
-import com.sophicreeper.backmath.entity.custom.QueenLucy;
+import com.sophicreeper.backmath.entity.custom.QueenLucyEntity;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
 
 public class EquipArmorAndHealGoal extends CastSpellGoal {
-    private final QueenLucy queenLucy;
+    private final QueenLucyEntity queenLucy;
 
-    public EquipArmorAndHealGoal(QueenLucy queenLucy) {
+    public EquipArmorAndHealGoal(QueenLucyEntity queenLucy) {
         super(queenLucy);
         this.queenLucy = queenLucy;
     }

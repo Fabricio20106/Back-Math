@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.util;
 
 import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
+import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -28,6 +29,15 @@ public class BMItemModelProperties {
         register(crossbow, new ResourceLocation("pulling"), (stack, world, livEntity) -> livEntity != null && livEntity.isUsingItem() && livEntity.getUseItem() == stack && !CrossbowItem.isCharged(stack) ? 1 : 0);
         register(crossbow, new ResourceLocation("charged"), (stack, world, livEntity) -> livEntity != null && CrossbowItem.isCharged(stack) ? 1 : 0);
         register(crossbow, new ResourceLocation("firework"), (stack, world, livEntity) -> livEntity != null && CrossbowItem.isCharged(stack) && CrossbowItem.containsChargedProjectile(stack, Items.FIREWORK_ROCKET) ? 1 : 0);
+    }
+
+    public static void makeJanticRailgun(Item railgun) {
+        register(railgun, new ResourceLocation("pull"), (stack, world, livEntity) -> {
+            if (livEntity != null) return JanticRailgunItem.isCharged(stack) ? 0 : (float) (stack.getUseDuration() - livEntity.getUseItemRemainingTicks()) / 25;
+            return 0;
+        });
+        register(railgun, new ResourceLocation("pulling"), (stack, world, livEntity) -> livEntity != null && livEntity.isUsingItem() && livEntity.getUseItem() == stack && !JanticRailgunItem.isCharged(stack) ? 1 : 0);
+        register(railgun, new ResourceLocation("charged"), (stack, world, livEntity) -> livEntity != null && JanticRailgunItem.isCharged(stack) ? 1 : 0);
     }
 
     public static void makeShield(Item shield) {

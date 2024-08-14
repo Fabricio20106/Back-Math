@@ -7,17 +7,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class MangaedMangoItem extends Item {
     public MangaedMangoItem(Properties properties) {
         super(properties);
     }
 
     @Override
+    @Nonnull
     public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
-        if (livEntity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livEntity;
-            BMUtils.addBakugouArmor(serverPlayer);
-        }
+        if (livEntity instanceof ServerPlayerEntity) BMUtils.addBakugouArmor((ServerPlayerEntity) livEntity);
         return stack;
     }
 }

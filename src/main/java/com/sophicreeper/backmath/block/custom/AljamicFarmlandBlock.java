@@ -1,7 +1,8 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
+import com.sophicreeper.backmath.util.tag.BMFluidTags;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.BlockItemUseContext;
@@ -46,7 +47,7 @@ public class AljamicFarmlandBlock extends Block {
 
     public boolean canSurvive(BlockState state, IWorldReader worldReader, BlockPos pos) {
         BlockState aboveBlock = worldReader.getBlockState(pos.above());
-        return !aboveBlock.getMaterial().isSolid() || aboveBlock.is(BMTags.Blocks.FARMLAND_TRANSPARENT);
+        return !aboveBlock.getMaterial().isSolid() || aboveBlock.is(BMBlockTags.FARMLAND_TRANSPARENT);
     }
 
     public BlockState getStateForPlacement(BlockItemUseContext context) {
@@ -103,7 +104,7 @@ public class AljamicFarmlandBlock extends Block {
 
     private static boolean hasWater(IWorldReader world, BlockPos pos) {
         for(BlockPos blockPos : BlockPos.betweenClosed(pos.offset(-4, 0, -4), pos.offset(4, 1, 4))) {
-            if (world.getFluidState(blockPos).is(BMTags.Fluids.HYDRATES_WATER_BASED_FARMLAND)) {
+            if (world.getFluidState(blockPos).is(BMFluidTags.HYDRATES_WATER_BASED_FARMLAND)) {
                 return true;
             }
         }

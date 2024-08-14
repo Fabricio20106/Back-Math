@@ -4,6 +4,8 @@ import com.sophicreeper.backmath.item.AxolotlTest;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class BMBlockTab extends ItemGroup {
     public static final BMBlockTab TAB = new BMBlockTab("backmath.blocks");
 
@@ -12,6 +14,7 @@ public class BMBlockTab extends ItemGroup {
     }
 
     @Override
+    @Nonnull
     public ItemStack makeIcon() {
         return new ItemStack(AxolotlTest.MEAL_COOKER.get());
     }

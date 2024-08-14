@@ -70,9 +70,9 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
     }
 
     public void grapeVinePost(Block block, ResourceLocation postTexture) {
-        ModelFile notGrown = grapeVinePost(block.getRegistryName().getPath() + "_age0", BackMath.resourceLoc("block/hanging_grape_vines_age0"), postTexture);
-        ModelFile preGrown = grapeVinePost(block.getRegistryName().getPath() + "_age1", BackMath.resourceLoc("block/hanging_grape_vines_age1"), postTexture);
-        ModelFile grown = grapeVinePost(block.getRegistryName().getPath() + "_age2", BackMath.resourceLoc("block/hanging_grape_vines_age2"), postTexture);
+        ModelFile notGrown = grapeVinePost(block.getRegistryName().getPath() + "_age0", BackMath.backMath("block/hanging_grape_vines_age0"), postTexture);
+        ModelFile preGrown = grapeVinePost(block.getRegistryName().getPath() + "_age1", BackMath.backMath("block/hanging_grape_vines_age1"), postTexture);
+        ModelFile grown = grapeVinePost(block.getRegistryName().getPath() + "_age2", BackMath.backMath("block/hanging_grape_vines_age2"), postTexture);
         this.grapeVinePost((GrapeVinePostBlock) block, notGrown, preGrown, grown);
     }
 
@@ -171,7 +171,7 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
     }
 
     private ModelFile grapeVinePost(String name, ResourceLocation vinesTexture, ResourceLocation postTexture) {
-        return models().withExistingParent(name, BackMath.resourceLoc("block/template_grape_vine_post_v2")).texture("post", postTexture).texture("vines", vinesTexture);
+        return models().withExistingParent(name, BackMath.backMath("block/template_grape_vine_post_v2")).texture("post", postTexture).texture("vines", vinesTexture);
     }
 
     public static int potatoAgeIndex(int age) {

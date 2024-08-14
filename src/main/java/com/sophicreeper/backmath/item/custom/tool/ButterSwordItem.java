@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.item.custom.tool;
 
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -9,11 +10,11 @@ import net.minecraft.item.IItemTier;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.*;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -22,12 +23,12 @@ public class ButterSwordItem extends SwordItem {
         super(tier, attackDamage, swingSpeed, properties);
     }
 
-    // When player stops using item (i.e. stops using a bow (shooting), finished eating/drinking):
     @Override
+    @Nonnull
     public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
         if (livEntity instanceof PlayerEntity) {
-            int storedExperience = stack.getOrCreateTag().getInt("stored_experience");
             if (stack.getTag() != null && stack.getTag().contains("stored_experience", TagTypes.INTEGER)) {
+                int storedExperience = stack.getTag().getInt("stored_experience");
                 // Gives the player the amount of points in the "stored_experience" tag.
                 ((PlayerEntity) livEntity).giveExperiencePoints(storedExperience);
             } else {
@@ -42,11 +43,10 @@ public class ButterSwordItem extends SwordItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if (stack.getTag() != null && stack.getTag().contains("stored_experience", TagTypes.INTEGER)) {
-            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent("" + stack.getTag().getInt("stored_experience")).withStyle(Style.EMPTY.withColor(
-                    Color.fromRgb(8453920)))).withStyle(TextFormatting.GRAY));
+            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent("" + stack.getTag().getInt("stored_experience")).withStyle(BMUtils.EXPERIENCE)).withStyle(
+                    TextFormatting.GRAY));
         } else {
-            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent(Integer.toString(500)).withStyle(Style.EMPTY.withColor(Color.fromRgb(8453920))))
-                    .withStyle(TextFormatting.GRAY));
+            tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".butter_sword.experience_points", new StringTextComponent(Integer.toString(500)).withStyle(BMUtils.EXPERIENCE)).withStyle(TextFormatting.GRAY));
         }
     }
 
@@ -58,8 +58,7 @@ public class ButterSwordItem extends SwordItem {
 
             // Actual Butter Sword (55 XP)
             ItemStack stack = new ItemStack(this);
-            CompoundNBT tag = stack.getOrCreateTag();
-            tag.putInt("stored_experience", 55);
+            stack.getOrCreateTag().putInt("stored_experience", 55);
             list.add(stack);
         }
     }

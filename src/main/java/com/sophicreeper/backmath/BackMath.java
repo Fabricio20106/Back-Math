@@ -28,7 +28,7 @@ public class BackMath {
         BMConfigs.init();
     }
 
-    public static ResourceLocation resourceLoc(String name) {
+    public static ResourceLocation backMath(String name) {
         return new ResourceLocation(MOD_ID, name);
     }
 }

@@ -32,10 +32,10 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
         BlockState grass = Blocks.GRASS.defaultBlockState();
 
         label48:
-        for(int i = 0; i < 128; ++i) {
+        for (int i = 0; i < 128; ++i) {
             BlockPos abovePos1 = abovePos;
 
-            for(int j = 0; j < i / 16; ++j) {
+            for (int j = 0; j < i / 16; ++j) {
                 abovePos1 = abovePos1.offset(rand.nextInt(3) - 1, (rand.nextInt(3) - 1) * rand.nextInt(3) / 2, rand.nextInt(3) - 1);
                 if (!world.getBlockState(abovePos1.below()).is(this) || world.getBlockState(abovePos1).isCollisionShapeFullBlock(world, abovePos1)) {
                     continue label48;

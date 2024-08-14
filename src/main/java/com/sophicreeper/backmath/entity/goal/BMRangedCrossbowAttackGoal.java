@@ -1,7 +1,8 @@
 package com.sophicreeper.backmath.entity.goal;
 
 import com.sophicreeper.backmath.item.custom.tool.BMCrossbowItem;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ICrossbowUser;
 import net.minecraft.entity.IRangedAttackMob;
@@ -31,14 +32,16 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
         this.setFlags(EnumSet.of(Goal.Flag.MOVE, Goal.Flag.LOOK));
     }
 
+    @Override
     public boolean canUse() {
         return this.isValidTarget() && this.isHoldingCrossbow();
     }
 
     private boolean isHoldingCrossbow() {
-        return this.shooter.isHolding(item -> item.is(BMTags.Items.CROSSBOWS));
+        return this.shooter.isHolding(item -> item.is(BMItemTags.CROSSBOWS));
     }
 
+    @Override
     public boolean canContinueToUse() {
         return this.isValidTarget() && (this.canUse() || !this.shooter.getNavigation().isDone()) && this.isHoldingCrossbow();
     }
@@ -47,6 +50,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
         return this.shooter.getTarget() != null && this.shooter.getTarget().isAlive();
     }
 
+    @Override
     public void stop() {
         super.stop();
         this.shooter.setAggressive(false);
@@ -55,12 +59,15 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
         if (this.shooter.isUsingItem()) {
             this.shooter.stopUsingItem();
             this.shooter.setChargingCrossbow(false);
-            BMCrossbowItem.setCharged(this.shooter.getUseItem(), false);
+            if (this.shooter.getUseItem().getItem() instanceof JanticRailgunItem) JanticRailgunItem.setCharged(this.shooter.getUseItem(), false);
+            else BMCrossbowItem.setCharged(this.shooter.getUseItem(), false);
         }
     }
 
    // Keep ticking a continuous task that has already been started.
+    @Override
     public void tick() {
+        ItemStack activeStack = this.shooter.getUseItem();
         LivingEntity target = this.shooter.getTarget();
         if (target != null) {
             boolean canMobSeeOther = this.shooter.getSensing().canSee(target);
@@ -91,7 +98,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
             this.shooter.getLookControl().setLookAt(target, 30, 30);
             if (this.crossbowState == CrossbowState.UNCHARGED) {
                 if (!flag) {
-                    this.shooter.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.shooter, item -> item.is(BMTags.Items.CROSSBOWS)));
+                    this.shooter.startUsingItem(ProjectileHelper.getWeaponHoldingHand(this.shooter, item -> item.is(BMItemTags.CROSSBOWS)));
                     this.crossbowState = CrossbowState.CHARGING;
                     this.shooter.setChargingCrossbow(true);
                 }
@@ -101,8 +108,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                 }
 
                 int ticksUsingItem = this.shooter.getTicksUsingItem();
-                ItemStack activeStack = this.shooter.getUseItem();
-                if (ticksUsingItem >= CrossbowItem.getChargeDuration(activeStack)) {
+                if (ticksUsingItem >= (activeStack.getItem() instanceof JanticRailgunItem ? 25 : CrossbowItem.getChargeDuration(activeStack))) {
                     this.shooter.releaseUsingItem();
                     this.crossbowState = CrossbowState.CHARGED;
                     this.attackDelay = 20 + this.shooter.getRandom().nextInt(20);
@@ -116,8 +122,9 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
             } else if (this.crossbowState == CrossbowState.READY_TO_ATTACK && canMobSeeOther) {
                 this.shooter.performRangedAttack(target, 1);
                 this.shooter.getLookControl().setLookAt(target, 10, 70);
-                ItemStack crossbowStack = this.shooter.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this.shooter, item -> item.is(BMTags.Items.CROSSBOWS)));
-                BMCrossbowItem.setCharged(crossbowStack, false);
+                ItemStack crossbowStack = this.shooter.getItemInHand(ProjectileHelper.getWeaponHoldingHand(this.shooter, item -> item.is(BMItemTags.CROSSBOWS)));
+                if (activeStack.getItem() instanceof JanticRailgunItem) JanticRailgunItem.setCharged(crossbowStack, false);
+                else BMCrossbowItem.setCharged(crossbowStack, false);
                 this.crossbowState = CrossbowState.UNCHARGED;
             }
         }

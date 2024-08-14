@@ -20,9 +20,13 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BucketDispenseBehavior extends DefaultDispenseItemBehavior {
-    private final DefaultDispenseItemBehavior defaultBehaviour = new DefaultDispenseItemBehavior();
+import javax.annotation.Nonnull;
 
+public class BucketDispenseBehavior extends DefaultDispenseItemBehavior {
+    private final DefaultDispenseItemBehavior defaultBehavior = new DefaultDispenseItemBehavior();
+
+    @Override
+    @Nonnull
     public ItemStack execute(IBlockSource source, ItemStack stack) {
         BucketItem bucket = (BucketItem) stack.getItem();
         BlockPos pos = source.getPos().relative(source.getBlockState().getValue(DispenserBlock.FACING));
@@ -91,6 +95,6 @@ public class BucketDispenseBehavior extends DefaultDispenseItemBehavior {
                 source.getLevel().playSound(null, pos, BMSounds.BLOCK_CRYSTALLIZER_FAIL_CRAFT, SoundCategory.BLOCKS, 1, 1);
             }
         }
-        return this.defaultBehaviour.dispense(source, stack);
+        return this.defaultBehavior.dispense(source, stack);
     }
 }

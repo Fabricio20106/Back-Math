@@ -90,6 +90,20 @@ public abstract class BMItemModelModels extends ItemModelProvider {
                 .override().predicate(charged(), 1).predicate(fireworkRocketLoaded(), 1).model(getExistingFile(modLoc("item/" + name + "_arrow"))).end();
     }
 
+    public void janticRailgun(String name) {
+        ModelFile templateCrossbow = getExistingFile(modLoc("item/template_crossbow"));
+        standard(templateCrossbow, name + "_pulling_0");
+        standard(templateCrossbow, name + "_pulling_1");
+        standard(templateCrossbow, name + "_pulling_2");
+        standard(templateCrossbow, name + "_loaded");
+
+        getBuilder(name).parent(templateCrossbow).texture("layer0", modLoc("item/" + name + "_standby"))
+                .override().predicate(pulling(), 1).model(getExistingFile(modLoc("item/" + name + "_pulling_0"))).end()
+                .override().predicate(pulling(), 1).predicate(pullProgress(), 0.58F).model(getExistingFile(modLoc("item/" + name + "_pulling_1"))).end()
+                .override().predicate(pulling(), 1).predicate(pullProgress(), 1).model(getExistingFile(modLoc("item/" + name + "_pulling_2"))).end()
+                .override().predicate(charged(), 1).model(getExistingFile(modLoc("item/" + name + "_loaded"))).end();
+    }
+
     public void bow(String name) {
         ModelFile templateBow = getExistingFile(modLoc("item/template_bow"));
         standard(templateBow, name + "_pulling_0");

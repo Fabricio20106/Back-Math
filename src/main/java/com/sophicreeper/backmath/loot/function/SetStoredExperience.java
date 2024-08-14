@@ -12,6 +12,7 @@ import net.minecraft.loot.conditions.ILootCondition;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.JSONUtils;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 public class SetStoredExperience extends LootFunction {
@@ -25,11 +26,13 @@ public class SetStoredExperience extends LootFunction {
     }
 
     @Override
+    @Nonnull
     public LootFunctionType getType() {
         return BMLootFunctions.SET_STORED_EXPERIENCE;
     }
 
     @Override
+    @Nonnull
     public ItemStack run(ItemStack stack, LootContext context) {
         CompoundNBT tag = stack.getOrCreateTag();
         tag.putInt("stored_experience", randomBetweenInclusive(context.getRandom(), this.storedExperienceMin, this.storedExperienceMax));
@@ -43,8 +46,8 @@ public class SetStoredExperience extends LootFunction {
 
     public static class Serializer extends LootFunction.Serializer<SetStoredExperience> {
         @Override
-        public void serialize(JsonObject object, SetStoredExperience function, JsonSerializationContext serializationContext) {
-            super.serialize(object, function, serializationContext);
+        public void serialize(JsonObject object, SetStoredExperience function, JsonSerializationContext context) {
+            super.serialize(object, function, context);
             JsonObject storedExperience = new JsonObject();
             storedExperience.addProperty("min", function.storedExperienceMin);
             storedExperience.addProperty("max", function.storedExperienceMax);
@@ -52,7 +55,8 @@ public class SetStoredExperience extends LootFunction {
         }
 
         @Override
-        public SetStoredExperience deserialize(JsonObject object, JsonDeserializationContext deserializationContext, ILootCondition[] conditions) {
+        @Nonnull
+        public SetStoredExperience deserialize(JsonObject object, JsonDeserializationContext context, ILootCondition[] conditions) {
             JsonObject storedExperience = object.get("stored_experience").getAsJsonObject();
             return new SetStoredExperience(conditions, JSONUtils.getAsInt(storedExperience, "min"), JSONUtils.getAsInt(storedExperience, "max"));
         }

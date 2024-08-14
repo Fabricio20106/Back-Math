@@ -4,7 +4,7 @@ import com.google.common.base.Stopwatch;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -36,12 +36,12 @@ public class BMAnvilRecipeMaker {
     private static void getBMRepairRecipes(List<Object> recipes, IVanillaRecipeFactory recipeFactory) {
         Map<Ingredient, List<ItemStack>> items = Maps.newHashMap();
 
-        items.put(Ingredient.of(BMTags.Items.INGOTS_DEVIL), Lists.newArrayList(new ItemStack(AxolotlTest.MILKED_DEVIL_SWORD.get()), new ItemStack(AxolotlTest.DEVIL_SWORD.get()), new ItemStack(AxolotlTest.DEVIL_PICKAXE.get()),
+        items.put(Ingredient.of(BMItemTags.INGOTS_DEVIL), Lists.newArrayList(new ItemStack(AxolotlTest.MILKED_DEVIL_SWORD.get()), new ItemStack(AxolotlTest.DEVIL_SWORD.get()), new ItemStack(AxolotlTest.DEVIL_PICKAXE.get()),
                 new ItemStack(AxolotlTest.DEVIL_PICKAXE.get()), new ItemStack(AxolotlTest.DEVIL_SHOVEL.get()), new ItemStack(AxolotlTest.DEVIL_AXE.get()), new ItemStack(AxolotlTest.DEVIL_HOE.get()), new ItemStack(AxolotlTest.DEVIL_WARRIOR_HELMET.get()),
                 new ItemStack(AxolotlTest.DEVIL_HELMET.get()), new ItemStack(AxolotlTest.DEVIL_CHESTPLATE.get()), new ItemStack(AxolotlTest.DEVIL_LEGGINGS.get()), new ItemStack(AxolotlTest.DEVIL_BOOTS.get()), new ItemStack(AxolotlTest.MILKED_DEVIL_SPAREY.get()),
                 new ItemStack(AxolotlTest.DEVIL_SPAREY.get()), new ItemStack(AxolotlTest.DEVIL_KNIFE.get())));
 
-        items.put(Ingredient.of(BMTags.Items.INGOTS_ANGELIC), Lists.newArrayList(new ItemStack(AxolotlTest.MILKED_ANGELIC_SWORD.get()), new ItemStack(AxolotlTest.ANGELIC_SWORD.get()), new ItemStack(AxolotlTest.ANGELIC_PICKAXE.get()),
+        items.put(Ingredient.of(BMItemTags.INGOTS_ANGELIC), Lists.newArrayList(new ItemStack(AxolotlTest.MILKED_ANGELIC_SWORD.get()), new ItemStack(AxolotlTest.ANGELIC_SWORD.get()), new ItemStack(AxolotlTest.ANGELIC_PICKAXE.get()),
                 new ItemStack(AxolotlTest.ANGELIC_PICKAXE.get()), new ItemStack(AxolotlTest.ANGELIC_SHOVEL.get()), new ItemStack(AxolotlTest.ANGELIC_AXE.get()), new ItemStack(AxolotlTest.ANGELIC_HOE.get()), new ItemStack(AxolotlTest.ANGELIC_WARRIOR_HELMET.get()),
                 new ItemStack(AxolotlTest.ANGELIC_HELMET.get()), new ItemStack(AxolotlTest.ANGELIC_CHESTPLATE.get()), new ItemStack(AxolotlTest.ANGELIC_LEGGINGS.get()), new ItemStack(AxolotlTest.ANGELIC_BOOTS.get()), new ItemStack(AxolotlTest.ANGELIC_KNIFE.get()),
                 new ItemStack(AxolotlTest.ANGELIC_SPOON.get())));

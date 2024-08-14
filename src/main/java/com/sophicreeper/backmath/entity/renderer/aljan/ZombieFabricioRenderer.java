@@ -1,0 +1,30 @@
+package com.sophicreeper.backmath.entity.renderer.aljan;
+
+import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.entity.model.BMZombieModel;
+import com.sophicreeper.backmath.entity.custom.aljan.ZombieFabricioEntity;
+import net.minecraft.client.renderer.entity.BipedRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
+import net.minecraft.client.renderer.entity.layers.ElytraLayer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+
+@OnlyIn(Dist.CLIENT)
+public class ZombieFabricioRenderer extends BipedRenderer<ZombieFabricioEntity, BMZombieModel<ZombieFabricioEntity>> {
+    public ZombieFabricioRenderer(EntityRendererManager manager) {
+        super(manager, new BMZombieModel<>(0, 0, 64, 64), 0.5F);
+        this.addLayer(new BipedArmorLayer<>(this, new BMZombieModel<>(0.5F, 0, 64, 32), new BMZombieModel<>(1, 0, 64, 32)));
+        this.addLayer(new ElytraLayer<>(this));
+    }
+
+    public ResourceLocation getTextureLocation(ZombieFabricioEntity zombie) {
+        return BackMath.backMath("textures/entity/zombie/zombie_fabricio.png");
+    }
+
+    @Override
+    protected boolean isShaking(ZombieFabricioEntity zombie) {
+        return zombie.isConvertingToFabricio();
+    }
+}

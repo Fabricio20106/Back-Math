@@ -3,7 +3,8 @@ package com.sophicreeper.backmath.world.dimension;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.custom.AljanPortalStandBlock;
 import com.sophicreeper.backmath.block.custom.BMBlockStateProperties;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
+import com.sophicreeper.backmath.util.tag.BMFluidTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -43,7 +44,7 @@ public class TheAljanTeleporter implements ITeleporter {
 
         int tries = 0;
         if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("About to try to find a suitable location for the Aljan Portal Stand...");
-        while (destinationWorld.getBlockState(destinationPos).equals(Blocks.CAVE_AIR.defaultBlockState()) && !destinationWorld.getBlockState(destinationPos).is(BMTags.Blocks.ALJAN_TELEPORTER_REPLACEABLES) && tries < 250) {
+        while (destinationWorld.getBlockState(destinationPos).equals(Blocks.CAVE_AIR.defaultBlockState()) && !destinationWorld.getBlockState(destinationPos).is(BMBlockTags.ALJAN_TELEPORTER_REPLACEABLES) && tries < 250) {
             destinationPos = destinationPos.above(1);
             tries++;
             if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Attempt {}: Could not find a suitable spot for the Aljan Portal Stand", tries);
@@ -78,7 +79,7 @@ public class TheAljanTeleporter implements ITeleporter {
                     destinationWorld.setBlockAndUpdate(destinationPos, BMBlocks.ALJAN_PORTAL_STAND.get().defaultBlockState());
                 }
                 // Places a Polished Sleepingstone below the stand when above water or sleepishwater.
-                if (destinationWorld.getFluidState(destinationPos.below()).is(BMTags.Fluids.ALJAN_CARVER_REPLACEABLES)) {
+                if (destinationWorld.getFluidState(destinationPos.below()).is(BMFluidTags.ALJAN_CARVER_REPLACEABLES)) {
                     if (COMMON_CONFIGS.logAljanTeleporterDebugging.get()) LOGGER.debug("Placing a Polished Sleepingstone at X: {}, Y: {}, Z: {}", destinationPos.getX(), destinationPos.below().getY(), destinationPos.getZ());
                     destinationWorld.setBlockAndUpdate(destinationPos.below(), BMBlocks.POLISHED_SLEEPINGSTONE.get().defaultBlockState());
                 }

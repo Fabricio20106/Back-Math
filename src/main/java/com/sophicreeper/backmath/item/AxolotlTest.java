@@ -10,6 +10,8 @@ import com.sophicreeper.backmath.crystallizer.item.MoldsBookItem;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.item.custom.*;
 import com.sophicreeper.backmath.item.custom.armor.*;
+import com.sophicreeper.backmath.item.custom.dispenser.BMBucketItem;
+import com.sophicreeper.backmath.item.custom.dispenser.SleepishFertilizerItem;
 import com.sophicreeper.backmath.item.custom.food.*;
 import com.sophicreeper.backmath.item.custom.food.drink.*;
 import com.sophicreeper.backmath.item.custom.food.jam.EffectJamItem;
@@ -1018,7 +1020,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> GOLDEN_PATTY = ITEMS.register("empada_de_ouro", () -> new SwordItem(GOLDEN_PATTY_SET, 3, -2.4F, new Item.Properties().rarity(Rarity.UNCOMMON).food(Foods.GOLDEN_APPLE).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> BUTTER_SWORD = ITEMS.register("espada_de_manteiga", () -> new ButterSwordItem(BUTTER_SWORD_SET, 3, -2.4F, new Item.Properties().food(Foods.BAKED_POTATO).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MECH_MECH = ITEMS.register("mech_mech", () -> new MechMechSwordItem(BMSetFields.MECH_MECH_SET, 9, 2, new Item.Properties().rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
-    public static final RegistryObject<Item> DEVIL_SPAREY = ITEMS.register("devil_sparey", () -> new DevilSpareySwordItem(BMSetFields.DEVIL_SPAREY_SET, 3, -2.4F, new Item.Properties().rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> DEVIL_SPAREY = ITEMS.register("devil_sparey", () -> new DevilSpareyItem(BMSetFields.DEVIL_SPAREY_SET, 3, -2.4F, new Item.Properties().rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MID_TERM_SPAREY = ITEMS.register("mid_term_sparey", () -> new MidTermSpareyItem(MID_TERM_SPAREY_SET, 3, -2.4F, new Item.Properties().rarity(Rarity.RARE).fireResistant().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_SPAREY = ITEMS.register("obsidian_infused_mid_term_sparey", () -> new MidTermSpareyItem(OBSIDIAN_INFUSED_MID_TERM_SPAREY_SET, 3, -2.4F, new Item.Properties().rarity(Rarity.EPIC).fireResistant().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> RAINBOW_PENCIL = ITEMS.register("lapis_rainbow", () -> new SwordItem(RAINBOW_PENCIL_SET, 1, -2.4F, new Item.Properties().rarity(Rarity.RARE).food(Foods.APPLE).tab(BMWeaponryTab.TAB))); // It used to place down Lava.
@@ -1031,6 +1033,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> MID_TERM_BOW = ITEMS.register("mid_term_bow", () -> new MidTermBowItem(new Item.Properties().durability(2031).rarity(Rarity.RARE).fireResistant().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> DEVIL_CROSSBOW = ITEMS.register("devil_crossbow", () -> new BMCrossbowItem(true, new Item.Properties().durability(520).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ANGELIC_CROSSBOW = ITEMS.register("angelic_crossbow", () -> new BMCrossbowItem(false, new Item.Properties().durability(520).tab(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> JANTIC_RAILGUN = ITEMS.register("jantic_railgun", () -> new JanticRailgunItem(new Item.Properties().durability(3000).rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> CHOCOGLUE = ITEMS.register("chocoglue", () -> new ChocoGlueItem(new Item.Properties().durability(384).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> PINK_GUM_FRYING_PAN = ITEMS.register("pink_gum_frying_pan", () -> new PinkGumFryingPanItem(new Item.Properties().durability(1024).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> INSOMNIA_ARROW = ITEMS.register("insomnia_arrow", () -> new InsomniaArrowItem(new Item.Properties().tab(BMWeaponryTab.TAB)));
@@ -1229,8 +1232,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> COFFEE_MUG = ITEMS.register("coffee_mug", () -> new BucketDrinkItem(new Item.Properties().stacksTo(1).tab(SophiesCursedFoods.TAB)));
     public static final RegistryObject<Item> CHOCCY_MILK_BUCKET = ITEMS.register("choccy_milk_bucket", () -> new RegularDrinkItem(new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1).food(BMFoods.CHOCCY_MILK_BUCKET).tab(SophiesCursedFoods.TAB)));
     public static final RegistryObject<Item> CHOCCY_MILK_BOTTLE = ITEMS.register("choccy_milk_bottle", () -> new RegularDrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(8).food(BMFoods.CHOCCY_MILK_BOTTLE).tab(SophiesCursedFoods.TAB)));
-    public static final RegistryObject<Item> HILLARY_BOTTLE = ITEMS.register("hillary_bottle", () -> new BottleDrinkAltItem(new Item.Properties().tab(SophiesCursedFoods.TAB).craftRemainder(Items.GLASS_BOTTLE)));
-    public static final RegistryObject<Item> MILKLLARY_BOTTLE = ITEMS.register("milkllary_bottle", () -> new BottleDrinkAltItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON).tab(SophiesCursedFoods.TAB)));
+    public static final RegistryObject<Item> HILLARY_BOTTLE = ITEMS.register("hillary_bottle", () -> new BottleDrinkItem(new Item.Properties().tab(SophiesCursedFoods.TAB).craftRemainder(Items.GLASS_BOTTLE)));
+    public static final RegistryObject<Item> MILKLLARY_BOTTLE = ITEMS.register("milkllary_bottle", () -> new BottleDrinkItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).rarity(Rarity.UNCOMMON).tab(SophiesCursedFoods.TAB)));
     public static final RegistryObject<Item> TODDY = ITEMS.register("toddy", () -> new ToddyItem(new Item.Properties().tab(SophiesCursedFoods.TAB).stacksTo(1).food(BMFoods.TODDY)));
     public static final RegistryObject<Item> MORTADELLA = ITEMS.register("mortadella", () -> new Item(new Item.Properties().tab(SophiesCursedFoods.TAB).food(Foods.PORKCHOP)));
     public static final RegistryObject<Item> ALJAMIC_BEEF = ITEMS.register("aljamic_beef", () -> new Item(new Item.Properties().tab(SophiesCursedFoods.TAB).food(Foods.BEEF)));

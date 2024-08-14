@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.block.custom;
 
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.potion.Effect;
@@ -13,6 +13,6 @@ public class TurtleFriedEggFlowerBlock extends FlowerBlock {
     }
 
     protected boolean mayPlaceOn(BlockState state, IBlockReader world, BlockPos pos) {
-        return state.is(BMTags.Blocks.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON);
+        return state.is(BMBlockTags.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON);
     }
 }

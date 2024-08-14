@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.data.tags;
 
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMEnchantmentTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -25,7 +25,8 @@ public class BMEnchantmentTagsProvider extends ForgeRegistryTagsProvider<Enchant
 
     @Override
     protected void addTags() {
-        this.tag(BMTags.Enchantments.APPLICABLE_TO_SUMMONER_STAFF).add(Enchantments.SHARPNESS, Enchantments.SMITE, Enchantments.BANE_OF_ARTHROPODS, Enchantments.MOB_LOOTING, Enchantments.FIRE_ASPECT, Enchantments.SWEEPING_EDGE,
+        this.tag(BMEnchantmentTags.APPLICABLE_TO_SUMMONER_STAFF).add(Enchantments.SHARPNESS, Enchantments.SMITE, Enchantments.BANE_OF_ARTHROPODS, Enchantments.MOB_LOOTING, Enchantments.FIRE_ASPECT, Enchantments.SWEEPING_EDGE,
                 Enchantments.KNOCKBACK);
+        this.tag(BMEnchantmentTags.APPLICABLE_TO_BACK_MATH_BOWS).add(Enchantments.POWER_ARROWS, Enchantments.PUNCH_ARROWS, Enchantments.FLAMING_ARROWS, Enchantments.INFINITY_ARROWS);
     }
 }

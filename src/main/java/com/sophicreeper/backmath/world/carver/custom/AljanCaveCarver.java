@@ -1,7 +1,8 @@
 package com.sophicreeper.backmath.world.carver.custom;
 
 import com.mojang.serialization.Codec;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
+import com.sophicreeper.backmath.util.tag.BMFluidTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.IChunk;
@@ -15,7 +16,7 @@ public class AljanCaveCarver extends CaveWorldCarver {
 
     @Override
     public boolean canReplaceBlock(BlockState state) {
-        return state.is(BMTags.Blocks.ALJAN_CARVER_REPLACEABLES);
+        return state.is(BMBlockTags.ALJAN_CARVER_REPLACEABLES);
     }
 
     @Override
@@ -25,7 +26,7 @@ public class AljanCaveCarver extends CaveWorldCarver {
         for(int i = minX; i < maxX; ++i) {
             for(int j = minZ; j < maxZ; ++j) {
                 for(int k = minY - 1; k <= maxY + 1; ++k) {
-                    if (BMTags.Fluids.ALJAN_CARVER_REPLACEABLES.equals(chunk.getFluidState(mutablePos.set(i + chunkX * 16, k, j + chunkZ * 16)).getType())) {
+                    if (BMFluidTags.ALJAN_CARVER_REPLACEABLES.equals(chunk.getFluidState(mutablePos.set(i + chunkX * 16, k, j + chunkZ * 16)).getType())) {
                         return true;
                     }
 

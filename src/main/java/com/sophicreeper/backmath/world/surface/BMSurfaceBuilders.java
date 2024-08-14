@@ -21,7 +21,7 @@ public class BMSurfaceBuilders {
     public static final ConfiguredSurfaceBuilder<SurfaceBuilderConfig> AVONDALIC = register("avondalic_grove", SurfaceBuilder.DEFAULT.configured(AVONDALIC_NYLIUM_CONFIG));
 
     private static <SC extends ISurfaceBuilderConfig> ConfiguredSurfaceBuilder<SC> register(String name, ConfiguredSurfaceBuilder<SC> configuredSurfaceBuilder) {
-        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, BackMath.resourceLoc(name), configuredSurfaceBuilder);
+        return WorldGenRegistries.register(WorldGenRegistries.CONFIGURED_SURFACE_BUILDER, BackMath.backMath(name), configuredSurfaceBuilder);
     }
 
     public static void init() {}

@@ -8,7 +8,7 @@ import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassPaneBlock;
 import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
 import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.item.custom.tool.KnifeItem;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.world.plant.tree.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -553,7 +553,7 @@ public class BMBlocks {
     }
 
     private static Boolean canSpawnOnLeaves(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {
-        return entity.is(BMTags.EntityTypes.CAN_SPAWN_ON_LEAVES);
+        return entity.is(BMEntityTypeTags.CAN_SPAWN_ON_LEAVES);
     }
 
     private static boolean neverAllowSpawns(BlockState state, IBlockReader world, BlockPos pos, EntityType<?> entity) {

@@ -9,8 +9,11 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 
+import javax.annotation.Nonnull;
+
 public class QLSSDispenseBehavior extends DefaultDispenseItemBehavior {
     @Override
+    @Nonnull
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
         Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
         EntityType<?> type = ((QueenLucySummonerStaffItem) stack.getItem()).getType(stack.getTag());

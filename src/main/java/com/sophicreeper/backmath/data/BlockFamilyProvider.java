@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.sophicreeper.backmath.BackMath.resourceLoc;
+import static com.sophicreeper.backmath.BackMath.backMath;
 import static net.minecraft.data.ModelTextures.getBlockTexture;
 
 public class BlockFamilyProvider {
@@ -151,10 +151,10 @@ public class BlockFamilyProvider {
             assert typeBlock.getRegistryName() != null;
 
             // Wood Blocks
-            if (type.equals("log")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, resourceLoc("block/" + this.materialName + "_log"), resourceLoc("block/" + this.materialName + "_log_top"));
-            if (type.equals("wood")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, resourceLoc("block/" + this.materialName + "_log"), resourceLoc("block/" + this.materialName + "_log"));
-            if (type.equals("stripped_log")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, resourceLoc("block/stripped_" + this.materialName + "_log"), resourceLoc("block/stripped_" + this.materialName + "_log_top"));
-            if (type.equals("stripped_wood")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, resourceLoc("block/stripped_" + this.materialName + "_log"), resourceLoc("block/stripped_" + this.materialName + "_log"));
+            if (type.equals("log")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, backMath("block/" + this.materialName + "_log"), backMath("block/" + this.materialName + "_log_top"));
+            if (type.equals("wood")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, backMath("block/" + this.materialName + "_log"), backMath("block/" + this.materialName + "_log"));
+            if (type.equals("stripped_log")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, backMath("block/stripped_" + this.materialName + "_log"), backMath("block/stripped_" + this.materialName + "_log_top"));
+            if (type.equals("stripped_wood")) this.stateProvider.axisBlock((RotatedPillarBlock) typeBlock, backMath("block/stripped_" + this.materialName + "_log"), backMath("block/stripped_" + this.materialName + "_log"));
             if (type.equals("grape_vine_post")) grapeVinePost((GrapeVinePostBlock) typeBlock, this.texture);
             if (type.equals("ladder")) ladder(typeBlock, getBlockTexture(typeBlock));
 
@@ -165,8 +165,8 @@ public class BlockFamilyProvider {
             if (type.equals("wall")) wallBlock(typeBlock, this.texture);
             if (type.equals("fence")) fenceBlock(typeBlock, this.texture);
             if (type.equals("fence_gate")) this.stateProvider.fenceGateBlock((FenceGateBlock) typeBlock, this.texture);
-            if (type.equals("door")) this.stateProvider.doorBlock((DoorBlock) typeBlock, resourceLoc("block/" + this.materialName + "_door_bottom"), resourceLoc("block/" + this.materialName + "_door_top"));
-            if (type.equals("trapdoor")) this.stateProvider.trapdoorBlock((TrapDoorBlock) typeBlock, resourceLoc("block/" + this.materialName + "_trapdoor"), (Boolean) EXTRA_PROPERTIES.get("trapdoor").get(0));
+            if (type.equals("door")) this.stateProvider.doorBlock((DoorBlock) typeBlock, backMath("block/" + this.materialName + "_door_bottom"), backMath("block/" + this.materialName + "_door_top"));
+            if (type.equals("trapdoor")) this.stateProvider.trapdoorBlock((TrapDoorBlock) typeBlock, backMath("block/" + this.materialName + "_trapdoor"), (Boolean) EXTRA_PROPERTIES.get("trapdoor").get(0));
             if (type.equals("pressure_plate")) pressurePlate(typeBlock, this.texture);
             if (type.equals("weighted_pressure_plate")) weightedPressurePlate(typeBlock, this.texture);
             if (type.equals("button")) button((AbstractButtonBlock) typeBlock, this.texture);
@@ -179,7 +179,7 @@ public class BlockFamilyProvider {
             if (type.equals("wool")) blockFromCustom(typeBlock);
             if (type.equals("carpet")) this.stateProvider.simpleBlock(typeBlock, models().carpet(typeBlock.getRegistryName().getPath(), getBlockTexture(BLOCK_TYPES.get("wool"))));
             if (type.equals("stained_glass")) blockFromCustom(typeBlock);
-            if (type.equals("stained_glass_pane")) this.stateProvider.paneBlock((PaneBlock) typeBlock, getBlockTexture(BLOCK_TYPES.get("stained_glass")), resourceLoc("block/" + typeBlock.getRegistryName().getPath() + "_top"));
+            if (type.equals("stained_glass_pane")) this.stateProvider.paneBlock((PaneBlock) typeBlock, getBlockTexture(BLOCK_TYPES.get("stained_glass")), backMath("block/" + typeBlock.getRegistryName().getPath() + "_top"));
         }
         BLOCK_TYPES.clear();
         EXTRA_PROPERTIES.clear();
@@ -192,7 +192,7 @@ public class BlockFamilyProvider {
     public void fenceBlock(Block fence, ResourceLocation texture) {
         this.stateProvider.fenceBlock((FenceBlock) fence, texture);
         assert fence.getRegistryName() != null;
-        models().withExistingParent(fence.getRegistryName().getPath() + "_inventory", resourceLoc("block/fence_inventory")).texture("texture", texture);
+        models().withExistingParent(fence.getRegistryName().getPath() + "_inventory", backMath("block/fence_inventory")).texture("texture", texture);
     }
 
     public void wallBlock(Block wall, ResourceLocation texture) {
@@ -202,7 +202,7 @@ public class BlockFamilyProvider {
     }
 
     public void ladder(Block ladder, ResourceLocation texture) {
-        this.stateProvider.getVariantBuilder(ladder).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(ladder.getRegistryName().getPath(), resourceLoc("block/template_ladder")).texture("ladder", texture)).rotationY(
+        this.stateProvider.getVariantBuilder(ladder).forAllStatesExcept(state -> ConfiguredModel.builder().modelFile(models().withExistingParent(ladder.getRegistryName().getPath(), backMath("block/template_ladder")).texture("ladder", texture)).rotationY(
                 (int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).getOpposite().toYRot()).build(), BlockStateProperties.WATERLOGGED);
     }
 
@@ -240,9 +240,9 @@ public class BlockFamilyProvider {
     }
 
     public void grapeVinePost(GrapeVinePostBlock block, ResourceLocation texture) {
-        ModelFile notGrown = grapeVinePost(block.getRegistryName().getPath() + "_age0", resourceLoc("block/hanging_grape_vines_age0"), texture);
-        ModelFile preGrown = grapeVinePost(block.getRegistryName().getPath() + "_age1", resourceLoc("block/hanging_grape_vines_age1"), texture);
-        ModelFile grown = grapeVinePost(block.getRegistryName().getPath() + "_age2", resourceLoc("block/hanging_grape_vines_age2"), texture);
+        ModelFile notGrown = grapeVinePost(block.getRegistryName().getPath() + "_age0", backMath("block/hanging_grape_vines_age0"), texture);
+        ModelFile preGrown = grapeVinePost(block.getRegistryName().getPath() + "_age1", backMath("block/hanging_grape_vines_age1"), texture);
+        ModelFile grown = grapeVinePost(block.getRegistryName().getPath() + "_age2", backMath("block/hanging_grape_vines_age2"), texture);
         this.grapeVinePost(block, notGrown, preGrown, grown);
     }
 
@@ -263,7 +263,7 @@ public class BlockFamilyProvider {
     }
 
     public ModelFile grapeVinePost(String name, ResourceLocation texture, ResourceLocation postTexture) {
-        return models().withExistingParent(name, resourceLoc("block/template_grape_vine_post_v2")).texture("vines", texture).texture("post", postTexture);
+        return models().withExistingParent(name, backMath("block/template_grape_vine_post_v2")).texture("vines", texture).texture("post", postTexture);
     }
 
     public BlockModelProvider models() {

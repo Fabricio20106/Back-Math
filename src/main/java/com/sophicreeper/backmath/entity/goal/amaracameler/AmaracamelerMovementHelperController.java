@@ -1,16 +1,16 @@
 package com.sophicreeper.backmath.entity.goal.amaracameler;
 
-import com.sophicreeper.backmath.entity.custom.Amaracameler;
+import com.sophicreeper.backmath.entity.custom.aljan.AmaracamelerEntity;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.controller.MovementController;
 
 public class AmaracamelerMovementHelperController extends MovementController {
-    private final Amaracameler amaracameler;
+    private final AmaracamelerEntity amaracameler;
     private float yRot;
     private int jumpDelay;
     private boolean isAggressive;
 
-    public AmaracamelerMovementHelperController(Amaracameler amaracameler) {
+    public AmaracamelerMovementHelperController(AmaracamelerEntity amaracameler) {
         super(amaracameler);
         this.amaracameler = amaracameler;
         this.yRot = 180 * amaracameler.yRot / (float) Math.PI;

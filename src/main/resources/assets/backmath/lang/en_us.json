@@ -721,6 +721,7 @@
   "entity.backmath.backmath_boat": "Back Math Boat",
   "entity.backmath.insomnia_arrow": "Insomnia Arrow",
   "entity.backmath.chocoglue_proj": "Chocoglue Projectile",
+  "entity.backmath.jantic_bolt": "Jantic Bolt",
 
   "entity.backmath.queen_lucy_pet.current": "Queen Lucy Pet",
   "entity.backmath.queen_lucy_pet.alternate": "Alternate Queen Lucy Pet",
@@ -1554,6 +1555,8 @@
   "item.backmath.aljameed_crown": "Aljameed Crown",
   "item.backmath.moonering_crown": "Moonering Crown",
   "item.backmath.jantical_crown": "Jantical Crown",
+  "item.backmath.jantic_railgun": "Jantic Railgun",
+  "item.backmath.jantic_railgun.projectile": "Projectile: %s",
 
   "item.minecraft.potion.effect.insomnia": "Potion of Insomnia",
   "item.minecraft.potion.effect.long_insomnia": "Potion of Insomnia",

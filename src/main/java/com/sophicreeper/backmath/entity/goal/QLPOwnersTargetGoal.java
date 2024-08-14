@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.goal;
 
-import com.sophicreeper.backmath.entity.custom.QueenLucyPet;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
@@ -10,11 +10,11 @@ import net.minecraft.entity.ai.goal.TargetGoal;
 import java.util.EnumSet;
 
 public class QLPOwnersTargetGoal extends TargetGoal {
-    private final QueenLucyPet queenLucyPet;
+    private final QueenLucyPetEntity queenLucyPet;
     private LivingEntity attacker;
     private int timestamp;
 
-    public QLPOwnersTargetGoal(QueenLucyPet queenLucyPet) {
+    public QLPOwnersTargetGoal(QueenLucyPetEntity queenLucyPet) {
         super(queenLucyPet, false);
         this.queenLucyPet = queenLucyPet;
         this.setFlags(EnumSet.of(Goal.Flag.TARGET));
@@ -30,7 +30,7 @@ public class QLPOwnersTargetGoal extends TargetGoal {
                 this.attacker = qlpOwner.getLastHurtMob();
                 int timeSinceAttackedMob = qlpOwner.getLastHurtMobTimestamp();
                 return timeSinceAttackedMob != this.timestamp && this.canAttack(this.attacker, EntityPredicate.DEFAULT) && this.canAttack(this.attacker, EntityPredicate.DEFAULT.selector((livEntity -> !livEntity.getType().is(
-                        BMTags.EntityTypes.QLP_CANNOT_TARGET)))) && this.queenLucyPet.wantsToAttack(this.attacker, qlpOwner);
+                        BMEntityTypeTags.QLP_CANNOT_TARGET)))) && this.queenLucyPet.wantsToAttack(this.attacker, qlpOwner);
             }
         } else {
             return false;

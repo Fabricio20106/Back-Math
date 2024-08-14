@@ -1,17 +1,17 @@
 package com.sophicreeper.backmath.entity.goal.amaracameler;
 
-import com.sophicreeper.backmath.entity.custom.Amaracameler;
+import com.sophicreeper.backmath.entity.custom.aljan.AmaracamelerEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.potion.Effects;
 
 import java.util.EnumSet;
 
 public class ALFaceRandomGoal extends Goal {
-    private final Amaracameler amaracameler;
+    private final AmaracamelerEntity amaracameler;
     private float chosenDegrees;
     private int nextRandomizeTime;
 
-    public ALFaceRandomGoal(Amaracameler amaracameler) {
+    public ALFaceRandomGoal(AmaracamelerEntity amaracameler) {
         this.setFlags(EnumSet.of(Flag.LOOK));
         this.amaracameler = amaracameler;
     }

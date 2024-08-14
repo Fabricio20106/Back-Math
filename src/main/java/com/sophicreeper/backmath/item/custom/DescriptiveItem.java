@@ -20,7 +20,7 @@ public class DescriptiveItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        tooltip.add(this.description);
         super.appendHoverText(stack, world, tooltip, flag);
+        tooltip.add(this.description);
     }
 }

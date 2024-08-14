@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.sophicreeper.backmath.loot.BMLootTableUtils;
 import com.sophicreeper.backmath.util.BMResourceLocations;
-import com.sophicreeper.backmath.util.BMTags;
+import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -31,13 +31,13 @@ public class KnifeItem extends ToolItem {
         super(attackDamage, swingSpeed, tier, EFFECTIVE_ON, properties.addToolType(KNIFE, tier.getLevel()));
     }
 
+    @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
         if (getToolTypes(stack).stream().anyMatch(state::isToolEffective)) return speed;
-        return state.is(BMTags.Blocks.MINEABLE_KNIVES) ? this.speed : 1;
+        return state.is(BMBlockTags.MINEABLE_KNIVES) ? this.speed : 1;
     }
 
-    @Override
-    public ItemStack getContainerItem(ItemStack stack) {
+    public ItemStack getFoodContainerItem(ItemStack stack) {
         ItemStack container = stack.copy();
         if (container.hurt(1, random, null)) {
             return ItemStack.EMPTY;

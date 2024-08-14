@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.item.custom.food.drink;
 
+import com.sophicreeper.backmath.item.custom.ToolBehaviors;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -12,47 +13,56 @@ import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 
-public class JuiceItem extends Item {
+import javax.annotation.Nonnull;
+
+public class JuiceItem extends Item implements ToolBehaviors {
     public JuiceItem(Properties properties) {
         super(properties);
     }
 
-    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livingEntity) {
-        super.finishUsingItem(stack, world, livingEntity);
-        if (livingEntity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) livingEntity;
-            CriteriaTriggers.CONSUME_ITEM.trigger(serverPlayer, stack);
-            serverPlayer.awardStat(Stats.ITEM_USED.get(this));
+    @Override
+    @Nonnull
+    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        return DrinkHelper.useDrink(world, player, hand);
+    }
+
+    @Override
+    @Nonnull
+    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
+        super.finishUsingItem(stack, world, livEntity);
+        if (livEntity instanceof ServerPlayerEntity) {
+            ServerPlayerEntity player = (ServerPlayerEntity) livEntity;
+            CriteriaTriggers.CONSUME_ITEM.trigger(player, stack);
+            player.awardStat(Stats.ITEM_USED.get(this));
         }
 
         if (stack.isEmpty()) {
             return new ItemStack(Items.GLASS_BOTTLE);
         } else {
-            if (livingEntity instanceof PlayerEntity && !((PlayerEntity) livingEntity).abilities.instabuild) {
-                ItemStack glassBottle = new ItemStack(Items.GLASS_BOTTLE);
-                PlayerEntity player = (PlayerEntity) livingEntity;
-                if (!player.inventory.add(glassBottle)) {
-                    player.drop(glassBottle, false);
-                }
+            if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
+                ItemStack bottleStack = getFoodContainerItem(stack);
+                PlayerEntity player = (PlayerEntity) livEntity;
+                stack.shrink(1);
+                if (!player.inventory.add(bottleStack)) player.drop(bottleStack, false);
             }
-
             return stack;
         }
     }
 
+    @Override
     public int getUseDuration(ItemStack stack) {
         return 32;
     }
 
+    @Override
+    @Nonnull
     public UseAction getUseAnimation(ItemStack stack) {
         return UseAction.DRINK;
     }
 
+    @Override
+    @Nonnull
     public SoundEvent getEatingSound() {
         return SoundEvents.GENERIC_DRINK;
-    }
-
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        return DrinkHelper.useDrink(world, player, hand);
     }
 }

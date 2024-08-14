@@ -9,8 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.Direction;
 
+import javax.annotation.Nonnull;
+
 public class BMSpawnEggDispenseBehavior extends DefaultDispenseItemBehavior {
     @Override
+    @Nonnull
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
         Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
         EntityType<?> type = ((SpawnEggItem) stack.getItem()).getType(stack.getTag());
