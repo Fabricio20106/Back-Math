@@ -5,8 +5,6 @@ import com.sophicreeper.backmath.entity.custom.*;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
 import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.util.BMResourceLocations;
-import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.ZombieFabricioAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
@@ -44,7 +42,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
@@ -357,11 +354,11 @@ public class ZombieFabricioEntity extends MonsterEntity {
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         this.populateAljanEquipmentSlots(difficulty);
-        if (this.level.getDifficulty() == Difficulty.HARD) {
+        /*if (this.level.getDifficulty() == Difficulty.HARD) {
             EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_HARD_DIFFICULTY, this);
         } else {
             EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_BELOW_HARD_DIFFICULTY, this);
-        }
+        }*/
     }
 
     protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
@@ -373,7 +370,7 @@ public class ZombieFabricioEntity extends MonsterEntity {
             if (this.random.nextFloat() < 0.095F) ++rand;
             boolean populateArmor = true;
 
-            for(EquipmentSlotType equipmentSlot : EquipmentSlotType.values()) {
+            for (EquipmentSlotType equipmentSlot : EquipmentSlotType.values()) {
                 if (equipmentSlot.getType() == EquipmentSlotType.Group.ARMOR) {
                     ItemStack armorSlotStacks = this.getItemBySlot(equipmentSlot);
                     if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
@@ -523,7 +520,7 @@ public class ZombieFabricioEntity extends MonsterEntity {
     }
 
     public static boolean getBabySpawnOdds(Random rand) {
-        return rand.nextFloat() < ForgeConfig.SERVER.zombieBabyChance.get();
+        return rand.nextFloat() < 0.05D;
     }
 
     protected void applyAttributeBonuses(float difficulty) {

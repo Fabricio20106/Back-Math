@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.crystallizer.advanced;
 
 import net.minecraft.util.IStringSerializable;
 
+import javax.annotation.Nonnull;
+
 public enum AdvancedMolds implements IStringSerializable {
     EMPTY("empty"),
     SINGULARITY("singularity"),
@@ -22,6 +24,8 @@ public enum AdvancedMolds implements IStringSerializable {
         return this.name;
     }
 
+    @Override
+    @Nonnull
     public String getSerializedName() {
         return this.name;
     }

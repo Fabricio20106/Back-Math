@@ -108,8 +108,8 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
             Direction facing = state.getValue(HorizontalBlock.FACING);
             AdvancedMolds mold = state.getValue(CrystallineCrystallizerBlock.MOLD);
             int rotation = (int) facing.getOpposite().toYRot();
-            return ConfiguredModel.builder().modelFile(models().withExistingParent(block.getRegistryName().getPath() + "_" + mold + "_mold", modLoc("block/template_crystalline_crystallizer")).texture("mold", modLoc("block/" + block.getRegistryName()
-                    .getPath() + "_side_" + mold.getSerializedName()))).rotationY(rotation == 360 ? 0 : rotation).build();
+            return ConfiguredModel.builder().modelFile(models().withExistingParent(block.getRegistryName().getPath() + "_" + mold + "_mold", modLoc("block/template_crystalline_crystallizer")).texture("mold", modLoc("block/crystallizer_top_" +
+                    mold.getSerializedName()))).rotationY(rotation == 360 ? 0 : rotation).build();
         });
     }
 

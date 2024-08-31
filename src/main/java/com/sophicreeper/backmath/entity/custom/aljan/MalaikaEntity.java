@@ -3,8 +3,6 @@ package com.sophicreeper.backmath.entity.custom.aljan;
 import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.util.BMResourceLocations;
-import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
@@ -123,7 +121,7 @@ public class MalaikaEntity extends CreatureEntity implements SophieFriendlies {
             if (this.random.nextFloat() < 0.095F) ++rand;
             boolean populateArmor = true;
 
-            for(EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
+            for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
                 if (equipmentSlotType.getType() == EquipmentSlotType.Group.ARMOR) {
                     ItemStack stack = this.getItemBySlot(equipmentSlotType);
                     if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
@@ -196,7 +194,7 @@ public class MalaikaEntity extends CreatureEntity implements SophieFriendlies {
 
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         this.populateAljanEquipmentSlots(difficulty);
-        EquipmentTableUtils.equipWithGear(BMResourceLocations.MALAIKA_EQUIPMENT, this);
+//        EquipmentTableUtils.equipWithGear(BMResourceLocations.MALAIKA_EQUIPMENT, this);
     }
 
     public static boolean checkMalaikaSpawnRules(EntityType<MalaikaEntity> malaika, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {

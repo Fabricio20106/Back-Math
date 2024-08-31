@@ -58,7 +58,7 @@ public class TermianPatrolGoal<T extends TermianPatrollerEntity> extends Goal {
                     this.moveRandomly();
                     this.cooldownUntil = this.termianMember.level.getGameTime() + 200L;
                 } else if (patrolLeader) {
-                    for(TermianPatrollerEntity termianPatroller : patrollers) {
+                    for (TermianPatrollerEntity termianPatroller : patrollers) {
                         termianPatroller.setPatrolTarget(pos);
                     }
                 }

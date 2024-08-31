@@ -38,7 +38,7 @@ public interface BMCrossbowUser extends ICrossbowUser {
         Hand hand = ProjectileHelper.getWeaponHoldingHand(livEntity, stack -> stack.is(BMItemTags.CROSSBOWS));
         ItemStack handStack = livEntity.getItemInHand(hand);
         if (livEntity.isHolding(stack -> stack.is(BMItemTags.CROSSBOWS))) {
-            if (handStack.getItem() instanceof JanticRailgunItem) JanticRailgunItem.performShooting(livEntity.level, livEntity, hand, handStack, velocity, 0);
+            if (handStack.getItem() instanceof JanticRailgunItem) JanticRailgunItem.performShooting(livEntity.level, livEntity, hand, handStack, 3.15F, 0);
             else CrossbowItem.performShooting(livEntity.level, livEntity, hand, handStack, velocity, (float) (14 - livEntity.level.getDifficulty().getId() * 4));
         }
         this.onCrossbowAttackPerformed();
@@ -61,9 +61,7 @@ public interface BMCrossbowUser extends ICrossbowUser {
     default Vector3f getProjectileShotVector(LivingEntity livEntity, Vector3d vec3D, float distanceFactor) {
         Vector3d normVec3D = vec3D.normalize();
         Vector3d crossedVec3D = normVec3D.cross(new Vector3d(0, 1, 0));
-        if (crossedVec3D.lengthSqr() <= 1.0E-7D) {
-            crossedVec3D = normVec3D.cross(livEntity.getUpVector(1));
-        }
+        if (crossedVec3D.lengthSqr() <= 1.0E-7D) crossedVec3D = normVec3D.cross(livEntity.getUpVector(1));
 
         Quaternion quaternion = new Quaternion(new Vector3f(crossedVec3D), 90, true);
         Vector3f vec3F = new Vector3f(normVec3D);

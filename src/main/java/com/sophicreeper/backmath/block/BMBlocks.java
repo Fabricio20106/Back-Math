@@ -244,7 +244,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> CHISELED_ALJANSTONE_CREEPER = BLOCKS.register("chiseled_aljanstone_creeper", () -> new Block(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));
     public static final RegistryObject<Block> SMOOTH_ALJANSTONE = BLOCKS.register("smooth_aljanstone", () -> new Block(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));
     public static final RegistryObject<Block> SMOOTH_ALJANSTONE_SLAB = BLOCKS.register("smooth_aljanstone_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));
-    public static final RegistryObject<Block> COBBLED_ALJANSTONE = BLOCKS.register("cobbled_aljanstone", () -> new Block(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));
+    public static final RegistryObject<Block> COBBLED_ALJANSTONE = BLOCKS.register("cobbled_aljanstone", () -> new Block(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get()).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE)));
     public static final RegistryObject<Block> COBBLED_ALJANSTONE_STAIRS = BLOCKS.register("cobbled_aljanstone_stairs", () -> new StairsBlock(() -> COBBLED_ALJANSTONE.get().defaultBlockState(), AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));
     public static final RegistryObject<Block> COBBLED_ALJANSTONE_SLAB = BLOCKS.register("cobbled_aljanstone_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));
     public static final RegistryObject<Block> COBBLED_ALJANSTONE_WALL = BLOCKS.register("cobbled_aljanstone_wall", () -> new WallBlock(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));

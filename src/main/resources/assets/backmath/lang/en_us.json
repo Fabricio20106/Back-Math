@@ -421,8 +421,6 @@
   "block.backmath.aljancap_sapling": "Aljancap Sapling",
   "block.backmath.aljancap_leaves": "Aljancap Leaves",
   "block.backmath.potted_aljancap_sapling": "Potted Aljancap Sapling",
-  "block.backmath.aljan_portal_frame": "Aljan Portal Frame",
-  "block.backmath.aljanwood_barrel": "Aljanwood Barrel",
   "block.backmath.aljancap_barrel": "Aljancap Barrel",
   "block.backmath.insomnian_barrel": "Insomnian Barrel",
   "block.backmath.aljancap_ladder": "Aljancap Ladder",
@@ -708,7 +706,7 @@
   "entity.backmath.karate_lucia": "Karate Lucia",
   "entity.backmath.queen_sophie": "Queen Lucy",
   "entity.backmath.warrior_sophie": "Warrior Sophie",
-  "entity.backmath.spy_sophie": "Spy Sophie",
+  "entity.backmath.spy_sophie": "Spy Enderphie",
   "entity.backmath.queen_sophie_pet": "Queen Lucy Pet",
   "entity.backmath.archer_insomnia_sophie": "Archer Insomnia Sophie",
   "entity.backmath.insomnia_zombie": "Insomnia Zombie",
@@ -739,7 +737,7 @@
   "entity.backmath.queen_lucy_pet.sv_cyan_axolotl": "Cyan Lucyxolotl Pet",
   "entity.backmath.queen_lucy_pet.sv_ender": "Enderlucy",
   "entity.backmath.queen_lucy_pet.sv_worker": "Worker Queen Lucy Pet",
-  "entity.backmath.queen_lucy_pet.sv_empresary2": "Empresary2 Queen Lucy Pet ",
+  "entity.backmath.queen_lucy_pet.sv_empresary2": "Empresary2 Queen Lucy Pet",
   "entity.backmath.queen_lucy_pet.sv_entrepreneur": "Entrepreneur Queen Lucy Pet",
   "entity.backmath.queen_lucy_pet.sv_blue_axolotl": "Blue Axolotl Queen Lucy Pet",
   "entity.backmath.queen_lucy_pet.sv_cyan_axolotl_2": "Cyan Axolotl Queen Lucy Pet",
@@ -1604,7 +1602,7 @@
   "item.backmath.effect_jam.effect.bluestone_poisoning": "Bluestone Poisoning Jam",
   "item.backmath.effect_jam.effect.glowstone_poisoning": "Glowstone Poisoning Jam",
   "item.backmath.effect_jam.effect.gunpowder_poisoning": "Gunpowder Poisoning Jam",
-  "item.backmath.effect_jam.effect.creeper_powder_poisoning": "Explosive Blend Poisoning Jam",
+  "item.backmath.effect_jam.effect.explosive_blend_poisoning": "Explosive Blend Poisoning Jam",
 
   "itemGroup.backmath.main": "Back Layer",
   "itemGroup.backmath.comida": "Sophie's Cursed Foods",
@@ -1625,8 +1623,8 @@
   "material.silentgear.hardened_amaracamel": "Hardened Amaracamel",
   "material.silentgear.milkllary": "Milkllary",
   "material.silentgear.aljameed": "Aljameed",
-  "material.silentgear.moonering": "Moonering",
   "material.silentgear.aljansteel": "Aljansteel",
+  "material.silentgear.moonering": "Moonering",
 
   "backmath.message_template": "Back Math: %s",
 
@@ -1644,7 +1642,7 @@
 
   "console.backmath.sophie_tower_location": "Sophie Tower located at: /tp @s %s %s %s",
   "console.backmath.fabricio_hideout_dungeon_location": "Fabricio's Hideout Dungeon located at: /tp @s %s %s %s",
-  "console.backmath.queen_lucy.set_spell": "Tried to set spell type for Queen Lucy: '%s'",
+  "console.backmath.queen_lucy.set_spell": "Tried to set spell type for Queen Lucy '%s'",
   "console.backmath.wanderer_sophie_variant.loaded": "Loaded %s Wanderer Sophie variants",
   "console.backmath.queen_lucy_pet_variant.loaded": "Loaded %s Queen Lucy Pet variants",
 

@@ -33,7 +33,7 @@ public class BMItemModelProperties {
 
     public static void makeJanticRailgun(Item railgun) {
         register(railgun, new ResourceLocation("pull"), (stack, world, livEntity) -> {
-            if (livEntity != null) return JanticRailgunItem.isCharged(stack) ? 0 : (float) (stack.getUseDuration() - livEntity.getUseItemRemainingTicks()) / 25;
+            if (livEntity != null) return JanticRailgunItem.isCharged(stack) ? 0 : (float) (stack.getUseDuration() - livEntity.getUseItemRemainingTicks()) / JanticRailgunItem.LOADING_TIME;
             return 0;
         });
         register(railgun, new ResourceLocation("pulling"), (stack, world, livEntity) -> livEntity != null && livEntity.isUsingItem() && livEntity.getUseItem() == stack && !JanticRailgunItem.isCharged(stack) ? 1 : 0);

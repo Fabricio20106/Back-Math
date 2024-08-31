@@ -75,6 +75,16 @@ public class ChocolateNakedCakeBlock extends Block {
         return facing == Direction.DOWN && !state.canSurvive(world, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, World world, BlockPos pos) {
+        return 15;
+    }
+
     public boolean canSurvive(BlockState state, IWorldReader world, BlockPos pos) {
         return world.getBlockState(pos.below()).getMaterial().isSolid();
     }

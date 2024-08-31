@@ -34,6 +34,7 @@ import net.minecraft.world.server.ServerWorld;
 import javax.annotation.Nullable;
 import java.util.stream.Stream;
 
+@SuppressWarnings("deprecation")
 public class AljanPortalStandBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty JANTICAL = BMBlockStateProperties.JANTICAL;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -64,14 +65,10 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
                     if (server != null) {
                         if (world.dimension() == BMDimensions.THE_ALJAN) {
                             ServerWorld overworld = server.getLevel(World.OVERWORLD);
-                            if (overworld != null) {
-                                player.changeDimension(overworld, new TheAljanTeleporter(pos, false));
-                            }
+                            if (overworld != null) player.changeDimension(overworld, new TheAljanTeleporter(pos, false));
                         } else {
                             ServerWorld theAljan = server.getLevel(BMDimensions.THE_ALJAN);
-                            if (theAljan != null) {
-                                player.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
-                            }
+                            if (theAljan != null) player.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
                         }
                         return ActionResultType.SUCCESS;
                     }
@@ -92,14 +89,10 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
                     if (server != null) {
                         if (world.dimension() == BMDimensions.THE_ALJAN) {
                             ServerWorld overworld = server.getLevel(World.OVERWORLD);
-                            if (overworld != null) {
-                                entity.changeDimension(overworld, new TheAljanTeleporter(pos, false));
-                            }
+                            if (overworld != null) entity.changeDimension(overworld, new TheAljanTeleporter(pos, false));
                         } else {
                             ServerWorld theAljan = server.getLevel(BMDimensions.THE_ALJAN);
-                            if (theAljan != null) {
-                                entity.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
-                            }
+                            if (theAljan != null) entity.changeDimension(theAljan, new TheAljanTeleporter(pos, true));
                         }
                     }
                 }
@@ -109,10 +102,12 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
         super.entityInside(state, world, pos, entity);
     }
 
+    @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
 
+    @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
         if (state.getValue(WATERLOGGED)) {
             world.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
@@ -127,6 +122,17 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
         return this.defaultBlockState().setValue(WATERLOGGED, fluidState.is(FluidTags.WATER) && fluidState.getAmount() == 8);
     }
 
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, World world, BlockPos pos) {
+        return state.getValue(JANTICAL) ? 15 : 0;
+    }
+
+    @Override
     public boolean isPathfindable(BlockState state, IBlockReader reader, BlockPos pos, PathType type) {
         return false;
     }

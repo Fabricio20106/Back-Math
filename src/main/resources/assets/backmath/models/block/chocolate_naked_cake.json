@@ -66,7 +66,7 @@
         "south": {"uv": [0, 0, 14, 12], "texture": "#chocolate"},
         "west": {"uv": [0, 0, 14, 12], "texture": "#chocolate"},
         "up": {"uv": [0, 0, 14, 14], "texture": "#chocolate_end"},
-        "down": {"uv": [0, 0, 14, 14], "texture": "#chocolate_end"}
+        "down": {"uv": [0, 0, 14, 14], "texture": "#chocolate_end", "cullface": "down"}
       }
     }
   ]

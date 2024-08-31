@@ -2,8 +2,6 @@ package com.sophicreeper.backmath.entity.custom.aljan;
 
 import com.sophicreeper.backmath.entity.custom.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.util.BMResourceLocations;
-import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -77,7 +75,7 @@ public class AljamicBonesEntity extends AbstractSkeletonEntity {
             if (this.random.nextFloat() < 0.095F) ++rand;
             boolean populateArmor = true;
 
-            for(EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
+            for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
                 if (equipmentSlotType.getType() == EquipmentSlotType.Group.ARMOR) {
                     ItemStack stack = this.getItemBySlot(equipmentSlotType);
                     if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
@@ -151,7 +149,7 @@ public class AljamicBonesEntity extends AbstractSkeletonEntity {
     // Gives armor or weapon for entity based on given DifficultyInstance.
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
-        EquipmentTableUtils.equipWithGear(BMResourceLocations.ALJAMIC_BONES_EQUIPMENT, this);
+//        EquipmentTableUtils.equipWithGear(BMResourceLocations.ALJAMIC_BONES_EQUIPMENT, this);
         this.populateAljanEquipmentSlots(difficulty);
     }
 }

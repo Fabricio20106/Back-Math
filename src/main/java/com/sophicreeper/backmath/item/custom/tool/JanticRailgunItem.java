@@ -27,12 +27,13 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class JanticRailgunItem extends CrossbowItem {
+public class JanticRailgunItem extends BMCrossbowItem {
+    public static int LOADING_TIME = 50;
     private boolean startSoundPlayed = false;
     private boolean midLoadSoundPlayed = false;
 
     public JanticRailgunItem(Properties properties) {
-        super(properties);
+        super(false, properties);
     }
 
     @Override
@@ -181,7 +182,7 @@ public class JanticRailgunItem extends CrossbowItem {
         if (!world.isClientSide) {
             SoundEvent quickChargeLoading = SoundEvents.CROSSBOW_QUICK_CHARGE_1;
             SoundEvent middleLoading = SoundEvents.CROSSBOW_LOADING_MIDDLE;
-            float useDuration = (float) (stack.getUseDuration() - count) / 25;
+            float useDuration = (float) (stack.getUseDuration() - count) / LOADING_TIME;
             if (useDuration < 0.2F) {
                 this.startSoundPlayed = false;
                 this.midLoadSoundPlayed = false;
@@ -201,7 +202,7 @@ public class JanticRailgunItem extends CrossbowItem {
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return 25;
+        return LOADING_TIME;
     }
 
     @Override
@@ -211,7 +212,7 @@ public class JanticRailgunItem extends CrossbowItem {
     }
 
     private static float getPowerForTime(int useTime) {
-        float trueUseTime = (float) useTime / 25F;
+        float trueUseTime = (float) useTime / LOADING_TIME;
         if (trueUseTime > 1) trueUseTime = 1;
         return trueUseTime;
     }
@@ -219,6 +220,7 @@ public class JanticRailgunItem extends CrossbowItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack railgunStack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
+        super.appendHoverText(railgunStack, world, tooltip, flag);
         ItemStack chargedProjectileStack = getChargedProjectile(railgunStack);
         if (chargedProjectileStack.getItem() != Items.AIR) tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".projectile", chargedProjectileStack.getDisplayName()));
     }

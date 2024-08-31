@@ -52,7 +52,7 @@ public class SpreadableSnowyAljanDirtBlock extends SnowyDirtBlock {
             if (world.getMaxLocalRawBrightness(pos.above()) >= 9) {
                 BlockState state1 = this.defaultBlockState();
 
-                for(int i = 0; i < 4; ++i) {
+                for (int i = 0; i < 4; ++i) {
                     BlockPos pos1 = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
                     if (world.getBlockState(pos1).is(BMBlocks.ALJAMIC_DIRT.get()) && isSnowyAndNotUnderwater(state1, world, pos1)) {
                         world.setBlockAndUpdate(pos1, state1.setValue(SNOWY, world.getBlockState(pos1.above()).is(BMBlockTags.MAKES_GRASS_BLOCKS_SNOWY)));

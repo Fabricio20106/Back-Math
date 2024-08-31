@@ -230,6 +230,7 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.CORK_OAK_SAPLING.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.POTTED_CORK_OAK_SAPLING.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLIZER.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.ALJAN_LIGHT_BLUE_STAINED_GLASS_PANE.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.POISON_BROWN_STAINED_GLASS.get(), RenderType.translucent());

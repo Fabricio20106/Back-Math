@@ -14,7 +14,7 @@ public class BMTagFixes {
     // Updates the old "SpellTicks" tag of Queen Lucies to the new "lucy_spells.spell_cooldown_ticks" tag.
     public static int fixSpellTicksTag(CompoundNBT tag) {
         CompoundNBT lucySpells = tag.getCompound("lucy_spells");
-        if (!lucySpells.contains("spell_cooldown_ticks") || tag.contains("SpellTicks")) {
+        if (!lucySpells.contains("spell_cooldown_ticks", TagTypes.ANY_NUMERIC) || tag.contains("SpellTicks", TagTypes.ANY_NUMERIC)) {
             lucySpells.putInt("spell_cooldown_ticks", tag.getInt("SpellTicks"));
             tag.remove("SpellTicks");
         }
@@ -23,7 +23,7 @@ public class BMTagFixes {
 
     // Updates the old "Inventory" tag of Archer Lucias to the new "inventory" tag.
     public static ListNBT fixInventoryTag(CompoundNBT tag) {
-        if (tag.contains("Inventory")) {
+        if (tag.contains("Inventory", TagTypes.LIST)) {
             tag.put("inventory", tag.getList("Inventory", TagTypes.COMPOUND));
             tag.remove("Inventory");
         }
@@ -32,7 +32,7 @@ public class BMTagFixes {
 
     // Updates the old "CanBreakDoors" tag of Insomnia Zombies and Zombie Fabricios to the new "can_break_doors" tag.
     public static boolean fixCanBreakDoorsTag(CompoundNBT tag) {
-        if (tag.contains("CanBreakDoors")) {
+        if (tag.contains("CanBreakDoors", TagTypes.ANY_NUMERIC)) {
             tag.putBoolean("can_break_doors", tag.getBoolean("CanBreakDoors"));
             tag.remove("CanBreakDoors");
         }
@@ -41,7 +41,7 @@ public class BMTagFixes {
 
     // Updates the old "Size" tag of Amaracamelers to the new "size" tag.
     public static int fixSizeTag(CompoundNBT tag) {
-        if (tag.contains("Size")) {
+        if (tag.contains("Size", TagTypes.ANY_NUMERIC)) {
             tag.putInt("size", tag.getInt("Size"));
             tag.remove("Size");
         }
@@ -50,7 +50,7 @@ public class BMTagFixes {
 
     // Updates the old "wasOnGround" tag of Amaracamelers to the new "was_on_ground" tag.
     public static boolean fixWasOnGroundTag(CompoundNBT tag) {
-        if (tag.contains("wasOnGround")) {
+        if (tag.contains("wasOnGround", TagTypes.ANY_NUMERIC)) {
             tag.putBoolean("was_on_ground", tag.getBoolean("wasOnGround"));
             tag.remove("wasOnGround");
         }
@@ -60,7 +60,7 @@ public class BMTagFixes {
     // Updates the old "Variant" (integer) and tag of Wanderer Sophies to the new "variant" (registry) tag.
     public static WandererSophieVariant fixWandererSophieVariantTag(CompoundNBT tag) {
         tag.remove("variant_reg");
-        if (tag.contains("Variant")) {
+        if (tag.contains("Variant", TagTypes.ANY_NUMERIC)) {
             switch (tag.getInt("Variant")) {
                 case 1:
                     return BMWandererSophieVariants.CYAN_AXOLOTL.get();

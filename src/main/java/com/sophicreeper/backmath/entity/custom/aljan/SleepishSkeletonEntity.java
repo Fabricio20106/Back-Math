@@ -3,8 +3,6 @@ package com.sophicreeper.backmath.entity.custom.aljan;
 import com.sophicreeper.backmath.entity.custom.*;
 import com.sophicreeper.backmath.entity.custom.misc.InsomniaArrowEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.util.BMResourceLocations;
-import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -168,10 +166,11 @@ public class SleepishSkeletonEntity extends AbstractSkeletonEntity {
 
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
+//        EquipmentTableUtils.equipWithGear(BMResourceLocations.SLEEPISH_SKELETON_EQUIPMENT, this);
         this.populateAljanEquipmentSlots(difficulty);
-        EquipmentTableUtils.equipWithGear(BMResourceLocations.SLEEPISH_SKELETON_EQUIPMENT, this);
     }
 
+    @Nonnull
     protected AbstractArrowEntity getArrow(ItemStack arrowStack, float distanceFactor) {
         return new InsomniaArrowEntity(this.level, this);
     }

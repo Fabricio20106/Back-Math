@@ -63,7 +63,7 @@ public class WarriorSophieEntity extends TermianMemberEntity implements SophieFr
 
     @Override
     public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
-        for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
+        for (EquipmentSlotType slotType : EquipmentSlotType.values()) {
             if (slotType.getType() == EquipmentSlotType.Group.ARMOR) {
                 this.enchantSpawnedArmor(0.5F * currentWave, slotType);
             }

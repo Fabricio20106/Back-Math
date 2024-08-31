@@ -1,6 +1,6 @@
 {
   "parent": "backmath:block/template_crystalline_crystallizer",
   "textures": {
-    "mold": "backmath:block/crystalline_crystallizer_side_crystallized"
+    "mold": "backmath:block/crystallizer_top_crystallized"
   }
 }

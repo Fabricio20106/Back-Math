@@ -51,9 +51,7 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
                 BlockState stateToPlace;
                 if (rand.nextInt(8) == 0) {
                     List<ConfiguredFeature<?, ?>> list = world.getBiome(abovePos1).getGenerationSettings().getFlowerFeatures();
-                    if (list.isEmpty()) {
-                        continue;
-                    }
+                    if (list.isEmpty()) continue;
 
                     ConfiguredFeature<?, ?> configuredFeature = list.get(0);
                     FlowersFeature flowersFeature = (FlowersFeature) configuredFeature.feature;
@@ -62,9 +60,7 @@ public class AljamicGrassBlock extends SpreadableSnowyAljanDirtBlock implements 
                     stateToPlace = grass;
                 }
 
-                if (stateToPlace.canSurvive(world, abovePos1)) {
-                    world.setBlock(abovePos1, stateToPlace, 3);
-                }
+                if (stateToPlace.canSurvive(world, abovePos1)) world.setBlock(abovePos1, stateToPlace, 3);
             }
         }
     }

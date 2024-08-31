@@ -72,9 +72,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
         if (target != null) {
             boolean canMobSeeOther = this.shooter.getSensing().canSee(target);
             boolean posSeeTime = this.seeTime > 0;
-            if (canMobSeeOther != posSeeTime) {
-                this.seeTime = 0;
-            }
+            if (canMobSeeOther != posSeeTime) this.seeTime = 0;
 
             if (canMobSeeOther) {
                 ++this.seeTime;
@@ -87,7 +85,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
             if (flag) {
                 --this.updatePackDelay;
                 if (this.updatePackDelay <= 0) {
-                    this.shooter.getNavigation().moveTo(target, this.isCrossbowUncharged() ? this.speed : this.speed * 0.5d);
+                    this.shooter.getNavigation().moveTo(target, this.isCrossbowUncharged() ? this.speed : this.speed * 0.5D);
                     this.updatePackDelay = PATHFINDING_DELAY_RANGE.randomValue(this.shooter.getRandom());
                 }
             } else {
@@ -108,7 +106,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
                 }
 
                 int ticksUsingItem = this.shooter.getTicksUsingItem();
-                if (ticksUsingItem >= (activeStack.getItem() instanceof JanticRailgunItem ? 25 : CrossbowItem.getChargeDuration(activeStack))) {
+                if (ticksUsingItem >= (activeStack.getItem() instanceof JanticRailgunItem ? JanticRailgunItem.LOADING_TIME : CrossbowItem.getChargeDuration(activeStack))) {
                     this.shooter.releaseUsingItem();
                     this.crossbowState = CrossbowState.CHARGED;
                     this.attackDelay = 20 + this.shooter.getRandom().nextInt(20);

@@ -2,8 +2,7 @@ package com.sophicreeper.backmath.entity.custom.aljan;
 
 import com.sophicreeper.backmath.entity.custom.*;
 import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
-import com.sophicreeper.backmath.util.BMResourceLocations;
-import com.sophicreeper.backmath.util.EquipmentTableUtils;
+import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.InsomniaZombieAttackGoal;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
@@ -40,9 +39,9 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.LocalDate;
 import java.util.List;
@@ -258,6 +257,7 @@ public class InsomniaZombieEntity extends MonsterEntity {
         this.playSound(this.getStepSound(), 0.15F, 1);
     }
 
+    @Nonnull
     public CreatureAttribute getMobType() {
         return CreatureAttribute.UNDEAD;
     }
@@ -270,11 +270,11 @@ public class InsomniaZombieEntity extends MonsterEntity {
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         this.populateAljanEquipmentSlots(difficulty);
-        if (this.level.getDifficulty() == Difficulty.HARD) {
+        /*if (this.level.getDifficulty() == Difficulty.HARD) {
             EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_HARD_DIFFICULTY, this);
         } else {
             EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_BELOW_HARD_DIFFICULTY, this);
-        }
+        }*/
     }
 
     protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
@@ -286,7 +286,7 @@ public class InsomniaZombieEntity extends MonsterEntity {
             if (this.random.nextFloat() < 0.095F) ++rand;
             boolean populateArmor = true;
 
-            for(EquipmentSlotType equipmentSlot : EquipmentSlotType.values()) {
+            for (EquipmentSlotType equipmentSlot : EquipmentSlotType.values()) {
                 if (equipmentSlot.getType() == EquipmentSlotType.Group.ARMOR) {
                     ItemStack armorSlotStacks = this.getItemBySlot(equipmentSlot);
                     if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
@@ -371,7 +371,7 @@ public class InsomniaZombieEntity extends MonsterEntity {
         this.setBaby(tag.getBoolean("is_baby"));
         this.setCanBreakDoors(BMTagFixes.fixCanBreakDoorsTag(tag));
         this.ticksSubmergedInWater = tag.getInt("ticks_submerged_in_water");
-        if (tag.contains("drowned_conversion_ticks", 99) && tag.getInt("drowned_conversion_ticks") > -1) {
+        if (tag.contains("drowned_conversion_ticks", TagTypes.ANY_NUMERIC) && tag.getInt("drowned_conversion_ticks") > -1) {
             this.startConversionToDrowned(tag.getInt("drowned_conversion_ticks"));
         }
     }
@@ -435,7 +435,7 @@ public class InsomniaZombieEntity extends MonsterEntity {
     }
 
     public static boolean getBabySpawnOdds(Random rand) {
-        return rand.nextFloat() < ForgeConfig.SERVER.zombieBabyChance.get();
+        return rand.nextFloat() < 0.05;
     }
 
     protected void applyAttributeBonuses(float difficulty) {

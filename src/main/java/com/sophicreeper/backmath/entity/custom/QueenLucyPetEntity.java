@@ -96,11 +96,7 @@ public class QueenLucyPetEntity extends TameableEntity {
 
     private static ITextComponent removeAction(ITextComponent name) {
         IFormattableTextComponent textComponent = name.copy().setStyle(name.getStyle().withClickEvent(null));
-
-        for(ITextComponent component : name.getSiblings()) {
-            textComponent.append(removeAction(component));
-        }
-
+        for (ITextComponent component : name.getSiblings()) textComponent.append(removeAction(component));
         return textComponent;
     }
 

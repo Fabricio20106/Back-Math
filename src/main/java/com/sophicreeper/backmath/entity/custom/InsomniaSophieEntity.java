@@ -68,7 +68,7 @@ public class InsomniaSophieEntity extends TermianMemberEntity implements SophieF
     @Override
     public void applySophieRaidBuffs(int currentWave, boolean spawnedWithRaid) {
         this.enchantSpawnedWeapon(1);
-        for(EquipmentSlotType slotType : EquipmentSlotType.values()) {
+        for (EquipmentSlotType slotType : EquipmentSlotType.values()) {
             if (slotType.getType() == EquipmentSlotType.Group.ARMOR) this.enchantSpawnedArmor(1, slotType);
         }
     }

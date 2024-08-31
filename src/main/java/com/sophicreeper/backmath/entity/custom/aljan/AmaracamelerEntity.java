@@ -125,7 +125,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
             int amaracamelerSize = this.getSize();
 
             if (spawnCustomParticles()) amaracamelerSize = 0; // Don't spawn particles if it's handled by the implementation itself.
-            for(int j = 0; j < amaracamelerSize * 8; ++j) {
+            for (int j = 0; j < amaracamelerSize * 8; ++j) {
                 float f = this.random.nextFloat() * ((float) Math.PI * 2F);
                 float f1 = this.random.nextFloat() * 0.5F + 0.5F;
                 float f2 = MathHelper.sin(f) * (float) amaracamelerSize * 0.5F * f1;
@@ -188,7 +188,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
             int amaracamelerSizeHalved = slimeSize / 2;
             int k = 2 + this.random.nextInt(3);
 
-            for(int l = 0; l < k; ++l) {
+            for (int l = 0; l < k; ++l) {
                 float f1 = ((float) (l % 2) - 0.5F) * amaracamelerSizeFourth;
                 float f2 = ((float) (l / 2) - 0.5F) * amaracamelerSizeFourth;
 
