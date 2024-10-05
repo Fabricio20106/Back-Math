@@ -1,5 +1,5 @@
 {
-  "parent": "backmath:block/template_grass_block",
+  "parent": "minecraft:block/cube_bottom_top",
   "textures": {
     "bottom": "backmath:block/aljamic_dirt",
     "top": "backmath:block/aljamic_grass_block_top",

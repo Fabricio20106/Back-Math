@@ -11,6 +11,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class InsomniaZombieRenderer extends BipedRenderer<InsomniaZombieEntity, BMZombieModel<InsomniaZombieEntity>> {
     public InsomniaZombieRenderer(EntityRendererManager manager) {
@@ -19,7 +21,8 @@ public class InsomniaZombieRenderer extends BipedRenderer<InsomniaZombieEntity, 
         this.addLayer(new ElytraLayer<>(this));
     }
 
+    @Nonnull
     public ResourceLocation getTextureLocation(InsomniaZombieEntity zombie) {
-        return BackMath.backMath("textures/entity/zombie/insomnia_zombie.png");
+        return BackMath.entityTexture("zombie/insomnia_zombie");
     }
 }

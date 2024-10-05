@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.entity.custom.aljan;
 
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.*;
+import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
 import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -81,6 +83,7 @@ public class ZombieFabricioEntity extends MonsterEntity {
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WandererSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WarriorSophieEntity.class, true));

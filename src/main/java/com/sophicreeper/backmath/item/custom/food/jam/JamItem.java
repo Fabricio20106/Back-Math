@@ -44,7 +44,7 @@ public class JamItem extends Item implements ToolBehaviors {
             return new ItemStack(AxolotlTest.JAM_POT.get());
         } else {
             if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
-                ItemStack potStack = getFoodContainerItem(stack, new ItemStack(AxolotlTest.JAM_POT.get()));
+                ItemStack potStack = getFoodUseRemainder(stack, new ItemStack(AxolotlTest.JAM_POT.get()));
                 PlayerEntity player = (PlayerEntity) livEntity;
                 stack.shrink(1);
                 if (!player.inventory.add(potStack)) player.drop(potStack, false);

@@ -17,6 +17,7 @@
     "minecraft:drowned",
     "minecraft:zombie_villager",
     "minecraft:zombified_piglin",
-    "minecraft:vex"
+    "minecraft:vex",
+    "minecraft:zoglin"
   ]
 }

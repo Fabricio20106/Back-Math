@@ -21,9 +21,8 @@ public class AljamicBonesRenderer extends BipedRenderer<AbstractSkeletonEntity, 
         this.addLayer(new ElytraLayer<>(this));
     }
 
-    @Override
     @Nonnull
     public ResourceLocation getTextureLocation(AbstractSkeletonEntity skeleton) {
-        return BackMath.backMath("textures/entity/skeleton/aljamic_bones.png");
+        return BackMath.entityTexture("skeleton/aljamic_bones");
     }
 }

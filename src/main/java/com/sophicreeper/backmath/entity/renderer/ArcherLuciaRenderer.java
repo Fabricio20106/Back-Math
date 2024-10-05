@@ -7,13 +7,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class ArcherLuciaRenderer extends TermianPlayerRenderer<ArcherLuciaEntity> {
     public ArcherLuciaRenderer(EntityRendererManager manager) {
         super(manager, 0.5F, false);
     }
 
+    @Nonnull
     public ResourceLocation getTextureLocation(ArcherLuciaEntity lucia) {
-        return BackMath.backMath("textures/entity/archer_lucia.png");
+        return BackMath.backMath("textures/entity/archer_lucia");
     }
 }

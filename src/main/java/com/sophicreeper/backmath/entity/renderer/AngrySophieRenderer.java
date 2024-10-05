@@ -7,13 +7,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class AngrySophieRenderer extends BMPlayerRenderer<AngrySophieEntity> {
     public AngrySophieRenderer(EntityRendererManager manager) {
         super(manager, 0.5F, false);
     }
 
+    @Nonnull
     public ResourceLocation getTextureLocation(AngrySophieEntity sophie) {
-        return BackMath.backMath("textures/entity/angry_sophie.png");
+        return BackMath.entityTexture("sophie/angry_sophie");
     }
 }

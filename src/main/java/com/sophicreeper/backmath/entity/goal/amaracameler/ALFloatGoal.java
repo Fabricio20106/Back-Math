@@ -17,7 +17,7 @@ public class ALFloatGoal extends Goal {
     // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
     @Override
     public boolean canUse() {
-        return (this.amaracameler.isInWall() || this.amaracameler.isInLava()) && this.amaracameler.getMoveControl() instanceof AmaracamelerMovementHelperController;
+        return (this.amaracameler.isInWall() || this.amaracameler.isInLava()) && this.amaracameler.getMoveControl() instanceof AmaracamelerMovementController;
     }
 
     // Keep ticking a continuous task that has already been started.
@@ -27,6 +27,6 @@ public class ALFloatGoal extends Goal {
             this.amaracameler.getJumpControl().jump();
         }
 
-        ((AmaracamelerMovementHelperController) this.amaracameler.getMoveControl()).setSpeed(1.2D);
+        ((AmaracamelerMovementController) this.amaracameler.getMoveControl()).setSpeed(1.2D);
     }
 }

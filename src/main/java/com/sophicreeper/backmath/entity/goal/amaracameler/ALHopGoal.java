@@ -22,6 +22,6 @@ public class ALHopGoal extends Goal {
     // Keep ticking a continuous task that has already been started.
     @Override
     public void tick() {
-        ((AmaracamelerMovementHelperController) this.amaracameler.getMoveControl()).setSpeed(1);
+        ((AmaracamelerMovementController) this.amaracameler.getMoveControl()).setSpeed(1);
     }
 }

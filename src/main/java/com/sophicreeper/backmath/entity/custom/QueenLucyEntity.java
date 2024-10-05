@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.termian.queenlucy.*;
@@ -140,7 +141,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieFabricioEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBonesEntity.class, true));

@@ -39,7 +39,7 @@ public class SleepishwaterBottleItem extends Item implements ToolBehaviors {
             return new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get());
         } else {
             if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
-                ItemStack bottleStack = getFoodContainerItem(stack, new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get()));
+                ItemStack bottleStack = getFoodUseRemainder(stack, new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get()));
                 PlayerEntity player = (PlayerEntity) livEntity;
                 stack.shrink(1);
                 if (!player.inventory.add(bottleStack)) player.drop(bottleStack, false);

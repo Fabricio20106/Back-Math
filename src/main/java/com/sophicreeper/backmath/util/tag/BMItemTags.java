@@ -115,6 +115,7 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> BONE_MEALS = backMath("bone_meals");
     public static final ITag.INamedTag<Item> ARCHER_LUCIA_CAN_PICKUP = backMath("archer_lucia_can_pickup");
     public static final ITag.INamedTag<Item> TERMIAN_RAIDER_CAN_PICKUP = backMath("termian_raider_can_pickup");
+    public static final ITag.INamedTag<Item> COLLECTOR_FABRICIO_CAN_PICKUP = backMath("collector_fabricio_can_pickup");
     public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TAME_ITEMS = backMath("queen_lucy_pet_tame_items");
     public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_POISONOUS_ITEMS = backMath("queen_lucy_pet_poisonous_items");
     public static final ITag.INamedTag<Item> TABU_SMELTABLES = backMath("tabu_smeltables");

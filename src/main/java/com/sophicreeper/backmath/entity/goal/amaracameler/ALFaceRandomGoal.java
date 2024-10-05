@@ -19,7 +19,7 @@ public class ALFaceRandomGoal extends Goal {
     // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
     @Override
     public boolean canUse() {
-        return this.amaracameler.getTarget() == null && (this.amaracameler.isOnGround() || this.amaracameler.isInWater() || this.amaracameler.isInLava() || this.amaracameler.hasEffect(Effects.LEVITATION)) && this.amaracameler.getMoveControl() instanceof AmaracamelerMovementHelperController;
+        return this.amaracameler.getTarget() == null && (this.amaracameler.isOnGround() || this.amaracameler.isInWater() || this.amaracameler.isInLava() || this.amaracameler.hasEffect(Effects.LEVITATION)) && this.amaracameler.getMoveControl() instanceof AmaracamelerMovementController;
     }
 
     // Keep ticking a continuous task that has already been started.
@@ -30,6 +30,6 @@ public class ALFaceRandomGoal extends Goal {
             this.chosenDegrees = (float) this.amaracameler.getRandom().nextInt(360);
         }
 
-        ((AmaracamelerMovementHelperController) this.amaracameler.getMoveControl()).setDirection(this.chosenDegrees, false);
+        ((AmaracamelerMovementController) this.amaracameler.getMoveControl()).setDirection(this.chosenDegrees, false);
     }
 }

@@ -19,6 +19,6 @@ public class PopsicleItem extends Item implements ToolBehaviors {
     @Nonnull
     public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
         ItemStack superStack = super.finishUsingItem(stack, world, livEntity);
-        return livEntity instanceof PlayerEntity && ((PlayerEntity) livEntity).abilities.instabuild ? superStack : getFoodContainerItem(stack, new ItemStack(Items.STICK));
+        return livEntity instanceof PlayerEntity && ((PlayerEntity) livEntity).abilities.instabuild ? superStack : getFoodUseRemainder(stack, new ItemStack(Items.STICK));
     }
 }

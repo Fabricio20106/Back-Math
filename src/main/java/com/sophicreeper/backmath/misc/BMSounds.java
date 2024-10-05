@@ -68,6 +68,7 @@ public class BMSounds {
     public static SoundEvent ENTITY_FABRICIO_HURT_BERRY_BUSH;
     public static SoundEvent ENTITY_FABRICIO_HURT;
     public static SoundEvent ENTITY_FABRICIO_DEATH;
+    public static SoundEvent ENTITY_FABRICIO_BURP;
 
     public static SoundEvent ENTITY_MALAIKA_HURT_ON_FIRE;
     public static SoundEvent ENTITY_MALAIKA_HURT_DROWN;
@@ -150,6 +151,7 @@ public class BMSounds {
         ENTITY_FABRICIO_HURT_BERRY_BUSH = registerSound("entity.fabricio.hurt.berry_bush");
         ENTITY_FABRICIO_HURT = registerSound("entity.fabricio.hurt");
         ENTITY_FABRICIO_DEATH = registerSound("entity.fabricio.death");
+        ENTITY_FABRICIO_BURP = registerSound("entity.fabricio.burp");
 
         ENTITY_MALAIKA_HURT_ON_FIRE = registerSound("entity.malaika.hurt.on_fire");
         ENTITY_MALAIKA_HURT_DROWN = registerSound("entity.malaika.hurt.drown");

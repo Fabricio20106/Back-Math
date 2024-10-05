@@ -362,6 +362,12 @@
     ],
     "subtitle": "subtitles.entity.fabricio.death"
   },
+  "entity.fabricio.burp": {
+    "sounds": [
+      "random/burp"
+    ],
+    "subtitle": "subtitles.entity.fabricio.burp"
+  },
   "entity.malaika.hurt": {
     "sounds": [
       "damage/hit1",

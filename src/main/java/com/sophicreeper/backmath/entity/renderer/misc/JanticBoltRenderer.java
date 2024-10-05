@@ -16,9 +16,8 @@ public class JanticBoltRenderer extends ArrowRenderer<JanticBoltEntity> {
         super(manager);
     }
 
-    @Override
     @Nonnull
     public ResourceLocation getTextureLocation(JanticBoltEntity bolt) {
-        return BackMath.backMath("textures/entity/jantic_bolt.png");
+        return BackMath.entityTexture("projectile/jantic_bolt");
     }
 }

@@ -40,7 +40,7 @@ public class BucketDrinkItem extends Item implements ToolBehaviors {
             return new ItemStack(Items.BUCKET);
         } else {
             if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
-                ItemStack bucketStack = getFoodContainerItem(stack, new ItemStack(Items.BUCKET));
+                ItemStack bucketStack = getFoodUseRemainder(stack, new ItemStack(Items.BUCKET));
                 PlayerEntity player = (PlayerEntity) livEntity;
                 stack.shrink(1);
                 if (!player.inventory.add(bucketStack)) player.drop(bucketStack, false);

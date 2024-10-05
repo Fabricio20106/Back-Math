@@ -23,6 +23,6 @@ public class MangaedMangoPopsicleItem extends PopsicleItem {
             BMUtils.addBakugouArmor(player);
         }
         ItemStack superStack = super.finishUsingItem(stack, world, livEntity);
-        return livEntity instanceof PlayerEntity && ((PlayerEntity) livEntity).abilities.instabuild ? superStack : getFoodContainerItem(stack, new ItemStack(Items.STICK));
+        return livEntity instanceof PlayerEntity && ((PlayerEntity) livEntity).abilities.instabuild ? superStack : getFoodUseRemainder(stack, new ItemStack(Items.STICK));
     }
 }

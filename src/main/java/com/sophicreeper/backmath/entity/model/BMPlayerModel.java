@@ -15,6 +15,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class BMPlayerModel<T extends CreatureEntity> extends BipedModel<T> {
     public final ModelRenderer leftSleeve;
@@ -69,7 +71,7 @@ public class BMPlayerModel<T extends CreatureEntity> extends BipedModel<T> {
         this.jacket.setPos(0, 0, 0);
     }
 
-    @Override
+    @Nonnull
     protected Iterable<ModelRenderer> bodyParts() {
         return Iterables.concat(super.bodyParts(), ImmutableList.of(this.rightPants, this.leftPants, this.rightSleeve, this.leftSleeve, this.jacket));
     }

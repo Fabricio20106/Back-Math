@@ -13,6 +13,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 	private final ModelRenderer head;
@@ -31,86 +33,81 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 
 	public QueenLucyPetModel() {
 		super(0.25F, 0, 32, 32);
-		texWidth = 32;
-		texHeight = 32;
+		this.texWidth = 32;
+		this.texHeight = 32;
 
-		head = new ModelRenderer(this);
-		head.setPos(0, 12, 0);
-		setRotationAngle(head, 0, 0, 0);
-		head.texOffs(0, 0).addBox(-2, -4, -2, 4, 4, 4, 0, false);
-		head.texOffs(0, 16).addBox(-1, -6, -1, 2, 2, 0, 0, false);
-		head.texOffs(15, 14).addBox(-1, -6, -1, 0, 2, 2, 0, false);
-		head.texOffs(8, 16).addBox(-1, -6, 1, 2, 2, 0, 0, false);
-		head.texOffs(3, 14).addBox(1, -6, -1, 0, 2, 2, 0, false);
+		this.head = new ModelRenderer(this);
+		this.head.setPos(0, 12, 0);
+		setRotationAngle(this.head, 0, 0, 0);
+		this.head.texOffs(0, 0).addBox(-2, -4, -2, 4, 4, 4, 0, false);
+		this.head.texOffs(0, 16).addBox(-1, -6, -1, 2, 2, 0, 0, false);
+		this.head.texOffs(15, 14).addBox(-1, -6, -1, 0, 2, 2, 0, false);
+		this.head.texOffs(8, 16).addBox(-1, -6, 1, 2, 2, 0, 0, false);
+		this.head.texOffs(3, 14).addBox(1, -6, -1, 0, 2, 2, 0, false);
 
-		body = new ModelRenderer(this);
-		body.setPos(0, 24, 0);
-		body.texOffs(8, 8).addBox(-2, -12, -1, 4, 6, 2, 0, false);
+		this.body = new ModelRenderer(this);
+		this.body.setPos(0, 24, 0);
+		this.body.texOffs(8, 8).addBox(-2, -12, -1, 4, 6, 2, 0, false);
 
-		arms = new ModelRenderer(this);
-		arms.setPos(0, -11, 0);
-		body.addChild(arms);
+		this.arms = new ModelRenderer(this);
+		this.arms.setPos(0, -11, 0);
+		this.body.addChild(this.arms);
 
+		this.rightArm = new ModelRenderer(this);
+		this.rightArm.setPos(-2.5F, 0, 0);
+		this.arms.addChild(this.rightArm);
+		this.rightArm.texOffs(20, 8).addBox(-0.5F, -1, -1, 1, 6, 2, 0, false);
 
-		rightArm = new ModelRenderer(this);
-		rightArm.setPos(-2.5F, 0, 0);
-		arms.addChild(rightArm);
-		rightArm.texOffs(20, 8).addBox(-0.5F, -1, -1, 1, 6, 2, 0, false);
+		this.leftArm = new ModelRenderer(this);
+		this.leftArm.setPos(2.5F, 0, 0);
+		this.arms.addChild(this.leftArm);
+		this.leftArm.texOffs(20, 8).addBox(-0.5F, -1, -1, 1, 6, 2, 0, true);
 
-		leftArm = new ModelRenderer(this);
-		leftArm.setPos(2.5F, 0, 0);
-		arms.addChild(leftArm);
-		leftArm.texOffs(20, 8).addBox(-0.5F, -1, -1, 1, 6, 2, 0, true);
+		this.legs = new ModelRenderer(this);
+		this.legs.setPos(0, -6, 0);
+		this.body.addChild(this.legs);
 
-		legs = new ModelRenderer(this);
-		legs.setPos(0, -6, 0);
-		body.addChild(legs);
+		this.rightLeg = new ModelRenderer(this);
+		this.rightLeg.setPos(-1, 0, 0);
+		this.legs.addChild(this.rightLeg);
+		this.rightLeg.texOffs(0, 8).addBox(-1, 0, -1, 2, 6, 2, 0, false);
 
+		this.leftLeg = new ModelRenderer(this);
+		this.leftLeg.setPos(1, 0, 0);
+		this.legs.addChild(this.leftLeg);
+		this.leftLeg.texOffs(0, 8).addBox(-1, 0, -1, 2, 6, 2, 0, true);
 
-		rightLeg = new ModelRenderer(this);
-		rightLeg.setPos(-1, 0, 0);
-		legs.addChild(rightLeg);
-		rightLeg.texOffs(0, 8).addBox(-1, 0, -1, 2, 6, 2, 0, false);
+		this.wings = new ModelRenderer(this);
+		this.wings.setPos(0, -9, 0);
+		this.body.addChild(this.wings);
 
-		leftLeg = new ModelRenderer(this);
-		leftLeg.setPos(1, 0, 0);
-		legs.addChild(leftLeg);
-		leftLeg.texOffs(0, 8).addBox(-1, 0, -1, 2, 6, 2, 0, true);
+		this.rightWing = new ModelRenderer(this);
+		this.rightWing.setPos(0, 0, 0);
+		this.wings.addChild(this.rightWing);
 
-		wings = new ModelRenderer(this);
-		wings.setPos(0, -9, 0);
-		body.addChild(wings);
+		this.rightWingR1 = new ModelRenderer(this);
+		this.rightWingR1.setPos(0, 0, 0);
+		this.rightWing.addChild(this.rightWingR1);
+		setRotationAngle(this.rightWingR1, 0, 0.4363F, 0);
+		this.rightWingR1.texOffs(0, 20).addBox(-7, -3, 1, 7, 6, 0, 0, false);
 
+		this.leftWing = new ModelRenderer(this);
+		this.leftWing.setPos(0, 0, 0);
+		this.wings.addChild(this.leftWing);
 
-		rightWing = new ModelRenderer(this);
-		rightWing.setPos(0, 0, 0);
-		wings.addChild(rightWing);
-
-
-		rightWingR1 = new ModelRenderer(this);
-		rightWingR1.setPos(0, 0, 0);
-		rightWing.addChild(rightWingR1);
-		setRotationAngle(rightWingR1, 0, 0.4363F, 0);
-		rightWingR1.texOffs(0, 20).addBox(-7, -3, 1, 7, 6, 0, 0, false);
-
-		leftWing = new ModelRenderer(this);
-		leftWing.setPos(0, 0, 0);
-		wings.addChild(leftWing);
-
-
-		leftWingR1 = new ModelRenderer(this);
-		leftWingR1.setPos(0, 0, 0);
-		leftWing.addChild(leftWingR1);
-		setRotationAngle(leftWingR1, 0, -0.4363F, 0);
-		leftWingR1.texOffs(0, 26).addBox(0, -3, 1, 7, 6, 0, 0, true);
+		this.leftWingR1 = new ModelRenderer(this);
+		this.leftWingR1.setPos(0, 0, 0);
+		this.leftWing.addChild(this.leftWingR1);
+		setRotationAngle(this.leftWingR1, 0, -0.4363F, 0);
+		this.leftWingR1.texOffs(0, 26).addBox(0, -3, 1, 7, 6, 0, 0, true);
 	}
 
-	@Override
+	@Nonnull
 	protected Iterable<ModelRenderer> headParts() {
 		return ImmutableList.of(this.head);
 	}
 
-	@Override
+	@Nonnull
 	protected Iterable<ModelRenderer> bodyParts() {
 		return ImmutableList.of(this.body, this.rightLeg, this.leftLeg, this.rightArm, this.leftArm, this.rightWing, this.leftWing);
 	}
@@ -161,8 +158,8 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 
 	@Override
 	public void renderToBuffer(MatrixStack stack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		head.render(stack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
-		body.render(stack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+		this.head.render(stack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
+		this.body.render(stack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {

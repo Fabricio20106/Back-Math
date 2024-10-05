@@ -1,5 +1,6 @@
 {
   "name": "backmath:the_aljan",
+  "effects": "backmath:the_aljan",
   "ultrawarm": false,
   "natural": true,
   "piglin_safe": false,

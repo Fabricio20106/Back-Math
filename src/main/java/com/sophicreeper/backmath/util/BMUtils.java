@@ -1,7 +1,5 @@
 package com.sophicreeper.backmath.util;
 
-import com.google.common.collect.Lists;
-import com.mojang.datafixers.util.Pair;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
@@ -11,9 +9,8 @@ import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import com.sophicreeper.backmath.world.structure.BMStructures;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.attributes.Attribute;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.DyeColor;
@@ -22,25 +19,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
-import net.minecraft.potion.Effect;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.EffectUtils;
-import net.minecraft.potion.PotionUtils;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.*;
-import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.registries.ForgeRegistries;
 
-import javax.annotation.Nullable;
 import java.util.*;
 
 // Just generalized methods that are used more than twice throughout the code.
@@ -148,96 +136,7 @@ public class BMUtils {
         lucy.setVariant(variants[lucy.level.random.nextInt(BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().size())]);
     }
 
-    // Copied from Variants and modified to work with Back Math's tool behaviors.
-    @Nullable
-    public static List<EffectInstance> getAppliedEffectsFromNBT(@Nullable World world, ItemStack stack) {
-        CompoundNBT tag = stack.getTag();
-        List<EffectInstance> effects = Lists.newArrayList();
-
-        if (tag != null && tag.contains("applied_effects", TagTypes.LIST)) {
-            ListNBT effectList = tag.getList("applied_effects", TagTypes.COMPOUND);
-
-            for (int i = 0; i < effectList.size(); ++i) {
-                int duration = 20;
-                int amplifier = 0;
-                boolean ambient = false;
-                boolean showParticles = true;
-                boolean showIcon = true;
-                boolean noCounter = false;
-                List<ItemStack> curativeItems = Lists.newArrayList();
-                CompoundNBT effectTag = effectList.getCompound(i);
-                if (effectTag.contains("duration", TagTypes.INTEGER)) duration = effectTag.getInt("duration");
-                if (effectTag.contains("amplifier", TagTypes.INTEGER)) amplifier = effectTag.getInt("amplifier");
-                if (effectTag.contains("ambient")) ambient = effectTag.getBoolean("ambient");
-                if (effectTag.contains("show_particles")) showParticles = effectTag.getBoolean("show_particles");
-                if (effectTag.contains("show_icon")) showIcon = effectTag.getBoolean("show_icon");
-                if (effectTag.contains("no_counter")) noCounter = effectTag.getBoolean("no_counter");
-                if (effectTag.contains("curative_items", TagTypes.LIST)) {
-                    ListNBT curativeList = effectTag.getList("curative_items", TagTypes.COMPOUND);
-                    for (int b = 0; b < curativeList.size(); b++) curativeItems.add(ItemStack.of(curativeList.getCompound(b)));
-                }
-
-                Effect effect = ForgeRegistries.POTIONS.getValue(ResourceLocation.tryParse(effectTag.getString("id")));
-                if (effect != null) {
-                    EffectInstance instance = new EffectInstance(effect, duration, amplifier, ambient, showParticles, showIcon);
-                    if (world != null && world.isClientSide) instance.setNoCounter(noCounter);
-                    if (!curativeItems.isEmpty()) instance.setCurativeItems(curativeItems);
-                    effects.add(instance);
-                }
-            }
-            return effects;
-        }
-        return null;
-    }
-
-    // From PotionUtils, copied to change attribute tooltip.
-    @OnlyIn(Dist.CLIENT)
-    public static void addPotionTooltip(ItemStack stack, List<ITextComponent> tooltip, float durationFactor) {
-        List<EffectInstance> effectsList = PotionUtils.getMobEffects(stack);
-        List<Pair<Attribute, AttributeModifier>> attributesList = Lists.newArrayList();
-        if (effectsList.isEmpty()) {
-            tooltip.add(NO_EFFECT);
-        } else {
-            for (EffectInstance instance : effectsList) {
-                IFormattableTextComponent component = new TranslationTextComponent(instance.getDescriptionId());
-                Effect effect = instance.getEffect();
-                Map<Attribute, AttributeModifier> attributeMap = effect.getAttributeModifiers();
-                if (!attributeMap.isEmpty()) {
-                    for (Map.Entry<Attribute, AttributeModifier> entry : attributeMap.entrySet()) {
-                        AttributeModifier modifier = entry.getValue();
-                        AttributeModifier newModifier = new AttributeModifier(modifier.getName(), effect.getAttributeModifierValue(instance.getAmplifier(), modifier), modifier.getOperation());
-                        attributesList.add(new Pair<>(entry.getKey(), newModifier));
-                    }
-                }
-
-                if (instance.getAmplifier() > 0) component = new TranslationTextComponent("potion.withAmplifier", component, new TranslationTextComponent("potion.potency." + instance.getAmplifier()));
-                if (instance.getDuration() > 20) component = new TranslationTextComponent("potion.withDuration", component, EffectUtils.formatDuration(instance, durationFactor));
-                tooltip.add(component.withStyle(effect.getCategory().getTooltipFormatting()));
-            }
-        }
-
-        if (!attributesList.isEmpty()) {
-            tooltip.add(StringTextComponent.EMPTY);
-            tooltip.add(new TranslationTextComponent("tooltip.backmath.effect_jam.when_drank").withStyle(TextFormatting.GRAY));
-
-            for (Pair<Attribute, AttributeModifier> attributePair : attributesList) {
-                AttributeModifier modifier = attributePair.getSecond();
-                double baseAmount = modifier.getAmount();
-                double amount;
-
-                if (modifier.getOperation() != AttributeModifier.Operation.MULTIPLY_BASE && modifier.getOperation() != AttributeModifier.Operation.MULTIPLY_TOTAL) {
-                    amount = modifier.getAmount();
-                } else {
-                    amount = modifier.getAmount() * 100;
-                }
-
-                if (baseAmount > 0) {
-                    tooltip.add(new TranslationTextComponent("attribute.modifier.plus." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(amount), new TranslationTextComponent(attributePair.getFirst().getDescriptionId())).withStyle(TextFormatting.BLUE));
-                } else if (baseAmount < 0) {
-                    amount = amount * -1;
-                    tooltip.add(new TranslationTextComponent("attribute.modifier.take." + modifier.getOperation().toValue(), ItemStack.ATTRIBUTE_MODIFIER_FORMAT.format(amount), new TranslationTextComponent(attributePair.getFirst().getDescriptionId())).withStyle(TextFormatting.RED));
-                }
-            }
-        }
+    public static boolean aljanPackEnabled() {
+        return Minecraft.getInstance().getResourcePackRepository().getSelectedIds().contains(BackMath.backMath("aljan_texture_update").toString());
     }
 }

@@ -2,9 +2,9 @@ package com.sophicreeper.backmath.item.custom;
 
 import com.google.common.collect.Lists;
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
+import melonystudios.variants.util.VSUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -61,7 +61,7 @@ public interface ToolBehaviors {
     default void applyTagEffects(ItemStack stack, LivingEntity livEntity) {
         CompoundNBT tag = stack.getTag();
         assert tag != null;
-        List<EffectInstance> tagEffects = BMUtils.getAppliedEffectsFromNBT(livEntity.level, stack);
+        List<EffectInstance> tagEffects = VSUtils.getAppliedEffectsFromNBT(livEntity.level, stack);
         if (tagEffects != null && !tagEffects.isEmpty()) {
             for (EffectInstance instance : tagEffects) livEntity.addEffect(instance);
         } else if (!getAppliedEffects().isEmpty()) {
@@ -74,24 +74,24 @@ public interface ToolBehaviors {
         return Lists.newArrayList();
     }
 
-    default ItemStack getFoodContainerItem(ItemStack stack) {
-        return getFoodContainerItem(stack, new ItemStack(Items.GLASS_BOTTLE));
+    default ItemStack getFoodUseRemainder(ItemStack stack) {
+        return getFoodUseRemainder(stack, new ItemStack(Items.GLASS_BOTTLE));
     }
 
-    default ItemStack getFoodContainerItem(ItemStack stack, ItemStack defaultStack) {
+    default ItemStack getFoodUseRemainder(ItemStack stack, ItemStack defaultStack) {
         ItemStack containerStack = defaultStack.copy();
         CompoundNBT tag = stack.getTag();
-        if (tag != null && tag.contains("container_item", TagTypes.STRING)) {
-            ResourceLocation itemLocation = ResourceLocation.tryParse(tag.getString("container_item"));
+        if (tag != null && tag.contains("use_remainder", TagTypes.STRING)) {
+            ResourceLocation itemLocation = ResourceLocation.tryParse(tag.getString("use_remainder"));
             if (itemLocation != null && ForgeRegistries.ITEMS.containsKey(itemLocation)) {
                 ItemStack tagStack = new ItemStack(ForgeRegistries.ITEMS.getValue(itemLocation));
-                tag.remove("container_item");
-                tag.put("container_item", tagStack.save(new CompoundNBT()));
+                tag.remove("use_remainder");
+                tag.put("use_remainder", tagStack.save(new CompoundNBT()));
                 if (!tagStack.isEmpty()) return tagStack;
             }
         }
-        if (tag != null && tag.contains("container_item", TagTypes.COMPOUND)) {
-            ItemStack tagStack = ItemStack.of(tag.getCompound("container_item"));
+        if (tag != null && tag.contains("use_remainder", TagTypes.COMPOUND)) {
+            ItemStack tagStack = ItemStack.of(tag.getCompound("use_remainder"));
             if (!tagStack.isEmpty()) return tagStack;
         }
         return containerStack;
@@ -106,6 +106,7 @@ public interface ToolBehaviors {
             if (tagLocation != null) {
                 ITag<EntityType<?>> managerTag = TagCollectionManager.getInstance().getEntityTypes().getTag(tagLocation);
                 if (managerTag != null) return managerTag;
+                else return effectiveEntities;
             }
         }
         return effectiveEntities;

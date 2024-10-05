@@ -718,6 +718,7 @@
   "entity.backmath.insomnia_arrow": "Flecha de insônia",
   "entity.backmath.chocoglue_proj": "Projétil da chococola",
   "entity.backmath.jantic_bolt": "Dardo de jântical",
+  "entity.backmath.collector_fabricio": "Fabrício coletor",
 
   "entity.backmath.queen_lucy_pet.current": "Rainha Lucy Pet",
   "entity.backmath.queen_lucy_pet.alternate": "Rainha Lucy Pet Alternativa",
@@ -1553,6 +1554,7 @@
   "item.backmath.jantical_crown": "Coroa de jantical",
   "item.backmath.jantic_railgun": "Besta da jantical",
   "item.backmath.jantic_railgun.projectile": "Projétil: %s",
+  "item.backmath.collector_fabricio_spawn_egg": "Ovo gerador de Fabrícios coletores",
 
   "item.minecraft.potion.effect.insomnia": "Poção de insônia",
   "item.minecraft.potion.effect.long_insomnia": "Poção de insônia",
@@ -1664,6 +1666,7 @@
   "error.backmath.using_terraforged_chunk_generator": "Não foi possível verificar se %s está usando o gerador de chunks do Terraforged",
   "error.backmath.anvil_repair_recipe_maker.failed": "Não conseguiu criar as receitas de reparo de bigorna",
   "error.backmath.anvil_repair_recipe_maker.successful": "Registrou as receitas de reparo de bigorna do Back Math em %s",
+  "error.backmath.stack_loading.tag": "Back Math: Não conseguiu ler as tags de item da string %s",
 
   "painting.backmath.abrobra_rainbow_braba.title": "Abrobra Rainbow Braba",
   "painting.backmath.abrobra_rainbow_braba.author": "SophiCreeper",
@@ -1715,6 +1718,7 @@
   "subtitles.entity.fabricio.hurt": "Fabrício ferido",
   "subtitles.entity.fabricio.hurt.drown": "Fabrício se afoga",
   "subtitles.entity.fabricio.hurt.on_fire": "Fabrício se queima",
+  "subtitles.entity.fabricio.burp": "Arroto",
   "subtitles.entity.malaika.death": "Malaika morre",
   "subtitles.entity.malaika.hurt": "Malaika ferida",
   "subtitles.entity.malaika.hurt.drown": "Malaika se afoga",

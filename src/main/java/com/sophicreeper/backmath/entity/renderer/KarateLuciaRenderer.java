@@ -7,13 +7,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class KarateLuciaRenderer extends TermianPlayerRenderer<KarateLuciaEntity> {
     public KarateLuciaRenderer(EntityRendererManager manager) {
         super(manager, 0.5F, false);
     }
 
+    @Nonnull
     public ResourceLocation getTextureLocation(KarateLuciaEntity lucia) {
-        return BackMath.backMath("textures/entity/karate_lucia.png");
+        return BackMath.entityTexture("lucia/karate_lucia");
     }
 }

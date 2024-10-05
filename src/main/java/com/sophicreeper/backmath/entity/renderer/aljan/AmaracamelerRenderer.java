@@ -13,6 +13,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class AmaracamelerRenderer extends MobRenderer<AmaracamelerEntity, AmaracamelerModel<AmaracamelerEntity>> {
     public AmaracamelerRenderer(EntityRendererManager manager) {
@@ -36,8 +38,8 @@ public class AmaracamelerRenderer extends MobRenderer<AmaracamelerEntity, Amarac
         matrixStack.scale(f3 * amaracamelerSize, 1 / f3 * amaracamelerSize, f3 * amaracamelerSize);
     }
 
-    @Override
+    @Nonnull
     public ResourceLocation getTextureLocation(AmaracamelerEntity amaracameler) {
-        return BackMath.backMath("textures/entity/amaracameler.png");
+        return BackMath.entityTexture("amaracameler");
     }
 }

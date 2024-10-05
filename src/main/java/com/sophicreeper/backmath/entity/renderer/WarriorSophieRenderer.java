@@ -7,13 +7,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class WarriorSophieRenderer extends TermianPlayerRenderer<WarriorSophieEntity> {
     public WarriorSophieRenderer(EntityRendererManager manager) {
         super(manager, 0.5F, false);
     }
 
+    @Nonnull
     public ResourceLocation getTextureLocation(WarriorSophieEntity sophie) {
-        return BackMath.backMath("textures/entity/warrior_sophie.png");
+        return BackMath.entityTexture("sophie/warrior_sophie");
     }
 }

@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.BMRangedBowAttackGoal;
@@ -151,7 +152,7 @@ public class ArcherInsomniaSophieEntity extends TermianMemberEntity implements I
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBonesEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SleepishSkeletonEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AmaracamelerEntity.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, true));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
     }
 
     @Override

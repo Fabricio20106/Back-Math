@@ -20,8 +20,8 @@ public class TermianPatrolSpawner implements ISpecialSpawner {
     private int nextTick;
 
     @Override
-    public int tick(ServerWorld world, boolean bool, boolean bool1) {
-        if (!bool) {
+    public int tick(ServerWorld world, boolean spawnEnemies, boolean spawnFriendlies) {
+        if (!spawnEnemies) {
             return 0;
         } else if (!world.getGameRules().getBoolean(GameRules.RULE_DO_PATROL_SPAWNING)) {
             return 0;

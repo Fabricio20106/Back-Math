@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.InsomniaZombieEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.JanticleEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.ZombieFabricioEntity;
@@ -58,7 +59,7 @@ public class WarriorSophieEntity extends TermianMemberEntity implements SophieFr
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucyPetEntity.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
     }
 
     @Override
@@ -154,13 +155,5 @@ public class WarriorSophieEntity extends TermianMemberEntity implements SophieFr
     @Override
     public SoundEvent getCelebrationSound() {
         return BMSounds.ENTITY_SOPHIE_CELEBRATE;
-    }
-
-    public void rideTick() {
-        super.rideTick();
-        if (this.getVehicle() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getVehicle();
-            this.yBodyRot = entity.yBodyRot;
-        }
     }
 }

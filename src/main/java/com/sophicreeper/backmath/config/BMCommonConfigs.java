@@ -166,7 +166,7 @@ public class BMCommonConfigs {
         this.aljamicBonesSpawn = builder.comment("Allow Aljamic Bones to spawn in the Aljan?").define("aljamicBonesSpawning", true);
         this.sleepishSkeletonSpawn = builder.comment("Allow Sleepish Skeletons to spawn in the Aljan?").define("sleepishSkeletonSpawning", true);
         this.amaracamelerSpawn = builder.comment("Allow Amaracamelers to spawn in Amaracamel Sticks?").define("amaracamelerSpawning", true);
-        this.malaikaSpawn = builder.comment("Allow Malaikas to spawn in the Aljan?").define("malaikaSpawn", true);
+        this.malaikaSpawn = builder.comment("Allow Malaikas to spawn in the Aljan?").define("malaikaSpawn", false);
         builder.comment("Mob Spawning:");
         this.groundMobSpawningBackFields = builder.comment("Prohibits all Back Fields mobs to spawn anywhere \"invalid\", which includes in the air. Disable for old behavior.").define("groundMobSpawning.backFieldsMobs", true);
         this.groundMobSpawningAljan = builder.comment("Prohibits all Aljan mobs to spawn anywhere \"invalid\", which includes in the air.").define("groundMobSpawning.aljanMobs", true);

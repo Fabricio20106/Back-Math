@@ -11,6 +11,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class ZombieFabricioRenderer extends BipedRenderer<ZombieFabricioEntity, BMZombieModel<ZombieFabricioEntity>> {
     public ZombieFabricioRenderer(EntityRendererManager manager) {
@@ -19,8 +21,9 @@ public class ZombieFabricioRenderer extends BipedRenderer<ZombieFabricioEntity, 
         this.addLayer(new ElytraLayer<>(this));
     }
 
+    @Nonnull
     public ResourceLocation getTextureLocation(ZombieFabricioEntity zombie) {
-        return BackMath.backMath("textures/entity/zombie/zombie_fabricio.png");
+        return BackMath.entityTexture("zombie/zombie_fabricio");
     }
 
     @Override

@@ -28,6 +28,8 @@ public class BMEntityTypeTags {
     public static final ITag.INamedTag<EntityType<?>> ALJAN_DUNGEON_MOBS = backMath("aljan_dungeon_mobs");
     public static final ITag.INamedTag<EntityType<?>> ELIGIBLE_TO_CAPES = backMath("eligible_for_capes");
     public static final ITag.INamedTag<EntityType<?>> IMMUNE_TO_SUMMONER_STAFF_SMASHES = backMath("immune_to_summoner_staff_smashes");
+    public static final ITag.INamedTag<EntityType<?>> ALJAMIC_MEMBER_TARGETS = backMath("aljamic_member_targets");
+    public static final ITag.INamedTag<EntityType<?>> AMARACAMELER_TARGETS = backMath("amaracameler_targets");
 
     // Raider-related Tags
     public static final ITag.INamedTag<EntityType<?>> TERMIAN_RAIDERS_ATTACK = backMath("termian_raiders_attack");

@@ -8,13 +8,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class InsomniaArrowRenderer extends ArrowRenderer<InsomniaArrowEntity> {
     public InsomniaArrowRenderer(EntityRendererManager manager) {
         super(manager);
     }
 
+    @Nonnull
     public ResourceLocation getTextureLocation(InsomniaArrowEntity arrow) {
-        return BackMath.backMath("textures/entity/insomnia_arrow.png");
+        return BackMath.entityTexture("projectile/insomnia_arrow");
     }
 }

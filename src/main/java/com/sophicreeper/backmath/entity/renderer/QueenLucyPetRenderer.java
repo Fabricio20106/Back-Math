@@ -9,6 +9,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPetEntity, QueenLucyPetModel> {
     public QueenLucyPetRenderer(EntityRendererManager manager) {
@@ -19,7 +21,7 @@ public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPetEntity, Quee
         // this.addLayer(new ElytraLayer<>(this));
     }
 
-    @Override
+    @Nonnull
     public ResourceLocation getTextureLocation(QueenLucyPetEntity lucy) {
         QueenLucyPetVariant variant = lucy.getRegistryVariant();
         return new ResourceLocation(variant.getTextureLocation().getNamespace(), "textures/" + variant.getTextureLocation().getPath() + ".png");

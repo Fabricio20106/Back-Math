@@ -7,13 +7,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
+
 @OnlyIn(Dist.CLIENT)
 public class InsomniaSophieRenderer extends TermianPlayerRenderer<InsomniaSophieEntity> {
-    public InsomniaSophieRenderer(EntityRendererManager rendererManager) {
-        super(rendererManager, 0.5F, false);
+    public InsomniaSophieRenderer(EntityRendererManager manager) {
+        super(manager, 0.5F, false);
     }
 
+    @Nonnull
     public ResourceLocation getTextureLocation(InsomniaSophieEntity sophie) {
-        return BackMath.backMath("textures/entity/insomnia_sophie.png");
+        return BackMath.entityTexture("sophie/insomnia/insomnia_sophie");
     }
 }

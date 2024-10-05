@@ -455,6 +455,9 @@ public class BMConfiguredFeatures {
     public static final ConfiguredFeature<?, ?> TABU_BLOB = register("tabu_blob", Feature.ORE.configured(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, BMBlocks.TABU.get().defaultBlockState(), 23))
             .range(80).squared().count(10));
 
+    public static final BlockClusterFeatureConfig THICK_GRASS_PATCH_CONFIG = new BlockClusterFeatureConfig.Builder(new WeightedBlockStateProvider().add(Blocks.GRASS.defaultBlockState(), 3).add(Blocks.FERN.defaultBlockState(), 1), SimpleBlockPlacer.INSTANCE).tries(32).build();
+    public static final ConfiguredFeature<?, ?> THICK_GRASS_PATCH = register("thick_grass_patch", Feature.RANDOM_PATCH.configured(THICK_GRASS_PATCH_CONFIG).decorated(Features.Placements.HEIGHTMAP_DOUBLE_SQUARE).count(25));
+
     // TODO: BACK MATH 1.8.0: BOUNTIFULLY EXPANSIVE CONTENT ENDS HERE
 
     public static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {

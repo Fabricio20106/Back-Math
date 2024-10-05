@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom.aljan;
 
 import com.sophicreeper.backmath.entity.custom.*;
+import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -29,15 +30,14 @@ public class AljamicBonesEntity extends AbstractSkeletonEntity {
 
     protected void registerGoals() {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WandererSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WarriorSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherInsomniaSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherLuciaEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, KarateLuciaEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucyEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, false));
         super.registerGoals();
     }
 
@@ -150,6 +150,9 @@ public class AljamicBonesEntity extends AbstractSkeletonEntity {
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
 //        EquipmentTableUtils.equipWithGear(BMResourceLocations.ALJAMIC_BONES_EQUIPMENT, this);
+        if (this.random.nextBoolean()) this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANSTONE_SWORD.get()));
+        else this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANWOOD_SWORD.get()));
+        this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ALJAMIC_BONE_HELMET.get()));
         this.populateAljanEquipmentSlots(difficulty);
     }
 }

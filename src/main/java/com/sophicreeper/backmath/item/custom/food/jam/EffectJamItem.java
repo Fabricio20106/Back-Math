@@ -2,7 +2,6 @@ package com.sophicreeper.backmath.item.custom.food.jam;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.ToolBehaviors;
-import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
@@ -59,7 +58,7 @@ public class EffectJamItem extends Item implements ToolBehaviors {
 
         if (player == null || !player.abilities.instabuild) {
             if (stack.isEmpty()) return new ItemStack(AxolotlTest.JAM_POT.get());
-            if (player != null) player.inventory.add(getFoodContainerItem(stack, new ItemStack(AxolotlTest.JAM_POT.get())));
+            if (player != null) player.inventory.add(getFoodUseRemainder(stack, new ItemStack(AxolotlTest.JAM_POT.get())));
         }
 
         return stack;
@@ -104,7 +103,7 @@ public class EffectJamItem extends Item implements ToolBehaviors {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        BMUtils.addPotionTooltip(stack, tooltip, 1);
+        PotionUtils.addPotionTooltip(stack, tooltip, 1);
     }
 
     @Override

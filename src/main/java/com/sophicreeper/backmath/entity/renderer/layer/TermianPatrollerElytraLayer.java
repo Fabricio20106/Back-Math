@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TermianPatrollerElytraLayer<T extends TermianPatrollerEntity, M extends EntityModel<T>> extends LayerRenderer<T, M> {
-    private final ElytraModel<T> elytraModel = new ElytraModel<>();
+    private final ElytraModel<T> model = new ElytraModel<>();
 
     public TermianPatrollerElytraLayer(IEntityRenderer<T, M> renderer) {
         super(renderer);
@@ -41,10 +41,10 @@ public class TermianPatrollerElytraLayer<T extends TermianPatrollerEntity, M ext
 
             stack.pushPose();
             stack.translate(0, 0, 0.125);
-            this.getParentModel().copyPropertiesTo(this.elytraModel);
-            this.elytraModel.setupAnim(patroller, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+            this.getParentModel().copyPropertiesTo(this.model);
+            this.model.setupAnim(patroller, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             IVertexBuilder vertexBuilder = ItemRenderer.getArmorFoilBuffer(buffer, RenderType.armorCutoutNoCull(elytraTexture), false, chestStack.hasFoil());
-            this.elytraModel.renderToBuffer(stack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+            this.model.renderToBuffer(stack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
             stack.popPose();
         }
     }

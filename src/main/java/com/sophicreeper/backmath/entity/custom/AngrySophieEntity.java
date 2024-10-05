@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
@@ -48,7 +49,7 @@ public class AngrySophieEntity extends MonsterEntity {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, KarateLuciaEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, InsomniaSophieEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, ArcherInsomniaSophieEntity.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, false));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractVillagerEntity.class, true));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.1D, false));
     }

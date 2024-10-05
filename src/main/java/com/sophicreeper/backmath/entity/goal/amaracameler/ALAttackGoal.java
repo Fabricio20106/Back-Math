@@ -23,7 +23,7 @@ public class ALAttackGoal extends Goal {
         if (target == null || !target.isAlive()) {
             return false;
         } else {
-            return (!(target instanceof PlayerEntity) || !((PlayerEntity) target).abilities.invulnerable) && this.amaracameler.getMoveControl() instanceof AmaracamelerMovementHelperController;
+            return (!(target instanceof PlayerEntity) || !((PlayerEntity) target).abilities.invulnerable) && this.amaracameler.getMoveControl() instanceof AmaracamelerMovementController;
         }
     }
 
@@ -49,6 +49,6 @@ public class ALAttackGoal extends Goal {
     @Override
     public void tick() {
         if (this.amaracameler.getTarget() != null) this.amaracameler.lookAt(this.amaracameler.getTarget(), 10, 10);
-        ((AmaracamelerMovementHelperController) this.amaracameler.getMoveControl()).setDirection(this.amaracameler.yRot, this.amaracameler.canDamagePlayer());
+        ((AmaracamelerMovementController) this.amaracameler.getMoveControl()).setDirection(this.amaracameler.yRot, this.amaracameler.canDamageEntity());
     }
 }

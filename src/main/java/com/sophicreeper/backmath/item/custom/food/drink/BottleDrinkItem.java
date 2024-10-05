@@ -40,7 +40,7 @@ public class BottleDrinkItem extends Item implements ToolBehaviors {
             return new ItemStack(Items.GLASS_BOTTLE);
         } else {
             if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
-                ItemStack bottleStack = getFoodContainerItem(stack);
+                ItemStack bottleStack = getFoodUseRemainder(stack);
                 PlayerEntity player = (PlayerEntity) livEntity;
                 stack.shrink(1);
                 if (!player.inventory.add(bottleStack)) player.drop(bottleStack, false);

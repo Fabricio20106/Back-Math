@@ -21,8 +21,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class TermianPatrollerCapeLayer<T extends TermianPatrollerEntity> extends LayerRenderer<T, BMPlayerModel<T>> {
-    public TermianPatrollerCapeLayer(IEntityRenderer<T, BMPlayerModel<T>> patroller) {
-        super(patroller);
+    public TermianPatrollerCapeLayer(IEntityRenderer<T, BMPlayerModel<T>> renderer) {
+        super(renderer);
     }
 
     @Override
@@ -44,9 +44,7 @@ public class TermianPatrollerCapeLayer<T extends TermianPatrollerEntity> extends
                 f2 = MathHelper.clamp(f2, 0, 150);
                 float f3 = (float) (chasingPosX * d4 - chasingPos * d3) * 100;
                 f3 = MathHelper.clamp(f3, -20, 20);
-                if (f2 < 0) {
-                    f2 = 0;
-                }
+                if (f2 < 0) f2 = 0;
 
                 float yaw = MathHelper.lerp(partialTicks, patroller.prevCameraYaw, patroller.cameraYaw);
                 f1 = f1 + MathHelper.sin(MathHelper.lerp(partialTicks, patroller.walkDistO, patroller.walkDist) * 6) * 32 * yaw;

@@ -3,11 +3,12 @@ package com.sophicreeper.backmath.event;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.*;
+import com.sophicreeper.backmath.entity.custom.aljamic.CollectorFabricioEntity;
+import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.world.spawner.TermianPatrolSpawner;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.spawner.ISpecialSpawner;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -37,13 +38,14 @@ public class BMEventBusEvents {
         event.put(BMEntities.AMARACAMELER.get(), MonsterEntity.createMonsterAttributes().build());
         event.put(BMEntities.JANTICLE.get(), JanticleEntity.createJanticleAttributes().build());
         event.put(BMEntities.MALAIKA.get(), MalaikaEntity.createMalaikaAttributes().build());
+        event.put(BMEntities.COLLECTOR_FABRICIO.get(), CollectorFabricioEntity.createCollectorFabricioAttributes().build());
     }
 
     @SubscribeEvent
     public void onWorldTick(TickEvent.WorldTickEvent event) {
         if (event.world instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld) event.world;
-            ISpecialSpawner specialSpawner = new TermianPatrolSpawner();
+            TermianPatrolSpawner specialSpawner = new TermianPatrolSpawner();
             specialSpawner.tick(serverWorld, serverWorld.getChunkSource().spawnEnemies, serverWorld.getChunkSource().spawnFriendlies);
         }
     }

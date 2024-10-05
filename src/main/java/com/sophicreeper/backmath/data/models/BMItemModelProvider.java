@@ -645,6 +645,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         standard(generated, "sleepish_skeleton_spawn_egg");
         standard(generated, "amaracameler_spawn_egg");
         standard(generated, "janticle_spawn_egg");
+        standard(generated, "collector_fabricio_spawn_egg");
         standard(generated, "wellerman_disc");
         standard(generated, "snowman_disc");
         standard(generated, "ericwho_disc");

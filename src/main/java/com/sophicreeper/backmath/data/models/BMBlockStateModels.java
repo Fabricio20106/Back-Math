@@ -87,7 +87,7 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
     public void grassBlock(Block block, ResourceLocation baseTexture, ResourceLocation bottomTexture) {
         getVariantBuilder(block).forAllStates(state -> {
             boolean snowy = state.getValue(GrassBlock.SNOWY);
-            ModelFile model = models().withExistingParent(block.getRegistryName().getPath() + (snowy ? "_snowy" : ""), modLoc("block/template_grass_block")).texture("bottom", bottomTexture).texture("top", baseTexture + "_top").texture(
+            ModelFile model = models().withExistingParent(block.getRegistryName().getPath() + (snowy ? "_snowy" : ""), snowy ? "minecraft:block/cube_bottom_top" : "backmath:block/template_grass_block").texture("bottom", bottomTexture).texture("top", baseTexture + "_top").texture(
                     "side", baseTexture + "_side" + (snowy ? "_snowy" : "")).texture("overlay", baseTexture + "_side_overlay");
             return ConfiguredModel.builder().modelFile(model).nextModel().modelFile(model).rotationY(90).nextModel().modelFile(model).rotationY(180).nextModel().modelFile(model).rotationY(270).build();
         });

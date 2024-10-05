@@ -15,6 +15,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3f;
 
+import javax.annotation.Nonnull;
+
 public class BMBoatRenderer extends EntityRenderer<BMBoatEntity> {
     private static final ResourceLocation[] BOAT_TEXTURES = new ResourceLocation[] {BackMath.backMath("textures/entity/boat/aljanwood.png"), BackMath.backMath("textures/entity/boat/aljancap.png"), BackMath.backMath(
             "textures/entity/boat/insomnian.png")};
@@ -49,24 +51,24 @@ public class BMBoatRenderer extends EntityRenderer<BMBoatEntity> {
         IVertexBuilder vertexBuilder = buffer.getBuffer(this.model.renderType(this.getTextureLocation(boat)));
         this.model.renderToBuffer(stack, vertexBuilder, packedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
         if (!boat.isUnderWater()) {
-            IVertexBuilder vertexBuilder1 = buffer.getBuffer(RenderType.waterMask());
-            this.model.waterPatch().render(stack, vertexBuilder1, packedLight, OverlayTexture.NO_OVERLAY);
+            IVertexBuilder waterMaskBuilder = buffer.getBuffer(RenderType.waterMask());
+            this.model.waterPatch().render(stack, waterMaskBuilder, packedLight, OverlayTexture.NO_OVERLAY);
         }
 
         stack.popPose();
         super.render(boat, yaw, partialTicks, stack, buffer, packedLight);
     }
 
-    @Override
+    @Nonnull
     public ResourceLocation getTextureLocation(BMBoatEntity boat) {
         switch (boat.getWoodType()) {
-            case "aljanwood":
-            default:
-                return BOAT_TEXTURES[0];
             case "aljancap":
                 return BOAT_TEXTURES[1];
             case "insomnian":
                 return BOAT_TEXTURES[2];
+            case "aljanwood":
+            default:
+                return BOAT_TEXTURES[0];
         }
     }
 }

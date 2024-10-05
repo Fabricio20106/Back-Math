@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.entity;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.*;
+import com.sophicreeper.backmath.entity.custom.aljamic.CollectorFabricioEntity;
+import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.misc.BMBoatEntity;
 import com.sophicreeper.backmath.entity.custom.misc.ChocoGlueEntity;
@@ -80,4 +82,8 @@ public class BMEntities {
 
     public static final RegistryObject<EntityType<JanticBoltEntity>> JANTIC_BOLT = ENTITIES.register("jantic_bolt", () ->
             EntityType.Builder.<JanticBoltEntity>of(JanticBoltEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(BackMath.backMath("jantic_bolt").toString()));
+
+    // Aljamic Empire Members
+    public static final RegistryObject<EntityType<CollectorFabricioEntity>> COLLECTOR_FABRICIO = ENTITIES.register("collector_fabricio", () ->
+            EntityType.Builder.of(CollectorFabricioEntity::new, EntityClassification.CREATURE).sized(0.6F, 1.8F).build(BackMath.backMath("collector_fabricio").toString()));
 }

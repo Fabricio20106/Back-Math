@@ -1,11 +1,13 @@
 package com.sophicreeper.backmath.entity.custom.aljan;
 
-import com.sophicreeper.backmath.entity.custom.ShyFabricioEntity;
+import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.entity.goal.amaracameler.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
+import com.sophicreeper.backmath.world.biome.BMBiomes;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
@@ -28,12 +30,10 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.*;
-import net.minecraft.world.biome.Biomes;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Random;
 
 public class AmaracamelerEntity extends MobEntity implements IMob {
@@ -45,7 +45,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
 
     public AmaracamelerEntity(EntityType<AmaracamelerEntity> entity, World world) {
         super(entity, world);
-        this.moveControl = new AmaracamelerMovementHelperController(this);
+        this.moveControl = new AmaracamelerMovementController(this);
     }
 
     protected void registerGoals() {
@@ -53,10 +53,9 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         this.goalSelector.addGoal(2, new ALAttackGoal(this));
         this.goalSelector.addGoal(3, new ALFaceRandomGoal(this));
         this.goalSelector.addGoal(5, new ALHopGoal(this));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, (livEntity) -> Math.abs(livEntity.getY() - this.getY()) <= 4));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, 10, true, false, (livEntity) -> Math.abs(livEntity.getY() - this.getY()) <= 4));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, 10, true, false, livEntity -> Math.abs(livEntity.getY() - this.getY()) <= 4));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, livEntity -> Math.abs(livEntity.getY() - this.getY()) <= 4));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }
 
@@ -73,7 +72,6 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         this.getAttribute(Attributes.MOVEMENT_SPEED).setBaseValue(0.2F + 0.1F * (float) size);
         this.getAttribute(Attributes.ATTACK_DAMAGE).setBaseValue(size);
         if (resetHealth) this.setHealth(this.getMaxHealth());
-
         this.xpReward = size;
     }
 
@@ -100,6 +98,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
 
     // Fix MC-118616 for amaracamelers (https://bugs.mojang.com/browse/MC-118616)
     @Override
+    @Nonnull
     public SoundCategory getSoundSource() {
         return SoundCategory.HOSTILE;
     }
@@ -172,20 +171,20 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     @Nonnull
+    @SuppressWarnings("unchecked")
     public EntityType<? extends AmaracamelerEntity> getType() {
         return (EntityType<? extends AmaracamelerEntity>) super.getType();
     }
 
     @Override
     public void remove(boolean keepData) {
-        int slimeSize = this.getSize();
-        if (!this.level.isClientSide && slimeSize > 1 && this.isDeadOrDying() && !this.removed) {
+        int size = this.getSize();
+        if (!this.level.isClientSide && size > 1 && this.isDeadOrDying() && !this.removed) {
             ITextComponent mobName = this.getCustomName();
             boolean flag = this.isNoAi();
-            float amaracamelerSizeFourth = (float) slimeSize / 4;
-            int amaracamelerSizeHalved = slimeSize / 2;
+            float amaracamelerSizeFourth = (float) size / 4;
+            int amaracamelerSizeHalved = size / 2;
             int k = 2 + this.random.nextInt(3);
 
             for (int l = 0; l < k; ++l) {
@@ -209,12 +208,12 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
     // Applies a velocity to the entities, to push them away from each other.
     public void push(Entity entity) {
         super.push(entity);
-        if (entity instanceof IronGolemEntity && this.canDamagePlayer()) this.dealDamage((LivingEntity)entity);
+        if ((entity.getType().is(BMEntityTypeTags.AMARACAMELER_TARGETS)) && this.canDamageEntity()) this.dealDamage((LivingEntity) entity);
     }
 
     // Called by a player entity when they collide with an entity.
     public void playerTouch(PlayerEntity player) {
-        if (this.canDamagePlayer()) this.dealDamage(player);
+        if (this.canDamageEntity()) this.dealDamage(player);
     }
 
     protected void dealDamage(LivingEntity livEntity) {
@@ -232,7 +231,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
     }
 
     // Indicates weather the amaracameler is able to damage the player (based upon the amaracameler's size).
-    public boolean canDamagePlayer() {
+    public boolean canDamageEntity() {
         return !this.isSmallAmaracameler() && this.isEffectiveAi();
     }
 
@@ -252,20 +251,21 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         return this.isSmallAmaracameler() ? BMSounds.ENTITY_AMARACAMELER_SQUISH_SMALL : BMSounds.ENTITY_AMARACAMELER_SQUISH;
     }
 
+    @Nonnull
     protected ResourceLocation getDefaultLootTable() {
         return this.getSize() == 1 ? BMResourceLocations.SMALL_AMARACAMELER : BMResourceLocations.MEDIUM_OR_LARGE_AMARACAMELER;
     }
 
     public static boolean checkAmaracamelerSpawnRules(EntityType<AmaracamelerEntity> amaracameler, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {
         if (world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (Objects.equals(world.getBiomeName(pos), Optional.of(Biomes.SWAMP)) && pos.getY() > 50 && pos.getY() < 70 && rand.nextFloat() < 0.5F && rand.nextFloat() < world.getMoonBrightness() && world.getMaxLocalRawBrightness(pos) <= rand.nextInt(8)) {
+            if (Objects.equals(world.getBiome(pos), BMBiomes.AMARACAMEL_STICKS.get()) && pos.getY() > 50 && pos.getY() < 70 && rand.nextFloat() < 0.5F && rand.nextFloat() < world.getMoonBrightness() && world.getMaxLocalRawBrightness(pos) <= rand.nextInt(8)) {
                 return checkMobSpawnRules(amaracameler, world, reason, pos, rand);
             }
 
             if (!(world instanceof ISeedReader)) return false;
 
             ChunkPos chunkPos = new ChunkPos(pos);
-            boolean isSlimeChunk = SharedSeedRandom.seedSlimeChunk(chunkPos.x, chunkPos.z, ((ISeedReader)world).getSeed(), 987234911L).nextInt(10) == 0;
+            boolean isSlimeChunk = SharedSeedRandom.seedSlimeChunk(chunkPos.x, chunkPos.z, ((ISeedReader) world).getSeed(), 987234911L).nextInt(10) == 0;
             if (rand.nextInt(10) == 0 && isSlimeChunk && pos.getY() < 40) {
                 return checkMobSpawnRules(amaracameler, world, reason, pos, rand);
             }
@@ -290,8 +290,8 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
 
     // Causes this entity to do an upwards motion (jumping).
     protected void jumpFromGround() {
-        Vector3d vec3D = this.getDeltaMovement();
-        this.setDeltaMovement(vec3D.x, this.getJumpPower(), vec3D.z);
+        Vector3d deltaMovement = this.getDeltaMovement();
+        this.setDeltaMovement(deltaMovement.x, this.getJumpPower(), deltaMovement.z);
         this.hasImpulse = true;
     }
 
@@ -314,6 +314,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         return this.isSmallAmaracameler() ? BMSounds.ENTITY_AMARACAMELER_JUMP_SMALL : BMSounds.ENTITY_AMARACAMELER_JUMP;
     }
 
+    @Nonnull
     public EntitySize getDimensions(Pose pose) {
         return super.getDimensions(pose).scale(0.255F * (float) this.getSize());
     }

@@ -40,7 +40,7 @@ public class WineItem extends Item implements ToolBehaviors {
             return new ItemStack(AxolotlTest.CORK_STOPPER.get());
         } else {
             if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
-                ItemStack stopperStack = getFoodContainerItem(stack, new ItemStack(AxolotlTest.CORK_STOPPER.get()));
+                ItemStack stopperStack = getFoodUseRemainder(stack, new ItemStack(AxolotlTest.CORK_STOPPER.get()));
                 PlayerEntity player = (PlayerEntity) livEntity;
                 stack.shrink(1);
                 if (!player.inventory.add(stopperStack)) player.drop(stopperStack, false);

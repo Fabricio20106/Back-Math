@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class AmaracamelerGelLayer<T extends LivingEntity> extends LayerRenderer<T, AmaracamelerModel<T>> {
-    private final EntityModel<T> amaracamelerModel = new AmaracamelerModel<>(0);
+    private final EntityModel<T> model = new AmaracamelerModel<>();
 
     public AmaracamelerGelLayer(IEntityRenderer<T, AmaracamelerModel<T>> renderer) {
         super(renderer);
@@ -24,11 +24,11 @@ public class AmaracamelerGelLayer<T extends LivingEntity> extends LayerRenderer<
     @Override
     public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T mob, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if (!mob.isInvisible()) {
-            this.getParentModel().copyPropertiesTo(this.amaracamelerModel);
-            this.amaracamelerModel.prepareMobModel(mob, limbSwing, limbSwingAmount, partialTicks);
-            this.amaracamelerModel.setupAnim(mob, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+            this.getParentModel().copyPropertiesTo(this.model);
+            this.model.prepareMobModel(mob, limbSwing, limbSwingAmount, partialTicks);
+            this.model.setupAnim(mob, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
             IVertexBuilder vertexBuilder = buffer.getBuffer(RenderType.entityTranslucent(this.getTextureLocation(mob)));
-            this.amaracamelerModel.renderToBuffer(stack, vertexBuilder, packedLight, LivingRenderer.getOverlayCoords(mob, 0), 1, 1, 1, 1);
+            this.model.renderToBuffer(stack, vertexBuilder, packedLight, LivingRenderer.getOverlayCoords(mob, 0), 1, 1, 1, 1);
         }
     }
 }

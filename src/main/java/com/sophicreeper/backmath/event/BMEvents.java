@@ -1,23 +1,27 @@
 package com.sophicreeper.backmath.event;
 
+import com.google.common.collect.Sets;
 import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.block.model.LightBakedModel;
+import com.sophicreeper.backmath.block.model.FullbrightModel;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.variant.manager.QueenLucyPetVariantManager;
 import com.sophicreeper.backmath.variant.manager.WandererSophieVariantManager;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
+import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
 import com.sophicreeper.backmath.world.plant.BMPlantGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructureGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.item.ItemStack;
@@ -33,6 +37,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
@@ -65,17 +70,40 @@ public class BMEvents {
     }
 
     @SubscribeEvent
+    public static void thickenAljanFogAtNight(EntityViewRenderEvent.FogDensity event) {
+        World world = Minecraft.getInstance().level;
+        if (world != null && world.dimension() == BMDimensions.THE_ALJAN && BMUtils.aljanPackEnabled()) {
+            event.setCanceled(true);
+            event.setDensity(0.02F);
+        }
+    }
+
+    @SubscribeEvent
+    public static void changeAljanFogColorAtNight(EntityViewRenderEvent.FogColors event) {
+        ClientWorld world = Minecraft.getInstance().level;
+        if (world != null && isTimeWithinBounds(world.getDayTime()) && world.dimension() == BMDimensions.THE_ALJAN && BMUtils.aljanPackEnabled()) {
+            // 0.592F, 0.411F, 0.545F -- original values ~isa 30-9-24
+            event.setRed(0.333F * (1 - world.getStarBrightness(1)));
+            event.setGreen(0.231F * (1 - world.getStarBrightness(1)));
+            event.setBlue(0.305F * (1 - world.getStarBrightness(1)));
+        }
+    }
+
+    public static boolean isTimeWithinBounds(long dayTime) {
+        return dayTime >= 13300 && dayTime <= 22400;
+    }
+
+    @SubscribeEvent
     public static void onModelBakeEvent(ModelBakeEvent event) {
-        for (BlockState blockState : BMBlocks.INSOMNIAN_TULIP.get().getStateDefinition().getPossibleStates()) {
-            ModelResourceLocation variantMRL = BlockModelShapes.stateToModelLocation(blockState);
-            IBakedModel existingModel = event.getModelRegistry().get(variantMRL);
+        for (BlockState state : BMBlocks.INSOMNIAN_TULIP.get().getStateDefinition().getPossibleStates()) {
+            ModelResourceLocation modelLocation = BlockModelShapes.stateToModelLocation(state);
+            IBakedModel existingModel = event.getModelRegistry().get(modelLocation);
             if (existingModel == null) {
                 LOGGER.warn(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.insomnian_tulip.model_not_found").getString()));
-            } else if (existingModel instanceof LightBakedModel) {
+            } else if (existingModel instanceof FullbrightModel) {
                 LOGGER.warn(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.light_baked_model.replacement_attempt").getString()));
             } else {
-                LightBakedModel lightBakedModel = new LightBakedModel();
-                event.getModelRegistry().put(variantMRL, lightBakedModel);
+                event.getModelRegistry().put(BackMath.backMath("insomnian_tulip"), new FullbrightModel(Sets.newHashSet(BackMath.backMath("block/insomnian_tulip_overlay")), existingModel));
             }
         }
     }

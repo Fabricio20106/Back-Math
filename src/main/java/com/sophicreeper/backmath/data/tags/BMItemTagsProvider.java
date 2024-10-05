@@ -331,6 +331,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 AxolotlTest.JABUTICABA.get(), AxolotlTest.GREEN_APPLE.get(), AxolotlTest.ALJAMIC_BERRY.get());
         this.tag(BMItemTags.ARCHER_LUCIA_CAN_PICKUP).addTag(BMItemTags.CROSSBOWS);
         this.tag(BMItemTags.TERMIAN_RAIDER_CAN_PICKUP).add(Items.LIGHT_BLUE_BANNER);
+        this.tag(BMItemTags.COLLECTOR_FABRICIO_CAN_PICKUP).add(AxolotlTest.ALJAMEED_BONE.get(), AxolotlTest.SLEEPISH_BONE.get(), AxolotlTest.ALJAMIC_ONION.get(), AxolotlTest.CARAMELED_WHEAT.get(), AxolotlTest.CARAMELED_WHEAT_SEEDS.get(),
+                AxolotlTest.ALJAMEED_INGOT.get(), AxolotlTest.ROTTEN_ALJAMIC_FLESH.get(), AxolotlTest.PINE_JELLY.get(), AxolotlTest.STICKY_AMARACAMEL_BALL.get(), AxolotlTest.ALJAMIC_BONE_HELMET.get());
         this.tag(BMItemTags.QUEEN_LUCY_PET_TAME_ITEMS).addTag(BMItemTags.FRUITS);
         this.tag(BMItemTags.QUEEN_LUCY_PET_POISONOUS_ITEMS).add(AxolotlTest.ALJAME.get());
         this.tag(BMItemTags.TABU_SMELTABLES).add(AxolotlTest.TABU.get()).add(AxolotlTest.CUBIC_TABU.get()).add(AxolotlTest.TABU_MOSAIC.get()).add(AxolotlTest.TABU_PILLAR.get());

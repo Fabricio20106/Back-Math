@@ -11,10 +11,15 @@ import com.sophicreeper.backmath.entity.renderer.misc.InsomniaArrowRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.JanticBoltRenderer;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
-import com.sophicreeper.backmath.world.renderer.AljanDimensionRenderer;
+import com.sophicreeper.backmath.misc.AljanTextureUpdatePack;
+import com.sophicreeper.backmath.world.dimension.renderer.AljanDimensionRenderer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.world.DimensionRenderInfo;
+import net.minecraft.resources.IPackNameDecorator;
+import net.minecraft.resources.ResourcePackInfo;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -269,6 +274,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.BACK_MATH_BOAT.get(), BMBoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ARROW.get(), InsomniaArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.JANTIC_BOLT.get(), JanticBoltRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BMEntities.COLLECTOR_FABRICIO.get(), CollectorFabricioRenderer::new);
 
         // Aljan Sky
         DimensionRenderInfo.EFFECTS.put(BackMath.backMath("the_aljan"), new AljanDimensionRenderer());
@@ -292,5 +298,17 @@ public class ClientProxy extends CommonProxy {
     // Double Layer Render Lookup
     public static boolean getDoubleLayer(RenderType layerToCheck) {
         return layerToCheck == RenderType.cutout() || layerToCheck == RenderType.translucent();
+    }
+
+    // Copied from teamtwilight/twilightforest.
+    public static void addAljanTextureUpdatePack() {
+        // noinspection ConstantConditions
+        if (Minecraft.getInstance() == null)
+            // Normally Minecraft Client is never null except when generating through runData
+            return;
+
+        Minecraft.getInstance().getResourcePackRepository().addPackFinder((consumer, factory) -> consumer.accept(ResourcePackInfo.create(
+                BackMath.backMath("aljan_texture_update").toString(), false, () -> new AljanTextureUpdatePack(ModList.get()
+                        .getModFileById(BackMath.MOD_ID).getFile()), factory, ResourcePackInfo.Priority.TOP, IPackNameDecorator.BUILT_IN)));
     }
 }
