@@ -17,6 +17,6 @@ public class ArcherLuciaRenderer extends TermianPlayerRenderer<ArcherLuciaEntity
 
     @Nonnull
     public ResourceLocation getTextureLocation(ArcherLuciaEntity lucia) {
-        return BackMath.backMath("textures/entity/archer_lucia");
+        return BackMath.entityTexture("lucia/archer_lucia");
     }
 }
