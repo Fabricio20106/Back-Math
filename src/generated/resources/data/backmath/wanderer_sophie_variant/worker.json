@@ -1,4 +1,5 @@
 {
+  "asset_id": "backmath:worker",
   "texture_location": "backmath:entity/sophie/wanderer/worker",
   "slim_arms": true
 }

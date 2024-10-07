@@ -36,5 +36,6 @@ public class BMWandererSophieVariantsProvider extends WandererSophieVariantProvi
         this.add("cyan_axolotl_2", BMWandererSophieVariants.CYAN_AXOLOTL_2.get());
         this.add("empresary2", BMWandererSophieVariants.EMPRESARY2.get());
         this.add("entrepreneur", BMWandererSophieVariants.ENTREPRENEUR.get());
+        this.add("farmer", BMWandererSophieVariants.FARMER.get());
     }
 }

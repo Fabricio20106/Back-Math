@@ -1,4 +1,5 @@
 {
+  "asset_id": "backmath:creeper",
   "texture_location": "backmath:entity/sophie/wanderer/creeper",
   "slim_arms": true
 }

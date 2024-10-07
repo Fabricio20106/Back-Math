@@ -9,6 +9,7 @@ import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
+import org.apache.logging.log4j.LogManager;
 
 public class BMTagFixes {
     // Updates the old "SpellTicks" tag of Queen Lucies to the new "lucy_spells.spell_cooldown_ticks" tag.
@@ -92,12 +93,17 @@ public class BMTagFixes {
                     return BMWandererSophieVariants.EMPRESARY2.get();
                 case 16:
                     return BMWandererSophieVariants.ENTREPRENEUR.get();
-                default:
                 case 0:
+                default:
                     return BMWandererSophieVariants.YELLOW_AXOLOTL.get();
             }
         }
-        return BMRegistries.WANDERER_SOPHIE_VARIANT.getValue(ResourceLocation.tryParse(tag.getString("variant")));
+        try {
+            return WandererSophieVariant.DATA_DRIVEN_VARIANTS.get(new ResourceLocation(tag.getString("variant")));
+        } catch (Exception exception) {
+            LogManager.getLogger().error("Failed to load a Wanderer Sophie variant from NBT", exception);
+            return BMRegistries.WANDERER_SOPHIE_VARIANT.getValue(new ResourceLocation(tag.getString("variant")));
+        }
     }
 
     // Updates the old "Variant" (integer) and tag of Wanderer Sophies to the new "variant" (registry) tag.
@@ -142,8 +148,8 @@ public class BMTagFixes {
                     return BMQueenLucyPetVariants.SV_BLUE_AXOLOTL.get();
                 case 20:
                     return BMQueenLucyPetVariants.SV_CYAN_AXOLOTL_2.get();
-                default:
                 case 0:
+                default:
                     return BMQueenLucyPetVariants.CURRENT.get();
             }
         }

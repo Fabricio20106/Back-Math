@@ -6,6 +6,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.sophicreeper.backmath.BackMath;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldVertexBufferUploader;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -15,6 +16,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.client.ISkyRenderHandler;
 
@@ -23,7 +25,7 @@ import java.util.Random;
 // Methods copied from vanilla's WorldRenderer class.
 @SuppressWarnings("deprecation")
 public class AljanSkyRenderer implements ISkyRenderHandler {
-    private static final ResourceLocation ALJAN_SUN_TEXTURES = BackMath.texture("environment/aljan_sun");
+    public static final ResourceLocation ALJAN_SUN = BackMath.texture("environment/aljan_sun");
     private final VertexFormat skyVertexFormat = DefaultVertexFormats.POSITION;
     private VertexBuffer starsBuffer;
     private VertexBuffer lightSkyBuffer;
@@ -40,12 +42,22 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
     */
     @Override
     public void render(int ticks, float partialTicks, MatrixStack stack, ClientWorld world, Minecraft minecraft) {
+        RenderSystem.disableTexture();
+        Vector3d vector3D = world.getSkyColor(minecraft.gameRenderer.getMainCamera().getBlockPosition(), partialTicks);
+        FogRenderer.levelFogColor();
+        BufferBuilder buffer = Tessellator.getInstance().getBuilder();
+        RenderSystem.depthMask(false);
+        RenderSystem.enableFog();
+        RenderSystem.color3f((float) vector3D.x, (float) vector3D.y, (float) vector3D.z);
+        this.lightSkyBuffer.bind();
+        this.skyVertexFormat.setupBufferState(0L);
+        this.lightSkyBuffer.draw(stack.last().pose(), 7);
+        VertexBuffer.unbind();
+        this.skyVertexFormat.clearBufferState();
+        RenderSystem.disableFog();
         RenderSystem.disableAlphaTest();
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
-        RenderSystem.depthMask(false);
-        BufferBuilder buffer = Tessellator.getInstance().getBuilder();
-        //FogRenderer.levelFogColor();
 
         float[] sunriseColors = world.effects().getSunriseColor(world.getTimeOfDay(partialTicks), partialTicks);
         if (sunriseColors != null) {
@@ -73,13 +85,14 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
             stack.popPose();
         }
 
+        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         stack.pushPose();
         stack.mulPose(Vector3f.YP.rotationDegrees(-90));
         stack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360));
         Matrix4f matrix4F = stack.last().pose();
 
-        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        minecraft.textureManager.bind(ALJAN_SUN_TEXTURES);
+        RenderSystem.enableTexture();
+        minecraft.textureManager.bind(ALJAN_SUN);
         buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
         buffer.vertex(matrix4F, -30, 100, -30).uv(0, 0).endVertex();
         buffer.vertex(matrix4F, 30, 100, -30).uv(1, 0).endVertex();
@@ -87,6 +100,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         buffer.vertex(matrix4F, -30, 100, 30).uv(0, 1).endVertex();
         buffer.end();
         WorldVertexBufferUploader.end(buffer);
+        RenderSystem.disableTexture();
 
         float rainLevel = 1 - world.getRainLevel(partialTicks);
         float starBrightness = world.getStarBrightness(partialTicks) * rainLevel;
@@ -103,7 +117,6 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         RenderSystem.enableAlphaTest();
         RenderSystem.enableFog();
         stack.popPose();
-        RenderSystem.color3f(0, 0, 0);
         assert minecraft.player != null;
         double startHeight = minecraft.player.getEyePosition(partialTicks).y - world.getLevelData().getHorizonHeight();
         if (startHeight < 0) {

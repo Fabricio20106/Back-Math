@@ -1,8 +1,10 @@
 package com.sophicreeper.backmath.entity.custom.aljamic;
 
+import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMFoodStats;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.*;
@@ -17,6 +19,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
@@ -111,6 +114,7 @@ public class AljamicMemberEntity extends CreatureEntity {
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
+        if (tag.contains("CanPickUpLoot", TagTypes.ANY_NUMERIC)) this.setCanPickUpLoot(tag.getBoolean("CanPickUpLoot"));
         this.foodData.readFoodStats(tag);
     }
 
@@ -121,7 +125,7 @@ public class AljamicMemberEntity extends CreatureEntity {
     }
 
     protected void populateAljanEquipmentSlots() {
-        if (this.random.nextFloat() < 0.75F) {
+        if (this.random.nextFloat() < BMConfigs.COMMON_CONFIGS.aljamicMembersArmorChance.get()) {
             int rand = this.random.nextInt(2);
             float chancePerDifficulty = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
             if (this.random.nextFloat() < 0.095F) ++rand;
@@ -137,12 +141,15 @@ public class AljamicMemberEntity extends CreatureEntity {
 
                     populateArmor = false;
                     if (stack.isEmpty()) {
-                        Item item = getAljanArmorByChance(equipmentSlotType, rand);
-                        if (item != null) this.setItemSlot(equipmentSlotType, new ItemStack(item));
+                        Item armorItem = getAljanArmorByChance(equipmentSlotType, rand);
+                        Item weaponItem = getSwordByChance(rand);
+                        if (armorItem != null) this.setItemSlot(equipmentSlotType, new ItemStack(armorItem));
+                        if (weaponItem != null) this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(weaponItem));
                     }
                 }
             }
         }
+        else this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANSTONE_KNIFE.get()));
     }
 
     @Nullable
@@ -200,13 +207,27 @@ public class AljamicMemberEntity extends CreatureEntity {
         }
     }
 
+    public static Item getSwordByChance(int chance) {
+        switch (chance) {
+            case 0: return AxolotlTest.ALJANWOOD_SWORD.get();
+            case 1: return AxolotlTest.ALJANSTONE_SWORD.get();
+            case 2: return AxolotlTest.ALJAMEED_BLADE.get();
+            case 3: return AxolotlTest.MOONERING_SWORD.get();
+            case 4: return AxolotlTest.JANTIQUIFIED_MOONERING_SWORD.get();
+            default: return null;
+        }
+    }
+
     @Override
     public boolean hurt(DamageSource source, float amount) {
         boolean superRuns = super.hurt(source, amount);
         if (this.level.isClientSide) {
             return false;
         } else {
-            if (superRuns && source.getEntity() instanceof LivingEntity) this.setTarget((LivingEntity) source.getEntity());
+            if (superRuns && source.getEntity() instanceof LivingEntity) {
+                LivingEntity target = (LivingEntity) source.getEntity();
+                if (this.canAttack(target) && EntityPredicates.ATTACK_ALLOWED.test(target)) this.setTarget(target);
+            }
             return superRuns;
         }
     }

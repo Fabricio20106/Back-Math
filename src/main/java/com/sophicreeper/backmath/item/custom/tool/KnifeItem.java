@@ -37,7 +37,8 @@ public class KnifeItem extends ToolItem {
         return state.is(BMBlockTags.MINEABLE_KNIVES) ? this.speed : 1;
     }
 
-    public ItemStack getFoodUseRemainder(ItemStack stack) {
+    @Override
+    public ItemStack getContainerItem(ItemStack stack) {
         ItemStack container = stack.copy();
         if (container.hurt(1, random, null)) {
             return ItemStack.EMPTY;

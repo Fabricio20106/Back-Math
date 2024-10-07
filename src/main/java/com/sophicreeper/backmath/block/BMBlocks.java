@@ -237,7 +237,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJANSTONE_BRICK_STAIRS = BLOCKS.register("aljanstone_brick_stairs", () -> new StairsBlock(() -> ALJANSTONE_BRICKS.get().defaultBlockState(), AbstractBlock.Properties.copy(ALJANSTONE.get())));
     public static final RegistryObject<Block> ALJANSTONE_BRICK_SLAB = BLOCKS.register("aljanstone_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(ALJANSTONE.get())));
     public static final RegistryObject<Block> ALJANSTONE_BRICK_WALL = BLOCKS.register("aljanstone_brick_wall", () -> new WallBlock(AbstractBlock.Properties.copy(ALJANSTONE.get())));
-    public static final RegistryObject<Block> CHISELED_ALJANSTONE_FABRICIO = BLOCKS.register("chiseled_aljanstone_fabricio", () -> new Block(AbstractBlock.Properties.of(BMMaterials.ALJAN_ROCK).requiresCorrectToolForDrops().strength(2, 6)));
+    public static final RegistryObject<Block> CHISELED_ALJANSTONE_FABRICIO = BLOCKS.register("chiseled_aljanstone_fabricio", () -> new Block(AbstractBlock.Properties.of(BMMaterials.ALJAN_ROCK).harvestTool(ToolType.PICKAXE).requiresCorrectToolForDrops().strength(2, 6)));
     public static final RegistryObject<Block> CHISELED_ALJANSTONE_JUNE = BLOCKS.register("chiseled_aljanstone_june", () -> new Block(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));
     public static final RegistryObject<Block> CHISELED_ALJANSTONE_SOPHIE = BLOCKS.register("chiseled_aljanstone_sophie", () -> new Block(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));
     public static final RegistryObject<Block> CHISELED_ALJANSTONE_LUCIA = BLOCKS.register("chiseled_aljanstone_lucia", () -> new Block(AbstractBlock.Properties.copy(CHISELED_ALJANSTONE_FABRICIO.get())));

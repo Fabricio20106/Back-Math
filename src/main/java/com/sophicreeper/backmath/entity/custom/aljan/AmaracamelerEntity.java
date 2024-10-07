@@ -208,7 +208,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
     // Applies a velocity to the entities, to push them away from each other.
     public void push(Entity entity) {
         super.push(entity);
-        if ((entity.getType().is(BMEntityTypeTags.AMARACAMELER_TARGETS)) && this.canDamageEntity()) this.dealDamage((LivingEntity) entity);
+        if (entity.getType().is(BMEntityTypeTags.AMARACAMELER_TARGETS) && this.canDamageEntity()) this.dealDamage((LivingEntity) entity);
     }
 
     // Called by a player entity when they collide with an entity.

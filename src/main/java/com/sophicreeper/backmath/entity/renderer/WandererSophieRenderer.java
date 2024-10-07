@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.renderer;
 
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -17,7 +18,11 @@ public class WandererSophieRenderer extends TermianPlayerRenderer<WandererSophie
 
     @Nonnull
     public ResourceLocation getTextureLocation(WandererSophieEntity sophie) {
-        WandererSophieVariant variant = sophie.getRegistryVariant();
-        return new ResourceLocation(variant.getTextureLocation().getNamespace(), "textures/" + variant.getTextureLocation().getPath() + ".png");
+        try {
+            WandererSophieVariant variant = sophie.getRegistryVariant();
+            return new ResourceLocation(variant.getTextureLocation().getNamespace(), "textures/" + variant.getTextureLocation().getPath() + ".png");
+        } catch (NullPointerException exception) {
+            return BackMath.entityTexture("sophie/wanderer/yellow_axolotl");
+        }
     }
 }

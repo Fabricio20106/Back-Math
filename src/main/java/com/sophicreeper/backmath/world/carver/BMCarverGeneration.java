@@ -21,10 +21,12 @@ public class BMCarverGeneration {
                     settings.addCarver(GenerationStage.Carving.AIR, BMConfiguredCarvers.ALJAN_CAVE);
                     settings.addCarver(GenerationStage.Carving.AIR, BMConfiguredCarvers.ALJAN_RAVINE);
                 }
-
-                if (Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.enableUnderwaterAljanCaves.get()) {
-                    settings.addCarver(GenerationStage.Carving.LIQUID, BMConfiguredCarvers.ALJAN_UNDERWATER_CAVE);
+                if (Objects.equals(biome.getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.enableAljanLargeCaves.get()) {
+                    settings.addCarver(GenerationStage.Carving.AIR, BMConfiguredCarvers.ALJAN_LARGE_CAVE);
                 }
+            }
+            if (Objects.equals(BMBiomes.SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) || Objects.equals(BMBiomes.DEEP_SLEEPISH_OCEAN.get().getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.enableUnderwaterAljanCaves.get()) {
+                settings.addCarver(GenerationStage.Carving.LIQUID, BMConfiguredCarvers.ALJAN_UNDERWATER_CAVE);
             }
         }
     }

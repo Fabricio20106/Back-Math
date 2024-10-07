@@ -232,6 +232,12 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
     }
 
     @Override
+    protected void dropCustomDeathLoot(DamageSource source, int lootingLevel, boolean wasRecentlyHit) {
+        super.dropCustomDeathLoot(source, lootingLevel, wasRecentlyHit);
+        this.inventory.removeAllItems().forEach(this::spawnAtLocation);
+    }
+
+    @Override
     public SoundEvent getCelebrationSound() {
         return BMSounds.ENTITY_LUCIA_CELEBRATE;
     }

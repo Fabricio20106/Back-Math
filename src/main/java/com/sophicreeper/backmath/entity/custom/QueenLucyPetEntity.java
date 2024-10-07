@@ -102,7 +102,7 @@ public class QueenLucyPetEntity extends TameableEntity {
 
     @Override
     public ITextComponent getName() {
-        return this.getCustomName() != null ? removeAction(this.getCustomName()) : this.getRegistryVariant().getDisplayName();
+        return this.getCustomName() != null ? removeAction(this.getCustomName()) : (this.getRegistryVariant() != null ? this.getRegistryVariant().getDisplayName() : super.getName());
     }
 
     @Nullable
@@ -216,29 +216,29 @@ public class QueenLucyPetEntity extends TameableEntity {
     }
 
     public String getVariant() {
-        if (BMRegistries.QUEEN_LUCY_PET_VARIANT.containsKey(ResourceLocation.tryParse(this.entityData.get(VARIANT)))) {
+        if (QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.containsKey(new ResourceLocation(this.entityData.get(VARIANT)))) {
             return this.entityData.get(VARIANT);
         } else {
             LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.invalid_get", this.entityData.get(VARIANT))).getString());
         }
-        return BMQueenLucyPetVariants.CURRENT.get().getRegistryName().toString();
+        return BMQueenLucyPetVariants.CURRENT.get().getAssetID().toString();
     }
 
     public QueenLucyPetVariant getRegistryVariant() {
-        return BMRegistries.QUEEN_LUCY_PET_VARIANT.getValue(ResourceLocation.tryParse(this.entityData.get(VARIANT)));
+        return QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.get(new ResourceLocation(this.entityData.get(VARIANT)));
     }
 
     public void setVariant(QueenLucyPetVariant variant) {
-        if (BMRegistries.QUEEN_LUCY_PET_VARIANT.containsValue(variant)) {
-            this.entityData.set(VARIANT, variant.getRegistryName().toString());
+        if (variant != null && variant.getAssetID() != null) {
+            this.entityData.set(VARIANT, variant.getAssetID().toString());
         } else {
-            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.invalid_set", variant.getRegistryName().toString())).getString());
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.invalid_set", "something")).getString());
         }
     }
 
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(VARIANT, BMQueenLucyPetVariants.CURRENT.get().getRegistryName().toString());
+        this.entityData.define(VARIANT, BMQueenLucyPetVariants.CURRENT.get().getAssetID().toString());
     }
 
     public void addAdditionalSaveData(CompoundNBT tag) {

@@ -1,4 +1,5 @@
 {
+  "asset_id": "backmath:witcher",
   "texture_location": "backmath:entity/sophie/wanderer/witcher",
   "slim_arms": true
 }

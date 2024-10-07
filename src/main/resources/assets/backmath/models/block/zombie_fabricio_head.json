@@ -1,5 +1,5 @@
 {
-  "parent": "backmath:block/template_bm_head_ground_no_overlay",
+  "parent": "backmath:block/template_head_no_overlay",
   "textures": {
     "skin": "backmath:entity/zombie/zombie_fabricio"
   }

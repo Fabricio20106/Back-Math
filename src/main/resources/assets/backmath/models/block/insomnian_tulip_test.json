@@ -1,0 +1,51 @@
+{
+  "credit": "Made with Blockbench by isabellawoods on 5-10-24",
+  "ambientocclusion": false,
+  "textures": {
+    "stalk": "backmath:block/insomnian_tulip",
+    "overlay": "backmath:block/insomnian_tulip_overlay",
+    "particle": "#stalk"
+  },
+  "elements": [
+    {
+      "from": [0.8, 0, 8],
+      "to": [15.2, 16, 8],
+      "shade": false,
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#stalk"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#stalk"}
+      }
+    },
+    {
+      "from": [8, 0, 0.8],
+      "to": [8, 16, 15.2],
+      "shade": false,
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+      "faces": {
+        "east": {"uv": [0, 0, 16, 16], "texture": "#stalk"},
+        "west": {"uv": [0, 0, 16, 16], "texture": "#stalk"}
+      }
+    },
+    {
+      "from": [0.8, 0, 8],
+      "to": [15.2, 16, 8],
+      "shade": false,
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#overlay"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#overlay"}
+      }
+    },
+    {
+      "from": [8, 0, 0.8],
+      "to": [8, 16, 15.2],
+      "shade": false,
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8], "rescale": true},
+      "faces": {
+        "east": {"uv": [0, 0, 16, 16], "texture": "#overlay"},
+        "west": {"uv": [0, 0, 16, 16], "texture": "#overlay"}
+      }
+    }
+  ]
+}

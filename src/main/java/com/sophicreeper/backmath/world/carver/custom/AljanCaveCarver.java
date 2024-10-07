@@ -23,20 +23,17 @@ public class AljanCaveCarver extends CaveWorldCarver {
     protected boolean hasWater(IChunk chunk, int chunkX, int chunkZ, int minX, int maxX, int minY, int maxY, int minZ, int maxZ) {
         BlockPos.Mutable mutablePos = new BlockPos.Mutable();
 
-        for(int i = minX; i < maxX; ++i) {
-            for(int j = minZ; j < maxZ; ++j) {
-                for(int k = minY - 1; k <= maxY + 1; ++k) {
+        for (int i = minX; i < maxX; ++i) {
+            for (int j = minZ; j < maxZ; ++j) {
+                for (int k = minY - 1; k <= maxY + 1; ++k) {
                     if (BMFluidTags.ALJAN_CARVER_REPLACEABLES.equals(chunk.getFluidState(mutablePos.set(i + chunkX * 16, k, j + chunkZ * 16)).getType())) {
                         return true;
                     }
 
-                    if (k != maxY + 1 && !this.isOnEdge(minX, maxX, minZ, maxZ, i, j)) {
-                        k = maxY;
-                    }
+                    if (k != maxY + 1 && !this.isOnEdge(minX, maxX, minZ, maxZ, i, j)) k = maxY;
                 }
             }
         }
-
         return false;
     }
 

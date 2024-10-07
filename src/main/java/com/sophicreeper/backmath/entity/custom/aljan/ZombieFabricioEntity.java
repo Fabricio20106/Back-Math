@@ -72,15 +72,15 @@ public class ZombieFabricioEntity extends MonsterEntity {
     }
 
     protected void registerGoals() {
+        this.goalSelector.addGoal(2, new ZombieFabricioAttackGoal(this, 1, false));
         this.goalSelector.addGoal(4, new StompTurtleEggGoal(this, 1, 3));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.addAttackTargets();
     }
 
     protected void addAttackTargets() {
-        this.goalSelector.addGoal(2, new ZombieFabricioAttackGoal(this, 1, false));
-        this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
@@ -91,9 +91,7 @@ public class ZombieFabricioEntity extends MonsterEntity {
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherInsomniaSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ArcherLuciaEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, KarateLuciaEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucyEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, ShyFabricioEntity.class, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }
 

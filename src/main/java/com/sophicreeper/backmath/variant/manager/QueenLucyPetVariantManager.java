@@ -16,7 +16,6 @@ import org.apache.logging.log4j.Logger;
 import java.util.Map;
 
 public class QueenLucyPetVariantManager extends JsonReloadListener {
-    private Map<ResourceLocation, QueenLucyPetVariant> queenLucyPetVariants = ImmutableMap.of();
     private static final Gson GSON = createQueenLucyPetVariantSerializer().create();
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -38,7 +37,7 @@ public class QueenLucyPetVariantManager extends JsonReloadListener {
                 LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.parse_error", location)).getString(), exception);
             }
         }));
-        this.queenLucyPetVariants = builder.build();
+        QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.putAll(builder.build());
         LOGGER.info(new TranslationTextComponent("console.backmath.queen_lucy_pet_variant.loaded", builder.build().size()).getString());
     }
 

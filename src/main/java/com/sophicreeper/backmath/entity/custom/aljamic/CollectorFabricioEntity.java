@@ -20,7 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
@@ -149,7 +148,6 @@ public class CollectorFabricioEntity extends AljamicGroupMemberEntity {
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT tag) {
         this.populateAljanEquipmentSlots();
         this.populateDefaultEquipmentEnchantments(difficulty);
-        this.setItemInHand(Hand.MAIN_HAND, new ItemStack(AxolotlTest.ALJAMEED_BLADE.get()));
         return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, tag);
     }
 

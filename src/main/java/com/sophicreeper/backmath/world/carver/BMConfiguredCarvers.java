@@ -9,6 +9,7 @@ import net.minecraft.world.gen.feature.ProbabilityConfig;
 public class BMConfiguredCarvers {
     public static final ConfiguredCarver<ProbabilityConfig> ALJAN_UNDERWATER_CAVE = register("aljan_underwater_cave", BMWorldCarvers.ALJAN_UNDERWATER_CAVE.get().configured(new ProbabilityConfig(0.06666667F))); // 6.666667%
     public static final ConfiguredCarver<ProbabilityConfig> ALJAN_CAVE = register("aljan_cave", BMWorldCarvers.ALJAN_CAVE.get().configured(new ProbabilityConfig(0.14285715F))); // 14.285715%
+    public static final ConfiguredCarver<ProbabilityConfig> ALJAN_LARGE_CAVE = register("aljan_large_cave", BMWorldCarvers.ALJAN_LARGE_CAVE.get().configured(new ProbabilityConfig(0.01F))); // 1%
     public static final ConfiguredCarver<ProbabilityConfig> ALJAN_RAVINE = register("aljan_ravine", BMWorldCarvers.ALJAN_RAVINE.get().configured(new ProbabilityConfig(0.02F))); // 2%
 
     private static <WC extends ICarverConfig> ConfiguredCarver<WC> register(String name, ConfiguredCarver<WC> carver) {

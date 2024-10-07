@@ -1,6 +1,6 @@
 {
-  "parent": "backmath:block/template_bm_head_ground",
+  "parent": "backmath:block/template_head",
   "textures": {
-    "skin": "backmath:entity/angry_sophie"
+    "skin": "backmath:entity/sophie/angry_sophie"
   }
 }

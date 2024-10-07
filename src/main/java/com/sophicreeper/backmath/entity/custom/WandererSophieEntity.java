@@ -5,7 +5,6 @@ import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
@@ -55,7 +54,7 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(VARIANT, BMWandererSophieVariants.YELLOW_AXOLOTL.get().getRegistryName().toString());
+        this.entityData.define(VARIANT, BMWandererSophieVariants.YELLOW_AXOLOTL.get().getAssetID().toString());
     }
 
     @Override
@@ -81,9 +80,7 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     public void aiStep() {
         this.updateSwingTime();
         if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
-                this.heal(1);
-            }
+            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) this.heal(1);
         }
         super.aiStep();
     }
@@ -100,23 +97,23 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     }
 
     public String getVariant() {
-        if (BMRegistries.WANDERER_SOPHIE_VARIANT.containsKey(ResourceLocation.tryParse(this.entityData.get(VARIANT)))) {
+        if (WandererSophieVariant.isVariantRegistered(this.entityData.get(VARIANT))) {
             return this.entityData.get(VARIANT);
         } else {
             LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_get", this.entityData.get(VARIANT))).getString());
         }
-        return BMWandererSophieVariants.YELLOW_AXOLOTL.get().getRegistryName().toString();
+        return BMWandererSophieVariants.YELLOW_AXOLOTL.get().getAssetID().toString();
     }
 
     public WandererSophieVariant getRegistryVariant() {
-        return BMRegistries.WANDERER_SOPHIE_VARIANT.getValue(ResourceLocation.tryParse(this.entityData.get(VARIANT)));
+        return WandererSophieVariant.DATA_DRIVEN_VARIANTS.get(new ResourceLocation(this.entityData.get(VARIANT)));
     }
 
     public void setVariant(WandererSophieVariant variant) {
-        if (BMRegistries.WANDERER_SOPHIE_VARIANT.containsValue(variant)) {
-            this.entityData.set(VARIANT, variant.getRegistryName().toString());
+        if (variant != null && variant.getAssetID() != null) {
+            this.entityData.set(VARIANT, variant.getAssetID().toString());
         } else {
-            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_set", variant.getRegistryName().toString())).getString());
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_set", "currently logger doesn't work")).getString());
         }
     }
 
@@ -130,7 +127,8 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     protected void registerGoals() {
         super.registerGoals();
         this.goalSelector.addGoal(0, new SwimGoal(this));
-        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1D, Ingredient.of(BMItemTags.WANDERER_SOPHIE_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(1, new TemptGoal(this, 1.1, Ingredient.of(BMItemTags.WANDERER_SOPHIE_TEMPT_ITEMS), false));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.1, false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
@@ -148,7 +146,6 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBonesEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SleepishSkeletonEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AmaracamelerEntity.class, true));
-        this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1.1D, false));
     }
 
     public static AttributeModifierMap.MutableAttribute createWandererSophieAttributes() {

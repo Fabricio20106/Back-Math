@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.renderer;
 
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.model.QueenLucyPetModel;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
@@ -23,7 +24,11 @@ public class QueenLucyPetRenderer extends BipedRenderer<QueenLucyPetEntity, Quee
 
     @Nonnull
     public ResourceLocation getTextureLocation(QueenLucyPetEntity lucy) {
-        QueenLucyPetVariant variant = lucy.getRegistryVariant();
-        return new ResourceLocation(variant.getTextureLocation().getNamespace(), "textures/" + variant.getTextureLocation().getPath() + ".png");
+        try {
+            QueenLucyPetVariant variant = QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.get(new ResourceLocation(lucy.getVariant()));
+            return new ResourceLocation(variant.getTextureLocation().getNamespace(), "textures/" + variant.getTextureLocation().getPath() + ".png");
+        } catch (NullPointerException exception) {
+            return BackMath.entityTexture("queen_lucy_pet/qsp_current");
+        }
     }
 }

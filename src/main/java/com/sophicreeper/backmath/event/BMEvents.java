@@ -5,12 +5,12 @@ import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.model.FullbrightModel;
+import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.variant.manager.QueenLucyPetVariantManager;
 import com.sophicreeper.backmath.variant.manager.WandererSophieVariantManager;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
-import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
 import com.sophicreeper.backmath.world.plant.BMPlantGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructureGeneration;
@@ -71,22 +71,23 @@ public class BMEvents {
 
     @SubscribeEvent
     public static void thickenAljanFogAtNight(EntityViewRenderEvent.FogDensity event) {
-        World world = Minecraft.getInstance().level;
-        if (world != null && world.dimension() == BMDimensions.THE_ALJAN && BMUtils.aljanPackEnabled()) {
+        ClientWorld world = Minecraft.getInstance().level;
+        if (world != null && ambienceEnabled(world) && BMConfigs.COMMON_CONFIGS.enableAljanFog.get()) {
             event.setCanceled(true);
-            event.setDensity(0.02F);
+            double density = BMConfigs.COMMON_CONFIGS.aljanFogDensity.get();
+            event.setDensity((float) density);
         }
     }
 
     @SubscribeEvent
     public static void changeAljanFogColorAtNight(EntityViewRenderEvent.FogColors event) {
         ClientWorld world = Minecraft.getInstance().level;
-        if (world != null && isTimeWithinBounds(world.getDayTime()) && world.dimension() == BMDimensions.THE_ALJAN && BMUtils.aljanPackEnabled()) {
-            // 0.592F, 0.411F, 0.545F -- original values ~isa 30-9-24
-            event.setRed(0.333F * (1 - world.getStarBrightness(1)));
-            event.setGreen(0.231F * (1 - world.getStarBrightness(1)));
-            event.setBlue(0.305F * (1 - world.getStarBrightness(1)));
-        }
+        BMUtils.transitionFogColor(event, world != null && isTimeWithinBounds(world.getDayTime()) && ambienceEnabled(world) &&
+                BMConfigs.COMMON_CONFIGS.changeAljanFogColorAtNight.get());
+    }
+
+    public static boolean ambienceEnabled(ClientWorld world) {
+        return world.dimensionType().effectsLocation().equals(BackMath.backMath("the_aljan")) && BMUtils.aljanPackEnabled();
     }
 
     public static boolean isTimeWithinBounds(long dayTime) {
@@ -103,7 +104,7 @@ public class BMEvents {
             } else if (existingModel instanceof FullbrightModel) {
                 LOGGER.warn(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.light_baked_model.replacement_attempt").getString()));
             } else {
-                event.getModelRegistry().put(BackMath.backMath("insomnian_tulip"), new FullbrightModel(Sets.newHashSet(BackMath.backMath("block/insomnian_tulip_overlay")), existingModel));
+                event.getModelRegistry().put(modelLocation, new FullbrightModel(Sets.newHashSet(BackMath.backMath("block/insomnian_tulip_overlay")), existingModel));
             }
         }
     }
@@ -115,12 +116,10 @@ public class BMEvents {
             ServerWorld serverWorld = (ServerWorld) event.getWorld();
 
             try {
-                Method GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
-                ResourceLocation chunkGeneratorRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) GETCODEC_METHOD.invoke(serverWorld.getChunkSource().generator));
+                Method getCodecMethod = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+                ResourceLocation chunkGeneratorRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>) getCodecMethod.invoke(serverWorld.getChunkSource().generator));
 
-                if (chunkGeneratorRL != null && chunkGeneratorRL.getNamespace().equals("terraforged")) {
-                    return;
-                }
+                if (chunkGeneratorRL != null && chunkGeneratorRL.getNamespace().equals("terraforged")) return;
             } catch (Exception exception) {
                 LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.using_terraforged_chunk_generator", serverWorld.dimension().location()).getString()));
             }

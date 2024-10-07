@@ -24,10 +24,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.*;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
+import net.minecraftforge.client.event.EntityViewRenderEvent;
 
 import java.util.*;
 
@@ -36,6 +38,8 @@ public class BMUtils {
     private static final IFormattableTextComponent NO_EFFECT = new TranslationTextComponent("effect.none").withStyle(TextFormatting.GRAY);
     public static final Style EXPERIENCE = Style.EMPTY.withColor(Color.fromRgb(8453920));
     public static final int END_PORTAL_OPEN = 1038;
+    private static final float[] FOG_COLORS = new float[3];
+    private static float COLOR = 0;
 
     // Plays the item pickup sound at a (server) player.
     public static void playItemPickupSound(ServerPlayerEntity serverPlayer) {
@@ -138,5 +142,24 @@ public class BMUtils {
 
     public static boolean aljanPackEnabled() {
         return Minecraft.getInstance().getResourcePackRepository().getSelectedIds().contains(BackMath.backMath("aljan_texture_update").toString());
+    }
+
+    // Copied from teamtwilight/twilightforest.
+    public static void transitionFogColor(EntityViewRenderEvent.FogColors event, boolean shouldApplyColors) {
+        float[] baseColors = {event.getRed(), event.getGreen(), event.getBlue()};
+        float[] targetColors = {0.333F, 0.231F, 0.305F};
+        for (int i = 0; i < 3; i++) {
+            float base = baseColors[i];
+            float target = targetColors[i];
+            boolean inverse = base > target;
+            FOG_COLORS[i] = base == target ? target : (float) MathHelper.clampedLerp(inverse ? target : base, inverse ? base : target, COLOR);
+        }
+        float shift = (float) (0.01F * event.getRenderPartialTicks());
+        if (shouldApplyColors) COLOR += shift;
+        else COLOR -= shift;
+        COLOR = MathHelper.clamp(COLOR, 0, 1);
+        event.setRed(FOG_COLORS[0]);
+        event.setGreen(FOG_COLORS[1]);
+        event.setBlue(FOG_COLORS[2]);
     }
 }

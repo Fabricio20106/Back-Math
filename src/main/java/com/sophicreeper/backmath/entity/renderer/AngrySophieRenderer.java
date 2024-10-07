@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 @OnlyIn(Dist.CLIENT)
 public class AngrySophieRenderer extends BMPlayerRenderer<AngrySophieEntity> {
     public AngrySophieRenderer(EntityRendererManager manager) {
-        super(manager, 0.5F, false);
+        super(manager, 0.5F, true);
     }
 
     @Nonnull
