@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
+import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
@@ -49,6 +50,10 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
 
     public WandererSophieEntity(EntityType<WandererSophieEntity> type, World world) {
         super(type, world);
+    }
+
+    public WandererSophieEntity(World world) {
+        super(BMEntities.WANDERER_SOPHIE.get(), world);
     }
 
     @Override
@@ -112,6 +117,14 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     public void setVariant(WandererSophieVariant variant) {
         if (variant != null && variant.getAssetID() != null) {
             this.entityData.set(VARIANT, variant.getAssetID().toString());
+        } else {
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_set", "currently logger doesn't work")).getString());
+        }
+    }
+
+    public void setVariant(ResourceLocation variant) {
+        if (variant != null && WandererSophieVariant.DATA_DRIVEN_VARIANTS.containsKey(variant)) {
+            this.entityData.set(VARIANT, variant.toString());
         } else {
             LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.wanderer_sophie_variant.invalid_set", "currently logger doesn't work")).getString());
         }

@@ -19,7 +19,6 @@ public final class BMDataGenerator {
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper fileHelper = event.getExistingFileHelper();
 
-        // generator.addProvider(new BMBlockStateProvider(generator, fileHelper));
         generator.addProvider(new BMBlockStateProviderV2(generator, fileHelper));
         generator.addProvider(new BMItemModelProvider(generator, fileHelper));
 
@@ -29,7 +28,7 @@ public final class BMDataGenerator {
         generator.addProvider(new BMFluidTagsProvider(generator, fileHelper));
         generator.addProvider(new BMEntityTypeTagsProvider(generator, fileHelper));
         generator.addProvider(new BMEnchantmentTagsProvider(generator, fileHelper));
-        generator.addProvider(new BMWandererSophieVariantsProvider(generator));
-        generator.addProvider(new BMQueenLucyPetVariantsProvider(generator));
+        generator.addProvider(new BMWandererSophieVariantsProvider(generator, fileHelper));
+        generator.addProvider(new BMQueenLucyPetVariantsProvider(generator, fileHelper));
     }
 }

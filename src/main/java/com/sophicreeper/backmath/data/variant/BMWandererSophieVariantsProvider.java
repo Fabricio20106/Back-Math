@@ -4,12 +4,13 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.data.WandererSophieVariantProvider;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
 
 public class BMWandererSophieVariantsProvider extends WandererSophieVariantProvider {
-    public BMWandererSophieVariantsProvider(DataGenerator generation) {
-        super(generation, BackMath.MOD_ID);
+    public BMWandererSophieVariantsProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
+        super(generator, fileHelper, BackMath.MOD_ID);
     }
 
     @Nonnull
@@ -37,5 +38,8 @@ public class BMWandererSophieVariantsProvider extends WandererSophieVariantProvi
         this.add("empresary2", BMWandererSophieVariants.EMPRESARY2.get());
         this.add("entrepreneur", BMWandererSophieVariants.ENTREPRENEUR.get());
         this.add("farmer", BMWandererSophieVariants.FARMER.get());
+        this.add("swimsuit", BMWandererSophieVariants.SWIMSUIT.get());
+        this.add("green_hoodie", BMWandererSophieVariants.GREEN_HOODIE.get());
+        this.add("round_six", BMWandererSophieVariants.ROUND_SIX.get());
     }
 }

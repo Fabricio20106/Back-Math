@@ -33,7 +33,7 @@ public class TitoItem extends BlockItem {
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);
-        if (!world.isClientSide && BMKeys.isHoldingShift()) {
+        if (!world.isClientSide && BMKeys.isVanillaShiftDown()) {
             player.addItem(new ItemStack(AxolotlTest.TOTI.get()));
             handStack.shrink(1);
             if (player instanceof ServerPlayerEntity) {

@@ -1,5 +1,6 @@
 {
   "asset_id": "backmath:farmer",
   "texture_location": "backmath:entity/sophie/wanderer/farmer",
-  "slim_arms": true
+  "slim_arms": true,
+  "spawns_naturally": true
 }

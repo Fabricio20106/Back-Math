@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
-import melonystudios.variants.util.VSUtils;
+import com.sophicreeper.backmath.util.VSUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,8 +41,7 @@ public interface ToolBehaviors {
         if (BMConfigs.COMMON_CONFIGS.milkedSwordsEnabled.get()) {
             CompoundNBT tag = stack.getTag();
             ItemStack bucketStack = new ItemStack(Items.MILK_BUCKET);
-            assert tag != null;
-            if (tag.contains("milked_sword_item", TagTypes.STRING)) {
+            if (tag != null && tag.contains("milked_sword_item", TagTypes.STRING)) {
                 ResourceLocation itemLocation = ResourceLocation.tryParse(tag.getString("milked_sword_item"));
                 if (itemLocation != null && ForgeRegistries.ITEMS.containsKey(itemLocation)) {
                     ItemStack tagStack = new ItemStack(ForgeRegistries.ITEMS.getValue(itemLocation));
@@ -50,8 +49,8 @@ public interface ToolBehaviors {
                     tag.put("milked_sword_item", tagStack.save(new CompoundNBT()));
                 }
             }
-            if (tag.contains("milked_sword_item", TagTypes.COMPOUND)) {
-                ItemStack tagStack = ItemStack.of(tag.getCompound("milked_sword_item"));;
+            if (tag != null && tag.contains("milked_sword_item", TagTypes.COMPOUND)) {
+                ItemStack tagStack = VSUtils.loadStack(tag.getCompound("milked_sword_item"));
                 if (!tagStack.isEmpty()) bucketStack = tagStack;
             }
             if (!player.inventory.add(bucketStack)) player.drop(bucketStack, false);
@@ -60,9 +59,8 @@ public interface ToolBehaviors {
 
     default void applyTagEffects(ItemStack stack, LivingEntity livEntity) {
         CompoundNBT tag = stack.getTag();
-        assert tag != null;
         List<EffectInstance> tagEffects = VSUtils.getAppliedEffectsFromNBT(livEntity.level, stack);
-        if (tagEffects != null && !tagEffects.isEmpty()) {
+        if (tag != null && tagEffects != null && !tagEffects.isEmpty()) {
             for (EffectInstance instance : tagEffects) livEntity.addEffect(instance);
         } else if (!getAppliedEffects().isEmpty()) {
             for (EffectInstance instance : getAppliedEffects()) livEntity.addEffect(instance);
@@ -91,7 +89,7 @@ public interface ToolBehaviors {
             }
         }
         if (tag != null && tag.contains("use_remainder", TagTypes.COMPOUND)) {
-            ItemStack tagStack = ItemStack.of(tag.getCompound("use_remainder"));
+            ItemStack tagStack = VSUtils.loadStack(tag.getCompound("use_remainder"));
             if (!tagStack.isEmpty()) return tagStack;
         }
         return containerStack;
@@ -100,8 +98,7 @@ public interface ToolBehaviors {
     default ITag<EntityType<?>> inSpareyEffectivesTag(ItemStack stack) {
         ITag<EntityType<?>> effectiveEntities = BMEntityTypeTags.SPAREY_EFFECTIVES;
         CompoundNBT tag = stack.getTag();
-        assert tag != null;
-        if (tag.contains("effective_entities", TagTypes.STRING)) {
+        if (tag != null && tag.contains("effective_entities", TagTypes.STRING)) {
             ResourceLocation tagLocation = ResourceLocation.tryParse(tag.getString("effective_entities"));
             if (tagLocation != null) {
                 ITag<EntityType<?>> managerTag = TagCollectionManager.getInstance().getEntityTypes().getTag(tagLocation);
@@ -115,8 +112,7 @@ public interface ToolBehaviors {
     default ITag<EntityType<?>> inDevilSpareyEffectivesTag(ItemStack stack) {
         ITag<EntityType<?>> effectiveEntities = BMEntityTypeTags.DEVIL_SPAREY_EFFECTIVES;
         CompoundNBT tag = stack.getTag();
-        assert tag != null;
-        if (tag.contains("effective_entities", TagTypes.STRING)) {
+        if (tag != null && tag.contains("effective_entities", TagTypes.STRING)) {
             ResourceLocation tagLocation = ResourceLocation.tryParse(tag.getString("effective_entities"));
             if (tagLocation != null) {
                 ITag<EntityType<?>> managerTag = TagCollectionManager.getInstance().getEntityTypes().getTag(tagLocation);
@@ -129,8 +125,7 @@ public interface ToolBehaviors {
     default ITag<EntityType<?>> inSpareyProhibitedTag(ItemStack stack) {
         ITag<EntityType<?>> prohibitedEntities = BMEntityTypeTags.SPAREYS_PROHIBITED;
         CompoundNBT tag = stack.getTag();
-        assert tag != null;
-        if (tag.contains("prohibited_entities", TagTypes.STRING)) {
+        if (tag != null && tag.contains("prohibited_entities", TagTypes.STRING)) {
             ResourceLocation tagLocation = ResourceLocation.tryParse(tag.getString("prohibited_entities"));
             if (tagLocation != null) {
                 ITag<EntityType<?>> managerTag = TagCollectionManager.getInstance().getEntityTypes().getTag(tagLocation);
@@ -152,12 +147,12 @@ public interface ToolBehaviors {
             boolean showIcon = true;
             boolean noCounter = false;
             List<ItemStack> curativeItems = Lists.newArrayList();
-            if (effectTag.contains("duration", TagTypes.INTEGER)) duration = effectTag.getInt("duration");
-            if (effectTag.contains("amplifier", TagTypes.INTEGER)) amplifier = effectTag.getInt("amplifier");
-            if (effectTag.contains("ambient")) ambient = effectTag.getBoolean("ambient");
-            if (effectTag.contains("show_particles")) showParticles = effectTag.getBoolean("show_particles");
-            if (effectTag.contains("show_icon")) showIcon = effectTag.getBoolean("show_icon");
-            if (effectTag.contains("no_counter")) noCounter = effectTag.getBoolean("no_counter");
+            if (effectTag.contains("duration", TagTypes.ANY_NUMERIC)) duration = effectTag.getInt("duration");
+            if (effectTag.contains("amplifier", TagTypes.ANY_NUMERIC)) amplifier = effectTag.getInt("amplifier");
+            if (effectTag.contains("ambient", TagTypes.ANY_NUMERIC)) ambient = effectTag.getBoolean("ambient");
+            if (effectTag.contains("show_particles", TagTypes.ANY_NUMERIC)) showParticles = effectTag.getBoolean("show_particles");
+            if (effectTag.contains("show_icon", TagTypes.ANY_NUMERIC)) showIcon = effectTag.getBoolean("show_icon");
+            if (effectTag.contains("no_counter", TagTypes.ANY_NUMERIC)) noCounter = effectTag.getBoolean("no_counter");
             if (effectTag.contains("curative_items", TagTypes.LIST)) {
                 ListNBT curativeList = effectTag.getList("curative_items", TagTypes.COMPOUND);
                 for (int i = 0; i < curativeList.size(); i++) curativeItems.add(ItemStack.of(curativeList.getCompound(i)));

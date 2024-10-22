@@ -5,6 +5,7 @@ import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.model.FullbrightModel;
+import com.sophicreeper.backmath.command.BMDebuggingCommands;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.variant.manager.QueenLucyPetVariantManager;
@@ -40,6 +41,7 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -58,6 +60,11 @@ import static com.sophicreeper.backmath.BackMath.LOGGER;
 
 @Mod.EventBusSubscriber(modid = BackMath.MOD_ID)
 public class BMEvents {
+    @SubscribeEvent
+    public static void registerCommands(final RegisterCommandsEvent event) {
+        if (Minecraft.getInstance().getLaunchedVersion().equals("backmath-development")) BMDebuggingCommands.register(event.getDispatcher());
+    }
+
     @SubscribeEvent
     public static void biomeLoadEvent(final BiomeLoadingEvent event) {
         BMOreGeneration.generateOres(event);
@@ -82,8 +89,10 @@ public class BMEvents {
     @SubscribeEvent
     public static void changeAljanFogColorAtNight(EntityViewRenderEvent.FogColors event) {
         ClientWorld world = Minecraft.getInstance().level;
-        BMUtils.transitionFogColor(event, world != null && isTimeWithinBounds(world.getDayTime()) && ambienceEnabled(world) &&
-                BMConfigs.COMMON_CONFIGS.changeAljanFogColorAtNight.get());
+        if (world != null && isTimeWithinBounds(world.getDayTime()) && ambienceEnabled(world) &&
+                BMConfigs.COMMON_CONFIGS.changeAljanFogColorAtNight.get()) {
+            BMUtils.transitionFogColor(event, world.getDayTime() <= 22300);
+        }
     }
 
     public static boolean ambienceEnabled(ClientWorld world) {

@@ -5,7 +5,7 @@
   "textures": {
     "relic": "backmath:entity/queen_lucy/relic",
     "base": "block/gold_block",
-    "particle": "#block"
+    "particle": "#base"
   },
   "elements": [
     {

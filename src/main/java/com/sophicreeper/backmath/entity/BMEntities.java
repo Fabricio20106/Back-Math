@@ -19,7 +19,7 @@ public class BMEntities {
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, BackMath.MOD_ID);
 
     public static final RegistryObject<EntityType<WandererSophieEntity>> WANDERER_SOPHIE = ENTITIES.register("friend_sophie", () ->
-            EntityType.Builder.of(WandererSophieEntity::new, EntityClassification.AMBIENT).sized(0.6F, 1.8F).clientTrackingRange(32).build("friend_sophie"));
+            EntityType.Builder.<WandererSophieEntity>of(WandererSophieEntity::new, EntityClassification.AMBIENT).sized(0.6F, 1.8F).clientTrackingRange(32).build("friend_sophie"));
 
     public static final RegistryObject<EntityType<AngrySophieEntity>> ANGRY_SOPHIE = ENTITIES.register("angry_sophie", () ->
             EntityType.Builder.of(AngrySophieEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(32).build("angry_sophie"));

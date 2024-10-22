@@ -1,5 +1,6 @@
 {
   "asset_id": "backmath:pajama",
   "texture_location": "backmath:entity/sophie/wanderer/pajama",
-  "slim_arms": true
+  "slim_arms": true,
+  "spawns_naturally": true
 }

@@ -1,8 +1,7 @@
-package melonystudios.variants.util;
+package com.sophicreeper.backmath.util;
 
 import com.google.common.collect.Lists;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -23,9 +22,14 @@ import java.util.List;
 // Utility methods copied from Variants
 public class VSUtils {
     public static CompoundNBT saveStack(ItemStack stack, CompoundNBT tag) {
-        tag.putString("id", stack.getItem().getRegistryName().toString());
-        if (stack.getCount() != 1) tag.putInt("count", stack.getCount());
-        if (stack.getTag() != null) tag.put("components", stack.getTag().copy());
+        if (stack == ItemStack.EMPTY) {
+            tag.putString("id", "minecraft:air");
+            tag.putInt("count", 0);
+        } else {
+            tag.putString("id", stack.getItem().getRegistryName().toString());
+            if (stack.getCount() != 1) tag.putInt("count", stack.getCount());
+            if (stack.getTag() != null) tag.put("components", stack.getTag().copy());
+        }
         return tag;
     }
 

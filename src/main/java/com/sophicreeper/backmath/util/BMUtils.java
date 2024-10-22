@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.util;
 
+import com.google.common.collect.Lists;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
@@ -35,7 +36,7 @@ import java.util.*;
 
 // Just generalized methods that are used more than twice throughout the code.
 public class BMUtils {
-    private static final IFormattableTextComponent NO_EFFECT = new TranslationTextComponent("effect.none").withStyle(TextFormatting.GRAY);
+    private static final List<String> VALID_WOOD_TYPES = Lists.newArrayList("aljanwood", "aljancap", "insomnian", "avondalic_willow");
     public static final Style EXPERIENCE = Style.EMPTY.withColor(Color.fromRgb(8453920));
     public static final int END_PORTAL_OPEN = 1038;
     private static final float[] FOG_COLORS = new float[3];
@@ -130,14 +131,31 @@ public class BMUtils {
 
     // Sets a random Wanderer Sophie variant from the wanderer_sophie_variant registry.
     public static void setRandomWSRegistryBasedVariant(WandererSophieEntity sophie) {
-        WandererSophieVariant[] variants = BMRegistries.WANDERER_SOPHIE_VARIANT.getValues().toArray(new WandererSophieVariant[0]);
-        sophie.setVariant(variants[sophie.level.random.nextInt(BMRegistries.WANDERER_SOPHIE_VARIANT.getValues().size())]);
+        ResourceLocation[] variants = WandererSophieVariant.DATA_DRIVEN_VARIANTS.keySet().toArray(new ResourceLocation[0]);
+        ResourceLocation variant = variants[sophie.level.random.nextInt(WandererSophieVariant.DATA_DRIVEN_VARIANTS.size())];
+        while (WandererSophieVariant.DATA_DRIVEN_VARIANTS.get(variant) != null &&
+                !WandererSophieVariant.DATA_DRIVEN_VARIANTS.get(variant).spawnsNaturally()) {
+            variant = variants[sophie.level.random.nextInt(WandererSophieVariant.DATA_DRIVEN_VARIANTS.size())];
+        }
+        sophie.setVariant(variant);
     }
 
     // Sets a random Queen Lucy Pet variant from the queen_lucy_pet_variant registry.
     public static void setRandomQLPRegistryBasedVariant(QueenLucyPetEntity lucy) {
         QueenLucyPetVariant[] variants = BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().toArray(new QueenLucyPetVariant[0]);
         lucy.setVariant(variants[lucy.level.random.nextInt(BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().size())]);
+    }
+
+    public static String getBoatType(ItemStack stack, String woodType) {
+        CompoundNBT tag = stack.getTag();
+        if (tag != null && tag.contains("wood_type", TagTypes.STRING)) {
+            if (isValidWoodType(tag.getString("wood_type"))) return tag.getString("wood_type");
+        }
+        return woodType;
+    }
+
+    private static boolean isValidWoodType(String woodType) {
+        return VALID_WOOD_TYPES.contains(woodType);
     }
 
     public static boolean aljanPackEnabled() {

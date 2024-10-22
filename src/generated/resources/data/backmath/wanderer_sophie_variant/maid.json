@@ -1,5 +1,6 @@
 {
   "asset_id": "backmath:maid",
   "texture_location": "backmath:entity/sophie/wanderer/maid",
-  "slim_arms": true
+  "slim_arms": true,
+  "spawns_naturally": true
 }

@@ -4,12 +4,13 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.data.QueenLucyPetVariantProvider;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
 
 public class BMQueenLucyPetVariantsProvider extends QueenLucyPetVariantProvider {
-    public BMQueenLucyPetVariantsProvider(DataGenerator generation) {
-        super(generation, BackMath.MOD_ID);
+    public BMQueenLucyPetVariantsProvider(DataGenerator generator, ExistingFileHelper fileHelper) {
+        super(generator, fileHelper, BackMath.MOD_ID);
     }
 
     @Nonnull

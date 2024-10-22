@@ -1,5 +1,6 @@
 {
   "asset_id": "backmath:brazil_shirt",
   "texture_location": "backmath:entity/sophie/wanderer/brazil_shirt",
-  "slim_arms": true
+  "slim_arms": true,
+  "spawns_naturally": true
 }

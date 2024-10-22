@@ -1,0 +1,6 @@
+{
+  "asset_id": "backmath:round_six",
+  "texture_location": "backmath:entity/sophie/wanderer/round_six",
+  "slim_arms": true,
+  "spawns_naturally": false
+}

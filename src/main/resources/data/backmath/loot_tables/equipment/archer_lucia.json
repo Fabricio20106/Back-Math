@@ -24,6 +24,15 @@
       "entries": [
         {
           "type": "minecraft:item",
+          "name": "backmath:archer_lucia_boots"
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
           "name": "backmath:angelic_crossbow"
         }
       ]

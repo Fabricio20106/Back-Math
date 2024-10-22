@@ -27,4 +27,7 @@ public class BMWandererSophieVariants {
     public static final RegistryObject<WandererSophieVariant> EMPRESARY2 = VARIANTS.register("empresary2", () -> new WandererSophieVariant(backMath("empresary2"), backMath("entity/sophie/wanderer/empresary2"), true));
     public static final RegistryObject<WandererSophieVariant> ENTREPRENEUR = VARIANTS.register("entrepreneur", () -> new WandererSophieVariant(backMath("entrepreneur"), backMath("entity/sophie/wanderer/entrepreneur"), true));
     public static final RegistryObject<WandererSophieVariant> FARMER = VARIANTS.register("farmer", () -> new WandererSophieVariant(backMath("farmer"), backMath("entity/sophie/wanderer/farmer"), true));
+    public static final RegistryObject<WandererSophieVariant> SWIMSUIT = VARIANTS.register("swimsuit", () -> new WandererSophieVariant(backMath("swimsuit"), backMath("entity/sophie/wanderer/swimsuit"), true, false));
+    public static final RegistryObject<WandererSophieVariant> GREEN_HOODIE = VARIANTS.register("green_hoodie", () -> new WandererSophieVariant(backMath("green_hoodie"), backMath("entity/sophie/wanderer/green_hoodie"), true, false));
+    public static final RegistryObject<WandererSophieVariant> ROUND_SIX = VARIANTS.register("round_six", () -> new WandererSophieVariant(backMath("round_six"), backMath("entity/sophie/wanderer/round_six"), true, false));
 }

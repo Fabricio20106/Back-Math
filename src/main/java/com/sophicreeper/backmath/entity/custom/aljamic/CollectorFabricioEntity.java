@@ -8,7 +8,7 @@ import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
-import melonystudios.variants.util.VSUtils;
+import com.sophicreeper.backmath.util.VSUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;

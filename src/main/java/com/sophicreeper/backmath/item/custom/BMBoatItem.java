@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.item.custom;
 
 import com.sophicreeper.backmath.dispenser.vanilla.DispenseBMBoatBehavior;
 import com.sophicreeper.backmath.entity.custom.misc.BMBoatEntity;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,7 +22,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class BMBoatItem extends BoatItem {
-    private static final Predicate<Entity> CAN_COLLIDE_WITH_ENTITY = EntityPredicates.NO_SPECTATORS.and(Entity::canBeCollidedWith);
+    private static final Predicate<Entity> SPECTATORS_PREDICATE = EntityPredicates.NO_SPECTATORS.and(Entity::canBeCollidedWith);
     private final String woodType;
 
     public BMBoatItem(Properties properties, String woodType) {
@@ -32,43 +33,39 @@ public class BMBoatItem extends BoatItem {
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        ItemStack heldItem = player.getItemInHand(hand);
-        RayTraceResult fluidRayTrace = getPlayerPOVHitResult(world, player, RayTraceContext.FluidMode.ANY);
-        if (fluidRayTrace.getType() == RayTraceResult.Type.MISS) {
-            return ActionResult.pass(heldItem);
+        ItemStack handStack = player.getItemInHand(hand);
+        RayTraceResult hitResult = getPlayerPOVHitResult(world, player, RayTraceContext.FluidMode.ANY);
+        if (hitResult.getType() == RayTraceResult.Type.MISS) {
+            return ActionResult.pass(handStack);
         } else {
-            Vector3d vec3D = player.getViewVector(1);
-            List<Entity> list = world.getEntities(player, player.getBoundingBox().expandTowards(vec3D.scale(5)).inflate(1), CAN_COLLIDE_WITH_ENTITY);
-            if (!list.isEmpty()) {
-                Vector3d vector3D1 = player.getEyePosition(1);
+            Vector3d viewVector = player.getViewVector(1);
+            List<Entity> entitiesList = world.getEntities(player, player.getBoundingBox().expandTowards(viewVector.scale(5)).inflate(1), SPECTATORS_PREDICATE);
+            if (!entitiesList.isEmpty()) {
+                Vector3d eyePosition = player.getEyePosition(1);
 
-                for (Entity entity : list) {
+                for (Entity entity : entitiesList) {
                     AxisAlignedBB axisAlignedBB = entity.getBoundingBox().inflate(entity.getPickRadius());
-                    if (axisAlignedBB.contains(vector3D1)) {
-                        return ActionResult.pass(heldItem);
-                    }
+                    if (axisAlignedBB.contains(eyePosition)) return ActionResult.pass(handStack);
                 }
             }
 
-            if (fluidRayTrace.getType() == RayTraceResult.Type.BLOCK) {
-                BMBoatEntity backMathBoat = new BMBoatEntity(world, fluidRayTrace.getLocation().x, fluidRayTrace.getLocation().y, fluidRayTrace.getLocation().z);
-                backMathBoat.setWoodType(this.woodType);
-                backMathBoat.yRot = player.yRot;
-                if (!world.noCollision(backMathBoat, backMathBoat.getBoundingBox().inflate(-0.1D))) {
-                    return ActionResult.fail(heldItem);
+            if (hitResult.getType() == RayTraceResult.Type.BLOCK) {
+                BMBoatEntity boatEntity = new BMBoatEntity(world, hitResult.getLocation().x, hitResult.getLocation().y, hitResult.getLocation().z);
+                boatEntity.setWoodType(BMUtils.getBoatType(handStack, this.woodType));
+                boatEntity.yRot = player.yRot;
+                if (!world.noCollision(boatEntity, boatEntity.getBoundingBox().inflate(-0.1D))) {
+                    return ActionResult.fail(handStack);
                 } else {
                     if (!world.isClientSide) {
-                        world.addFreshEntity(backMathBoat);
-                        if (!player.abilities.instabuild) {
-                            heldItem.shrink(1);
-                        }
+                        world.addFreshEntity(boatEntity);
+                        if (!player.abilities.instabuild) handStack.shrink(1);
                     }
 
                     player.awardStat(Stats.ITEM_USED.get(this));
-                    return ActionResult.sidedSuccess(heldItem, world.isClientSide);
+                    return ActionResult.sidedSuccess(handStack, world.isClientSide);
                 }
             } else {
-                return ActionResult.pass(heldItem);
+                return ActionResult.pass(handStack);
             }
         }
     }

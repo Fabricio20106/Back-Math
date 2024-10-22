@@ -64,13 +64,13 @@ public class BlockFamilyProvider {
     }
 
     public BlockFamilyProvider slab(Block slab) {
-        slab(slab, this.texture);
+        BLOCK_TYPES.put("slab", slab);
         return this;
     }
 
-    public BlockFamilyProvider slab(Block slab, ResourceLocation sideTexture) {
-        BLOCK_TYPES.put("slab", slab);
-        EXTRA_PROPERTIES.put("slab", Lists.newArrayList(sideTexture));
+    public BlockFamilyProvider doubleSlab(Block slab, ResourceLocation sideTexture) {
+        BLOCK_TYPES.put("double_slab", slab);
+        EXTRA_PROPERTIES.put("double_slab", Lists.newArrayList(sideTexture));
         return this;
     }
 
@@ -161,7 +161,8 @@ public class BlockFamilyProvider {
             // Common Blocks
             if (type.equals("full_block")) this.stateProvider.simpleBlock(typeBlock);
             if (type.equals("stairs")) this.stateProvider.stairsBlock((StairsBlock) typeBlock, this.texture);
-            if (type.equals("slab")) this.stateProvider.slabBlock((SlabBlock) typeBlock, this.texture, (ResourceLocation) EXTRA_PROPERTIES.get("slab").get(0), this.texture, this.texture);
+            if (type.equals("slab")) this.stateProvider.slabBlock((SlabBlock) typeBlock, this.texture, this.texture, this.texture, this.texture);
+            if (type.equals("double_slab")) doubleSlab(typeBlock);
             if (type.equals("wall")) wallBlock(typeBlock, this.texture);
             if (type.equals("fence")) fenceBlock(typeBlock, this.texture);
             if (type.equals("fence_gate")) this.stateProvider.fenceGateBlock((FenceGateBlock) typeBlock, this.texture);
@@ -187,6 +188,11 @@ public class BlockFamilyProvider {
 
     public void blockFromCustom(Block block) {
         this.stateProvider.simpleBlock(block, models().cubeAll(block.getRegistryName().getPath(), getBlockTexture(block)));
+    }
+
+    private void doubleSlab(Block typeBlock) {
+        this.stateProvider.models().cubeBottomTop("double_" + typeBlock.getRegistryName().getPath(), (ResourceLocation) EXTRA_PROPERTIES.get("double_slab").get(0), this.texture, this.texture);
+        this.stateProvider.slabBlock((SlabBlock) typeBlock, new ResourceLocation(typeBlock.getRegistryName().getNamespace(), "double_" + typeBlock.getRegistryName().getPath()), (ResourceLocation) EXTRA_PROPERTIES.get("double_slab").get(0), this.texture, this.texture);
     }
 
     public void fenceBlock(Block fence, ResourceLocation texture) {

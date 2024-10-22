@@ -38,37 +38,40 @@ public class BMPlayerModel<T extends CreatureEntity> extends BipedModel<T> {
         if (slimArms) {
             this.leftArm = new ModelRenderer(this, 32, 48);
             this.leftArm.addBox(-1, -2, -2, 3, 12, 4, modelSize);
-            this.leftArm.setPos(5, 2.5F, 0);
+            this.leftArm.setPos(5, 2.5F + yOffset, 0);
             this.rightArm = new ModelRenderer(this, 40, 16);
             this.rightArm.addBox(-2, -2, -2, 3, 12, 4, modelSize);
-            this.rightArm.setPos(-5, 2.5F, 0);
+            this.rightArm.setPos(-5, 2.5F + yOffset, 0);
             this.leftSleeve = new ModelRenderer(this, 48, 48);
             this.leftSleeve.addBox(-1, -2, -2, 3, 12, 4, modelSize + 0.25F);
-            this.leftSleeve.setPos(5, 2.5F, 0);
+            this.leftSleeve.setPos(5, 2.5F + yOffset, 0);
             this.rightSleeve = new ModelRenderer(this, 40, 32);
             this.rightSleeve.addBox(-2, -2, -2, 3, 12, 4, modelSize + 0.25F);
-            this.rightSleeve.setPos(-5, 2.5F, 10);
+            this.rightSleeve.setPos(-5, 2.5F + yOffset, 10);
         } else {
             this.leftArm = new ModelRenderer(this, 32, 48);
             this.leftArm.addBox(-1, -2, -2, 4, 12, 4, modelSize);
-            this.leftArm.setPos(5, 2, 0);
+            this.leftArm.setPos(5, 2 + yOffset, 0);
             this.leftSleeve = new ModelRenderer(this, 48, 48);
             this.leftSleeve.addBox(-1, -2, -2, 4, 12, 4, modelSize + 0.25F);
-            this.leftSleeve.setPos(5, 2, 0);
+            this.leftSleeve.setPos(5, 2 + yOffset, 0);
             this.rightSleeve = new ModelRenderer(this, 40, 32);
             this.rightSleeve.addBox(-3, -2, -2, 4, 12, 4, modelSize + 0.25F);
-            this.rightSleeve.setPos(-5, 2, 10);
+            this.rightSleeve.setPos(-5, 2 + yOffset, 10);
         }
 
+        this.leftLeg = new ModelRenderer(this, 16, 48);
+        this.leftLeg.addBox(-2, 0, -2, 4, 12, 4, modelSize);
+        this.leftLeg.setPos(1.9F, 12 + yOffset, 0);
         this.leftPants = new ModelRenderer(this, 0, 48);
         this.leftPants.addBox(-2, 0, -2, 4, 12, 4, modelSize + 0.25F);
-        this.leftPants.setPos(1.9F, 12, 0);
+        this.leftPants.setPos(1.9F, 12 + yOffset, 0);
         this.rightPants = new ModelRenderer(this, 0, 32);
         this.rightPants.addBox(-2, 0, -2, 4, 12, 4, modelSize + 0.25F);
-        this.rightPants.setPos(-1.9F, 12, 0);
+        this.rightPants.setPos(-1.9F, 12 + yOffset, 0);
         this.jacket = new ModelRenderer(this, 16, 32);
         this.jacket.addBox(-4, 0, -2, 8, 12, 4, modelSize + 0.25F);
-        this.jacket.setPos(0, 0, 0);
+        this.jacket.setPos(0, 0 + yOffset, 0);
     }
 
     @Nonnull

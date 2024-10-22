@@ -47,7 +47,7 @@ public class CrystallineCrystallizerBlock extends HorizontalBlock {
             player.awardStat(Stats.ITEM_USED.get(mainHand.getItem()));
             return ActionResultType.SUCCESS;
         }
-        if (BMKeys.isHoldingShift() && state.getValue(MOLD) != AdvancedMolds.EMPTY) {
+        if (BMKeys.isVanillaShiftDown() && state.getValue(MOLD) != AdvancedMolds.EMPTY) {
             world.setBlockAndUpdate(pos, BMBlocks.CRYSTALLINE_CRYSTALLIZER.get().defaultBlockState().setValue(MOLD, AdvancedMolds.EMPTY).setValue(HORIZONTAL_FACING, state.getValue(HORIZONTAL_FACING)));
             playSound(world, pos, BMSounds.BLOCK_CRYSTALLIZER_CHANGE_MOLD);
             player.awardStat(BMStats.CHANGE_CRYSTALLINE_CRYSTALLIZER_MOLD);

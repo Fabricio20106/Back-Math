@@ -1,5 +1,6 @@
 {
   "asset_id": "backmath:modified",
   "texture_location": "backmath:entity/sophie/wanderer/modified",
-  "slim_arms": true
+  "slim_arms": true,
+  "spawns_naturally": true
 }

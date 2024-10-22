@@ -63,8 +63,8 @@ public class BMFoods {
     public static final Food HALVED_BAKED_POTATO = new Food.Builder().nutrition(2).saturationMod(0.3F).fast().build();
     public static final Food HALVED_HONEY_BOTTLE = new Food.Builder().nutrition(3).saturationMod(0.05F).fast().build();
     public static final Food HALVED_ALJAME = new Food.Builder().nutrition(2).saturationMod(1.75F).effect(() ->
-            new EffectInstance(Effects.POISON, 100), 1).effect(() ->
-            new EffectInstance(Effects.BLINDNESS, 600), 1).fast().build();
+            new EffectInstance(Effects.POISON, 50), 1).effect(() ->
+            new EffectInstance(Effects.BLINDNESS, 300), 1).fast().build();
     public static final Food HALVED_JANTIQUIFIED_ALJAME = new Food.Builder().nutrition(2).saturationMod(1.75F).effect(
             () -> new EffectInstance(Effects.REGENERATION, 50, 1), 1).effect(
             () -> new EffectInstance(Effects.ABSORPTION, 1200, 0), 1).alwaysEat().build();

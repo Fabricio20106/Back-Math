@@ -209,7 +209,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         blockFamily(modLoc("block/aljanstone"), "aljanstone").fullBlock(ALJANSTONE.get()).stairs(ALJANSTONE_STAIRS.get()).slab(ALJANSTONE_SLAB.get()).wall(ALJANSTONE_WALL.get()).build();
         blockFamily(modLoc("block/cobbled_aljanstone"), "cobbled_aljanstone").fullBlock(COBBLED_ALJANSTONE.get()).stairs(COBBLED_ALJANSTONE_STAIRS.get()).slab(COBBLED_ALJANSTONE_SLAB.get()).wall(COBBLED_ALJANSTONE_WALL.get()).build();
         blockFamily(modLoc("block/aljanstone_bricks"), "aljanstone_bricks").fullBlock(ALJANSTONE_BRICKS.get()).stairs(ALJANSTONE_BRICK_STAIRS.get()).slab(ALJANSTONE_BRICK_SLAB.get()).wall(ALJANSTONE_BRICK_WALL.get()).build();
-        blockFamily(modLoc("block/smooth_aljanstone"), "smooth_aljanstone").fullBlock(SMOOTH_ALJANSTONE.get()).slab(SMOOTH_ALJANSTONE_SLAB.get(), modLoc("block/smooth_aljanstone_slab_side")).build();
+        blockFamily(modLoc("block/smooth_aljanstone"), "smooth_aljanstone").fullBlock(SMOOTH_ALJANSTONE.get()).doubleSlab(SMOOTH_ALJANSTONE_SLAB.get(), modLoc("block/smooth_aljanstone_slab_side")).build();
         simpleBlock(CHISELED_ALJANSTONE_FABRICIO.get());
         simpleBlock(CHISELED_ALJANSTONE_JUNE.get());
         simpleBlock(CHISELED_ALJANSTONE_SOPHIE.get());

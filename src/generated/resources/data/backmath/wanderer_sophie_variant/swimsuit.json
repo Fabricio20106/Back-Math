@@ -1,0 +1,6 @@
+{
+  "asset_id": "backmath:swimsuit",
+  "texture_location": "backmath:entity/sophie/wanderer/swimsuit",
+  "slim_arms": true,
+  "spawns_naturally": false
+}

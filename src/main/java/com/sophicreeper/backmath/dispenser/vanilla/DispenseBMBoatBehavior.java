@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.dispenser.vanilla;
 
 import com.sophicreeper.backmath.entity.custom.misc.BMBoatEntity;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.dispenser.IBlockSource;
@@ -10,6 +11,8 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class DispenseBMBoatBehavior extends DefaultDispenseItemBehavior {
     private final DefaultDispenseItemBehavior dispenseBehavior = new DefaultDispenseItemBehavior();
     private final String woodType;
@@ -18,6 +21,8 @@ public class DispenseBMBoatBehavior extends DefaultDispenseItemBehavior {
         this.woodType = woodType;
     }
 
+    @Override
+    @Nonnull
     public ItemStack execute(IBlockSource source, ItemStack stack) {
         Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
         World world = source.getLevel();
@@ -34,7 +39,7 @@ public class DispenseBMBoatBehavior extends DefaultDispenseItemBehavior {
         }
 
         BMBoatEntity bmBoat = new BMBoatEntity(world, x, y + boatHeight, z);
-        bmBoat.setWoodType(this.woodType);
+        bmBoat.setWoodType(BMUtils.getBoatType(stack, this.woodType));
         bmBoat.yRot = direction.toYRot();
         world.addFreshEntity(bmBoat);
         stack.shrink(1);

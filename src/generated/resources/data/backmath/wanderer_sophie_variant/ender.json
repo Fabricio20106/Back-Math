@@ -1,5 +1,6 @@
 {
   "asset_id": "backmath:ender",
   "texture_location": "backmath:entity/sophie/wanderer/ender",
-  "slim_arms": true
+  "slim_arms": true,
+  "spawns_naturally": true
 }

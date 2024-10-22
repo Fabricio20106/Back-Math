@@ -19,11 +19,17 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
     private final ResourceLocation assetID;
     private final ResourceLocation textureLocation;
     private final boolean slimArms;
+    private final boolean spawnsNaturally;
 
-    public WandererSophieVariant(ResourceLocation assetID, ResourceLocation textureLocation, boolean slimArms) {
+    public WandererSophieVariant(ResourceLocation assetID, ResourceLocation textureLocation, boolean slimArms, boolean spawnsNaturally) {
         this.assetID = assetID;
         this.textureLocation = textureLocation;
         this.slimArms = slimArms;
+        this.spawnsNaturally = spawnsNaturally;
+    }
+
+    public WandererSophieVariant(ResourceLocation assetID, ResourceLocation textureLocation, boolean slimArms) {
+        this(assetID, textureLocation, slimArms, true);
     }
 
     public static WandererSophieVariant getVariant(String variantLocation) {
@@ -50,17 +56,22 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
         return this.slimArms;
     }
 
+    public boolean spawnsNaturally() {
+        return this.spawnsNaturally;
+    }
+
     public JsonObject writeJSON(WandererSophieVariant variant) {
         JsonObject object = new JsonObject();
         object.addProperty("asset_id", variant.assetID.toString());
         object.addProperty("texture_location", variant.textureLocation.toString());
         object.addProperty("slim_arms", variant.slimArms);
+        object.addProperty("spawns_naturally", variant.spawnsNaturally);
         return object;
     }
 
     @Override
     public String toString() {
-        return "[asset_id=" + this.assetID + ",texture_location=" + this.textureLocation + ",slim_arms=" + this.slimArms + "]";
+        return "[asset_id=" + this.assetID + ",texture_location=" + this.textureLocation + ",slim_arms=" + this.slimArms + ",spawns_naturally=" + this.spawnsNaturally + "]";
     }
 
     public static class Serializer implements JsonDeserializer<WandererSophieVariant>, JsonSerializer<WandererSophieVariant> {
@@ -70,7 +81,8 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
             ResourceLocation assetID = ResourceLocation.tryParse(JSONUtils.getAsString(object, "asset_id"));
             ResourceLocation textureLocation = ResourceLocation.tryParse(JSONUtils.getAsString(object, "texture_location"));
             boolean slimArms = JSONUtils.getAsBoolean(object, "slim_arms");
-            return new WandererSophieVariant(assetID, textureLocation, slimArms);
+            boolean spawnsNaturally = JSONUtils.getAsBoolean(object, "spawns_naturally");
+            return new WandererSophieVariant(assetID, textureLocation, slimArms, spawnsNaturally);
         }
 
         @Override
@@ -79,6 +91,7 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
             object.addProperty("asset_id", variant.assetID.toString());
             object.addProperty("texture_location", variant.textureLocation.toString());
             object.addProperty("slim_arms", variant.slimArms);
+            object.addProperty("spawns_naturally", variant.spawnsNaturally);
             return object;
         }
     }

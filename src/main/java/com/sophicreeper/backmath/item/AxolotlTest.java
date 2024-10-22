@@ -10,7 +10,6 @@ import com.sophicreeper.backmath.crystallizer.item.MoldsBookItem;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.item.custom.*;
 import com.sophicreeper.backmath.item.custom.armor.*;
-import com.sophicreeper.backmath.item.custom.dispenser.BMBucketItem;
 import com.sophicreeper.backmath.item.custom.dispenser.SleepishFertilizerItem;
 import com.sophicreeper.backmath.item.custom.food.*;
 import com.sophicreeper.backmath.item.custom.food.drink.*;
@@ -812,6 +811,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> INSOMNIA_SOPHIE_SLEEPWEAR_PANTS = ITEMS.register("insomnia_sophie_sleepwear_pants", () -> new BMArmorItem(INSOMNIA_SOPHIE_SLEEPWEAR_ARMOR, EquipmentSlotType.LEGS, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> ARCHER_LUCIA_HOOD = ITEMS.register("archer_lucia_hood", () -> new BMArmorItem(ARCHER_LUCIA_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> ARCHER_LUCIA_VEST = ITEMS.register("archer_lucia_vest", () -> new BMArmorItem(ARCHER_LUCIA_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().tab(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> ARCHER_LUCIA_BOOTS = ITEMS.register("archer_lucia_boots", () -> new BMArmorItem(ARCHER_LUCIA_ARMOR, EquipmentSlotType.FEET, new Item.Properties().tab(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> ARCHER_FABRICIO_HOOD = ITEMS.register("archer_fabricio_hood", () -> new BMArmorItem(ARCHER_FABRICIO_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> ARCHER_FABRICIO_VEST = ITEMS.register("archer_fabricio_vest", () -> new BMArmorItem(ARCHER_FABRICIO_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().tab(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> QUEEN_LUCY_SHIRT_CURRENT = ITEMS.register("queen_lucy_shirt_current", () -> new QueenLucyShirtItem(QLS_CURRENT, EquipmentSlotType.CHEST, new Item.Properties().rarity(Rarity.EPIC).tab(BMWeaponryTab.TAB), "current"));

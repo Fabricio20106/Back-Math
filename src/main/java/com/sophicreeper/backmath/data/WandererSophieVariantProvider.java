@@ -8,10 +8,13 @@ import cpw.mods.modlauncher.api.LamdbaExceptionUtils;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DirectoryCache;
 import net.minecraft.data.IDataProvider;
+import net.minecraft.resources.ResourcePackType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Tuple;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nonnull;
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,10 +25,12 @@ public abstract class WandererSophieVariantProvider implements IDataProvider {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private final Map<String, Tuple<WandererSophieVariant, JsonObject>> toSerialize = new HashMap<>();
     private final DataGenerator generator;
+    private final ExistingFileHelper helper;
     private final String modID;
 
-    public WandererSophieVariantProvider(DataGenerator generator, String modID) {
+    public WandererSophieVariantProvider(DataGenerator generator, ExistingFileHelper fileHelper, String modID) {
         this.generator = generator;
+        this.helper = fileHelper;
         this.modID = modID;
     }
 
@@ -46,6 +51,7 @@ public abstract class WandererSophieVariantProvider implements IDataProvider {
         this.toSerialize.forEach(LamdbaExceptionUtils.rethrowBiConsumer((name, pair) -> {
             entries.add(new ResourceLocation(this.modID, name));
             Path variantFile = this.generator.getOutputFolder().resolve(variantsPath + name + ".json");
+            this.validateVariant(pair.getA());
 
             IDataProvider.save(GSON, cache, pair.getB(), variantFile);
         }));
@@ -53,5 +59,10 @@ public abstract class WandererSophieVariantProvider implements IDataProvider {
 
     public void add(String name, WandererSophieVariant variant) {
         this.toSerialize.put(name, new Tuple<>(variant, variant.writeJSON(variant)));
+    }
+
+    private void validateVariant(WandererSophieVariant variant) throws FileNotFoundException {
+        boolean valid = this.helper.exists(variant.getTextureLocation(), ResourcePackType.CLIENT_RESOURCES, ".png", "textures");
+        if (!valid) throw new FileNotFoundException("Unable to find texture " + variant.getTextureLocation() + " for wanderer sophie variant '" + variant.getAssetID() + "'");
     }
 }

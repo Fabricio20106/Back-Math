@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
 @OnlyIn(Dist.CLIENT)
 public class WarriorSophieRenderer extends TermianPlayerRenderer<WarriorSophieEntity> {
     public WarriorSophieRenderer(EntityRendererManager manager) {
-        super(manager, 0.5F, false);
+        super(manager, 0.5F, true);
     }
 
     @Nonnull

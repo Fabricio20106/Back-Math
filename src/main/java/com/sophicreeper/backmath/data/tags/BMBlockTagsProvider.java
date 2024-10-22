@@ -143,7 +143,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
                 .add(Blocks.WHEAT).add(Blocks.CARROTS).add(Blocks.POTATOES).add(Blocks.BEETROOTS).add(Blocks.NETHER_WART).add(Blocks.SWEET_BERRY_BUSH).add(BMBlocks.CARAMELED_WHEAT.get()).add(BMBlocks.WILD_CARAMELED_WHEAT.get())
                 .add(BMBlocks.ALJAMIC_ONIONS.get()).add(BMBlocks.WILD_ALJAMIC_ONIONS.get());
         this.tag(BMBlockTags.ALJAN_CARVER_REPLACEABLES).addTag(BMBlockTags.BASE_STONE_ALJAN).addTag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_SAND.get()).add(Blocks.GRASS_BLOCK).add(Blocks.DIRT);
-        this.tag(BMBlockTags.ALJAN_TELEPORTER_REPLACEABLES).add(BMBlocks.ALJAN_TULIP.get()).add(BMBlocks.POISON_ROSE.get()).add(BMBlocks.INSOMNIAN_TULIP.get()).add(Blocks.GRASS);
+        this.tag(BMBlockTags.ALJAN_TELEPORTER_REPLACEABLES).add(BMBlocks.ALJAN_TULIP.get(), BMBlocks.POISON_ROSE.get(), BMBlocks.INSOMNIAN_TULIP.get(), Blocks.GRASS, Blocks.SNOW);
         this.tag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get());
         this.tag(BMBlockTags.MALAIKA_SPAWNABLE_ON).addTag(BMBlockTags.BASE_STONE_ALJAN).addTag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_SAND.get()).add(Blocks.GRASS_BLOCK);
         this.tag(BMBlockTags.SOPHIES_SPAWNABLE_ON).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.LOGS).addTag(BlockTags.PLANKS).addTag(Tags.Blocks.DIRT);

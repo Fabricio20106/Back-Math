@@ -12,6 +12,7 @@ import com.sophicreeper.backmath.entity.renderer.misc.JanticBoltRenderer;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
 import com.sophicreeper.backmath.misc.AljanTextureUpdatePack;
+import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.world.dimension.renderer.AljanDimensionRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
@@ -20,6 +21,7 @@ import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.resources.IPackNameDecorator;
 import net.minecraft.resources.ResourcePackInfo;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -252,6 +254,8 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_SLEEPISHWATER.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMFluids.LIQUID_MANGA.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_LIQUID_MANGA.get(), RenderType.translucent());
+
+        ClientRegistry.registerKeyBinding(BMKeys.SHOW_TOOLTIPS_KEY);
 
         // Entity Renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);

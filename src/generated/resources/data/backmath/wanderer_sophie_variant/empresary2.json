@@ -1,5 +1,6 @@
 {
   "asset_id": "backmath:empresary2",
   "texture_location": "backmath:entity/sophie/wanderer/empresary2",
-  "slim_arms": true
+  "slim_arms": true,
+  "spawns_naturally": true
 }

@@ -19,6 +19,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.*;
 import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -33,15 +34,15 @@ public class BMBowItem extends ShootableItem implements IVanishable {
     private final boolean canBeDamaged;
     private final int additionalArrowDamage;
     private final int flameInTicks;
-    private final int fireRateDelay;
+    private final int useDuration;
 
-    public BMBowItem(boolean forcedCriticalArrow, boolean canBeDamaged, int additionalArrowDamage, int flameInTicks, int fireRateDelay, Properties properties) {
+    public BMBowItem(boolean forcedCriticalArrow, boolean canBeDamaged, int additionalArrowDamage, int flameInTicks, int useDuration, Properties properties) {
         super(properties);
         this.forcedCriticalArrow = forcedCriticalArrow;
         this.canBeDamaged = canBeDamaged;
         this.additionalArrowDamage = additionalArrowDamage;
         this.flameInTicks = flameInTicks;
-        this.fireRateDelay = fireRateDelay;
+        this.useDuration = useDuration;
     }
 
     @Override
@@ -67,7 +68,7 @@ public class BMBowItem extends ShootableItem implements IVanishable {
                 }
 
                 float arrowsVelocity = getArrowVelocity(useDuration);
-                if (this.fireRateDelay < 22) arrowsVelocity = 1;
+                if (this.useDuration < 22) arrowsVelocity = 1;
                 if (!((double) arrowsVelocity < 0.1D)) {
                     boolean isIntangible = player.abilities.instabuild || (arrowStack.getItem() instanceof ArrowItem && ((ArrowItem) arrowStack.getItem()).isInfinite(arrowStack, stack, player));
                     if (!world.isClientSide) {
@@ -131,7 +132,7 @@ public class BMBowItem extends ShootableItem implements IVanishable {
 
     @Override
     public int getUseDuration(ItemStack stack) {
-        return this.fireRateDelay; // Default is 72.000.
+        return this.useDuration; // Default is 72.000.
     }
 
     @Override
@@ -185,26 +186,16 @@ public class BMBowItem extends ShootableItem implements IVanishable {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         if (flag.isAdvanced()) {
-            if (!BMKeys.isHoldingShift()) tooltip.add(new TranslationTextComponent("tooltip.backmath.bow.hold_shift.not_held"));
-            if (BMKeys.isHoldingShift()) {
-                tooltip.add(new TranslationTextComponent("tooltip.backmath.bow.hold_shift.held"));
+            if (!BMKeys.isShiftDown()) tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.bow", BMKeys.getTranslation(BMKeys.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.GRAY)).withStyle(TextFormatting.DARK_GRAY));
+            if (BMKeys.isShiftDown()) {
+                tooltip.add(new TranslationTextComponent("tooltip.backmath.hold_shift.bow", BMKeys.getTranslation(BMKeys.SHOW_TOOLTIPS_KEY).withStyle(TextFormatting.WHITE)).withStyle(TextFormatting.DARK_GRAY));
                 tooltip.add(new TranslationTextComponent("tooltip.backmath.empty"));
                 tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.forced_critical_arrow", new TranslationTextComponent(this.forcedCriticalArrow ? "tooltip." + BackMath.MOD_ID + ".false" : "tooltip." + BackMath.MOD_ID + ".true")));
                 tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.can_be_damaged", new TranslationTextComponent(this.canBeDamaged ? "tooltip." + BackMath.MOD_ID + ".false" : "tooltip." + BackMath.MOD_ID + ".true")));
                 tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.additional_arrow_damage", this.additionalArrowDamage));
-                tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.flame_in_seconds", StringUtils.formatTickDuration(this.flameInTicks)));
-                tooltip.add(new TranslationTextComponent(getFireRateDelay(), this.fireRateDelay));
+                tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.flame_duration", StringUtils.formatTickDuration(this.flameInTicks)));
+                tooltip.add(new TranslationTextComponent("tooltip." + BackMath.MOD_ID + ".bow.use_duration", StringUtils.formatTickDuration(this.useDuration)));
             }
-        }
-    }
-
-    private String getFireRateDelay() {
-        if (this.fireRateDelay == 72000) {
-            return "tooltip." + BackMath.MOD_ID + ".bow.fire_rate_delay.one_hour";
-        } else if (this.fireRateDelay > 72000) {
-            return "tooltip." + BackMath.MOD_ID + ".bow.fire_rate_delay.above_one_hour";
-        } else {
-            return "tooltip." + BackMath.MOD_ID + ".bow.fire_rate_delay.accurate";
         }
     }
 }

@@ -682,6 +682,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         standard(generated, "insomnia_sophie_sleepwear_pants");
         standard(generated, "archer_lucia_hood");
         standard(generated, "archer_lucia_vest");
+        standard(generated, "archer_lucia_boots");
         standard(generated, "archer_fabricio_hood");
         standard(generated, "archer_fabricio_vest");
         standard(generated, "bakugou_hair");

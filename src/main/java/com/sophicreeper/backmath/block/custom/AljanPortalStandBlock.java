@@ -38,8 +38,8 @@ import java.util.stream.Stream;
 public class AljanPortalStandBlock extends Block implements IWaterLoggable {
     public static final BooleanProperty JANTICAL = BMBlockStateProperties.JANTICAL;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    public static final VoxelShape SHAPE_WITHOUT_JANTICAL = Stream.of(Block.box(4, 0, 4, 12, 1, 12), Block.box(5, 1, 5, 11, 2, 11), Block.box(6, 2, 6, 10, 10, 10), Block.box(3, 11, 3, 13, 16, 13), Block.box(5, 10, 5, 11, 11, 11), Block.box(3, 16, 5, 4, 18, 11), Block.box(12, 16, 5, 13, 18, 11), Block.box(5, 16, 3, 11, 18, 4), Block.box(5, 16, 12, 11, 18, 13)).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
-    public static final VoxelShape SHAPE_WITH_JANTICAL = Stream.of(Block.box(4, 0, 4, 12, 1, 12), Block.box(5, 1, 5, 11, 2, 11), Block.box(6, 2, 6, 10, 10, 10), Block.box(3, 11, 3, 13, 16, 13), Block.box(5, 10, 5, 11, 11, 11), Block.box(3, 16, 5, 4, 18, 11), Block.box(12, 16, 5, 13, 18, 11), Block.box(5, 16, 3, 11, 18, 4), Block.box(5, 16, 12, 11, 18, 13), Block.box(4, 16, 4, 12, 19, 12)).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+    public static final VoxelShape WITHOUT_JANTICAL = Stream.of(Block.box(4, 0, 4, 12, 1, 12), Block.box(5, 1, 5, 11, 2, 11), Block.box(6, 2, 6, 10, 10, 10), Block.box(3, 11, 3, 13, 16, 13), Block.box(5, 10, 5, 11, 11, 11), Block.box(3, 16, 5, 4, 18, 11), Block.box(12, 16, 5, 13, 18, 11), Block.box(5, 16, 3, 11, 18, 4), Block.box(5, 16, 12, 11, 18, 13)).reduce((v1, v2) -> VoxelShapes.join(v1, v2, IBooleanFunction.OR)).get();
+    public static final VoxelShape WITH_JANTICAL = Stream.of(Block.box(4, 0, 4, 12, 1, 12), Block.box(5, 1, 5, 11, 2, 11), Block.box(6, 2, 6, 10, 10, 10), Block.box(3, 11, 3, 13, 16, 13), Block.box(5, 10, 5, 11, 11, 11), Block.box(3, 16, 5, 4, 18, 11), Block.box(12, 16, 5, 13, 18, 11), Block.box(5, 16, 3, 11, 18, 4), Block.box(5, 16, 12, 11, 18, 13), Block.box(4, 16, 4, 12, 19, 12)).reduce((shape1, shape2) -> VoxelShapes.join(shape1, shape2, IBooleanFunction.OR)).get();
 
     public AljanPortalStandBlock(Properties properties) {
         super(properties);
@@ -48,11 +48,8 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
-        if (state.getValue(JANTICAL)) {
-            return SHAPE_WITH_JANTICAL;
-        } else {
-            return SHAPE_WITHOUT_JANTICAL;
-        }
+        if (state.getValue(JANTICAL)) return WITH_JANTICAL;
+        else return WITHOUT_JANTICAL;
     }
 
     @Override
@@ -109,10 +106,7 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
 
     @Override
     public BlockState updateShape(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-        if (state.getValue(WATERLOGGED)) {
-            world.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
-        }
-
+        if (state.getValue(WATERLOGGED)) world.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         return super.updateShape(state, facing, facingState, world, currentPos, facingPos);
     }
 
