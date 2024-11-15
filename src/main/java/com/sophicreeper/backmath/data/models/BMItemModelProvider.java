@@ -22,7 +22,6 @@ public class BMItemModelProvider extends BMItemModelModels {
     protected void registerModels() {
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
         ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
-        ModelFile handheld32x = getExistingFile(modLoc("item/handheld_32x"));
 
         block("crystalline_birch_log");
         block("crystalline_birch_wood");
@@ -149,7 +148,8 @@ public class BMItemModelProvider extends BMItemModelModels {
         block("aljancap_fence", "_inventory");
         block("aljancap_fence_gate");
         grapeVinePost("aljancap");
-        // No door or trapdoor
+        standard(generated, "aljancap_door");
+        block("aljancap_trapdoor", "_bottom");
         block("aljancap_pressure_plate");
         block("aljancap_button", "_inventory");
         blockItem("aljancap_ladder");
@@ -168,7 +168,8 @@ public class BMItemModelProvider extends BMItemModelModels {
         block("insomnian_fence", "_inventory");
         block("insomnian_fence_gate");
         grapeVinePost("insomnian");
-        // No door or trapdoor
+        standard(generated, "insomnian_door");
+        block("insomnian_trapdoor", "_bottom");
         block("insomnian_pressure_plate");
         block("insomnian_button", "_inventory");
         blockItem("insomnian_ladder");
@@ -698,7 +699,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         standard(generated, "golden_halo");
         standard(generated, "red_yellow_glasses");
 
-        standard(handheld32x, "mid_term_greatsword");
+        dualWieldedSword("mid_term_greatsword");
         standard(handheld, "spoon");
         standard(handheld, "moonering_usb_stick");
         standard(handheld, "moonering_backstabber");
@@ -765,7 +766,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         standard(handheld, "jantiquified_moonering_knife");
         standard(handheld, "tabu_sword");
         standard(handheld, "bread_sword");
-        standard(handheld, "carewni");
+        dualWieldedSword("carewni");
         standard(handheld, "mech_mech");
         standard(handheld, "lapis_rainbow");
         standard(handheld, "karate_training_stick");

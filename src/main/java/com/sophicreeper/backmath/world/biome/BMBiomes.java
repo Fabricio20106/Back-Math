@@ -155,7 +155,7 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
         BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.AVONDALIC_BUSHES);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.SLEEPSHROOM_PATCH);
@@ -168,8 +168,8 @@ public class BMBiomes {
         DefaultBiomeFeatures.addSurfaceFreezing(settings);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.OCEAN).depth(-1).scale(0.1F).temperature(0.5F).downfall(0.5F).specialEffects((new BiomeAmbience.Builder()).waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xD73fC1).grassColorOverride(0xCC3DB4).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.OCEAN).depth(-1).scale(0.1F).temperature(0.5F).downfall(0.5F).specialEffects((new BiomeAmbience.Builder()).waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xD73fC1).grassColorOverride(0xCC3DB4).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -178,7 +178,7 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
         BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.SLEEPSHROOM_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.AVONDALIC_BUSHES);
@@ -191,8 +191,8 @@ public class BMBiomes {
         DefaultBiomeFeatures.addSurfaceFreezing(settings);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.OCEAN).depth(-1.8F).scale(0.1F).temperature(0.5F).downfall(0.5F).specialEffects(new BiomeAmbience.Builder().waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0x68135C).grassColorOverride(0x9C3A8B).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.OCEAN).depth(-1.8F).scale(0.1F).temperature(0.5F).downfall(0.5F).specialEffects(new BiomeAmbience.Builder().waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0x68135C).grassColorOverride(0x9C3A8B).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -201,7 +201,7 @@ public class BMBiomes {
         MobSpawnInfo.Builder spawns = new MobSpawnInfo.Builder();
 
         BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.SLEEPSHROOM_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.AVONDALIC_BUSHES);
@@ -214,8 +214,8 @@ public class BMBiomes {
         DefaultBiomeFeatures.addSurfaceFreezing(settings);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.OCEAN).depth(-2.4F).scale(0.1F).temperature(0.5F).downfall(0.5F).specialEffects(new BiomeAmbience.Builder().waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0x4E1045).grassColorOverride(0x1D082E).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.OCEAN).depth(-2.4F).scale(0.1F).temperature(0.5F).downfall(0.5F).specialEffects(new BiomeAmbience.Builder().waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0x4E1045).grassColorOverride(0x590F57).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -231,11 +231,11 @@ public class BMBiomes {
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJAN_WOODS_FLOWER_PATCH_SINGLE);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJANSHROOM_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.WILD_ALJAMIC_ONIONS_PATCH);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.2F).scale(0.5F).temperature(-0.2F).downfall(0.8F).specialEffects(new BiomeAmbience.Builder().waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xE9F9F9).grassColorOverride(0xD4EAEA).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.2F).scale(0.5F).temperature(-0.2F).downfall(0.8F).specialEffects(new BiomeAmbience.Builder().waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xE9F9F9).grassColorOverride(0xD4EAEA).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -247,11 +247,11 @@ public class BMBiomes {
         BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJANCAP_TREES);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.CAPPED_HILLS_FLOWER_PATCH);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.2F).scale(0.5F).temperature(0.5F).downfall(0.8F).specialEffects(new BiomeAmbience.Builder().waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0x538989).grassColorOverride(0x68A4A4).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.2F).scale(0.5F).temperature(0.5F).downfall(0.8F).specialEffects(new BiomeAmbience.Builder().waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0x538989).grassColorOverride(0x68A4A4).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -264,11 +264,11 @@ public class BMBiomes {
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.INSOMNIAN_TREES);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.INSOMNIAN_WOODS_FLOWER_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.SLEEPYSHROOM_PATCH);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.4F).downfall(0.5F).specialEffects(new BiomeAmbience.Builder().waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xF0B87A).grassColorOverride(0x526B9E).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.4F).downfall(0.5F).specialEffects(new BiomeAmbience.Builder().waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xF0B87A).grassColorOverride(0x526B9E).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -281,13 +281,13 @@ public class BMBiomes {
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.AMARACAP_TREE);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJANSHROOM_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.WILD_CARAMELED_WHEAT_PATCH);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
 
         BMDefaultBiomeFeatures.aljanMobs(spawns);
         if (BMConfigs.COMMON_CONFIGS.amaracamelerSpawn.get()) spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.AMARACAMELER.get(), 50, 1, 2));
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.SWAMP).depth(0.1F).scale(0.5F).temperature(0.4F).downfall(0.5F).specialEffects(new BiomeAmbience.Builder().waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xF0B87A).grassColorOverride(0xFCB76B).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.SWAMP).depth(0.1F).scale(0.5F).temperature(0.4F).downfall(0.5F).specialEffects(new BiomeAmbience.Builder().waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xF0B87A).grassColorOverride(0xFCB76B).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -301,11 +301,11 @@ public class BMBiomes {
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJANWOOD_TREES);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJAN_WOODS_FLOWER_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJANSHROOM_PATCH);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
         return new Biome.Builder().precipitation(Biome.RainType.SNOW).biomeCategory(Biome.Category.FOREST).depth(1.5F).scale(0.025F).temperature(-0.3F).downfall(0.8F).specialEffects(new BiomeAmbience.Builder()
-                .waterColor(0x280C40).waterFogColor(0x1D082E).fogColor(0xB9D1ff).skyColor(0xD4EAEA).foliageColorOverride(0xFFFFFF).grassColorOverride(0xD4EAEA).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN))
+                .waterColor(0x661163).waterFogColor(0x590F57).fogColor(0xB9D1ff).skyColor(0xD4EAEA).foliageColorOverride(0xFFFFFF).grassColorOverride(0xD4EAEA).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN))
                 .build()).mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -317,11 +317,11 @@ public class BMBiomes {
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJANSHROOM_PATCH);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.ALJAMIC_ORCHARD_TREES);
         settings.addFeature(GenerationStage.Decoration.LOCAL_MODIFICATIONS, BMConfiguredFeatures.ALJANCAP_LEAF_PILE);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.6F).downfall(0.9F).specialEffects(new BiomeAmbience.Builder().waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0x7ABDBD).grassColorOverride(0x78BFBF).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.6F).downfall(0.9F).specialEffects(new BiomeAmbience.Builder().waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0x7ABDBD).grassColorOverride(0x78BFBF).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 
@@ -331,7 +331,7 @@ public class BMBiomes {
 
 //        DefaultBiomeFeatures.addForestGrass(settings);
         BMDefaultBiomeFeatures.addAljanUndergroundVariety(settings);
-        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.SLEEPISHWATER_LAKE);
+        settings.addFeature(GenerationStage.Decoration.LAKES, BMConfiguredFeatures.ALJAN_WATER_LAKE);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.AVONDALIC_WILLOW_TREES);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.AVONDALIC_WILLOW_TREES);
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.AVONDALIC_WILLOW_TREES);
@@ -340,8 +340,8 @@ public class BMBiomes {
         settings.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, BMConfiguredFeatures.THICK_GRASS_PATCH);
         BMDefaultBiomeFeatures.aljanMobs(spawns);
 
-        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.6F).downfall(0.9F).specialEffects(new BiomeAmbience.Builder().waterColor(0x280C40)
-                .waterFogColor(0x1D082E).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xD73FC1).grassColorOverride(0xCC3DB4).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
+        return new Biome.Builder().precipitation(Biome.RainType.RAIN).biomeCategory(Biome.Category.FOREST).depth(0.1F).scale(0.5F).temperature(0.6F).downfall(0.9F).specialEffects(new BiomeAmbience.Builder().waterColor(0x661163)
+                .waterFogColor(0x590F57).fogColor(0xB9D1FF).skyColor(0xD4EAEA).foliageColorOverride(0xD73FC1).grassColorOverride(0xCC3DB4).backgroundMusic(BackgroundMusicTracks.createGameMusic(BMSounds.MUSIC_ALJAN)).build())
                 .mobSpawnSettings(spawns.build()).generationSettings(settings.build()).build();
     }
 }

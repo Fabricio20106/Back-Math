@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "group": "angelic_ingot",
   "ingredients": [
     {
       "tag": "forge:storage_blocks/angelic"

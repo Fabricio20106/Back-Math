@@ -244,6 +244,10 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMBlocks.POISON_BROWN_STAINED_GLASS_PANE.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIAN_STAINED_GLASS.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIAN_STAINED_GLASS_PANE.get(), RenderType.translucent());
+        RenderTypeLookup.setRenderLayer(BMBlocks.ALJANCAP_DOOR.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.ALJANCAP_TRAPDOOR.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIAN_DOOR.get(), RenderType.cutout());
+        RenderTypeLookup.setRenderLayer(BMBlocks.INSOMNIAN_TRAPDOOR.get(), RenderType.cutout());
         RenderTypeLookup.setRenderLayer(BMFluids.HILLARY.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMFluids.MILKLLARY.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_HILLARY.get(), RenderType.translucent());
@@ -297,6 +301,7 @@ public class ClientProxy extends CommonProxy {
         makeCrossbow(AxolotlTest.DEVIL_CROSSBOW.get());
         makeCrossbow(AxolotlTest.ANGELIC_CROSSBOW.get());
         makeJanticRailgun(AxolotlTest.JANTIC_RAILGUN.get());
+        makeCarewni(AxolotlTest.CAREWNI.get());
     }
 
     // Double Layer Render Lookup

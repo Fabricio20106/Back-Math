@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.world.biome.custom;
 
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import com.sophicreeper.backmath.entity.BMEntities;
 import net.minecraft.entity.EntityClassification;
@@ -80,12 +79,7 @@ public class BMDefaultBiomeFeatures {
         if (BMConfigs.COMMON_CONFIGS.sleepishSkeletonSpawn.get()) spawns.addSpawn(EntityClassification.MONSTER, new MobSpawnInfo.Spawners(BMEntities.SLEEPISH_SKELETON.get(), 5, 1, 2));
     }
 
-    public static void aljanPassives(MobSpawnInfo.Builder spawns) {
-        if (BMConfigs.COMMON_CONFIGS.malaikaSpawn.get() && !BMUtils.aljanPackEnabled()) spawns.addSpawn(EntityClassification.CREATURE, new MobSpawnInfo.Spawners(BMEntities.MALAIKA.get(), 12, 2, 5));
-    }
-
     public static void aljanMobs(MobSpawnInfo.Builder spawns) {
         aljanHostiles(spawns);
-        aljanPassives(spawns);
     }
 }

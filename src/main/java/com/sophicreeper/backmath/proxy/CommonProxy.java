@@ -19,6 +19,8 @@ import com.sophicreeper.backmath.misc.BMPaintings;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStats;
 import com.sophicreeper.backmath.misc.BMRegistries;
+import com.sophicreeper.backmath.particle.BMParticleTypes;
+import com.sophicreeper.backmath.particle.custom.JanticalParticle;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import com.sophicreeper.backmath.util.BMVanillaCompatibility;
@@ -29,6 +31,7 @@ import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.feature.BMFeature;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.RegistryKey;
@@ -60,6 +63,7 @@ public class CommonProxy {
         BMPotions.POTIONS.register(eventBus);
         BMStructures.STRUCTURES.register(eventBus);
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);
+        BMParticleTypes.PARTICLES.register(eventBus);
         BMWandererSophieVariants.VARIANTS.register(eventBus);
         BMQueenLucyPetVariants.VARIANTS.register(eventBus);
         BMLootParameterSets.init();
@@ -117,6 +121,7 @@ public class CommonProxy {
         });
 
         // Other Things to Load
+        Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.JanticalFactory::new);
         BMPotions.addPotionRecipes();
         BMDimensions.init();
         BMConfiguredCarvers.init();

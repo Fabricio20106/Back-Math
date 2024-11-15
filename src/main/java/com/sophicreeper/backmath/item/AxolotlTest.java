@@ -189,6 +189,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> ALJANCAP_FENCE = ITEMS.register("aljancap_fence", () -> new BlockItem(BMBlocks.ALJANCAP_FENCE.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJANCAP_FENCE_GATE = ITEMS.register("aljancap_fence_gate", () -> new BlockItem(BMBlocks.ALJANCAP_FENCE_GATE.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJANCAP_GRAPE_VINE_POST = ITEMS.register("aljancap_grape_vine_post", () -> new FuelBlockItem(150, BMBlocks.ALJANCAP_GRAPE_VINE_POST.get(), new Item.Properties().tab(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> ALJANCAP_DOOR = ITEMS.register("aljancap_door", () -> new BlockItem(BMBlocks.ALJANCAP_DOOR.get(), new Item.Properties().tab(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> ALJANCAP_TRAPDOOR = ITEMS.register("aljancap_trapdoor", () -> new BlockItem(BMBlocks.ALJANCAP_TRAPDOOR.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJANCAP_PRESSURE_PLATE = ITEMS.register("aljancap_pressure_plate", () -> new BlockItem(BMBlocks.ALJANCAP_PRESSURE_PLATE.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJANCAP_BUTTON = ITEMS.register("aljancap_button", () -> new BlockItem(BMBlocks.ALJANCAP_BUTTON.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> ALJANCAP_LADDER = ITEMS.register("aljancap_ladder", () -> new BlockItem(BMBlocks.ALJANCAP_LADDER.get(), new Item.Properties().tab(BMBlockTab.TAB)));
@@ -210,6 +212,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> INSOMNIAN_FENCE_GATE = ITEMS.register("insomnian_fence_gate", () -> new BlockItem(BMBlocks.INSOMNIAN_FENCE_GATE.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_GRAPE_VINE_POST = ITEMS.register("insomnian_grape_vine_post", () -> new FuelBlockItem(150, BMBlocks.INSOMNIAN_GRAPE_VINE_POST.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_PRESSURE_PLATE = ITEMS.register("insomnian_pressure_plate", () -> new BlockItem(BMBlocks.INSOMNIAN_PRESSURE_PLATE.get(), new Item.Properties().tab(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> INSOMNIAN_DOOR = ITEMS.register("insomnian_door", () -> new BlockItem(BMBlocks.INSOMNIAN_DOOR.get(), new Item.Properties().tab(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> INSOMNIAN_TRAPDOOR = ITEMS.register("insomnian_trapdoor", () -> new BlockItem(BMBlocks.INSOMNIAN_TRAPDOOR.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_BUTTON = ITEMS.register("insomnian_button", () -> new BlockItem(BMBlocks.INSOMNIAN_BUTTON.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> INSOMNIAN_LADDER = ITEMS.register("insomnian_ladder", () -> new BlockItem(BMBlocks.INSOMNIAN_LADDER.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> CHARJAN_INSOMNIAN_TORCH = ITEMS.register("charjan_insomnian_torch", () -> new WallOrFloorItem(BMBlocks.CHARJAN_INSOMNIAN_TORCH.get(), BMBlocks.CHARJAN_INSOMNIAN_WALL_TORCH.get(), new Item.Properties().tab(BMBlockTab.TAB)));
@@ -840,7 +844,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> ALJAMEED_CROWN = ITEMS.register("aljameed_crown", () -> new CrownItem(new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MOONERING_CROWN = ITEMS.register("moonering_crown", () -> new CrownItem(new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> JANTICAL_CROWN = ITEMS.register("jantical_crown", () -> new CrownItem(new Item.Properties().rarity(Rarity.UNCOMMON).tab(BMWeaponryTab.TAB)));
-    public static final RegistryObject<Item> MID_TERM_GREATSWORD = ITEMS.register("mid_term_greatsword", () -> new MidTermGreatswordItem(MID_TERM_SET, 12, -3.4F, new Item.Properties().fireResistant().rarity(Rarity.RARE).tab(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> MID_TERM_LONGSWORD = ITEMS.register("mid_term_greatsword", () -> new MidTermLongswordItem(MID_TERM_SET, 12, -3.4F, new Item.Properties().fireResistant().rarity(Rarity.RARE).tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MILKED_WOODEN_SWORD = ITEMS.register("milked_wooden_sword", () -> new MilkedSwordItem(ItemTier.WOOD, 3, -2.4F, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MILKED_STONE_SWORD = ITEMS.register("milked_stone_sword", () -> new MilkedSwordItem(ItemTier.STONE, 3, -2.4F, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> MILKED_GOLDEN_SWORD = ITEMS.register("milked_golden_sword", () -> new MilkedSwordItem(ItemTier.GOLD, 3, -2.4F, new Item.Properties().tab(BMWeaponryTab.TAB)));

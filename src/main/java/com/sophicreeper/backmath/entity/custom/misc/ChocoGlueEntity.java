@@ -3,7 +3,6 @@ package com.sophicreeper.backmath.entity.custom.misc;
 import com.sophicreeper.backmath.util.BMDamageSources;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.ProjectileItemEntity;
@@ -56,9 +55,7 @@ public class ChocoGlueEntity extends ProjectileItemEntity {
     @Override
     protected void onHitEntity(EntityRayTraceResult result) {
         super.onHitEntity(result);
-        Entity entity = result.getEntity();
-        int rand = random.nextInt(5);
-        entity.hurt(BMDamageSources.CHOCOGLUED, rand);
+        if (!this.level.isClientSide) result.getEntity().hurt(BMDamageSources.CHOCOGLUED, this.random.nextInt(5));
     }
 
     @Override

@@ -62,7 +62,7 @@ import static com.sophicreeper.backmath.BackMath.LOGGER;
 public class BMEvents {
     @SubscribeEvent
     public static void registerCommands(final RegisterCommandsEvent event) {
-        if (Minecraft.getInstance().getLaunchedVersion().equals("backmath-development")) BMDebuggingCommands.register(event.getDispatcher());
+        if (Minecraft.getInstance().getLaunchedVersion().equals("melony-studios-dev")) BMDebuggingCommands.register(event.getDispatcher());
     }
 
     @SubscribeEvent
@@ -89,9 +89,12 @@ public class BMEvents {
     @SubscribeEvent
     public static void changeAljanFogColorAtNight(EntityViewRenderEvent.FogColors event) {
         ClientWorld world = Minecraft.getInstance().level;
-        if (world != null && isTimeWithinBounds(world.getDayTime()) && ambienceEnabled(world) &&
-                BMConfigs.COMMON_CONFIGS.changeAljanFogColorAtNight.get()) {
-            BMUtils.transitionFogColor(event, world.getDayTime() <= 22300);
+        if (world != null) {
+            int dayTime = (int) (world.getDayTime() % 24000L);
+            if (isTimeWithinBounds(dayTime) && ambienceEnabled(world) &&
+                    BMConfigs.COMMON_CONFIGS.changeAljanFogColorAtNight.get()) {
+                BMUtils.transitionFogColor(event, dayTime <= 22300);
+            }
         }
     }
 

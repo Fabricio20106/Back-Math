@@ -27,6 +27,7 @@ public class BMDebuggingCommands {
         APSPlacementCommand.register(dispatcher);
         SpawnWandererSophiesCommand.register(dispatcher);
         SpawnQLPs.register(dispatcher);
+        WorldTimes.register(dispatcher);
     }
 
     // For testing Aljan portal stand placement when teleporting. Separation of the teleportation logic was made for this reason.
@@ -35,17 +36,15 @@ public class BMDebuggingCommands {
         public static void register(CommandDispatcher<CommandSource> dispatcher) {
             dispatcher.register(Commands.literal("backmath-aps_placement").requires(source -> source.hasPermission(2))
                     .then(Commands.argument("pos", BlockPosArgument.blockPos())
-                            .executes(context -> placeStand(context, true, BMConfigs.COMMON_CONFIGS.safeAljan.get()))
-                            .then(Commands.argument("inside_aljan", BoolArgumentType.bool())
-                                    .executes(context -> placeStand(context, BoolArgumentType.getBool(context, "inside_aljan"), BMConfigs.COMMON_CONFIGS.safeAljan.get()))
-                                    .then(Commands.argument("place_with_jantical", BoolArgumentType.bool())
-                                            .executes(context -> placeStand(context, BoolArgumentType.getBool(context, "inside_aljan"), BoolArgumentType.getBool(context, "place_with_jantical")))))));
+                            .executes(context -> placeStand(context, BMConfigs.COMMON_CONFIGS.safeAljan.get()))
+                            .then(Commands.argument("place_with_jantical", BoolArgumentType.bool())
+                                    .executes(context -> placeStand(context, BoolArgumentType.getBool(context, "place_with_jantical"))))));
         }
 
-        private static int placeStand(CommandContext<CommandSource> context, boolean insideAljan, boolean placeWithJantical) throws CommandSyntaxException {
+        private static int placeStand(CommandContext<CommandSource> context, boolean placeWithJantical) throws CommandSyntaxException {
             ServerWorld world = context.getSource().getLevel();
             BlockPos pos = TheAljanTeleporter.getTargetPosition(BlockPosArgument.getLoadedBlockPos(context, "pos"), context.getSource().getEntity(), world);
-            int result = TheAljanTeleporter.placePortalStand(pos, world, insideAljan, placeWithJantical);
+            int result = TheAljanTeleporter.placePortalStand(pos, world, placeWithJantical);
             if (result >= 1) context.getSource().sendSuccess(new StringTextComponent("Successfully placed an Aljan Portal Stand on " + pos.getX() + ", " + pos.getY() + ", " + pos.getZ()), false);
             else context.getSource().sendFailure(new StringTextComponent("Did not place an Aljan Portal Stand"));
             return result;
@@ -118,6 +117,19 @@ public class BMDebuggingCommands {
             }
             if (spawnedVariants > 0) source.sendSuccess(new StringTextComponent("Spawned " + spawnedVariants + " QLP variants"), false);
             else source.sendFailure(new StringTextComponent("No QLP variants were spawned"));
+            return 1;
+        }
+    }
+
+    public static class WorldTimes {
+        public static void register(CommandDispatcher<CommandSource> dispatcher) {
+            dispatcher.register(Commands.literal("backmath-world_times").requires(source -> source.hasPermission(2))
+                    .executes(context -> printWorldTimes(context.getSource())));
+        }
+
+        private static int printWorldTimes(CommandSource source) {
+            ServerWorld world = source.getLevel();
+            source.sendSuccess(new StringTextComponent("Day Time: " + world.getDayTime() + " | Game Time: " + world.getGameTime() + " | Time of Day: " + world.getTimeOfDay(0) + " | /time query daytime: " + (int) world.getDayTime() % 24000L), false);
             return 1;
         }
     }

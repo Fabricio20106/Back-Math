@@ -1,6 +1,18 @@
 {
-  "parent": "backmath:item/handheld_32x",
-  "textures": {
-    "layer0": "backmath:item/mid_term_greatsword"
+  "parent": "minecraft:item/handheld",
+  "loader": "forge:separate-perspective",
+  "base": {
+    "parent": "backmath:item/mid_term_greatsword_in_hand"
+  },
+  "perspectives": {
+    "gui": {
+      "parent": "backmath:item/mid_term_greatsword_inventory"
+    },
+    "ground": {
+      "parent": "backmath:item/mid_term_greatsword_inventory"
+    },
+    "fixed": {
+      "parent": "backmath:item/mid_term_greatsword_inventory"
+    }
   }
 }

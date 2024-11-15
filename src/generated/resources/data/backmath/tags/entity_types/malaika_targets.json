@@ -1,11 +1,10 @@
 {
   "replace": false,
   "values": [
-    "backmath:insomnia_zombie",
-    "backmath:zombie_fabricio",
-    "backmath:aljamic_bones",
-    "backmath:sleepish_skeleton",
-    "backmath:amaracameler",
-    "backmath:janticle"
+    "#minecraft:raiders",
+    "#backmath:player_like",
+    "minecraft:player",
+    "minecraft:villager",
+    "minecraft:wandering_trader"
   ]
 }

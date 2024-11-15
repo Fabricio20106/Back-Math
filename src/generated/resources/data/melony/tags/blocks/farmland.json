@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:farmland",
-    "backmath:aljamic_farmland"
+    "#melony:natural_farmland"
   ]
 }

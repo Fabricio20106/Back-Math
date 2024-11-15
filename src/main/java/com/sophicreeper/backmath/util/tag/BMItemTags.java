@@ -122,6 +122,8 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> MID_TERM_MATERIALS = backMath("mid_term_materials");
     public static final ITag.INamedTag<Item> OIMT_MATERIALS = backMath("oimt_materials");
     public static final ITag.INamedTag<Item> CANNOT_CRAFT_WITH_AT_CRYSTALLIZER = backMath("cannot_craft_with_at_crystallizer");
+    public static final ITag.INamedTag<Item> DUAL_WIELDED = backMath("dual_wielded");
+    public static final ITag.INamedTag<Item> FULLY_LIT_ITEMS = backMath("fully_lit_items");
 
     // Melony Tags
     public static final ITag.INamedTag<Item> SHIELDS = melony("shields");

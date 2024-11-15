@@ -10,11 +10,9 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -28,10 +26,10 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class MalaikaEntity extends CreatureEntity implements SophieFriendlies {
+public class MalaikaEntity extends MonsterEntity implements SophieFriendlies {
     public MalaikaEntity(EntityType<MalaikaEntity> entity, World world) {
         super(entity, world);
-        this.xpReward = 2;
+        this.xpReward = 50;
     }
 
     @Override
@@ -39,7 +37,6 @@ public class MalaikaEntity extends CreatureEntity implements SophieFriendlies {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(3, new LookAtGoal(this, MalaikaEntity.class, 6));
-        this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.entityAttackTargets();
         super.registerGoals();
@@ -51,8 +48,8 @@ public class MalaikaEntity extends CreatureEntity implements SophieFriendlies {
     }
 
     public static AttributeModifierMap.MutableAttribute createMalaikaAttributes() {
-        return CreatureEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 15).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.ATTACK_KNOCKBACK, 1.25F)
-                .add(Attributes.FOLLOW_RANGE, 16).add(Attributes.ATTACK_DAMAGE, 3);
+        return CreatureEntity.createMobAttributes().add(Attributes.MAX_HEALTH, 40).add(Attributes.MOVEMENT_SPEED, 0.23F).add(Attributes.ATTACK_KNOCKBACK, 1.25F)
+                .add(Attributes.FOLLOW_RANGE, 16).add(Attributes.ATTACK_DAMAGE, 5).add(Attributes.FOLLOW_RANGE, 10).add(Attributes.ARMOR, 5);
     }
 
     @Override
@@ -60,6 +57,7 @@ public class MalaikaEntity extends CreatureEntity implements SophieFriendlies {
         return 1.62F;
     }
 
+    @Override
     public double getMyRidingOffset() {
         return -0.35D;
     }
@@ -78,9 +76,7 @@ public class MalaikaEntity extends CreatureEntity implements SophieFriendlies {
     public void aiStep() {
         this.updateSwingTime();
         if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
-                this.heal(1);
-            }
+            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) this.heal(1);
         }
         super.aiStep();
     }
@@ -112,88 +108,8 @@ public class MalaikaEntity extends CreatureEntity implements SophieFriendlies {
         return new ItemStack(AxolotlTest.MALAIKA_SPAWN_EGG.get());
     }
 
-    protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
-        if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
-            int rand = this.random.nextInt(2);
-            float chancePerDifficulty = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-            if (this.random.nextFloat() < 0.095F) ++rand;
-            if (this.random.nextFloat() < 0.095F) ++rand;
-            if (this.random.nextFloat() < 0.095F) ++rand;
-            boolean populateArmor = true;
-
-            for (EquipmentSlotType equipmentSlotType : EquipmentSlotType.values()) {
-                if (equipmentSlotType.getType() == EquipmentSlotType.Group.ARMOR) {
-                    ItemStack stack = this.getItemBySlot(equipmentSlotType);
-                    if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
-
-                    populateArmor = false;
-                    if (stack.isEmpty()) {
-                        Item item = getAljanArmorByChance(equipmentSlotType, rand);
-                        if (item != null) this.setItemSlot(equipmentSlotType, new ItemStack(item));
-                    }
-                }
-            }
-        }
-    }
-
-    @Nullable
-    public static Item getAljanArmorByChance(EquipmentSlotType slot, int chance) {
-        switch (slot) {
-            case HEAD:
-                if (chance == 0) {
-                    return AxolotlTest.JANTSKIN_HELMET.get();
-                } else if (chance == 1) {
-                    return AxolotlTest.ARCHER_FABRICIO_HOOD.get();
-                } else if (chance == 2) {
-                    return AxolotlTest.ARCHER_FABRICIO_HOOD.get();
-                } else if (chance == 3) {
-                    return AxolotlTest.ALJAMEED_HELMET.get();
-                } else if (chance == 4) {
-                    return AxolotlTest.MOONERING_HELMET.get();
-                }
-            case CHEST:
-                if (chance == 0) {
-                    return AxolotlTest.JANTSKIN_CHESTPLATE.get();
-                } else if (chance == 1) {
-                    return AxolotlTest.ARCHER_FABRICIO_VEST.get();
-                } else if (chance == 2) {
-                    return AxolotlTest.ARCHER_FABRICIO_VEST.get();
-                } else if (chance == 3) {
-                    return AxolotlTest.ALJAMEED_CHESTPLATE.get();
-                } else if (chance == 4) {
-                    return AxolotlTest.MOONERING_CHESTPLATE.get();
-                }
-            case LEGS:
-                if (chance == 0) {
-                    return AxolotlTest.JANTSKIN_LEGGINGS.get();
-                } else if (chance == 1) {
-                    return Items.AIR;
-                } else if (chance == 2) {
-                    return Items.AIR;
-                } else if (chance == 3) {
-                    return AxolotlTest.ALJAMEED_LEGGINGS.get();
-                } else if (chance == 4) {
-                    return AxolotlTest.MOONERING_LEGGINGS.get();
-                }
-            case FEET:
-                if (chance == 0) {
-                    return AxolotlTest.JANTSKIN_BOOTS.get();
-                } else if (chance == 1) {
-                    return Items.AIR;
-                } else if (chance == 2) {
-                    return Items.AIR;
-                } else if (chance == 3) {
-                    return AxolotlTest.ALJAMEED_BOOTS.get();
-                } else if (chance == 4) {
-                    return AxolotlTest.MOONERING_BOOTS.get();
-                }
-            default:
-                return null;
-        }
-    }
-
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        this.populateAljanEquipmentSlots(difficulty);
+//        this.populateAljanEquipmentSlots(difficulty);
 //        EquipmentTableUtils.equipWithGear(BMResourceLocations.MALAIKA_EQUIPMENT, this);
     }
 

@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.entity.renderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sophicreeper.backmath.entity.model.BMArmorModel;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
+import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.BipedRenderer;
@@ -84,14 +85,14 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
     }
 
     private BipedModel.ArmPose getArmPose(T mob, Hand hand) {
-        ItemStack heldStack = mob.getItemInHand(hand);
-        boolean acceptableCrossbows = heldStack.getItem().is(BMItemTags.CROSSBOWS);
+        ItemStack handStack = mob.getItemInHand(hand);
+        boolean acceptableCrossbows = handStack.getItem().is(BMItemTags.CROSSBOWS);
 
-        if (heldStack.isEmpty()) {
+        if (handStack.isEmpty()) {
             return BipedModel.ArmPose.EMPTY;
         } else {
             if (mob.getUsedItemHand() == hand && mob.getUseItemRemainingTicks() > 0) {
-                UseAction useAction = heldStack.getUseAnimation();
+                UseAction useAction = handStack.getUseAnimation();
                 if (useAction == UseAction.BLOCK) {
                     return BipedModel.ArmPose.BLOCK;
                 }
@@ -107,8 +108,12 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
                 if (useAction == UseAction.CROSSBOW && hand == mob.getUsedItemHand()) {
                     return BipedModel.ArmPose.CROSSBOW_CHARGE;
                 }
-            } else if (!mob.swinging && acceptableCrossbows && CrossbowItem.isCharged(heldStack)) {
+            } else if (!mob.swinging && acceptableCrossbows && (CrossbowItem.isCharged(handStack) || JanticRailgunItem.isCharged(handStack))) {
                 return BipedModel.ArmPose.CROSSBOW_HOLD;
+            }
+
+            if (!mob.swinging && handStack.getItem().is(BMItemTags.DUAL_WIELDED)) {
+                return BipedModel.ArmPose.CROSSBOW_CHARGE;
             }
 
             return BipedModel.ArmPose.ITEM;

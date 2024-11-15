@@ -1,0 +1,13 @@
+  "group": "planks",
+  "group": "wooden_stairs",
+  "group": "wooden_slab",
+  "group": "wooden_fence",
+  "group": "wooden_fence_gate",
+  "group": "wooden_button",
+  "group": "wooden_pressure_plate",
+  "group": "wooden_door",
+  "group": "wooden_trapdoor",
+  "group": "boat",
+  "group": "bark",
+
+  "group": "chain",

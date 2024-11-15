@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.particle.BMParticleTypes;
 import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.dimension.TheAljanTeleporter;
 import net.minecraft.block.Block;
@@ -11,6 +12,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.particles.IParticleData;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.BooleanProperty;
@@ -32,6 +35,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 import java.util.stream.Stream;
 
 @SuppressWarnings("deprecation")
@@ -47,7 +51,7 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
         if (state.getValue(JANTICAL)) return WITH_JANTICAL;
         else return WITHOUT_JANTICAL;
     }
@@ -100,6 +104,21 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
     }
 
     @Override
+    public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
+        for (int i = 0; i < 5; ++i) {
+            double x = pos.getX() + rand.nextDouble();
+            double y = pos.getY() + rand.nextDouble();
+            double z = pos.getZ() + rand.nextDouble();
+            double speedX = (rand.nextFloat() - 0.5) * 0.5;
+            double speedY = (rand.nextFloat() - 0.5) * 0.5;
+            double speedZ = (rand.nextFloat() - 0.5) * 0.5;
+            IParticleData particle = (IParticleData) BMParticleTypes.JANTICAL.get();
+
+            world.addParticle(particle, x, y, z, speedX, speedY, speedZ);
+        }
+    }
+
+    @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
     }
@@ -127,7 +146,7 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
     }
 
     @Override
-    public boolean isPathfindable(BlockState state, IBlockReader reader, BlockPos pos, PathType type) {
+    public boolean isPathfindable(BlockState state, IBlockReader world, BlockPos pos, PathType type) {
         return false;
     }
 

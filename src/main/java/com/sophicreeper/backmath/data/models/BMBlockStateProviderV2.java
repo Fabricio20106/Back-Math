@@ -241,7 +241,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Aljancap
         blockFamily(modLoc("block/aljancap_planks"), "aljancap").log(ALJANCAP_LOG.get(), ALJANCAP_WOOD.get(), STRIPPED_ALJANCAP_LOG.get(), STRIPPED_ALJANCAP_WOOD.get()).fullBlock(ALJANCAP_PLANKS.get()).stairs(ALJANCAP_STAIRS.get())
                 .slab(ALJANCAP_SLAB.get()).fence(ALJANCAP_FENCE.get()).fenceGate(ALJANCAP_FENCE_GATE.get()).grapeVinePost(ALJANCAP_GRAPE_VINE_POST.get()).pressurePlate(ALJANCAP_PRESSURE_PLATE.get()).button(ALJANCAP_BUTTON.get())
-                .ladder(ALJANCAP_LADDER.get()).build();
+                .ladder(ALJANCAP_LADDER.get()).door(ALJANCAP_DOOR.get()).trapdoor(ALJANCAP_TRAPDOOR.get()).build();
         simplePlantWithPotted(ALJANCAP_SAPLING.get(), POTTED_ALJANCAP_SAPLING.get(), modLoc("block/aljancap_sapling"));
         leaves(ALJANCAP_LEAVES.get(), mcLoc("block/oak_leaves"));
         leaves(AMARACAP_LEAVES.get(), mcLoc("block/acacia_leaves"));
@@ -250,7 +250,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         // Insomnian
         blockFamily(modLoc("block/insomnian_planks"), "insomnian").log(INSOMNIAN_LOG.get(), INSOMNIAN_WOOD.get(), STRIPPED_INSOMNIAN_LOG.get(), STRIPPED_INSOMNIAN_WOOD.get()).fullBlock(INSOMNIAN_PLANKS.get())
                 .stairs(INSOMNIAN_STAIRS.get()).slab(INSOMNIAN_SLAB.get()).fence(INSOMNIAN_FENCE.get()).fenceGate(INSOMNIAN_FENCE_GATE.get()).grapeVinePost(INSOMNIAN_GRAPE_VINE_POST.get()).pressurePlate(INSOMNIAN_PRESSURE_PLATE.get())
-                .button(INSOMNIAN_BUTTON.get()).ladder(INSOMNIAN_LADDER.get()).build();
+                .button(INSOMNIAN_BUTTON.get()).ladder(INSOMNIAN_LADDER.get()).door(INSOMNIAN_DOOR.get()).trapdoor(INSOMNIAN_TRAPDOOR.get()).build();
         simplePlantWithPotted(INSOMNIAN_SAPLING.get(), POTTED_INSOMNIAN_SAPLING.get(), modLoc("block/insomnian_sapling"));
         leaves(INSOMNIAN_LEAVES.get(), mcLoc("block/oak_leaves"));
         charjanTorch(CHARJAN_INSOMNIAN_TORCH.get(), CHARJAN_INSOMNIAN_WALL_TORCH.get(), "insomnian");

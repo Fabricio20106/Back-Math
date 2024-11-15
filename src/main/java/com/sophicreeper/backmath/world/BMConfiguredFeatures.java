@@ -218,7 +218,7 @@ public class BMConfiguredFeatures {
             .range(256).squared().count(8));
 
     // Lakes
-    public static final ConfiguredFeature<?, ?> SLEEPISHWATER_LAKE = register("sleepishwater_lake", Feature.LAKE.configured(new BlockStateFeatureConfig(BMBlocks.SLEEPISHWATER.get().defaultBlockState())).decorated(Placement.WATER_LAKE.configured(
+    public static final ConfiguredFeature<?, ?> ALJAN_WATER_LAKE = register("aljan_water_lake", Feature.LAKE.configured(new BlockStateFeatureConfig(Blocks.WATER.defaultBlockState())).decorated(Placement.WATER_LAKE.configured(
             new ChanceConfig(8))));
 
     // Trees

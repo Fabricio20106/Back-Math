@@ -1,6 +1,5 @@
 {
   "credit": "Made with Blockbench by JuneTheWoods, 19/05/2024",
-  "gui_light": "front",
   "textures": {
     "particle": "#crown"
   },
@@ -54,6 +53,7 @@
       }
     }
   ],
+  "gui_light": "front",
   "display": {
     "thirdperson_righthand": {
       "translation": [0, 6.5, 0]
@@ -80,7 +80,7 @@
       "scale": [1.5, 1.5, 1.5]
     },
     "head": {
-      "translation": [0, 19.25, 0],
+      "translation": [0, 18.5, 0],
       "scale": [1.5, 1.5, 1.5]
     },
     "fixed": {

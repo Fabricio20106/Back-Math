@@ -1,14 +1,21 @@
 package com.sophicreeper.backmath.event;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.*;
 import com.sophicreeper.backmath.entity.custom.aljamic.CollectorFabricioEntity;
 import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.world.spawner.TermianPatrolSpawner;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -47,6 +54,16 @@ public class BMEventBusEvents {
             ServerWorld serverWorld = (ServerWorld) event.world;
             TermianPatrolSpawner specialSpawner = new TermianPatrolSpawner();
             specialSpawner.tick(serverWorld, serverWorld.getChunkSource().spawnEnemies, serverWorld.getChunkSource().spawnFriendlies);
+        }
+    }
+
+    @SubscribeEvent
+    public void renderFullbrightItems(final RenderItemInFrameEvent event) {
+        if (event.getItem().getItem().is(BMItemTags.FULLY_LIT_ITEMS)) {
+            event.setCanceled(true);
+            MatrixStack stack = event.getMatrix();
+            stack.scale(0.5F, 0.5F, 0.5F);
+            Minecraft.getInstance().getItemRenderer().renderStatic(event.getItem(), ItemCameraTransforms.TransformType.FIXED, LightTexture.pack(15, 15), OverlayTexture.NO_OVERLAY, stack, event.getBuffers());
         }
     }
 }

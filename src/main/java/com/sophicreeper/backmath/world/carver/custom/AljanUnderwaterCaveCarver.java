@@ -1,11 +1,11 @@
 package com.sophicreeper.backmath.world.carver.custom;
 
 import com.mojang.serialization.Codec;
-import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -20,7 +20,7 @@ import java.util.Random;
 import java.util.function.Function;
 
 public class AljanUnderwaterCaveCarver extends UnderwaterCaveWorldCarver {
-    public static final FluidState SLEEPISHWATER = BMFluids.SLEEPISHWATER.get().defaultFluidState();
+    public static final FluidState WATER = Fluids.WATER.defaultFluidState();
 
     public AljanUnderwaterCaveCarver(Codec<ProbabilityConfig> codec) {
         super(codec);
@@ -63,8 +63,8 @@ public class AljanUnderwaterCaveCarver extends UnderwaterCaveWorldCarver {
                         int xOffset = posX + direction.getStepX();
                         int zOffset = posZ + direction.getStepZ();
                         if (xOffset >> 4 != p_222728_6_ || zOffset >> 4 != p_222728_7_ || chunk.getBlockState(mutable.set(xOffset, posY, zOffset)).isAir()) {
-                            chunk.setBlockState(mutable, SLEEPISHWATER.createLegacyBlock(), false);
-                            chunk.getLiquidTicks().scheduleTick(mutable, SLEEPISHWATER.getType(), 0);
+                            chunk.setBlockState(mutable, WATER.createLegacyBlock(), false);
+                            chunk.getLiquidTicks().scheduleTick(mutable, WATER.getType(), 0);
                             flag = true;
                             break;
                         }
@@ -72,7 +72,7 @@ public class AljanUnderwaterCaveCarver extends UnderwaterCaveWorldCarver {
 
                     mutable.set(posX, posY, posZ);
                     if (!flag) {
-                        chunk.setBlockState(mutable, SLEEPISHWATER.createLegacyBlock(), false);
+                        chunk.setBlockState(mutable, WATER.createLegacyBlock(), false);
                     }
                     return true;
                 }

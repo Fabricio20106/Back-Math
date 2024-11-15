@@ -32,7 +32,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
     private VertexBuffer darkSkyBuffer;
 
     public AljanSkyRenderer() {
-        this.generateStars();
+        this.generateStars(3000);
         this.makeBrightSky();
         this.makeDarkSky();
     }
@@ -85,19 +85,20 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
             stack.popPose();
         }
 
+        RenderSystem.enableTexture();
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         stack.pushPose();
         stack.mulPose(Vector3f.YP.rotationDegrees(-90));
         stack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360));
         Matrix4f matrix4F = stack.last().pose();
 
-        RenderSystem.enableTexture();
         minecraft.textureManager.bind(ALJAN_SUN);
         buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        buffer.vertex(matrix4F, -30, 100, -30).uv(0, 0).endVertex();
-        buffer.vertex(matrix4F, 30, 100, -30).uv(1, 0).endVertex();
-        buffer.vertex(matrix4F, 30, 100, 30).uv(1, 1).endVertex();
-        buffer.vertex(matrix4F, -30, 100, 30).uv(0, 1).endVertex();
+        int sunPos = 30; // 30 is default.
+        buffer.vertex(matrix4F, -sunPos, 100, -sunPos).uv(0, 0).endVertex();
+        buffer.vertex(matrix4F, sunPos, 100, -sunPos).uv(1, 0).endVertex();
+        buffer.vertex(matrix4F, sunPos, 100, sunPos).uv(1, 1).endVertex();
+        buffer.vertex(matrix4F, -sunPos, 100, sunPos).uv(0, 1).endVertex();
         buffer.end();
         WorldVertexBufferUploader.end(buffer);
         RenderSystem.disableTexture();
@@ -152,7 +153,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         if (this.lightSkyBuffer != null) this.lightSkyBuffer.close();
 
         this.lightSkyBuffer = new VertexBuffer(this.skyVertexFormat);
-        drawSkyHemisphere(bufferBuilder, 16, false);
+        drawSkyHemisphere(bufferBuilder, 32, false);
         bufferBuilder.end();
         this.lightSkyBuffer.upload(bufferBuilder);
     }
@@ -177,21 +178,21 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         }
     }
 
-    private void generateStars() {
+    private void generateStars(int starCount) {
         BufferBuilder bufferBuilder = Tessellator.getInstance().getBuilder();
         if (this.starsBuffer != null) this.starsBuffer.close();
 
         this.starsBuffer = new VertexBuffer(this.skyVertexFormat);
-        renderStars(bufferBuilder);
+        renderStars(bufferBuilder, starCount);
         bufferBuilder.end();
         this.starsBuffer.upload(bufferBuilder);
     }
 
-    private void renderStars(BufferBuilder bufferBuilder) {
+    private void renderStars(BufferBuilder bufferBuilder, int starCount) {
         Random rand = new Random(10842L);
         bufferBuilder.begin(7, DefaultVertexFormats.POSITION);
 
-        for (int i = 0; i < 1500; ++i) {
+        for (int i = 0; i < starCount; ++i) {
             double d0 = rand.nextFloat() * 2 - 1;
             double d1 = rand.nextFloat() * 2 - 1;
             double d2 = rand.nextFloat() * 2 - 1;

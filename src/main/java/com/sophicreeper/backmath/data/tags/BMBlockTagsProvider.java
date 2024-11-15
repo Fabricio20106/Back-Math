@@ -125,7 +125,8 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
 
         // Melony Tags
         this.tag(BMBlockTags.CAMPFIRE_SIGNAL_FIRE_BLOCKS).add(BMBlocks.CARAMELED_HAY_BALE.get());
-        this.tag(BMBlockTags.FARMLAND).add(Blocks.FARMLAND).add(BMBlocks.ALJAMIC_FARMLAND.get());
+        this.tag(BMBlockTags.NATURAL_FARMLAND).add(Blocks.FARMLAND).add(BMBlocks.ALJAMIC_FARMLAND.get());
+        this.tag(BMBlockTags.FARMLAND).addTag(BMBlockTags.NATURAL_FARMLAND);
         this.tag(BMBlockTags.FARMLAND_TRANSPARENT).addTag(Tags.Blocks.FENCE_GATES).addTag(BlockTags.FENCE_GATES).add(Blocks.MOVING_PISTON);
         this.tag(BMBlockTags.MAKES_GRASS_BLOCKS_SNOWY).add(Blocks.SNOW_BLOCK, Blocks.SNOW);
         this.tag(BMBlockTags.HELPS_ON_ZOMBIE_CONVERSION).addTag(BlockTags.BEDS).add(Blocks.IRON_BARS);
@@ -135,7 +136,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
 
         this.tag(BMBlockTags.WILD_CROPS_PLANTABLE_ON).addTag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_FARMLAND.get());
         this.tag(BMBlockTags.ALJAN_CROP_PLANTABLE_ON).add(BMBlocks.ALJAMIC_FARMLAND.get());
-        this.tag(BMBlockTags.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON).addTag(BMBlockTags.FARMLAND).addTag(Tags.Blocks.SAND).addTag(Tags.Blocks.DIRT);
+        this.tag(BMBlockTags.TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON).addTag(BMBlockTags.NATURAL_FARMLAND).addTag(Tags.Blocks.SAND).addTag(Tags.Blocks.DIRT);
         this.tag(BMBlockTags.ENDER_DRAGON_FRIED_EGG_FLOWER_PLANTABLE_ON).addOptional(new ResourceLocation("variants:ender_nylium")).addTag(BMBlockTags.FARMLAND).addTag(Tags.Blocks.DIRT).add(Blocks.END_STONE)
                 .add(Blocks.END_STONE_BRICKS);
         this.tag(BMBlockTags.MINEABLE_KNIVES).addTag(BlockTags.SAPLINGS).addTag(BlockTags.FLOWERS).add(Blocks.GRASS).add(Blocks.TALL_GRASS).add(Blocks.FERN).add(Blocks.LARGE_FERN).add(Blocks.SEAGRASS).add(Blocks.TALL_SEAGRASS)
@@ -145,7 +146,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BMBlockTags.ALJAN_CARVER_REPLACEABLES).addTag(BMBlockTags.BASE_STONE_ALJAN).addTag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_SAND.get()).add(Blocks.GRASS_BLOCK).add(Blocks.DIRT);
         this.tag(BMBlockTags.ALJAN_TELEPORTER_REPLACEABLES).add(BMBlocks.ALJAN_TULIP.get(), BMBlocks.POISON_ROSE.get(), BMBlocks.INSOMNIAN_TULIP.get(), Blocks.GRASS, Blocks.SNOW);
         this.tag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get());
-        this.tag(BMBlockTags.MALAIKA_SPAWNABLE_ON).addTag(BMBlockTags.BASE_STONE_ALJAN).addTag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_SAND.get()).add(Blocks.GRASS_BLOCK);
+        this.tag(BMBlockTags.MALAIKA_SPAWNABLE_ON).addTag(Tags.Blocks.END_STONES).addOptionalTag(new ResourceLocation("variants", "has_ender_nylium"));
         this.tag(BMBlockTags.SOPHIES_SPAWNABLE_ON).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.LOGS).addTag(BlockTags.PLANKS).addTag(Tags.Blocks.DIRT);
         this.tag(BMBlockTags.OBSIDIAN_REPLACEABLES).add(Blocks.OBSIDIAN).add(Blocks.CRYING_OBSIDIAN);
         this.tag(BMBlockTags.AIR_REPLACEABLES).add(Blocks.AIR).add(Blocks.CAVE_AIR);
@@ -234,9 +235,9 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
                 .add(BMBlocks.JABUTICABA_FENCE_GATE.get()).add(BMBlocks.CORK_OAK_FENCE_GATE.get()).add(BMBlocks.ALJANWOOD_FENCE_GATE.get()).add(BMBlocks.ALJANCAP_FENCE_GATE.get()).add(BMBlocks.INSOMNIAN_FENCE_GATE.get())
                 .add(BMBlocks.AVONDALIC_WILLOW_FENCE_GATE.get());
         this.tag(BlockTags.WOODEN_DOORS).add(BMBlocks.CRYSTALLINE_BIRCH_DOOR.get()).add(BMBlocks.GOLDENWOOD_DOOR.get()).add(BMBlocks.GUAVA_DOOR.get()).add(BMBlocks.JABUTICABA_DOOR.get()).add(BMBlocks.CORK_OAK_DOOR.get())
-                .add(BMBlocks.ALJANWOOD_DOOR.get()).add(BMBlocks.AVONDALIC_WILLOW_DOOR.get());
+                .add(BMBlocks.ALJANWOOD_DOOR.get(), BMBlocks.ALJANCAP_DOOR.get(), BMBlocks.INSOMNIAN_DOOR.get()).add(BMBlocks.AVONDALIC_WILLOW_DOOR.get());
         this.tag(BlockTags.WOODEN_TRAPDOORS).add(BMBlocks.CRYSTALLINE_BIRCH_TRAPDOOR.get()).add(BMBlocks.GOLDENWOOD_TRAPDOOR.get()).add(BMBlocks.GUAVA_TRAPDOOR.get()).add(BMBlocks.JABUTICABA_TRAPDOOR.get())
-                .add(BMBlocks.CORK_OAK_TRAPDOOR.get()).add(BMBlocks.ALJANWOOD_TRAPDOOR.get()).add(BMBlocks.AVONDALIC_WILLOW_TRAPDOOR.get());
+                .add(BMBlocks.CORK_OAK_TRAPDOOR.get()).add(BMBlocks.ALJANWOOD_TRAPDOOR.get(), BMBlocks.ALJANCAP_TRAPDOOR.get(), BMBlocks.INSOMNIAN_TRAPDOOR.get()).add(BMBlocks.AVONDALIC_WILLOW_TRAPDOOR.get());
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(BMBlocks.CRYSTALLINE_BIRCH_PRESSURE_PLATE.get()).add(BMBlocks.GOLDENWOOD_PRESSURE_PLATE.get()).add(BMBlocks.GUAVA_PRESSURE_PLATE.get())
                 .add(BMBlocks.JABUTICABA_PRESSURE_PLATE.get()).add(BMBlocks.CORK_OAK_PRESSURE_PLATE.get()).add(BMBlocks.ALJANWOOD_PRESSURE_PLATE.get()).add(BMBlocks.ALJANCAP_PRESSURE_PLATE.get()).add(BMBlocks.INSOMNIAN_PRESSURE_PLATE.get())
                 .add(BMBlocks.AVONDALIC_WILLOW_PRESSURE_PLATE.get());

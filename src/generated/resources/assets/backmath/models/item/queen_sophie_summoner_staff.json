@@ -10,6 +10,9 @@
     },
     "ground": {
       "parent": "backmath:item/queen_sophie_summoner_staff_inventory"
+    },
+    "fixed": {
+      "parent": "backmath:item/queen_sophie_summoner_staff_inventory"
     }
   }
 }

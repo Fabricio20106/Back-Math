@@ -13,15 +13,15 @@ import net.minecraftforge.common.ForgeMod;
 import javax.annotation.Nonnull;
 import java.util.UUID;
 
-public class MidTermGreatswordItem extends MidTermSwordItem {
+public class MidTermLongswordItem extends MidTermSwordItem {
     private final Multimap<Attribute, AttributeModifier> attributeModifiers;
 
-    public MidTermGreatswordItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
+    public MidTermLongswordItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {
         super(tier, attackDamage, swingSpeed, properties);
         float trueAttackDamage = (float) attackDamage + tier.getAttackDamageBonus();
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
-        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Mid-Term Greatsword Damage Modifier", trueAttackDamage, AttributeModifier.Operation.ADDITION));
-        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Mid-Term Greatsword Swing Speed Modifier", swingSpeed, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Mid-Term Longsword Damage Modifier", trueAttackDamage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Mid-Term Longsword Swing Speed Modifier", swingSpeed, AttributeModifier.Operation.ADDITION));
         if (ForgeMod.REACH_DISTANCE.isPresent()) {
             builder.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mid-Term Greatsword Reach Modifier", BMConfigs.COMMON_CONFIGS.midTermGreatswordReachIncrease.get(),
                     AttributeModifier.Operation.ADDITION));

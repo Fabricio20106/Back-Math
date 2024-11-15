@@ -26,9 +26,7 @@ import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -53,7 +51,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.function.Predicate;
 
-public class ZombieFabricioEntity extends MonsterEntity {
+public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils {
     private static final UUID BABY_ZOMBIE_SPEED_MODIFIER_UUID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
     private static final AttributeModifier BABY_ZOMBIE_SPEED_MODIFIER = new AttributeModifier(BABY_ZOMBIE_SPEED_MODIFIER_UUID, "Baby Zombie Fabricio Speed Bonus", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
     private static final DataParameter<Boolean> IS_BABY = EntityDataManager.defineId(ZombieFabricioEntity.class, DataSerializers.BOOLEAN);
@@ -354,91 +352,12 @@ public class ZombieFabricioEntity extends MonsterEntity {
 
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        this.populateAljanEquipmentSlots(difficulty);
+        this.populateAljanEquipmentSlots(this, this.random);
         /*if (this.level.getDifficulty() == Difficulty.HARD) {
             EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_HARD_DIFFICULTY, this);
         } else {
             EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_BELOW_HARD_DIFFICULTY, this);
         }*/
-    }
-
-    protected void populateAljanEquipmentSlots(DifficultyInstance difficulty) {
-        if (this.random.nextFloat() < 0.15F * difficulty.getSpecialMultiplier()) {
-            int rand = this.random.nextInt(2);
-            float chancePerDifficulty = this.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
-            if (this.random.nextFloat() < 0.095F) ++rand;
-            if (this.random.nextFloat() < 0.095F) ++rand;
-            if (this.random.nextFloat() < 0.095F) ++rand;
-            boolean populateArmor = true;
-
-            for (EquipmentSlotType equipmentSlot : EquipmentSlotType.values()) {
-                if (equipmentSlot.getType() == EquipmentSlotType.Group.ARMOR) {
-                    ItemStack armorSlotStacks = this.getItemBySlot(equipmentSlot);
-                    if (!populateArmor && this.random.nextFloat() < chancePerDifficulty) break;
-
-                    populateArmor = false;
-                    if (armorSlotStacks.isEmpty()) {
-                        Item aljanArmor = getAljanArmorByChance(equipmentSlot, rand);
-                        if (aljanArmor != null) this.setItemSlot(equipmentSlot, new ItemStack(aljanArmor));
-                    }
-                }
-            }
-        }
-    }
-
-    @Nullable
-    public static Item getAljanArmorByChance(EquipmentSlotType slot, int chance) {
-        switch(slot) {
-            case HEAD:
-                if (chance == 0) {
-                    return AxolotlTest.JANTSKIN_HELMET.get();
-                } else if (chance == 1) {
-                    return AxolotlTest.ARCHER_FABRICIO_HOOD.get();
-                } else if (chance == 2) {
-                    return AxolotlTest.ARCHER_FABRICIO_HOOD.get();
-                } else if (chance == 3) {
-                    return AxolotlTest.ALJAMEED_HELMET.get();
-                } else if (chance == 4) {
-                    return AxolotlTest.MOONERING_HELMET.get();
-                }
-            case CHEST:
-                if (chance == 0) {
-                    return AxolotlTest.JANTSKIN_CHESTPLATE.get();
-                } else if (chance == 1) {
-                    return AxolotlTest.ARCHER_FABRICIO_VEST.get();
-                } else if (chance == 2) {
-                    return AxolotlTest.ARCHER_FABRICIO_VEST.get();
-                } else if (chance == 3) {
-                    return AxolotlTest.ALJAMEED_CHESTPLATE.get();
-                } else if (chance == 4) {
-                    return AxolotlTest.MOONERING_CHESTPLATE.get();
-                }
-            case LEGS:
-                if (chance == 0) {
-                    return AxolotlTest.JANTSKIN_LEGGINGS.get();
-                } else if (chance == 1) {
-                    return Items.AIR;
-                } else if (chance == 2) {
-                    return Items.AIR;
-                } else if (chance == 3) {
-                    return AxolotlTest.ALJAMEED_LEGGINGS.get();
-                } else if (chance == 4) {
-                    return AxolotlTest.MOONERING_LEGGINGS.get();
-                }
-            case FEET:
-                if (chance == 0) {
-                    return AxolotlTest.JANTSKIN_BOOTS.get();
-                } else if (chance == 1) {
-                    return Items.AIR;
-                } else if (chance == 2) {
-                    return Items.AIR;
-                } else if (chance == 3) {
-                    return AxolotlTest.ALJAMEED_BOOTS.get();
-                } else if (chance == 4) {
-                    return AxolotlTest.MOONERING_BOOTS.get();
-                }
-            default: return null;
-        }
     }
 
     public void addAdditionalSaveData(CompoundNBT tag) {

@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#melony:farmland",
+    "#melony:natural_farmland",
     "#forge:sand",
     "#forge:dirt"
   ]

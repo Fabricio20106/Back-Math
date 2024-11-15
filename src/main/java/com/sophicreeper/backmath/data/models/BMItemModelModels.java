@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.data.models;
 
+import com.sophicreeper.backmath.BackMath;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.util.ResourceLocation;
@@ -11,6 +12,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public abstract class BMItemModelModels extends ItemModelProvider {
     private final ModelFile generated = getExistingFile(mcLoc("item/generated"));
     private final ModelFile handheld = getExistingFile(mcLoc("item/handheld"));
+    private final ModelFile handheld32x = getExistingFile(modLoc("item/handheld_32x"));
 
     public BMItemModelModels(DataGenerator generator, String modID, ExistingFileHelper fileHelper) {
         super(generator, modID, fileHelper);
@@ -128,7 +130,24 @@ public abstract class BMItemModelModels extends ItemModelProvider {
 
         withExistingParent(name, this.generated.getLocation()).customLoader(SeparatePerspectiveModelBuilder::begin).base(nested().parent(getExistingFile(modLoc("item/" + name + "_in_hand"))))
                 .perspective(ItemCameraTransforms.TransformType.GUI, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory"))))
-                .perspective(ItemCameraTransforms.TransformType.GROUND, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory")))).end();
+                .perspective(ItemCameraTransforms.TransformType.GROUND, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory"))))
+                .perspective(ItemCameraTransforms.TransformType.FIXED, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory")))).end();
+    }
+
+    public void dualWieldedSword(String name) {
+        getBuilder(name + "_inventory").parent(this.handheld).texture("layer0", "item/" + name + "_inventory");
+
+        if (name.equals("carewni")) {
+            getBuilder(name + "_in_hand_trans").parent(this.handheld32x).texture("layer0", "item/" + name + "_trans");
+            getBuilder(name + "_in_hand").parent(this.handheld32x).texture("layer0", "item/" + name).override().predicate(BackMath.backMath("june_check"), 1).model(getExistingFile(modLoc("item/carewni_in_hand_trans"))).end();
+        } else {
+            getBuilder(name + "_in_hand").parent(this.handheld32x).texture("layer0", "item/" + name);
+        }
+
+        withExistingParent(name, this.handheld.getLocation()).customLoader(SeparatePerspectiveModelBuilder::begin).base(nested().parent(getExistingFile(modLoc("item/" + name + "_in_hand"))))
+                .perspective(ItemCameraTransforms.TransformType.GUI, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory"))))
+                .perspective(ItemCameraTransforms.TransformType.GROUND, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory"))))
+                .perspective(ItemCameraTransforms.TransformType.FIXED, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory")))).end();
     }
 
     public void block(String name) {

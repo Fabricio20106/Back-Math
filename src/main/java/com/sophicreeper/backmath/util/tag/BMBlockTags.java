@@ -92,6 +92,7 @@ public class BMBlockTags {
     // Melony Tags
     public static final ITag.INamedTag<Block> CAMPFIRE_SIGNAL_FIRE_BLOCKS = melony("campfire_signal_fire_blocks");
     public static final ITag.INamedTag<Block> FARMLAND = melony("farmland");
+    public static final ITag.INamedTag<Block> NATURAL_FARMLAND = melony("natural_farmland");
     public static final ITag.INamedTag<Block> FARMLAND_TRANSPARENT = melony("farmland_transparent");
     public static final ITag.INamedTag<Block> MAKES_GRASS_BLOCKS_SNOWY = melony("makes_grass_blocks_snowy");
     public static final ITag.INamedTag<Block> HELPS_ON_ZOMBIE_CONVERSION = melony("helps_on_zombie_conversion");

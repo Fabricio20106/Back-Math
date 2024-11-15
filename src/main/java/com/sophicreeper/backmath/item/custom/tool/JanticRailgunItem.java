@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.item.custom.tool;
 import com.sophicreeper.backmath.entity.custom.misc.JanticBoltEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.util.TagTypes;
+import com.sophicreeper.backmath.util.VSUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.ICrossbowUser;
@@ -116,13 +117,13 @@ public class JanticRailgunItem extends BMCrossbowItem {
     private static void addChargedProjectile(ItemStack railgunStack, ItemStack ammoStack) {
         CompoundNBT tag = railgunStack.getOrCreateTag();
         if (!tag.contains("charged_projectile", TagTypes.COMPOUND)) {
-            tag.put("charged_projectile", ammoStack.save(new CompoundNBT()));
+            tag.put("charged_projectile", VSUtils.saveStack(ammoStack, new CompoundNBT()));
         }
     }
 
     private static ItemStack getChargedProjectile(ItemStack railgunStack) {
         if (railgunStack.getTag() != null && railgunStack.getTag().contains("charged_projectile", TagTypes.COMPOUND)) {
-            return ItemStack.of(railgunStack.getTag().getCompound("charged_projectile"));
+            return VSUtils.loadStack(railgunStack.getTag().getCompound("charged_projectile"));
         } else {
             return ItemStack.EMPTY;
         }

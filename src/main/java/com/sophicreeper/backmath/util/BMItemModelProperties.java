@@ -1,11 +1,16 @@
 package com.sophicreeper.backmath.util;
 
+import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoField;
 
 import static net.minecraft.item.ItemModelsProperties.register;
 
@@ -42,5 +47,9 @@ public class BMItemModelProperties {
 
     public static void makeShield(Item shield) {
         register(shield, new ResourceLocation("blocking"), (stack, world, livEntity) -> livEntity != null && livEntity.isUsingItem() && livEntity.getUseItem() == stack ? 1 : 0);
+    }
+
+    public static void makeCarewni(Item sword) {
+        register(sword, BackMath.backMath("june_check"), (stack, world, livEntity) -> LocalDate.now().getMonth() == Month.JUNE ? 1 : 0);
     }
 }
