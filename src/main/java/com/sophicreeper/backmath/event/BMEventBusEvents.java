@@ -7,14 +7,24 @@ import com.sophicreeper.backmath.entity.custom.*;
 import com.sophicreeper.backmath.entity.custom.aljamic.CollectorFabricioEntity;
 import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
+import com.sophicreeper.backmath.entity.model.BMOutfitModel;
+import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.world.spawner.TermianPatrolSpawner;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.monster.MonsterEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.util.HandSide;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.client.event.RenderArmEvent;
 import net.minecraftforge.client.event.RenderItemInFrameEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
@@ -65,5 +75,39 @@ public class BMEventBusEvents {
             stack.scale(0.5F, 0.5F, 0.5F);
             Minecraft.getInstance().getItemRenderer().renderStatic(event.getItem(), ItemCameraTransforms.TransformType.FIXED, LightTexture.pack(15, 15), OverlayTexture.NO_OVERLAY, stack, event.getBuffers());
         }
+    }
+
+    @SubscribeEvent
+    public void renderOutfitInArm(final RenderArmEvent event) {
+        event.setCanceled(true);
+        AbstractClientPlayerEntity player = event.getPlayer();
+        if (player.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof OutfitItem) {
+            PlayerModel<AbstractClientPlayerEntity> outfitModel = new PlayerModel<>(0, player.getModelName().equals("slim"));
+            ModelRenderer rightArm = outfitModel.rightArm;
+            ModelRenderer leftArm = outfitModel.leftArm;
+
+            if (event.getArm() == HandSide.LEFT) {
+                rightArm = outfitModel.leftArm;
+                leftArm = outfitModel.rightArm;
+            }
+
+            OutfitItem item = (OutfitItem) player.getItemBySlot(EquipmentSlotType.CHEST).getItem();
+            outfitModel.attackTime = 0;
+            outfitModel.crouching = false;
+            outfitModel.swimAmount = 0;
+            outfitModel.setupAnim(player, 0, 0, 0, 0, 0);
+            rightArm.xRot = 0;
+            rightArm.render(event.getPoseStack(), event.getMultiBufferSource().getBuffer(RenderType.entitySolid(parseOutfitLocation(item.getMaterial().getName(), item.getSlot(), outfitModel))), event.getPackedLight(), OverlayTexture.NO_OVERLAY);
+            leftArm.xRot = 0;
+            leftArm.render(event.getPoseStack(), event.getMultiBufferSource().getBuffer(RenderType.entityTranslucent(parseOutfitLocation(item.getMaterial().getName(), item.getSlot(), outfitModel))), event.getPackedLight(), OverlayTexture.NO_OVERLAY);
+        }
+    }
+
+    private static ResourceLocation parseOutfitLocation(String name, EquipmentSlotType slotType, PlayerModel<AbstractClientPlayerEntity> model) {
+        ResourceLocation location = new ResourceLocation(name);
+        ResourceLocation chestLocation = new ResourceLocation(location.getNamespace(), "textures/models/outfit/" + location.getPath() + "_" + slotType.getName() + "_" + (model.slim ? "slim" : "wide") + ".png");
+        ResourceLocation defaultLocation = new ResourceLocation(location.getNamespace(), "textures/models/outfit/" + location.getPath() + "_" + slotType.getName() + ".png");
+
+        return slotType == EquipmentSlotType.CHEST ? chestLocation : defaultLocation;
     }
 }

@@ -153,7 +153,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         if (this.lightSkyBuffer != null) this.lightSkyBuffer.close();
 
         this.lightSkyBuffer = new VertexBuffer(this.skyVertexFormat);
-        drawSkyHemisphere(bufferBuilder, 32, false);
+        drawSkyHemisphere(bufferBuilder, 16, false);
         bufferBuilder.end();
         this.lightSkyBuffer.upload(bufferBuilder);
     }

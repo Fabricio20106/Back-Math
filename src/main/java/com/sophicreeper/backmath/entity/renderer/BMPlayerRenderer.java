@@ -2,19 +2,23 @@ package com.sophicreeper.backmath.entity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sophicreeper.backmath.entity.model.BMArmorModel;
+import com.sophicreeper.backmath.entity.model.BMOutfitModel;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
+import com.sophicreeper.backmath.entity.renderer.layer.BMArmorLayer;
+import com.sophicreeper.backmath.entity.renderer.layer.BMOutfitLayer;
+import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.BipedRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.layers.BipedArmorLayer;
 import net.minecraft.client.renderer.entity.layers.ElytraLayer;
 import net.minecraft.client.renderer.entity.layers.HeadLayer;
 import net.minecraft.client.renderer.entity.layers.HeldItemLayer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -31,12 +35,13 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
     public boolean enableDefaultElytra = true;
 
     public BMPlayerRenderer(EntityRendererManager manager, float shadowSize, boolean slimArms) {
-        this(manager, new BMPlayerModel<>(0, 0, 64, 64, slimArms), shadowSize);
+        this(manager, new BMPlayerModel<>(0, 0, 64, 64, slimArms), shadowSize, slimArms);
     }
 
-    public BMPlayerRenderer(EntityRendererManager manager, BMPlayerModel<T> model, float shadowSize) {
+    public BMPlayerRenderer(EntityRendererManager manager, BMPlayerModel<T> model, float shadowSize, boolean slimArms) {
         super(manager, model, shadowSize);
-        this.addLayer(new BipedArmorLayer<>(this, new BMArmorModel<>(0.5F, 0, 64, 32), new BMArmorModel<>(1, 0, 64, 32)));
+        this.addLayer(new BMOutfitLayer<>(this, new BMOutfitModel<>(0, 0, 64, 64, slimArms)));
+        this.addLayer(new BMArmorLayer<>(this, new BMArmorModel<>(0.5F, 0, 64, 32), new BMArmorModel<>(1, 0, 64, 32)));
         this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new HeadLayer<>(this));
         if (this.enableDefaultElytra) this.addLayer(new ElytraLayer<>(this));
@@ -49,7 +54,7 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
     }
 
     @Override
-    protected void scale(T mob, MatrixStack stack, float partialTickTime) {
+    protected void scale(T mob, MatrixStack stack, float partialTicks) {
         stack.scale(0.9375F, 0.9375F, 0.9375F);
     }
 
@@ -69,7 +74,7 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
             if (deltaMovementSqr > 0 && viewVectorSqr > 0) {
                 double d1 = (deltaMovement.x * viewVector.x + deltaMovement.z * viewVector.z) / Math.sqrt(deltaMovementSqr * viewVectorSqr);
                 double d2 = deltaMovement.x * viewVector.z - deltaMovement.z * viewVector.x;
-                stack.mulPose(Vector3f.YP.rotation((float)(Math.signum(d2) * Math.acos(d1))));
+                stack.mulPose(Vector3f.YP.rotation((float) (Math.signum(d2) * Math.acos(d1))));
             }
         } else if (swimAmount > 0) {
             super.setupRotations(mob, stack, ageInTicks, yaw, partialTicks);
@@ -124,6 +129,26 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
         BMPlayerModel<T> mobModel = this.getModel();
 
         mobModel.setAllVisible(true);
+        for (ItemStack stack : mob.getArmorSlots()) {
+            if (stack.getItem() instanceof OutfitItem) {
+                EquipmentSlotType slotType = ((OutfitItem) stack.getItem()).getSlot();
+                switch (slotType) {
+                    case CHEST: {
+                        mobModel.jacket.visible = false;
+                        mobModel.rightSleeve.visible = false;
+                        mobModel.leftSleeve.visible = false;
+                        break;
+                    }
+                    case LEGS:
+                    case FEET: {
+                        mobModel.rightPants.visible = false;
+                        mobModel.leftPants.visible = false;
+                        break;
+                    }
+                }
+            }
+        }
+
         BipedModel.ArmPose mainHandPose = getArmPose(mob, Hand.MAIN_HAND);
         BipedModel.ArmPose offHandPose = getArmPose(mob, Hand.OFF_HAND);
 

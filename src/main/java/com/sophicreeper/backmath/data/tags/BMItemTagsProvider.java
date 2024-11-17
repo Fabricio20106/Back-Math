@@ -340,16 +340,19 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(BMItemTags.OIMT_MATERIALS).addTag(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM).addTag(BMItemTags.INGOTS_OBSIDIAN_INFUSED_MID_TERM);
         this.tag(BMItemTags.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER).addTag(BMItemTags.MOLDS).add(AxolotlTest.REGULAR_MOLDS_BOOK.get()).add(AxolotlTest.ADVANCED_MOLDS_BOOK.get());
         this.tag(BMItemTags.DUAL_WIELDED).add(AxolotlTest.MID_TERM_LONGSWORD.get(), AxolotlTest.CAREWNI.get());
+        this.tag(BMItemTags.EXTENDED_ENTITY_REACH).add(AxolotlTest.MID_TERM_LONGSWORD.get(), AxolotlTest.CAREWNI.get());
         this.tag(BMItemTags.FULLY_LIT_ITEMS).add(AxolotlTest.RAW_MID_TERM.get(), AxolotlTest.MID_TERM.get(), AxolotlTest.MID_TERM_SHARD.get(), AxolotlTest.MID_TERM_INGOT.get(), AxolotlTest.MID_TERM_NUGGET.get(), AxolotlTest.CRUSHED_MID_TERM_ORE.get(),
                 AxolotlTest.MID_TERM_ROD.get(), AxolotlTest.MID_TERM_SWORD.get(), AxolotlTest.MID_TERM_LONGSWORD.get(), AxolotlTest.MILKED_MID_TERM_SWORD.get(), AxolotlTest.MID_TERM_SPAREY.get(), AxolotlTest.MILKED_MID_TERM_SPAREY.get(),
                 AxolotlTest.MID_TERM_PICKAXE.get(), AxolotlTest.MID_TERM_SHOVEL.get(), AxolotlTest.MID_TERM_AXE.get(), AxolotlTest.MID_TERM_HOE.get(), AxolotlTest.MID_TERM_SHEARS.get(), AxolotlTest.MID_TERM_KNIFE.get(), AxolotlTest.MID_TERM_BOW.get(),
                 AxolotlTest.MID_TERM_WARRIOR_HELMET.get(), AxolotlTest.MID_TERM_HELMET.get(), AxolotlTest.MID_TERM_BREASTPLATE.get(), AxolotlTest.MID_TERM_LEGGINGS.get(), AxolotlTest.MID_TERM_BOOTS.get(), AxolotlTest.MID_TERM_CROWN.get(),
-                AxolotlTest.MID_TERM_SHIELD.get(),
+                AxolotlTest.MID_TERM_SHIELD.get(), AxolotlTest.RAW_MID_TERM_BLOCK.get(), AxolotlTest.MID_TERM_BLOCK.get(), AxolotlTest.MID_TERM_DOOR.get(), AxolotlTest.MID_TERM_TRAPDOOR.get(), AxolotlTest.MID_TERM_CHAIN.get(), AxolotlTest.MID_TERM_LANTERN.get(),
+                AxolotlTest.MID_TERM_SOUL_LANTERN.get(), AxolotlTest.MID_TERM_HILLARY_LANTERN.get(), AxolotlTest.CHARJAN_MID_TERM_TORCH.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHARD.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_NUGGET.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SWORD.get(), AxolotlTest.MILKED_OBSIDIAN_INFUSED_MID_TERM_SWORD.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SPAREY.get(), AxolotlTest.MILKED_OBSIDIAN_INFUSED_MID_TERM_SPAREY.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_PICKAXE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHOVEL.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_AXE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_HOE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHEARS.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_KNIFE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_WARRIOR_HELMET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_HELMET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BREASTPLATE.get(),
-                AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_LEGGINGS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BOOTS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CROWN.get());
+                AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_LEGGINGS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BOOTS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CROWN.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BLOCK.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_DOOR.get(),
+                AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_TRAPDOOR.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CHAIN.get());
         this.tag(BMItemTags.VILLAGER_PLANTABLE_SEEDS).add(AxolotlTest.CARAMELED_WHEAT_SEEDS.get()).add(AxolotlTest.ALJAMIC_ONION.get());
         this.tag(BMItemTags.CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE).add(Items.EGG);
         this.tag(BMItemTags.ALLOWED_IN_MAINHAND).addTag(BMItemTags.BOWS).addTag(BMItemTags.CROSSBOWS).add(AxolotlTest.ALJAMEED_SHOVEL.get()).add(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());

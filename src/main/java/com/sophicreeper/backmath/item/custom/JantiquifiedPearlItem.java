@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom;
 
-import com.sophicreeper.backmath.dispenser.JantiquifiedPearlDispenseBehavior;
+import com.sophicreeper.backmath.dispenser.EyeOfEnderDispenseBehavior;
 import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.*;
@@ -25,7 +25,7 @@ import net.minecraftforge.common.util.Constants;
 public class JantiquifiedPearlItem extends Item {
     public JantiquifiedPearlItem(Properties properties) {
         super(properties);
-        DispenserBlock.registerBehavior(this, new JantiquifiedPearlDispenseBehavior());
+        DispenserBlock.registerBehavior(this, new EyeOfEnderDispenseBehavior());
     }
 
     // Called when this item is used when targeting a block.

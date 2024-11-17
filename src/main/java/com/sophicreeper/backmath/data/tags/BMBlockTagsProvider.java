@@ -151,6 +151,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BMBlockTags.OBSIDIAN_REPLACEABLES).add(Blocks.OBSIDIAN).add(Blocks.CRYING_OBSIDIAN);
         this.tag(BMBlockTags.AIR_REPLACEABLES).add(Blocks.AIR).add(Blocks.CAVE_AIR);
         this.tag(BMBlockTags.FABRICIOS_CAN_HARVEST).add(BMBlocks.WILD_ALJAMIC_ONIONS.get(), BMBlocks.WILD_CARAMELED_WHEAT.get());
+        this.tag(BMBlockTags.QUEEN_LUCY_PET_PREFERRED_BLOCKS);
 
         // Logs & Woods
         this.tag(BMBlockTags.CRYSTALLINE_BIRCH_LOGS).add(BMBlocks.CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.CRYSTALLINE_BIRCH_WOOD.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_LOG.get()).add(BMBlocks.STRIPPED_CRYSTALLINE_BIRCH_WOOD.get());

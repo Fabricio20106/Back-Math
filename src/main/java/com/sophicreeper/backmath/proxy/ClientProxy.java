@@ -6,6 +6,8 @@ import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.entity.renderer.aljan.*;
+import com.sophicreeper.backmath.entity.renderer.layer.BMOutfitLayer;
+import com.sophicreeper.backmath.entity.renderer.layer.VanillaOutfitLayer;
 import com.sophicreeper.backmath.entity.renderer.misc.BMBoatRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.InsomniaArrowRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.JanticBoltRenderer;
@@ -17,6 +19,7 @@ import com.sophicreeper.backmath.world.dimension.renderer.AljanDimensionRenderer
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.client.renderer.entity.PlayerRenderer;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.resources.IPackNameDecorator;
 import net.minecraft.resources.ResourcePackInfo;
@@ -25,6 +28,9 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import java.util.Collection;
+import java.util.List;
 
 import static com.sophicreeper.backmath.util.BMItemModelProperties.*;
 
@@ -302,6 +308,10 @@ public class ClientProxy extends CommonProxy {
         makeCrossbow(AxolotlTest.ANGELIC_CROSSBOW.get());
         makeJanticRailgun(AxolotlTest.JANTIC_RAILGUN.get());
         makeCarewni(AxolotlTest.CAREWNI.get());
+
+        for (PlayerRenderer renderer : Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values()) {
+            renderer.addLayer(new VanillaOutfitLayer<>(renderer, renderer.getModel()));
+        }
     }
 
     // Double Layer Render Lookup

@@ -5,6 +5,7 @@ import com.google.common.collect.Iterables;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
+import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -74,6 +75,10 @@ public class BMPlayerModel<T extends CreatureEntity> extends BipedModel<T> {
         this.jacket.setPos(0, 0 + yOffset, 0);
     }
 
+    public boolean slimArms() {
+        return this.slimArms;
+    }
+
     @Nonnull
     protected Iterable<ModelRenderer> bodyParts() {
         return Iterables.concat(super.bodyParts(), ImmutableList.of(this.rightPants, this.leftPants, this.rightSleeve, this.leftSleeve, this.jacket));
@@ -92,7 +97,7 @@ public class BMPlayerModel<T extends CreatureEntity> extends BipedModel<T> {
         this.leftSleeve.copyFrom(this.leftArm);
         this.jacket.copyFrom(this.body);
 
-        if (mob.getItemBySlot(EquipmentSlotType.CHEST).isEmpty()) {
+        if (mob.getItemBySlot(EquipmentSlotType.CHEST).isEmpty() || mob.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof OutfitItem) {
             if (mob.isCrouching()) {
                 this.cape.z = 1.4F;
                 this.cape.y = 1.85F;

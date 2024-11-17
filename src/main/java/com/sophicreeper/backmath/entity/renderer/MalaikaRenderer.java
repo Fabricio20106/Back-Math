@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.renderer;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.aljan.MalaikaEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -13,6 +14,11 @@ import javax.annotation.Nonnull;
 public class MalaikaRenderer extends BMPlayerRenderer<MalaikaEntity> {
     public MalaikaRenderer(EntityRendererManager manager) {
         super(manager, 0.5F, false);
+    }
+
+    @Override
+    protected void scale(MalaikaEntity malaika, MatrixStack stack, float partialTicks) {
+        stack.scale(1.2F, 1.2F, 1.2F);
     }
 
     @Nonnull

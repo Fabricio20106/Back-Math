@@ -1,6 +1,5 @@
 package com.sophicreeper.backmath.dispenser;
 
-import com.sophicreeper.backmath.item.AxolotlTest;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.dispenser.OptionalDispenseBehavior;
@@ -14,7 +13,7 @@ import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 
-public class JantiquifiedPearlDispenseBehavior extends OptionalDispenseBehavior {
+public class EyeOfEnderDispenseBehavior extends OptionalDispenseBehavior {
     @Override
     @Nonnull
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
@@ -22,7 +21,7 @@ public class JantiquifiedPearlDispenseBehavior extends OptionalDispenseBehavior 
         BlockPos strongholdPos = source.getLevel().getChunkSource().getGenerator().findNearestMapFeature(source.getLevel(), Structure.STRONGHOLD, source.getPos(), 100, false);
         if (strongholdPos != null) {
             EyeOfEnderEntity enderEye = new EyeOfEnderEntity(source.getLevel(), pos.getX(), pos.getY(), pos.getZ());
-            enderEye.setItem(new ItemStack(AxolotlTest.JANTIQUIFIED_PEARL.get()));
+            enderEye.setItem(stack.split(1));
             enderEye.signalTo(strongholdPos);
             source.getLevel().addFreshEntity(enderEye);
             source.getLevel().playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (source.getLevel().random.nextFloat() * 0.4F + 0.8F));

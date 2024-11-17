@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.block.custom;
 
 import com.sophicreeper.backmath.config.BMConfigs;
-import com.sophicreeper.backmath.particle.BMParticleTypes;
 import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.dimension.TheAljanTeleporter;
 import net.minecraft.block.Block;
@@ -12,8 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.particles.IParticleData;
-import net.minecraft.particles.ParticleTypes;
 import net.minecraft.pathfinding.PathType;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.state.BooleanProperty;
@@ -35,7 +32,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 import java.util.stream.Stream;
 
 @SuppressWarnings("deprecation")
@@ -103,7 +99,7 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
         super.entityInside(state, world, pos, entity);
     }
 
-    @Override
+    /*@Override
     public void animateTick(BlockState state, World world, BlockPos pos, Random rand) {
         for (int i = 0; i < 5; ++i) {
             double x = pos.getX() + rand.nextDouble();
@@ -116,7 +112,7 @@ public class AljanPortalStandBlock extends Block implements IWaterLoggable {
 
             world.addParticle(particle, x, y, z, speedX, speedY, speedZ);
         }
-    }
+    }*/
 
     @Override
     public FluidState getFluidState(BlockState state) {

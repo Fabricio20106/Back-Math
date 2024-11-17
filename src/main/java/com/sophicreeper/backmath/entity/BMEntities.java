@@ -65,7 +65,7 @@ public class BMEntities {
             EntityType.Builder.of(AmaracamelerEntity::new, EntityClassification.MONSTER).sized(2.04F, 2.04F).clientTrackingRange(10).build(BackMath.backMath("amaracameler").toString()));
 
     public static final RegistryObject<EntityType<MalaikaEntity>> MALAIKA = ENTITIES.register("malaika", () ->
-            EntityType.Builder.of(MalaikaEntity::new, EntityClassification.CREATURE).sized(0.6F, 1.8F).clientTrackingRange(10).build(BackMath.backMath("malaika").toString()));
+            EntityType.Builder.of(MalaikaEntity::new, EntityClassification.MONSTER).sized(0.7F, 2.4F).clientTrackingRange(10).build(BackMath.backMath("malaika").toString()));
 
     public static final RegistryObject<EntityType<JanticleEntity>> JANTICLE = ENTITIES.register("janticle", () ->
             EntityType.Builder.<JanticleEntity>of(JanticleEntity::new, EntityClassification.MONSTER).sized(0.5F, 0.5F).clientTrackingRange(16).build(BackMath.backMath("janticle").toString()));

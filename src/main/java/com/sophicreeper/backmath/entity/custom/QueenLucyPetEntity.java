@@ -2,9 +2,9 @@ package com.sophicreeper.backmath.entity.custom;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.QLPOwnersTargetGoal;
+import com.sophicreeper.backmath.entity.goal.QLPRandomFlyingGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
@@ -83,7 +83,7 @@ public class QueenLucyPetEntity extends TameableEntity {
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.2F, Ingredient.of(BMItemTags.QUEEN_LUCY_PET_TEMPT_ITEMS), false));
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 2.1F, true));
         this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2F, 10, 2, true));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomFlyingGoal(this, 1));
+        this.goalSelector.addGoal(5, new QLPRandomFlyingGoal(this, 1));
         this.goalSelector.addGoal(6, new LookAtGoal(this, QueenLucyPetEntity.class, 8));
         this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8));
         this.goalSelector.addGoal(7, new LookRandomlyGoal(this));

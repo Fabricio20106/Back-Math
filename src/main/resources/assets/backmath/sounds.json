@@ -137,7 +137,10 @@
   "block.crystallizer.craft": {
     "category": "block",
     "sounds": [
-      "random/anvil_land"
+      {
+        "name": "random/anvil_land",
+        "volume": 0.5
+      }
     ],
     "subtitle": "subtitles.block.crystallizer.craft"
   },

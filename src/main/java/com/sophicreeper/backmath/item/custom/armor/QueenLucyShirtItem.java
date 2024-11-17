@@ -3,7 +3,6 @@ package com.sophicreeper.backmath.item.custom.armor;
 import com.sophicreeper.backmath.BackMath;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
@@ -16,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class QueenLucyShirtItem extends ArmorItem {
+public class QueenLucyShirtItem extends OutfitItem {
     private final String shirtDesign;
 
     public QueenLucyShirtItem(IArmorMaterial material, EquipmentSlotType slot, Properties properties, String shirtDesign) {

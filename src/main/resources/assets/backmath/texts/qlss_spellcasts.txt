@@ -1,3 +1,0 @@
-1. Shoot mid-term "bullets"/projectiles on the direction you're looking
-2. Shoot homing mid-term projectiles (don't know how I'd do this)
-3. Explosive mid-term projectiles

@@ -85,6 +85,7 @@ public class BMBlockTags {
     public static final ITag.INamedTag<Block> OBSIDIAN_REPLACEABLES = backMath("obsidian_replaceables");
     public static final ITag.INamedTag<Block> AIR_REPLACEABLES = backMath("air_replaceables");
     public static final ITag.INamedTag<Block> FABRICIOS_CAN_HARVEST = backMath("fabricios_can_harvest");
+    public static final ITag.INamedTag<Block> QUEEN_LUCY_PET_PREFERRED_BLOCKS = backMath("queen_lucy_pet_preferred_blocks");
 
     public static final ITag.INamedTag<Block> SOPHIE_IDEA = backMath("sophie_idea");
     public static final ITag.INamedTag<Block> BOUNTIFULLY_EXPANSIVE_IDEA = backMath("sophie_idea/bountifully_expansive");

@@ -29,6 +29,10 @@ public class BagItem extends Item {
         DispenserBlock.registerBehavior(this, new BagDispenseBehavior());
     }
 
+    public ResourceLocation getDefaultLootTable() {
+        return this.defaultLootTable;
+    }
+
     public ItemStack getStack() {
         return getStack(this.defaultLootTable);
     }

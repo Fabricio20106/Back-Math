@@ -115,8 +115,9 @@ public class BMCommonConfigs {
     public final ForgeConfigSpec.BooleanValue milkedSwordsEnabled;
     public final ForgeConfigSpec.IntValue midTermCustomDurabilityBar;
     public final ForgeConfigSpec.IntValue spareyCustomDurabilityBar;
-    public final ForgeConfigSpec.IntValue midTermGreatswordReachIncrease;
-    public final ForgeConfigSpec.IntValue mechMechReachDecrease;
+    public final ForgeConfigSpec.DoubleValue midTermLongswordReachIncrease;
+    public final ForgeConfigSpec.DoubleValue carewniReachIncrease;
+    public final ForgeConfigSpec.DoubleValue mechMechReachDecrease;
 
     public BMCommonConfigs(ForgeConfigSpec.Builder builder) {
         builder.comment("Welcome to the Back Math configuration file! Made on April 08th and 09th, 2022 and made working on April 21st and 22nd, 2022.");
@@ -184,8 +185,9 @@ public class BMCommonConfigs {
         this.milkedSwordsEnabled = builder.comment("Allow Milked Swords to give you Milk Buckets when hitting a mob?").define("milkedSwordsEnabled", true);
         this.midTermCustomDurabilityBar = builder.comment("Defines the color of the durability bar of mid-term items.").defineInRange("midTermCustomDurabilityBar", 0x1DC2D1, 0x000000, 0xFFFFFF);
         this.spareyCustomDurabilityBar = builder.comment("Defines the color of the durability bar of the sparey tool set.").defineInRange("spareyCustomDurabilityBar", 0x85C284, 0x000000, 0xFFFFFF);
-        this.midTermGreatswordReachIncrease = builder.comment("How much extra Reach Distance a Mid-Term Greatsword gives you.").defineInRange("midTermGreatswordReachIncrease", 2, -3, 64);
-        this.mechMechReachDecrease = builder.comment("How much extra Reach Distance a Mech-Mech gives you.").defineInRange("mechMechReachDecrease", -1, -3, 64);
+        this.midTermLongswordReachIncrease = builder.comment("How much extra Reach Distance a Mid-Term Longsword gives you.").defineInRange("midTermLongswordReachIncrease", 2.5D, -3, 64);
+        this.carewniReachIncrease = builder.comment("How much extra Reach Distance a Carewni gives you.").defineInRange("carewniReachIncrease", 2.5D, -3, 64);
+        this.mechMechReachDecrease = builder.comment("How much extra Reach Distance a Mech-Mech gives you.").defineInRange("mechMechReachDecrease", -1D, -3, 64);
         builder.pop();
 
         builder.push("gameplayAspects");
