@@ -4,8 +4,10 @@ import com.google.common.collect.Maps;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
@@ -61,10 +63,10 @@ public class BMArmorLayer<T extends LivingEntity, M extends BipedModel<T>, A ext
                     float red = (float) (color >> 16 & 255) / 255;
                     float green = (float) (color >> 8 & 255) / 255;
                     float blue = (float) (color & 255) / 255;
-                    this.renderModel(stack, buffer, packedLight, enchantmentGlint, armorModel, red, green, blue, this.getArmorResource(mob, armorStack, slotType, null));
-                    this.renderModel(stack, buffer, packedLight, enchantmentGlint, armorModel, 1, 1, 1, this.getArmorResource(mob, armorStack, slotType, "overlay"));
+                    this.renderModel(stack, buffer, armorStack, packedLight, enchantmentGlint, armorModel, red, green, blue, this.getArmorResource(mob, armorStack, slotType, null));
+                    this.renderModel(stack, buffer, armorStack, packedLight, enchantmentGlint, armorModel, 1, 1, 1, this.getArmorResource(mob, armorStack, slotType, "overlay"));
                 } else {
-                    this.renderModel(stack, buffer, packedLight, enchantmentGlint, armorModel, 1, 1, 1, this.getArmorResource(mob, armorStack, slotType, null));
+                    this.renderModel(stack, buffer, armorStack, packedLight, enchantmentGlint, armorModel, 1, 1, 1, this.getArmorResource(mob, armorStack, slotType, null));
                 }
             }
         }
@@ -93,9 +95,10 @@ public class BMArmorLayer<T extends LivingEntity, M extends BipedModel<T>, A ext
         }
     }
 
-    private void renderModel(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, boolean enchantmentGlint, A armorModel, float red, float green, float blue, ResourceLocation textureLocation) {
+    private void renderModel(MatrixStack stack, IRenderTypeBuffer buffer, ItemStack armorStack, int packedLight, boolean enchantmentGlint, A armorModel, float red, float green, float blue, ResourceLocation textureLocation) {
+        int light = armorStack.getItem().is(BMItemTags.FULLY_LIT_ITEMS) ? LightTexture.pack(15, 15) : packedLight;
         IVertexBuilder foilBuffer = ItemRenderer.getArmorFoilBuffer(buffer, RenderType.armorCutoutNoCull(textureLocation), false, enchantmentGlint);
-        armorModel.renderToBuffer(stack, foilBuffer, packedLight, OverlayTexture.NO_OVERLAY, red, green, blue, 1);
+        armorModel.renderToBuffer(stack, foilBuffer, light, OverlayTexture.NO_OVERLAY, red, green, blue, 1);
     }
 
     private A getArmorModel(EquipmentSlotType slotType) {

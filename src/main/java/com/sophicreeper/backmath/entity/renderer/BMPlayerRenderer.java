@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
+import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.entity.model.BMArmorModel;
 import com.sophicreeper.backmath.entity.model.BMOutfitModel;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
@@ -129,22 +130,16 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
         BMPlayerModel<T> mobModel = this.getModel();
 
         mobModel.setAllVisible(true);
-        for (ItemStack stack : mob.getArmorSlots()) {
-            if (stack.getItem() instanceof OutfitItem) {
-                EquipmentSlotType slotType = ((OutfitItem) stack.getItem()).getSlot();
-                switch (slotType) {
-                    case CHEST: {
-                        mobModel.jacket.visible = false;
-                        mobModel.rightSleeve.visible = false;
-                        mobModel.leftSleeve.visible = false;
-                        break;
-                    }
-                    case LEGS:
-                    case FEET: {
-                        mobModel.rightPants.visible = false;
-                        mobModel.leftPants.visible = false;
-                        break;
-                    }
+        if (mob instanceof TermianPatrollerEntity && ((TermianPatrollerEntity) mob).isWearingOutfit()) {
+            TermianPatrollerEntity patroller = (TermianPatrollerEntity) mob;
+            if (patroller.shouldHideTexture(mobModel, EquipmentSlotType.CHEST)) hideModelLayers(mobModel, EquipmentSlotType.CHEST);
+            if (patroller.shouldHideTexture(mobModel, EquipmentSlotType.LEGS)) hideModelLayers(mobModel, EquipmentSlotType.LEGS);
+            if (patroller.shouldHideTexture(mobModel, EquipmentSlotType.FEET)) hideModelLayers(mobModel, EquipmentSlotType.FEET);
+        } else {
+            for (ItemStack stack : mob.getArmorSlots()) {
+                if (stack.getItem() instanceof OutfitItem) {
+                    EquipmentSlotType slotType = ((OutfitItem) stack.getItem()).getSlot();
+                    hideModelLayers(mobModel, slotType);
                 }
             }
         }
@@ -162,6 +157,23 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
         } else {
             mobModel.rightArmPose = offHandPose;
             mobModel.leftArmPose = mainHandPose;
+        }
+    }
+
+    private void hideModelLayers(BMPlayerModel<T> mobModel, EquipmentSlotType slotType) {
+        switch (slotType) {
+            case CHEST: {
+                mobModel.jacket.visible = false;
+                mobModel.rightSleeve.visible = false;
+                mobModel.leftSleeve.visible = false;
+                break;
+            }
+            case LEGS:
+            case FEET: {
+                mobModel.rightPants.visible = false;
+                mobModel.leftPants.visible = false;
+                break;
+            }
         }
     }
 }

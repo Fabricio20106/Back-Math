@@ -1,9 +1,13 @@
 package com.sophicreeper.backmath.entity.custom.termian;
 
+import com.google.common.collect.Sets;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.termian.TermianPatrolGoal;
+import com.sophicreeper.backmath.entity.model.BMPlayerModel;
+import com.sophicreeper.backmath.entity.renderer.BMPlayerRenderer;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
+import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -12,17 +16,22 @@ import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.resources.ResourcePackType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.*;
+import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.Random;
 
 import static net.minecraft.entity.monster.MonsterEntity.isDarkEnoughToSpawn;
 
 public abstract class TermianPatrollerEntity extends CreatureEntity {
+    private static final DataParameter<String> OUTFIT_TEXTURE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.STRING);
     private static final DataParameter<String> CAPE_TEXTURE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.STRING);
     private static final DataParameter<Boolean> CAPE_VISIBILITY = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.BOOLEAN);
     private BlockPos patrolTarget;
@@ -44,6 +53,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
+        this.entityData.define(OUTFIT_TEXTURE, "");
         this.entityData.define(CAPE_TEXTURE, BackMath.backMath("cape/cherry_blossom").toString());
         this.entityData.define(CAPE_VISIBILITY, true);
     }
@@ -66,6 +76,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
             capeTag.putBoolean("visible", this.entityData.get(CAPE_VISIBILITY));
             tag.put("cape", capeTag);
         }
+        if (!this.entityData.get(OUTFIT_TEXTURE).isEmpty()) tag.putString("outfit", this.entityData.get(OUTFIT_TEXTURE));
     }
 
     @Override
@@ -78,6 +89,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
             this.entityData.set(CAPE_TEXTURE, tag.getCompound("cape").getString("texture"));
             this.entityData.set(CAPE_VISIBILITY, tag.getCompound("cape").getBoolean("visible"));
         }
+        if (tag.contains("outfit", TagTypes.STRING)) this.entityData.set(OUTFIT_TEXTURE, tag.getString("outfit"));
     }
 
     @Override
@@ -226,6 +238,32 @@ public abstract class TermianPatrollerEntity extends CreatureEntity {
 
     public void setCapeVisibility(boolean visible) {
         this.entityData.set(CAPE_VISIBILITY, visible);
+    }
+
+    public String getOutfitTexture() {
+        return this.entityData.get(OUTFIT_TEXTURE);
+    }
+
+    public void setOutfitTexture(String outfitTexture) {
+        this.entityData.set(OUTFIT_TEXTURE, outfitTexture);
+    }
+
+    public boolean isWearingOutfit() {
+        return !this.entityData.get(OUTFIT_TEXTURE).isEmpty();
+    }
+
+    public <T extends CreatureEntity> boolean shouldHideTexture(BMPlayerModel<T> originalModel, EquipmentSlotType slotType) {
+        ResourceLocation outfitLocation = parseOutfitLocation(originalModel, this.getOutfitTexture(), slotType);
+        ExistingFileHelper fileHelper = new ExistingFileHelper(Collections.emptySet(), Sets.newHashSet("minecraft", "forge", "backmath"), true, null, null);
+        return fileHelper.exists(outfitLocation, ResourcePackType.CLIENT_RESOURCES);
+    }
+
+    public <T extends CreatureEntity> ResourceLocation parseOutfitLocation(BMPlayerModel<T> originalModel, String name, EquipmentSlotType slotType) {
+        ResourceLocation location = new ResourceLocation(name);
+        ResourceLocation chestLocation = new ResourceLocation(location.getNamespace(), "textures/models/outfit/" + location.getPath() + "_" + slotType.getName() + "_" + (originalModel.slimArms() ? "slim" : "classic") + ".png");
+        ResourceLocation defaultLocation = new ResourceLocation(location.getNamespace(), "textures/models/outfit/" + location.getPath() + "_" + slotType.getName() + ".png");
+
+        return slotType == EquipmentSlotType.CHEST ? chestLocation : defaultLocation;
     }
 
     private void updateCape() {

@@ -47,7 +47,7 @@ public class VanillaOutfitLayer<T extends AbstractClientPlayerEntity, A extends 
 
     private ResourceLocation parseOutfitLocation(String name, EquipmentSlotType slotType) {
         ResourceLocation location = new ResourceLocation(name);
-        ResourceLocation chestLocation = new ResourceLocation(location.getNamespace(), "textures/models/outfit/" + location.getPath() + "_" + slotType.getName() + "_" + (this.getParentModel().slim ? "slim" : "wide") + ".png");
+        ResourceLocation chestLocation = new ResourceLocation(location.getNamespace(), "textures/models/outfit/" + location.getPath() + "_" + slotType.getName() + "_" + (this.getParentModel().slim ? "slim" : "classic") + ".png");
         ResourceLocation defaultLocation = new ResourceLocation(location.getNamespace(), "textures/models/outfit/" + location.getPath() + "_" + slotType.getName() + ".png");
 
         return slotType == EquipmentSlotType.CHEST ? chestLocation : defaultLocation;

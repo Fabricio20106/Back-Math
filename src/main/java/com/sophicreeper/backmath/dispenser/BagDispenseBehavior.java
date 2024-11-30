@@ -26,7 +26,6 @@ public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
     protected ItemStack execute(IBlockSource source, ItemStack stack) {
         Direction direction = source.getBlockState().getValue(DispenserBlock.FACING);
         IPosition pos = DispenserBlock.getDispensePosition(source);
-        LogManager.getLogger().debug("Stack: {}", stack.save(new CompoundNBT()));
         Collection<ItemStack> lootTableDrops = this.getLootTableDrops(stack, source);
         if (lootTableDrops.isEmpty()) LogManager.getLogger().warn(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.bag.no_drops",
                     stack.getItem().getRegistryName(), getLootTable(stack))).getString());
@@ -45,7 +44,6 @@ public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
             CompoundNBT tag = stack.getTag();
             if (tag != null && tag.contains("loot_table", TagTypes.STRING)) {
                 ResourceLocation tableLoc = ResourceLocation.tryParse(tag.getString("loot_table"));
-                LogManager.getLogger().debug("Loot Table from tag: {}", tableLoc);
                 if (tableLoc != null) return tableLoc;
             } else return bagItem.getDefaultLootTable();
         }
@@ -53,8 +51,6 @@ public class BagDispenseBehavior extends DefaultDispenseItemBehavior {
     }
 
     protected Collection<ItemStack> getLootTableDrops(ItemStack stack, IBlockSource source) {
-        ResourceLocation table = getLootTable(stack);
-        LogManager.getLogger().debug("Loot Table: {}", table);
-        return BMLootTableUtils.giftFromDispenser(table, source);
+        return BMLootTableUtils.giftFromDispenser(this.getLootTable(stack), source);
     }
 }
