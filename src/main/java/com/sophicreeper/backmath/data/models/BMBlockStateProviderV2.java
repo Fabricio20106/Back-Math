@@ -131,7 +131,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
                 .toYRot() + 90).build());
         crystallizer(CRYSTALLIZER.get());
         crystallineCrystallizer(CRYSTALLINE_CRYSTALLIZER.get());
-        // Angry Sophie Head
+        head(ANGRY_SOPHIE_HEAD.get());
+        head(ANGRY_SOPHIE_WALL_HEAD.get());
         simpleBlock(CRYSTALLINE_ANGELIC_ORE.get());
         simpleBlock(CRYSTALLINE_ANGELIC_BLOCK.get());
         toy(ALICE_TOY.get());
@@ -142,7 +143,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         simpleBlock(ANGELICAL_CASING.get());
         // Meal Cooker
         // Queen Lucy Relic
-        // Queen Lucy Head
+        head(QUEEN_LUCY_HEAD.get());
+        head(QUEEN_LUCY_WALL_HEAD.get());
         simplePlantWithPotted(CRYSTALLINE_BIRCH_SAPLING.get(), POTTED_CRYSTALLINE_BIRCH_SAPLING.get(), modLoc("block/crystalline_birch_sapling"));
         simpleBlock(CRACKED_ANGELIC_BRICKS.get());
         simpleBlock(CRYSTALLINE_BIRCH_LEAVES.get());
@@ -188,7 +190,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
             return ConfiguredModel.builder().modelFile(models().getBuilder("aljamic_farmland" + isMoist).parent(models().getExistingFile(modLoc("block/template_pixel_short_block"))).texture("top", modLoc("block/aljamic_farmland" + isMoist)).texture(
                     "side", modLoc("block/aljamic_farmland_side" + isMoist)).texture("dirt", modLoc("block/aljamic_dirt"))).build();
         });
-        // Zombie Fabricio Head
+        head(ZOMBIE_FABRICIO_HEAD.get());
+        head(ZOMBIE_FABRICIO_WALL_HEAD.get());
         simpleBlock(BMBlocks.CHARJAN_WOOD_TORCH.get(), models().torch("charjan_wood_torch", modLoc("block/charjan_wood_torch")));
         getVariantBuilder(BMBlocks.CHARJAN_WOOD_WALL_TORCH.get()).forAllStates(state -> ConfiguredModel.builder().modelFile(wallTorch("charjan_wood_wall_torch",
                 modLoc("block/charjan_wood_torch"))).rotationY((int) state.getValue(BlockStateProperties.HORIZONTAL_FACING).toYRot() + 90).build());
@@ -313,7 +316,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         axisBlock((RotatedPillarBlock) ANGELIC_PILLAR.get(), modLoc("block/angelic_pillar"));
         blockFamily(modLoc("block/mossy_angelic_bricks"), "mossy_angelic_bricks").fullBlock(MOSSY_ANGELIC_BRICKS.get()).stairs(MOSSY_ANGELIC_BRICK_STAIRS.get()).slab(MOSSY_ANGELIC_BRICK_SLAB.get()).wall(MOSSY_ANGELIC_BRICK_WALL.get())
                 .build();
-        // Insomnia Sophie Head
+        head(INSOMNIA_SOPHIE_HEAD.get());
+        head(INSOMNIA_SOPHIE_WALL_HEAD.get());
         simpleBlock(EMERIOND_BLOCK.get());
 
         // Coldterm, Warmterm and Obsiditerm Related Blocks

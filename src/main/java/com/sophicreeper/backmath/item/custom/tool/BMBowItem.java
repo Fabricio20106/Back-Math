@@ -34,7 +34,7 @@ public class BMBowItem extends ShootableItem implements IVanishable {
     private final boolean canBeDamaged;
     private final int additionalArrowDamage;
     private final int flameInTicks;
-    private final int useDuration;
+    public int useDuration;
 
     public BMBowItem(boolean forcedCriticalArrow, boolean canBeDamaged, int additionalArrowDamage, int flameInTicks, int useDuration, Properties properties) {
         super(properties);

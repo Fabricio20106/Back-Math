@@ -125,13 +125,14 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> DUAL_WIELDED = backMath("dual_wielded");
     public static final ITag.INamedTag<Item> EXTENDED_ENTITY_REACH = backMath("extended_entity_reach");
     public static final ITag.INamedTag<Item> FULLY_LIT_ITEMS = backMath("fully_lit_items");
+    public static final ITag.INamedTag<Item> JANTIC_RAILGUN_PROJECTILES = backMath("jantic_railgun_projectiles");
 
     // Melony Tags
     public static final ITag.INamedTag<Item> SHIELDS = melony("shields");
     public static final ITag.INamedTag<Item> BOWS = melony("bows");
     public static final ITag.INamedTag<Item> CROSSBOWS = melony("crossbows");
     public static final ITag.INamedTag<Item> VILLAGER_PLANTABLE_SEEDS = melony("villager_plantable_seeds");
-    public static final ITag.INamedTag<Item> CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE = melony("pickup_disallowed_predicate/chicken_jockey");
+    public static final ITag.INamedTag<Item> CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE = melony("chicken_jockey_cannot_pickup");
     public static final ITag.INamedTag<Item> ALLOWED_IN_MAINHAND = melony("allowed_in_mainhand");
     public static final ITag.INamedTag<Item> ALLOWED_IN_OFFHAND = melony("allowed_in_offhand");
     public static final ITag.INamedTag<Item> PROVIDES_EFFECT = melony("provides_effect");

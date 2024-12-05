@@ -3,11 +3,12 @@ package com.sophicreeper.backmath.proxy;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
+import com.sophicreeper.backmath.blockentity.BMBlockEntities;
+import com.sophicreeper.backmath.blockentity.renderer.HeadBlockEntityRenderer;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.entity.renderer.aljan.*;
-import com.sophicreeper.backmath.entity.renderer.layer.BMOutfitLayer;
-import com.sophicreeper.backmath.entity.renderer.layer.VanillaOutfitLayer;
+import com.sophicreeper.backmath.entity.renderer.layer.PlayerOutfitLayer;
 import com.sophicreeper.backmath.entity.renderer.misc.BMBoatRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.InsomniaArrowRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.JanticBoltRenderer;
@@ -28,9 +29,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
-import java.util.Collection;
-import java.util.List;
 
 import static com.sophicreeper.backmath.util.BMItemModelProperties.*;
 
@@ -265,7 +263,11 @@ public class ClientProxy extends CommonProxy {
         RenderTypeLookup.setRenderLayer(BMFluids.LIQUID_MANGA.get(), RenderType.translucent());
         RenderTypeLookup.setRenderLayer(BMFluids.FLOWING_LIQUID_MANGA.get(), RenderType.translucent());
 
+        // Key Bindings
         ClientRegistry.registerKeyBinding(BMKeys.SHOW_TOOLTIPS_KEY);
+
+        // Block Entity Renderers
+        ClientRegistry.bindTileEntityRenderer(BMBlockEntities.HEAD.get(), HeadBlockEntityRenderer::new);
 
         // Entity Renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);
@@ -310,7 +312,7 @@ public class ClientProxy extends CommonProxy {
         makeCarewni(AxolotlTest.CAREWNI.get());
 
         for (PlayerRenderer renderer : Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values()) {
-            renderer.addLayer(new VanillaOutfitLayer<>(renderer, renderer.getModel()));
+            renderer.addLayer(new PlayerOutfitLayer<>(renderer));
         }
     }
 

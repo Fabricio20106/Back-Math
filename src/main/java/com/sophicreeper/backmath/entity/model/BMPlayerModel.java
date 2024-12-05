@@ -89,6 +89,7 @@ public class BMPlayerModel<T extends CreatureEntity> extends BipedModel<T> {
     }
 
     // Sets this entity's model rotation angles.
+    @Override
     public void setupAnim(T mob, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(mob, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
         this.rightPants.copyFrom(this.rightLeg);

@@ -1,11 +1,13 @@
 package com.sophicreeper.backmath.item.custom.tool.midterm;
 
+import com.sophicreeper.backmath.effect.BMEffects;
 import com.sophicreeper.backmath.item.custom.MidTermToolBehaviors;
 import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import static com.sophicreeper.backmath.config.BMConfigs.COMMON_CONFIGS;
 
@@ -30,8 +32,14 @@ public class MidTermBowItem extends BMBowItem implements MidTermToolBehaviors {
     }
 
     @Override
-    public void onUsingTick(ItemStack stack, LivingEntity player, int count) {
-        if (count == 1) this.onPlayerStoppedUsing(stack, player.level, player, count);
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+        super.inventoryTick(stack, world, entity, slot, selected);
+        if (entity instanceof LivingEntity) this.useDuration = ((LivingEntity) entity).hasEffect(BMEffects.SUPERCHARGED.get()) ? 11 : COMMON_CONFIGS.midTermBowFRD.get();
+    }
+
+    @Override
+    public void onUsingTick(ItemStack stack, LivingEntity livEntity, int count) {
+        if (count == 1) this.onPlayerStoppedUsing(stack, livEntity.level, livEntity, count);
     }
 
     @Override

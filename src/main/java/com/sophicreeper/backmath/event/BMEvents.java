@@ -1,13 +1,16 @@
 package com.sophicreeper.backmath.event;
 
 import com.google.common.collect.Sets;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.model.FullbrightModel;
 import com.sophicreeper.backmath.command.BMDebuggingCommands;
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
 import com.sophicreeper.backmath.variant.manager.QueenLucyPetVariantManager;
 import com.sophicreeper.backmath.variant.manager.WandererSophieVariantManager;
 import com.sophicreeper.backmath.util.BMUtils;
@@ -19,15 +22,22 @@ import com.sophicreeper.backmath.world.structure.BMStructures;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.BlockModelShapes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.model.IBakedModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
+import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
+import net.minecraft.util.HandSide;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -40,8 +50,10 @@ import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.RenderArmEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -62,7 +74,7 @@ import static com.sophicreeper.backmath.BackMath.LOGGER;
 public class BMEvents {
     @SubscribeEvent
     public static void registerCommands(final RegisterCommandsEvent event) {
-        if (Minecraft.getInstance().getLaunchedVersion().equals("melony-studios-dev")) BMDebuggingCommands.register(event.getDispatcher());
+        if (Minecraft.getInstance().getLaunchedVersion().contains("melony-studios-dev")) BMDebuggingCommands.register(event.getDispatcher());
     }
 
     @SubscribeEvent
@@ -204,8 +216,42 @@ public class BMEvents {
     }
 
     @SubscribeEvent
+    public static void adjustMiningSpeed(PlayerEvent.BreakSpeed event) {
+        if (event.getEntityLiving().getItemBySlot(EquipmentSlotType.CHEST).getItem() == AxolotlTest.PLATEFORCED_MID_TERM_BREASTPLATE.get()) {
+            event.setNewSpeed(event.getOriginalSpeed() + 1.25F);
+        }
+    }
+
+    @SubscribeEvent
     public static void onResourceReload(AddReloadListenerEvent event) {
         event.addListener(new WandererSophieVariantManager());
         event.addListener(new QueenLucyPetVariantManager());
+    }
+
+    @SubscribeEvent
+    public static void renderOutfitInArm(RenderArmEvent event) {
+        AbstractClientPlayerEntity player = event.getPlayer();
+        if (player.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof OutfitItem) {
+            PlayerModel<AbstractClientPlayerEntity> outfitModel = new PlayerModel<>(0.01F, player.getModelName().equals("slim"));
+            ModelRenderer rightArm = outfitModel.rightArm;
+            ModelRenderer rightSleeve = outfitModel.rightSleeve;
+
+            if (event.getArm() == HandSide.LEFT) {
+                rightArm = outfitModel.leftArm;
+                rightSleeve = outfitModel.leftSleeve;
+            }
+
+            OutfitItem item = (OutfitItem) player.getItemBySlot(EquipmentSlotType.CHEST).getItem();
+            outfitModel.attackTime = 0;
+            outfitModel.crouching = false;
+            outfitModel.swimAmount = 0;
+            outfitModel.setupAnim(player, 0, 0, 0, 0, 0);
+            IVertexBuilder translucentBuffer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucent(WornOutfit.parseOutfitLocation(outfitModel.slim, item.getMaterial().getName(), item.getSlot())));
+
+            rightArm.xRot = 0;
+            rightArm.render(event.getPoseStack(), translucentBuffer, event.getPackedLight(), LivingRenderer.getOverlayCoords(player, 0));
+            rightSleeve.xRot = 0;
+            rightSleeve.render(event.getPoseStack(), translucentBuffer, event.getPackedLight(), LivingRenderer.getOverlayCoords(player, 0));
+        }
     }
 }

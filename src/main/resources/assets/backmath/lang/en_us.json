@@ -696,6 +696,8 @@
   "effect.backmath.disgust.description": "Supposed to give Hunger every time the player eats.",
   "effect.backmath.mood": "Mood",
   "effect.backmath.mood.description": "Removes all neutral and harmful effects. Breaks with effect like Slowness.",
+  "effect.backmath.supercharged": "Supercharged",
+  "effect.backmath.supercharged.desc": "Boosts some of the entity's attributes when charged by a mid-term.",
 
   "entity.backmath.angry_sophie": "Angry Sophie",
   "entity.backmath.archer_lucia": "Archer Lucia",
@@ -1557,6 +1559,10 @@
   "item.backmath.jantic_railgun.projectile": "Projectile: %s",
   "item.backmath.collector_fabricio_spawn_egg": "Collector Fabricio Spawn Egg",
   "item.backmath.archer_lucia_boots": "Archer Lucia Boots",
+  "item.backmath.plateforced_mid_term_helmet": "Plateforced Mid-Term Helmet",
+  "item.backmath.plateforced_mid_term_breastplate": "Plateforced Mid-Term Breastplate",
+  "item.backmath.plateforced_mid_term_leggings": "Plateforced Mid-Term Leggings",
+  "item.backmath.plateforced_mid_term_boots": "Plateforced Mid-Term Boots",
 
   "item.minecraft.potion.effect.insomnia": "Potion of Insomnia",
   "item.minecraft.potion.effect.long_insomnia": "Potion of Insomnia",
@@ -1652,9 +1658,9 @@
 
   "console.backmath.sophie_tower_location": "Sophie Tower located at: /tp @s %s %s %s",
   "console.backmath.fabricio_hideout_dungeon_location": "Fabricio's Hideout Dungeon located at: /tp @s %s %s %s",
-  "console.backmath.queen_lucy.set_spell": "Tried to set spell type for Queen Lucy '%s'",
-  "console.backmath.wanderer_sophie_variant.loaded": "Loaded %s Wanderer Sophie variants",
-  "console.backmath.queen_lucy_pet_variant.loaded": "Loaded %s Queen Lucy Pet variants",
+  "console.backmath.queen_lucy.set_spell": "Spell type for a Queen Lucy is now '%s'",
+  "console.backmath.wanderer_sophie_variant.loaded": "Loaded %s Wanderer Sophie variant(s)",
+  "console.backmath.queen_lucy_pet_variant.loaded": "Loaded %s Queen Lucy Pet variant(s)",
 
   "error.backmath.assertion_exception.get_quads": "'IBakedModel::getQuads' should never be called, only 'IForgeBakedModel::getQuads'",
   "error.backmath.illegal_argument.null_parameter_set": "Loot Table parameter set '%s' is already registered",
@@ -1712,6 +1718,8 @@
   "subtitles.item.chocoglue.shoot": "Chocoglue fires",
   "subtitles.item.queen_lucy_summoner_staff.smash_air": "Summoner Staff smashes",
   "subtitles.item.queen_lucy_summoner_staff.smash_ground": "Summoner Staff smashes",
+  "subtitles.item.mid_term.activate": "Mid-Term activates",
+  "subtitles.item.mid_term.deactivate": "Mid-Term deactivates",
   "subtitles.entity.sophie.death": "Sophie dies",
   "subtitles.entity.sophie.hurt": "Sophie hurts",
   "subtitles.entity.sophie.hurt.drown": "Sophie drowning",

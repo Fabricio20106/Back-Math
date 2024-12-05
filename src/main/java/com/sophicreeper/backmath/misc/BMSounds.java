@@ -39,7 +39,10 @@ public class BMSounds {
     public static SoundEvent ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_AIR;
     public static SoundEvent ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND;
     public static SoundEvent ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND_HEAVY;
-    public static SoundEvent ITEM_MID_TERM_ACTIVATE;
+    public static SoundEvent ITEM_MID_TERM_ACTIVATE_ENDER_EYE;
+    public static SoundEvent ITEM_MID_TERM_ACTIVATE_BEACON;
+    public static SoundEvent ITEM_MID_TERM_DEACTIVATE_ENDER_EYE;
+    public static SoundEvent ITEM_MID_TERM_DEACTIVATE_BEACON;
 
     // Entities
     public static SoundEvent ENTITY_TERMIAN_SWIM;
@@ -123,7 +126,10 @@ public class BMSounds {
         ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND_HEAVY = registerSound("item.queen_lucy_summoner_staff.smash_ground_heavy");
         ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_GROUND = registerSound("item.queen_lucy_summoner_staff.smash_ground");
         ITEM_QUEEN_LUCY_SUMMONER_STAFF_SMASH_AIR = registerSound("item.queen_lucy_summoner_staff.smash_air");
-        ITEM_MID_TERM_ACTIVATE = registerSound("item.mid_term.activate");
+        ITEM_MID_TERM_ACTIVATE_ENDER_EYE = registerSound("item.mid_term.activate.ender_eye");
+        ITEM_MID_TERM_ACTIVATE_BEACON = registerSound("item.mid_term.activate.beacon");
+        ITEM_MID_TERM_DEACTIVATE_ENDER_EYE = registerSound("item.mid_term.deactivate.ender_eye");
+        ITEM_MID_TERM_DEACTIVATE_BEACON = registerSound("item.mid_term.deactivate.beacon");
 
         // Entities
         ENTITY_TERMIAN_SWIM = registerSound("entity.termian.swim");

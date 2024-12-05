@@ -24,6 +24,6 @@ public abstract class TermianMemberEntity extends TermianRaiderEntity {
         CROSSBOW_HOLD,
         CROSSBOW_CHARGE,
         CELEBRATING,
-        NEUTRAL;
+        NEUTRAL
     }
 }

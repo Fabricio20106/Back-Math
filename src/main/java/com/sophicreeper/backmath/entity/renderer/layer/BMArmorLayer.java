@@ -74,7 +74,7 @@ public class BMArmorLayer<T extends LivingEntity, M extends BipedModel<T>, A ext
 
     protected void setPartVisibility(A model, EquipmentSlotType slotType) {
         model.setAllVisible(false);
-        switch(slotType) {
+        switch (slotType) {
             case HEAD:
                 model.head.visible = true;
                 model.hat.visible = true;

@@ -10,5 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class BMParticleTypes {
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(ForgeRegistries.PARTICLE_TYPES, BackMath.MOD_ID);
 
-    //public static final RegistryObject<ParticleType<BasicParticleType>> JANTICAL = PARTICLES.register("jantical", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> JANTICAL = PARTICLES.register("jantical", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> WARMTERM = PARTICLES.register("warmterm", () -> new BasicParticleType(false));
+    public static final RegistryObject<BasicParticleType> COLDTERM = PARTICLES.register("coldterm", () -> new BasicParticleType(false));
 }

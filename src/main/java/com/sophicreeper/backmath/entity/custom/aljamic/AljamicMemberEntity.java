@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom.aljamic;
 
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMFoodStats;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -14,6 +15,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.GroundPathNavigator;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -27,7 +31,8 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class AljamicMemberEntity extends CreatureEntity {
+public class AljamicMemberEntity extends CreatureEntity implements WornOutfit {
+    private static final DataParameter<String> OUTFIT_TEXTURE = EntityDataManager.defineId(AljamicMemberEntity.class, DataSerializers.STRING);
     protected final BMFoodStats foodData = new BMFoodStats();
 
     public AljamicMemberEntity(EntityType<? extends AljamicMemberEntity> type, World world) {
@@ -55,6 +60,21 @@ public class AljamicMemberEntity extends CreatureEntity {
     @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
         return 1.62F;
+    }
+
+    @Override
+    public String getOutfitTexture() {
+        return this.entityData.get(OUTFIT_TEXTURE);
+    }
+
+    @Override
+    public void setOutfitTexture(String outfitTexture) {
+        this.entityData.set(OUTFIT_TEXTURE, outfitTexture);
+    }
+
+    @Override
+    public boolean isWearingOutfit() {
+        return !this.entityData.get(OUTFIT_TEXTURE).isEmpty();
     }
 
     public boolean isHurt() {
@@ -112,8 +132,15 @@ public class AljamicMemberEntity extends CreatureEntity {
     }
 
     @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(OUTFIT_TEXTURE, "");
+    }
+
+    @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
+        if (tag.contains("outfit", TagTypes.STRING)) this.entityData.set(OUTFIT_TEXTURE, tag.getString("outfit"));
         if (tag.contains("CanPickUpLoot", TagTypes.ANY_NUMERIC)) this.setCanPickUpLoot(tag.getBoolean("CanPickUpLoot"));
         this.foodData.readFoodStats(tag);
     }
@@ -122,6 +149,7 @@ public class AljamicMemberEntity extends CreatureEntity {
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         this.foodData.writeFoodStats(tag);
+        if (!this.entityData.get(OUTFIT_TEXTURE).isEmpty()) tag.putString("outfit", this.entityData.get(OUTFIT_TEXTURE));
     }
 
     protected void populateAljanEquipmentSlots() {

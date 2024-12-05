@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.item;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
+import com.sophicreeper.backmath.blockentity.renderer.BMItemStackBlockEntityRenderer;
 import com.sophicreeper.backmath.crystallizer.item.CrystallizerMaterialItem;
 import com.sophicreeper.backmath.crystallizer.item.GlisteringCrystallizerMaterialItem;
 import com.sophicreeper.backmath.crystallizer.item.MoldItem;
@@ -37,6 +38,7 @@ import com.sophicreeper.backmath.item.tab.BackLayer;
 import com.sophicreeper.backmath.item.tab.SophiesCursedFoods;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
+import net.minecraft.client.renderer.tileentity.ItemStackTileEntityRenderer;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.*;
 import net.minecraft.util.text.TextFormatting;
@@ -44,6 +46,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+
+import java.util.concurrent.Callable;
 
 import static com.sophicreeper.backmath.item.BMSetFields.*;
 
@@ -529,10 +533,10 @@ public class AxolotlTest {
     public static final RegistryObject<Item> TOTI = ITEMS.register("toti", () -> new TotiItem(new Item.Properties().tab(BMBlockTab.TAB)));
 
     // Mob Heads:
-    public static final RegistryObject<Item> ANGRY_SOPHIE_HEAD = ITEMS.register("angry_sophie_head", () -> new BMHeadItem(BMBlocks.ANGRY_SOPHIE_HEAD.get(), BMBlocks.ANGRY_SOPHIE_WALL_HEAD.get(), new Item.Properties().tab(BMBlockTab.TAB)));
-    public static final RegistryObject<Item> INSOMNIA_SOPHIE_HEAD = ITEMS.register("insomnia_sophie_head", () -> new BMHeadItem(BMBlocks.INSOMNIA_SOPHIE_HEAD.get(), BMBlocks.INSOMNIA_SOPHIE_WALL_HEAD.get(), new Item.Properties().tab(BMBlockTab.TAB)));
-    public static final RegistryObject<Item> ZOMBIE_FABRICIO_HEAD = ITEMS.register("zombie_fabricio_head", () -> new BMHeadItem(BMBlocks.ZOMBIE_FABRICIO_HEAD.get(), BMBlocks.ZOMBIE_FABRICIO_WALL_HEAD.get(), new Item.Properties().tab(BMBlockTab.TAB)));
-    public static final RegistryObject<Item> QUEEN_LUCY_HEAD = ITEMS.register("queen_sophie_head", () -> new BMHeadItem(BMBlocks.QUEEN_LUCY_HEAD.get(), BMBlocks.QUEEN_LUCY_WALL_HEAD.get(), new Item.Properties().tab(BMBlockTab.TAB).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ANGRY_SOPHIE_HEAD = ITEMS.register("angry_sophie_head", () -> new BMHeadItem(BMBlocks.ANGRY_SOPHIE_HEAD.get(), BMBlocks.ANGRY_SOPHIE_WALL_HEAD.get(), new Item.Properties().setISTER(AxolotlTest::backMathISBERProvider).tab(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> INSOMNIA_SOPHIE_HEAD = ITEMS.register("insomnia_sophie_head", () -> new BMHeadItem(BMBlocks.INSOMNIA_SOPHIE_HEAD.get(), BMBlocks.INSOMNIA_SOPHIE_WALL_HEAD.get(), new Item.Properties().setISTER(AxolotlTest::backMathISBERProvider).tab(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> ZOMBIE_FABRICIO_HEAD = ITEMS.register("zombie_fabricio_head", () -> new BMHeadItem(BMBlocks.ZOMBIE_FABRICIO_HEAD.get(), BMBlocks.ZOMBIE_FABRICIO_WALL_HEAD.get(), new Item.Properties().setISTER(AxolotlTest::backMathISBERProvider).tab(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> QUEEN_LUCY_HEAD = ITEMS.register("queen_sophie_head", () -> new BMHeadItem(BMBlocks.QUEEN_LUCY_HEAD.get(), BMBlocks.QUEEN_LUCY_WALL_HEAD.get(), new Item.Properties().setISTER(AxolotlTest::backMathISBERProvider).tab(BMBlockTab.TAB).rarity(Rarity.EPIC)));
 
     // Mob Relics:
     public static final RegistryObject<Item> QUEEN_LUCY_RELIC = ITEMS.register("queen_sophie_relic", () -> new BlockItem(BMBlocks.QUEEN_LUCY_RELIC.get(), new Item.Properties().tab(BMBlockTab.TAB).fireResistant().rarity(Rarity.EPIC)));
@@ -786,6 +790,10 @@ public class AxolotlTest {
     public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_BREASTPLATE = ITEMS.register("obsidian_infused_mid_term_breastplate", () -> new GlisteringArmorItem(OBSIDIAN_INFUSED_MID_TERM_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().tab(BMWeaponryTab.TAB).fireResistant().rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_LEGGINGS = ITEMS.register("obsidian_infused_mid_term_leggings", () -> new GlisteringArmorItem(OBSIDIAN_INFUSED_MID_TERM_ARMOR, EquipmentSlotType.LEGS, new Item.Properties().tab(BMWeaponryTab.TAB).fireResistant().rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> OBSIDIAN_INFUSED_MID_TERM_BOOTS = ITEMS.register("obsidian_infused_mid_term_boots", () -> new GlisteringArmorItem(OBSIDIAN_INFUSED_MID_TERM_ARMOR, EquipmentSlotType.FEET, new Item.Properties().tab(BMWeaponryTab.TAB).fireResistant().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> PLATEFORCED_MID_TERM_HELMET = ITEMS.register("plateforced_mid_term_helmet", () -> new GlisteringOutfitItem(PLATEFORCED_MID_TERM_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB).fireResistant().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> PLATEFORCED_MID_TERM_BREASTPLATE = ITEMS.register("plateforced_mid_term_breastplate", () -> new GlisteringOutfitItem(PLATEFORCED_MID_TERM_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().tab(BMWeaponryTab.TAB).fireResistant().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> PLATEFORCED_MID_TERM_LEGGINGS = ITEMS.register("plateforced_mid_term_leggings", () -> new GlisteringOutfitItem(PLATEFORCED_MID_TERM_ARMOR, EquipmentSlotType.LEGS, new Item.Properties().tab(BMWeaponryTab.TAB).fireResistant().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> PLATEFORCED_MID_TERM_BOOTS = ITEMS.register("plateforced_mid_term_boots", () -> new GlisteringOutfitItem(PLATEFORCED_MID_TERM_ARMOR, EquipmentSlotType.FEET, new Item.Properties().tab(BMWeaponryTab.TAB).fireResistant().rarity(Rarity.EPIC)));
     public static final RegistryObject<Item> MILKLLARY_WARRIOR_HELMET = ITEMS.register("milkllary_warrior_helmet", () -> new BMArmorItem(WARRIOR_MILKLLARY_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> MILKLLARY_HELMET = ITEMS.register("milkllary_helmet", () -> new BMArmorItem(MILKLLARY_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> MILKLLARY_CHESTPLATE = ITEMS.register("milkllary_chestplate", () -> new BMArmorItem(MILKLLARY_ARMOR, EquipmentSlotType.CHEST, new Item.Properties().tab(BMWeaponryTab.TAB).rarity(Rarity.UNCOMMON)));
@@ -1309,4 +1317,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> FRIED_NOTEBOOK = ITEMS.register("fried_notebook", () -> new Item(new Item.Properties().tab(SophiesCursedFoods.TAB).food(Foods.COOKED_BEEF)));
     public static final RegistryObject<Item> STUFFED_COOKIE_NOTEBOOK = ITEMS.register("stuffed_cookie_notebook", () -> new Item(new Item.Properties().tab(SophiesCursedFoods.TAB).food(Foods.COOKED_BEEF)));
     public static final RegistryObject<Item> FRIED_STUFFED_COOKIE_NOTEBOOK = ITEMS.register("fried_stuffed_cookie_notebook", () -> new Item(new Item.Properties().tab(SophiesCursedFoods.TAB).food(Foods.COOKED_BEEF)));
+
+    public static Callable<ItemStackTileEntityRenderer> backMathISBERProvider() {
+        return BMItemStackBlockEntityRenderer::new;
+    }
 }

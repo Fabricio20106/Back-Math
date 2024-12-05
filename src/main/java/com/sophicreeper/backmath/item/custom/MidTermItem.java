@@ -1,9 +1,13 @@
 package com.sophicreeper.backmath.item.custom;
 
+import com.google.common.collect.Lists;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.crystallizer.item.CrystallizerMaterialItem;
+import com.sophicreeper.backmath.effect.BMEffects;
 import com.sophicreeper.backmath.item.custom.food.VSConsumable;
+import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.particle.BMParticleTypes;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.client.util.ITooltipFlag;
@@ -12,9 +16,9 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.IntArrayNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.text.*;
@@ -29,36 +33,57 @@ public class MidTermItem extends CrystallizerMaterialItem {
         super(properties);
     }
 
+    private int superchargeDuration(ItemStack stack) {
+        CompoundNBT settingsTag = stack.getTagElement("supercharge_settings");
+        return settingsTag != null && settingsTag.contains("duration", TagTypes.ANY_NUMERIC) ? settingsTag.getInt("duration") : -1;
+    }
+
+    private ListNBT connectedPlayers(ItemStack stack) {
+        CompoundNBT settingsTag = stack.getTagElement("supercharge_settings");
+        return (settingsTag != null && settingsTag.contains("connected_players", TagTypes.LIST)) ? settingsTag.getList("connected_players", TagTypes.INTEGER_ARRAY) : new ListNBT();
+    }
+
     @Override
     public boolean isFoil(ItemStack stack) {
-        return stack.getTag() != null && stack.getTag().contains("supercharge_duration", TagTypes.ANY_NUMERIC);
+        return superchargeDuration(stack) > -1;
     }
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        CompoundNBT tag = stack.getTag();
-        if (tag != null && tag.contains("supercharge_duration", TagTypes.ANY_NUMERIC)) {
-            tag.putInt("supercharge_duration", tag.getInt("supercharge_duration") + 1);
-            if (tag.getInt("supercharge_duration") >= 12000) {
+        CompoundNBT settingsTag = stack.getTagElement("supercharge_settings");
+        int superchargeDuration = superchargeDuration(stack);
+
+        if (superchargeDuration > -1 && settingsTag != null) {
+            settingsTag.putInt("duration", superchargeDuration + 1);
+            if (superchargeDuration >= 12000) {
                 stack.shrink(1);
-                tag.remove("connected_players");
-                tag.remove("supercharge_duration");
-                world.playSound(null, entity.blockPosition(), SoundEvents.ENDER_EYE_DEATH, SoundCategory.PLAYERS, 1, 1);
-                world.playSound(null, entity.blockPosition(), SoundEvents.BEACON_DEACTIVATE, SoundCategory.PLAYERS, 1, 1.5F);
+                settingsTag.putInt("duration", -1);
+                settingsTag.remove("connected_players");
+                world.playSound(null, entity.blockPosition(), BMSounds.ITEM_MID_TERM_DEACTIVATE_BEACON, SoundCategory.PLAYERS, 1, 1);
+                world.playSound(null, entity.blockPosition(), BMSounds.ITEM_MID_TERM_DEACTIVATE_ENDER_EYE, SoundCategory.PLAYERS, 1, 1);
             }
+        }
+
+        double x = entity.getX() + 0.55D - (double) (random.nextFloat() * 0.1F);
+        double y = entity.getY() + 0.55D - (double) (random.nextFloat() * 0.1F);
+        double z = entity.getZ() + 0.55D - (double) (random.nextFloat() * 0.1F);
+        double offset = 0.4F - (random.nextFloat() + random.nextFloat()) * 0.4F;
+        if (random.nextInt(5) == 0) {
+            world.addParticle(BMParticleTypes.WARMTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
+            world.addParticle(BMParticleTypes.COLDTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
         }
         super.inventoryTick(stack, world, entity, slot, selected);
     }
 
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
-        return stack.getTag() != null && stack.getTag().contains("supercharge_duration", TagTypes.ANY_NUMERIC);
+        return superchargeDuration(stack) > -1;
     }
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        CompoundNBT tag = stack.getTag();
-        return tag != null && tag.contains("supercharge_duration", TagTypes.ANY_NUMERIC) ? ((double) tag.getInt("supercharge_duration") / 12000D) : 0;
+        int superchargeDuration = superchargeDuration(stack);
+        return superchargeDuration > -1 ? ((double) superchargeDuration / 12000D) : 0;
     }
 
     @Override
@@ -68,20 +93,26 @@ public class MidTermItem extends CrystallizerMaterialItem {
 
     @Override
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if (!world.isClientSide) {
-            ItemStack stack = player.getItemInHand(hand);
-            world.playSound(null, player.blockPosition(), SoundEvents.BEACON_ACTIVATE, SoundCategory.PLAYERS, 1, 1.5F);
-            world.playSound(null, player.blockPosition(), SoundEvents.ENDER_EYE_DEATH, SoundCategory.PLAYERS, 1, 1);
+        ItemStack stack = player.getItemInHand(hand);
+        if (!world.isClientSide && superchargeDuration(stack) <= -1) {
+            world.playSound(null, player.blockPosition(), BMSounds.ITEM_MID_TERM_ACTIVATE_BEACON, SoundCategory.PLAYERS, 1, 1);
+            world.playSound(null, player.blockPosition(), BMSounds.ITEM_MID_TERM_ACTIVATE_ENDER_EYE, SoundCategory.PLAYERS, 1, 1);
 
             //world.getNearbyPlayers(EntityPredicate.DEFAULT.ignoreInvisibilityTesting(), player, new AxisAlignedBB(player.blockPosition()).inflate(8))
             List<ServerPlayerEntity> nearbyPlayers = world.getServer().getPlayerList().getPlayers();
             for (PlayerEntity player1 : nearbyPlayers) {
-                CompoundNBT tag = stack.getOrCreateTag();
-                if (!tag.contains("connected_players", TagTypes.LIST)) {
+                CompoundNBT settingsTag = stack.getOrCreateTagElement("supercharge_settings");
+                if (!settingsTag.contains("connected_players", TagTypes.LIST)) {
                     ListNBT connectedPlayers = new ListNBT();
                     connectedPlayers.add(NBTUtil.createUUID(player1.getUUID()));
-                    tag.put("connected_players", connectedPlayers);
-                    tag.putInt("supercharge_duration", 0);
+                    settingsTag.put("connected_players", connectedPlayers);
+                    settingsTag.putInt("duration", 0);
+
+                    if (!player1.hasEffect(BMEffects.SUPERCHARGED.get())) {
+                        EffectInstance instance = new EffectInstance(BMEffects.SUPERCHARGED.get(), 12000, 0, true, false);
+                        instance.setCurativeItems(Lists.newArrayList());
+                        player1.addEffect(instance);
+                    }
                 }
             }
 
@@ -95,12 +126,14 @@ public class MidTermItem extends CrystallizerMaterialItem {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
-        CompoundNBT tag = stack.getTag();
-        if (tag != null && tag.contains("supercharge_duration", TagTypes.ANY_NUMERIC)) {
-            tooltip.add(new TranslationTextComponent("tooltip.backmath.mid_term.supercharge_timer", StringUtils.formatTickDuration(stack.getTag().getInt("supercharge_duration"))).withStyle(TextFormatting.GRAY));
+
+        int superchargeDuration = superchargeDuration(stack);
+        if (superchargeDuration > -1) {
+            tooltip.add(new TranslationTextComponent("tooltip.backmath.mid_term.supercharge_timer", StringUtils.formatTickDuration(superchargeDuration)).withStyle(TextFormatting.GRAY));
         }
-        if (tag != null && tag.contains("connected_players", TagTypes.LIST) && world != null) {
-            ListNBT connectedPlayers = tag.getList("connected_players", TagTypes.INTEGER_ARRAY);
+
+        ListNBT connectedPlayers = connectedPlayers(stack);
+        if (!connectedPlayers.isEmpty() && world != null) {
             IFormattableTextComponent component = new TranslationTextComponent("tooltip.backmath.mid_term.connected_players").withStyle(TextFormatting.GRAY);
             for (int i = 0; i < connectedPlayers.size(); ++i) {
                 UUID uuid = UUIDCodec.uuidFromIntArray(connectedPlayers.getIntArray(i));

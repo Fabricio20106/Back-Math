@@ -1,9 +1,8 @@
 package com.sophicreeper.backmath.entity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
+import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.entity.model.BMArmorModel;
-import com.sophicreeper.backmath.entity.model.BMOutfitModel;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
 import com.sophicreeper.backmath.entity.renderer.layer.BMArmorLayer;
 import com.sophicreeper.backmath.entity.renderer.layer.BMOutfitLayer;
@@ -41,7 +40,7 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
 
     public BMPlayerRenderer(EntityRendererManager manager, BMPlayerModel<T> model, float shadowSize, boolean slimArms) {
         super(manager, model, shadowSize);
-        this.addLayer(new BMOutfitLayer<>(this, new BMOutfitModel<>(0, 0, 64, 64, slimArms)));
+        this.addLayer(new BMOutfitLayer<>(this));
         this.addLayer(new BMArmorLayer<>(this, new BMArmorModel<>(0.5F, 0, 64, 32), new BMArmorModel<>(1, 0, 64, 32)));
         this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new HeadLayer<>(this));
@@ -128,19 +127,16 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
 
     private void setModelVisibilities(T mob) {
         BMPlayerModel<T> mobModel = this.getModel();
-
         mobModel.setAllVisible(true);
-        if (mob instanceof TermianPatrollerEntity && ((TermianPatrollerEntity) mob).isWearingOutfit()) {
-            TermianPatrollerEntity patroller = (TermianPatrollerEntity) mob;
-            if (patroller.shouldHideTexture(mobModel, EquipmentSlotType.CHEST)) hideModelLayers(mobModel, EquipmentSlotType.CHEST);
-            if (patroller.shouldHideTexture(mobModel, EquipmentSlotType.LEGS)) hideModelLayers(mobModel, EquipmentSlotType.LEGS);
-            if (patroller.shouldHideTexture(mobModel, EquipmentSlotType.FEET)) hideModelLayers(mobModel, EquipmentSlotType.FEET);
+
+        if (mob instanceof WornOutfit && ((WornOutfit) mob).isWearingOutfit()) {
+            WornOutfit outfit = (WornOutfit) mob;
+            if (outfit.shouldHideTexture(mobModel.slimArms(), EquipmentSlotType.CHEST)) hideModelLayers(mobModel, EquipmentSlotType.CHEST);
+            if (outfit.shouldHideTexture(mobModel.slimArms(), EquipmentSlotType.LEGS)) hideModelLayers(mobModel, EquipmentSlotType.LEGS);
+            if (outfit.shouldHideTexture(mobModel.slimArms(), EquipmentSlotType.FEET)) hideModelLayers(mobModel, EquipmentSlotType.FEET);
         } else {
             for (ItemStack stack : mob.getArmorSlots()) {
-                if (stack.getItem() instanceof OutfitItem) {
-                    EquipmentSlotType slotType = ((OutfitItem) stack.getItem()).getSlot();
-                    hideModelLayers(mobModel, slotType);
-                }
+                if (stack.getItem() instanceof OutfitItem) hideModelLayers(mobModel, ((OutfitItem) stack.getItem()).getSlot());
             }
         }
 

@@ -166,6 +166,10 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
         simpleBlock(wildCrop, models().withExistingParent("wild_" + texture, modLoc("block/template_wild_crop")).texture("crop", "block/wild_" + texture));
     }
 
+    public void head(Block block) {
+        simpleBlock(block, models().getBuilder(block.getRegistryName().getPath()).texture("particle", mcLoc("block/soul_sand")));
+    }
+
     public BlockFamilyProvider blockFamily(ResourceLocation texture, String materialName) {
         return new BlockFamilyProvider(this, materialName, texture);
     }

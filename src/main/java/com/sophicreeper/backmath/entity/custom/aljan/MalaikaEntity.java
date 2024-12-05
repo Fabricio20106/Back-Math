@@ -54,7 +54,7 @@ public class MalaikaEntity extends MonsterEntity implements SophieFriendlies {
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62F;
+        return 2.1F;
     }
 
     @Override

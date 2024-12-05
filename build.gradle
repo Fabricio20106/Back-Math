@@ -20,7 +20,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
-version = mod_version + "-" +  mod_major_update + "-" + new Date().format("dd-MM-yyyy")
+version = mod_version + "-" + new Date().format("dd-MM-yyyy")
 // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 group = mod_group_id
 archivesBaseName = mod_name_no_spaces
@@ -91,7 +91,7 @@ minecraft {
                 args '--accessToken', project.getProperty('mc_accessToken')
             }
 
-            args '--version', 'melony-studios-dev'
+            args '--version', 'melony-studios-dev/back-math'
 
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             property "mixin.debug.export", "true"

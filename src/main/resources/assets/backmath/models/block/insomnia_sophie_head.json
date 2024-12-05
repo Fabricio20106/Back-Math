@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:block/template_head",
-  "textures": {
-    "skin": "backmath:entity/sophie/insomnia/insomnia_sophie"
-  }
-}

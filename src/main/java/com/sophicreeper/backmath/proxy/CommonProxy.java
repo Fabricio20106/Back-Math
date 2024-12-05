@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.proxy;
 
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
+import com.sophicreeper.backmath.blockentity.BMBlockEntities;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.dispenser.CrystallizerRecipesDispenseBehavior;
 import com.sophicreeper.backmath.dispenser.EyeOfEnderDispenseBehavior;
@@ -26,6 +27,8 @@ import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStats;
 import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.particle.BMParticleTypes;
+import com.sophicreeper.backmath.particle.custom.JanticalParticle;
+import com.sophicreeper.backmath.particle.custom.MidTermParticle;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import com.sophicreeper.backmath.util.BMVanillaCompatibility;
@@ -37,6 +40,7 @@ import com.sophicreeper.backmath.world.feature.BMFeature;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -74,6 +78,7 @@ public class CommonProxy {
         BMStructures.STRUCTURES.register(eventBus);
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);
         BMParticleTypes.PARTICLES.register(eventBus);
+        BMBlockEntities.BLOCK_ENTITIES.register(eventBus);
         BMWandererSophieVariants.VARIANTS.register(eventBus);
         BMQueenLucyPetVariants.VARIANTS.register(eventBus);
         BMLootParameterSets.init();
@@ -130,12 +135,16 @@ public class CommonProxy {
             // DynamicRegistries.REGISTRIES.put(BMRegistries.WANDERER_SOPHIE_VARIANT_REG, new DynamicRegistries.CodecHolder<>(BMRegistries.WANDERER_SOPHIE_VARIANT_REG, WandererSophieVariant.CODEC, null));
         });
 
+        // Particles
+        Minecraft.getInstance().particleEngine.register(BMParticleTypes.WARMTERM.get(), MidTermParticle.WarmtermFactory::new);
+        Minecraft.getInstance().particleEngine.register(BMParticleTypes.COLDTERM.get(), MidTermParticle.ColdtermFactory::new);
+        Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.JanticalFactory::new);
+
         MidTermLongswordItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mid-Term Longsword Reach Modifier", BMConfigs.COMMON_CONFIGS.midTermLongswordReachIncrease.get(), AttributeModifier.Operation.ADDITION));
         CarewniItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Carewni Reach Modifier", BMConfigs.COMMON_CONFIGS.carewniReachIncrease.get(),AttributeModifier.Operation.ADDITION));
         MechMechSwordItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mech-Mech Reach Modifier", BMConfigs.COMMON_CONFIGS.mechMechReachDecrease.get(), AttributeModifier.Operation.ADDITION));
 
         // Other Things to Load
-        // Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.JanticalFactory::new);
         BMPotions.addPotionRecipes();
         BMDimensions.init();
         BMConfiguredCarvers.init();

@@ -28,5 +28,6 @@ public class BMEnchantmentTagsProvider extends ForgeRegistryTagsProvider<Enchant
         this.tag(BMEnchantmentTags.APPLICABLE_TO_SUMMONER_STAFF).add(Enchantments.SHARPNESS, Enchantments.SMITE, Enchantments.BANE_OF_ARTHROPODS, Enchantments.MOB_LOOTING, Enchantments.FIRE_ASPECT, Enchantments.SWEEPING_EDGE,
                 Enchantments.KNOCKBACK);
         this.tag(BMEnchantmentTags.APPLICABLE_TO_BACK_MATH_BOWS).add(Enchantments.POWER_ARROWS, Enchantments.PUNCH_ARROWS, Enchantments.FLAMING_ARROWS, Enchantments.INFINITY_ARROWS);
+        this.tag(BMEnchantmentTags.JANTIC_RAILGUN_NOT_APPLICABLE).add(Enchantments.QUICK_CHARGE, Enchantments.PIERCING, Enchantments.MULTISHOT);
     }
 }

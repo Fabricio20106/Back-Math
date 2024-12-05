@@ -1,6 +1,0 @@
-{
-  "parent": "backmath:block/template_head_no_overlay",
-  "textures": {
-    "skin": "backmath:entity/zombie/zombie_fabricio"
-  }
-}

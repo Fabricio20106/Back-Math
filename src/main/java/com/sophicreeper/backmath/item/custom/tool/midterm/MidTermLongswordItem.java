@@ -9,6 +9,7 @@ import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
 
 import javax.annotation.Nonnull;
+import java.util.UUID;
 
 public class MidTermLongswordItem extends MidTermSwordItem {
     public static Multimap<Attribute, AttributeModifier> MODIFIERS = HashMultimap.create();
@@ -19,6 +20,7 @@ public class MidTermLongswordItem extends MidTermSwordItem {
         HashMultimap<Attribute, AttributeModifier> builder = HashMultimap.create();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Mid-Term Longsword Damage Modifier", trueAttackDamage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Mid-Term Longsword Swing Speed Modifier", swingSpeed, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.MOVEMENT_SPEED, new AttributeModifier(UUID.fromString("8d8a6a3d-ca54-4fd6-865b-97f253b260ee"), "Mid-Term Longsword Movement Speed Modifier", -0.2, AttributeModifier.Operation.MULTIPLY_TOTAL));
         MODIFIERS = builder;
     }
 

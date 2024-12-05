@@ -20,7 +20,6 @@ public class MangaedMangoJuiceItem extends JuiceItem {
     @Override
     @Nonnull
     public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
-        super.finishUsingItem(stack, world, livEntity);
         if (livEntity instanceof ServerPlayerEntity) {
             ServerPlayerEntity player = (ServerPlayerEntity) livEntity;
             CriteriaTriggers.CONSUME_ITEM.trigger(player, stack);
@@ -34,7 +33,7 @@ public class MangaedMangoJuiceItem extends JuiceItem {
             if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
                 ItemStack bottleStack = getFoodUseRemainder(stack);
                 PlayerEntity player = (PlayerEntity) livEntity;
-                stack.shrink(1);
+                livEntity.eat(world, stack);
                 if (!player.inventory.add(bottleStack)) player.drop(bottleStack, false);
             }
             return stack;

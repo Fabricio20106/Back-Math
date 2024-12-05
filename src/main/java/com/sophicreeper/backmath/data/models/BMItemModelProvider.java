@@ -436,7 +436,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         block("angry_sophie_head");
         block("insomnia_sophie_head");
         block("zombie_fabricio_head");
-        block("queen_sophie_head", "_ground");
+        block("queen_sophie_head");
         standard(generated, "queen_sophie_relic");
         block("queen_sophie_pet_relic");
         blockItem("charjan_wood_torch");
@@ -670,6 +670,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         armorSet(generated, "hardened_amaracamel", false, true);
         armorSet(generated, "mid_term", true, true);
         armorSet(generated, "obsidian_infused_mid_term", true, true);
+        armorSet(generated, "plateforced_mid_term", true, false);
         armorSet(generated, "milkllary", false, true);
         armorSet(generated, "jantskin", false, false);
         armorSet(generated, "aljameed", false, true);

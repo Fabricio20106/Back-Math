@@ -4,8 +4,11 @@ import com.sophicreeper.backmath.entity.custom.misc.JanticBoltEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.VSUtils;
+import com.sophicreeper.backmath.util.tag.BMEnchantmentTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.ICrossbowUser;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -18,6 +21,7 @@ import net.minecraft.util.math.vector.Quaternion;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -40,13 +44,13 @@ public class JanticRailgunItem extends BMCrossbowItem {
     @Override
     @Nonnull
     public Predicate<ItemStack> getAllSupportedProjectiles() {
-        return stack -> stack.getItem() == AxolotlTest.JANTICAL.get();
+        return stack -> stack.getItem().is(BMItemTags.JANTIC_RAILGUN_PROJECTILES);
     }
 
     @Override
     @Nonnull
     public Predicate<ItemStack> getSupportedHeldProjectiles() {
-        return stack -> stack.getItem() == AxolotlTest.JANTICAL.get();
+        return stack -> stack.getItem().is(BMItemTags.JANTIC_RAILGUN_PROJECTILES);
     }
 
     @Override
@@ -223,6 +227,16 @@ public class JanticRailgunItem extends BMCrossbowItem {
     public void appendHoverText(ItemStack railgunStack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(railgunStack, world, tooltip, flag);
         ItemStack chargedProjectileStack = getChargedProjectile(railgunStack);
-        if (chargedProjectileStack.getItem() != Items.AIR) tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".projectile", chargedProjectileStack.getDisplayName()));
+        if (chargedProjectileStack.getItem() != Items.AIR) tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".projectile", chargedProjectileStack.getDisplayName()).withStyle(TextFormatting.GRAY));
+    }
+
+    @Override
+    public boolean isValidRepairItem(ItemStack thisStack, ItemStack repairStack) {
+        return repairStack.getItem().is(BMItemTags.INGOTS_MOONERING);
+    }
+
+    @Override
+    public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
+        return !enchantment.isIn(BMEnchantmentTags.JANTIC_RAILGUN_NOT_APPLICABLE) && super.canApplyAtEnchantingTable(stack, enchantment);
     }
 }

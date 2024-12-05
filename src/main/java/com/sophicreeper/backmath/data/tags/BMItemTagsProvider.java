@@ -312,8 +312,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(Tags.Items.BONES).add(AxolotlTest.ALJAMEED_BONE.get()).add(AxolotlTest.SLEEPISH_BONE.get());
         this.tag(BMItemTags.ARMORS_BOOTS).add(Items.LEATHER_BOOTS).add(Items.CHAINMAIL_BOOTS).add(Items.IRON_BOOTS).add(Items.GOLDEN_BOOTS).add(Items.DIAMOND_BOOTS)
                 .add(Items.NETHERITE_BOOTS).add(AxolotlTest.DEVIL_BOOTS.get()).add(AxolotlTest.ANGELIC_BOOTS.get()).add(AxolotlTest.MID_TERM_BOOTS.get()).add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BOOTS.get())
-                .add(AxolotlTest.BAKUGOU_SHOES.get()).add(AxolotlTest.HARDENED_AMARACAMEL_BOOTS.get()).add(AxolotlTest.MILKLLARY_BOOTS.get()).add(AxolotlTest.ALJAMEED_BOOTS.get())
-                .add(AxolotlTest.MOONERING_BOOTS.get()).add(AxolotlTest.JANTIQUIFIED_MOONERING_BOOTS.get()).add(AxolotlTest.ARCHER_LUCIA_BOOTS.get());
+                .add(AxolotlTest.PLATEFORCED_MID_TERM_BOOTS.get()).add(AxolotlTest.BAKUGOU_SHOES.get()).add(AxolotlTest.HARDENED_AMARACAMEL_BOOTS.get()).add(AxolotlTest.MILKLLARY_BOOTS.get())
+                .add(AxolotlTest.ALJAMEED_BOOTS.get()).add(AxolotlTest.MOONERING_BOOTS.get()).add(AxolotlTest.JANTIQUIFIED_MOONERING_BOOTS.get()).add(AxolotlTest.ARCHER_LUCIA_BOOTS.get());
         this.tag(BMItemTags.ELYTRA).add(Items.ELYTRA);
         this.tag(Tags.Items.HEADS).add(AxolotlTest.ANGRY_SOPHIE_HEAD.get()).add(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get()).add(AxolotlTest.QUEEN_LUCY_HEAD.get()).add(AxolotlTest.ZOMBIE_FABRICIO_HEAD.get());
         this.tag(BMItemTags.KNIVES).add(AxolotlTest.WOODEN_KNIFE.get()).add(AxolotlTest.STONE_KNIFE.get()).add(AxolotlTest.IRON_KNIFE.get()).add(AxolotlTest.DIAMOND_KNIFE.get())
@@ -353,6 +353,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_KNIFE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_WARRIOR_HELMET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_HELMET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BREASTPLATE.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_LEGGINGS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BOOTS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CROWN.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BLOCK.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_DOOR.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_TRAPDOOR.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CHAIN.get());
+        this.tag(BMItemTags.JANTIC_RAILGUN_PROJECTILES).add(AxolotlTest.JANTICAL.get());
         this.tag(BMItemTags.VILLAGER_PLANTABLE_SEEDS).add(AxolotlTest.CARAMELED_WHEAT_SEEDS.get()).add(AxolotlTest.ALJAMIC_ONION.get());
         this.tag(BMItemTags.CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE).add(Items.EGG);
         this.tag(BMItemTags.ALLOWED_IN_MAINHAND).addTag(BMItemTags.BOWS).addTag(BMItemTags.CROSSBOWS).add(AxolotlTest.ALJAMEED_SHOVEL.get()).add(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());
