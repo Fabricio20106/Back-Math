@@ -14,7 +14,7 @@ public class JanticalParticle extends SpriteTexturedParticle {
     private final double startY;
     private final double startZ;
 
-    public JanticalParticle(ClientWorld world, double x, double y, double z, double speedX, double speedY, double speedZ) {
+    private JanticalParticle(ClientWorld world, double x, double y, double z, double speedX, double speedY, double speedZ) {
         super(world, x, y, z, speedX, speedY, speedZ);
         this.xd = x;
         this.yd = speedY;
@@ -74,10 +74,10 @@ public class JanticalParticle extends SpriteTexturedParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class JanticalFactory implements IParticleFactory<BasicParticleType> {
+    public static class Factory implements IParticleFactory<BasicParticleType> {
         private final IAnimatedSprite sprite;
 
-        public JanticalFactory(IAnimatedSprite sprite) {
+        public Factory(IAnimatedSprite sprite) {
             this.sprite = sprite;
         }
 

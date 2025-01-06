@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.particle.custom;
 
 import net.minecraft.client.particle.*;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particles.BasicParticleType;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,6 +19,12 @@ public class MidTermParticle extends SimpleAnimatedParticle {
         this.setSpriteFromAge(sprite);
     }
 
+    @Override
+    public int getLightColor(float partialTicks) {
+        return LightTexture.pack(15, 15);
+    }
+
+    @Override
     public void move(double x, double y, double z) {
         this.setBoundingBox(this.getBoundingBox().move(x, y, z));
         this.setLocationFromBoundingbox();

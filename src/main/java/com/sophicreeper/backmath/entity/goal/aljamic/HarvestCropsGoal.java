@@ -38,10 +38,15 @@ public class HarvestCropsGoal extends MoveToBlockGoal {
     }
 
     @Override
+    public double acceptedDistance() {
+        return 0.5F;
+    }
+
+    @Override
     public void tick() {
         super.tick();
         this.entity.getLookControl().setLookAt((double) this.blockPos.getX() + 0.5D, this.blockPos.getY() + 1,
-                (double) this.blockPos.getZ() + 0.5D, 10.0F, (float) this.entity.getMaxHeadXRot());
+                (double) this.blockPos.getZ() + 0.5D, 10, (float) this.entity.getMaxHeadXRot());
 
         if (this.isReachedTarget()) {
             BlockPos pos = this.blockPos;

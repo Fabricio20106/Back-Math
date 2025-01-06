@@ -672,6 +672,12 @@
   "block.backmath.termian_empire_banner": "Estandarte do Império Termiano",
   "block.backmath.aljancap_door": "Porta de caule aljámico",
   "block.backmath.aljancap_trapdoor": "Alçapão de caule aljámico",
+  "block.backmath.aljanwood_barrel": "Barril de madeira aljân",
+  "block.backmath.aljancap_barrel": "Barril de caule aljámico",
+  "block.backmath.insomnian_barrel": "Barril de insônian",
+  "block.backmath.avondalic_willow_barrel": "Barril de salgueiro avondálico",
+
+  "container.backmath.bm_barrel": "Barril",
 
   "death.attack.temperature_meal": "O estômago de %1$s foi explodido por uma refeição de Sophie quente e Fabrício gelado.",
   "death.attack.temperature_meal.player": "O estômago de %1$s foi explodido por uma refeição de Sophie quente e Fabrício gelado enquanto corria de %2$s.",
@@ -1641,6 +1647,13 @@
   "material.silentgear.aljameed": "Aljameed",
   "material.silentgear.aljansteel": "Aço aljámico",
   "material.silentgear.moonering": "Luário",
+  "material.silentgear.stone.tabu": "Tabu",
+  "material.silentgear.stone.hillaried_stone": "Pedra hillariada",
+  "material.silentgear.stone.aljanstone": "Pedraljámica",
+  "material.silentgear.stone.sleepingstone": "Pedradormecida",
+
+  "travelerstitles.backmath.the_aljan": "O Aljân",
+  "travelerstitles.backmath.the_aljan.color": "a0c9c9",
 
   "backmath.message_template": "Back Math: %s",
 

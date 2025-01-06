@@ -15,7 +15,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class QueenLucyShirtItem extends OutfitItem {
+public class QueenLucyShirtItem extends BMArmorItem {
     private final String shirtDesign;
 
     public QueenLucyShirtItem(IArmorMaterial material, EquipmentSlotType slot, Properties properties, String shirtDesign) {

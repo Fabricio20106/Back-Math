@@ -9,11 +9,13 @@ import com.sophicreeper.backmath.crystallizer.advanced.AdvancedMolds;
 import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.data.BlockFamilyProvider;
 import net.minecraft.block.*;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.*;
+import net.minecraftforge.client.model.generators.loaders.MultiLayerModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public abstract class BMBlockStateModels extends BlockStateProvider {
@@ -168,6 +170,15 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
 
     public void head(Block block) {
         simpleBlock(block, models().getBuilder(block.getRegistryName().getPath()).texture("particle", mcLoc("block/soul_sand")));
+    }
+
+    public void insomnianTulip(Block block) {
+        String path = block.getRegistryName().getPath();
+
+        simpleBlock(block, models().getBuilder(block.getRegistryName().getPath()).texture("particle", modLoc("block/" + path)).ao(false)
+                .customLoader(MultiLayerModelBuilder::begin)
+                .submodel(RenderType.cutout(), models().nested().parent(models().getExistingFile(mcLoc("block/cross"))).texture("cross", modLoc("block/" + path)))
+                .submodel(RenderType.translucent(), models().nested().parent(models().getExistingFile(mcLoc("block/cross"))).texture("cross", modLoc("block/" + path + "_overlay"))).end());
     }
 
     public BlockFamilyProvider blockFamily(ResourceLocation texture, String materialName) {

@@ -27,6 +27,7 @@ import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.misc.BMStats;
 import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.particle.BMParticleTypes;
+import com.sophicreeper.backmath.particle.custom.HillaryFlameParticle;
 import com.sophicreeper.backmath.particle.custom.JanticalParticle;
 import com.sophicreeper.backmath.particle.custom.MidTermParticle;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
@@ -136,9 +137,10 @@ public class CommonProxy {
         });
 
         // Particles
+        Minecraft.getInstance().particleEngine.register(BMParticleTypes.HILLARY_FLAME.get(), HillaryFlameParticle.Factory::new);
+        Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.Factory::new);
         Minecraft.getInstance().particleEngine.register(BMParticleTypes.WARMTERM.get(), MidTermParticle.WarmtermFactory::new);
         Minecraft.getInstance().particleEngine.register(BMParticleTypes.COLDTERM.get(), MidTermParticle.ColdtermFactory::new);
-        Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.JanticalFactory::new);
 
         MidTermLongswordItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mid-Term Longsword Reach Modifier", BMConfigs.COMMON_CONFIGS.midTermLongswordReachIncrease.get(), AttributeModifier.Operation.ADDITION));
         CarewniItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Carewni Reach Modifier", BMConfigs.COMMON_CONFIGS.carewniReachIncrease.get(),AttributeModifier.Operation.ADDITION));

@@ -131,6 +131,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         block("aljanwood_trapdoor", "_bottom");
         block("aljanwood_pressure_plate");
         block("aljanwood_button", "_inventory");
+        block("aljanwood_barrel");
         blockItem("aljanwood_ladder");
         blockItem("charjan_aljanwood_torch");
         block("aljan_light_blue_stained_glass");
@@ -152,6 +153,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         block("aljancap_trapdoor", "_bottom");
         block("aljancap_pressure_plate");
         block("aljancap_button", "_inventory");
+        block("aljancap_barrel");
         blockItem("aljancap_ladder");
         blockItem("charjan_aljancap_torch");
         block("poison_brown_stained_glass");
@@ -172,6 +174,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         block("insomnian_trapdoor", "_bottom");
         block("insomnian_pressure_plate");
         block("insomnian_button", "_inventory");
+        block("insomnian_barrel");
         blockItem("insomnian_ladder");
         blockItem("charjan_insomnian_torch");
         block("insomnian_stained_glass");
@@ -192,6 +195,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         block("avondalic_willow_trapdoor", "_bottom");
         block("avondalic_willow_pressure_plate");
         block("avondalic_willow_button", "_inventory");
+        block("avondalic_willow_barrel");
         blockItem("avondalic_willow_ladder");
         blockItem("charjan_avondalic_willow_torch");
         block("tabu");

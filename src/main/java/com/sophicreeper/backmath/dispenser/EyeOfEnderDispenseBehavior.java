@@ -21,7 +21,7 @@ public class EyeOfEnderDispenseBehavior extends OptionalDispenseBehavior {
         BlockPos strongholdPos = source.getLevel().getChunkSource().getGenerator().findNearestMapFeature(source.getLevel(), Structure.STRONGHOLD, source.getPos(), 100, false);
         if (strongholdPos != null) {
             EyeOfEnderEntity enderEye = new EyeOfEnderEntity(source.getLevel(), pos.getX(), pos.getY(), pos.getZ());
-            enderEye.setItem(stack.split(1));
+            enderEye.setItem(new ItemStack(stack.getItem()));
             enderEye.signalTo(strongholdPos);
             source.getLevel().addFreshEntity(enderEye);
             source.getLevel().playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (source.getLevel().random.nextFloat() * 0.4F + 0.8F));

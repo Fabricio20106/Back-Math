@@ -5,7 +5,7 @@ import com.google.common.collect.Iterables;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
-import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
@@ -98,7 +98,7 @@ public class BMPlayerModel<T extends CreatureEntity> extends BipedModel<T> {
         this.leftSleeve.copyFrom(this.leftArm);
         this.jacket.copyFrom(this.body);
 
-        if (mob.getItemBySlot(EquipmentSlotType.CHEST).isEmpty() || mob.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof OutfitItem) {
+        if (mob.getItemBySlot(EquipmentSlotType.CHEST).isEmpty() || mob.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.OUTFITS)) {
             if (mob.isCrouching()) {
                 this.cape.z = 1.4F;
                 this.cape.y = 1.85F;

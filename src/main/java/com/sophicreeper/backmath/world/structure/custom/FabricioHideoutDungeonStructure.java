@@ -27,12 +27,15 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
+import javax.annotation.Nonnull;
+
 public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> {
     public FabricioHideoutDungeonStructure() {
         super(NoFeatureConfig.CODEC);
     }
 
     @Override
+    @Nonnull
     public GenerationStage.Decoration step() {
         return GenerationStage.Decoration.UNDERGROUND_STRUCTURES;
     }
@@ -43,12 +46,13 @@ public class FabricioHideoutDungeonStructure extends Structure<NoFeatureConfig> 
         int landHeight = chunkGenerator.getBaseHeight(centerOfChunk.getX(), centerOfChunk.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 
         IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(centerOfChunk.getX(), centerOfChunk.getZ());
-        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight));
+        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight - 1));
 
-        return topBlock.getFluidState().isEmpty() || topBlock.is(Blocks.BEDROCK);
+        return topBlock.getFluidState().isEmpty() && !topBlock.is(Blocks.BEDROCK);
     }
 
     @Override
+    @Nonnull
     public IStartFactory<NoFeatureConfig> getStartFactory() {
         return FabricioHideoutDungeonStructure.Start::new;
     }

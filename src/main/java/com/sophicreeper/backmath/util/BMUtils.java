@@ -107,26 +107,13 @@ public class BMUtils {
         return new ResourceLocation(capeNamespace, "textures/entity/" + capePath + ".png");
     }
 
-    // Sets a random cape to a Termian Patroller entity (out of the 7 vanilla/default capes).
+    // Sets a random cape to a Termian Patroller entity (out of 10 vanilla/default capes).
     public static void setRandomCape(TermianPatrollerEntity patroller, Random rand) {
-        int randomCape = rand.nextInt(9);
-        if (randomCape == 0) {
-            patroller.setCapeTexture(BackMath.backMath("cape/migrator").toString());
-        } else if (randomCape == 1) {
-            patroller.setCapeTexture(BackMath.backMath("cape/vanilla").toString());
-        } else if (randomCape == 2) {
-            patroller.setCapeTexture(BackMath.backMath("cape/cherry_blossom").toString());
-        } else if (randomCape == 3) {
-            patroller.setCapeTexture(BackMath.backMath("cape/followers").toString());
-        } else if (randomCape == 4) {
-            patroller.setCapeTexture(BackMath.backMath("cape/purple_heart").toString());
-        } else if (randomCape == 5) {
-            patroller.setCapeTexture(BackMath.backMath("cape/15th_anniversary").toString());
-        } else if (randomCape == 6) {
-            patroller.setCapeTexture(BackMath.backMath("cape/pan").toString());
-        } else if (randomCape == 7) {
-            patroller.setCapeTexture(BackMath.backMath("cape/mc_championship").toString());
-        }
+        List<ResourceLocation> capeTextures = Lists.newArrayList(BackMath.backMath("cape/cherry_blossom"), BackMath.backMath("cape/migrator"),
+                BackMath.backMath("cape/vanilla"), BackMath.backMath("cape/followers"), BackMath.backMath("cape/purple_heart"),
+                BackMath.backMath("cape/15th_anniversary"), BackMath.backMath("cape/pan"), BackMath.backMath("cape/mc_championship"),
+                BackMath.backMath("cape/minecraft_experience"), BackMath.backMath("cape/mojang_office"));
+        patroller.setCapeTexture(capeTextures.get(rand.nextInt(10)).toString());
     }
 
     // Sets a random Wanderer Sophie variant from the wanderer_sophie_variant registry.

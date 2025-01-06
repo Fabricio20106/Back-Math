@@ -10,7 +10,10 @@ import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,7 +22,7 @@ import org.apache.logging.log4j.LogManager;
 import javax.annotation.Nullable;
 import java.util.List;
 
-// Utility methods copied from Variants
+// Utility methods copied from or related to Variants
 public class VSUtils {
     public static CompoundNBT saveStack(ItemStack stack, CompoundNBT tag) {
         if (stack == ItemStack.EMPTY) {
@@ -70,6 +73,10 @@ public class VSUtils {
         return stack;
     }
 
+    public static Style getFromRGB(int color) {
+        return Style.EMPTY.withColor(Color.fromRgb(color));
+    }
+
     // Copied from Variants and modified to work with Back Math's tool behaviors.
     @Nullable
     public static List<EffectInstance> getAppliedEffectsFromNBT(@Nullable World world, ItemStack stack) {
@@ -110,5 +117,37 @@ public class VSUtils {
             return effects;
         }
         return null;
+    }
+
+    public static CompoundNBT saveAllItems(CompoundNBT tag, NonNullList<ItemStack> stackList) {
+        return saveAllItems(tag, stackList, true);
+    }
+
+    public static CompoundNBT saveAllItems(CompoundNBT tag, NonNullList<ItemStack> stackList, boolean saveEmpty) {
+        ListNBT itemsList = new ListNBT();
+
+        for (int i = 0; i < stackList.size(); ++i) {
+            ItemStack stack = stackList.get(i);
+            if (!stack.isEmpty()) {
+                CompoundNBT stackTag = new CompoundNBT();
+                stackTag.putInt("slot", i);
+                saveStack(stack, stackTag);
+                itemsList.add(stackTag);
+            }
+        }
+
+        if (!itemsList.isEmpty() || saveEmpty) tag.put("items", itemsList);
+
+        return tag;
+    }
+
+    public static void loadAllItems(CompoundNBT tag, NonNullList<ItemStack> stackList) {
+        ListNBT itemsNBT = tag.getList("items", TagTypes.COMPOUND);
+
+        for (int i = 0; i < itemsNBT.size(); ++i) {
+            CompoundNBT stackTag = itemsNBT.getCompound(i);
+            int slot = stackTag.getInt("slot") & 255;
+            if (slot < stackList.size()) stackList.set(slot, loadStack(stackTag));
+        }
     }
 }

@@ -177,6 +177,7 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
         simpleBlock(RAW_MOONER_BLOCK.get());
         simplePlantWithPotted(ALJAN_TULIP.get(), POTTED_ALJAN_TULIP.get(), modLoc("block/aljan_tulip"));
         simplePlantWithPotted(POISON_ROSE.get(), POTTED_POISON_ROSE.get(), modLoc("block/poison_rose"));
+        insomnianTulip(INSOMNIAN_TULIP.get());
         simpleBlock(POTTED_INSOMNIAN_TULIP.get(), models().withExistingParent("potted_insomnian_tulip", "block/flower_pot_cross").texture("plant", "block/insomnian_tulip_combined"));
         simplePlantWithPotted(ALJANSHROOM.get(), POTTED_ALJANSHROOM.get(), modLoc("block/aljanshroom"));
         simplePlantWithPotted(SLEEPSHROOM.get(), POTTED_SLEEPSHROOM.get(), modLoc("block/sleepshroom"));

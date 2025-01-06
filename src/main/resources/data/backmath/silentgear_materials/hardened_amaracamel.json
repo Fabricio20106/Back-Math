@@ -1,13 +1,4 @@
 {
-  "conditions": [
-    {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "backmath:hardened_amaracamel_materials"
-      }
-    }
-  ],
   "availability": {
     "tier": 2,
     "visible": true,
@@ -43,8 +34,8 @@
   "traits": {
     "main": [
       {
-        "name": "silentgear:brittle",
-        "level": 2
+        "name": "silentgear:malleable",
+        "level": 3
       }
     ]
   }

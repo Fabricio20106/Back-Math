@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.EffectInstance;
@@ -15,7 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-public class MidTermArmorItem extends ArmorItem {
+public class MidTermArmorItem extends BMArmorItem {
     public MidTermArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties properties) {
         super(material, slot, properties);
     }

@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.entity.custom.aljamic;
 
+import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.item.AxolotlTest;
@@ -25,6 +26,7 @@ import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
@@ -50,6 +52,11 @@ public class AljamicMemberEntity extends CreatureEntity implements WornOutfit {
     @Override
     public boolean isAlliedTo(Entity entity) {
         return super.isAlliedTo(entity) || entity.getType().is(BMEntityTypeTags.FABRICIOS);
+    }
+
+    @Override
+    public float getWalkTargetValue(BlockPos pos) {
+        return this.level.getBlockState(pos).is(BMBlocks.POISON_ROSE.get()) ? -5 : super.getWalkTargetValue(pos);
     }
 
     @Override

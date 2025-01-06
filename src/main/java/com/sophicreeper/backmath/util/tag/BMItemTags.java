@@ -126,6 +126,7 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> EXTENDED_ENTITY_REACH = backMath("extended_entity_reach");
     public static final ITag.INamedTag<Item> FULLY_LIT_ITEMS = backMath("fully_lit_items");
     public static final ITag.INamedTag<Item> JANTIC_RAILGUN_PROJECTILES = backMath("jantic_railgun_projectiles");
+    public static final ITag.INamedTag<Item> OUTFITS = backMath("outfits");
 
     // Melony Tags
     public static final ITag.INamedTag<Item> SHIELDS = melony("shields");
@@ -264,12 +265,21 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> DYES_POISON_BROWN = forge("dyes/poison_brown");
     public static final ITag.INamedTag<Item> DYES_INSOMNIAN = forge("dyes/insomnian");
 
+    // Miscellaneous Tags
+    public static final ITag.INamedTag<Item> CRUSHED_ORES = namespace("create", "crushed_ores");
+    public static final ITag.INamedTag<Item> UPRIGHT_ON_BELT = namespace("create", "upright_on_belt");
+    public static final ITag.INamedTag<Item> ANVIL_METAL = namespace("tconstruct", "anvil_metal");
+
     private static ITag.INamedTag<Item> forge(String name) {
         return ItemTags.bind(new ResourceLocation("forge", name).toString());
     }
 
     private static ITag.INamedTag<Item> melony(String name) {
         return ItemTags.bind(new ResourceLocation("melony", name).toString());
+    }
+
+    private static ITag.INamedTag<Item> namespace(String namespace, String name) {
+        return ItemTags.bind(new ResourceLocation(namespace, name).toString());
     }
 
     private static ITag.INamedTag<Item> backMath(String name) {

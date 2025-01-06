@@ -2,7 +2,6 @@ package com.sophicreeper.backmath.mixin.layer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -48,7 +47,7 @@ public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends B
     private void renderArmorPiece(MatrixStack stack, IRenderTypeBuffer buffer, T entity, EquipmentSlotType slot, int packedLight, A model, CallbackInfo ci) {
         ItemStack armorStack = entity.getItemBySlot(slot);
 
-        if (armorStack.getItem() instanceof OutfitItem) ci.cancel();
+        if (armorStack.getItem().is(BMItemTags.OUTFITS)) ci.cancel();
 
         if (armorStack.getItem() instanceof ArmorItem && armorStack.getItem().is(BMItemTags.FULLY_LIT_ITEMS)) {
             ci.cancel();
@@ -80,7 +79,6 @@ public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends B
         }
     }
 
-    @Unique
     public ResourceLocation getArmorResource(Entity entity, ItemStack stack, EquipmentSlotType slot, @Nullable String type) {
         ArmorItem item = (ArmorItem) stack.getItem();
         String texture = item.getMaterial().getName();

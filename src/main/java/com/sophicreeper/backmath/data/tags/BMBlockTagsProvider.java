@@ -122,6 +122,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(Tags.Blocks.SAND).add(BMBlocks.ALJAMIC_SAND.get());
         this.tag(Tags.Blocks.DIRT).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get());
         this.tag(Tags.Blocks.COBBLESTONE).add(BMBlocks.COBBLED_ALJANSTONE.get());
+        this.tag(Tags.Blocks.BARRELS_WOODEN).add(BMBlocks.ALJANWOOD_BARREL.get(), BMBlocks.ALJANCAP_BARREL.get(), BMBlocks.INSOMNIAN_BARREL.get(), BMBlocks.AVONDALIC_WILLOW_BARREL.get());
 
         // Melony Tags
         this.tag(BMBlockTags.CAMPFIRE_SIGNAL_FIRE_BLOCKS).add(BMBlocks.CARAMELED_HAY_BALE.get());
@@ -130,6 +131,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
         this.tag(BMBlockTags.FARMLAND_TRANSPARENT).addTag(Tags.Blocks.FENCE_GATES).addTag(BlockTags.FENCE_GATES).add(Blocks.MOVING_PISTON);
         this.tag(BMBlockTags.MAKES_GRASS_BLOCKS_SNOWY).add(Blocks.SNOW_BLOCK, Blocks.SNOW);
         this.tag(BMBlockTags.HELPS_ON_ZOMBIE_CONVERSION).addTag(BlockTags.BEDS).add(Blocks.IRON_BARS);
+        this.tag(BMBlockTags.BARRELS).add(BMBlocks.ALJANWOOD_BARREL.get(), BMBlocks.ALJANCAP_BARREL.get(), BMBlocks.INSOMNIAN_BARREL.get(), BMBlocks.AVONDALIC_WILLOW_BARREL.get());
 
         // Back Math Tags
         this.tag(BMBlockTags.INFINIBURN_ALJAN).add(BMBlocks.CHARJAN_COAL_BLOCK.get()).add(Blocks.NETHERRACK).add(Blocks.MAGMA_BLOCK);
@@ -144,7 +146,7 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
                 .add(Blocks.WHEAT).add(Blocks.CARROTS).add(Blocks.POTATOES).add(Blocks.BEETROOTS).add(Blocks.NETHER_WART).add(Blocks.SWEET_BERRY_BUSH).add(BMBlocks.CARAMELED_WHEAT.get()).add(BMBlocks.WILD_CARAMELED_WHEAT.get())
                 .add(BMBlocks.ALJAMIC_ONIONS.get()).add(BMBlocks.WILD_ALJAMIC_ONIONS.get());
         this.tag(BMBlockTags.ALJAN_CARVER_REPLACEABLES).addTag(BMBlockTags.BASE_STONE_ALJAN).addTag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_SAND.get()).add(Blocks.GRASS_BLOCK).add(Blocks.DIRT);
-        this.tag(BMBlockTags.ALJAN_TELEPORTER_REPLACEABLES).add(BMBlocks.ALJAN_TULIP.get(), BMBlocks.POISON_ROSE.get(), BMBlocks.INSOMNIAN_TULIP.get(), Blocks.GRASS, Blocks.SNOW);
+        this.tag(BMBlockTags.ALJAN_TELEPORTER_PASSTHROUGH).addTag(BlockTags.LEAVES).add(BMBlocks.ALJAN_TULIP.get(), BMBlocks.POISON_ROSE.get(), BMBlocks.INSOMNIAN_TULIP.get(), Blocks.GRASS, Blocks.SNOW);
         this.tag(BMBlockTags.ALJAN_GROUND).add(BMBlocks.ALJAMIC_GRASS_BLOCK.get()).add(BMBlocks.AVONDALIC_NYLIUM.get()).add(BMBlocks.ALJAMIC_DIRT.get());
         this.tag(BMBlockTags.MALAIKA_SPAWNABLE_ON).addTag(Tags.Blocks.END_STONES).addOptionalTag(new ResourceLocation("variants", "has_ender_nylium"));
         this.tag(BMBlockTags.SOPHIES_SPAWNABLE_ON).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.LOGS).addTag(BlockTags.PLANKS).addTag(Tags.Blocks.DIRT);
@@ -187,8 +189,9 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
 
 
         this.tag(BlockTags.BASE_STONE_OVERWORLD).add(BMBlocks.HILLARIED_STONE.get()).add(BMBlocks.TABU.get());
-        this.tag(BlockTags.GUARDED_BY_PIGLINS).add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get()).add(BMBlocks.QUEEN_LUCY_RELIC.get()).add(BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get())
-                .add(BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.QUEEN_LUCY_PET_RELIC.get());
+        this.tag(BlockTags.GUARDED_BY_PIGLINS).add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.CRYSTALLINE_CRYSTALLIZER.get()).add(BMBlocks.QUEEN_LUCY_RELIC.get()).add(BMBlocks.CRYSTALLINE_BIRCH_SAPLING.get()).add(
+                BMBlocks.POTTED_CRYSTALLINE_BIRCH_SAPLING.get()).add(BMBlocks.QUEEN_LUCY_PET_RELIC.get(), BMBlocks.ALJANWOOD_BARREL.get(), BMBlocks.ALJANCAP_BARREL.get(), BMBlocks.INSOMNIAN_BARREL.get(),
+                BMBlocks.AVONDALIC_WILLOW_BARREL.get());
         this.tag(BlockTags.DRAGON_IMMUNE).add(BMBlocks.ENDER_DRAGON_FRIED_EGG_FLOWER.get()).add(BMBlocks.POTTED_ENDER_DRAGON_FRIED_EGG_FLOWER.get());
 
         this.tag(BlockTags.BAMBOO_PLANTABLE_ON).addTag(BMBlockTags.ALJAN_GROUND);

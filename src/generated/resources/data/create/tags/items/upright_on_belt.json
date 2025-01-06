@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "#backmath:bottles",
+    "#backmath:buckets",
+    "#backmath:energetics",
+    "#backmath:jams",
+    "backmath:toddy",
+    "backmath:aljame_teacup",
+    "backmath:talco_de_agua",
+    "backmath:hilary_disinfectant",
+    "backmath:hilary_deodorant",
+    "backmath:glue",
+    "backmath:chocoglue"
+  ]
+}

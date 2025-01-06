@@ -78,7 +78,7 @@ public class BMBlockTags {
     public static final ITag.INamedTag<Block> TURTLE_FRIED_EGG_FLOWER_PLANTABLE_ON = backMath("turtle_fried_egg_flower_plantable_on");
     public static final ITag.INamedTag<Block> MINEABLE_KNIVES = backMath("mineable/knife");
     public static final ITag.INamedTag<Block> ALJAN_CARVER_REPLACEABLES = backMath("aljan_carver_replaceables");
-    public static final ITag.INamedTag<Block> ALJAN_TELEPORTER_REPLACEABLES = backMath("aljan_teleporter_replaceables");
+    public static final ITag.INamedTag<Block> ALJAN_TELEPORTER_PASSTHROUGH = backMath("aljan_teleporter_passthrough");
     public static final ITag.INamedTag<Block> ALJAN_GROUND = backMath("aljan_ground");
     public static final ITag.INamedTag<Block> MALAIKA_SPAWNABLE_ON = backMath("malaika_spawnable_on");
     public static final ITag.INamedTag<Block> SOPHIES_SPAWNABLE_ON = backMath("sophies_spawnable_on");
@@ -97,6 +97,7 @@ public class BMBlockTags {
     public static final ITag.INamedTag<Block> FARMLAND_TRANSPARENT = melony("farmland_transparent");
     public static final ITag.INamedTag<Block> MAKES_GRASS_BLOCKS_SNOWY = melony("makes_grass_blocks_snowy");
     public static final ITag.INamedTag<Block> HELPS_ON_ZOMBIE_CONVERSION = melony("helps_on_zombie_conversion");
+    public static final ITag.INamedTag<Block> BARRELS = melony("barrels");
 
     private static ITag.INamedTag<Block> forge(String name) {
         return BlockTags.bind(new ResourceLocation("forge", name).toString());

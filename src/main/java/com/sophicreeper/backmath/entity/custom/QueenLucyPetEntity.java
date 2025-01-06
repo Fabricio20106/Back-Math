@@ -85,8 +85,8 @@ public class QueenLucyPetEntity extends TameableEntity {
         this.goalSelector.addGoal(4, new FollowOwnerGoal(this, 1.2F, 10, 2, true));
         this.goalSelector.addGoal(5, new QLPRandomFlyingGoal(this, 1));
         this.goalSelector.addGoal(6, new LookAtGoal(this, QueenLucyPetEntity.class, 8));
-        this.goalSelector.addGoal(6, new LookAtGoal(this, PlayerEntity.class, 8));
-        this.goalSelector.addGoal(7, new LookRandomlyGoal(this));
+        this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 8));
+        this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new OwnerHurtByTargetGoal(this));
         this.targetSelector.addGoal(2, new QLPOwnersTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class ,10, false, false, (livEntity) -> livEntity.getType().is(BMEntityTypeTags.QLP_TARGETS_TAMED)));

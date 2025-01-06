@@ -14,9 +14,9 @@ import java.util.List;
 
 public class AddToTableLootModifier extends LootModifier {
     private final ResourceLocation additionTable;
-    private final float chance;
+    private final double chance;
 
-    public AddToTableLootModifier(ILootCondition[] conditions, ResourceLocation additionTable, float chance) {
+    public AddToTableLootModifier(ILootCondition[] conditions, ResourceLocation additionTable, double chance) {
         super(conditions);
         this.additionTable = additionTable;
         this.chance = chance;
@@ -26,7 +26,7 @@ public class AddToTableLootModifier extends LootModifier {
     @Override
     protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
         MinecraftServer server = context.getLevel().getServer();
-        if (context.getRandom().nextFloat() < this.chance) {
+        if (context.getRandom().nextDouble() < this.chance) {
             return server.getLootTables().get(this.additionTable).getRandomItems(context);
         }
         return generatedLoot;
@@ -35,7 +35,7 @@ public class AddToTableLootModifier extends LootModifier {
     public static class Serializer extends GlobalLootModifierSerializer<AddToTableLootModifier> {
         @Override
         public AddToTableLootModifier read(ResourceLocation location, JsonObject object, ILootCondition[] conditions) {
-            return new AddToTableLootModifier(conditions, ResourceLocation.tryParse(object.get("addition_table").getAsString()), object.get("chance").getAsFloat());
+            return new AddToTableLootModifier(conditions, ResourceLocation.tryParse(object.get("addition_table").getAsString()), object.get("chance").getAsDouble());
         }
 
         @Override

@@ -8,7 +8,7 @@ import com.sophicreeper.backmath.blockentity.renderer.HeadBlockEntityRenderer;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.entity.renderer.aljan.*;
-import com.sophicreeper.backmath.entity.renderer.layer.PlayerOutfitLayer;
+import com.sophicreeper.backmath.entity.renderer.layer.OutfitLayer;
 import com.sophicreeper.backmath.entity.renderer.misc.BMBoatRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.InsomniaArrowRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.JanticBoltRenderer;
@@ -312,7 +312,7 @@ public class ClientProxy extends CommonProxy {
         makeCarewni(AxolotlTest.CAREWNI.get());
 
         for (PlayerRenderer renderer : Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values()) {
-            renderer.addLayer(new PlayerOutfitLayer<>(renderer));
+            renderer.addLayer(new OutfitLayer<>(renderer, renderer.getModel().slim));
         }
     }
 

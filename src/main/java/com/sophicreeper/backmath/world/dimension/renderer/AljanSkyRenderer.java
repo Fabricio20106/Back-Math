@@ -3,7 +3,7 @@ package com.sophicreeper.backmath.world.dimension.renderer;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.util.BMResourceLocations;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.FogRenderer;
@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3d;
@@ -25,7 +24,6 @@ import java.util.Random;
 // Methods copied from vanilla's WorldRenderer class.
 @SuppressWarnings("deprecation")
 public class AljanSkyRenderer implements ISkyRenderHandler {
-    public static final ResourceLocation ALJAN_SUN = BackMath.texture("environment/aljan_sun");
     private final VertexFormat skyVertexFormat = DefaultVertexFormats.POSITION;
     private VertexBuffer starsBuffer;
     private VertexBuffer lightSkyBuffer;
@@ -88,11 +86,13 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         RenderSystem.enableTexture();
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         stack.pushPose();
+        float rainLevel = 1 - world.getRainLevel(partialTicks);
+        RenderSystem.color4f(1, 1, 1, rainLevel);
         stack.mulPose(Vector3f.YP.rotationDegrees(-90));
         stack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360));
         Matrix4f matrix4F = stack.last().pose();
 
-        minecraft.textureManager.bind(ALJAN_SUN);
+        minecraft.textureManager.bind(BMResourceLocations.ALJAN_SUN);
         buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
         int sunPos = 30; // 30 is default.
         buffer.vertex(matrix4F, -sunPos, 100, -sunPos).uv(0, 0).endVertex();
@@ -103,7 +103,6 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         WorldVertexBufferUploader.end(buffer);
         RenderSystem.disableTexture();
 
-        float rainLevel = 1 - world.getRainLevel(partialTicks);
         float starBrightness = world.getStarBrightness(partialTicks) * rainLevel;
         if (starBrightness > 0) {
             RenderSystem.color4f(starBrightness, starBrightness, starBrightness, starBrightness);

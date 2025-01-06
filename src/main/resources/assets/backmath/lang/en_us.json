@@ -672,6 +672,12 @@
   "block.backmath.termian_empire_banner": "Termian Empire Banner",
   "block.backmath.aljancap_door": "Aljancap Door",
   "block.backmath.aljancap_trapdoor": "Aljancap Trapdoor",
+  "block.backmath.aljanwood_barrel": "Aljanwood Barrel",
+  "block.backmath.aljancap_barrel": "Aljancap Barrel",
+  "block.backmath.insomnian_barrel": "Insomnian Barrel",
+  "block.backmath.avondalic_willow_barrel": "Avondalic Willow Barrel",
+
+  "container.backmath.bm_barrel": "Barrel",
 
   "death.attack.temperature_meal": "%1$s's stomach was blown up by Hot Sophie and Cold Fabricio Meal",
   "death.attack.temperature_meal.player": "%1$s's stomach was blown up by Hot Sophie and Cold Fabricio Meal whilst running from %2$s",
@@ -1641,6 +1647,13 @@
   "material.silentgear.aljameed": "Aljameed",
   "material.silentgear.aljansteel": "Aljansteel",
   "material.silentgear.moonering": "Moonering",
+  "material.silentgear.stone.tabu": "Tabu",
+  "material.silentgear.stone.hillaried_stone": "Hillaried Stone",
+  "material.silentgear.stone.aljanstone": "Aljanstone",
+  "material.silentgear.stone.sleepingstone": "Sleepingstone",
+
+  "travelerstitles.backmath.the_aljan": "The Aljan",
+  "travelerstitles.backmath.the_aljan.color": "a0c9c9",
 
   "backmath.message_template": "Back Math: %s",
 

@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.model;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.model.BakedQuad;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.data.IModelData;
 
 import javax.annotation.Nonnull;
@@ -49,7 +48,7 @@ public class FullbrightModel implements IBakedModel {
     }
 
     private static int getLightValue() {
-        return 0xF000F0;
+        return LightTexture.pack(15, 15);
     }
 
     @Override

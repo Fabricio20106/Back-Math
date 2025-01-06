@@ -1,0 +1,11 @@
+{
+  "parent": "silentgear:stone",
+  "crafting_items": {
+    "main": {
+      "item": "backmath:hillaried_stone"
+    }
+  },
+  "name": {
+    "translate": "material.silentgear.stone.hillaried_stone"
+  }
+}

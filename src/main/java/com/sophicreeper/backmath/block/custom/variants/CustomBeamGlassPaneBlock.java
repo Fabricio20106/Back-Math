@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.block.custom.variants;
 
+import com.sophicreeper.backmath.util.VSUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IBeaconBeamColorProvider;
 import net.minecraft.block.PaneBlock;
@@ -7,14 +8,12 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.Color;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.Style;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.util.text.*;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraftforge.fml.ModList;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
@@ -29,27 +28,26 @@ public class CustomBeamGlassPaneBlock extends PaneBlock implements IBeaconBeamCo
 
     @Nullable
     public float[] getBeaconColorMultiplier(BlockState state, IWorldReader world, BlockPos pos, BlockPos beaconPos) {
-        int i = (beamColor & 16711680) >> 16;
-        int j = (beamColor & '\uff00') >> 8;
-        int k = (beamColor & 255);
+        int red = (this.beamColor & 16711680) >> 16;
+        int green = (this.beamColor & '\uff00') >> 8;
+        int blue = (this.beamColor & 255);
 
-        float[] textureDiffuseColors = new float[] {(float) i / 255f, (float) j / 255f, (float) k / 255f};
+        float[] textureDiffuseColors = new float[] {(float) red / 255F, (float) green / 255F, (float) blue / 255F};
 
-        if (getBlock() instanceof IBeaconBeamColorProvider) {
-            return textureDiffuseColors;
-        }
-
+        if (this.getBlock() instanceof IBeaconBeamColorProvider) return textureDiffuseColors;
         return null;
     }
 
     @Override
+    @Nonnull
     public DyeColor getColor() {
         return DyeColor.WHITE;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable IBlockReader world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        if (ModList.get().isLoaded("variants")) tooltip.add(new TranslationTextComponent("tooltip.variants.glass_beam_color", String.format("#%06X", beamColor)).withStyle(Style.EMPTY.withColor(Color.fromRgb(beamColor))));
         super.appendHoverText(stack, world, tooltip, flag);
+        if (flag.isAdvanced() && ModList.get().isLoaded("variants")) tooltip.add(new TranslationTextComponent("tooltip.variants.glass_beam_color", new StringTextComponent(String.format("#%06X", this.beamColor)).withStyle(VSUtils.getFromRGB(this.beamColor)))
+                .withStyle(TextFormatting.GRAY));
     }
 }

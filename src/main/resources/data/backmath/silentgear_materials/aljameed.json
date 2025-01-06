@@ -1,21 +1,20 @@
 {
-  "conditions": [
-    {
-      "type": "forge:not",
-      "value": {
-        "type": "forge:tag_empty",
-        "tag": "forge:ingots/aljameed"
-      }
-    }
-  ],
   "availability": {
     "tier": 2,
+    "categories": [
+      "metal"
+    ],
     "visible": true,
     "gear_blacklist": []
   },
   "crafting_items": {
     "main": {
       "tag": "forge:ingots/aljameed"
+    },
+    "subs": {
+      "rod": {
+        "tag": "forge:rods/aljameed"
+      }
     }
   },
   "name": {
@@ -32,6 +31,10 @@
       "magic_damage": 2.0,
       "attack_speed": 1.6,
       "armor": 15.0,
+      "armor/helmet": 2.0,
+      "armor/chestplate": 6.0,
+      "armor/leggings": 5.0,
+      "armor/boots": 2.0,
       "armor_toughness": 0.0,
       "magic_armor": 6.0,
       "ranged_damage": 2.0,
@@ -40,5 +43,12 @@
       "silentgems:chargeability": 1.4
     }
   },
-  "traits": {}
+  "traits": {
+    "main": [
+      {
+        "name": "silentgear:malleable",
+        "level": 2
+      }
+    ]
+  }
 }

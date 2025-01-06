@@ -3,7 +3,6 @@ package com.sophicreeper.backmath.entity.renderer.layer;
 import com.google.common.collect.Maps;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -50,7 +49,7 @@ public class BMArmorLayer<T extends LivingEntity, M extends BipedModel<T>, A ext
     private void renderArmorPiece(MatrixStack stack, IRenderTypeBuffer buffer, T mob, EquipmentSlotType slotType, int packedLight, A armorModel) {
         ItemStack armorStack = mob.getItemBySlot(slotType);
 
-        if (armorStack.getItem() instanceof ArmorItem && !(armorStack.getItem() instanceof OutfitItem)) {
+        if (armorStack.getItem() instanceof ArmorItem && !armorStack.getItem().is(BMItemTags.OUTFITS)) {
             ArmorItem armorItem = (ArmorItem) armorStack.getItem();
             if (armorItem.getSlot() == slotType) {
                 armorModel = ForgeHooksClient.getArmorModel(mob, armorStack, slotType, armorModel);

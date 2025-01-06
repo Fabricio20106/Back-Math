@@ -32,7 +32,7 @@ public class BMSetFields {
     public static final BMArmors DEVIL_ARMOR = new BMArmors(BackMath.MOD_ID + ":devil", 18, new int[] {3, 5, 6, 3}, 11, SoundEvents.ARMOR_EQUIP_IRON, 0, 0, () -> Ingredient.of(BMItemTags.INGOTS_DEVIL));
     public static final BMArmors MILKLLARY_ARMOR = new BMArmors(BackMath.MOD_ID + ":milkllary", 15, new int[] {3, 6, 5, 3}, 18, SoundEvents.ARMOR_EQUIP_IRON, 0, 0, () -> Ingredient.of(BMItemTags.INGOTS_MILKLLARY));
     public static final BMArmors MID_TERM_ARMOR = new BMArmors(BackMath.MOD_ID + ":mid_term", 47, new int[] {8, 12, 14, 8}, 34, SoundEvents.ARMOR_EQUIP_NETHERITE, 11, 0.3F, () -> Ingredient.of(BMItemTags.SINGULARITIES_MID_TERM));
-    public static final BMArmors OBSIDIAN_INFUSED_MID_TERM_ARMOR = new BMArmors(BackMath.MOD_ID + ":obsidian_infused_mid_term", 53, new int[] {12, 18, 16, 12}, 42, SoundEvents.ARMOR_EQUIP_NETHERITE, 15, 0.5F, () -> Ingredient.of(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM));
+    public static final BMArmors OBSIDIAN_INFUSED_MID_TERM_ARMOR = new BMArmors(BackMath.MOD_ID + ":obsidian_infused_mid_term", 53, new int[] {12, 16, 18, 12}, 42, SoundEvents.ARMOR_EQUIP_NETHERITE, 15, 0.5F, () -> Ingredient.of(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM));
     public static final BMArmors PLATEFORCED_MID_TERM_ARMOR = new BMArmors(BackMath.MOD_ID + ":plateforced_mid_term", 50, new int[] {6, 8, 9, 6}, 17, SoundEvents.ARMOR_EQUIP_NETHERITE, 4.5F, 0.4F, () -> Ingredient.of(BMItemTags.INGOTS_OBSIDIAN));
     public static final BMArmors ARCHER_LUCIA_ARMOR = new BMArmors(BackMath.MOD_ID + ":archer_lucia_vest", 15, new int[] {2, 4, 5, 2}, 18, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0.05f, () -> Ingredient.of(BMItemTags.INGOTS_MILKLLARY));
     public static final BMArmors ARCHER_FABRICIO_ARMOR = new BMArmors(BackMath.MOD_ID + ":archer_fabricio_vest", 15, new int[] {3, 4, 4, 2}, 18, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0.05f, () -> Ingredient.of(BMItemTags.INGOTS_ALJAMEED));
@@ -74,10 +74,10 @@ public class BMSetFields {
     public static final BMTools OLIVE_SET = new BMTools(3, 646, 4, 1, 69, () -> Ingredient.EMPTY);
     public static final BMTools DEVIL_SPAREY_SET = new BMTools(4, 2031, 9, 18, 12, () -> Ingredient.of(BMItemTags.INGOTS_DEVIL));
     public static final BMTools SPAREY_SET = new BMTools(4, 2031, 9, 18, 12, () -> Ingredient.of(BMItemTags.INGOTS_CHRISTIAN_MID_TERM));
-    public static final BMTools MID_TERM_SET = new BMTools(5, 4062, 12, 16, 17, () -> Ingredient.of(BMItemTags.SINGULARITIES_MID_TERM));
-    public static final BMTools MID_TERM_SPAREY_SET = new BMTools(5, 4062, 12, 61, 36, () -> Ingredient.of(BMItemTags.SINGULARITIES_MID_TERM));
-    public static final BMTools OBSIDIAN_INFUSED_MID_TERM_SET = new BMTools(6, 8126, 16, 58, 45, () -> Ingredient.of(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM));
-    public static final BMTools OBSIDIAN_INFUSED_MID_TERM_SPAREY_SET = new BMTools(4, 2031, 9, 76, 12, () -> Ingredient.of(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM));
+    public static final BMTools MID_TERM_SET = new BMTools(5, 4062, 12, 16, 17, () -> Ingredient.of(BMItemTags.MID_TERM_MATERIALS));
+    public static final BMTools MID_TERM_SPAREY_SET = new BMTools(5, 4062, 12, 61, 36, () -> Ingredient.of(BMItemTags.MID_TERM_MATERIALS));
+    public static final BMTools OBSIDIAN_INFUSED_MID_TERM_SET = new BMTools(6, 8126, 16, 58, 45, () -> Ingredient.of(BMItemTags.OIMT_MATERIALS));
+    public static final BMTools OBSIDIAN_INFUSED_MID_TERM_SPAREY_SET = new BMTools(4, 2031, 9, 76, 12, () -> Ingredient.of(BMItemTags.OIMT_MATERIALS));
     public static final BMTools CRYSTALLINE_BIRCH_SET = new BMTools(0, 59, 2, 0, 15, () -> Ingredient.of(AxolotlTest.CRYSTALLINE_BIRCH_PLANKS.get()));
     public static final BMTools GOLDENWOOD_SET = new BMTools(0, 59, 2, 0, 15, () -> Ingredient.of(AxolotlTest.GOLDENWOOD_PLANKS.get()));
     public static final BMTools GUAVA_SET = new BMTools(0, 59, 2, 0, 15, () -> Ingredient.of(AxolotlTest.GUAVA_PLANKS.get()));

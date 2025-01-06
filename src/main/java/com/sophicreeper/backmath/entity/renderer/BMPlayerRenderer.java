@@ -5,8 +5,7 @@ import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.entity.model.BMArmorModel;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
 import com.sophicreeper.backmath.entity.renderer.layer.BMArmorLayer;
-import com.sophicreeper.backmath.entity.renderer.layer.BMOutfitLayer;
-import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
+import com.sophicreeper.backmath.entity.renderer.layer.OutfitLayer;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
@@ -19,6 +18,7 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.CrossbowItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.UseAction;
@@ -40,7 +40,7 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
 
     public BMPlayerRenderer(EntityRendererManager manager, BMPlayerModel<T> model, float shadowSize, boolean slimArms) {
         super(manager, model, shadowSize);
-        this.addLayer(new BMOutfitLayer<>(this));
+        this.addLayer(new OutfitLayer<>(this, slimArms));
         this.addLayer(new BMArmorLayer<>(this, new BMArmorModel<>(0.5F, 0, 64, 32), new BMArmorModel<>(1, 0, 64, 32)));
         this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new HeadLayer<>(this));
@@ -136,7 +136,9 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
             if (outfit.shouldHideTexture(mobModel.slimArms(), EquipmentSlotType.FEET)) hideModelLayers(mobModel, EquipmentSlotType.FEET);
         } else {
             for (ItemStack stack : mob.getArmorSlots()) {
-                if (stack.getItem() instanceof OutfitItem) hideModelLayers(mobModel, ((OutfitItem) stack.getItem()).getSlot());
+                if (stack.getItem() instanceof ArmorItem && stack.getItem().is(BMItemTags.OUTFITS)) {
+                    hideModelLayers(mobModel, ((ArmorItem) stack.getItem()).getSlot());
+                }
             }
         }
 

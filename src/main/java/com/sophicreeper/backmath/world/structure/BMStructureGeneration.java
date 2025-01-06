@@ -1,8 +1,10 @@
 package com.sophicreeper.backmath.world.structure;
 
+import com.google.common.collect.Lists;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.world.BMConfiguredFeatures;
 import com.sophicreeper.backmath.world.biome.BMBiomes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -16,9 +18,10 @@ import java.util.function.Supplier;
 import static com.sophicreeper.backmath.world.biome.BMBiomes.*;
 
 public class BMStructureGeneration {
-    public static final Biome[] ALJAN_BIOMES = new Biome[] {ALJAN_WOODS.get(), CAPPED_HILLS.get(), INSOMNIAN_WOODS.get(), AMARACAMEL_STICKS.get(), ALJAMIC_HIGHLANDS.get(), AVONDALIC_GROVE.get(), ALJAMIC_ORCHARD.get(),
-            SLEEPISH_OCEAN.get(), DEEP_SLEEPISH_OCEAN.get(), DEEPER_SLEEPISH_OCEAN.get()};
-    public static final Biome[] ALJAN_BIOMES_NO_OCEANS = new Biome[] {ALJAN_WOODS.get(), CAPPED_HILLS.get(), INSOMNIAN_WOODS.get(), AMARACAMEL_STICKS.get(), ALJAMIC_HIGHLANDS.get(), AVONDALIC_GROVE.get(), ALJAMIC_ORCHARD.get()};
+    public static final List<ResourceLocation> ALJAN_BIOMES = Lists.newArrayList(ALJAN_WOODS.get().getRegistryName(), CAPPED_HILLS.get().getRegistryName(), INSOMNIAN_WOODS.get().getRegistryName(), AMARACAMEL_STICKS.get().getRegistryName(),
+            ALJAMIC_HIGHLANDS.get().getRegistryName(), AVONDALIC_GROVE.get().getRegistryName(), ALJAMIC_ORCHARD.get().getRegistryName(), SLEEPISH_OCEAN.get().getRegistryName(), DEEP_SLEEPISH_OCEAN.get().getRegistryName(),
+            DEEPER_SLEEPISH_OCEAN.get().getRegistryName());
+    public static final List<Biome> ALJAN_BIOMES_NO_OCEANS = Lists.newArrayList(ALJAN_WOODS.get(), CAPPED_HILLS.get(), INSOMNIAN_WOODS.get(), AMARACAMEL_STICKS.get(), ALJAMIC_HIGHLANDS.get(), AVONDALIC_GROVE.get(), ALJAMIC_ORCHARD.get());
 
     public static void generateStructures(final BiomeLoadingEvent event) {
         List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
@@ -28,12 +31,12 @@ public class BMStructureGeneration {
             if (BMConfigs.COMMON_CONFIGS.angerDungeonsInBackFields.get()) event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ANGER_DUNGEON);
         }
 
-        for (Biome biome : ALJAN_BIOMES) {
-            if (!(Objects.equals(biome.getRegistryName(), event.getName())) && event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND) {
-                if (BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonGeneration.get()) structures.add(() -> BMStructures.FABRICIO_HIDEOUT_DUNGEON.get().configured(IFeatureConfig.NONE));
-            }
+        if (event.getCategory() != Biome.Category.NETHER && event.getCategory() != Biome.Category.THEEND && BMConfigs.COMMON_CONFIGS.fabricioHideoutDungeonGeneration.get()) {
+            structures.add(() -> BMStructures.FABRICIO_HIDEOUT_DUNGEON.get().configured(IFeatureConfig.NONE));
+        }
 
-            if (Objects.equals(biome.getRegistryName(), event.getName()) && BMConfigs.COMMON_CONFIGS.aljanDungeonsInAljan.get()) {
+        for (ResourceLocation location : ALJAN_BIOMES) {
+            if (Objects.equals(location, event.getName()) && BMConfigs.COMMON_CONFIGS.aljanDungeonsInAljan.get()) {
                 event.getGeneration().addFeature(GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BMConfiguredFeatures.ALJAN_DUNGEON);
             }
         }

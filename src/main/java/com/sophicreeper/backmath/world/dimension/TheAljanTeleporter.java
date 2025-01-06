@@ -58,14 +58,14 @@ public class TheAljanTeleporter implements ITeleporter {
         int tries = 0;
         sendMessage(new StringTextComponent("About to try to find a suitable location for the portal stand..."));
 
-        while ((destinationWorld.getBlockState(targetPos).equals(Blocks.CAVE_AIR.defaultBlockState()) || !destinationWorld.getBlockState(targetPos).is(BMBlockTags.ALJAN_TELEPORTER_REPLACEABLES)) && tries < 250) {
+        while ((destinationWorld.getBlockState(targetPos).equals(Blocks.CAVE_AIR.defaultBlockState()) || !destinationWorld.getBlockState(targetPos).is(BMBlockTags.ALJAN_TELEPORTER_PASSTHROUGH)) && tries < 250) {
             targetPos = targetPos.above(1);
             tries++;
             sendMessage(entity, new StringTextComponent("Attempt " + tries + ": Could not find a suitable spot for the portal stand"));
         }
 
         int resetTries = 0;
-        while (destinationWorld.getBlockState(targetPos.below()).getMaterial() == Material.AIR || destinationWorld.getBlockState(targetPos.below()).is(BMBlockTags.ALJAN_TELEPORTER_REPLACEABLES)) {
+        while (destinationWorld.getBlockState(targetPos.below()).getMaterial() == Material.AIR || destinationWorld.getBlockState(targetPos.below()).is(BMBlockTags.ALJAN_TELEPORTER_PASSTHROUGH)) {
             // safety check for void/empty worlds ~isa 6-11-24
             if (resetTries >= 5) {
                 targetPos = new BlockPos(targetPos.getX(), 63, targetPos.getZ());

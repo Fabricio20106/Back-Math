@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.world.structure.BMStructures;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.SharedSeedRandom;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +30,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class SophieTowerStructure extends Structure<NoFeatureConfig> {
@@ -43,6 +45,7 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
     }
 
     @Override
+    @Nonnull
     public GenerationStage.Decoration step() {
         return GenerationStage.Decoration.SURFACE_STRUCTURES;
     }
@@ -53,9 +56,9 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
         int landHeight = chunkGenerator.getBaseHeight(centerOfChunk.getX(), centerOfChunk.getZ(), Heightmap.Type.WORLD_SURFACE_WG);
 
         IBlockReader columnOfBlocks = chunkGenerator.getBaseColumn(centerOfChunk.getX(), centerOfChunk.getZ());
-        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight));
+        BlockState topBlock = columnOfBlocks.getBlockState(centerOfChunk.above(landHeight - 1));
 
-        return topBlock.getFluidState().isEmpty();
+        return topBlock.getFluidState().isEmpty() && biomeProvider.canGenerateStructure(BMStructures.SOPHIE_TOWER.get());
     }
 
     @Override
@@ -74,6 +77,7 @@ public class SophieTowerStructure extends Structure<NoFeatureConfig> {
     }
 
     @Override
+    @Nonnull
     public IStartFactory<NoFeatureConfig> getStartFactory() {
         return SophieTowerStructure.Start::new;
     }

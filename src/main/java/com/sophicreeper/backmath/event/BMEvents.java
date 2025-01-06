@@ -10,11 +10,12 @@ import com.sophicreeper.backmath.command.BMDebuggingCommands;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.custom.armor.OutfitItem;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.manager.QueenLucyPetVariantManager;
 import com.sophicreeper.backmath.variant.manager.WandererSophieVariantManager;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
+import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
 import com.sophicreeper.backmath.world.plant.BMPlantGeneration;
 import com.sophicreeper.backmath.world.structure.BMStructureGeneration;
@@ -34,6 +35,7 @@ import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.MerchantOffer;
@@ -103,8 +105,7 @@ public class BMEvents {
         ClientWorld world = Minecraft.getInstance().level;
         if (world != null) {
             int dayTime = (int) (world.getDayTime() % 24000L);
-            if (isTimeWithinBounds(dayTime) && ambienceEnabled(world) &&
-                    BMConfigs.COMMON_CONFIGS.changeAljanFogColorAtNight.get()) {
+            if (isTimeWithinBounds(dayTime) && ambienceEnabled(world) && BMConfigs.COMMON_CONFIGS.changeAljanFogColorAtNight.get()) {
                 BMUtils.transitionFogColor(event, dayTime <= 22300);
             }
         }
@@ -158,7 +159,9 @@ public class BMEvents {
             // Adding our structure to the Map.
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
             tempMap.putIfAbsent(BMStructures.SOPHIE_TOWER.get(), DimensionStructuresSettings.DEFAULTS.get(BMStructures.SOPHIE_TOWER.get()));
-            tempMap.putIfAbsent(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get(), DimensionStructuresSettings.DEFAULTS.get(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get()));
+            if (!serverWorld.dimension().equals(BMDimensions.THE_ALJAN)) {
+                tempMap.putIfAbsent(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get(), DimensionStructuresSettings.DEFAULTS.get(BMStructures.FABRICIO_HIDEOUT_DUNGEON.get()));
+            }
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
     }
@@ -231,7 +234,7 @@ public class BMEvents {
     @SubscribeEvent
     public static void renderOutfitInArm(RenderArmEvent event) {
         AbstractClientPlayerEntity player = event.getPlayer();
-        if (player.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof OutfitItem) {
+        if (player.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof ArmorItem && player.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.OUTFITS)) {
             PlayerModel<AbstractClientPlayerEntity> outfitModel = new PlayerModel<>(0.01F, player.getModelName().equals("slim"));
             ModelRenderer rightArm = outfitModel.rightArm;
             ModelRenderer rightSleeve = outfitModel.rightSleeve;
@@ -241,7 +244,7 @@ public class BMEvents {
                 rightSleeve = outfitModel.leftSleeve;
             }
 
-            OutfitItem item = (OutfitItem) player.getItemBySlot(EquipmentSlotType.CHEST).getItem();
+            ArmorItem item = (ArmorItem) player.getItemBySlot(EquipmentSlotType.CHEST).getItem();
             outfitModel.attackTime = 0;
             outfitModel.crouching = false;
             outfitModel.swimAmount = 0;

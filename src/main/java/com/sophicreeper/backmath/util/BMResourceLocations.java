@@ -4,7 +4,7 @@ import com.sophicreeper.backmath.BackMath;
 import net.minecraft.util.ResourceLocation;
 
 public class BMResourceLocations {
-    // Fluids
+    // Textures
     // Hillary
     public static final ResourceLocation HILLARY_STILL = BackMath.backMath("fluid/hilary_still");
     public static final ResourceLocation FLOWING_HILLARY = BackMath.backMath("fluid/hilary_flowing");
@@ -29,6 +29,9 @@ public class BMResourceLocations {
     public static final ResourceLocation SLEEPISHWATER_STILL = BackMath.backMath("fluid/sleepishwater");
     public static final ResourceLocation FLOWING_SLEEPISHWATER_RL = BackMath.backMath("fluid/flowing_sleepishwater");
     public static final ResourceLocation SLEEPISHWATER_OVERLAY = BackMath.backMath("fluid/sleepishwater_overlay");
+
+    // Environment
+    public static final ResourceLocation ALJAN_SUN = BackMath.texture("environment/aljan_sun");
 
     // Miscellaneous
     public static final ResourceLocation SOPHIE_TOWER_START_POOL = BackMath.backMath("sophie_tower/start_pool");
@@ -77,4 +80,7 @@ public class BMResourceLocations {
     public static final ResourceLocation QUEEN_LUCY_BATTLE_PACK = BackMath.backMath("bags/queen_lucy_battle");
     public static final ResourceLocation ALJAME_TEA_BOX = BackMath.backMath("bags/aljame_tea");
     public static final ResourceLocation BOOT_PACK = BackMath.backMath("bags/boot");
+
+    // Loot Modifiers
+    public static final ResourceLocation SHEPHERD_GIFT_ADDITION = BackMath.backMath("gameplay/hero_of_the_village/shepherd_gift_addition");
 }

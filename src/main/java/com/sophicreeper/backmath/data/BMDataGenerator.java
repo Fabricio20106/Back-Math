@@ -30,5 +30,6 @@ public final class BMDataGenerator {
         generator.addProvider(new BMEnchantmentTagsProvider(generator, fileHelper));
         generator.addProvider(new BMWandererSophieVariantsProvider(generator, fileHelper));
         generator.addProvider(new BMQueenLucyPetVariantsProvider(generator, fileHelper));
+        generator.addProvider(new BMLootModifierProvider(generator));
     }
 }

@@ -4,7 +4,10 @@
   "package": "com.sophicreeper.backmath.mixin",
   "refmap": "backmath.refmap.json",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [],
+  "mixins": [
+    "command.BMWeatherCommandMixin",
+    "world.BMServerWorldMixin"
+  ],
   "client": [
     "layer.BMBipedArmorLayerMixin",
     "layer.BMHeldItemLayerMixin",
