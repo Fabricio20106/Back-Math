@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.blockentity.BMBlockEntities;
 import com.sophicreeper.backmath.blockentity.renderer.HeadBlockEntityRenderer;
+import com.sophicreeper.backmath.blockentity.renderer.WandererSophieHeadBlockEntityRenderer;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.entity.renderer.aljan.*;
@@ -20,7 +21,7 @@ import com.sophicreeper.backmath.world.dimension.renderer.AljanDimensionRenderer
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.client.renderer.entity.PlayerRenderer;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.world.DimensionRenderInfo;
 import net.minecraft.resources.IPackNameDecorator;
 import net.minecraft.resources.ResourcePackInfo;
@@ -268,6 +269,7 @@ public class ClientProxy extends CommonProxy {
 
         // Block Entity Renderers
         ClientRegistry.bindTileEntityRenderer(BMBlockEntities.HEAD.get(), HeadBlockEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BMBlockEntities.WANDERER_SOPHIE_HEAD.get(), WandererSophieHeadBlockEntityRenderer::new);
 
         // Entity Renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);
@@ -311,8 +313,23 @@ public class ClientProxy extends CommonProxy {
         makeJanticRailgun(AxolotlTest.JANTIC_RAILGUN.get());
         makeCarewni(AxolotlTest.CAREWNI.get());
 
+        addMobOutfitLayers();
         for (PlayerRenderer renderer : Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values()) {
             renderer.addLayer(new OutfitLayer<>(renderer, renderer.getModel().slim));
+        }
+    }
+
+    private static void addMobOutfitLayers() {
+        for (EntityRenderer<?> renderer : Minecraft.getInstance().getEntityRenderDispatcher().renderers.values()) {
+            if (renderer instanceof ZombieRenderer) {
+                ((ZombieRenderer) renderer).addLayer(new OutfitLayer<>(((ZombieRenderer) renderer), false));
+            }
+            if (renderer instanceof DrownedRenderer) {
+                ((DrownedRenderer) renderer).addLayer(new OutfitLayer<>(((DrownedRenderer) renderer), false));
+            }
+            if (renderer instanceof PiglinRenderer) {
+                ((PiglinRenderer) renderer).addLayer(new OutfitLayer<>(((PiglinRenderer) renderer), false));
+            }
         }
     }
 

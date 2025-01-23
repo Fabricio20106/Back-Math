@@ -5,10 +5,10 @@ import com.sophicreeper.backmath.block.custom.*;
 import com.sophicreeper.backmath.block.custom.variants.BMOreBlock;
 import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassBlock;
 import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassPaneBlock;
+import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
 import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.item.custom.tool.KnifeItem;
-import com.sophicreeper.backmath.misc.BMHeadType;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.world.plant.tree.*;
 import net.minecraft.block.*;
@@ -108,8 +108,10 @@ public class BMBlocks {
     public static final RegistryObject<Block> HILLARY_WALL_TORCH = BLOCKS.register("hillary_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH).lootFrom(BMBlocks.HILLARY_TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CRYSTALLIZER = BLOCKS.register("crystallizer", () -> new CrystallizerBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.SNOW).strength(3, 6).requiresCorrectToolForDrops().sound(SoundType.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(2)));
     public static final RegistryObject<Block> CRYSTALLINE_CRYSTALLIZER = BLOCKS.register("crystalline_crystallizer", () -> new CrystallineCrystallizerBlock(AbstractBlock.Properties.of(Material.METAL, MaterialColor.SNOW).strength(3.5F, 6).requiresCorrectToolForDrops().sound(SoundType.METAL).harvestTool(ToolType.PICKAXE).harvestLevel(2)));
-    public static final RegistryObject<Block> ANGRY_SOPHIE_HEAD = BLOCKS.register("angry_sophie_head", () -> new HeadBlock(BMHeadType.ANGRY_SOPHIE, AbstractBlock.Properties.copy(Blocks.PLAYER_HEAD)));
-    public static final RegistryObject<Block> ANGRY_SOPHIE_WALL_HEAD = BLOCKS.register("angry_sophie_wall_head", () -> new WallHeadBlock(BMHeadType.ANGRY_SOPHIE, AbstractBlock.Properties.copy(Blocks.PLAYER_WALL_HEAD).lootFrom(BMBlocks.ANGRY_SOPHIE_HEAD)));
+    public static final RegistryObject<Block> WANDERER_SOPHIE_HEAD = BLOCKS.register("wanderer_sophie_head", () -> new WandererSophieHeadBlock(AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
+    public static final RegistryObject<Block> WANDERER_SOPHIE_WALL_HEAD = BLOCKS.register("wanderer_sophie_wall_head", () -> new WandererSophieWallHeadBlock(AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.WANDERER_SOPHIE_HEAD)));
+    public static final RegistryObject<Block> ANGRY_SOPHIE_HEAD = BLOCKS.register("angry_sophie_head", () -> new HeadBlock(BMHeadType.ANGRY_SOPHIE, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
+    public static final RegistryObject<Block> ANGRY_SOPHIE_WALL_HEAD = BLOCKS.register("angry_sophie_wall_head", () -> new WallHeadBlock(BMHeadType.ANGRY_SOPHIE, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.ANGRY_SOPHIE_HEAD)));
     public static final RegistryObject<Block> CRYSTALLINE_ANGELIC_ORE = BLOCKS.register("crystalline_angelic_ore", () -> new CrystallineAngelicOreBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.NONE).sound(SoundType.WOOL).noCollission().noOcclusion()));
     public static final RegistryObject<Block> CRYSTALLINE_ANGELIC_BLOCK = BLOCKS.register("crystalline_angelic_block", () -> new Block(AbstractBlock.Properties.copy(BMBlocks.ANGELIC_BLOCK.get()).strength(5, 6).sound(SoundType.METAL).noOcclusion()));
     public static final RegistryObject<Block> ALICE_TOY = BLOCKS.register("alice_toy", () -> new ToyBlock(ToyBlock.Type.ALICE_OR_ALAN));
@@ -120,8 +122,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> ANGELICAL_CASING = BLOCKS.register("angelical_casing", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.SNOW).strength(3).requiresCorrectToolForDrops().sound(SoundType.METAL)));
     public static final RegistryObject<Block> MEAL_COOKER = BLOCKS.register("meal_cooker", () -> new MealCookerBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.WOOD).requiresCorrectToolForDrops().sound(SoundType.WOOD).strength(2, 6)));
     public static final RegistryObject<Block> QUEEN_LUCY_RELIC = BLOCKS.register("queen_sophie_relic", () -> new QueenLucyRelicBlock(AbstractBlock.Properties.copy(Blocks.GOLD_BLOCK).harvestLevel(2).lightLevel(state -> 10)));
-    public static final RegistryObject<Block> QUEEN_LUCY_HEAD = BLOCKS.register("queen_sophie_head", () -> new HeadBlock(BMHeadType.QUEEN_LUCY, AbstractBlock.Properties.copy(Blocks.PLAYER_HEAD)));
-    public static final RegistryObject<Block> QUEEN_LUCY_WALL_HEAD = BLOCKS.register("queen_sophie_wall_head", () -> new WallHeadBlock(BMHeadType.QUEEN_LUCY, AbstractBlock.Properties.copy(Blocks.PLAYER_WALL_HEAD).lootFrom(BMBlocks.QUEEN_LUCY_HEAD)));
+    public static final RegistryObject<Block> QUEEN_LUCY_HEAD = BLOCKS.register("queen_sophie_head", () -> new HeadBlock(BMHeadType.QUEEN_LUCY, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
+    public static final RegistryObject<Block> QUEEN_LUCY_WALL_HEAD = BLOCKS.register("queen_sophie_wall_head", () -> new WallHeadBlock(BMHeadType.QUEEN_LUCY, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.QUEEN_LUCY_HEAD)));
     public static final RegistryObject<Block> DEVIL_BRICKS = BLOCKS.register("devil_bricks", () -> new Block(AbstractBlock.Properties.copy(DEVIL_BLOCK.get())));
     public static final RegistryObject<Block> DEVIL_BRICK_STAIRS = BLOCKS.register("devil_brick_stairs", () -> new StairsBlock(() -> DEVIL_BRICKS.get().defaultBlockState(), AbstractBlock.Properties.copy(DEVIL_BLOCK.get())));
     public static final RegistryObject<Block> DEVIL_BRICK_SLAB = BLOCKS.register("devil_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(DEVIL_BLOCK.get())));
@@ -207,8 +209,12 @@ public class BMBlocks {
     public static final RegistryObject<Block> ALJAMIC_GRASS_BLOCK = BLOCKS.register("aljamic_grass_block", () -> new AljamicGrassBlock(AbstractBlock.Properties.of(Material.GRASS, BMMaterials.ALJAN).randomTicks().strength(0.6F).sound(SoundType.GRASS).harvestTool(ToolType.SHOVEL)));
     public static final RegistryObject<Block> ALJAMIC_DIRT = BLOCKS.register("aljamic_dirt", () -> new Block(AbstractBlock.Properties.of(Material.DIRT, BMMaterials.ALJAN).strength(0.5F).sound(SoundType.GRAVEL).harvestTool(ToolType.SHOVEL)));
     public static final RegistryObject<Block> ALJAMIC_FARMLAND = BLOCKS.register("aljamic_farmland", () -> new AljamicFarmlandBlock(AbstractBlock.Properties.of(Material.DIRT, BMMaterials.ALJAN).randomTicks().strength(0.6F).sound(SoundType.GRAVEL).harvestTool(ToolType.SHOVEL).isViewBlocking(BMBlocks::always).isSuffocating(BMBlocks::always)));
-    public static final RegistryObject<Block> ZOMBIE_FABRICIO_HEAD = BLOCKS.register("zombie_fabricio_head", () -> new HeadBlock(BMHeadType.ZOMBIE_FABRICIO, AbstractBlock.Properties.copy(Blocks.PLAYER_HEAD)));
-    public static final RegistryObject<Block> ZOMBIE_FABRICIO_WALL_HEAD = BLOCKS.register("zombie_fabricio_wall_head", () -> new WallHeadBlock(BMHeadType.ZOMBIE_FABRICIO, AbstractBlock.Properties.copy(Blocks.PLAYER_WALL_HEAD).lootFrom(BMBlocks.ZOMBIE_FABRICIO_HEAD)));
+    public static final RegistryObject<Block> ALJAMIC_BONES_SKULL = BLOCKS.register("aljamic_bones_skull", () -> new HeadBlock(BMHeadType.ALJAMIC_BONES, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
+    public static final RegistryObject<Block> ALJAMIC_BONES_WALL_SKULL = BLOCKS.register("aljamic_bones_wall_skull", () -> new WallHeadBlock(BMHeadType.ALJAMIC_BONES, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.ALJAMIC_BONES_SKULL)));
+    public static final RegistryObject<Block> SLEEPISH_SKELETON_SKULL = BLOCKS.register("sleepish_skeleton_skull", () -> new HeadBlock(BMHeadType.SLEEPISH_SKELETON, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
+    public static final RegistryObject<Block> SLEEPISH_SKELETON_WALL_SKULL = BLOCKS.register("sleepish_skeleton_wall_skull", () -> new WallHeadBlock(BMHeadType.SLEEPISH_SKELETON, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.SLEEPISH_SKELETON_SKULL)));
+    public static final RegistryObject<Block> ZOMBIE_FABRICIO_HEAD = BLOCKS.register("zombie_fabricio_head", () -> new HeadBlock(BMHeadType.ZOMBIE_FABRICIO, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
+    public static final RegistryObject<Block> ZOMBIE_FABRICIO_WALL_HEAD = BLOCKS.register("zombie_fabricio_wall_head", () -> new WallHeadBlock(BMHeadType.ZOMBIE_FABRICIO, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.ZOMBIE_FABRICIO_HEAD)));
     public static final RegistryObject<Block> CHARJAN_WOOD_TORCH = BLOCKS.register("charjan_wood_torch", () -> new TorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CHARJAN_WOOD_WALL_TORCH = BLOCKS.register("charjan_wood_wall_torch", () -> new WallTorchBlock(AbstractBlock.Properties.copy(Blocks.TORCH).lootFrom(BMBlocks.CHARJAN_WOOD_TORCH), ParticleTypes.FLAME));
     public static final RegistryObject<Block> CARAMELED_WHEAT = BLOCKS.register("carameled_wheat", () -> new CarameledWheatBlock(AbstractBlock.Properties.of(Material.PLANT, MaterialColor.COLOR_ORANGE).noCollission().randomTicks().instabreak().sound(SoundType.CROP)));
@@ -465,8 +471,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_STAIRS = BLOCKS.register("mossy_angelic_brick_stairs", () -> new StairsBlock(() -> MOSSY_ANGELIC_BRICKS.get().defaultBlockState(), AbstractBlock.Properties.copy(MOSSY_ANGELIC_BRICKS.get())));
     public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_SLAB = BLOCKS.register("mossy_angelic_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(MOSSY_ANGELIC_BRICKS.get())));
     public static final RegistryObject<Block> MOSSY_ANGELIC_BRICK_WALL = BLOCKS.register("mossy_angelic_brick_wall", () -> new WallBlock(AbstractBlock.Properties.copy(MOSSY_ANGELIC_BRICKS.get())));
-    public static final RegistryObject<Block> INSOMNIA_SOPHIE_HEAD = BLOCKS.register("insomnia_sophie_head", () -> new HeadBlock(BMHeadType.INSOMNIA_SOPHIE, AbstractBlock.Properties.copy(Blocks.PLAYER_HEAD)));
-    public static final RegistryObject<Block> INSOMNIA_SOPHIE_WALL_HEAD = BLOCKS.register("insomnia_sophie_wall_head", () -> new WallHeadBlock(BMHeadType.INSOMNIA_SOPHIE, AbstractBlock.Properties.copy(Blocks.PLAYER_WALL_HEAD).lootFrom(BMBlocks.INSOMNIA_SOPHIE_HEAD)));
+    public static final RegistryObject<Block> INSOMNIA_SOPHIE_HEAD = BLOCKS.register("insomnia_sophie_head", () -> new HeadBlock(BMHeadType.INSOMNIA_SOPHIE, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
+    public static final RegistryObject<Block> INSOMNIA_SOPHIE_WALL_HEAD = BLOCKS.register("insomnia_sophie_wall_head", () -> new WallHeadBlock(BMHeadType.INSOMNIA_SOPHIE, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.INSOMNIA_SOPHIE_HEAD)));
     public static final RegistryObject<Block> EMERIOND_BLOCK = BLOCKS.register("emeriond_block", () -> new Block(AbstractBlock.Properties.copy(Blocks.DIAMOND_BLOCK)));
 
     // 1.8.0: Coldterm, Warmterm and Obsiditerm Related Blocks:

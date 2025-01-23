@@ -5,11 +5,12 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.block.custom.AbstractHeadBlock;
 import com.sophicreeper.backmath.block.custom.HeadBlock;
 import com.sophicreeper.backmath.block.custom.WallHeadBlock;
+import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import com.sophicreeper.backmath.blockentity.custom.HeadBlockEntity;
-import com.sophicreeper.backmath.misc.BMHeadType;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.model.GenericHeadModel;
 import net.minecraft.client.renderer.entity.model.HumanoidHeadModel;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
@@ -36,7 +37,7 @@ public class HeadBlockEntityRenderer extends TileEntityRenderer<HeadBlockEntity>
     }
 
     public static void renderHead(@Nullable Direction facing, float rotation, BMHeadType type, MatrixStack stack, IRenderTypeBuffer buffer, int combinedLight) {
-        HumanoidHeadModel headModel = new HumanoidHeadModel();
+        GenericHeadModel headModel = type.usesPlayerLikeTexture() ? new HumanoidHeadModel() : new GenericHeadModel(0, 0, 64, 32);
 
         stack.pushPose();
         if (facing == null) {
@@ -50,5 +51,21 @@ public class HeadBlockEntityRenderer extends TileEntityRenderer<HeadBlockEntity>
         headModel.setupAnim(0, rotation, 0);
         headModel.renderToBuffer(stack, translucentBuffer, combinedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
         stack.popPose();
+
+        if (type.getEyesLocation() != null) {
+            stack.pushPose();
+            if (facing == null) {
+                stack.translate(0.5D, 0, 0.5D);
+            } else {
+                stack.translate(0.5F - (float) facing.getStepX() * 0.25F, 0.25D, 0.5F - (float) facing.getStepZ() * 0.25F);
+            }
+
+            stack.scale(-1, -1, 1);
+            headModel.setupAnim(0, rotation, 0);
+
+            IVertexBuilder eyesBuilder = buffer.getBuffer(RenderType.eyes(type.getEyesLocation()));
+            headModel.renderToBuffer(stack, eyesBuilder, 15728640, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+            stack.popPose();
+        }
     }
 }

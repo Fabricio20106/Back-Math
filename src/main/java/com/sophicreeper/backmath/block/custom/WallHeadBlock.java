@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.block.custom;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.sophicreeper.backmath.misc.BMHeadType;
+import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
@@ -46,7 +46,21 @@ public class WallHeadBlock extends AbstractHeadBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
+        BlockState state = this.defaultBlockState();
+        IBlockReader world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Direction[] lookingDirections = context.getNearestLookingDirections();
+
+        for (Direction direction : lookingDirections) {
+            if (direction.getAxis().isHorizontal()) {
+                Direction opposite = direction.getOpposite();
+                state = state.setValue(FACING, opposite);
+                state.setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
+                if (!world.getBlockState(pos.relative(direction)).canBeReplaced(context)) return state;
+            }
+        }
+
+        return null;
     }
 
     @Override

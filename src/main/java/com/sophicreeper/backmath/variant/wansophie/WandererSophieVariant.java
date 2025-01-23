@@ -3,10 +3,14 @@ package com.sophicreeper.backmath.variant.wansophie;
 import com.google.gson.*;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.sophicreeper.backmath.util.TagTypes;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
+import javax.annotation.Nullable;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,6 +24,8 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
     private final ResourceLocation textureLocation;
     private final boolean slimArms;
     private final boolean spawnsNaturally;
+    @Nullable
+    private String descriptionID;
 
     public WandererSophieVariant(ResourceLocation assetID, ResourceLocation textureLocation, boolean slimArms, boolean spawnsNaturally) {
         this.assetID = assetID;
@@ -44,6 +50,10 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
         return DATA_DRIVEN_VARIANTS.containsValue(variantLocation);
     }
 
+    public static ResourceLocation trueTextureLocation(ResourceLocation textureLocation) {
+        return new ResourceLocation(textureLocation.getNamespace(), "textures/" + textureLocation.getPath() + ".png");
+    }
+
     public ResourceLocation getAssetID() {
         return this.assetID;
     }
@@ -58,6 +68,24 @@ public class WandererSophieVariant extends ForgeRegistryEntry.UncheckedRegistryE
 
     public boolean spawnsNaturally() {
         return this.spawnsNaturally;
+    }
+
+    @Nullable
+    public static WandererSophieVariant getVariantFromStack(ItemStack stack) {
+        if (stack.getTag() != null && stack.getTag().contains("variant", TagTypes.STRING)) {
+            ResourceLocation location = ResourceLocation.tryParse(stack.getTag().getString("variant"));
+            return WandererSophieVariant.DATA_DRIVEN_VARIANTS.get(location);
+        }
+        return null;
+    }
+
+    protected String getOrMakeTranslation() {
+        if (this.descriptionID == null) this.descriptionID = Util.makeDescriptionId("wanderer_sophie_variant", this.getAssetID());
+        return this.descriptionID;
+    }
+
+    public String getTranslation() {
+        return this.getOrMakeTranslation();
     }
 
     public JsonObject writeJSON(WandererSophieVariant variant) {

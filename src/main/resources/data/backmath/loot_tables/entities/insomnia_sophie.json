@@ -150,6 +150,11 @@
                 }
               }
             }
+          ],
+          "functions": [
+            {
+              "function": "backmath:increase_dropped_skulls"
+            }
           ]
         }
       ]

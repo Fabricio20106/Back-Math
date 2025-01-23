@@ -29,8 +29,7 @@ public class QLPOwnersTargetGoal extends TargetGoal {
             } else {
                 this.attacker = qlpOwner.getLastHurtMob();
                 int timeSinceAttackedMob = qlpOwner.getLastHurtMobTimestamp();
-                return timeSinceAttackedMob != this.timestamp && this.canAttack(this.attacker, EntityPredicate.DEFAULT) && this.canAttack(this.attacker, EntityPredicate.DEFAULT.selector((livEntity -> !livEntity.getType().is(
-                        BMEntityTypeTags.QLP_CANNOT_TARGET)))) && this.lucyPet.wantsToAttack(this.attacker, qlpOwner);
+                return timeSinceAttackedMob != this.timestamp && this.canAttack(this.attacker, EntityPredicate.DEFAULT) && this.lucyPet.wantsToAttack(this.attacker, qlpOwner);
             }
         } else {
             return false;

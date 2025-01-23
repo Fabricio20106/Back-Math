@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.item.custom.armor;
 
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.item.custom.MidTermToolBehaviors;
 import com.sophicreeper.backmath.util.BMDamageSources;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -8,13 +9,10 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.util.DamageSource;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-public class MidTermArmorItem extends BMArmorItem {
+public class MidTermArmorItem extends BMArmorItem implements MidTermToolBehaviors {
     public MidTermArmorItem(IArmorMaterial material, EquipmentSlotType slot, Properties properties) {
         super(material, slot, properties);
     }
@@ -36,11 +34,7 @@ public class MidTermArmorItem extends BMArmorItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (entity instanceof LivingEntity) {
-            LivingEntity livEntity = (LivingEntity) entity;
-            livEntity.addEffect(new EffectInstance(Effects.MOVEMENT_SLOWDOWN, 20, 2));
-            if (!livEntity.isInvulnerableTo(DamageSource.IN_FIRE) || !livEntity.isInvulnerableTo(DamageSource.ON_FIRE)) livEntity.setSecondsOnFire(10);
-        }
+        if (entity instanceof LivingEntity) midTermEffects(stack, (LivingEntity) entity);
         return super.onLeftClickEntity(stack, player, entity);
     }
 

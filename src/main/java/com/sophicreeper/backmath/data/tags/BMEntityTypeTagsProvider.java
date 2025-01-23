@@ -39,7 +39,7 @@ public class BMEntityTypeTagsProvider extends EntityTypeTagsProvider {
                 .add(BMEntities.ARCHER_INSOMNIA_SOPHIE.get()).add(BMEntities.WARRIOR_SOPHIE.get(), BMEntities.ARCHER_LUCIA.get(), BMEntities.JANTICLE.get(), BMEntities.INSOMNIA_ZOMBIE.get(), BMEntities.ZOMBIE_FABRICIO.get())
                 .add(BMEntities.AMARACAMELER.get(), EntityType.ZOMBIE, EntityType.HUSK, EntityType.DROWNED, EntityType.ZOMBIE_VILLAGER, EntityType.ZOMBIFIED_PIGLIN, EntityType.VEX, EntityType.ZOGLIN);
         this.tag(BMEntityTypeTags.QLP_TARGETS_NOT_TAMED).add(BMEntities.ANGRY_SOPHIE.get(), BMEntities.SHY_FABRICIO.get(), BMEntities.COLLECTOR_FABRICIO.get());
-        this.tag(BMEntityTypeTags.QLP_CANNOT_TARGET).add(BMEntities.QUEEN_LUCY_PET.get());
+        this.tag(BMEntityTypeTags.QLP_CANNOT_TARGET);
 
         this.tag(BMEntityTypeTags.MALAIKA_TARGETS).addTag(EntityTypeTags.RAIDERS).addTag(BMEntityTypeTags.PLAYER_LIKE).add(EntityType.PLAYER, EntityType.VILLAGER, EntityType.WANDERING_TRADER);
         this.tag(BMEntityTypeTags.ALJAMIC_MEMBER_TARGETS).add(BMEntities.INSOMNIA_ZOMBIE.get(), BMEntities.ZOMBIE_FABRICIO.get(), BMEntities.ALJAMIC_BONES.get(), BMEntities.SLEEPISH_SKELETON.get(), BMEntities.AMARACAMELER.get(),

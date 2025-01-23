@@ -14,6 +14,7 @@ import com.sophicreeper.backmath.entity.custom.aljan.AmaracamelerEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.MalaikaEntity;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.behavior.BMItemBehaviors;
 import com.sophicreeper.backmath.item.custom.BMSpawnEggItem;
 import com.sophicreeper.backmath.item.custom.tool.CarewniItem;
 import com.sophicreeper.backmath.item.custom.tool.MechMechSwordItem;
@@ -80,6 +81,7 @@ public class CommonProxy {
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);
         BMParticleTypes.PARTICLES.register(eventBus);
         BMBlockEntities.BLOCK_ENTITIES.register(eventBus);
+        BMItemBehaviors.BEHAVIORS.register(eventBus);
         BMWandererSophieVariants.VARIANTS.register(eventBus);
         BMQueenLucyPetVariants.VARIANTS.register(eventBus);
         BMLootParameterSets.init();

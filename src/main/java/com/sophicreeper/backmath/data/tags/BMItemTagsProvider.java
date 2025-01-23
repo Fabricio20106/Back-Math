@@ -315,14 +315,15 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.PLATEFORCED_MID_TERM_BOOTS.get()).add(AxolotlTest.BAKUGOU_SHOES.get()).add(AxolotlTest.HARDENED_AMARACAMEL_BOOTS.get()).add(AxolotlTest.MILKLLARY_BOOTS.get())
                 .add(AxolotlTest.ALJAMEED_BOOTS.get()).add(AxolotlTest.MOONERING_BOOTS.get()).add(AxolotlTest.JANTIQUIFIED_MOONERING_BOOTS.get()).add(AxolotlTest.ARCHER_LUCIA_BOOTS.get());
         this.tag(BMItemTags.ELYTRA).add(Items.ELYTRA);
-        this.tag(Tags.Items.HEADS).add(AxolotlTest.ANGRY_SOPHIE_HEAD.get()).add(AxolotlTest.INSOMNIA_SOPHIE_HEAD.get()).add(AxolotlTest.QUEEN_LUCY_HEAD.get()).add(AxolotlTest.ZOMBIE_FABRICIO_HEAD.get());
+        this.tag(Tags.Items.HEADS).add(AxolotlTest.WANDERER_SOPHIE_HEAD.get(), AxolotlTest.ANGRY_SOPHIE_HEAD.get(), AxolotlTest.INSOMNIA_SOPHIE_HEAD.get(), AxolotlTest.QUEEN_LUCY_HEAD.get(), AxolotlTest.ALJAMIC_BONES_SKULL.get(),
+                AxolotlTest.SLEEPISH_SKELETON_SKULL.get(), AxolotlTest.ZOMBIE_FABRICIO_HEAD.get());
         this.tag(BMItemTags.KNIVES).add(AxolotlTest.WOODEN_KNIFE.get()).add(AxolotlTest.STONE_KNIFE.get()).add(AxolotlTest.IRON_KNIFE.get()).add(AxolotlTest.DIAMOND_KNIFE.get())
                 .add(AxolotlTest.GOLDEN_KNIFE.get()).add(AxolotlTest.NETHERITE_KNIFE.get()).add(AxolotlTest.DEVIL_KNIFE.get()).add(AxolotlTest.ANGELIC_KNIFE.get()).add(AxolotlTest.MID_TERM_KNIFE.get())
                 .add(AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_KNIFE.get()).add(AxolotlTest.MILKLLARY_KNIFE.get()).add(AxolotlTest.OLIVE_KNIFE.get()).add(AxolotlTest.CORK_OAK_KNIFE.get())
                 .add(AxolotlTest.ALJANWOOD_KNIFE.get()).add(AxolotlTest.ALJANCAP_KNIFE.get()).add(AxolotlTest.INSOMNIAN_KNIFE.get()).add(AxolotlTest.AVONDALIC_WILLOW_KNIFE.get()).add(AxolotlTest.ALJANSTONE_KNIFE.get())
                 .add(AxolotlTest.SLEEPINGSTONE_KNIFE.get()).add(AxolotlTest.ALJAMEED_KNIFE.get()).add(AxolotlTest.ALJANSTEEL_KNIFE.get()).add(AxolotlTest.MOONERING_KNIFE.get()).add(AxolotlTest.JANTIQUIFIED_MOONERING_KNIFE.get())
                 .add(AxolotlTest.GUAVA_KNIFE.get()).add(AxolotlTest.JABUTICABA_KNIFE.get()).add(AxolotlTest.CRYSTALLINE_BIRCH_KNIFE.get()).add(AxolotlTest.GOLDENWOOD_KNIFE.get());
-        this.tag(BMItemTags.MILK).add(AxolotlTest.MILK_POT.get());
+        this.tag(BMItemTags.MILK).add(Items.MILK_BUCKET, AxolotlTest.MILK_POT.get());
         this.tag(Tags.Items.BARRELS).addTag(Tags.Items.BARRELS_WOODEN);
         this.tag(Tags.Items.BARRELS_WOODEN).add(Items.BARREL, AxolotlTest.ALJANWOOD_BARREL.get(), AxolotlTest.ALJANCAP_BARREL.get(), AxolotlTest.INSOMNIAN_BARREL.get(), AxolotlTest.AVONDALIC_WILLOW_BARREL.get());
         this.tag(Tags.Items.SHEARS).add(AxolotlTest.DEVIL_SHEARS.get()).add(AxolotlTest.ANGELIC_SHEARS.get()).add(AxolotlTest.CHRISTIAN_MID_TERM_SHEARS.get())
@@ -363,6 +364,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(BMItemTags.CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE).add(Items.EGG);
         this.tag(BMItemTags.ALLOWED_IN_MAINHAND).addTag(BMItemTags.BOWS).addTag(BMItemTags.CROSSBOWS).add(AxolotlTest.ALJAMEED_SHOVEL.get()).add(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());
         this.tag(BMItemTags.ALLOWED_IN_OFFHAND).addTag(BMItemTags.SQUIDS);
+        this.tag(BMItemTags.CLEARS_MOB_EFFECTS).addTag(BMItemTags.MILK);
         this.tag(BMItemTags.FENCE_GATES_DEVIL).add(AxolotlTest.DEVIL_FENCE_GATE.get());
         this.tag(Tags.Items.FENCE_GATES).addTag(BMItemTags.FENCE_GATES_DEVIL);
 

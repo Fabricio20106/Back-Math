@@ -131,6 +131,9 @@ dependencies {
     // Annotation Processors
     annotationProcessor 'org.spongepowered:mixin:0.8:processor'
 
+    // Female Gender Mod
+    compile fg.deobf("curse.maven:female-gender-456319:3306541")
+
     // Mantle
     // compile fg.deobf("curse.maven:mantle-74924:3180804")
 

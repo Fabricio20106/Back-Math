@@ -437,10 +437,13 @@ public class BMItemModelProvider extends BMItemModelModels {
         block("teenager_alice_toy");
         standard(generated, "tito");
         standard(generated, "toti");
+        block("wanderer_sophie_head");
         block("angry_sophie_head");
         block("insomnia_sophie_head");
-        block("zombie_fabricio_head");
         block("queen_sophie_head");
+        block("aljamic_bones_skull");
+        block("sleepish_skeleton_skull");
+        block("zombie_fabricio_head");
         standard(generated, "queen_sophie_relic");
         block("queen_sophie_pet_relic");
         blockItem("charjan_wood_torch");

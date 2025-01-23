@@ -49,7 +49,7 @@ public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends B
 
         if (armorStack.getItem().is(BMItemTags.OUTFITS)) ci.cancel();
 
-        if (armorStack.getItem() instanceof ArmorItem && armorStack.getItem().is(BMItemTags.FULLY_LIT_ITEMS)) {
+        if (armorStack.getItem() instanceof ArmorItem && armorStack.getItem().is(BMItemTags.FULLY_LIT_ITEMS) && !armorStack.getItem().is(BMItemTags.OUTFITS)) {
             ci.cancel();
             ArmorItem armorItem = (ArmorItem) armorStack.getItem();
             if (armorItem.getSlot() == slot) {

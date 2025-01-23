@@ -8,6 +8,7 @@ import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.model.FullbrightModel;
 import com.sophicreeper.backmath.command.BMDebuggingCommands;
 import com.sophicreeper.backmath.config.BMConfigs;
+import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
@@ -32,13 +33,11 @@ import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.MerchantOffer;
+import net.minecraft.item.*;
 import net.minecraft.util.HandSide;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -55,6 +54,7 @@ import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.RenderArmEvent;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.event.village.WandererTradesEvent;
@@ -117,6 +117,17 @@ public class BMEvents {
 
     public static boolean isTimeWithinBounds(long dayTime) {
         return dayTime >= 13300 && dayTime <= 22400;
+    }
+
+    @SubscribeEvent
+    public static void lowerVisibilityWithHead(LivingEvent.LivingVisibilityEvent event) {
+        Item headItem = event.getEntityLiving().getItemBySlot(EquipmentSlotType.HEAD).getItem();
+        EntityType<?> type = event.getEntityLiving().getType();
+        boolean angrySophie = type == BMEntities.ANGRY_SOPHIE.get() && headItem == AxolotlTest.ANGRY_SOPHIE_HEAD.get();
+        boolean insomniaSophie = (type == BMEntities.INSOMNIA_SOPHIE.get() || type == BMEntities.ARCHER_INSOMNIA_SOPHIE.get()) && headItem == AxolotlTest.INSOMNIA_SOPHIE_HEAD.get();
+        boolean queenLucy = event.getEntityLiving().getType() == BMEntities.QUEEN_LUCY.get() && headItem == AxolotlTest.QUEEN_LUCY_HEAD.get();
+        boolean zombieFabricio = event.getEntityLiving().getType() == BMEntities.ZOMBIE_FABRICIO.get() && headItem == AxolotlTest.ZOMBIE_FABRICIO_HEAD.get();
+        if (angrySophie || insomniaSophie || queenLucy || zombieFabricio) event.modifyVisibility(0.5F);
     }
 
     @SubscribeEvent

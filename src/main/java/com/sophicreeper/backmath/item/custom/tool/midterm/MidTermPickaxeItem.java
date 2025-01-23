@@ -21,11 +21,7 @@ public class MidTermPickaxeItem extends PickaxeItem implements MidTermToolBehavi
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (entity instanceof LivingEntity) {
-            LivingEntity livEntity = (LivingEntity) entity;
-            applyTagEffects(stack, livEntity);
-            setOnFire(stack, livEntity, 10);
-        }
+        if (entity instanceof LivingEntity) midTermEffects(stack, (LivingEntity) entity);
         return super.onLeftClickEntity(stack, player, entity);
     }
 

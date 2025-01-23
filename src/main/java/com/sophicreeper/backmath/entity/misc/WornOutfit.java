@@ -1,15 +1,17 @@
 package com.sophicreeper.backmath.entity.misc;
 
-import com.google.common.collect.Sets;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.resources.ResourcePackType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public interface WornOutfit {
-    ExistingFileHelper FILE_HELPER = new ExistingFileHelper(Collections.emptySet(), Sets.newHashSet("minecraft", "forge", "backmath"), true, null, null);
+    ExistingFileHelper FILE_HELPER = new ExistingFileHelper(Collections.emptySet(), ModList.get().getMods().stream().map(ModInfo::getModId).collect(Collectors.toSet()), true, null, null);
 
     String getOutfitTexture();
 

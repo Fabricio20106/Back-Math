@@ -119,6 +119,34 @@
           "name": "backmath:sophie"
         }
       ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "backmath:wanderer_sophie_head",
+          "conditions": [
+            {
+              "condition": "minecraft:damage_source_properties",
+              "predicate": {
+                "source_entity": {
+                  "type": "minecraft:creeper",
+                  "nbt": "{powered:1b}"
+                }
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "backmath:copy_wanderer_sophie_variant"
+            },
+            {
+              "function": "backmath:increase_dropped_skulls"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

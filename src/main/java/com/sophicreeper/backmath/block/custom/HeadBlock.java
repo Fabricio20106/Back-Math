@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.block.custom;
 
-import com.sophicreeper.backmath.misc.BMHeadType;
+import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FluidState;

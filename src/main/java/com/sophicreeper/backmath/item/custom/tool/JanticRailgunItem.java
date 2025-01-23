@@ -202,6 +202,9 @@ public class JanticRailgunItem extends BMCrossbowItem {
                 this.midLoadSoundPlayed = true;
                 world.playSound(null, livEntity.getX(), livEntity.getY(), livEntity.getZ(), middleLoading, SoundCategory.PLAYERS, 0.5F, 1);
             }
+
+            // Retroactive fix for https://bugs.mojang.com/browse/MC-165461 for jantic railguns.
+            if (useDuration >= 1) this.releaseUsing(stack, world, livEntity, livEntity.getUseItemRemainingTicks());
         }
     }
 
@@ -225,7 +228,7 @@ public class JanticRailgunItem extends BMCrossbowItem {
     @Override
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack railgunStack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        super.appendHoverText(railgunStack, world, tooltip, flag);
+        Items.STONE.appendHoverText(railgunStack, world, tooltip, flag);
         ItemStack chargedProjectileStack = getChargedProjectile(railgunStack);
         if (chargedProjectileStack.getItem() != Items.AIR) tooltip.add(new TranslationTextComponent(this.getDescriptionId() + ".projectile", chargedProjectileStack.getDisplayName()).withStyle(TextFormatting.GRAY));
     }

@@ -22,6 +22,7 @@ import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
@@ -32,6 +33,7 @@ import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
+import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -107,8 +109,8 @@ public class QueenLucyPetEntity extends TameableEntity {
 
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
-        BMUtils.setRandomQLPRegistryBasedVariant(this);
         if (spawnData == null) spawnData = new AgeableEntity.AgeableData(false);
+        BMUtils.setRandomQLPRegistryBasedVariant(this);
 
         return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
@@ -126,6 +128,11 @@ public class QueenLucyPetEntity extends TameableEntity {
     }
 
     protected void checkFallDamage(double y, boolean onGround, BlockState state, BlockPos pos) {}
+
+    @Override
+    public boolean wantsToAttack(LivingEntity attacker, LivingEntity owner) {
+        return !(attacker instanceof TameableEntity && ((TameableEntity) attacker).isOwnedBy(owner)) && !attacker.getType().is(BMEntityTypeTags.QLP_CANNOT_TARGET) && super.wantsToAttack(attacker, owner);
+    }
 
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);
@@ -147,6 +154,17 @@ public class QueenLucyPetEntity extends TameableEntity {
             this.addEffect(new EffectInstance(Effects.POISON, 900));
             if (player.isCreative() || !this.isInvulnerable()) this.hurt(DamageSource.playerAttack(player), Float.MAX_VALUE);
             return ActionResultType.sidedSuccess(this.level.isClientSide);
+        } else if (this.isOwnedBy(player) && handStack.getItem().is(BMItemTags.CLEARS_MOB_EFFECTS)) {
+            if (this.curePotionEffects(handStack)) {
+                SoundEvent consumeSound = handStack.getUseAnimation() == UseAction.DRINK ? handStack.getDrinkingSound() : handStack.getEatingSound();
+                this.playSound(consumeSound, 1, 1.5F);
+                if (!player.abilities.instabuild) {
+                    if (handStack.getCount() - 1 == 0) player.inventory.items.set(player.inventory.selected, handStack.getContainerItem());
+                }
+                player.awardStat(Stats.ITEM_USED.get(handStack.getItem()));
+
+                return ActionResultType.sidedSuccess(this.level.isClientSide);
+            }
         } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(player)) {
             if (!this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
@@ -154,9 +172,8 @@ public class QueenLucyPetEntity extends TameableEntity {
             }
 
             return ActionResultType.sidedSuccess(this.level.isClientSide);
-        } else {
-            return super.mobInteract(player, hand);
         }
+        return super.mobInteract(player, hand);
     }
 
     public void displaySittingMessage(PlayerEntity player, boolean isSitting) {

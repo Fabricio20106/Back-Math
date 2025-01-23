@@ -12,8 +12,8 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
-public interface Equippable extends IVanishable {
-    default ActionResult<ItemStack> swapWithEquipmentSlot(Item item, World world, PlayerEntity player, Hand hand) {
+public interface Swappable extends IVanishable {
+    default ActionResult<ItemStack> equipOrSwapItem(Item item, World world, PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);
         EquipmentSlotType slot = MobEntity.getEquipmentSlotForItem(handStack);
         ItemStack slotStack = player.getItemBySlot(slot);

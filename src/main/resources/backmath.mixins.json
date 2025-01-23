@@ -1,18 +1,21 @@
 {
-  "required": true,
+  "required": false,
   "minVersion": "0.8",
   "package": "com.sophicreeper.backmath.mixin",
   "refmap": "backmath.refmap.json",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "command.BMWeatherCommandMixin",
+    "item.BMItemMixin",
     "world.BMServerWorldMixin"
   ],
   "client": [
+    "client.BMClientPlayNetHandler",
     "layer.BMBipedArmorLayerMixin",
     "layer.BMHeldItemLayerMixin",
     "renderer.BMFirstPersonRendererMixin",
     "renderer.BMItemRendererMixin",
+    "renderer.BMPlayerModelMixin",
     "renderer.BMPlayerRendererMixin"
   ],
   "server": [],

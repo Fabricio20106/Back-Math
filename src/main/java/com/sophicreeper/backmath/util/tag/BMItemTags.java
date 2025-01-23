@@ -136,6 +136,7 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE = melony("chicken_jockey_cannot_pickup");
     public static final ITag.INamedTag<Item> ALLOWED_IN_MAINHAND = melony("allowed_in_mainhand");
     public static final ITag.INamedTag<Item> ALLOWED_IN_OFFHAND = melony("allowed_in_offhand");
+    public static final ITag.INamedTag<Item> CLEARS_MOB_EFFECTS = melony("clears_mob_effects");
     public static final ITag.INamedTag<Item> PROVIDES_EFFECT = melony("provides_effect");
     public static final ITag.INamedTag<Item> PROVIDES_WATER_BREATHING = melony("provides_effect/water_breathing");
     public static final ITag.INamedTag<Item> PROVIDES_RESISTANCE = melony("provides_effect/resistance");

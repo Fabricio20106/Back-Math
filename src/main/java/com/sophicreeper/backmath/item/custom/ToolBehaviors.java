@@ -46,7 +46,7 @@ public interface ToolBehaviors {
                 if (itemLocation != null && ForgeRegistries.ITEMS.containsKey(itemLocation)) {
                     ItemStack tagStack = new ItemStack(ForgeRegistries.ITEMS.getValue(itemLocation));
                     tag.remove("milked_sword_item");
-                    tag.put("milked_sword_item", tagStack.save(new CompoundNBT()));
+                    tag.put("milked_sword_item", VSUtils.saveStack(tagStack, new CompoundNBT()));
                 }
             }
             if (tag != null && tag.contains("milked_sword_item", TagTypes.COMPOUND)) {
@@ -84,7 +84,7 @@ public interface ToolBehaviors {
             if (itemLocation != null && ForgeRegistries.ITEMS.containsKey(itemLocation)) {
                 ItemStack tagStack = new ItemStack(ForgeRegistries.ITEMS.getValue(itemLocation));
                 tag.remove("use_remainder");
-                tag.put("use_remainder", tagStack.save(new CompoundNBT()));
+                tag.put("use_remainder", VSUtils.saveStack(tagStack, new CompoundNBT()));
                 if (!tagStack.isEmpty()) return tagStack;
             }
         }

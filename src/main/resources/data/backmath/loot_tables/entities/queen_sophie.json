@@ -10,7 +10,16 @@
         },
         {
           "type": "minecraft:item",
-          "name": "backmath:milked_empada_de_ouro"
+          "name": "backmath:milked_empada_de_ouro",
+          "functions": [
+            {
+              "function": "backmath:set_stored_experience",
+              "stored_experience": {
+                "min": 150,
+                "max": 250
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
@@ -78,6 +87,9 @@
             {
               "function": "minecraft:set_count",
               "count": 1
+            },
+            {
+              "function": "backmath:increase_dropped_skulls"
             }
           ],
           "name": "backmath:queen_sophie_head"

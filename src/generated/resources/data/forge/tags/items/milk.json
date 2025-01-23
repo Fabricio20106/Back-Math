@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "minecraft:milk_bucket",
     "backmath:milk_pot"
   ]
 }

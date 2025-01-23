@@ -169,7 +169,7 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
     }
 
     public void head(Block block) {
-        simpleBlock(block, models().getBuilder(block.getRegistryName().getPath()).texture("particle", mcLoc("block/soul_sand")));
+        simpleBlock(block, models().getBuilder(block.getRegistryName().getPath()).parent(models().getExistingFile(modLoc("item/template_head"))));
     }
 
     public void insomnianTulip(Block block) {

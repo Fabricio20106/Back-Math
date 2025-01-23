@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.item.custom.armor;
 
-import com.sophicreeper.backmath.item.custom.Equippable;
+import com.sophicreeper.backmath.item.custom.Swappable;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.ModList;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class CrownItem extends Item implements Equippable {
+public class CrownItem extends Item implements Swappable {
     public CrownItem(Properties properties) {
         super(properties);
         DispenserBlock.registerBehavior(this, ArmorItem.DISPENSE_ITEM_BEHAVIOR);
@@ -24,7 +24,7 @@ public class CrownItem extends Item implements Equippable {
     @Override
     @Nonnull
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if (ModList.get().isLoaded("variants")) return this.swapWithEquipmentSlot(this, world, player, hand);
+        if (ModList.get().isLoaded("variants")) return this.equipOrSwapItem(this, world, player, hand);
         return super.use(world, player, hand);
     }
 

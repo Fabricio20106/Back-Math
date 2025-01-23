@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.block.custom;
 
+import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import com.sophicreeper.backmath.blockentity.custom.HeadBlockEntity;
-import com.sophicreeper.backmath.misc.BMHeadType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ContainerBlock;
 import net.minecraft.enchantment.IArmorVanishable;
@@ -24,8 +24,8 @@ public class AbstractHeadBlock extends ContainerBlock implements IArmorVanishabl
         return this.type;
     }
 
-    @Nullable
     @Override
+    @Nullable
     public TileEntity newBlockEntity(IBlockReader world) {
         return new HeadBlockEntity();
     }

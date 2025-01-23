@@ -33,6 +33,11 @@ public class BMResourceLocations {
     // Environment
     public static final ResourceLocation ALJAN_SUN = BackMath.texture("environment/aljan_sun");
 
+    // Entities
+    public static final ResourceLocation ENDERPHIE = BackMath.backMath("textures/entity/sophie/wanderer/ender.png");
+    public static final ResourceLocation ENDERPHIE_EYES = BackMath.backMath("textures/entity/sophie/wanderer/ender_eyes.png");
+    public static final ResourceLocation QLP_ENDERPHIE_EYES = BackMath.backMath("textures/entity/queen_lucy_pet/qsp_sv_enderphie_eyes.png");
+
     // Miscellaneous
     public static final ResourceLocation SOPHIE_TOWER_START_POOL = BackMath.backMath("sophie_tower/start_pool");
     public static final ResourceLocation HIDEOUT_DUNGEON_START_POOL = BackMath.backMath("fabricio_hideout_dungeon/start_pool");

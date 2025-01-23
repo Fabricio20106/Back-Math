@@ -676,6 +676,12 @@
   "block.backmath.aljancap_barrel": "Aljancap Barrel",
   "block.backmath.insomnian_barrel": "Insomnian Barrel",
   "block.backmath.avondalic_willow_barrel": "Avondalic Willow Barrel",
+  "block.backmath.wanderer_sophie_head": "Wanderer Sophie Head",
+  "block.backmath.wanderer_sophie_wall_head": "Wanderer Sophie Wall Head",
+  "block.backmath.aljamic_bones_skull": "Aljamic Bones Skull",
+  "block.backmath.aljamic_bones_wall_skull": "Aljamic Bones Wall Skull",
+  "block.backmath.sleepish_skeleton_skull": "Sleepish Skeleton Skull",
+  "block.backmath.sleepish_skeleton_wall_skull": "Sleepish Skeleton Wall Skull",
 
   "container.backmath.bm_barrel": "Barrel",
 
@@ -1641,6 +1647,7 @@
   "material.silentgear.devil": "Devil",
   "material.silentgear.angelic": "Angelic",
   "material.silentgear.mid_term": "Mid-Term",
+  "material.silentgear.obsidian_infused_mid_term": "Obsidian Infused Mid-Term",
   "material.silentgear.christian_mid_term": "Christian Mid-Term",
   "material.silentgear.hardened_amaracamel": "Hardened Amaracamel",
   "material.silentgear.milkllary": "Milkllary",
@@ -1763,6 +1770,7 @@
 
   "tooltip.backmath.hold_shift": "Hold <%s> for description",
   "tooltip.backmath.hold_shift.bow": "Hold <%s> for bow attributes",
+  "tooltip.backmath.tags": "Tags: %s",
   "tooltip.backmath.jantical": "§eJanticals§6 can be applied to §eAljan Portal Stands§6, optionally using §eDispensers§6.",
   "tooltip.backmath.regular_molds_book": "§6The §eBook of Regular Molds §6acts as an all-in-one mold for the default §eCrystallizer§6, although this book works best on a §eDispenser§6. This cannot be used in a crystalline crystallizer.",
   "tooltip.backmath.advanced_molds_book": "§6The §eBook of Advanced Molds §6acts as an all-in-one mold for the §eCrystalline Crystallizer§6, although this book works best on a §eDispenser§6. This cannot be used in a regular crystallizer.",
@@ -1787,5 +1795,26 @@
   "stat.backmath.change_crystallizer_mold": "Crystallizer Mold Changes",
   "stat.backmath.craft_in_crystallizer": "Recipes made in Crystallizer",
   "stat.backmath.change_crystalline_crystallizer_mold": "Crystalline Crystallizer Mold Changes",
-  "stat.backmath.craft_in_crystalline_crystallizer": "Recipes made in Crystalline Crystallizer"
+  "stat.backmath.craft_in_crystalline_crystallizer": "Recipes made in Crystalline Crystallizer",
+
+  "wanderer_sophie_variant.backmath.yellow_axolotl": "Yellow Axolotl",
+  "wanderer_sophie_variant.backmath.cyan_axolotl": "Cyan Wool Axolotl",
+  "wanderer_sophie_variant.backmath.creeper": "Creeper",
+  "wanderer_sophie_variant.backmath.modified": "Modified",
+  "wanderer_sophie_variant.backmath.original": "Original",
+  "wanderer_sophie_variant.backmath.savannah": "Savannah",
+  "wanderer_sophie_variant.backmath.brazil_shirt": "Brazil Shirt",
+  "wanderer_sophie_variant.backmath.pajama": "Pajama",
+  "wanderer_sophie_variant.backmath.witcher": "Witcher",
+  "wanderer_sophie_variant.backmath.maid": "Maid",
+  "wanderer_sophie_variant.backmath.ender": "Ender",
+  "wanderer_sophie_variant.backmath.worker": "Worker",
+  "wanderer_sophie_variant.backmath.blue_axolotl": "Blue Axolotl",
+  "wanderer_sophie_variant.backmath.cyan_axolotl_2": "Cyan Axolotl",
+  "wanderer_sophie_variant.backmath.empresary2": "Empresary2",
+  "wanderer_sophie_variant.backmath.entrepreneur": "Entrepreneur",
+  "wanderer_sophie_variant.backmath.farmer": "Farmer",
+  "wanderer_sophie_variant.backmath.swimsuit": "Swimsuit (Bikini)",
+  "wanderer_sophie_variant.backmath.green_hoodie": "Green Crop Top Hoodie",
+  "wanderer_sophie_variant.backmath.round_six": "Round 6 Uniform"
 }

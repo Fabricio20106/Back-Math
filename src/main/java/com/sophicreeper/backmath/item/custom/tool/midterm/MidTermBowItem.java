@@ -6,7 +6,10 @@ import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.AbstractArrowEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.world.World;
 
 import static com.sophicreeper.backmath.config.BMConfigs.COMMON_CONFIGS;
@@ -23,11 +26,7 @@ public class MidTermBowItem extends BMBowItem implements MidTermToolBehaviors {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity player, Entity entity) {
-        if (entity instanceof LivingEntity) {
-            LivingEntity livEntity = (LivingEntity) entity;
-            applyTagEffects(stack, livEntity);
-            setOnFire(stack, livEntity, 10);
-        }
+        if (entity instanceof LivingEntity) midTermEffects(stack, (LivingEntity) entity);
         return super.onLeftClickEntity(stack, player, entity);
     }
 
@@ -40,6 +39,13 @@ public class MidTermBowItem extends BMBowItem implements MidTermToolBehaviors {
     @Override
     public void onUsingTick(ItemStack stack, LivingEntity livEntity, int count) {
         if (count == 1) this.onPlayerStoppedUsing(stack, livEntity.level, livEntity, count);
+    }
+
+    @Override
+    public AbstractArrowEntity customArrow(AbstractArrowEntity oldArrow) {
+        ArrowEntity arrow = new ArrowEntity(oldArrow.level, oldArrow.getX(), oldArrow.getY(), oldArrow.getZ());
+        for (EffectInstance instance : this.getAppliedEffects()) arrow.addEffect(instance);
+        return arrow;
     }
 
     @Override

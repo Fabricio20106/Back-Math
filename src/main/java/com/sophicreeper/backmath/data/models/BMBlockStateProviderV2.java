@@ -131,6 +131,8 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
                 .toYRot() + 90).build());
         crystallizer(CRYSTALLIZER.get());
         crystallineCrystallizer(CRYSTALLINE_CRYSTALLIZER.get());
+        head(WANDERER_SOPHIE_HEAD.get());
+        head(WANDERER_SOPHIE_WALL_HEAD.get());
         head(ANGRY_SOPHIE_HEAD.get());
         head(ANGRY_SOPHIE_WALL_HEAD.get());
         simpleBlock(CRYSTALLINE_ANGELIC_ORE.get());
@@ -191,6 +193,10 @@ public class BMBlockStateProviderV2 extends BMBlockStateModels {
             return ConfiguredModel.builder().modelFile(models().getBuilder("aljamic_farmland" + isMoist).parent(models().getExistingFile(modLoc("block/template_pixel_short_block"))).texture("top", modLoc("block/aljamic_farmland" + isMoist)).texture(
                     "side", modLoc("block/aljamic_farmland_side" + isMoist)).texture("dirt", modLoc("block/aljamic_dirt"))).build();
         });
+        head(ALJAMIC_BONES_SKULL.get());
+        head(ALJAMIC_BONES_WALL_SKULL.get());
+        head(SLEEPISH_SKELETON_SKULL.get());
+        head(SLEEPISH_SKELETON_WALL_SKULL.get());
         head(ZOMBIE_FABRICIO_HEAD.get());
         head(ZOMBIE_FABRICIO_WALL_HEAD.get());
         simpleBlock(BMBlocks.CHARJAN_WOOD_TORCH.get(), models().torch("charjan_wood_torch", modLoc("block/charjan_wood_torch")));
