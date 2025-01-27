@@ -4,11 +4,11 @@ import com.sophicreeper.backmath.entity.goal.ExtendedMeleeAttackGoal;
 import com.sophicreeper.backmath.entity.goal.PickupWantedItemsGoal;
 import com.sophicreeper.backmath.entity.goal.aljamic.HarvestCropsGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.VSUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
-import com.sophicreeper.backmath.util.VSUtils;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -80,7 +80,7 @@ public class CollectorFabricioEntity extends AljamicGroupMemberEntity {
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        ListNBT inventoryNBTList = BMTagFixes.fixInventoryTag(tag);
+        ListNBT inventoryNBTList = BMTagFixes.renameInventory(tag);
         for (int i = 0; i < inventoryNBTList.size(); ++i) {
             ItemStack stack = VSUtils.loadStack(inventoryNBTList.getCompound(i));
             if (!stack.isEmpty()) this.inventory.addItem(stack);

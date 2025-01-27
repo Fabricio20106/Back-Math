@@ -2,16 +2,16 @@ package com.sophicreeper.backmath.item.custom.tool;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.sophicreeper.backmath.item.custom.behavior.BMSwordItem;
 import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IItemTier;
-import net.minecraft.item.SwordItem;
 
 import javax.annotation.Nonnull;
 
-public class CarewniItem extends SwordItem {
+public class CarewniItem extends BMSwordItem {
     public static Multimap<Attribute, AttributeModifier> MODIFIERS = HashMultimap.create();
 
     public CarewniItem(IItemTier tier, int attackDamage, float swingSpeed, Properties properties) {

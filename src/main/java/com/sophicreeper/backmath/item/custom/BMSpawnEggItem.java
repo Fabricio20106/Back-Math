@@ -36,7 +36,7 @@ public class BMSpawnEggItem extends SpawnEggItem {
     public EntityType<?> getType(@Nullable CompoundNBT tag) {
         if (tag != null && tag.contains("entity_data", TagTypes.COMPOUND)) {
             CompoundNBT entityTag = tag.getCompound("entity_data");
-            if (entityTag.contains("id", 8)) return EntityType.byString(entityTag.getString("id")).orElse(this.typeSupplier.get());
+            if (entityTag.contains("id", TagTypes.STRING)) return EntityType.byString(entityTag.getString("id")).orElse(this.typeSupplier.get());
         }
         return this.typeSupplier.get();
     }

@@ -68,6 +68,6 @@ public class AljamicBonesEntity extends AbstractSkeletonEntity implements AljanM
         if (this.random.nextBoolean()) this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANSTONE_SWORD.get()));
         else this.setItemSlot(EquipmentSlotType.MAINHAND, new ItemStack(AxolotlTest.ALJANWOOD_SWORD.get()));
         this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.ALJAMIC_BONE_HELMET.get()));
-        this.populateAljanEquipmentSlots(this, this.random);
+        this.populateAljanEquipmentSlots(this, this.random, difficulty);
     }
 }

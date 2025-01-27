@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 public class StompTurtleEggGoal extends BreakBlockGoal {
     private final CreatureEntity creature;
 
-    public StompTurtleEggGoal(CreatureEntity creature, double d, int d1) {
-        super(Blocks.TURTLE_EGG, creature, d, d1);
+    public StompTurtleEggGoal(CreatureEntity creature, double speedModifier, int verticalSearchRange) {
+        super(Blocks.TURTLE_EGG, creature, speedModifier, verticalSearchRange);
         this.creature = creature;
     }
 

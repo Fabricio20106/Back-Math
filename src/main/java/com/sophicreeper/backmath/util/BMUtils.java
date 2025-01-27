@@ -11,7 +11,9 @@ import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.DyeColor;
@@ -20,24 +22,30 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.potion.Effect;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
+import net.minecraft.util.StringUtils;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.*;
+import net.minecraft.util.text.Color;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.Style;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
+import java.util.Random;
 
 // Just generalized methods that are used more than twice throughout the code.
 public class BMUtils {
-    private static final List<String> VALID_WOOD_TYPES = Lists.newArrayList("aljanwood", "aljancap", "insomnian", "avondalic_willow");
-    public static final Style EXPERIENCE = Style.EMPTY.withColor(Color.fromRgb(8453920));
+    public static final List<String> VALID_WOOD_TYPES = Lists.newArrayList("aljanwood", "aljancap", "insomnian", "avondalic_willow");
     public static final int END_PORTAL_OPEN = 1038;
     private static final float[] FOG_COLORS = new float[3];
     private static float COLOR = 0;
@@ -48,21 +56,20 @@ public class BMUtils {
         serverPlayer.level.playSound(null, serverPlayer.blockPosition(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, pitch);
     }
 
-    // Adds the Bakugou armor set to the (server) player.
+    // Adds a tooltip line for an effect.
+    public static IFormattableTextComponent addEffectTooltip(Effect effect, int duration, int amplifier) {
+        IFormattableTextComponent component = new TranslationTextComponent("potion.withAmplifier", new TranslationTextComponent(effect.getDescriptionId()), new TranslationTextComponent("potion.potency." + amplifier));
+        return new TranslationTextComponent("potion.withDuration", component, StringUtils.formatTickDuration(duration)).withStyle(VSUtils.getFromRGB(effect.getColor()));
+    }
+
+    // Adds the Bakugou armor set to the entity.
     // Used to replace the armor entirely.
-    public static void addBakugouArmor(ServerPlayerEntity serverPlayer) {
-        if (serverPlayer.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) {
-            serverPlayer.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.BAKUGOU_HAIR.get()));
-        }
-        if (serverPlayer.getItemBySlot(EquipmentSlotType.CHEST).isEmpty()) {
-            serverPlayer.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.BAKUGOU_BLOUSE.get()));
-        }
-        if (serverPlayer.getItemBySlot(EquipmentSlotType.LEGS).isEmpty()) {
-            serverPlayer.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.BAKUGOU_PANTS.get()));
-        }
-        if (serverPlayer.getItemBySlot(EquipmentSlotType.FEET).isEmpty()) {
-            serverPlayer.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.BAKUGOU_SHOES.get()));
-        }
+    public static void addBakugouOutfit(LivingEntity livEntity) {
+        if (livEntity.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) livEntity.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.BAKUGOU_HAIR.get()));
+        if (livEntity.getItemBySlot(EquipmentSlotType.CHEST).isEmpty()) livEntity.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.BAKUGOU_BLOUSE.get()));
+        if (livEntity.getItemBySlot(EquipmentSlotType.LEGS).isEmpty()) livEntity.setItemSlot(EquipmentSlotType.LEGS, new ItemStack(AxolotlTest.BAKUGOU_PANTS.get()));
+        if (livEntity.getItemBySlot(EquipmentSlotType.FEET).isEmpty()) livEntity.setItemSlot(EquipmentSlotType.FEET, new ItemStack(AxolotlTest.BAKUGOU_SHOES.get()));
+        livEntity.playSound(SoundEvents.ARMOR_EQUIP_LEATHER, 1, 1);
     }
 
     // Returns a Back Fields Explorer Map. Used by cartographer villagers.
@@ -116,7 +123,7 @@ public class BMUtils {
         patroller.setCapeTexture(capeTextures.get(rand.nextInt(10)).toString());
     }
 
-    // Sets a random Wanderer Sophie variant from the wanderer_sophie_variant registry.
+    // Sets a random Wanderer Sophie variant from the "wanderer_sophie_variant" data folder.
     public static void setRandomWSRegistryBasedVariant(WandererSophieEntity sophie) {
         ResourceLocation[] variants = WandererSophieVariant.DATA_DRIVEN_VARIANTS.keySet().toArray(new ResourceLocation[0]);
         ResourceLocation variant = variants[sophie.level.random.nextInt(WandererSophieVariant.DATA_DRIVEN_VARIANTS.size())];
@@ -127,12 +134,13 @@ public class BMUtils {
         sophie.setVariant(variant);
     }
 
-    // Sets a random Queen Lucy Pet variant from the queen_lucy_pet_variant registry.
+    // Sets a random Queen Lucy Pet variant from the "queen_lucy_pet_variant" data folder.
     public static void setRandomQLPRegistryBasedVariant(QueenLucyPetEntity lucy) {
         QueenLucyPetVariant[] variants = BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().toArray(new QueenLucyPetVariant[0]);
         lucy.setVariant(variants[lucy.level.random.nextInt(BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().size())]);
     }
 
+    // Gets the wood type for a boat from the string tag "wood_type" if available, or the woodType parameter if it isn't.
     public static String getBoatType(ItemStack stack, String woodType) {
         CompoundNBT tag = stack.getTag();
         if (tag != null && tag.contains("wood_type", TagTypes.STRING)) {
@@ -141,15 +149,22 @@ public class BMUtils {
         return woodType;
     }
 
-    private static boolean isValidWoodType(String woodType) {
+    // Whether a wood type for a boat is valid for this Back Math boat.
+    public static boolean isValidWoodType(String woodType) {
         return VALID_WOOD_TYPES.contains(woodType);
     }
 
+    // Whether the "Aljan Texture Update" resource pack is enabled.
     public static boolean aljanPackEnabled() {
         return Minecraft.getInstance().getResourcePackRepository().getSelectedIds().contains(BackMath.backMath("aljan_texture_update").toString());
     }
 
-    // Copied from teamtwilight/twilightforest.
+    // Custom overlay coordinates method to remove the red tint from taking damage or dying.
+    public static int getOverlayCoordinates(float u) {
+        return OverlayTexture.pack(OverlayTexture.u(u), OverlayTexture.v(false));
+    }
+
+    // Copied from teamtwilight/twilightforest. Smoothly transitions the fog color in the Aljan to a light purple color at nighttime.
     public static void transitionFogColor(EntityViewRenderEvent.FogColors event, boolean shouldApplyColors) {
         float[] baseColors = {event.getRed(), event.getGreen(), event.getBlue()};
         float[] targetColors = {0.333F, 0.231F, 0.305F};

@@ -2,6 +2,8 @@ package com.sophicreeper.backmath.item.custom.tool;
 
 import com.sophicreeper.backmath.entity.custom.misc.JanticBoltEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.behavior.BMItemBehaviors;
+import com.sophicreeper.backmath.item.custom.tool.bow.BMCrossbowItem;
 import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.util.VSUtils;
 import com.sophicreeper.backmath.util.tag.BMEnchantmentTags;
@@ -13,7 +15,9 @@ import net.minecraft.entity.ICrossbowUser;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.UseAction;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.*;
@@ -38,7 +42,7 @@ public class JanticRailgunItem extends BMCrossbowItem {
     private boolean midLoadSoundPlayed = false;
 
     public JanticRailgunItem(Properties properties) {
-        super(false, properties);
+        super(BMItemBehaviors.NONE, properties);
     }
 
     @Override
@@ -55,7 +59,7 @@ public class JanticRailgunItem extends BMCrossbowItem {
 
     @Override
     public boolean useOnRelease(ItemStack railgunStack) {
-        return railgunStack.getItem() == AxolotlTest.JANTIC_RAILGUN.get();
+        return railgunStack.getItem().is(BMItemTags.RAILGUNS);
     }
 
     @Override

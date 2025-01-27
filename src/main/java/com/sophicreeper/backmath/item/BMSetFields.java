@@ -41,8 +41,8 @@ public class BMSetFields {
     public static final BMArmors ALJAMEED_ARMOR = new BMArmors(BackMath.MOD_ID + ":aljameed", 15, new int[] {2, 6, 5, 2}, 15, SoundEvents.ARMOR_EQUIP_IRON, 0, 0, () -> Ingredient.of(BMItemTags.INGOTS_ALJAMEED));
     public static final BMArmors MOONERING_ARMOR = new BMArmors(BackMath.MOD_ID + ":moonering", 33, new int[] {3, 8, 6, 3}, 10, SoundEvents.ARMOR_EQUIP_DIAMOND, 2, 0, () -> Ingredient.of(BMItemTags.INGOTS_MOONERING));
     public static final BMArmors JANTIQUIFIED_MOONERING_ARMOR = new BMArmors(BackMath.MOD_ID + ":jantiquified_moonering", 37, new int[] {4, 9, 7, 4}, 12, SoundEvents.ARMOR_EQUIP_NETHERITE, 3, 0.05F, () -> Ingredient.of(BMItemTags.INGOTS_MOONERING));
-    public static final BMArmors BAKUGOU_ARMOR = new BMArmors(BackMath.MOD_ID + ":bakugou", 5, new int[]{2, 3, 4, 2}, 13, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.EMPTY);
-    public static final BMArmors INSOMNIA_SOPHIE_SLEEPWEAR_ARMOR = new BMArmors(BackMath.MOD_ID + ":insomnia_sophie_sleepwear", 5, new int[]{1, 3, 2, 1}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.EMPTY);
+    public static final BMArmors BAKUGOU_ARMOR = new BMArmors(BackMath.MOD_ID + ":bakugou", 5, new int[] {0, 0, 0, 0}, 13, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.EMPTY);
+    public static final BMArmors INSOMNIA_SOPHIE_SLEEPWEAR_ARMOR = new BMArmors(BackMath.MOD_ID + ":insomnia_sophie_sleepwear", 5, new int[] {0, 0, 0, 0}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.EMPTY);
 
     // Warrior Helmets
     public static final BMArmors WARRIOR_ANGELIC_ARMOR = new BMArmors(BackMath.MOD_ID + ":warrior_angelic", 15, new int[] {2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0, 0.01F, () -> Ingredient.of(BMItemTags.INGOTS_ANGELIC));

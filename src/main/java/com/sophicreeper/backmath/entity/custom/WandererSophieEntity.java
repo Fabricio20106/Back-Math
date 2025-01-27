@@ -7,14 +7,14 @@ import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
+import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
-import com.sophicreeper.backmath.util.BMUtils;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -97,7 +97,7 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.setVariant(BMTagFixes.fixWandererSophieVariantTag(tag));
+        this.setVariant(BMTagFixes.updateWandererSophieVariant(tag));
         tag.remove("Variant");
     }
 

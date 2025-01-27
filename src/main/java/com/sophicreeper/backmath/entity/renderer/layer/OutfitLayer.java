@@ -4,13 +4,13 @@ import com.google.common.collect.Maps;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.entity.misc.WornOutfit;
+import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
-import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
@@ -55,14 +55,14 @@ public class OutfitLayer<T extends LivingEntity, A extends BipedModel<T>> extend
             ResourceLocation outfitLocation = OUTFIT_TEXTURE_CACHE.computeIfAbsent(WornOutfit.parseOutfitLocation(slimArms, outfit.getOutfitTexture(), slotType).toString(), ResourceLocation::new);
             IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));
             float transparency = mob.isInvisible() && !mob.isInvisibleTo(Minecraft.getInstance().player) ? 0.15F : (mob.isInvisible() ? 0 : 1);
-            if (outfit.shouldHideTexture(slimArms, slotType)) parentModel.renderToBuffer(stack, translucentBuffer, packedLight, LivingRenderer.getOverlayCoords(mob, 0), 1, 1, 1, transparency);
+            if (outfit.shouldHideTexture(slimArms, slotType)) parentModel.renderToBuffer(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0), 1, 1, 1, transparency);
         } else if (!armorStack.isEmpty() && armorStack.getItem() instanceof ArmorItem && armorStack.getItem().is(BMItemTags.OUTFITS)) {
             ArmorItem item = (ArmorItem) mob.getItemBySlot(slotType).getItem();
             ResourceLocation outfitLocation = OUTFIT_TEXTURE_CACHE.computeIfAbsent(WornOutfit.parseOutfitLocation(slimArms, item.getMaterial().getName(), slotType).toString(), ResourceLocation::new);
             if (item.is(BMItemTags.FULLY_LIT_ITEMS)) packedLight = LightTexture.pack(15, 15);
 
             RenderType translucentType = RenderType.entityTranslucent(outfitLocation);
-            parentModel.renderToBuffer(stack, buffer.getBuffer(translucentType), packedLight, LivingRenderer.getOverlayCoords(mob, 0), 1, 1, 1, 1);
+            parentModel.renderToBuffer(stack, buffer.getBuffer(translucentType), packedLight, BMUtils.getOverlayCoordinates(0), 1, 1, 1, 1);
         }
     }
 }

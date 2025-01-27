@@ -6,7 +6,7 @@ import net.minecraft.potion.Effects;
 
 public class BMFoods {
     public static final Food TODDY = new Food.Builder().nutrition(10).saturationMod(1).effect(() -> new EffectInstance(Effects.DAMAGE_BOOST, 1200), 1).build();
-    public static final Food ALJAME = new Food.Builder().nutrition(5).saturationMod(3.5F).effect(() ->
+    public static final Food ALJAME = new Food.Builder().nutrition(5).saturationMod(0.7F).effect(() ->
             new EffectInstance(Effects.POISON, 100), 1).effect(() ->
             new EffectInstance(Effects.BLINDNESS, 600), 1).build();
     public static final Food LAGUSTA = new Food.Builder().nutrition(9).saturationMod(0.7F).build();

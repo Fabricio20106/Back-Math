@@ -64,7 +64,7 @@ public class HeadBlockEntityRenderer extends TileEntityRenderer<HeadBlockEntity>
             headModel.setupAnim(0, rotation, 0);
 
             IVertexBuilder eyesBuilder = buffer.getBuffer(RenderType.eyes(type.getEyesLocation()));
-            headModel.renderToBuffer(stack, eyesBuilder, 15728640, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+            headModel.renderToBuffer(stack, eyesBuilder, 0xF00000, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
             stack.popPose();
         }
     }

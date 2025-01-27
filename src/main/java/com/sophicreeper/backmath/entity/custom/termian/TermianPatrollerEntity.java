@@ -6,11 +6,11 @@ import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.TagTypes;
+import com.sophicreeper.backmath.util.VSUtils;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.NBTUtil;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -61,7 +61,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     @Override
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
-        if (this.patrolTarget != null) tag.put("patrol_target", NBTUtil.writeBlockPos(this.patrolTarget));
+        if (this.patrolTarget != null) tag.putIntArray("patrol_target", new int[] {this.patrolTarget.getX(), this.patrolTarget.getY(), this.patrolTarget.getZ()});
         tag.putBoolean("patrol_leader", this.patrolLeader);
         tag.putBoolean("is_patrolling", this.patrolling);
         if (this.getType().is(BMEntityTypeTags.ELIGIBLE_TO_CAPES)) {
@@ -76,7 +76,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        if (tag.contains("patrol_target")) this.patrolTarget = NBTUtil.readBlockPos(tag.getCompound("patrol_target"));
+        if (tag.contains("patrol_target", TagTypes.INTEGER_ARRAY)) this.patrolTarget = VSUtils.readBlockPos(tag, "patrol_target");
         this.patrolLeader = tag.getBoolean("patrol_leader");
         this.patrolling = tag.getBoolean("is_patrolling");
         if (this.getType().is(BMEntityTypeTags.ELIGIBLE_TO_CAPES)) {

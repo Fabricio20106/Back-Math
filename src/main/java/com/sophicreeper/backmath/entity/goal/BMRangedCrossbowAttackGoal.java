@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.goal;
 
-import com.sophicreeper.backmath.item.custom.tool.BMCrossbowItem;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
+import com.sophicreeper.backmath.item.custom.tool.bow.BMCrossbowItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.ICrossbowUser;

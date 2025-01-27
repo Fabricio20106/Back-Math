@@ -12,6 +12,7 @@ import net.minecraft.potion.Effect;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.Color;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -22,7 +23,7 @@ import org.apache.logging.log4j.LogManager;
 import javax.annotation.Nullable;
 import java.util.List;
 
-// Utility methods copied from or related to Variants
+// Utility methods copied from or related to Variants.
 public class VSUtils {
     public static CompoundNBT saveStack(ItemStack stack, CompoundNBT tag) {
         if (stack == ItemStack.EMPTY) {
@@ -75,6 +76,16 @@ public class VSUtils {
 
     public static Style getFromRGB(int color) {
         return Style.EMPTY.withColor(Color.fromRgb(color));
+    }
+
+    public static BlockPos readBlockPos(CompoundNBT tag) {
+        return readBlockPos(tag, "pos");
+    }
+
+    public static BlockPos readBlockPos(CompoundNBT tag, String tagName) {
+        int[] pos = tag.getIntArray(tagName);
+        if (pos.length <= 3) return new BlockPos(pos[0], pos[1], pos[2]);
+        return new BlockPos(0, 0, 0);
     }
 
     // Copied from Variants and modified to work with Back Math's tool behaviors.

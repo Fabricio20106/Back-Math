@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.item.custom.armor;
 
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.item.custom.behavior.BMArmorItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.IArmorMaterial;
@@ -28,6 +29,6 @@ public class QueenLucyShirtItem extends BMArmorItem {
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
         tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".queen_lucy_shirt.design").withStyle(TextFormatting.GRAY));
-        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".queen_lucy_shirt_" + this.shirtDesign + ".desc").withStyle(TextFormatting.BLUE));
+        tooltip.add(new TranslationTextComponent("item." + BackMath.MOD_ID + ".queen_lucy_shirt_" + this.shirtDesign + ".desc").withStyle(TextFormatting.LIGHT_PURPLE));
     }
 }

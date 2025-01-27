@@ -4,16 +4,17 @@ import com.google.common.collect.Maps;
 import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
+import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
 import com.sophicreeper.backmath.entity.misc.BMCrossbowUser;
 import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.item.custom.behavior.BMArmorItem;
+import com.sophicreeper.backmath.item.custom.tool.bow.BMCrossbowItem;
+import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
+import com.sophicreeper.backmath.util.VSUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
-import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
-import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.custom.armor.BMArmorItem;
-import com.sophicreeper.backmath.item.custom.tool.BMCrossbowItem;
-import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.enchantment.Enchantment;
@@ -24,7 +25,9 @@ import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.item.ItemEntity;
-import net.minecraft.entity.monster.*;
+import net.minecraft.entity.monster.AbstractSkeletonEntity;
+import net.minecraft.entity.monster.VexEntity;
+import net.minecraft.entity.monster.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.inventory.EquipmentSlotType;
@@ -91,7 +94,7 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AngrySophieEntity.class, false));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, livEntity -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, QueenLucyPetEntity.class, false));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, JanticleEntity.class, true));
@@ -112,9 +115,7 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
 
         for (int i = 0; i < this.inventory.getContainerSize(); ++i) {
             ItemStack stack = this.inventory.getItem(i);
-            if (!stack.isEmpty()) {
-                inventoryNBTList.add(stack.save(new CompoundNBT()));
-            }
+            if (!stack.isEmpty()) inventoryNBTList.add(VSUtils.saveStack(stack, new CompoundNBT()));
         }
         tag.put("inventory", inventoryNBTList);
         tag.putBoolean("is_charging_crossbow", this.entityData.get(IS_CHARGING_CROSSBOW));
@@ -122,13 +123,11 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        ListNBT inventoryNBTList = BMTagFixes.fixInventoryTag(tag);
+        ListNBT inventoryNBTList = BMTagFixes.renameInventory(tag);
 
         for (int i = 0; i < inventoryNBTList.size(); ++i) {
-            ItemStack stack = ItemStack.of(inventoryNBTList.getCompound(i));
-            if (!stack.isEmpty()) {
-                this.inventory.addItem(stack);
-            }
+            ItemStack stack = VSUtils.loadStack(inventoryNBTList.getCompound(i));
+            if (!stack.isEmpty()) this.inventory.addItem(stack);
         }
         this.setCanPickUpLoot(true);
         this.entityData.set(IS_CHARGING_CROSSBOW, tag.getBoolean("is_charging_crossbow"));

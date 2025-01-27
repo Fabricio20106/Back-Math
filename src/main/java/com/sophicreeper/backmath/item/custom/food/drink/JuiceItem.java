@@ -1,67 +1,18 @@
 package com.sophicreeper.backmath.item.custom.food.drink;
 
-import com.sophicreeper.backmath.item.custom.ToolBehaviors;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.UseAction;
-import net.minecraft.stats.Stats;
-import net.minecraft.util.*;
-import net.minecraft.world.World;
+import com.sophicreeper.backmath.item.behavior.FoodSettings;
+import com.sophicreeper.backmath.item.behavior.ItemBehavior;
+import com.sophicreeper.backmath.item.behavior.ItemBehaviorParameters;
+import com.sophicreeper.backmath.item.custom.food.BMFoodItem;
 
-import javax.annotation.Nonnull;
+import java.util.function.Supplier;
 
-public class JuiceItem extends Item implements ToolBehaviors {
+public class JuiceItem extends BMFoodItem {
+    public JuiceItem(FoodSettings settings, Supplier<ItemBehavior> behavior, Properties properties) {
+        super(settings, behavior, properties);
+    }
+
     public JuiceItem(Properties properties) {
-        super(properties);
-    }
-
-    @Override
-    @Nonnull
-    public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        return DrinkHelper.useDrink(world, player, hand);
-    }
-
-    @Override
-    @Nonnull
-    public ItemStack finishUsingItem(ItemStack stack, World world, LivingEntity livEntity) {
-        if (livEntity instanceof ServerPlayerEntity) {
-            ServerPlayerEntity player = (ServerPlayerEntity) livEntity;
-            CriteriaTriggers.CONSUME_ITEM.trigger(player, stack);
-            player.awardStat(Stats.ITEM_USED.get(this));
-        }
-
-        if (stack.isEmpty()) {
-            return new ItemStack(Items.GLASS_BOTTLE);
-        } else {
-            if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
-                ItemStack bottleStack = getFoodUseRemainder(stack);
-                PlayerEntity player = (PlayerEntity) livEntity;
-                livEntity.eat(world, stack);
-                if (!player.inventory.add(bottleStack)) player.drop(bottleStack, false);
-            }
-            return stack;
-        }
-    }
-
-    @Override
-    public int getUseDuration(ItemStack stack) {
-        return 32;
-    }
-
-    @Override
-    @Nonnull
-    public UseAction getUseAnimation(ItemStack stack) {
-        return UseAction.DRINK;
-    }
-
-    @Override
-    @Nonnull
-    public SoundEvent getEatingSound() {
-        return SoundEvents.GENERIC_DRINK;
+        super(ItemBehaviorParameters.BOTTLE_DRINK, properties);
     }
 }

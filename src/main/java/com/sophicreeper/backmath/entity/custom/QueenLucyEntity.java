@@ -5,11 +5,11 @@ import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.termian.queenlucy.*;
 import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
+import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
-import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.*;
@@ -37,7 +37,10 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.*;
+import net.minecraft.world.BossInfo;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import org.apache.logging.log4j.LogManager;
 
@@ -86,7 +89,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
             this.setSpellType(QueenLucySpells.NONE);
         }
 
-        this.spellCooldownTicks = BMTagFixes.fixSpellTicksTag(tag);
+        this.spellCooldownTicks = BMTagFixes.moveSpellTicks(tag);
         this.lucySpellsTag = spellsTag;
     }
 

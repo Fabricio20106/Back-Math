@@ -7,13 +7,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.Difficulty;
+import net.minecraft.world.DifficultyInstance;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 public interface AljanMobUtils {
-    default void populateAljanEquipmentSlots(LivingEntity livEntity, Random random) {
-        if (random.nextFloat() < 0.15) {
+    default void populateAljanEquipmentSlots(LivingEntity livEntity, Random random, DifficultyInstance instance) {
+        if (random.nextFloat() < 0.15 * instance.getSpecialMultiplier()) {
             int rand = random.nextInt(2);
             float chancePerDifficulty = livEntity.level.getDifficulty() == Difficulty.HARD ? 0.1F : 0.25F;
             if (random.nextFloat() < 0.095F) ++rand;

@@ -66,15 +66,15 @@ public class BMHeadItem extends WallOrFloorItem {
     }
 
     @Override
-    public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> list) {
+    public void fillItemCategory(ItemGroup tab, NonNullList<ItemStack> items) {
         if (this.allowdedIn(tab) && this == AxolotlTest.WANDERER_SOPHIE_HEAD.get() && BMConfigs.COMMON_CONFIGS.populateWandererSophieHeadVariants.get()) {
             for (ResourceLocation variant : WandererSophieVariant.DATA_DRIVEN_VARIANTS.keySet()) {
                 ItemStack stack = new ItemStack(AxolotlTest.WANDERER_SOPHIE_HEAD.get());
                 stack.getOrCreateTag().putString("variant", variant.toString());
-                list.add(stack);
+                items.add(stack);
             }
         } else {
-            super.fillItemCategory(tab, list);
+            super.fillItemCategory(tab, items);
         }
     }
 }

@@ -48,9 +48,9 @@ public class JantiquifiedPearlItem extends Item {
                 if (endPortalPatternHelper != null) {
                     BlockPos frontTopLeftPos = endPortalPatternHelper.getFrontTopLeft().offset(-3, 0, -3);
 
-                    for (int i = 0; i < 3; ++i) {
-                        for (int j = 0; j < 3; ++j) {
-                            world.setBlock(frontTopLeftPos.offset(i, 0, j), Blocks.END_PORTAL.defaultBlockState(), 2);
+                    for (int x = 0; x < 3; ++x) {
+                        for (int z = 0; z < 3; ++z) {
+                            world.setBlock(frontTopLeftPos.offset(x, 0, z), Blocks.END_PORTAL.defaultBlockState(), 2);
                         }
                     }
 
@@ -80,15 +80,11 @@ public class JantiquifiedPearlItem extends Item {
                     enderEye.setItem(handStack);
                     enderEye.signalTo(strongholdPos);
                     world.addFreshEntity(enderEye);
-                    if (player instanceof ServerPlayerEntity) {
-                        CriteriaTriggers.USED_ENDER_EYE.trigger((ServerPlayerEntity) player, strongholdPos);
-                    }
+                    if (player instanceof ServerPlayerEntity) CriteriaTriggers.USED_ENDER_EYE.trigger((ServerPlayerEntity) player, strongholdPos);
 
                     world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_EYE_LAUNCH, SoundCategory.NEUTRAL, 0.5F, 0.4F / (random.nextFloat() * 0.4F + 0.8F));
                     world.levelEvent(null, Constants.WorldEvents.ENDEREYE_LAUNCH_SOUND, player.blockPosition(), 0);
-                    if (!player.abilities.instabuild) {
-                        handStack.shrink(1);
-                    }
+                    if (!player.abilities.instabuild) handStack.shrink(1);
 
                     player.awardStat(Stats.ITEM_USED.get(this));
                     player.swing(hand, true);

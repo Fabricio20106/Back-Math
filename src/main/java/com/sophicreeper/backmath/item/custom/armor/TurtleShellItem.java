@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.item.custom.armor;
 
+import com.sophicreeper.backmath.item.custom.behavior.BMArmorItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;

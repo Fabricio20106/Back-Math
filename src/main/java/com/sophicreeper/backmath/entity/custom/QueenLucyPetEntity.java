@@ -5,12 +5,12 @@ import com.sophicreeper.backmath.entity.goal.QLPOwnersTargetGoal;
 import com.sophicreeper.backmath.entity.goal.QLPRandomFlyingGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.BMUtils;
+import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
-import com.sophicreeper.backmath.util.BMUtils;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -41,7 +41,10 @@ import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.IFormattableTextComponent;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.*;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.IServerWorld;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.event.ForgeEventFactory;
 import org.apache.logging.log4j.LogManager;
@@ -265,7 +268,7 @@ public class QueenLucyPetEntity extends TameableEntity {
 
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
-        this.setVariant(BMTagFixes.fixQueenLucyPetVariantTag(tag));
+        this.setVariant(BMTagFixes.updateQueenLucyPetVariant(tag));
         tag.remove("Variant");
     }
 

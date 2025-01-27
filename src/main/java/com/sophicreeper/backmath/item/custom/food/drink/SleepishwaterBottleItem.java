@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.item.custom.food.drink;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.custom.ToolBehaviors;
+import com.sophicreeper.backmath.item.custom.UseRemainders;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -15,12 +15,13 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 
-public class SleepishwaterBottleItem extends Item implements ToolBehaviors {
+public class SleepishwaterBottleItem extends Item implements UseRemainders {
     public SleepishwaterBottleItem(Properties properties) {
         super(properties);
     }
 
     @Override
+    @Nonnull
     public ActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         return DrinkHelper.useDrink(world, player, hand);
     }
@@ -36,10 +37,10 @@ public class SleepishwaterBottleItem extends Item implements ToolBehaviors {
         }
 
         if (stack.isEmpty()) {
-            return new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get());
+            return this.getFoodUseRemainder(stack, new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get()));
         } else {
             if (livEntity instanceof PlayerEntity && !((PlayerEntity) livEntity).abilities.instabuild) {
-                ItemStack bottleStack = getFoodUseRemainder(stack, new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get()));
+                ItemStack bottleStack = getFoodUseRemainder(stack, this.getFoodUseRemainder(stack, new ItemStack(AxolotlTest.ALJAMIC_GLASS_BOTTLE.get())));
                 PlayerEntity player = (PlayerEntity) livEntity;
                 stack.shrink(1);
                 if (!player.inventory.add(bottleStack)) player.drop(bottleStack, false);

@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.event;
 
 import com.google.common.collect.Sets;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.mojang.serialization.Codec;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
@@ -9,12 +8,12 @@ import com.sophicreeper.backmath.block.model.FullbrightModel;
 import com.sophicreeper.backmath.command.BMDebuggingCommands;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.BMEntities;
-import com.sophicreeper.backmath.entity.misc.WornOutfit;
+import com.sophicreeper.backmath.entity.renderer.HandArmorRenderer;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.manager.QueenLucyPetVariantManager;
 import com.sophicreeper.backmath.variant.manager.WandererSophieVariantManager;
-import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.dimension.BMDimensions;
 import com.sophicreeper.backmath.world.ore.BMOreGeneration;
@@ -24,21 +23,18 @@ import com.sophicreeper.backmath.world.structure.BMStructures;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
 import net.minecraft.client.renderer.BlockModelShapes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.entity.LivingRenderer;
-import net.minecraft.client.renderer.entity.model.PlayerModel;
 import net.minecraft.client.renderer.model.IBakedModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.client.renderer.model.ModelResourceLocation;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.merchant.villager.VillagerProfession;
 import net.minecraft.entity.merchant.villager.VillagerTrades;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.*;
-import net.minecraft.util.HandSide;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.item.MerchantOffer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -231,8 +227,15 @@ public class BMEvents {
 
     @SubscribeEvent
     public static void adjustMiningSpeed(PlayerEvent.BreakSpeed event) {
-        if (event.getEntityLiving().getItemBySlot(EquipmentSlotType.CHEST).getItem() == AxolotlTest.PLATEFORCED_MID_TERM_BREASTPLATE.get()) {
+        if (event.getEntityLiving().getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.CHESTPLATE_MINING_ITEMS)) {
             event.setNewSpeed(event.getOriginalSpeed() + 1.25F);
+        }
+    }
+
+    @SubscribeEvent
+    public static void adjustHarvestLevel(PlayerEvent.HarvestCheck event) {
+        if (event.getEntityLiving().getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.CHESTPLATE_MINING_ITEMS)) {
+            if (event.getTargetBlock().getHarvestLevel() <= 3) event.setCanHarvest(true);
         }
     }
 
@@ -244,28 +247,7 @@ public class BMEvents {
 
     @SubscribeEvent
     public static void renderOutfitInArm(RenderArmEvent event) {
-        AbstractClientPlayerEntity player = event.getPlayer();
-        if (player.getItemBySlot(EquipmentSlotType.CHEST).getItem() instanceof ArmorItem && player.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.OUTFITS)) {
-            PlayerModel<AbstractClientPlayerEntity> outfitModel = new PlayerModel<>(0.01F, player.getModelName().equals("slim"));
-            ModelRenderer rightArm = outfitModel.rightArm;
-            ModelRenderer rightSleeve = outfitModel.rightSleeve;
-
-            if (event.getArm() == HandSide.LEFT) {
-                rightArm = outfitModel.leftArm;
-                rightSleeve = outfitModel.leftSleeve;
-            }
-
-            ArmorItem item = (ArmorItem) player.getItemBySlot(EquipmentSlotType.CHEST).getItem();
-            outfitModel.attackTime = 0;
-            outfitModel.crouching = false;
-            outfitModel.swimAmount = 0;
-            outfitModel.setupAnim(player, 0, 0, 0, 0, 0);
-            IVertexBuilder translucentBuffer = event.getMultiBufferSource().getBuffer(RenderType.entityTranslucent(WornOutfit.parseOutfitLocation(outfitModel.slim, item.getMaterial().getName(), item.getSlot())));
-
-            rightArm.xRot = 0;
-            rightArm.render(event.getPoseStack(), translucentBuffer, event.getPackedLight(), LivingRenderer.getOverlayCoords(player, 0));
-            rightSleeve.xRot = 0;
-            rightSleeve.render(event.getPoseStack(), translucentBuffer, event.getPackedLight(), LivingRenderer.getOverlayCoords(player, 0));
-        }
+        HandArmorRenderer.renderOutfitInArm(event.getPlayer(), event.getArm(), event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight());
+        HandArmorRenderer.renderArmorInArm(event.getPlayer(), event.getArm(), event.getPoseStack(), event.getMultiBufferSource(), event.getPackedLight());
     }
 }

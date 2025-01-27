@@ -5,12 +5,14 @@ import com.sophicreeper.backmath.entity.custom.*;
 import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
 import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
+import com.sophicreeper.backmath.entity.goal.ZombieAttackGoal;
 import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
-import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.util.fix.BMTagFixes;
-import com.sophicreeper.backmath.entity.goal.ZombieFabricioAttackGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
+import com.sophicreeper.backmath.misc.BMSounds;
+import com.sophicreeper.backmath.util.TagTypes;
+import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.util.tag.BMBlockTags;
+import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -42,23 +44,23 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeConfig;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.function.Predicate;
 
 public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils {
-    private static final UUID BABY_ZOMBIE_SPEED_MODIFIER_UUID = UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836");
-    private static final AttributeModifier BABY_ZOMBIE_SPEED_MODIFIER = new AttributeModifier(BABY_ZOMBIE_SPEED_MODIFIER_UUID, "Baby Zombie Fabricio Speed Bonus", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
+    private static final AttributeModifier BABY_ZOMBIE_SPEED_MODIFIER = new AttributeModifier(UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836"), "Baby Zombie Fabricio Speed Bonus", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
     private static final DataParameter<Boolean> IS_BABY = EntityDataManager.defineId(ZombieFabricioEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> IS_CONVERTING_TO_DROWNED = EntityDataManager.defineId(ZombieFabricioEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> IS_CONVERTING_TO_FABRICIO = EntityDataManager.defineId(ZombieFabricioEntity.class, DataSerializers.BOOLEAN);
-    private static final Predicate<Difficulty> HARD_DIFFICULTY_PREDICATE = (difficulty) -> difficulty == Difficulty.HARD;
-    private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, HARD_DIFFICULTY_PREDICATE);
+    private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, difficulty -> difficulty == Difficulty.HARD);
     private UUID converterUUID;
     private boolean canBreakDoors;
     private int fabricioConversionTicks;
@@ -70,7 +72,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
     }
 
     protected void registerGoals() {
-        this.goalSelector.addGoal(2, new ZombieFabricioAttackGoal(this, 1, false));
+        this.goalSelector.addGoal(2, new ZombieAttackGoal(this, 1, false));
         this.goalSelector.addGoal(4, new StompTurtleEggGoal(this, 1, 3));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8));
@@ -218,18 +220,16 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
                     shouldBurn = false;
                 }
 
-                if (shouldBurn) {
-                    this.setSecondsOnFire(8);
-                }
+                if (shouldBurn) this.setSecondsOnFire(8);
             }
         }
         super.aiStep();
     }
 
-    @Override
+    @Nonnull
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);
-        if (handStack.getItem() == AxolotlTest.JANTIQUIFIED_ALJAME.get()) {
+        if (handStack.getItem().is(BMItemTags.CAN_CURE_ZOMBIE_FABRICIOS)) {
             if (this.hasEffect(Effects.BLINDNESS)) {
                 if (!player.abilities.instabuild) handStack.shrink(1);
 
@@ -249,7 +249,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
     }
 
     protected void convertToDrowned() {
-        if (!this.isSilent()) this.level.levelEvent(null, 1040, this.blockPosition(), 0);
+        if (!this.isSilent()) this.level.levelEvent(null, Constants.WorldEvents.ZOMBIE_CONVERT_TO_DROWNED_SOUND, this.blockPosition(), 0);
         DrownedEntity drowned = this.convertTo(EntityType.DROWNED, true);
         if (drowned != null) ForgeEventFactory.onLivingConvert(this, EntityType.DROWNED.create(this.level));
     }
@@ -258,7 +258,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         ShyFabricioEntity shyFabricio = this.convertTo(BMEntities.SHY_FABRICIO.get(), true);
         if (shyFabricio != null) {
             shyFabricio.addEffect(new EffectInstance(Effects.CONFUSION, 200, 0));
-            if (!this.isSilent()) this.level.levelEvent(null, 1027, this.blockPosition(), 0);
+            if (!this.isSilent()) this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), BMSounds.ENTITY_ZOMBIE_FABRICIO_CURE, this.getSoundSource(), 2, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1, false);
             ForgeEventFactory.onLivingConvert(this, BMEntities.SHY_FABRICIO.get().create(this.level));
         }
     }
@@ -311,24 +311,26 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
     }
 
     public boolean doHurtTarget(Entity entity) {
-        boolean sup = super.doHurtTarget(entity);
-        if (sup) {
-            float locationDifficulty = this.level.getCurrentDifficultyAt(this.blockPosition()).getSpecialMultiplier();
-            if (this.getMainHandItem().isEmpty() && this.isOnFire() && this.random.nextFloat() < locationDifficulty * 0.3F) {
-                entity.setSecondsOnFire(2 * (int) locationDifficulty);
+        boolean hurtTarget = super.doHurtTarget(entity);
+        if (hurtTarget) {
+            float localDifficulty = this.level.getCurrentDifficultyAt(this.blockPosition()).getSpecialMultiplier();
+            if (this.getMainHandItem().isEmpty() && this.isOnFire() && this.random.nextFloat() < localDifficulty * 0.3F) {
+                entity.setSecondsOnFire(2 * (int) localDifficulty);
             }
         }
-        return sup;
+        return hurtTarget;
     }
 
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ZOMBIE_AMBIENT;
     }
 
+    @Nonnull
     protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.ZOMBIE_HURT;
     }
 
+    @Nonnull
     protected SoundEvent getDeathSound() {
         return SoundEvents.ZOMBIE_DEATH;
     }
@@ -341,6 +343,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         this.playSound(this.getStepSound(), 0.15F, 1);
     }
 
+    @Nonnull
     public CreatureAttribute getMobType() {
         return CreatureAttribute.UNDEAD;
     }
@@ -352,7 +355,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
 
     @Override
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
-        this.populateAljanEquipmentSlots(this, this.random);
+        this.populateAljanEquipmentSlots(this, this.random, difficulty);
         /*if (this.level.getDifficulty() == Difficulty.HARD) {
             EquipmentTableUtils.equipWithGear(BMResourceLocations.ZOMBIE_WEAPONS_HARD_DIFFICULTY, this);
         } else {
@@ -374,13 +377,13 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
         this.setBaby(tag.getBoolean("is_baby"));
-        this.setBreakDoorsAITask(BMTagFixes.fixCanBreakDoorsTag(tag));
+        this.setBreakDoorsAITask(BMTagFixes.renameCanBreakDoors(tag));
         this.ticksSubmergedInWater = tag.getInt("ticks_submerged_in_water");
-        if (tag.contains("converter_uuid")) this.converterUUID = tag.getUUID("converter_uuid");
-        if (tag.contains("drowned_conversion_ticks", 99) && tag.getInt("drowned_conversion_ticks") > -1) {
+        if (tag.contains("converter_uuid", TagTypes.INTEGER_ARRAY)) this.converterUUID = tag.getUUID("converter_uuid");
+        if (tag.contains("drowned_conversion_ticks", TagTypes.ANY_NUMERIC) && tag.getInt("drowned_conversion_ticks") > -1) {
             this.startConversionToDrowned(tag.getInt("drowned_conversion_ticks"));
         }
-        if (tag.contains("fabricio_conversion_ticks", 99) && tag.getInt("fabricio_conversion_ticks") > -1) {
+        if (tag.contains("fabricio_conversion_ticks", TagTypes.ANY_NUMERIC) && tag.getInt("fabricio_conversion_ticks") > -1) {
             this.startConversionToFabricio(tag.hasUUID("converter_uuid") ? tag.getUUID("converter_uuid") : null, tag.getInt("fabricio_conversion_ticks"));
         }
     }
@@ -392,17 +395,17 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
     @Nullable
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         spawnData = super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
-        float clampedAdditionalDifficulty = difficulty.getSpecialMultiplier();
-        this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * clampedAdditionalDifficulty);
+        float regionalMultiplier = difficulty.getSpecialMultiplier();
+        this.setCanPickUpLoot(this.random.nextFloat() < 0.55F * regionalMultiplier);
         if (spawnData == null) spawnData = new ZombieGroupData(getBabySpawnOdds(world.getRandom()), true);
 
         if (spawnData instanceof ZombieGroupData) {
-            ZombieGroupData zombieGroupData = (ZombieGroupData) spawnData;
-            if (zombieGroupData.isBaby) {
+            ZombieGroupData groupData = (ZombieGroupData) spawnData;
+            if (groupData.isBaby) {
                 this.setBaby(true);
-                if (zombieGroupData.canSpawnJockey) {
+                if (groupData.canSpawnJockey) {
                     if ((double) world.getRandom().nextFloat() < 0.05D) {
-                        List<ChickenEntity> nearbyChickens = world.getEntitiesOfClass(ChickenEntity.class, this.getBoundingBox().inflate(5.0D, 3.0D, 5.0D), EntityPredicates.ENTITY_NOT_BEING_RIDDEN);
+                        List<ChickenEntity> nearbyChickens = world.getEntitiesOfClass(ChickenEntity.class, this.getBoundingBox().inflate(5, 3, 5), EntityPredicates.ENTITY_NOT_BEING_RIDDEN);
                         if (!nearbyChickens.isEmpty()) {
                             ChickenEntity nearbyChicken = nearbyChickens.get(0);
                             nearbyChicken.setChickenJockey(true);
@@ -420,7 +423,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
                 }
             }
 
-            this.setBreakDoorsAITask(this.supportsBreakDoorGoal() && this.random.nextFloat() < clampedAdditionalDifficulty * 0.1F);
+            this.setBreakDoorsAITask(this.supportsBreakDoorGoal() && this.random.nextFloat() < regionalMultiplier * 0.1F);
             this.populateDefaultEquipmentSlots(difficulty);
             this.populateDefaultEquipmentEnchantments(difficulty);
         }
@@ -431,26 +434,26 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
             int monthOfYear = localDate.getMonth().getValue();
             if (monthOfYear == 10 && dayOfMonth == 31 && this.random.nextFloat() < 0.25F) {
                 this.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(this.random.nextFloat() < 0.1F ? Blocks.JACK_O_LANTERN : Blocks.CARVED_PUMPKIN));
-                this.armorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0;
+                this.armorDropChances[EquipmentSlotType.HEAD.getIndex()] = 0.05F;
             }
         }
 
-        this.applyAttributeBonuses(clampedAdditionalDifficulty);
+        this.applyAttributeBonuses(regionalMultiplier);
         return spawnData;
     }
 
     public static boolean getBabySpawnOdds(Random rand) {
-        return rand.nextFloat() < 0.05D;
+        return rand.nextFloat() < ForgeConfig.SERVER.zombieBabyChance.get();
     }
 
-    protected void applyAttributeBonuses(float difficulty) {
+    protected void applyAttributeBonuses(float regionalMultiplier) {
         this.getAttribute(Attributes.KNOCKBACK_RESISTANCE).addPermanentModifier(new AttributeModifier("Random Knockback Res. Bonus", this.random.nextDouble() * (double) 0.05F, AttributeModifier.Operation.ADDITION));
-        double d0 = this.random.nextDouble() * 1.5D * (double) difficulty;
-        if (d0 > 1) {
-            this.getAttribute(Attributes.FOLLOW_RANGE).addPermanentModifier(new AttributeModifier("Random Follow Range Bonus", d0, AttributeModifier.Operation.MULTIPLY_TOTAL));
+        double amount = this.random.nextDouble() * 1.5D * (double) regionalMultiplier;
+        if (amount > 1) {
+            this.getAttribute(Attributes.FOLLOW_RANGE).addPermanentModifier(new AttributeModifier("Random Follow Range Bonus", amount, AttributeModifier.Operation.MULTIPLY_TOTAL));
         }
 
-        if (this.random.nextFloat() < difficulty * 0.05F) {
+        if (this.random.nextFloat() < regionalMultiplier * 0.05F) {
             this.getAttribute(Attributes.SPAWN_REINFORCEMENTS_CHANCE).addPermanentModifier(new AttributeModifier("Leader Zombie Fabricio Bonus", this.random.nextDouble() * 0.25D + 0.5D, AttributeModifier.Operation.ADDITION));
             this.getAttribute(Attributes.MAX_HEALTH).addPermanentModifier(new AttributeModifier("Leader Zombie Fabricio Bonus", this.random.nextDouble() * 3 + 1, AttributeModifier.Operation.MULTIPLY_TOTAL));
             this.setBreakDoorsAITask(this.supportsBreakDoorGoal());

@@ -357,9 +357,12 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_LEGGINGS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BOOTS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CROWN.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BLOCK.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_DOOR.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_TRAPDOOR.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CHAIN.get());
         this.tag(BMItemTags.JANTIC_RAILGUN_PROJECTILES).add(AxolotlTest.JANTICAL.get());
+        this.tag(BMItemTags.RAILGUNS).add(AxolotlTest.JANTIC_RAILGUN.get());
         this.tag(BMItemTags.OUTFITS).add(AxolotlTest.PLATEFORCED_MID_TERM_HELMET.get(), AxolotlTest.PLATEFORCED_MID_TERM_BREASTPLATE.get(), AxolotlTest.PLATEFORCED_MID_TERM_LEGGINGS.get(), AxolotlTest.PLATEFORCED_MID_TERM_BOOTS.get(),
                 AxolotlTest.BAKUGOU_HAIR.get(), AxolotlTest.BAKUGOU_BLOUSE.get(), AxolotlTest.BAKUGOU_PANTS.get(), AxolotlTest.BAKUGOU_SHOES.get(), AxolotlTest.INSOMNIA_SOPHIE_SLEEPWEAR_BLOUSE.get(), AxolotlTest.INSOMNIA_SOPHIE_SLEEPWEAR_PANTS.get(),
                 AxolotlTest.QUEEN_LUCY_SHIRT_CURRENT.get(), AxolotlTest.QUEEN_LUCY_SHIRT_ALT.get(), AxolotlTest.QUEEN_LUCY_SHIRT_RELIC.get(), AxolotlTest.CAT_TIARA.get(), AxolotlTest.DOG_TIARA.get(), AxolotlTest.YELLOW_KARATE_BAND.get());
+        this.tag(BMItemTags.CHESTPLATE_MINING_ITEMS).add(AxolotlTest.PLATEFORCED_MID_TERM_BREASTPLATE.get());
+        this.tag(BMItemTags.CAN_CURE_ZOMBIE_FABRICIOS).add(AxolotlTest.JANTIQUIFIED_ALJAME.get(), AxolotlTest.HOLY_JANTIQUIFIED_ALJAME.get());
         this.tag(BMItemTags.VILLAGER_PLANTABLE_SEEDS).add(AxolotlTest.CARAMELED_WHEAT_SEEDS.get()).add(AxolotlTest.ALJAMIC_ONION.get());
         this.tag(BMItemTags.CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE).add(Items.EGG);
         this.tag(BMItemTags.ALLOWED_IN_MAINHAND).addTag(BMItemTags.BOWS).addTag(BMItemTags.CROSSBOWS).add(AxolotlTest.ALJAMEED_SHOVEL.get()).add(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());
@@ -428,8 +431,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.CHEESE_BREAD_BAG.get()).add(AxolotlTest.OLIVE_PICKAXE.get()).addTag(BMItemTags.SINGULARITIES_MID_TERM);
         this.tag(BMItemTags.SOPHIES_TAKE_OVER_IDEA).add(AxolotlTest.ALJAME.get()).add(AxolotlTest.HUMAN_PATRICK.get()).add(AxolotlTest.MECH_MECH.get()).add(AxolotlTest.CAREWNI.get())
                 .add(AxolotlTest.AMARACAMEL_BATTER.get()).add(AxolotlTest.AMARACAMEL_BATTER_BAG.get()).add(AxolotlTest.EMPTY_AMARACAMEL_BATTER_BAG.get()).add(AxolotlTest.ENERGETIC_MONSTER.get());
-        this.tag(BMItemTags.ALJAMIC_WARS_IDEA).add(AxolotlTest.PINE_JELLY.get()).add(AxolotlTest.PATIENCE_TEA.get()).add(AxolotlTest.PEACE_TEA.get()).add(AxolotlTest.DISGUST_TEA.get())
-                .add(AxolotlTest.MOOD_TEA.get());
+        this.tag(BMItemTags.ALJAMIC_WARS_IDEA).add(AxolotlTest.PINE_JELLY.get(),AxolotlTest.PATIENCE_TEA.get(),AxolotlTest.PEACE_TEA.get(),AxolotlTest.DISGUST_TEA.get(), AxolotlTest.MOOD_TEA.get(),
+                AxolotlTest.CEBOLINHA_HAIR_STRAND.get());
         this.tag(BMItemTags.BOUNTIFULLY_EXPANSIVE_IDEA).add(AxolotlTest.AMARACAMEL_JUICE.get()).add(AxolotlTest.CHOCOGLUE.get()).add(AxolotlTest.GLUE.get())
                 .add(AxolotlTest.PINK_GUM_FRYING_PAN.get()).add(AxolotlTest.BREAD_WITH_PAO.get()).add(AxolotlTest.CHOCOLATE_NAKED_CAKE.get()).add(AxolotlTest.QUEEN_LUCY_SHIRT_CURRENT.get())
                 .add(AxolotlTest.QUEEN_LUCY_SHIRT_ALT.get()).add(AxolotlTest.QUEEN_LUCY_SHIRT_RELIC.get()).add(AxolotlTest.ALJAMIC_BERRY.get()).add(AxolotlTest.ALJAMIC_BERRY_JAM.get()).add(AxolotlTest.ALJAMIC_BERRY_JUICE.get())
@@ -465,12 +468,12 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.CHOCCY_MILK_BUCKET.get()).add(AxolotlTest.COFFEE_MUG.get());
         this.tag(BMItemTags.JUICES).add(AxolotlTest.GUARANA_JUICE.get()).add(AxolotlTest.MANGO_JUICE.get()).add(AxolotlTest.MANGA_JUICE.get()).add(AxolotlTest.GRAPE_JUICE.get())
                 .add(AxolotlTest.LEMON_JUICE.get()).add(AxolotlTest.PINEAPPLE_JUICE.get()).add(AxolotlTest.ORANGE_JUICE.get()).add(AxolotlTest.BANANA_JUICE.get()).add(AxolotlTest.GUAVA_JUICE.get())
-                .add(AxolotlTest.JABUTICABADA.get()).add(AxolotlTest.GREEN_APPLE_JUICE.get()).add(AxolotlTest.ALJAME_JUICE.get()).add(AxolotlTest.ALJAMIC_BERRY_JUICE.get()).add(AxolotlTest.APPLE_JUICE.get())
-                .add(AxolotlTest.GOLDEN_APPLE_JUICE.get()).add(AxolotlTest.ENCHANTED_GOLDEN_APPLE_JUICE.get()).add(AxolotlTest.MELON_JUICE.get()).add(AxolotlTest.PUMPKIN_JUICE.get())
-                .add(AxolotlTest.SWEET_BERRY_JUICE.get()).add(AxolotlTest.GLOW_BERRY_JUICE.get());
+                .add(AxolotlTest.JABUTICABADA.get()).add(AxolotlTest.GREEN_APPLE_JUICE.get()).add(AxolotlTest.ALJAME_JUICE.get(), AxolotlTest.ALJAMIC_ALJAME_JUICE.get()).add(AxolotlTest.ALJAMIC_BERRY_JUICE.get(),
+                        AxolotlTest.ALJAMIC_ALJAMIC_BERRY_JUICE.get()).add(AxolotlTest.APPLE_JUICE.get()).add(AxolotlTest.GOLDEN_APPLE_JUICE.get()).add(AxolotlTest.ENCHANTED_GOLDEN_APPLE_JUICE.get())
+                .add(AxolotlTest.MELON_JUICE.get()).add(AxolotlTest.PUMPKIN_JUICE.get()).add(AxolotlTest.SWEET_BERRY_JUICE.get()).add(AxolotlTest.GLOW_BERRY_JUICE.get());
         this.tag(BMItemTags.JAMS).add(AxolotlTest.OREGANO_POT.get()).add(AxolotlTest.GUARANA_JAM.get()).add(AxolotlTest.MANGO_JAM.get()).add(AxolotlTest.MANGA_JAM.get()).add(AxolotlTest.GRAPE_JAM.get())
                 .add(AxolotlTest.LEMON_JAM.get()).add(AxolotlTest.PINEAPPLE_JAM.get()).add(AxolotlTest.ORANGE_JAM.get()).add(AxolotlTest.BANANA_JAM.get()).add(AxolotlTest.GUAVA_JAM.get())
-                .add(AxolotlTest.JABUTICABADA.get()).add(AxolotlTest.GREEN_APPLE_JAM.get()).add(AxolotlTest.ALJAME_JAM.get()).add(AxolotlTest.ALJAMIC_BERRY_JAM.get()).add(AxolotlTest.APPLE_JAM.get())
+                .add(AxolotlTest.JABUTICABA_JAM.get()).add(AxolotlTest.GREEN_APPLE_JAM.get()).add(AxolotlTest.ALJAME_JAM.get()).add(AxolotlTest.ALJAMIC_BERRY_JAM.get()).add(AxolotlTest.APPLE_JAM.get())
                 .add(AxolotlTest.GOLDEN_APPLE_JAM.get()).add(AxolotlTest.ENCHANTED_GOLDEN_APPLE_JAM.get()).add(AxolotlTest.MELON_JAM.get()).add(AxolotlTest.PUMPKIN_JAM.get())
                 .add(AxolotlTest.SWEET_BERRY_JAM.get()).add(AxolotlTest.GLOW_BERRY_JAM.get()).add(AxolotlTest.MUSHROOM_STEW_POT.get()).add(AxolotlTest.FUNGI_STEW_POT.get()).add(
                         AxolotlTest.END_FUNGI_STEW_POT.get()).add(AxolotlTest.ALJAN_FUNGI_STEW_POT.get()).add(AxolotlTest.BEETROOT_SOUP_POT.get()).add(AxolotlTest.RABBIT_STEW_POT.get())

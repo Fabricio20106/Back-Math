@@ -1,13 +1,16 @@
 package com.sophicreeper.backmath.item.custom.food.jam;
 
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.custom.ToolBehaviors;
+import com.sophicreeper.backmath.item.custom.UseRemainders;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.UseAction;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtils;
@@ -24,7 +27,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class EffectJamItem extends Item implements ToolBehaviors {
+public class EffectJamItem extends Item implements UseRemainders {
     public EffectJamItem(Properties properties) {
         super(properties);
     }

@@ -14,7 +14,7 @@ import com.sophicreeper.backmath.entity.renderer.misc.BMBoatRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.InsomniaArrowRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.JanticBoltRenderer;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
+import com.sophicreeper.backmath.item.custom.tool.bow.BMBowItem;
 import com.sophicreeper.backmath.misc.AljanTextureUpdatePack;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.world.dimension.renderer.AljanDimensionRenderer;

@@ -83,7 +83,7 @@ public class SleepishSkeletonEntity extends AbstractSkeletonEntity implements Al
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
 //        EquipmentTableUtils.equipWithGear(BMResourceLocations.SLEEPISH_SKELETON_EQUIPMENT, this);
-        this.populateAljanEquipmentSlots(this, this.random);
+        this.populateAljanEquipmentSlots(this, this.random, difficulty);
     }
 
     @Nonnull

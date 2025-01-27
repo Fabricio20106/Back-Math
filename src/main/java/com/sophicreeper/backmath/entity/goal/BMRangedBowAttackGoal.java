@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.goal;
 
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
-import com.sophicreeper.backmath.item.custom.tool.BMBowItem;
+import com.sophicreeper.backmath.item.custom.tool.bow.BMBowItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.LivingEntity;

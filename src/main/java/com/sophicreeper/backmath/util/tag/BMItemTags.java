@@ -126,7 +126,10 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> EXTENDED_ENTITY_REACH = backMath("extended_entity_reach");
     public static final ITag.INamedTag<Item> FULLY_LIT_ITEMS = backMath("fully_lit_items");
     public static final ITag.INamedTag<Item> JANTIC_RAILGUN_PROJECTILES = backMath("jantic_railgun_projectiles");
+    public static final ITag.INamedTag<Item> RAILGUNS = backMath("railguns");
     public static final ITag.INamedTag<Item> OUTFITS = backMath("outfits");
+    public static final ITag.INamedTag<Item> CHESTPLATE_MINING_ITEMS = backMath("chestplate_mining_items");
+    public static final ITag.INamedTag<Item> CAN_CURE_ZOMBIE_FABRICIOS = backMath("can_cure_zombie_fabricios");
 
     // Melony Tags
     public static final ITag.INamedTag<Item> SHIELDS = melony("shields");

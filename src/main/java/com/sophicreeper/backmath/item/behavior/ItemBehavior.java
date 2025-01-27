@@ -1,30 +1,51 @@
 package com.sophicreeper.backmath.item.behavior;
 
+import com.sophicreeper.backmath.item.behavior.effecttype.ItemBehaviorEffectType;
+import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistryEntry;
+import org.apache.logging.log4j.LogManager;
 
-import java.util.OptionalInt;
+import java.util.List;
+import java.util.function.Supplier;
 
 public class ItemBehavior extends ForgeRegistryEntry<ItemBehavior> {
-    public final BehaviorEffects effects;
-    private int durabilityBarColor;
+    public final List<Supplier<ItemBehaviorEffectType>> effects;
+    private Integer durabilityBarColor;
+    private boolean hasGlint;
 
-    public ItemBehavior(BehaviorEffects effects) {
+    public ItemBehavior(List<Supplier<ItemBehaviorEffectType>> effects) {
         this.effects = effects;
     }
 
-    public ItemBehavior durabilityBarColor(int color) {
+    public void run(ItemStack stack, PlayerEntity attacker, LivingEntity target, World world) {
+        for (Supplier<ItemBehaviorEffectType> type : this.effects) {
+            if (type.get() != null) type.get().runBehavior(stack, attacker, target, world);
+            else LogManager.getLogger().error("Item behavior effect type {} is null somehow", type.get().getRegistryName());
+        }
+    }
+
+    public ItemBehavior durabilityBarColor(Integer color) {
         this.durabilityBarColor = color;
         return this;
     }
 
-    public OptionalInt getDurabilityBarColor() {
-        return OptionalInt.of(this.durabilityBarColor);
+    public ItemBehavior glint(boolean glint) {
+        this.hasGlint = glint;
+        return this;
     }
 
-    public interface BehaviorEffects {
-        void run(ItemStack stack, LivingEntity livEntity, World world);
+    public Integer getDurabilityBarColor(int oldColor) {
+        return this.durabilityBarColor != null ? this.durabilityBarColor : oldColor;
+    }
+
+    public boolean hasGlint(ItemStack stack) {
+        CompoundNBT tag = stack.getTag();
+        if (tag != null && tag.contains("enchantment_glint_override", TagTypes.ANY_NUMERIC)) return tag.getBoolean("enchantment_glint_override");
+        return this.hasGlint;
     }
 }

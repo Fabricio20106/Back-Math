@@ -1,6 +1,5 @@
 package com.sophicreeper.backmath.mixin.renderer;
 
-import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -41,7 +40,7 @@ public abstract class BMPlayerRendererMixin extends LivingRenderer<AbstractClien
     private static void getArmPose(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedModel.ArmPose> callback) {
         ItemStack handStack = player.getItemInHand(hand);
         if (!handStack.isEmpty() && !player.swinging) {
-            if (handStack.getItem() == AxolotlTest.JANTIC_RAILGUN.get() && JanticRailgunItem.isCharged(handStack)) {
+            if (handStack.getItem().is(BMItemTags.RAILGUNS) && JanticRailgunItem.isCharged(handStack)) {
                 callback.setReturnValue(BipedModel.ArmPose.CROSSBOW_HOLD);
             }
             if (handStack.getItem().is(BMItemTags.DUAL_WIELDED)) {
