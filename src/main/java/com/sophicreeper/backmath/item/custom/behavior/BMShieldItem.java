@@ -15,6 +15,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.ModList;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -41,7 +42,7 @@ public class BMShieldItem extends ShieldItem {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
-        Items.STONE.appendHoverText(stack, world, tooltip, flag);
+        if (!ModList.get().isLoaded("variants")) Items.STONE.appendHoverText(stack, world, tooltip, flag);
         super.appendHoverText(stack, world, tooltip, flag);
         if (!this.behavior.get().effects.isEmpty()) tooltip.add(new TranslationTextComponent("tooltip.backmath.behavior.when_used").withStyle(TextFormatting.GRAY));
         for (Supplier<ItemBehaviorEffectType> type : this.behavior.get().effects) {
