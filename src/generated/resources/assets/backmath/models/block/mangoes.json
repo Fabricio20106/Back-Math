@@ -1,0 +1,6 @@
+{
+  "parent": "backmath:block/template_fruit",
+  "textures": {
+    "fruit": "backmath:block/mangoes"
+  }
+}

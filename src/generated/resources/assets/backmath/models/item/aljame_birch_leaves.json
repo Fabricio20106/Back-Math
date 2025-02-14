@@ -1,3 +1,7 @@
 {
-  "parent": "backmath:block/aljame_birch_leaves"
+  "parent": "backmath:item/template_fruit_leaves",
+  "textures": {
+    "leaves": "minecraft:block/birch_leaves",
+    "fruit": "backmath:block/aljames"
+  }
 }

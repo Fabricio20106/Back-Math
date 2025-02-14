@@ -1,3 +1,7 @@
 {
-  "parent": "backmath:block/orange_oak_leaves"
+  "parent": "backmath:item/template_fruit_leaves",
+  "textures": {
+    "leaves": "minecraft:block/oak_leaves",
+    "fruit": "backmath:block/oranges"
+  }
 }

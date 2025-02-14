@@ -7,7 +7,6 @@ import com.sophicreeper.backmath.crystallizer.item.CrystallizerMaterialItem;
 import com.sophicreeper.backmath.effect.BMEffects;
 import com.sophicreeper.backmath.item.custom.food.VSConsumable;
 import com.sophicreeper.backmath.misc.BMSounds;
-import com.sophicreeper.backmath.particle.BMParticleTypes;
 import com.sophicreeper.backmath.util.BMKeys;
 import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.client.util.ITooltipFlag;
@@ -69,8 +68,8 @@ public class MidTermItem extends CrystallizerMaterialItem {
         double z = entity.getZ() + 0.55D - (double) (random.nextFloat() * 0.1F);
         double offset = 0.4F - (random.nextFloat() + random.nextFloat()) * 0.4F;
         if (random.nextInt(5) == 0) {
-            world.addParticle(BMParticleTypes.WARMTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
-            world.addParticle(BMParticleTypes.COLDTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
+//            world.addParticle(BMParticleTypes.WARMTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
+//            world.addParticle(BMParticleTypes.COLDTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
         }
         super.inventoryTick(stack, world, entity, slot, selected);
     }

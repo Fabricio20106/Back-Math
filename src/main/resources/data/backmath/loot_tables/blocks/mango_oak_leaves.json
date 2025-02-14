@@ -128,42 +128,89 @@
       "rolls": 1,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
+          "name": "backmath:picking/mango",
           "conditions": [
             {
-              "condition": "minecraft:survives_explosion"
-            }
-          ],
-          "name": "backmath:mango"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:inverted",
-          "term": {
-            "condition": "minecraft:alternative",
-            "terms": [
-              {
-                "condition": "minecraft:match_tool",
-                "predicate": {
-                  "tag": "forge:shears"
-                }
-              },
-              {
-                "condition": "minecraft:match_tool",
-                "predicate": {
-                  "enchantments": [
-                    {
-                      "enchantment": "minecraft:silk_touch",
-                      "levels": {
-                        "min": 1
-                      }
-                    }
-                  ]
-                }
+              "condition": "minecraft:block_state_property",
+              "block": "backmath:mango_oak_leaves",
+              "properties": {
+                "north": "true"
               }
-            ]
-          }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "backmath:picking/mango",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "backmath:mango_oak_leaves",
+              "properties": {
+                "south": "true"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "backmath:picking/mango",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "backmath:mango_oak_leaves",
+              "properties": {
+                "east": "true"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "backmath:picking/mango",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "backmath:mango_oak_leaves",
+              "properties": {
+                "west": "true"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "backmath:picking/mango",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "backmath:mango_oak_leaves",
+              "properties": {
+                "down": "true"
+              }
+            }
+          ]
         }
       ]
     }

@@ -10,6 +10,11 @@ public class ExtendedMeleeAttackGoal extends MeleeAttackGoal {
     }
 
     @Override
+    protected int getAttackInterval() {
+        return 10;
+    }
+
+    @Override
     protected double getAttackReachSqr(LivingEntity target) {
         return 5 * target.getBbWidth();
     }

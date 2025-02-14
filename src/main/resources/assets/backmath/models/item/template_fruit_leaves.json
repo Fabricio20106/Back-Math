@@ -1,0 +1,55 @@
+{
+  "credit": "Made with Blockbench by isabellawoods 8-2-24",
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "#leaves"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "down": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0, "cullface": "down"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0, "cullface": "up"},
+        "north": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0, "cullface": "north"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0, "cullface": "south"},
+        "west": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0, "cullface": "west"},
+        "east": {"uv": [0, 0, 16, 16], "texture": "#leaves", "tintindex": 0, "cullface": "east"}
+      }
+    },
+    {
+      "from": [0, 0, -0.1],
+      "to": [16, 16, -0.1],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#fruit"},
+        "south": {"uv": [16, 0, 0, 16], "texture": "#fruit"}
+      }
+    },
+    {
+      "from": [0, 0, 16.1],
+      "to": [16, 16, 16.1],
+      "rotation": {"angle": 0, "axis": "y", "origin": [0, 0, 16]},
+      "faces": {
+        "north": {"uv": [16, 0, 0, 16], "texture": "#fruit"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#fruit"}
+      }
+    },
+    {
+      "from": [-0.1, 0, 0],
+      "to": [-0.1, 16, 16],
+      "faces": {
+        "east": {"uv": [16, 0, 0, 16], "texture": "#fruit"},
+        "west": {"uv": [0, 0, 16, 16], "texture": "#fruit"}
+      }
+    },
+    {
+      "from": [16.1, 0, 0],
+      "to": [16.1, 16, 16],
+      "rotation": {"angle": 0, "axis": "y", "origin": [16, 0, 0]},
+      "faces": {
+        "east": {"uv": [0, 0, 16, 16], "texture": "#fruit"},
+        "west": {"uv": [16, 0, 0, 16], "texture": "#fruit"}
+      }
+    }
+  ]
+}

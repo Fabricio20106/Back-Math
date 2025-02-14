@@ -10,10 +10,12 @@ import com.sophicreeper.backmath.util.VSUtils;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import net.minecraft.entity.*;
 import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -128,6 +130,15 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
 
     public boolean canBePatrolLeader() {
         return true;
+    }
+
+    @Override
+    public boolean doHurtTarget(Entity entity) {
+        ItemStack handStack = this.getItemInHand(Hand.MAIN_HAND);
+        if (handStack != ItemStack.EMPTY && entity instanceof LivingEntity) {
+            handStack.getItem().hurtEnemy(handStack, (LivingEntity) entity, this);
+        }
+        return super.doHurtTarget(entity);
     }
 
     @Nullable

@@ -32,43 +32,47 @@ public class VSUtils {
         } else {
             tag.putString("id", stack.getItem().getRegistryName().toString());
             if (stack.getCount() != 1) tag.putInt("count", stack.getCount());
-            if (stack.getTag() != null) tag.put("components", stack.getTag().copy());
+            if (stack.getTag() != null) tag.put("tags", stack.getTag().copy());
         }
         return tag;
     }
 
     // Custom stack loading method that supports integer stack counts and string tag parsing.
     public static ItemStack loadStack(CompoundNBT tag) {
-        Item item;
+        Item item = Items.AIR;
+        int count = 1;
+
         if (tag.contains("id", TagTypes.STRING)) {
-            item = ForgeRegistries.ITEMS.getValue(new ResourceLocation(tag.getString("id")));
-        } else {
-            item = Items.AIR;
+            Item item1 = ForgeRegistries.ITEMS.getValue(ResourceLocation.tryParse(tag.getString("id")));
+            if (item1 != null) item = item1;
         }
-        int count;
+
         if (tag.contains("count", TagTypes.ANY_NUMERIC)) {
             count = tag.getInt("count");
-        } else {
-            count = 1;
         }
+
         ItemStack stack = new ItemStack(item, count);
 
-        if (tag.contains("components", TagTypes.STRING)) {
+        if (tag.contains("tags", TagTypes.STRING)) {
             try {
-                CompoundNBT componentsTag = JsonToNBT.parseTag(tag.getString("components"));
-                tag.put("components", componentsTag);
+                CompoundNBT tagsTag = JsonToNBT.parseTag(tag.getString("tags"));
+                tag.put("tags", tagsTag);
             } catch (CommandSyntaxException exception) {
-                LogManager.getLogger().error(new TranslationTextComponent("error.backmath.stack_loading.tag", tag.getString("components")).getString(), exception.getMessage());
+                LogManager.getLogger().error(new TranslationTextComponent("error.backmath.stack_loading.tag", tag.getString("tags")).getString(), exception.getMessage());
             }
         }
 
         if (tag.contains("components", TagTypes.COMPOUND)) {
-            stack.setTag(tag.getCompound("components"));
-            stack.getItem().verifyTagAfterLoad(tag);
+            tag.put("tags", tag.getCompound("components"));
+            tag.remove("components");
+        }
+
+        if (tag.contains("tags", TagTypes.COMPOUND)) {
+            stack.setTag(tag.getCompound("tags"));
         } else if (tag.contains("tag", TagTypes.COMPOUND)) {
             stack.setTag(tag.getCompound("tag"));
-            stack.getItem().verifyTagAfterLoad(tag);
         }
+        stack.getItem().verifyTagAfterLoad(tag);
 
         if (stack.getItem().isDamageable(stack)) stack.setDamageValue(stack.getDamageValue());
         return stack;

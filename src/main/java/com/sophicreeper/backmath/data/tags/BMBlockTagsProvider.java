@@ -265,8 +265,8 @@ public class BMBlockTagsProvider extends BlockTagsProvider {
                 .add(BMBlocks.ENCHANTED_GOLDENWOOD_SAPLING.get()).add(BMBlocks.CORK_OAK_SAPLING.get()).add(BMBlocks.ALJANWOOD_SAPLING.get()).add(BMBlocks.ALJANCAP_SAPLING.get()).add(BMBlocks.INSOMNIAN_SAPLING.get())
                 .add(BMBlocks.AVONDALIC_WILLOW_SAPLING.get());
         this.tag(BlockTags.LEAVES).add(BMBlocks.GUARANA_OAK_LEAVES.get()).add(BMBlocks.MANGO_OAK_LEAVES.get()).add(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get())
-                .add(BMBlocks.GRAPE_VINE_LEAVES.get()).add(BMBlocks.LEMON_OAK_LEAVES.get()).add(BMBlocks.PINEAPPLE_OAK_LEAVES.get()).add(BMBlocks.GUAVA_LEAVES.get()).add(BMBlocks.JABUTICABA_LEAVES.get())
-                .add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.GOLDENWOOD_LEAVES.get()).add(BMBlocks.ENCHANTED_GOLDENWOOD_LEAVES.get()).add(BMBlocks.CORK_OAK_LEAVES.get())
+                .add(BMBlocks.GRAPE_VINE_LEAVES.get()).add(BMBlocks.LEMON_OAK_LEAVES.get()).add(BMBlocks.PINEAPPLE_OAK_LEAVES.get(), BMBlocks.ORANGE_OAK_LEAVES.get(), BMBlocks.BANANA_JUNGLE_LEAVES.get()).add(BMBlocks.GUAVA_LEAVES.get())
+                .add(BMBlocks.JABUTICABA_LEAVES.get()).add(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get()).add(BMBlocks.GOLDENWOOD_LEAVES.get()).add(BMBlocks.ENCHANTED_GOLDENWOOD_LEAVES.get()).add(BMBlocks.CORK_OAK_LEAVES.get())
                 .add(BMBlocks.ALJANWOOD_LEAVES.get()).add(BMBlocks.ALJANCAP_LEAVES.get()).add(BMBlocks.AMARACAP_LEAVES.get()).add(BMBlocks.INSOMNIAN_LEAVES.get()).add(BMBlocks.AVONDALIC_WILLOW_LEAVES.get());
         this.tag(BlockTags.WALL_POST_OVERRIDE).add(BMBlocks.HILLARY_TORCH.get()).add(BMBlocks.CHARJAN_WOOD_TORCH.get()).add(BMBlocks.CHARJAN_CRYSTALLINE_BIRCH_TORCH.get()).add(BMBlocks.CHARJAN_GOLDENWOOD_TORCH.get())
                 .add(BMBlocks.CHARJAN_GUAVA_TORCH.get()).add(BMBlocks.CHARJAN_JABUTICABA_TORCH.get()).add(BMBlocks.CHARJAN_CORK_OAK_TORCH.get()).add(BMBlocks.CHARJAN_ALJANWOOD_TORCH.get()).add(BMBlocks.CHARJAN_ALJANCAP_TORCH.get())

@@ -25,9 +25,6 @@ import com.sophicreeper.backmath.loot.BMLootModifiers;
 import com.sophicreeper.backmath.loot.BMLootParameterSets;
 import com.sophicreeper.backmath.misc.*;
 import com.sophicreeper.backmath.particle.BMParticleTypes;
-import com.sophicreeper.backmath.particle.custom.HillaryFlameParticle;
-import com.sophicreeper.backmath.particle.custom.JanticalParticle;
-import com.sophicreeper.backmath.particle.custom.MidTermParticle;
 import com.sophicreeper.backmath.util.BMVanillaCompatibility;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
@@ -39,7 +36,6 @@ import com.sophicreeper.backmath.world.feature.BMFeature;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -137,10 +133,10 @@ public class CommonProxy {
         });
 
         // Particles
-        Minecraft.getInstance().particleEngine.register(BMParticleTypes.HILLARY_FLAME.get(), HillaryFlameParticle.Factory::new);
-        Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.Factory::new);
-        Minecraft.getInstance().particleEngine.register(BMParticleTypes.WARMTERM.get(), MidTermParticle.WarmtermFactory::new);
-        Minecraft.getInstance().particleEngine.register(BMParticleTypes.COLDTERM.get(), MidTermParticle.ColdtermFactory::new);
+//        Minecraft.getInstance().particleEngine.register(BMParticleTypes.HILLARY_FLAME.get(), HillaryFlameParticle.Factory::new);
+//        Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.Factory::new);
+//        Minecraft.getInstance().particleEngine.register(BMParticleTypes.WARMTERM.get(), MidTermParticle.WarmtermFactory::new);
+//        Minecraft.getInstance().particleEngine.register(BMParticleTypes.COLDTERM.get(), MidTermParticle.ColdtermFactory::new);
 
         MidTermLongswordItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mid-Term Longsword Reach Modifier", BMConfigs.COMMON_CONFIGS.midTermLongswordReachIncrease.get(), AttributeModifier.Operation.ADDITION));
         CarewniItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Carewni Reach Modifier", BMConfigs.COMMON_CONFIGS.carewniReachIncrease.get(),AttributeModifier.Operation.ADDITION));

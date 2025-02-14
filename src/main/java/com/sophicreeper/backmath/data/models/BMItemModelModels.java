@@ -150,6 +150,10 @@ public abstract class BMItemModelModels extends ItemModelProvider {
                 .perspective(ItemCameraTransforms.TransformType.FIXED, this.nested().parent(getExistingFile(modLoc("item/" + name + "_inventory")))).end();
     }
 
+    public void fruitLeaves(String name, String fruit, ResourceLocation leavesTexture) {
+        getBuilder(name).parent(getExistingFile(modLoc("item/template_fruit_leaves"))).texture("leaves", leavesTexture).texture("fruit", modLoc("block/" + fruit));
+    }
+
     public void block(String name) {
         withExistingParent(name, modLoc("block/" + name));
     }

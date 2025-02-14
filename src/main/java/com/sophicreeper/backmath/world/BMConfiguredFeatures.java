@@ -31,25 +31,27 @@ import java.util.function.Supplier;
 public class BMConfiguredFeatures {
     // Trees
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GUARANA_OAK_TREE = register("guarana_oak_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(getBackFieldTreeLog()),
-                    new SimpleBlockStateProvider(BMBlocks.GUARANA_OAK_LEAVES.get().defaultBlockState()),
-                    new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
-                    new StraightTrunkPlacer(4, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
-                    .ignoreVines().build()));
+                    new WeightedBlockStateProvider().add(BMBlocks.GUARANA_OAK_LEAVES.get().defaultBlockState(), 7)
+                            .add(Blocks.OAK_LEAVES.defaultBlockState(), 3),
+                    new BushFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(1), 2),
+                    new StraightTrunkPlacer(1, 1, 0),
+                    new TwoLayerFeature(0, 0, 0))
+                    .heightmap(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).build()));
 
     public static final ConfiguredFeature<?, ?> GUARANA_OAK_TREES = register("guarana_oak_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(GUARANA_OAK_TREE.weighted(0.2F),
                     GUARANA_OAK_TREE.weighted(0.1F)), GUARANA_OAK_TREE)).decorated(Features.Placements.HEIGHTMAP_SQUARE).decorated(Placement.COUNT_EXTRA.configured(
                             new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MANGO_OAK_TREE = register("mango_oak_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(getBackFieldTreeLog()),
-                    new SimpleBlockStateProvider(BMBlocks.MANGO_OAK_LEAVES.get().defaultBlockState()),
+                    new WeightedBlockStateProvider().add(BMBlocks.MANGO_OAK_LEAVES.get().defaultBlockState(), 7)
+                            .add(Blocks.OAK_LEAVES.defaultBlockState(), 3),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> MANGO_OAK_TREES = register("mango_oak_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(MANGO_OAK_TREE.weighted(0.2F),
@@ -57,12 +59,13 @@ public class BMConfiguredFeatures {
                             new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> LEMON_OAK_TREE = register("lemon_oak_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(getBackFieldTreeLog()),
-                    new SimpleBlockStateProvider(BMBlocks.LEMON_OAK_LEAVES.get().defaultBlockState()),
+                    new WeightedBlockStateProvider().add(BMBlocks.LEMON_OAK_LEAVES.get().defaultBlockState(), 7)
+                            .add(Blocks.OAK_LEAVES.defaultBlockState(), 3),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> LEMON_OAKS_TREES = register("lemon_oak_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(LEMON_OAK_TREE.weighted(0.2F),
@@ -70,12 +73,12 @@ public class BMConfiguredFeatures {
                             new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> PINEAPPLE_OAK_TREE = register("pineapple_oak_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(getBackFieldTreeLog()),
                     new SimpleBlockStateProvider(BMBlocks.PINEAPPLE_OAK_LEAVES.get().defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> PINEAPPLE_OAK_TREES = register("pineapple_oak_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(PINEAPPLE_OAK_TREE.weighted(0.2F),
@@ -83,12 +86,13 @@ public class BMConfiguredFeatures {
                             new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ORANGE_OAK_TREE = register("orange_oak_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(getBackFieldTreeLog()),
-                    new SimpleBlockStateProvider(BMBlocks.ORANGE_OAK_LEAVES.get().defaultBlockState()),
+                    new WeightedBlockStateProvider().add(BMBlocks.ORANGE_OAK_LEAVES.get().defaultBlockState(), 7)
+                            .add(Blocks.OAK_LEAVES.defaultBlockState(), 3),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> ORANGE_OAK_TREES = register("orange_oak_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(ORANGE_OAK_TREE.weighted(0.2F),
@@ -96,12 +100,13 @@ public class BMConfiguredFeatures {
                             new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> BANANA_JUNGLE_TREE = register("banana_jungle_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(Blocks.JUNGLE_LOG.defaultBlockState()),
-                    new SimpleBlockStateProvider(BMBlocks.BANANA_JUNGLE_LEAVES.get().defaultBlockState()),
+                    new WeightedBlockStateProvider().add(BMBlocks.BANANA_JUNGLE_LEAVES.get().defaultBlockState(), 7)
+                            .add(Blocks.JUNGLE_LEAVES.defaultBlockState(), 3),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(6, 3, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> BANANA_JUNGLE_TREES = register("banana_jungle_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(BANANA_JUNGLE_TREE.weighted(0.2F),
@@ -109,12 +114,12 @@ public class BMConfiguredFeatures {
                             new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CRYSTALLINE_BIRCH_TREE = register("crystalline_birch_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(BMBlocks.CRYSTALLINE_BIRCH_LOG.get().defaultBlockState()),
                     new SimpleBlockStateProvider(BMBlocks.CRYSTALLINE_BIRCH_LEAVES.get().defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(6, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> CRYSTALLINE_BIRCH_TREES = register("crystalline_birch_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(CRYSTALLINE_BIRCH_TREE.weighted(
@@ -122,12 +127,12 @@ public class BMConfiguredFeatures {
                             new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> OAK_TREE = register("back_field_oak_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(Blocks.OAK_LOG.defaultBlockState()),
                     new SimpleBlockStateProvider(Blocks.OAK_LEAVES.defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> OAK_TREES = register("back_field_oak_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(OAK_TREE.weighted(0.2F),
@@ -135,12 +140,12 @@ public class BMConfiguredFeatures {
                             new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> GRAPE_VINE_TREE = register("grape_vine_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(Blocks.SPRUCE_LOG.defaultBlockState()),
                     new SimpleBlockStateProvider(BMBlocks.GRAPE_VINE_LEAVES.get().defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(5, 2, 6),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .build()));
 
     public static final ConfiguredFeature<?, ?> GRAPE_VINE_TREES = register("grape_vine_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(GRAPE_VINE_TREE.weighted(0.2F),
@@ -148,12 +153,13 @@ public class BMConfiguredFeatures {
                             new AtSurfaceWithExtraConfig(1, 0, 0))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ALJAME_BIRCH_TREE = register("aljame_birch_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(Blocks.BIRCH_LOG.defaultBlockState()),
-                    new SimpleBlockStateProvider(BMBlocks.ALJAME_BIRCH_LEAVES.get().defaultBlockState()),
+                    new WeightedBlockStateProvider().add(BMBlocks.ALJAME_BIRCH_LEAVES.get().defaultBlockState(), 7)
+                            .add(Blocks.BIRCH_LEAVES.defaultBlockState(), 3),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(5, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> ALJAME_BIRCH_TREES = register("aljame_birch_trees", Feature.RANDOM_SELECTOR.configured(new MultipleRandomFeatureConfig(ImmutableList.of(ALJAME_BIRCH_TREE.weighted(0.2F),
@@ -223,12 +229,12 @@ public class BMConfiguredFeatures {
 
     // Trees
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ALJANWOOD_TREE = register("aljanwood_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(BMBlocks.ALJANWOOD_LOG.get().defaultBlockState()),
                     new SimpleBlockStateProvider(BMBlocks.ALJANWOOD_LEAVES.get().defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> FANCY_ALJANWOOD_TREE = register("fancy_aljanwood_tree",
@@ -241,30 +247,30 @@ public class BMConfiguredFeatures {
                     .ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> ALJANCAP_TREE = register("aljancap_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(BMBlocks.ALJANCAP_LOG.get().defaultBlockState()),
                     new SimpleBlockStateProvider(BMBlocks.ALJANCAP_LEAVES.get().defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(6, 3, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> FANCY_ALJANCAP_TREE = register("fancy_aljancap_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(BMBlocks.ALJANCAP_LOG.get().defaultBlockState()),
                     new SimpleBlockStateProvider(BMBlocks.ALJANCAP_LEAVES.get().defaultBlockState()),
                     new FancyFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(4), 4),
                     new FancyTrunkPlacer(6, 11, 0),
-                    new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
+                    new TwoLayerFeature(0, 0, 0, OptionalInt.of(4)))
                     .ignoreVines().heightmap(Heightmap.Type.MOTION_BLOCKING).build()));
 
     public static final ConfiguredFeature<?, ?> AMARACAP_TREE = register("amaracap_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(BMBlocks.ALJANCAP_LOG.get().defaultBlockState()),
                     new SimpleBlockStateProvider(BMBlocks.AMARACAP_LEAVES.get().defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(3), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(5, 3, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .maxWaterDepth(1).decorators(ImmutableList.of(LeaveVineTreeDecorator.INSTANCE)).build())
                     .decorated(Features.Placements.HEIGHTMAP_SQUARE)
                     .decorated(Placement.COUNT_EXTRA.configured(new AtSurfaceWithExtraConfig(2, 0.1F, 1))));
@@ -322,7 +328,8 @@ public class BMConfiguredFeatures {
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> MANGAED_MANGO_OAK_TREE = register("mangaed_mango_oak_tree",
             Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(getBackFieldTreeLog()),
-                    new SimpleBlockStateProvider(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get().defaultBlockState()),
+                    new WeightedBlockStateProvider().add(BMBlocks.MANGAED_MANGO_OAK_LEAVES.get().defaultBlockState(), 7)
+                            .add(Blocks.OAK_LEAVES.defaultBlockState(), 3),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
                     new TwoLayerFeature(1, 0, 1))
@@ -346,12 +353,12 @@ public class BMConfiguredFeatures {
                     new AtSurfaceWithExtraConfig(2, 0.05F, 1))));
 
     public static final ConfiguredFeature<BaseTreeFeatureConfig, ?> CORK_OAK_TREE = register("cork_oak_tree",
-            Feature.TREE.configured((new BaseTreeFeatureConfig.Builder(
+            Feature.TREE.configured(new BaseTreeFeatureConfig.Builder(
                     new SimpleBlockStateProvider(BMBlocks.CORK_OAK_LOG.get().defaultBlockState()),
                     new SimpleBlockStateProvider(BMBlocks.CORK_OAK_LEAVES.get().defaultBlockState()),
                     new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), 3),
                     new StraightTrunkPlacer(4, 2, 0),
-                    new TwoLayerFeature(1, 0, 1)))
+                    new TwoLayerFeature(1, 0, 1))
                     .ignoreVines().build()));
 
     public static final ConfiguredFeature<?, ?> ALJAMIC_SAND_DISK = register("aljamic_sand_disk", Feature.DISK.configured(new SphereReplaceConfig(BMBlocks.ALJAMIC_SAND.get().defaultBlockState(),

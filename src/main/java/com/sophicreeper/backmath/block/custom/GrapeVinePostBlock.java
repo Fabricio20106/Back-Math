@@ -73,6 +73,7 @@ public class GrapeVinePostBlock extends HorizontalBlock implements IGrowable {
         } else if (age > 1) {
             int randInt = 1 + world.random.nextInt(2);
             popResource(world, pos, new ItemStack(AxolotlTest.GRAPES.get(), randInt + (isFullyGrown ? 1 : 0)));
+            // FruitLeavesBlock.getLootTableDrops(BMResourceLocations.PICKING_GRAPES, state, pos, world, player).forEach(stack -> popResource(world, pos, stack));
             world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1, 0.8F + world.random.nextFloat() * 0.4F);
             world.setBlock(pos, state.setValue(AGE, 1), 2);
             return ActionResultType.sidedSuccess(world.isClientSide);

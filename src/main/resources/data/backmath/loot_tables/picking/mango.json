@@ -1,0 +1,14 @@
+{
+  "type": "backmath:picking",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "backmath:mango"
+        }
+      ]
+    }
+  ]
+}

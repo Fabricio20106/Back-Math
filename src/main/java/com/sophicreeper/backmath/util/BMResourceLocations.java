@@ -86,6 +86,16 @@ public class BMResourceLocations {
     public static final ResourceLocation ALJAME_TEA_BOX = BackMath.backMath("bags/aljame_tea");
     public static final ResourceLocation BOOT_PACK = BackMath.backMath("bags/boot");
 
+    // Fruit Picking
+    public static final ResourceLocation PICKING_GUARANAS = BackMath.backMath("picking/guarana");
+    public static final ResourceLocation PICKING_MANGOES = BackMath.backMath("picking/mango");
+    public static final ResourceLocation PICKING_MANGAED_MANGOES = BackMath.backMath("picking/mangaed_mango");
+    public static final ResourceLocation PICKING_GRAPES = BackMath.backMath("picking/grapes");
+    public static final ResourceLocation PICKING_LEMONS = BackMath.backMath("picking/lemon");
+    public static final ResourceLocation PICKING_ORANGES = BackMath.backMath("picking/orange");
+    public static final ResourceLocation PICKING_BANANAS = BackMath.backMath("picking/banana");
+    public static final ResourceLocation PICKING_ALJAMES = BackMath.backMath("picking/aljame");
+
     // Loot Modifiers
     public static final ResourceLocation SHEPHERD_GIFT_ADDITION = BackMath.backMath("gameplay/hero_of_the_village/shepherd_gift_addition");
 }

@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 public class BMLootParameterSets {
     public static final LootParameterSet BAG = register("bag", (paramBuilder) -> paramBuilder.required(LootParameters.ORIGIN).optional(LootParameters.THIS_ENTITY).optional(LootParameters.BLOCK_STATE).optional(LootParameters.BLOCK_ENTITY));
     public static final LootParameterSet EQUIPMENT = register("equipment", (paramBuilder) -> paramBuilder.required(LootParameters.ORIGIN).optional(LootParameters.THIS_ENTITY));
+    public static final LootParameterSet PICKING = register("picking", builder -> builder.required(LootParameters.ORIGIN).required(LootParameters.BLOCK_STATE).optional(LootParameters.THIS_ENTITY));
 
     private static LootParameterSet register(String name, Consumer<LootParameterSet.Builder> consumer) {
         LootParameterSet.Builder paramSetBuilder = new LootParameterSet.Builder();

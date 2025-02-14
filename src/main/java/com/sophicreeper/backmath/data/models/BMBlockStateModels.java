@@ -36,6 +36,18 @@ public abstract class BMBlockStateModels extends BlockStateProvider {
         simpleBlock(leaves, models().withExistingParent(leaves.getRegistryName().getPath(), modLoc("block/template_fruit_leaves")).texture("leaf", leavesTexture).texture("fruit", fruitTexture));
     }
 
+    public void fruitLeavesV2(Block leaves, ResourceLocation leavesLocation, String fruit) {
+        ModelFile fruitModel = models().withExistingParent(fruit, modLoc("block/template_fruit")).texture("fruit", modLoc("block/" + fruit));
+        ModelFile leavesModel = models().getExistingFile(leavesLocation);
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(leaves).part().modelFile(leavesModel).addModel().end();
+
+        builder.part().modelFile(fruitModel).uvLock(true).addModel().condition(SixWayBlock.NORTH, true).end();
+        builder.part().modelFile(fruitModel).uvLock(true).rotationX(90).addModel().condition(SixWayBlock.DOWN, true).end();
+        builder.part().modelFile(fruitModel).uvLock(true).rotationY(90).addModel().condition(SixWayBlock.EAST, true).end();
+        builder.part().modelFile(fruitModel).uvLock(true).rotationY(180).addModel().condition(SixWayBlock.SOUTH, true).end();
+        builder.part().modelFile(fruitModel).uvLock(true).rotationY(270).addModel().condition(SixWayBlock.WEST, true).end();
+    }
+
     public void fluid(Block block, ResourceLocation stillTexture) {
         simpleBlock(block, models().getBuilder(block.getRegistryName().getPath()).texture("particle", stillTexture));
     }

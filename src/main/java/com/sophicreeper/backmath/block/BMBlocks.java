@@ -9,6 +9,7 @@ import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import com.sophicreeper.backmath.crystallizer.CrystallizerBlock;
 import com.sophicreeper.backmath.crystallizer.advanced.CrystallineCrystallizerBlock;
 import com.sophicreeper.backmath.item.custom.tool.KnifeItem;
+import com.sophicreeper.backmath.util.BMResourceLocations;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.world.plant.tree.*;
 import net.minecraft.block.*;
@@ -19,6 +20,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.potion.Effects;
 import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.ToolType;
@@ -61,9 +63,9 @@ public class BMBlocks {
     public static final RegistryObject<Block> ANGELIC_BLOCK = BLOCKS.register("angelic_block", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.SNOW).harvestLevel(2).requiresCorrectToolForDrops().strength(3, 6).sound(SoundType.METAL)));
     public static final RegistryObject<Block> ANGELIC_DOOR = BLOCKS.register("angelic_door", () -> new DoorBlock(AbstractBlock.Properties.copy(BMBlocks.ANGELIC_BLOCK.get()).noOcclusion()));
     public static final RegistryObject<Block> ANGELIC_TRAPDOOR = BLOCKS.register("angelic_trapdoor", () -> new TrapDoorBlock(AbstractBlock.Properties.copy(BMBlocks.ANGELIC_BLOCK.get()).noOcclusion().isValidSpawn(BMBlocks::neverAllowSpawns)));
-    public static final RegistryObject<Block> GUARANA_OAK_LEAVES = BLOCKS.register("guarana_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.OAK_LEAVES).noOcclusion().isValidSpawn(BMBlocks::neverAllowSpawns).isRedstoneConductor(BMBlocks::never).isSuffocating(BMBlocks::never).isViewBlocking(BMBlocks::never)));
-    public static final RegistryObject<Block> MANGO_OAK_LEAVES = BLOCKS.register("mango_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.OAK_LEAVES).noOcclusion()));
-    public static final RegistryObject<Block> ALJAME_BIRCH_LEAVES = BLOCKS.register("aljame_birch_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.BIRCH_LEAVES).noOcclusion()));
+    public static final RegistryObject<Block> GUARANA_OAK_LEAVES = BLOCKS.register("guarana_oak_leaves", () -> new FruitLeavesBlock(BMResourceLocations.PICKING_GUARANAS, AbstractBlock.Properties.copy(Blocks.OAK_LEAVES).noOcclusion().isValidSpawn(BMBlocks::neverAllowSpawns).isRedstoneConductor(BMBlocks::never).isSuffocating(BMBlocks::never).isViewBlocking(BMBlocks::never)));
+    public static final RegistryObject<Block> MANGO_OAK_LEAVES = BLOCKS.register("mango_oak_leaves", () -> new FruitLeavesBlock(BMResourceLocations.PICKING_MANGOES, AbstractBlock.Properties.copy(Blocks.OAK_LEAVES).noOcclusion()));
+    public static final RegistryObject<Block> ALJAME_BIRCH_LEAVES = BLOCKS.register("aljame_birch_leaves", () -> new FruitLeavesBlock(BMResourceLocations.PICKING_ALJAMES, AbstractBlock.Properties.copy(Blocks.BIRCH_LEAVES).noOcclusion()));
     public static final RegistryObject<Block> GRAPE_VINE_LEAVES = BLOCKS.register("grape_vine_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_LEAVES).noOcclusion()));
     public static final RegistryObject<Block> PINEAPPLE_OAK_LEAVES = BLOCKS.register("pineapple_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.OAK_LEAVES).noOcclusion()));
     public static final RegistryObject<Block> GUARANA_OAK_SAPLING = BLOCKS.register("guarana_oak_sapling", () -> new SaplingBlock(new GuaranaOakGrower(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
@@ -71,7 +73,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> GRAPE_VINE_SAPLING = BLOCKS.register("grape_vine_sapling", () -> new SaplingBlock(new GrapeVineGrower(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> ALJAME_BIRCH_SAPLING = BLOCKS.register("aljame_birch_sapling", () -> new SaplingBlock(new AljameBirchGrower(), AbstractBlock.Properties.copy(Blocks.BIRCH_SAPLING)));
     public static final RegistryObject<Block> PINEAPPLE_OAK_SAPLING = BLOCKS.register("pineapple_oak_sapling", () -> new SaplingBlock(new PineappleOakGrower(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
-    public static final RegistryObject<Block> LEMON_OAK_LEAVES = BLOCKS.register("lemon_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> LEMON_OAK_LEAVES = BLOCKS.register("lemon_oak_leaves", () -> new FruitLeavesBlock(BMResourceLocations.PICKING_LEMONS, AbstractBlock.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> LEMON_OAK_SAPLING = BLOCKS.register("lemon_oak_sapling", () -> new SaplingBlock(new LemonOakGrower(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
     public static final RegistryObject<Block> OAK_GRAPE_VINE_POST = BLOCKS.register("oak_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS).randomTicks().strength(0.5F).sound(SoundType.SWEET_BERRY_BUSH).noOcclusion()));
     public static final RegistryObject<Block> SPRUCE_GRAPE_VINE_POST = BLOCKS.register("spruce_grape_vine_post", () -> new GrapeVinePostBlock(AbstractBlock.Properties.copy(Blocks.SPRUCE_PLANKS).randomTicks().strength(0.5F).sound(SoundType.SWEET_BERRY_BUSH).noOcclusion()));
@@ -150,9 +152,9 @@ public class BMBlocks {
     public static final RegistryObject<Block> CRACKED_ANGELIC_BRICKS = BLOCKS.register("cracked_angelic_bricks", () -> new Block(AbstractBlock.Properties.copy(ANGELIC_BRICKS.get())));
     public static final RegistryObject<Block> TITO = BLOCKS.register("tito", () -> new EmotionalSquidBlock(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_PINK).strength(0.8F).sound(SoundType.WOOL)));
     public static final RegistryObject<Block> TOTI = BLOCKS.register("toti", () -> new EmotionalSquidBlock(AbstractBlock.Properties.of(Material.WOOL, MaterialColor.COLOR_LIGHT_BLUE).strength(0.8F).sound(SoundType.WOOL)));
-    public static final RegistryObject<Block> ORANGE_OAK_LEAVES = BLOCKS.register("orange_oak_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.OAK_LEAVES)));
+    public static final RegistryObject<Block> ORANGE_OAK_LEAVES = BLOCKS.register("orange_oak_leaves", () -> new FruitLeavesBlock(BMResourceLocations.PICKING_ORANGES, AbstractBlock.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> ORANGE_OAK_SAPLING = BLOCKS.register("orange_oak_sapling", () -> new SaplingBlock(new OrangeOakGrower(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING).harvestTool(KnifeItem.KNIFE)));
-    public static final RegistryObject<Block> BANANA_JUNGLE_LEAVES = BLOCKS.register("banana_jungle_leaves", () -> new LeavesBlock(AbstractBlock.Properties.copy(Blocks.JUNGLE_LEAVES)));
+    public static final RegistryObject<Block> BANANA_JUNGLE_LEAVES = BLOCKS.register("banana_jungle_leaves", () -> new FruitLeavesBlock(BMResourceLocations.PICKING_BANANAS, AbstractBlock.Properties.copy(Blocks.JUNGLE_LEAVES)));
     public static final RegistryObject<Block> BANANA_JUNGLE_SAPLING = BLOCKS.register("banana_jungle_sapling", () -> new SaplingBlock(new BananaJungleGrower(), AbstractBlock.Properties.copy(Blocks.JUNGLE_SAPLING)));
     public static final RegistryObject<Block> POTTED_FRIED_EGG_FLOWER = BLOCKS.register("potted_cooked_egg_flower", () -> new FlowerPotBlock(FRIED_EGG_FLOWER.get(), AbstractBlock.Properties.copy(Blocks.POTTED_POPPY)));
     public static final RegistryObject<Block> POTTED_RED_YELLOW_ALLIUM = BLOCKS.register("potted_red_yellow_flower", () -> new FlowerPotBlock(RED_YELLOW_ALLIUM.get(), AbstractBlock.Properties.copy(Blocks.POTTED_POPPY)));
@@ -452,7 +454,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> GOLDENWOOD_LADDER = BLOCKS.register("goldenwood_ladder", () -> new LadderBlock(AbstractBlock.Properties.copy(Blocks.LADDER)));
 
     // 1.8.0: Miscellaneous:
-    public static final RegistryObject<Block> MANGAED_MANGO_OAK_LEAVES = BLOCKS.register("mangaed_mango_oak_leaves", () -> createLeavesBlock(MaterialColor.PLANT));
+    public static final RegistryObject<Block> MANGAED_MANGO_OAK_LEAVES = BLOCKS.register("mangaed_mango_oak_leaves", () -> createFruitLeavesBlock(BMResourceLocations.PICKING_MANGAED_MANGOES, MaterialColor.PLANT));
     public static final RegistryObject<Block> MANGAED_MANGO_OAK_SAPLING = BLOCKS.register("mangaed_mango_oak_sapling", () -> new SaplingBlock(new MangaedMangoOakGrower(), AbstractBlock.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> POTTED_MANGAED_MANGO_OAK_SAPLING = BLOCKS.register("potted_mangaed_mango_oak_sapling", () -> new FlowerPotBlock(BMBlocks.MANGAED_MANGO_OAK_SAPLING.get(), AbstractBlock.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> MID_HILLARY_BLOCK = BLOCKS.register("mid_hillary_block", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.COLOR_MAGENTA).harvestLevel(2).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(5, 6).sound(SoundType.METAL)));
@@ -565,6 +567,10 @@ public class BMBlocks {
 
     private static LeavesBlock createLeavesBlock(MaterialColor color) {
         return new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES, color == null ? MaterialColor.PLANT : color).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(BMBlocks::canSpawnOnLeaves).isSuffocating(BMBlocks::never).isViewBlocking(BMBlocks::never));
+    }
+
+    private static LeavesBlock createFruitLeavesBlock(ResourceLocation pickingTable, MaterialColor color) {
+        return new FruitLeavesBlock(pickingTable, AbstractBlock.Properties.of(Material.LEAVES, color == null ? MaterialColor.PLANT : color).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(BMBlocks::canSpawnOnLeaves).isSuffocating(BMBlocks::never).isViewBlocking(BMBlocks::never));
     }
 
     private static Boolean canSpawnOnLeaves(BlockState state, IBlockReader reader, BlockPos pos, EntityType<?> entity) {

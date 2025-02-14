@@ -38,8 +38,16 @@ public class BMSwordItem extends SwordItem {
 
     @Override
     public boolean onLeftClickEntity(ItemStack stack, PlayerEntity attacker, Entity target) {
-        if (target instanceof LivingEntity && !this.cancelAttackBehavior) this.behavior.get().run(stack, attacker, (LivingEntity) target, target.level);
         return super.onLeftClickEntity(stack, attacker, target);
+    }
+
+    @Override
+    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (!this.cancelAttackBehavior) {
+            if (attacker instanceof PlayerEntity) this.behavior.get().run(stack, (PlayerEntity) attacker, target, target.level);
+            else this.behavior.get().run(stack, null, target, target.level);
+        }
+        return super.hurtEnemy(stack, target, attacker);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.entity.custom;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.QLPOwnersTargetGoal;
 import com.sophicreeper.backmath.entity.goal.QLPRandomFlyingGoal;
+import com.sophicreeper.backmath.entity.goal.ResetAngerGoal;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
@@ -96,6 +97,7 @@ public class QueenLucyPetEntity extends TameableEntity {
         this.targetSelector.addGoal(2, new QLPOwnersTargetGoal(this));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class ,10, false, false, (livEntity) -> livEntity.getType().is(BMEntityTypeTags.QLP_TARGETS_TAMED)));
         this.targetSelector.addGoal(3, new NonTamedTargetGoal<>(this, LivingEntity.class, false, NON_TAMED_TARGETS));
+        this.targetSelector.addGoal(4, new ResetAngerGoal<>(this));
         super.registerGoals();
     }
 

@@ -1,3 +1,7 @@
 {
-  "parent": "backmath:block/banana_jungle_leaves"
+  "parent": "backmath:item/template_fruit_leaves",
+  "textures": {
+    "leaves": "minecraft:block/jungle_leaves",
+    "fruit": "backmath:block/bananas"
+  }
 }

@@ -123,7 +123,6 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> OIMT_MATERIALS = backMath("oimt_materials");
     public static final ITag.INamedTag<Item> CANNOT_CRAFT_WITH_AT_CRYSTALLIZER = backMath("cannot_craft_with_at_crystallizer");
     public static final ITag.INamedTag<Item> DUAL_WIELDED = backMath("dual_wielded");
-    public static final ITag.INamedTag<Item> EXTENDED_ENTITY_REACH = backMath("extended_entity_reach");
     public static final ITag.INamedTag<Item> FULLY_LIT_ITEMS = backMath("fully_lit_items");
     public static final ITag.INamedTag<Item> JANTIC_RAILGUN_PROJECTILES = backMath("jantic_railgun_projectiles");
     public static final ITag.INamedTag<Item> RAILGUNS = backMath("railguns");

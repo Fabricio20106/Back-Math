@@ -1,6 +1,5 @@
 package com.sophicreeper.backmath.effect.custom;
 
-import com.sophicreeper.backmath.particle.BMParticleTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.AttributeModifierManager;
@@ -28,8 +27,8 @@ public class SuperchargedEffect extends Effect {
         double z = livEntity.getZ() + 0.55D - (double) (random.nextFloat() * 0.1F);
         double offset = 0.4F - (random.nextFloat() + random.nextFloat()) * 0.4F;
         if (random.nextInt(5) == 0) {
-            livEntity.level.addParticle(BMParticleTypes.WARMTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
-            livEntity.level.addParticle(BMParticleTypes.COLDTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
+//            livEntity.level.addParticle(BMParticleTypes.WARMTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
+//            livEntity.level.addParticle(BMParticleTypes.COLDTERM.get(), x * offset, y * offset, z * offset, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D, random.nextGaussian() * 0.05D);
         }
         super.applyEffectTick(livEntity, amplifier);
     }

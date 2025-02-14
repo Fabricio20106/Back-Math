@@ -343,7 +343,6 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(BMItemTags.OIMT_MATERIALS).addTag(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM).addTag(BMItemTags.INGOTS_OBSIDIAN_INFUSED_MID_TERM);
         this.tag(BMItemTags.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER).addTag(BMItemTags.MOLDS).add(AxolotlTest.REGULAR_MOLDS_BOOK.get()).add(AxolotlTest.ADVANCED_MOLDS_BOOK.get());
         this.tag(BMItemTags.DUAL_WIELDED).add(AxolotlTest.MID_TERM_LONGSWORD.get(), AxolotlTest.CAREWNI.get());
-        this.tag(BMItemTags.EXTENDED_ENTITY_REACH).add(AxolotlTest.MID_TERM_LONGSWORD.get(), AxolotlTest.CAREWNI.get());
         this.tag(BMItemTags.FULLY_LIT_ITEMS).add(AxolotlTest.RAW_MID_TERM.get(), AxolotlTest.MID_TERM.get(), AxolotlTest.MID_TERM_SHARD.get(), AxolotlTest.MID_TERM_INGOT.get(), AxolotlTest.MID_TERM_NUGGET.get(), AxolotlTest.CRUSHED_MID_TERM_ORE.get(),
                 AxolotlTest.MID_TERM_ROD.get(), AxolotlTest.MID_TERM_SWORD.get(), AxolotlTest.MID_TERM_LONGSWORD.get(), AxolotlTest.MILKED_MID_TERM_SWORD.get(), AxolotlTest.MID_TERM_SPAREY.get(), AxolotlTest.MILKED_MID_TERM_SPAREY.get(),
                 AxolotlTest.MID_TERM_PICKAXE.get(), AxolotlTest.MID_TERM_SHOVEL.get(), AxolotlTest.MID_TERM_AXE.get(), AxolotlTest.MID_TERM_HOE.get(), AxolotlTest.MID_TERM_SHEARS.get(), AxolotlTest.MID_TERM_KNIFE.get(), AxolotlTest.MID_TERM_BOW.get(),
@@ -385,7 +384,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(BMItemTags.SHIELDS).add(Items.SHIELD).add(AxolotlTest.DEVIL_SHIELD.get()).add(AxolotlTest.ANGELIC_SHIELD.get()).add(AxolotlTest.MID_TERM_SHIELD.get()).add(AxolotlTest.ALJAMEED_SHIELD.get())
                 .add(AxolotlTest.MOONERING_SHIELD.get());
         this.tag(BMItemTags.BOWS).add(AxolotlTest.DEVIL_BOW.get()).add(AxolotlTest.ANGELIC_BOW.get()).add(AxolotlTest.MID_TERM_BOW.get());
-        this.tag(BMItemTags.CROSSBOWS).add(Items.CROSSBOW).add(AxolotlTest.DEVIL_CROSSBOW.get()).add(AxolotlTest.ANGELIC_CROSSBOW.get()).add(AxolotlTest.JANTIC_RAILGUN.get());
+        this.tag(BMItemTags.CROSSBOWS).add(Items.CROSSBOW).addTag(BMItemTags.RAILGUNS).add(AxolotlTest.DEVIL_CROSSBOW.get()).add(AxolotlTest.ANGELIC_CROSSBOW.get());
         this.tag(BMItemTags.PROVIDES_WATER_BREATHING).add(Items.TURTLE_HELMET).add(AxolotlTest.CANDY_PINK_TURTLE_HELMET.get()).add(AxolotlTest.CANDY_YELLOW_TURTLE_HELMET.get());
         this.tag(BMItemTags.PROVIDES_RESISTANCE);
         this.tag(BMItemTags.PROVIDES_EFFECT).addTag(BMItemTags.PROVIDES_WATER_BREATHING).addTag(BMItemTags.PROVIDES_RESISTANCE);
@@ -572,8 +571,9 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.ENCHANTED_GOLDENWOOD_SAPLING.get()).add(AxolotlTest.CORK_OAK_SAPLING.get()).add(AxolotlTest.ALJANWOOD_SAPLING.get()).add(AxolotlTest.ALJANCAP_SAPLING.get()).add(AxolotlTest.INSOMNIAN_SAPLING.get())
                 .add(AxolotlTest.AVONDALIC_WILLOW_SAPLING.get());
         this.tag(ItemTags.LEAVES).add(AxolotlTest.GUARANA_OAK_LEAVES.get()).add(AxolotlTest.MANGO_OAK_LEAVES.get()).add(AxolotlTest.MANGAED_MANGO_OAK_LEAVES.get())
-                .add(AxolotlTest.GRAPE_VINE_LEAVES.get()).add(AxolotlTest.LEMON_OAK_LEAVES.get()).add(AxolotlTest.PINEAPPLE_OAK_LEAVES.get()).add(AxolotlTest.GUAVA_LEAVES.get()).add(AxolotlTest.JABUTICABA_LEAVES.get())
-                .add(AxolotlTest.CRYSTALLINE_BIRCH_LEAVES.get()).add(AxolotlTest.GOLDENWOOD_LEAVES.get()).add(AxolotlTest.ENCHANTED_GOLDENWOOD_LEAVES.get()).add(AxolotlTest.CORK_OAK_LEAVES.get())
-                .add(AxolotlTest.ALJANWOOD_LEAVES.get()).add(AxolotlTest.ALJANCAP_LEAVES.get()).add(AxolotlTest.AMARACAP_LEAVES.get()).add(AxolotlTest.INSOMNIAN_LEAVES.get()).add(AxolotlTest.AVONDALIC_WILLOW_LEAVES.get());
+                .add(AxolotlTest.GRAPE_VINE_LEAVES.get()).add(AxolotlTest.LEMON_OAK_LEAVES.get()).add(AxolotlTest.PINEAPPLE_OAK_LEAVES.get(), AxolotlTest.ORANGE_OAK_LEAVES.get(), AxolotlTest.BANANA_JUNGLE_LEAVES.get())
+                .add(AxolotlTest.GUAVA_LEAVES.get()).add(AxolotlTest.JABUTICABA_LEAVES.get()).add(AxolotlTest.CRYSTALLINE_BIRCH_LEAVES.get()).add(AxolotlTest.GOLDENWOOD_LEAVES.get()).add(AxolotlTest.ENCHANTED_GOLDENWOOD_LEAVES.get())
+                .add(AxolotlTest.CORK_OAK_LEAVES.get()).add(AxolotlTest.ALJANWOOD_LEAVES.get()).add(AxolotlTest.ALJANCAP_LEAVES.get()).add(AxolotlTest.AMARACAP_LEAVES.get()).add(AxolotlTest.INSOMNIAN_LEAVES.get())
+                .add(AxolotlTest.AVONDALIC_WILLOW_LEAVES.get());
     }
 }

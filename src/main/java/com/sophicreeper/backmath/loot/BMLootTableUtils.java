@@ -1,8 +1,10 @@
 package com.sophicreeper.backmath.loot;
 
 import com.google.common.collect.ImmutableList;
+import net.minecraft.block.BlockState;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
@@ -12,9 +14,12 @@ import net.minecraft.loot.LootParameters;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.Hand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 
 public class BMLootTableUtils {
@@ -43,6 +48,20 @@ public class BMLootTableUtils {
                     context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ())).withParameter(LootParameters.TOOL, context.getPlayer().getItemInHand(Hand.MAIN_HAND)).withParameter(LootParameters.THIS_ENTITY, context.getPlayer())
                     .create(LootParameterSets.BLOCK);
             return server.getLootTables().get(cuttingTable).getRandomItems(lootContext);
+        }
+        return ImmutableList.of();
+    }
+
+    public static Collection<ItemStack> pickFruits(ResourceLocation pickingTable, World world, BlockState state, BlockPos pos, @Nullable PlayerEntity player) {
+        MinecraftServer server = world.getServer();
+        if (server == null) return ImmutableList.of();
+
+        if (world instanceof ServerWorld) {
+            Vector3d vec3D = new Vector3d(pos.getX(), pos.getY(), pos.getZ());
+            LootContext.Builder builder = new LootContext.Builder((ServerWorld) world).withParameter(LootParameters.ORIGIN, vec3D).withParameter(LootParameters.BLOCK_STATE, state);
+            if (player != null) builder.withParameter(LootParameters.THIS_ENTITY, player);
+            LootContext context = builder.create(BMLootParameterSets.PICKING);
+            return server.getLootTables().get(pickingTable).getRandomItems(context);
         }
         return ImmutableList.of();
     }
