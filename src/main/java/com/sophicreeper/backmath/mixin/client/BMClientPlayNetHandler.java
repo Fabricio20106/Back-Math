@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.mixin.client;
 
+import com.sophicreeper.backmath.blockentity.custom.QueenLucyHeadBlockEntity;
 import com.sophicreeper.backmath.blockentity.custom.WandererSophieHeadBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.play.ClientPlayNetHandler;
@@ -19,7 +20,7 @@ public class BMClientPlayNetHandler {
     @Inject(method = "handleBlockEntityData", at = @At("HEAD"))
     public void handleBlockEntityData(SUpdateTileEntityPacket packet, CallbackInfo callback) {
         TileEntity blockEntity = this.minecraft.level.getBlockEntity(packet.getPos());
-        if (blockEntity instanceof WandererSophieHeadBlockEntity && packet.getType() == 14) {
+        if ((blockEntity instanceof WandererSophieHeadBlockEntity || blockEntity instanceof QueenLucyHeadBlockEntity) && packet.getType() == 14) {
             blockEntity.load(this.minecraft.level.getBlockState(packet.getPos()), packet.getTag());
         }
     }

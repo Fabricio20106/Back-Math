@@ -129,6 +129,7 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
         BMPlayerModel<T> mobModel = this.getModel();
         mobModel.setAllVisible(true);
 
+        // todo: replace "shouldHideTexture()" with outfit definitions ~isa 28-2
         if (mob instanceof WornOutfit && ((WornOutfit) mob).isWearingOutfit()) {
             WornOutfit outfit = (WornOutfit) mob;
             if (outfit.shouldHideTexture(mobModel.slimArms(), EquipmentSlotType.CHEST)) hideModelLayers(mobModel, EquipmentSlotType.CHEST);
