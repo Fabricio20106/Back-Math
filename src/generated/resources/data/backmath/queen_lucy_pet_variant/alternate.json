@@ -1,6 +1,6 @@
 {
   "asset_id": "backmath:alternate",
-  "texture_location": "backmath:entity/queen_lucy_pet/qsp_alt",
+  "texture_location": "backmath:entity/queen_lucy_pet/alternate",
   "display_name": {
     "translate": "entity.backmath.queen_lucy_pet.alternate"
   }

@@ -61,15 +61,42 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "backmath:queen_lucy_shirt_current"
+          "name": "backmath:queen_lucy_shirt_current",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "nbt": "{variant:\"backmath:current\"}"
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "backmath:queen_lucy_shirt_alt"
+          "name": "backmath:queen_lucy_shirt_alt",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "nbt": "{variant:\"backmath:alternate\"}"
+              }
+            }
+          ]
         },
         {
           "type": "minecraft:item",
-          "name": "backmath:queen_lucy_shirt_relic"
+          "name": "backmath:queen_lucy_shirt_relic",
+          "conditions": [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "nbt": "{variant:\"backmath:relic\"}"
+              }
+            }
+          ]
         }
       ],
       "conditions": [
@@ -85,8 +112,7 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:set_count",
-              "count": 1
+              "function": "backmath:copy_queen_lucy_variant"
             },
             {
               "function": "backmath:increase_dropped_skulls"
@@ -135,8 +161,8 @@
             {
               "function": "minecraft:set_count",
               "count": {
-                "min": 3.0,
-                "max": 6.0,
+                "min": 3,
+                "max": 6,
                 "type": "minecraft:uniform"
               }
             },
@@ -157,8 +183,8 @@
             {
               "function": "minecraft:looting_enchant",
               "count": {
-                "min": 0.0,
-                "max": 1.0
+                "min": 0,
+                "max": 1
               }
             }
           ],

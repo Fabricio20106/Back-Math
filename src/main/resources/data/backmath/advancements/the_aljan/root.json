@@ -13,7 +13,7 @@
     "show_toast": false,
     "announce_to_chat": false,
     "hidden": false,
-    "background": "backmath:textures/block/aljanstone.png"
+    "background": "backmath:textures/gui/advancement_backgrounds/the_aljan.png"
   },
   "criteria": {
     "locate_hideout_dungeon": {

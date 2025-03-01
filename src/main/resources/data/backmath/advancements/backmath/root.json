@@ -13,7 +13,7 @@
     "show_toast": false,
     "announce_to_chat": false,
     "hidden": false,
-    "background": "backmath:textures/block/glazed_tabu.png"
+    "background": "backmath:textures/gui/advancement_backgrounds/main.png"
   },
   "criteria": {
     "first_guarana": {

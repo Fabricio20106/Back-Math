@@ -113,6 +113,7 @@ public class BMCommonConfigs {
 
     // Items
     public final ForgeConfigSpec.BooleanValue populateWandererSophieHeadVariants;
+    public final ForgeConfigSpec.BooleanValue populateQueenLucyHeadVariants;
     public final ForgeConfigSpec.BooleanValue milkedSwordsEnabled;
     public final ForgeConfigSpec.IntValue midTermCustomDurabilityBar;
     public final ForgeConfigSpec.IntValue spareyCustomDurabilityBar;
@@ -184,6 +185,7 @@ public class BMCommonConfigs {
 
         builder.push("items");
         this.populateWandererSophieHeadVariants = builder.comment("If the creative tab should add all wanderer sophie head variants.").define("populateWandererSophieHeadVariants", true);
+        this.populateQueenLucyHeadVariants = builder.comment("If the creative tab should add all queen lucy head variants.").define("populateQueenLucyHeadVariants", true);
         this.milkedSwordsEnabled = builder.comment("Allow Milked Swords to give you Milk Buckets when hitting a mob?").define("milkedSwordsEnabled", true);
         this.midTermCustomDurabilityBar = builder.comment("Defines the color of the durability bar of mid-term items.").defineInRange("midTermCustomDurabilityBar", 0x1DC2D1, 0x000000, 0xFFFFFF);
         this.spareyCustomDurabilityBar = builder.comment("Defines the color of the durability bar of the sparey tool set.").defineInRange("spareyCustomDurabilityBar", 0x85C284, 0x000000, 0xFFFFFF);

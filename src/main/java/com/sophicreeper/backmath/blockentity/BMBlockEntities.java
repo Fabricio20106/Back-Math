@@ -4,6 +4,7 @@ import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.blockentity.custom.BMBarrelBlockEntity;
 import com.sophicreeper.backmath.blockentity.custom.HeadBlockEntity;
+import com.sophicreeper.backmath.blockentity.custom.QueenLucyHeadBlockEntity;
 import com.sophicreeper.backmath.blockentity.custom.WandererSophieHeadBlockEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
@@ -22,4 +23,6 @@ public class BMBlockEntities {
             .build(null));
     public static final RegistryObject<TileEntityType<WandererSophieHeadBlockEntity>> WANDERER_SOPHIE_HEAD = BLOCK_ENTITIES.register("wanderer_sophie_head", () ->
             TileEntityType.Builder.of(WandererSophieHeadBlockEntity::new, BMBlocks.WANDERER_SOPHIE_HEAD.get(), BMBlocks.WANDERER_SOPHIE_WALL_HEAD.get()).build(null));
+    public static final RegistryObject<TileEntityType<QueenLucyHeadBlockEntity>> QUEEN_LUCY_HEAD = BLOCK_ENTITIES.register("queen_lucy_head", () ->
+            TileEntityType.Builder.of(QueenLucyHeadBlockEntity::new, BMBlocks.QUEEN_LUCY_HEAD.get(), BMBlocks.QUEEN_LUCY_WALL_HEAD.get()).build(null));
 }

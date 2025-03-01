@@ -45,4 +45,8 @@ public class BackMath {
     public static ResourceLocation entityTexture(String name) {
         return texture("entity/" + name);
     }
+
+    public static ResourceLocation textureLocation(ResourceLocation textureLocation) {
+        return new ResourceLocation(textureLocation.getNamespace(), "textures/" + textureLocation.getPath() + ".png");
+    }
 }

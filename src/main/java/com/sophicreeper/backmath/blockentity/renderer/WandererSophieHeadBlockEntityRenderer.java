@@ -2,11 +2,9 @@ package com.sophicreeper.backmath.blockentity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.block.custom.HeadBlock;
-import com.sophicreeper.backmath.block.custom.WallHeadBlock;
+import com.sophicreeper.backmath.block.custom.head.HeadBlock;
+import com.sophicreeper.backmath.block.custom.head.WallHeadBlock;
 import com.sophicreeper.backmath.blockentity.custom.WandererSophieHeadBlockEntity;
-import com.sophicreeper.backmath.util.BMResourceLocations;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -33,10 +31,10 @@ public class WandererSophieHeadBlockEntityRenderer extends TileEntityRenderer<Wa
         boolean isMountedOnWall = state.getBlock() instanceof WallHeadBlock;
         Direction facingDirection = isMountedOnWall ? state.getValue(WallHeadBlock.FACING) : null;
         float rotation = 22.5F * (float) (isMountedOnWall ? (2 + facingDirection.get2DDataValue()) * 4 : state.getValue(HeadBlock.ROTATION));
-        renderHead(facingDirection, rotation, blockEntity.getHeadTexture(), stack, buffer, combinedLight);
+        renderHead(facingDirection, rotation, blockEntity.getHeadTexture(), blockEntity.getEmissiveHeadTexture(), stack, buffer, combinedLight);
     }
 
-    public static void renderHead(@Nullable Direction facing, float rotation, ResourceLocation headTexture, MatrixStack stack, IRenderTypeBuffer buffer, int combinedLight) {
+    public static void renderHead(@Nullable Direction facing, float rotation, ResourceLocation headTexture, @Nullable ResourceLocation emissiveTexture, MatrixStack stack, IRenderTypeBuffer buffer, int combinedLight) {
         HumanoidHeadModel headModel = new HumanoidHeadModel();
 
         stack.pushPose();
@@ -52,7 +50,7 @@ public class WandererSophieHeadBlockEntityRenderer extends TileEntityRenderer<Wa
         headModel.renderToBuffer(stack, translucentBuffer, combinedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
         stack.popPose();
 
-        if (headTexture.toString().equals(BMResourceLocations.ENDERPHIE.toString())) {
+        if (emissiveTexture != null) {
             stack.pushPose();
             if (facing == null) {
                 stack.translate(0.5D, 0, 0.5D);
@@ -63,7 +61,7 @@ public class WandererSophieHeadBlockEntityRenderer extends TileEntityRenderer<Wa
             stack.scale(-1, -1, 1);
             headModel.setupAnim(0, rotation, 0);
 
-            IVertexBuilder eyesBuilder = buffer.getBuffer(RenderType.eyes(BackMath.entityTexture("sophie/wanderer/ender_eyes")));
+            IVertexBuilder eyesBuilder = buffer.getBuffer(RenderType.eyes(emissiveTexture));
             headModel.renderToBuffer(stack, eyesBuilder, 0xF00000, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
             stack.popPose();
         }

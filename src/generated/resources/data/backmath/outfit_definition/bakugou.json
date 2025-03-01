@@ -1,0 +1,15 @@
+{
+  "asset_id": "backmath:bakugou",
+  "head": {
+    "texture": "backmath:models/outfit/bakugou_head"
+  },
+  "chest": {
+    "texture": "backmath:models/outfit/bakugou_chest"
+  },
+  "legs": {
+    "texture": "backmath:models/outfit/bakugou_legs"
+  },
+  "feet": {
+    "texture": "backmath:models/outfit/bakugou_feet"
+  }
+}

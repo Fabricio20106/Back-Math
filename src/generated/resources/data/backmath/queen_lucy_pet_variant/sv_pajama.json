@@ -1,6 +1,6 @@
 {
   "asset_id": "backmath:sv_pajama",
-  "texture_location": "backmath:entity/queen_lucy_pet/qsp_sv_pajama",
+  "texture_location": "backmath:entity/queen_lucy_pet/pajama",
   "display_name": {
     "translate": "entity.backmath.queen_lucy_pet.sv_pajama"
   }

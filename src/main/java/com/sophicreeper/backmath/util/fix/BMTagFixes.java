@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.util.fix;
 
 import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.util.TagTypes;
+import com.sophicreeper.backmath.variant.queenlucy.QueenLucyVariant;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
@@ -9,9 +10,13 @@ import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TranslationTextComponent;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BMTagFixes {
+    public static final Logger LOGGER = LogManager.getLogger();
+
     // Updates the old "SpellTicks" tag of Queen Lucy to the new "lucy_spells.spell_cooldown_ticks" tag.
     public static int moveSpellTicks(CompoundNBT tag) {
         CompoundNBT lucySpells = tag.getCompound("lucy_spells");
@@ -58,6 +63,16 @@ public class BMTagFixes {
         return tag.getBoolean("was_on_ground");
     }
 
+    public static QueenLucyVariant setQueenLucyVariant(CompoundNBT tag) {
+        // if (!tag.contains("variant", TagTypes.STRING)) tag.putString("variant", BMQueenLucyVariants.CURRENT.get().getAssetID().toString());
+        try {
+            return QueenLucyVariant.DATA_DRIVEN_VARIANTS.get(new ResourceLocation(tag.getString("variant")));
+        } catch (Exception exception) {
+            LOGGER.warn(new TranslationTextComponent("error.backmath.queen_lucy_variant.load_error", tag.get("variant"), exception).getString());
+            return BMRegistries.QUEEN_LUCY_VARIANT.getValue(new ResourceLocation(tag.getString("variant")));
+        }
+    }
+
     // Updates the old "SophieType" and "Variant" (integer) tags of wanderer sophies to the new "variant" (string/data-driven registry) tag.
     public static WandererSophieVariant updateWandererSophieVariant(CompoundNBT tag) {
         // Make the first versions of then friend sophies able to update properly to today's Back Math.
@@ -90,7 +105,7 @@ public class BMTagFixes {
         try {
             return WandererSophieVariant.DATA_DRIVEN_VARIANTS.get(new ResourceLocation(tag.getString("variant")));
         } catch (Exception exception) {
-            LogManager.getLogger().error("Failed to load a Wanderer Sophie variant from NBT", exception);
+            LOGGER.warn(new TranslationTextComponent("error.backmath.wanderer_sophie_variant.load_error", tag.get("variant"), exception).getString());
             return BMRegistries.WANDERER_SOPHIE_VARIANT.getValue(new ResourceLocation(tag.getString("variant")));
         }
     }
@@ -121,6 +136,11 @@ public class BMTagFixes {
                 case 0: default: return BMQueenLucyPetVariants.CURRENT.get();
             }
         }
-        return BMRegistries.QUEEN_LUCY_PET_VARIANT.getValue(ResourceLocation.tryParse(tag.getString("variant")));
+        try {
+            return QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.get(new ResourceLocation(tag.getString("variant")));
+        } catch (Exception exception) {
+            LOGGER.warn(new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.load_error", tag.get("variant"), exception).getString());
+            return BMRegistries.QUEEN_LUCY_PET_VARIANT.getValue(new ResourceLocation(tag.getString("variant")));
+        }
     }
 }

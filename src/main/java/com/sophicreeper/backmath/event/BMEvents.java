@@ -8,11 +8,13 @@ import com.sophicreeper.backmath.block.model.FullbrightModel;
 import com.sophicreeper.backmath.command.BMDebuggingCommands;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.BMEntities;
+import com.sophicreeper.backmath.entity.outfit.OutfitDefinitionManager;
 import com.sophicreeper.backmath.entity.renderer.HandArmorRenderer;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.variant.manager.QueenLucyPetVariantManager;
+import com.sophicreeper.backmath.variant.manager.QueenLucyVariantManager;
 import com.sophicreeper.backmath.variant.manager.WandererSophieVariantManager;
 import com.sophicreeper.backmath.world.carver.BMCarverGeneration;
 import com.sophicreeper.backmath.world.dimension.BMDimensions;
@@ -242,7 +244,9 @@ public class BMEvents {
     @SubscribeEvent
     public static void onResourceReload(AddReloadListenerEvent event) {
         event.addListener(new WandererSophieVariantManager());
+        event.addListener(new QueenLucyVariantManager());
         event.addListener(new QueenLucyPetVariantManager());
+        event.addListener(new OutfitDefinitionManager());
     }
 
     @SubscribeEvent

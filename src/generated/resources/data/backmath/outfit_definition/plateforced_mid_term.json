@@ -1,0 +1,15 @@
+{
+  "asset_id": "backmath:plateforced_mid_term",
+  "head": {
+    "texture": "backmath:models/outfit/plateforced_mid_term_head"
+  },
+  "chest": {
+    "texture": "backmath:models/outfit/plateforced_mid_term_chest"
+  },
+  "legs": {
+    "texture": "backmath:models/outfit/plateforced_mid_term_legs"
+  },
+  "feet": {
+    "texture": "backmath:models/outfit/plateforced_mid_term_feet"
+  }
+}

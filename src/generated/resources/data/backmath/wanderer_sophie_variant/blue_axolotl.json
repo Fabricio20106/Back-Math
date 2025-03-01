@@ -1,6 +1,4 @@
 {
   "asset_id": "backmath:blue_axolotl",
-  "texture_location": "backmath:entity/sophie/wanderer/blue_axolotl",
-  "slim_arms": true,
-  "spawns_naturally": true
+  "texture_location": "backmath:entity/sophie/wanderer/blue_axolotl"
 }

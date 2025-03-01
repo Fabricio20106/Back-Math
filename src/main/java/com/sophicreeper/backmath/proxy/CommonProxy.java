@@ -26,6 +26,7 @@ import com.sophicreeper.backmath.loot.BMLootParameterSets;
 import com.sophicreeper.backmath.misc.*;
 import com.sophicreeper.backmath.particle.BMParticleTypes;
 import com.sophicreeper.backmath.util.BMVanillaCompatibility;
+import com.sophicreeper.backmath.variant.queenlucy.BMQueenLucyVariants;
 import com.sophicreeper.backmath.variant.queenlucypet.BMQueenLucyPetVariants;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import com.sophicreeper.backmath.world.biome.BMBiomes;
@@ -77,6 +78,7 @@ public class CommonProxy {
         BMItemBehaviors.BEHAVIORS.register(eventBus);
         BMItemBehaviorEffectTypes.TYPES.register(eventBus);
         BMWandererSophieVariants.VARIANTS.register(eventBus);
+        BMQueenLucyVariants.VARIANTS.register(eventBus);
         BMQueenLucyPetVariants.VARIANTS.register(eventBus);
         BMLootParameterSets.init();
         BMLootFunctions.init();

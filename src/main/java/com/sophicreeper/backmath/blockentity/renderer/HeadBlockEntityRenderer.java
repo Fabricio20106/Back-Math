@@ -2,9 +2,9 @@ package com.sophicreeper.backmath.blockentity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.block.custom.AbstractHeadBlock;
-import com.sophicreeper.backmath.block.custom.HeadBlock;
-import com.sophicreeper.backmath.block.custom.WallHeadBlock;
+import com.sophicreeper.backmath.block.custom.head.AbstractHeadBlock;
+import com.sophicreeper.backmath.block.custom.head.HeadBlock;
+import com.sophicreeper.backmath.block.custom.head.WallHeadBlock;
 import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import com.sophicreeper.backmath.blockentity.custom.HeadBlockEntity;
 import net.minecraft.block.BlockState;

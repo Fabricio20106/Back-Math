@@ -51,6 +51,7 @@ import net.minecraftforge.event.ForgeEventFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
@@ -107,15 +108,15 @@ public class QueenLucyPetEntity extends TameableEntity {
         return textComponent;
     }
 
-    @Override
+    @Nonnull
     public ITextComponent getName() {
         return this.getCustomName() != null ? removeAction(this.getCustomName()) : (this.getRegistryVariant() != null ? this.getRegistryVariant().getDisplayName() : super.getName());
     }
 
-    @Nullable
+    @Nonnull
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason spawnReason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         if (spawnData == null) spawnData = new AgeableEntity.AgeableData(false);
-        BMUtils.setRandomQLPRegistryBasedVariant(this);
+        BMUtils.randomizeQueenLucyPetVariant(this);
 
         return super.finalizeSpawn(world, difficulty, spawnReason, spawnData, dataTag);
     }
@@ -139,6 +140,7 @@ public class QueenLucyPetEntity extends TameableEntity {
         return !(attacker instanceof TameableEntity && ((TameableEntity) attacker).isOwnedBy(owner)) && !attacker.getType().is(BMEntityTypeTags.QLP_CANNOT_TARGET) && super.wantsToAttack(attacker, owner);
     }
 
+    @Nonnull
     public ActionResultType mobInteract(PlayerEntity player, Hand hand) {
         ItemStack handStack = player.getItemInHand(hand);
         if (!this.isTame() && handStack.getItem().is(BMItemTags.QUEEN_LUCY_PET_TAME_ITEMS)) {
@@ -191,6 +193,7 @@ public class QueenLucyPetEntity extends TameableEntity {
         }
     }
 
+    @Nonnull
     protected PathNavigator createNavigation(World world) {
         FlyingPathNavigator flyingPathNavigator = new FlyingPathNavigator(this, world);
         flyingPathNavigator.setCanOpenDoors(true);
@@ -255,6 +258,14 @@ public class QueenLucyPetEntity extends TameableEntity {
             this.entityData.set(VARIANT, variant.getAssetID().toString());
         } else {
             LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.invalid_set", "something")).getString());
+        }
+    }
+
+    public void setVariant(ResourceLocation variant) {
+        if (variant != null && QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.containsKey(variant)) {
+            this.entityData.set(VARIANT, variant.toString());
+        } else {
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_pet_variant.invalid_set", "currently logger doesn't work")).getString());
         }
     }
 

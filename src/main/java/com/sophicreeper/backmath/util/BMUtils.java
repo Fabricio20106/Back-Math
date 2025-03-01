@@ -2,11 +2,12 @@ package com.sophicreeper.backmath.util;
 
 import com.google.common.collect.Lists;
 import com.sophicreeper.backmath.BackMath;
+import com.sophicreeper.backmath.entity.custom.QueenLucyEntity;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
-import com.sophicreeper.backmath.misc.BMRegistries;
+import com.sophicreeper.backmath.variant.queenlucy.QueenLucyVariant;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import com.sophicreeper.backmath.world.structure.BMStructures;
@@ -43,27 +44,28 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-// Just generalized methods that are used more than twice throughout the code.
+/// Just generalized methods that are used more than twice throughout the code.
 public class BMUtils {
     public static final List<String> VALID_WOOD_TYPES = Lists.newArrayList("aljanwood", "aljancap", "insomnian", "avondalic_willow");
     public static final int END_PORTAL_OPEN = 1038;
     private static final float[] FOG_COLORS = new float[3];
     private static float COLOR = 0;
 
-    // Plays the item pickup sound at a (server) player.
+    /// Plays the item pickup sound at a (server) player.
     public static void playItemPickupSound(ServerPlayerEntity serverPlayer) {
         float pitch = ((serverPlayer.getRandom().nextFloat() - serverPlayer.getRandom().nextFloat()) * 0.7F + 1) + 2;
         serverPlayer.level.playSound(null, serverPlayer.blockPosition(), SoundEvents.ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, pitch);
     }
 
-    // Adds a tooltip line for an effect.
+    /// Adds a tooltip line for an effect.
     public static IFormattableTextComponent addEffectTooltip(Effect effect, int duration, int amplifier) {
         IFormattableTextComponent component = new TranslationTextComponent("potion.withAmplifier", new TranslationTextComponent(effect.getDescriptionId()), new TranslationTextComponent("potion.potency." + amplifier));
         return new TranslationTextComponent("potion.withDuration", component, StringUtils.formatTickDuration(duration)).withStyle(VSUtils.getFromRGB(effect.getColor()));
     }
 
-    // Adds the Bakugou armor set to the entity.
-    // Used to replace the armor entirely.
+    /// Adds the Bakugou armor set to the entity.
+    /// <p>
+    /// Used to replace the armor entirely.
     public static void addBakugouOutfit(LivingEntity livEntity) {
         if (livEntity.getItemBySlot(EquipmentSlotType.HEAD).isEmpty()) livEntity.setItemSlot(EquipmentSlotType.HEAD, new ItemStack(AxolotlTest.BAKUGOU_HAIR.get()));
         if (livEntity.getItemBySlot(EquipmentSlotType.CHEST).isEmpty()) livEntity.setItemSlot(EquipmentSlotType.CHEST, new ItemStack(AxolotlTest.BAKUGOU_BLOUSE.get()));
@@ -72,7 +74,7 @@ public class BMUtils {
         livEntity.playSound(SoundEvents.ARMOR_EQUIP_LEATHER, 1, 1);
     }
 
-    // Returns a Back Fields Explorer Map. Used by cartographer villagers.
+    /// Returns a Back Fields Explorer Map. Used by cartographer villagers.
     public static ItemStack makeBackFieldsExplorerMap(Entity trader) {
         if (trader.level instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld) trader.level;
@@ -92,7 +94,7 @@ public class BMUtils {
         return new ItemStack(Items.MAP);
     }
 
-    // Returns a Termian Empire Banner. Used by termian patrollers.
+    /// Returns a Termian Empire Banner. Used by termian patrollers.
     public static ItemStack getTermianBannerInstance() {
         ItemStack lightBlueBanner = new ItemStack(Items.LIGHT_BLUE_BANNER);
         CompoundNBT blockEntityTag = lightBlueBanner.getOrCreateTagElement("BlockEntityTag");
@@ -104,7 +106,7 @@ public class BMUtils {
         return lightBlueBanner;
     }
 
-    // Returns the resource location for a Termian Patroller's cape.
+    /// Returns the resource location for a Termian Patroller's cape.
     public static ResourceLocation getTermianPatrollerCape(TermianPatrollerEntity patroller) {
         String capeNamespace = new ResourceLocation(patroller.getCapeTexture()).getNamespace();
         String capePath = new ResourceLocation(patroller.getCapeTexture()).getPath();
@@ -114,7 +116,7 @@ public class BMUtils {
         return new ResourceLocation(capeNamespace, "textures/entity/" + capePath + ".png");
     }
 
-    // Sets a random cape to a Termian Patroller entity (out of 10 vanilla/default capes).
+    /// Sets a random cape to a Termian Patroller entity (out of 10 vanilla/default capes).
     public static void setRandomCape(TermianPatrollerEntity patroller, Random rand) {
         List<ResourceLocation> capeTextures = Lists.newArrayList(BackMath.backMath("cape/cherry_blossom"), BackMath.backMath("cape/migrator"),
                 BackMath.backMath("cape/vanilla"), BackMath.backMath("cape/followers"), BackMath.backMath("cape/purple_heart"),
@@ -123,8 +125,8 @@ public class BMUtils {
         patroller.setCapeTexture(capeTextures.get(rand.nextInt(10)).toString());
     }
 
-    // Sets a random Wanderer Sophie variant from the "wanderer_sophie_variant" data folder.
-    public static void setRandomWSRegistryBasedVariant(WandererSophieEntity sophie) {
+    /// Sets a random Wanderer Sophie variant from the <code>wanderer_sophie_variant</code> data folder.
+    public static void randomizeWandererSophieVariant(WandererSophieEntity sophie) {
         ResourceLocation[] variants = WandererSophieVariant.DATA_DRIVEN_VARIANTS.keySet().toArray(new ResourceLocation[0]);
         ResourceLocation variant = variants[sophie.level.random.nextInt(WandererSophieVariant.DATA_DRIVEN_VARIANTS.size())];
         while (WandererSophieVariant.DATA_DRIVEN_VARIANTS.get(variant) != null &&
@@ -134,13 +136,21 @@ public class BMUtils {
         sophie.setVariant(variant);
     }
 
-    // Sets a random Queen Lucy Pet variant from the "queen_lucy_pet_variant" data folder.
-    public static void setRandomQLPRegistryBasedVariant(QueenLucyPetEntity lucy) {
-        QueenLucyPetVariant[] variants = BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().toArray(new QueenLucyPetVariant[0]);
-        lucy.setVariant(variants[lucy.level.random.nextInt(BMRegistries.QUEEN_LUCY_PET_VARIANT.getValues().size())]);
+    /// Sets a random Queen Lucy variant from the <code>queen_lucy_variant</code> data folder.
+    public static QueenLucyVariant getQueenLucyVariant(QueenLucyEntity lucy) {
+        ResourceLocation[] variants = QueenLucyVariant.DATA_DRIVEN_VARIANTS.keySet().toArray(new ResourceLocation[0]);
+        ResourceLocation variant = variants[lucy.level.random.nextInt(QueenLucyVariant.DATA_DRIVEN_VARIANTS.size())];
+        return QueenLucyVariant.DATA_DRIVEN_VARIANTS.get(variant);
     }
 
-    // Gets the wood type for a boat from the string tag "wood_type" if available, or the woodType parameter if it isn't.
+    /// Sets a random Queen Lucy Pet variant from the <code>queen_lucy_pet_variant</code> data folder.
+    public static void randomizeQueenLucyPetVariant(QueenLucyPetEntity lucy) {
+        ResourceLocation[] variants = QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.keySet().toArray(new ResourceLocation[0]);
+        ResourceLocation variant = variants[lucy.level.random.nextInt(QueenLucyPetVariant.DATA_DRIVEN_VARIANTS.size())];
+        lucy.setVariant(variant);
+    }
+
+    /// Gets the wood type for a boat from the string tag <code>wood_type</code> if available, or the <code>woodType</code> parameter if it isn't.
     public static String getBoatType(ItemStack stack, String woodType) {
         CompoundNBT tag = stack.getTag();
         if (tag != null && tag.contains("wood_type", TagTypes.STRING)) {
@@ -149,22 +159,22 @@ public class BMUtils {
         return woodType;
     }
 
-    // Whether a wood type for a boat is valid for this Back Math boat.
+    /// Whether a wood type for a boat is valid for this Back Math boat.
     public static boolean isValidWoodType(String woodType) {
         return VALID_WOOD_TYPES.contains(woodType);
     }
 
-    // Whether the "Aljan Texture Update" resource pack is enabled.
+    /// Whether the <b>"Aljan Texture Update"</b> resource pack is enabled.
     public static boolean aljanPackEnabled() {
         return Minecraft.getInstance().getResourcePackRepository().getSelectedIds().contains(BackMath.backMath("aljan_texture_update").toString());
     }
 
-    // Custom overlay coordinates method to remove the red tint from taking damage or dying.
+    /// Custom overlay coordinates method to remove the red tint from taking damage or dying.
     public static int getOverlayCoordinates(float u) {
         return OverlayTexture.pack(OverlayTexture.u(u), OverlayTexture.v(false));
     }
 
-    // Copied from teamtwilight/twilightforest. Smoothly transitions the fog color in the Aljan to a light purple color at nighttime.
+    /// Copied from <code>teamtwilight/twilightforest</code>. Smoothly transitions the fog color in the Aljan to a light purple color at nighttime.
     public static void transitionFogColor(EntityViewRenderEvent.FogColors event, boolean shouldApplyColors) {
         float[] baseColors = {event.getRed(), event.getGreen(), event.getBlue()};
         float[] targetColors = {0.333F, 0.231F, 0.305F};

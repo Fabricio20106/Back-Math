@@ -1,9 +1,9 @@
 package com.sophicreeper.backmath.entity.renderer.layer;
 
-import com.google.common.collect.Maps;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.entity.misc.WornOutfit;
+import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.Minecraft;
@@ -21,11 +21,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-import java.util.Map;
-
 @OnlyIn(Dist.CLIENT)
 public class OutfitLayer<T extends LivingEntity, A extends BipedModel<T>> extends LayerRenderer<T, A> {
-    public static final Map<String, ResourceLocation> OUTFIT_TEXTURE_CACHE = Maps.newHashMap();
     private final boolean slimArms;
 
     public OutfitLayer(IEntityRenderer<T, A> renderer, boolean slimArms) {
@@ -52,17 +49,22 @@ public class OutfitLayer<T extends LivingEntity, A extends BipedModel<T>> extend
         // Updated outfit rendering ~isa 4-12-24
         if (mob instanceof WornOutfit && isWearingOutfit) {
             WornOutfit outfit = (WornOutfit) mob;
-            ResourceLocation outfitLocation = OUTFIT_TEXTURE_CACHE.computeIfAbsent(WornOutfit.parseOutfitLocation(slimArms, outfit.getOutfitTexture(), slotType).toString(), ResourceLocation::new);
-            IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));
-            float transparency = mob.isInvisible() && !mob.isInvisibleTo(Minecraft.getInstance().player) ? 0.15F : (mob.isInvisible() ? 0 : 1);
-            if (outfit.shouldHideTexture(slimArms, slotType)) parentModel.renderToBuffer(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0), 1, 1, 1, transparency);
+            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, new ResourceLocation(outfit.getOutfitTexture()), slimArms);
+            if (outfitLocation != null) {
+                IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));
+                float transparency = mob.isInvisible() && !mob.isInvisibleTo(Minecraft.getInstance().player) ? 0.15F : (mob.isInvisible() ? 0 : 1);
+                parentModel.renderToBuffer(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0), 1, 1, 1, transparency);
+            }
         } else if (!armorStack.isEmpty() && armorStack.getItem() instanceof ArmorItem && armorStack.getItem().is(BMItemTags.OUTFITS)) {
             ArmorItem item = (ArmorItem) mob.getItemBySlot(slotType).getItem();
-            ResourceLocation outfitLocation = OUTFIT_TEXTURE_CACHE.computeIfAbsent(WornOutfit.parseOutfitLocation(slimArms, item.getMaterial().getName(), slotType).toString(), ResourceLocation::new);
-            if (item.is(BMItemTags.FULLY_LIT_ITEMS)) packedLight = LightTexture.pack(15, 15);
+            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, new ResourceLocation(item.getMaterial().getName()), slimArms);
 
-            RenderType translucentType = RenderType.entityTranslucent(outfitLocation);
-            parentModel.renderToBuffer(stack, buffer.getBuffer(translucentType), packedLight, BMUtils.getOverlayCoordinates(0), 1, 1, 1, 1);
+            if (outfitLocation != null) {
+                if (item.is(BMItemTags.FULLY_LIT_ITEMS)) packedLight = LightTexture.pack(15, 15);
+
+                RenderType translucentType = RenderType.entityTranslucent(outfitLocation);
+                parentModel.renderToBuffer(stack, buffer.getBuffer(translucentType), packedLight, BMUtils.getOverlayCoordinates(0), 1, 1, 1, 1);
+            }
         }
     }
 }

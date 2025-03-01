@@ -3,8 +3,10 @@ package com.sophicreeper.backmath.data;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.data.models.BMBlockStateProviderV2;
 import com.sophicreeper.backmath.data.models.BMItemModelProvider;
+import com.sophicreeper.backmath.data.outfit.BMOutfitDefinitionProvider;
 import com.sophicreeper.backmath.data.tags.*;
 import com.sophicreeper.backmath.data.variant.BMQueenLucyPetVariantsProvider;
+import com.sophicreeper.backmath.data.variant.BMQueenLucyVariantsProvider;
 import com.sophicreeper.backmath.data.variant.BMWandererSophieVariantsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -29,7 +31,9 @@ public final class BMDataGenerator {
         generator.addProvider(new BMEntityTypeTagsProvider(generator, fileHelper));
         generator.addProvider(new BMEnchantmentTagsProvider(generator, fileHelper));
         generator.addProvider(new BMWandererSophieVariantsProvider(generator, fileHelper));
+        generator.addProvider(new BMQueenLucyVariantsProvider(generator, fileHelper));
         generator.addProvider(new BMQueenLucyPetVariantsProvider(generator, fileHelper));
+        generator.addProvider(new BMOutfitDefinitionProvider(generator));
         generator.addProvider(new BMLootModifierProvider(generator));
     }
 }

@@ -1,7 +1,6 @@
 package com.sophicreeper.backmath.data.variant;
 
 import com.sophicreeper.backmath.BackMath;
-import com.sophicreeper.backmath.data.WandererSophieVariantProvider;
 import com.sophicreeper.backmath.variant.wansophie.BMWandererSophieVariants;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -38,6 +37,7 @@ public class BMWandererSophieVariantsProvider extends WandererSophieVariantProvi
         this.add("empresary2", BMWandererSophieVariants.EMPRESARY2.get());
         this.add("entrepreneur", BMWandererSophieVariants.ENTREPRENEUR.get());
         this.add("farmer", BMWandererSophieVariants.FARMER.get());
+        this.add("piglin_brute", BMWandererSophieVariants.PIGLIN_BRUTE.get());
         this.add("swimsuit", BMWandererSophieVariants.SWIMSUIT.get());
         this.add("green_hoodie", BMWandererSophieVariants.GREEN_HOODIE.get());
         this.add("round_six", BMWandererSophieVariants.ROUND_SIX.get());

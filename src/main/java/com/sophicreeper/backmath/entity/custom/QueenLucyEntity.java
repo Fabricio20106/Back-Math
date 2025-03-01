@@ -8,10 +8,13 @@ import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMResourceLocations;
+import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.EquipmentTableUtils;
 import com.sophicreeper.backmath.util.fix.BMTagFixes;
 import com.sophicreeper.backmath.util.tag.BMEntityTypeTags;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
+import com.sophicreeper.backmath.variant.queenlucy.BMQueenLucyVariants;
+import com.sophicreeper.backmath.variant.queenlucy.QueenLucyVariant;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -32,6 +35,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
@@ -51,6 +55,7 @@ import java.util.Locale;
 public class QueenLucyEntity extends TermianMemberEntity implements SophieFriendlies, IMob {
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
     private static final DataParameter<String> SPELL = EntityDataManager.defineId(QueenLucyEntity.class, DataSerializers.STRING);
+    private static final DataParameter<String> VARIANT = EntityDataManager.defineId(QueenLucyEntity.class, DataSerializers.STRING);
     public int spellCooldownTicks;
     public CompoundNBT lucySpellsTag;
 
@@ -65,6 +70,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(SPELL, "none");
+        this.entityData.define(VARIANT, BMQueenLucyVariants.CURRENT.get().getAssetID().toString());
     }
 
     @Override
@@ -78,6 +84,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
     @Override
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
+        this.setVariant(BMTagFixes.setQueenLucyVariant(tag));
 
         CompoundNBT spellsTag = tag.getCompound("lucy_spells");
         if (QueenLucySpells.isValidSpell(spellsTag.getString("current_spell"))) {
@@ -97,9 +104,42 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
     public void addAdditionalSaveData(CompoundNBT tag) {
         super.addAdditionalSaveData(tag);
         CompoundNBT spellsTag = new CompoundNBT();
+        tag.putString("variant", this.getVariant());
         spellsTag.putString("current_spell", this.entityData.get(SPELL).toLowerCase(Locale.ROOT));
         spellsTag.putInt("spell_cooldown_ticks", this.spellCooldownTicks);
         tag.put("lucy_spells", spellsTag);
+    }
+
+    public String getVariant() {
+        if (QueenLucyVariant.DATA_DRIVEN_VARIANTS.containsKey(new ResourceLocation(this.entityData.get(VARIANT)))) {
+            return this.entityData.get(VARIANT);
+        } else {
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_variant.invalid_get", this.entityData.get(VARIANT))).getString());
+        }
+        return BMQueenLucyVariants.CURRENT.get().getAssetID().toString();
+    }
+
+    public QueenLucyVariant getRegistryVariant() {
+        return QueenLucyVariant.DATA_DRIVEN_VARIANTS.get(new ResourceLocation(this.entityData.get(VARIANT)));
+    }
+
+    public void setVariant(QueenLucyVariant variant) {
+        if (variant != null && variant.getAssetID() != null) {
+            this.entityData.set(VARIANT, variant.getAssetID().toString());
+        } else {
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_variant.invalid_set", "something")).getString());
+        }
+
+        if (variant != null && variant.getBossbarInformation() !=  null) {
+            ServerBossInfo variantInfo = variant.getBossbarInformation();
+            this.bossInfo.setVisible(variantInfo.isVisible());
+            this.bossInfo.setColor(variantInfo.getColor());
+            this.bossInfo.setOverlay(variantInfo.getOverlay());
+            this.bossInfo.setDarkenScreen(variantInfo.shouldDarkenScreen());
+            this.bossInfo.setPlayBossMusic(variantInfo.shouldPlayBossMusic());
+            this.bossInfo.setCreateWorldFog(variantInfo.shouldCreateWorldFog());
+            this.bossInfo.setName(variantInfo.getName());
+        }
     }
 
     public boolean isCastingSpell() {
@@ -198,16 +238,18 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
         if (staffStack != null) staffStack.setExtendedLifetime();
     }
 
-    // Add the given player to the list of players tracking this entity.
-    // For instance, a player may track a boss in order to view its associated boss bar.
+    /// Add the given player to the list of players tracking this entity.
+    /// <p>
+    /// For instance, a player may track a boss in order to view its associated boss bar.
     @Override
     public void startSeenByPlayer(ServerPlayerEntity player) {
         super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
-    // Removes the given player from the list of players tracking this entity.
-    // See Entity#addTrackingPlayer(ServerPlayerEntity) for more information on tracking.
+    /// Removes the given player from the list of players tracking this entity.
+    /// <p>
+    /// See {@link Entity#startSeenByPlayer(ServerPlayerEntity)} for more information on tracking.
     @Override
     public void stopSeenByPlayer(ServerPlayerEntity player) {
         super.stopSeenByPlayer(player);
@@ -232,6 +274,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData entityData, @Nullable CompoundNBT dataTag) {
         EquipmentTableUtils.equipWithGear(BMResourceLocations.QUEEN_LUCY_EQUIPMENT, this);
+        this.setVariant(BMUtils.getQueenLucyVariant(this));
         return super.finalizeSpawn(world, difficulty, reason, entityData, dataTag);
     }
 

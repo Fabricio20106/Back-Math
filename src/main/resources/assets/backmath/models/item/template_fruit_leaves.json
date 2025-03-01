@@ -1,5 +1,5 @@
 {
-  "credit": "Made with Blockbench by isabellawoods 8-2-24",
+  "credit": "Made with Blockbench by isabellawoods (8-2-24)",
   "parent": "minecraft:block/block",
   "textures": {
     "particle": "#leaves"

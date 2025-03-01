@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.entity.renderer;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
-import com.sophicreeper.backmath.entity.misc.WornOutfit;
+import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import net.minecraft.client.entity.player.AbstractClientPlayerEntity;
@@ -42,7 +42,8 @@ public class HandArmorRenderer {
             outfitModel.crouching = false;
             outfitModel.swimAmount = 0;
             outfitModel.setupAnim(player, 0, 0, 0, 0, 0);
-            IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(WornOutfit.parseOutfitLocation(outfitModel.slim, item.getMaterial().getName(), item.getSlot())));
+            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(item.getSlot(), new ResourceLocation(item.getMaterial().getName()), outfitModel.slim);
+            IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));
 
             rightArm.xRot = 0;
             rightArm.render(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0));

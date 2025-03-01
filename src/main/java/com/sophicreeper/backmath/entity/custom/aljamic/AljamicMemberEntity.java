@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.entity.custom.aljamic;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.misc.WornOutfit;
+import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMFoodStats;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -25,6 +26,7 @@ import net.minecraft.potion.Effects;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityPredicates;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Difficulty;
@@ -81,7 +83,8 @@ public class AljamicMemberEntity extends CreatureEntity implements WornOutfit {
 
     @Override
     public boolean isWearingOutfit() {
-        return !this.entityData.get(OUTFIT_TEXTURE).isEmpty();
+        String outfitTexture = this.entityData.get(OUTFIT_TEXTURE);
+        return !outfitTexture.isEmpty() && OutfitDefinition.DATA_DRIVEN_OUTFITS.containsKey(ResourceLocation.tryParse(outfitTexture));
     }
 
     public boolean isHurt() {

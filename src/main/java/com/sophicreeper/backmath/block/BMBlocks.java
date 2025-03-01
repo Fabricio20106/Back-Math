@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.block;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.custom.*;
+import com.sophicreeper.backmath.block.custom.head.*;
 import com.sophicreeper.backmath.block.custom.variants.BMOreBlock;
 import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassBlock;
 import com.sophicreeper.backmath.block.custom.variants.CustomBeamGlassPaneBlock;
@@ -124,8 +125,8 @@ public class BMBlocks {
     public static final RegistryObject<Block> ANGELICAL_CASING = BLOCKS.register("angelical_casing", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.SNOW).strength(3).requiresCorrectToolForDrops().sound(SoundType.METAL)));
     public static final RegistryObject<Block> MEAL_COOKER = BLOCKS.register("meal_cooker", () -> new MealCookerBlock(AbstractBlock.Properties.of(Material.STONE, MaterialColor.WOOD).requiresCorrectToolForDrops().sound(SoundType.WOOD).strength(2, 6)));
     public static final RegistryObject<Block> QUEEN_LUCY_RELIC = BLOCKS.register("queen_sophie_relic", () -> new QueenLucyRelicBlock(AbstractBlock.Properties.copy(Blocks.GOLD_BLOCK).harvestLevel(2).lightLevel(state -> 10)));
-    public static final RegistryObject<Block> QUEEN_LUCY_HEAD = BLOCKS.register("queen_sophie_head", () -> new HeadBlock(BMHeadType.QUEEN_LUCY, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
-    public static final RegistryObject<Block> QUEEN_LUCY_WALL_HEAD = BLOCKS.register("queen_sophie_wall_head", () -> new WallHeadBlock(BMHeadType.QUEEN_LUCY, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.QUEEN_LUCY_HEAD)));
+    public static final RegistryObject<Block> QUEEN_LUCY_HEAD = BLOCKS.register("queen_sophie_head", () -> new QueenLucyHeadBlock(AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
+    public static final RegistryObject<Block> QUEEN_LUCY_WALL_HEAD = BLOCKS.register("queen_sophie_wall_head", () -> new QueenLucyWallHeadBlock(AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.QUEEN_LUCY_HEAD)));
     public static final RegistryObject<Block> DEVIL_BRICKS = BLOCKS.register("devil_bricks", () -> new Block(AbstractBlock.Properties.copy(DEVIL_BLOCK.get())));
     public static final RegistryObject<Block> DEVIL_BRICK_STAIRS = BLOCKS.register("devil_brick_stairs", () -> new StairsBlock(() -> DEVIL_BRICKS.get().defaultBlockState(), AbstractBlock.Properties.copy(DEVIL_BLOCK.get())));
     public static final RegistryObject<Block> DEVIL_BRICK_SLAB = BLOCKS.register("devil_brick_slab", () -> new SlabBlock(AbstractBlock.Properties.copy(DEVIL_BLOCK.get())));

@@ -1,6 +1,5 @@
 {
   "asset_id": "backmath:savannah",
   "texture_location": "backmath:entity/sophie/wanderer/savannah",
-  "slim_arms": true,
-  "spawns_naturally": true
+  "emissive_texture": "backmath:entity/sophie/wanderer/savannah_emissive"
 }

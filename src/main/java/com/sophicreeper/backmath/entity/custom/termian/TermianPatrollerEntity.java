@@ -3,6 +3,7 @@ package com.sophicreeper.backmath.entity.custom.termian;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.termian.TermianPatrolGoal;
 import com.sophicreeper.backmath.entity.misc.WornOutfit;
+import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.TagTypes;
@@ -16,6 +17,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -257,7 +259,8 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
 
     @Override
     public boolean isWearingOutfit() {
-        return !this.entityData.get(OUTFIT_TEXTURE).isEmpty();
+        String outfitTexture = this.entityData.get(OUTFIT_TEXTURE);
+        return !outfitTexture.isEmpty() && OutfitDefinition.DATA_DRIVEN_OUTFITS.containsKey(ResourceLocation.tryParse(outfitTexture));
     }
 
     private void updateCape() {

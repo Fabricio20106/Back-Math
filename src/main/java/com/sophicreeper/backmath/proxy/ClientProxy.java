@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.blockentity.BMBlockEntities;
 import com.sophicreeper.backmath.blockentity.renderer.HeadBlockEntityRenderer;
+import com.sophicreeper.backmath.blockentity.renderer.QueenLucyHeadBlockEntityRenderer;
 import com.sophicreeper.backmath.blockentity.renderer.WandererSophieHeadBlockEntityRenderer;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
@@ -270,6 +271,7 @@ public class ClientProxy extends CommonProxy {
         // Block Entity Renderers
         ClientRegistry.bindTileEntityRenderer(BMBlockEntities.HEAD.get(), HeadBlockEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(BMBlockEntities.WANDERER_SOPHIE_HEAD.get(), WandererSophieHeadBlockEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(BMBlockEntities.QUEEN_LUCY_HEAD.get(), QueenLucyHeadBlockEntityRenderer::new);
 
         // Entity Renderers
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);

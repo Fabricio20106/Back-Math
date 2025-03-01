@@ -13,7 +13,7 @@
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false,
-    "background": "backmath:textures/block/guava_log.png"
+    "background": "backmath:textures/gui/advancement_backgrounds/backmath_foods.png"
   },
   "criteria": {
     "fried_egg": {

@@ -173,7 +173,7 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
         super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
-        BMUtils.setRandomWSRegistryBasedVariant(this);
+        BMUtils.randomizeWandererSophieVariant(this);
         EquipmentTableUtils.equipWithGear(BMResourceLocations.WANDERER_SOPHIE_EQUIPMENT, this);
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
@@ -194,9 +194,10 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
         return BMSounds.ENTITY_SOPHIE_DEATH;
     }
 
-    // If this mob can be leashed.
-    // Returns: If this mob can be leashed.
-    // Old Back Math shenanigans.
+    /// If this mob can be leashed.
+    /// <p>
+    /// Old Back Math shenanigans.
+    /// @return If this mob can be leashed.
     @Override
     public boolean canBeLeashed(PlayerEntity player) {
         return false;

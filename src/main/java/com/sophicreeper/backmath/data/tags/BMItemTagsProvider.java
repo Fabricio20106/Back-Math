@@ -354,7 +354,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_PICKAXE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHOVEL.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_AXE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_HOE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHEARS.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_KNIFE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_WARRIOR_HELMET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_HELMET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BREASTPLATE.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_LEGGINGS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BOOTS.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CROWN.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BLOCK.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_DOOR.get(),
-                AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_TRAPDOOR.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CHAIN.get());
+                AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_TRAPDOOR.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CHAIN.get(), AxolotlTest.GOLDEN_HALO.get());
         this.tag(BMItemTags.JANTIC_RAILGUN_PROJECTILES).add(AxolotlTest.JANTICAL.get());
         this.tag(BMItemTags.RAILGUNS).add(AxolotlTest.JANTIC_RAILGUN.get());
         this.tag(BMItemTags.OUTFITS).add(AxolotlTest.PLATEFORCED_MID_TERM_HELMET.get(), AxolotlTest.PLATEFORCED_MID_TERM_BREASTPLATE.get(), AxolotlTest.PLATEFORCED_MID_TERM_LEGGINGS.get(), AxolotlTest.PLATEFORCED_MID_TERM_BOOTS.get(),

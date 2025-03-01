@@ -1,6 +1,5 @@
 {
   "asset_id": "backmath:green_hoodie",
   "texture_location": "backmath:entity/sophie/wanderer/green_hoodie",
-  "slim_arms": true,
   "spawns_naturally": false
 }

@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import static com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant.trueTextureLocation;
+import static com.sophicreeper.backmath.BackMath.textureLocation;
 
 public class WandererSophieHeadBlockEntity extends TileEntity {
     @Nullable
@@ -69,7 +69,12 @@ public class WandererSophieHeadBlockEntity extends TileEntity {
     }
 
     public ResourceLocation getHeadTexture() {
-        return this.variant != null ? trueTextureLocation(this.variant.getTextureLocation()) : trueTextureLocation(BMWandererSophieVariants.YELLOW_AXOLOTL.get().getTextureLocation());
+        return this.variant != null ? textureLocation(this.variant.getTextureLocation()) : textureLocation(BMWandererSophieVariants.YELLOW_AXOLOTL.get().getTextureLocation());
+    }
+
+    @Nullable
+    public ResourceLocation getEmissiveHeadTexture() {
+        return this.variant != null && this.variant.getEmissiveTexture() != null ? textureLocation(this.variant.getEmissiveTexture()) : null;
     }
 
     @Override

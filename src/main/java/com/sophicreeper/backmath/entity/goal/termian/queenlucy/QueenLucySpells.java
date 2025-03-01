@@ -24,24 +24,20 @@ public enum QueenLucySpells {
 
     public static boolean isValidSpell(String name) {
         name = name.toLowerCase(Locale.ROOT);
-        return name.equals("none") || name.equals("summon_warrior_sophies") || name.equals("summon_archer_insomnia_sophies") || name.equals("summon_insomnia_sophies") || name.equals("equip_diamond_chestplate_and_heal");
+        return name.equals("none") || name.equals("summon_warrior_sophies") || name.equals("summon_archer_insomnia_sophies") || name.equals("summon_insomnia_sophies") || name.equals("equip_diamond_chestplate_and_heal") || name.isEmpty();
     }
 
     public static QueenLucySpells setFromString(String spellName) {
         switch (spellName) {
-            case "summon_warrior_sophies":
-                return QueenLucySpells.SUMMON_WARRIOR_SOPHIES;
-            case "summon_insomnia_sophies":
-                return QueenLucySpells.SUMMON_INSOMNIA_SOPHIES;
-            case "summon_archer_insomnia_sophies":
-                return QueenLucySpells.SUMMON_ARCHER_INSOMNIA_SOPHIES;
-            case "equip_diamond_chestplate_and_heal":
-                return QueenLucySpells.EQUIP_DIAMOND_CHESTPLATE_AND_HEAL;
-            case "none":
-                return QueenLucySpells.NONE;
-            default:
+            case "summon_warrior_sophies": return QueenLucySpells.SUMMON_WARRIOR_SOPHIES;
+            case "summon_insomnia_sophies": return QueenLucySpells.SUMMON_INSOMNIA_SOPHIES;
+            case "summon_archer_insomnia_sophies": return QueenLucySpells.SUMMON_ARCHER_INSOMNIA_SOPHIES;
+            case "equip_diamond_chestplate_and_heal": return QueenLucySpells.EQUIP_DIAMOND_CHESTPLATE_AND_HEAL;
+            case "none": case "": return QueenLucySpells.NONE;
+            default: {
                 LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy_spells.unknown_spell", spellName)).getString());
                 return QueenLucySpells.NONE;
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ package com.sophicreeper.backmath.entity.renderer;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
-import com.sophicreeper.backmath.entity.renderer.layer.EnderphieEyesLayer;
+import com.sophicreeper.backmath.entity.renderer.layer.WandererSophieEmissiveLayer;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 public class WandererSophieRenderer extends TermianPlayerRenderer<WandererSophieEntity> {
     public WandererSophieRenderer(EntityRendererManager manager) {
         super(manager, 0.5F, true);
-        this.addLayer(new EnderphieEyesLayer(this));
+        this.addLayer(new WandererSophieEmissiveLayer(this));
     }
 
     @Nonnull
