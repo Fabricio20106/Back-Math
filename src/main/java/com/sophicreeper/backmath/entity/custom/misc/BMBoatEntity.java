@@ -64,15 +64,12 @@ public class BMBoatEntity extends BoatEntity {
     }
 
     @Override
+    @Nonnull
     public Item getDropItem() {
         switch(this.getWoodType()) {
-            case "aljanwood":
-            default:
-                return AxolotlTest.ALJANWOOD_BOAT.get();
-            case "aljancap":
-                return AxolotlTest.ALJANCAP_BOAT.get();
-            case "insomnian":
-                return AxolotlTest.INSOMNIAN_BOAT.get();
+            case "aljancap": return AxolotlTest.ALJANCAP_BOAT.get();
+            case "insomnian": return AxolotlTest.INSOMNIAN_BOAT.get();
+            case "aljanwood": default: return AxolotlTest.ALJANWOOD_BOAT.get();
         }
     }
 

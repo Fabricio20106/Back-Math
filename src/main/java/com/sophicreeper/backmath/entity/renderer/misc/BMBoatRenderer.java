@@ -62,13 +62,9 @@ public class BMBoatRenderer extends EntityRenderer<BMBoatEntity> {
     @Nonnull
     public ResourceLocation getTextureLocation(BMBoatEntity boat) {
         switch (boat.getWoodType()) {
-            case "aljancap":
-                return BOAT_TEXTURES[1];
-            case "insomnian":
-                return BOAT_TEXTURES[2];
-            case "aljanwood":
-            default:
-                return BOAT_TEXTURES[0];
+            case "aljancap":return BOAT_TEXTURES[1];
+            case "insomnian": return BOAT_TEXTURES[2];
+            case "aljanwood": default: return BOAT_TEXTURES[0];
         }
     }
 }

@@ -2,10 +2,7 @@ package com.sophicreeper.backmath.blockentity;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.block.BMBlocks;
-import com.sophicreeper.backmath.blockentity.custom.BMBarrelBlockEntity;
-import com.sophicreeper.backmath.blockentity.custom.HeadBlockEntity;
-import com.sophicreeper.backmath.blockentity.custom.QueenLucyHeadBlockEntity;
-import com.sophicreeper.backmath.blockentity.custom.WandererSophieHeadBlockEntity;
+import com.sophicreeper.backmath.blockentity.custom.*;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,6 +13,7 @@ public class BMBlockEntities {
 
     public static final RegistryObject<TileEntityType<BMBarrelBlockEntity>> BM_BARREL = BLOCK_ENTITIES.register("bm_barrel", () -> TileEntityType.Builder.of(BMBarrelBlockEntity::new,
             BMBlocks.ALJANWOOD_BARREL.get(), BMBlocks.ALJANCAP_BARREL.get(), BMBlocks.INSOMNIAN_BARREL.get(), BMBlocks.AVONDALIC_WILLOW_BARREL.get()).build(null));
+    public static final RegistryObject<TileEntityType<CrateBlockEntity>> CRATE = BLOCK_ENTITIES.register("crate", () -> TileEntityType.Builder.of(CrateBlockEntity::new, BMBlocks.CRATE.get()).build(null));
     public static final RegistryObject<TileEntityType<HeadBlockEntity>> HEAD = BLOCK_ENTITIES.register("head", () -> TileEntityType.Builder.of(HeadBlockEntity::new,
             BMBlocks.ANGRY_SOPHIE_HEAD.get(), BMBlocks.ANGRY_SOPHIE_WALL_HEAD.get(), BMBlocks.INSOMNIA_SOPHIE_HEAD.get(), BMBlocks.INSOMNIA_SOPHIE_WALL_HEAD.get(),
             BMBlocks.ALJAMIC_BONES_SKULL.get(), BMBlocks.ALJAMIC_BONES_WALL_SKULL.get(), BMBlocks.SLEEPISH_SKELETON_SKULL.get(), BMBlocks.SLEEPISH_SKELETON_WALL_SKULL.get(),

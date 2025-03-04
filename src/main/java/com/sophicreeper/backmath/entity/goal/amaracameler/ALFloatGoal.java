@@ -14,13 +14,13 @@ public class ALFloatGoal extends Goal {
         amaracameler.getNavigation().setCanFloat(true);
     }
 
-    // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+    /// Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
     @Override
     public boolean canUse() {
         return (this.amaracameler.isInWall() || this.amaracameler.isInLava()) && this.amaracameler.getMoveControl() instanceof AmaracamelerMovementController;
     }
 
-    // Keep ticking a continuous task that has already been started.
+    /// Keep ticking a continuous task that has already been started.
     @Override
     public void tick() {
         if (this.amaracameler.getRandom().nextFloat() < 0.8F) {

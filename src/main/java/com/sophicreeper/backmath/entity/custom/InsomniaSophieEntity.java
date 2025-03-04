@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.misc.SophieFriendlies;
@@ -33,6 +33,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class InsomniaSophieEntity extends TermianMemberEntity implements SophieFriendlies, IMob {
@@ -55,7 +56,7 @@ public class InsomniaSophieEntity extends TermianMemberEntity implements SophieF
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, (livEntity) -> livEntity.getType().is(EntityTypeTags.RAIDERS)));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AngrySophieEntity.class, false));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieFabricioEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBonesEntity.class, true));
@@ -146,6 +147,7 @@ public class InsomniaSophieEntity extends TermianMemberEntity implements SophieF
     }
 
     @Override
+    @Nonnull
     public SoundCategory getSoundSource() {
         return SoundCategory.HOSTILE;
     }

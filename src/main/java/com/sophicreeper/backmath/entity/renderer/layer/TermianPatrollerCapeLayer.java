@@ -29,7 +29,7 @@ public class TermianPatrollerCapeLayer<T extends TermianPatrollerEntity> extends
     public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, T patroller, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         if (!patroller.isInvisible() && patroller.getType().is(BMEntityTypeTags.ELIGIBLE_TO_CAPES) && !patroller.getCapeTexture().isEmpty()) {
             ItemStack chestStack = patroller.getItemBySlot(EquipmentSlotType.CHEST);
-            if (!chestStack.getItem().is(BMItemTags.ELYTRA) && patroller.getCapeVisibility()) {
+            if (!(chestStack.getItem().is(BMItemTags.ELYTRA) || chestStack.getItem().is(BMItemTags.CRATES)) && patroller.getCapeVisibility()) {
                 stack.pushPose();
                 stack.translate(0, 0, 0.125D);
                 double chasingPosX = MathHelper.lerp(partialTicks, patroller.prevChasingPosX, patroller.chasingPosX) - MathHelper.lerp(partialTicks, patroller.xo, patroller.getX());

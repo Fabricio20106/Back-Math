@@ -4,8 +4,8 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.*;
-import com.sophicreeper.backmath.entity.custom.aljamic.CollectorFabricioEntity;
-import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.CollectorAlcalyteEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.ShyAlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
 import com.sophicreeper.backmath.world.spawner.TermianPatrolSpawner;
@@ -35,7 +35,7 @@ public class BMEventBusEvents {
         event.put(BMEntities.QUEEN_LUCY_PET.get(), QueenLucyPetEntity.createQueenLucyPetAttributes().build());
         event.put(BMEntities.ARCHER_LUCIA.get(), ArcherLuciaEntity.createArcherLuciaAttributes().build());
         event.put(BMEntities.KARATE_LUCIA.get(), KarateLuciaEntity.createKarateLuciaAttributes().build());
-        event.put(BMEntities.SHY_FABRICIO.get(), ShyFabricioEntity.createShyFabricioAttributes().build());
+        event.put(BMEntities.SHY_ALCALYTE.get(), ShyAlcalyteEntity.createShyAlcalyteAttributes().build());
 
         // Aljan Mobs
         event.put(BMEntities.INSOMNIA_ZOMBIE.get(), InsomniaZombieEntity.createInsomniaZombieAttributes().build());
@@ -45,7 +45,7 @@ public class BMEventBusEvents {
         event.put(BMEntities.AMARACAMELER.get(), MonsterEntity.createMonsterAttributes().build());
         event.put(BMEntities.JANTICLE.get(), JanticleEntity.createJanticleAttributes().build());
         event.put(BMEntities.MALAIKA.get(), MalaikaEntity.createMalaikaAttributes().build());
-        event.put(BMEntities.COLLECTOR_FABRICIO.get(), CollectorFabricioEntity.createCollectorFabricioAttributes().build());
+        event.put(BMEntities.COLLECTOR_ALCALYTE.get(), CollectorAlcalyteEntity.createCollectorAlcalyteAttributes().build());
     }
 
     @SubscribeEvent

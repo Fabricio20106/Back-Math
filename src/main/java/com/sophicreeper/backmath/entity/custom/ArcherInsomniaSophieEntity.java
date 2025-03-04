@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.BMRangedBowAttackGoal;
@@ -38,6 +38,7 @@ import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class ArcherInsomniaSophieEntity extends TermianMemberEntity implements IRangedAttackMob, SophieFriendlies, IMob {
@@ -154,7 +155,7 @@ public class ArcherInsomniaSophieEntity extends TermianMemberEntity implements I
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBonesEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SleepishSkeletonEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AmaracamelerEntity.class, true));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, true));
     }
 
     @Override
@@ -195,6 +196,7 @@ public class ArcherInsomniaSophieEntity extends TermianMemberEntity implements I
     }
 
     @Override
+    @Nonnull
     public SoundCategory getSoundSource() {
         return SoundCategory.HOSTILE;
     }

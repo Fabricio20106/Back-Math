@@ -29,6 +29,6 @@ public class ZombieFabricioRenderer extends BipedRenderer<ZombieFabricioEntity, 
 
     @Override
     protected boolean isShaking(ZombieFabricioEntity zombie) {
-        return zombie.isConvertingToFabricio();
+        return zombie.isConvertingToShyAlcalyte();
     }
 }

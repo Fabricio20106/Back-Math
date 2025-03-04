@@ -6,7 +6,13 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "backmath:yellow_karate_band"
+          "name": "backmath:yellow_karate_band",
+          "functions": [
+            {
+              "function": "minecraft:set_nbt",
+              "tag": "{display:{color:16701501}}"
+            }
+          ]
         }
       ]
     },

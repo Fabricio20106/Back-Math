@@ -16,7 +16,7 @@ public class ALAttackGoal extends Goal {
         this.amaracameler = amaracameler;
     }
 
-    // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+    /// Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
     @Override
     public boolean canUse() {
         LivingEntity target = this.amaracameler.getTarget();
@@ -27,14 +27,14 @@ public class ALAttackGoal extends Goal {
         }
     }
 
-    // Execute a one shot task or start executing a continuous task.
+    /// Execute a one shot task or start executing a continuous task.
     @Override
     public void start() {
         this.growTieredTimer = 300;
         super.start();
     }
 
-    // Returns whether an in-progress EntityAIBase should continue executing.
+    /// Returns whether an in-progress {@link Goal} should continue executing.
     @Override
     public boolean canContinueToUse() {
         LivingEntity target = this.amaracameler.getTarget();
@@ -45,7 +45,7 @@ public class ALAttackGoal extends Goal {
         }
     }
 
-    // Keep ticking a continuous task that has already been started.
+    /// Keep ticking a continuous task that has already been started.
     @Override
     public void tick() {
         if (this.amaracameler.getTarget() != null) this.amaracameler.lookAt(this.amaracameler.getTarget(), 10, 10);

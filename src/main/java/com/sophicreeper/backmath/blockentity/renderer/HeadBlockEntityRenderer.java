@@ -7,6 +7,7 @@ import com.sophicreeper.backmath.block.custom.head.HeadBlock;
 import com.sophicreeper.backmath.block.custom.head.WallHeadBlock;
 import com.sophicreeper.backmath.blockentity.custom.BMHeadType;
 import com.sophicreeper.backmath.blockentity.custom.HeadBlockEntity;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
@@ -64,7 +65,7 @@ public class HeadBlockEntityRenderer extends TileEntityRenderer<HeadBlockEntity>
             headModel.setupAnim(0, rotation, 0);
 
             IVertexBuilder eyesBuilder = buffer.getBuffer(RenderType.eyes(type.getEyesLocation()));
-            headModel.renderToBuffer(stack, eyesBuilder, 0xF00000, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+            headModel.renderToBuffer(stack, eyesBuilder, BMUtils.EMISSIVE_LIGHT_VALUE, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
             stack.popPose();
         }
     }

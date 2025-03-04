@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.InsomniaZombieEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.JanticleEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.ZombieFabricioEntity;
@@ -59,7 +59,7 @@ public class WarriorSophieEntity extends TermianMemberEntity implements SophieFr
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, QueenLucyPetEntity.class, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, true));
     }
 
     @Override

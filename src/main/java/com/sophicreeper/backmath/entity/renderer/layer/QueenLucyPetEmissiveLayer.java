@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.model.QueenLucyPetModel;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
@@ -23,7 +24,7 @@ public class QueenLucyPetEmissiveLayer extends LayerRenderer<QueenLucyPetEntity,
     public void render(MatrixStack stack, IRenderTypeBuffer buffer, int packedLight, QueenLucyPetEntity lucyPet, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float headYaw, float headPitch) {
         if (lucyPet.getRegistryVariant() != null && lucyPet.getRegistryVariant().getEmissiveTexture() != null) {
             IVertexBuilder eyesBuilder = buffer.getBuffer(RenderType.eyes(BackMath.textureLocation(lucyPet.getRegistryVariant().getEmissiveTexture())));
-            this.getParentModel().renderToBuffer(stack, eyesBuilder, 0xF00000, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+            this.getParentModel().renderToBuffer(stack, eyesBuilder, BMUtils.EMISSIVE_LIGHT_VALUE, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
         }
     }
 }

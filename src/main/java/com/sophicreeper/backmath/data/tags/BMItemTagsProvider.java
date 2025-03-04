@@ -334,7 +334,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 AxolotlTest.JABUTICABA.get(), AxolotlTest.GREEN_APPLE.get(), AxolotlTest.ALJAMIC_BERRY.get());
         this.tag(BMItemTags.ARCHER_LUCIA_CAN_PICKUP).addTag(BMItemTags.CROSSBOWS);
         this.tag(BMItemTags.TERMIAN_RAIDER_CAN_PICKUP).add(Items.LIGHT_BLUE_BANNER);
-        this.tag(BMItemTags.COLLECTOR_FABRICIO_CAN_PICKUP).add(AxolotlTest.ALJAMEED_BONE.get(), AxolotlTest.SLEEPISH_BONE.get(), AxolotlTest.ALJAMIC_ONION.get(), AxolotlTest.CARAMELED_WHEAT.get(), AxolotlTest.CARAMELED_WHEAT_SEEDS.get(),
+        this.tag(BMItemTags.COLLECTOR_ALCALYTES_CAN_PICKUP).add(AxolotlTest.ALJAMEED_BONE.get(), AxolotlTest.SLEEPISH_BONE.get(), AxolotlTest.ALJAMIC_ONION.get(), AxolotlTest.CARAMELED_WHEAT.get(), AxolotlTest.CARAMELED_WHEAT_SEEDS.get(),
                 AxolotlTest.ALJAMEED_INGOT.get(), AxolotlTest.ROTTEN_ALJAMIC_FLESH.get(), AxolotlTest.PINE_JELLY.get(), AxolotlTest.STICKY_AMARACAMEL_BALL.get(), AxolotlTest.ALJAMIC_BONE_HELMET.get());
         this.tag(BMItemTags.QUEEN_LUCY_PET_TAME_ITEMS).addTag(BMItemTags.FRUITS);
         this.tag(BMItemTags.QUEEN_LUCY_PET_POISONOUS_ITEMS).add(AxolotlTest.ALJAME.get());
@@ -343,13 +343,13 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(BMItemTags.OIMT_MATERIALS).addTag(BMItemTags.SINGULARITIES_OBSIDIAN_INFUSED_MID_TERM).addTag(BMItemTags.INGOTS_OBSIDIAN_INFUSED_MID_TERM);
         this.tag(BMItemTags.CANNOT_CRAFT_WITH_AT_CRYSTALLIZER).addTag(BMItemTags.MOLDS).add(AxolotlTest.REGULAR_MOLDS_BOOK.get()).add(AxolotlTest.ADVANCED_MOLDS_BOOK.get());
         this.tag(BMItemTags.DUAL_WIELDED).add(AxolotlTest.MID_TERM_LONGSWORD.get(), AxolotlTest.CAREWNI.get());
-        this.tag(BMItemTags.FULLY_LIT_ITEMS).add(AxolotlTest.RAW_MID_TERM.get(), AxolotlTest.MID_TERM.get(), AxolotlTest.MID_TERM_SHARD.get(), AxolotlTest.MID_TERM_INGOT.get(), AxolotlTest.MID_TERM_NUGGET.get(), AxolotlTest.CRUSHED_MID_TERM_ORE.get(),
+        this.tag(BMItemTags.FULLY_LIT_ITEMS).add(AxolotlTest.RAW_MID_TERM.get(), AxolotlTest.MID_TERM.get(), AxolotlTest.MID_TERM_SHARD.get(), AxolotlTest.MID_TERM_INGOT.get(), AxolotlTest.MID_TERM_NUGGET.get(), AxolotlTest.MID_TERM_DUST.get(), AxolotlTest.CRUSHED_MID_TERM_ORE.get(),
                 AxolotlTest.MID_TERM_ROD.get(), AxolotlTest.MID_TERM_SWORD.get(), AxolotlTest.MID_TERM_LONGSWORD.get(), AxolotlTest.MILKED_MID_TERM_SWORD.get(), AxolotlTest.MID_TERM_SPAREY.get(), AxolotlTest.MILKED_MID_TERM_SPAREY.get(),
                 AxolotlTest.MID_TERM_PICKAXE.get(), AxolotlTest.MID_TERM_SHOVEL.get(), AxolotlTest.MID_TERM_AXE.get(), AxolotlTest.MID_TERM_HOE.get(), AxolotlTest.MID_TERM_SHEARS.get(), AxolotlTest.MID_TERM_KNIFE.get(), AxolotlTest.MID_TERM_BOW.get(),
                 AxolotlTest.MID_TERM_WARRIOR_HELMET.get(), AxolotlTest.MID_TERM_HELMET.get(), AxolotlTest.MID_TERM_BREASTPLATE.get(), AxolotlTest.MID_TERM_LEGGINGS.get(), AxolotlTest.MID_TERM_BOOTS.get(), AxolotlTest.MID_TERM_CROWN.get(),
                 AxolotlTest.MID_TERM_SHIELD.get(), AxolotlTest.RAW_MID_TERM_BLOCK.get(), AxolotlTest.MID_TERM_BLOCK.get(), AxolotlTest.MID_TERM_DOOR.get(), AxolotlTest.MID_TERM_TRAPDOOR.get(), AxolotlTest.MID_TERM_CHAIN.get(), AxolotlTest.MID_TERM_LANTERN.get(),
                 AxolotlTest.MID_TERM_SOUL_LANTERN.get(), AxolotlTest.MID_TERM_HILLARY_LANTERN.get(), AxolotlTest.CHARJAN_MID_TERM_TORCH.get(),
-                AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHARD.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_NUGGET.get(),
+                AxolotlTest.OBSIDIAN_INFUSED_MID_TERM.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHARD.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_INGOT.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_NUGGET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_DUST.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SWORD.get(), AxolotlTest.MILKED_OBSIDIAN_INFUSED_MID_TERM_SWORD.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SPAREY.get(), AxolotlTest.MILKED_OBSIDIAN_INFUSED_MID_TERM_SPAREY.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_PICKAXE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHOVEL.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_AXE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_HOE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_SHEARS.get(),
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_KNIFE.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_WARRIOR_HELMET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_HELMET.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_BREASTPLATE.get(),
@@ -357,11 +357,13 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_TRAPDOOR.get(), AxolotlTest.OBSIDIAN_INFUSED_MID_TERM_CHAIN.get(), AxolotlTest.GOLDEN_HALO.get());
         this.tag(BMItemTags.JANTIC_RAILGUN_PROJECTILES).add(AxolotlTest.JANTICAL.get());
         this.tag(BMItemTags.RAILGUNS).add(AxolotlTest.JANTIC_RAILGUN.get());
-        this.tag(BMItemTags.OUTFITS).add(AxolotlTest.PLATEFORCED_MID_TERM_HELMET.get(), AxolotlTest.PLATEFORCED_MID_TERM_BREASTPLATE.get(), AxolotlTest.PLATEFORCED_MID_TERM_LEGGINGS.get(), AxolotlTest.PLATEFORCED_MID_TERM_BOOTS.get(),
+        this.tag(BMItemTags.CRATES).add(AxolotlTest.CRATE.get());
+        this.tag(BMItemTags.OUTFITS).addTag(BMItemTags.CRATES).add(AxolotlTest.PLATEFORCED_MID_TERM_HELMET.get(), AxolotlTest.PLATEFORCED_MID_TERM_BREASTPLATE.get(), AxolotlTest.PLATEFORCED_MID_TERM_LEGGINGS.get(), AxolotlTest.PLATEFORCED_MID_TERM_BOOTS.get(),
                 AxolotlTest.BAKUGOU_HAIR.get(), AxolotlTest.BAKUGOU_BLOUSE.get(), AxolotlTest.BAKUGOU_PANTS.get(), AxolotlTest.BAKUGOU_SHOES.get(), AxolotlTest.INSOMNIA_SOPHIE_SLEEPWEAR_BLOUSE.get(), AxolotlTest.INSOMNIA_SOPHIE_SLEEPWEAR_PANTS.get(),
-                AxolotlTest.QUEEN_LUCY_SHIRT_CURRENT.get(), AxolotlTest.QUEEN_LUCY_SHIRT_ALT.get(), AxolotlTest.QUEEN_LUCY_SHIRT_RELIC.get(), AxolotlTest.CAT_TIARA.get(), AxolotlTest.DOG_TIARA.get(), AxolotlTest.YELLOW_KARATE_BAND.get());
+                AxolotlTest.QUEEN_LUCY_SHIRT_CURRENT.get(), AxolotlTest.QUEEN_LUCY_SHIRT_ALT.get(), AxolotlTest.QUEEN_LUCY_SHIRT_RELIC.get(), AxolotlTest.CAT_TIARA.get(), AxolotlTest.DOG_TIARA.get(), AxolotlTest.KARATE_HEADBAND.get());
         this.tag(BMItemTags.CHESTPLATE_MINING_ITEMS).add(AxolotlTest.PLATEFORCED_MID_TERM_BREASTPLATE.get());
         this.tag(BMItemTags.CAN_CURE_ZOMBIE_FABRICIOS).add(AxolotlTest.JANTIQUIFIED_ALJAME.get(), AxolotlTest.HOLY_JANTIQUIFIED_ALJAME.get());
+        this.tag(BMItemTags.CRATE_FRUIT_SAPLINGS).add(AxolotlTest.GUARANA_OAK_SAPLING.get(), AxolotlTest.MANGO_OAK_SAPLING.get(), AxolotlTest.LEMON_OAK_SAPLING.get(), AxolotlTest.ORANGE_OAK_SAPLING.get(), AxolotlTest.GUAVA_SAPLING.get(), AxolotlTest.JABUTICABA_SAPLING.get());
         this.tag(BMItemTags.VILLAGER_PLANTABLE_SEEDS).add(AxolotlTest.CARAMELED_WHEAT_SEEDS.get()).add(AxolotlTest.ALJAMIC_ONION.get());
         this.tag(BMItemTags.CHICKEN_JOCKEY_CANNOT_PICKUP_PREDICATE).add(Items.EGG);
         this.tag(BMItemTags.ALLOWED_IN_MAINHAND).addTag(BMItemTags.BOWS).addTag(BMItemTags.CROSSBOWS).add(AxolotlTest.ALJAMEED_SHOVEL.get()).add(AxolotlTest.QUEEN_LUCY_SUMMONER_STAFF.get());
@@ -373,7 +375,7 @@ public class BMItemTagsProvider extends ItemTagsProvider {
         this.tag(BMItemTags.WANDERER_SOPHIE_TEMPT_ITEMS).add(AxolotlTest.MILKLLARY_CAKE.get());
         this.tag(BMItemTags.QUEEN_LUCY_PET_TEMPT_ITEMS).add(AxolotlTest.GUARANA.get(), Items.CAKE);
         this.tag(BMItemTags.ARCHER_LUCIA_TEMPT_ITEMS).add(Items.APPLE);
-        this.tag(BMItemTags.SHY_FABRICIO_TEMPT_ITEMS).add(AxolotlTest.HONEYED_BREAD.get());
+        this.tag(BMItemTags.SHY_ALCALYTE_TEMPT_ITEMS).add(AxolotlTest.HONEYED_BREAD.get());
 
         this.tag(Tags.Items.NUGGETS).addTag(BMItemTags.NUGGETS_DEVIL).addTag(BMItemTags.NUGGETS_ANGELIC).addTag(BMItemTags.NUGGETS_CHRISTIAN_MID_TERM)
                 .addTag(BMItemTags.NUGGETS_MID_TERM).addTag(BMItemTags.NUGGETS_OBSIDIAN_INFUSED_MID_TERM).addTag(BMItemTags.NUGGETS_ALJAMEED).addTag(BMItemTags.NUGGETS_MOONERING)
@@ -572,8 +574,8 @@ public class BMItemTagsProvider extends ItemTagsProvider {
                 .add(AxolotlTest.AVONDALIC_WILLOW_SAPLING.get());
         this.tag(ItemTags.LEAVES).add(AxolotlTest.GUARANA_OAK_LEAVES.get()).add(AxolotlTest.MANGO_OAK_LEAVES.get()).add(AxolotlTest.MANGAED_MANGO_OAK_LEAVES.get())
                 .add(AxolotlTest.GRAPE_VINE_LEAVES.get()).add(AxolotlTest.LEMON_OAK_LEAVES.get()).add(AxolotlTest.PINEAPPLE_OAK_LEAVES.get(), AxolotlTest.ORANGE_OAK_LEAVES.get(), AxolotlTest.BANANA_JUNGLE_LEAVES.get())
-                .add(AxolotlTest.GUAVA_LEAVES.get()).add(AxolotlTest.JABUTICABA_LEAVES.get()).add(AxolotlTest.CRYSTALLINE_BIRCH_LEAVES.get()).add(AxolotlTest.GOLDENWOOD_LEAVES.get()).add(AxolotlTest.ENCHANTED_GOLDENWOOD_LEAVES.get())
-                .add(AxolotlTest.CORK_OAK_LEAVES.get()).add(AxolotlTest.ALJANWOOD_LEAVES.get()).add(AxolotlTest.ALJANCAP_LEAVES.get()).add(AxolotlTest.AMARACAP_LEAVES.get()).add(AxolotlTest.INSOMNIAN_LEAVES.get())
-                .add(AxolotlTest.AVONDALIC_WILLOW_LEAVES.get());
+                .add(AxolotlTest.GUAVA_LEAVES.get()).add(AxolotlTest.JABUTICABA_LEAVES.get(), AxolotlTest.ALJAME_BIRCH_LEAVES.get()).add(AxolotlTest.CRYSTALLINE_BIRCH_LEAVES.get()).add(AxolotlTest.GOLDENWOOD_LEAVES.get())
+                .add(AxolotlTest.ENCHANTED_GOLDENWOOD_LEAVES.get()).add(AxolotlTest.CORK_OAK_LEAVES.get()).add(AxolotlTest.ALJANWOOD_LEAVES.get()).add(AxolotlTest.ALJANCAP_LEAVES.get()).add(AxolotlTest.AMARACAP_LEAVES.get())
+                .add(AxolotlTest.INSOMNIAN_LEAVES.get()).add(AxolotlTest.AVONDALIC_WILLOW_LEAVES.get());
     }
 }

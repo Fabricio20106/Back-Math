@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
+import com.sophicreeper.backmath.util.BMUtils;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
@@ -24,7 +25,7 @@ public class WandererSophieEmissiveLayer extends LayerRenderer<WandererSophieEnt
         // this will render on top of outfits for now (don't know if/how ordering is possible) ~isa 22-1-25
         if (wandererSophie.getRegistryVariant() != null && wandererSophie.getRegistryVariant().getEmissiveTexture() != null) {
             IVertexBuilder eyesBuilder = buffer.getBuffer(RenderType.eyes(BackMath.textureLocation(wandererSophie.getRegistryVariant().getEmissiveTexture())));
-            this.getParentModel().renderToBuffer(stack, eyesBuilder, 0xF00000, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
+            this.getParentModel().renderToBuffer(stack, eyesBuilder, BMUtils.EMISSIVE_LIGHT_VALUE, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
         }
     }
 }

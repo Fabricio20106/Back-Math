@@ -369,51 +369,51 @@
   "entity.lucia.celebrate": {
     "sounds": []
   },
-  "entity.fabricio.hurt": {
+  "entity.alcalyte.hurt": {
     "sounds": [
       "damage/hit1",
       "damage/hit2",
       "damage/hit3"
     ],
-    "subtitle": "subtitles.entity.fabricio.hurt"
+    "subtitle": "subtitles.entity.alcalyte.hurt"
   },
-  "entity.fabricio.hurt.drown": {
+  "entity.alcalyte.hurt.drown": {
     "sounds": [
       "entity/player/hurt/drown1",
       "entity/player/hurt/drown2",
       "entity/player/hurt/drown3",
       "entity/player/hurt/drown4"
     ],
-    "subtitle": "subtitles.entity.fabricio.hurt.drown"
+    "subtitle": "subtitles.entity.alcalyte.hurt.drown"
   },
-  "entity.fabricio.hurt.on_fire": {
+  "entity.alcalyte.hurt.on_fire": {
     "sounds": [
       "entity/player/hurt/fire_hurt1",
       "entity/player/hurt/fire_hurt2",
       "entity/player/hurt/fire_hurt3"
     ],
-    "subtitle": "subtitles.entity.fabricio.hurt.on_fire"
+    "subtitle": "subtitles.entity.alcalyte.hurt.on_fire"
   },
-  "entity.fabricio.hurt.berry_bush": {
+  "entity.alcalyte.hurt.berry_bush": {
     "sounds": [
       "entity/player/hurt/berrybush_hurt1",
       "entity/player/hurt/berrybush_hurt2"
     ],
-    "subtitle": "subtitles.entity.fabricio.hurt"
+    "subtitle": "subtitles.entity.alcalyte.hurt"
   },
-  "entity.fabricio.death": {
+  "entity.alcalyte.death": {
     "sounds": [
       "damage/hit1",
       "damage/hit2",
       "damage/hit3"
     ],
-    "subtitle": "subtitles.entity.fabricio.death"
+    "subtitle": "subtitles.entity.alcalyte.death"
   },
-  "entity.fabricio.burp": {
+  "entity.alcalyte.burp": {
     "sounds": [
       "random/burp"
     ],
-    "subtitle": "subtitles.entity.fabricio.burp"
+    "subtitle": "subtitles.entity.alcalyte.burp"
   },
   "entity.malaika.hurt": {
     "sounds": [

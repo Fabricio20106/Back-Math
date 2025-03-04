@@ -27,10 +27,10 @@ public class BMStructures {
 
     // Methods for structure generation below were taken from TelepathicGrunt's Structure Tutorial Mod GitHub.
 
-    // "setupMapSpacingAndLand" parameters:
-    // 1. Average distance apart in chunks between spawn attempts.
-    // 2. Minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE.
-    // 3. This modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique.
+    /// <code>setupMapSpacingAndLand</code> parameters:
+    /// 1. Average distance apart in chunks between spawn attempts.
+    /// 2. Minimum distance apart in chunks between spawn attempts. <b>MUST BE LESS THAN ABOVE VALUE</b>.
+    /// 3. This modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique.
     public static void setupStructures() {
         setupMapSpacingAndLand(SOPHIE_TOWER.get(), new StructureSeparationSettings(COMMON_CONFIGS.sophieTowerAvgDistance.get(), COMMON_CONFIGS.sophieTowerMinDistance.get(), COMMON_CONFIGS.sophieTowerSeed.get()),
                 COMMON_CONFIGS.sophieTowerTST.get());
@@ -38,9 +38,9 @@ public class BMStructures {
                 COMMON_CONFIGS.fabricioHideoutDungeonSeed.get()), COMMON_CONFIGS.fabricioHideoutDungeonTST.get());
     }
 
-    // Adds the provided structure to the registry, and adds the separation settings.
-    // The rarity of the structure is determined based on the values passed into this method in the structureSeparationSettings argument.
-    // This method is called by setupStructures method above.
+    /// Adds the provided structure to the registry, and adds the separation settings. <p>
+    /// The rarity of the structure is determined based on the values passed into this method in the <code>structureSeparationSettings</code> argument. <p>
+    /// This method is called by <code>setupStructures</code> method above.
     public static <F extends Structure<?>> void setupMapSpacingAndLand(F structure, StructureSeparationSettings structureSeparationSettings, boolean terraformSurroundingTerrain) {
         // Add our structures into the map in Structure class.
         Structure.STRUCTURES_REGISTRY.put(structure.getRegistryName().toString(), structure);

@@ -4,12 +4,15 @@
     "texture": "backmath:models/outfit/plateforced_mid_term_head"
   },
   "chest": {
-    "texture": "backmath:models/outfit/plateforced_mid_term_chest"
+    "texture": "backmath:models/outfit/plateforced_mid_term_chest",
+    "emissive_texture": "backmath:models/outfit/plateforced_mid_term_chest_emissive"
   },
   "legs": {
-    "texture": "backmath:models/outfit/plateforced_mid_term_legs"
+    "texture": "backmath:models/outfit/plateforced_mid_term_legs",
+    "emissive_texture": "backmath:models/outfit/plateforced_mid_term_legs_emissive"
   },
   "feet": {
-    "texture": "backmath:models/outfit/plateforced_mid_term_feet"
+    "texture": "backmath:models/outfit/plateforced_mid_term_feet",
+    "emissive_texture": "backmath:models/outfit/plateforced_mid_term_feet_emissive"
   }
 }

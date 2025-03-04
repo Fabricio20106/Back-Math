@@ -13,13 +13,13 @@ public class ALHopGoal extends Goal {
         this.amaracameler = amaracameler;
     }
 
-    // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+    /// Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
     @Override
     public boolean canUse() {
         return !this.amaracameler.isPassenger();
     }
 
-    // Keep ticking a continuous task that has already been started.
+    /// Keep ticking a continuous task that has already been started.
     @Override
     public void tick() {
         ((AmaracamelerMovementController) this.amaracameler.getMoveControl()).setSpeed(1);

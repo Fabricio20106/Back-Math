@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.misc;
 
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.util.TagTypes;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
@@ -35,7 +35,7 @@ public class BMFoodStats {
         }
     }
 
-    public void tick(AljamicMemberEntity aljamicMember) {
+    public void tick(AlcalyteEntity aljamicMember) {
         Difficulty difficulty = aljamicMember.level.getDifficulty();
         this.lastNutritionLevel = this.nutritionLevel;
         if (this.exhaustionLevel > 4) {

@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.custom.aljan;
 
 import com.sophicreeper.backmath.entity.custom.*;
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
 import com.sophicreeper.backmath.entity.goal.ZombieAttackGoal;
 import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
@@ -74,7 +74,7 @@ public class InsomniaZombieEntity extends MonsterEntity implements AljanMobUtils
         this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1));
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WandererSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WarriorSophieEntity.class, true));
@@ -107,7 +107,7 @@ public class InsomniaZombieEntity extends MonsterEntity implements AljanMobUtils
         return this.entityData.get(IS_CONVERTING_TO_DROWNED);
     }
 
-    // Sets or removes the BreakDoorGoal task.
+    /// Sets or removes the {@link BreakDoorGoal} task.
     public void setCanBreakDoors(boolean enabled) {
         if (this.supportsBreakDoorGoal() && GroundPathHelper.hasGroundPathNavigation(this)) {
             if (this.canBreakDoors != enabled) {
@@ -134,7 +134,7 @@ public class InsomniaZombieEntity extends MonsterEntity implements AljanMobUtils
         return this.entityData.get(IS_BABY);
     }
 
-    // Get the experience points the entity currently has.
+    /// Get the experience points the entity currently has.
     protected int getExperienceReward(PlayerEntity player) {
         if (this.isBaby()) this.xpReward = (int) ((float) this.xpReward * 2.5F);
         return super.getExperienceReward(player);
@@ -183,7 +183,7 @@ public class InsomniaZombieEntity extends MonsterEntity implements AljanMobUtils
         super.tick();
     }
 
-    // Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+    /// Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
     public void aiStep() {
         if (this.isAlive()) {
             boolean shouldBurn = this.shouldBurnInDay() && this.isSunBurnTick();
@@ -282,7 +282,7 @@ public class InsomniaZombieEntity extends MonsterEntity implements AljanMobUtils
         tag.putInt("drowned_conversion_ticks", this.isConvertingToDrowned() ? this.drownedConversionTicks : -1);
     }
 
-    // (abstract) Protected helper method to read subclass entity data from NBT.
+    /// (abstract) Protected helper method to read subclass entity data from NBT.
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
         this.setBaby(tag.getBoolean("is_baby"));
@@ -369,7 +369,7 @@ public class InsomniaZombieEntity extends MonsterEntity implements AljanMobUtils
         }
     }
 
-    // Returns the Y Offset of this entity.
+    /// Returns the Y Offset of this entity.
     public double getMyRidingOffset() {
         return this.isBaby() ? 0 : -0.45D;
     }

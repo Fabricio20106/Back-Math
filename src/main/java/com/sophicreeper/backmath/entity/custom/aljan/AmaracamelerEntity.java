@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.custom.aljan;
 
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.goal.amaracameler.*;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.misc.BMSounds;
@@ -54,7 +54,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         this.goalSelector.addGoal(3, new ALFaceRandomGoal(this));
         this.goalSelector.addGoal(5, new ALHopGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, 10, true, false, livEntity -> Math.abs(livEntity.getY() - this.getY()) <= 4));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, 10, true, false, livEntity -> Math.abs(livEntity.getY() - this.getY()) <= 4));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, 10, true, false, livEntity -> Math.abs(livEntity.getY() - this.getY()) <= 4));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
     }
@@ -75,7 +75,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         this.xpReward = size;
     }
 
-    // Returns the size of the amaracameler.
+    /// Returns the size of the amaracameler.
     public int getSize() {
         return this.entityData.get(AMARACAMELER_SIZE);
     }
@@ -86,7 +86,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         tag.putBoolean("was_on_ground", this.wasOnGround);
     }
 
-    // (abstract) Protected helper method to read subclass entity data from NBT.
+    /// (abstract) Protected helper method to read subclass entity data from NBT.
     public void readAdditionalSaveData(CompoundNBT tag) {
         int sizeTag = BMTagFixes.renameSize(tag);
         if (sizeTag < 0) sizeTag = 0;
@@ -96,7 +96,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         this.wasOnGround = BMTagFixes.renameWasOnGround(tag);
     }
 
-    // Fix MC-118616 for amaracamelers (https://bugs.mojang.com/browse/MC-118616)
+    /// Fix [MC-118616](https://bugs.mojang.com/browse/MC-118616) for amaracamelers.
     @Override
     @Nonnull
     public SoundCategory getSoundSource() {
@@ -115,7 +115,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         return this.getSize() > 0;
     }
 
-    // Called to update the entity's position/logic.
+    /// Called to update the entity's position/logic.
     public void tick() {
         this.squishFactor += (this.squishAmount - this.squishFactor) * 0.5F;
         this.previousSquishFactor = this.squishFactor;
@@ -123,7 +123,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         if (this.onGround && !this.wasOnGround) {
             int amaracamelerSize = this.getSize();
 
-            if (spawnCustomParticles()) amaracamelerSize = 0; // Don't spawn particles if it's handled by the implementation itself.
+            if (this.spawnCustomParticles()) amaracamelerSize = 0; // Don't spawn particles if it's handled by the implementation itself.
             for (int j = 0; j < amaracamelerSize * 8; ++j) {
                 float f = this.random.nextFloat() * ((float) Math.PI * 2F);
                 float f1 = this.random.nextFloat() * 0.5F + 0.5F;
@@ -146,7 +146,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         this.squishAmount *= 0.6F;
     }
 
-    // Gets the amount of time the amaracameler needs to wait between jumps.
+    /// Gets the amount of time the amaracameler needs to wait between jumps.
     public int getJumpDelay() {
         return this.random.nextInt(20) + 10;
     }
@@ -205,13 +205,13 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         super.remove(keepData);
     }
 
-    // Applies a velocity to the entities, to push them away from each other.
+    /// Applies a velocity to the entities, to push them away from each other.
     public void push(Entity entity) {
         super.push(entity);
         if (entity.getType().is(BMEntityTypeTags.AMARACAMELER_TARGETS) && this.canDamageEntity()) this.dealDamage((LivingEntity) entity);
     }
 
-    // Called by a player entity when they collide with an entity.
+    /// Called by a player entity when they collide with an entity.
     public void playerTouch(PlayerEntity player) {
         if (this.canDamageEntity()) this.dealDamage(player);
     }
@@ -230,7 +230,7 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         return 0.625F * size.height;
     }
 
-    // Indicates weather the amaracameler is able to damage the player (based upon the amaracameler's size).
+    /// Indicates weather the amaracameler is able to damage the player (based upon the amaracameler's size).
     public boolean canDamageEntity() {
         return !this.isSmallAmaracameler() && this.isEffectiveAi();
     }
@@ -273,22 +273,22 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         return false;
     }
 
-    // Returns the volume for the sounds this mob makes.
+    /// Returns the volume for the sounds this mob makes.
     public float getSoundVolume() {
         return 0.4F * (float) this.getSize();
     }
 
-    // The speed it takes to move the livingEntity's rotationPitch through the faceEntity method. This is only currently use in wolves.
+    /// The speed it takes to move the living entity's <code>rotationPitch</code> through the {@link net.minecraft.entity.ai.controller.LookController#setLookAt setLookAt} method. This is only currently use in wolves.
     public int getMaxHeadXRot() {
         return 0;
     }
 
-    // Returns true if the amaracameler makes a sound when it jumps (based upon the amaracameler's size).
+    /// Returns true if the amaracameler makes a sound when it jumps (based upon the amaracameler's size).
     public boolean makesSoundOnJump() {
         return this.getSize() > 0;
     }
 
-    // Causes this entity to do an upwards motion (jumping).
+    /// Causes this entity to do an upwards motion (jumping).
     protected void jumpFromGround() {
         Vector3d deltaMovement = this.getDeltaMovement();
         this.setDeltaMovement(deltaMovement.x, this.getJumpPower(), deltaMovement.z);
@@ -319,8 +319,9 @@ public class AmaracamelerEntity extends MobEntity implements IMob {
         return super.getDimensions(pose).scale(0.255F * (float) this.getSize());
     }
 
-    // Called when the amaracameler spawns particles on landing, see onUpdate.
-    // Return true to prevent the spawning of the default particles.
+    /// Called when the amaracameler spawns particles on landing, see {@link #tick}.
+    /// <p>
+    /// Return <code>true</code> to prevent the spawning of the default particles.
     protected boolean spawnCustomParticles() {
         return false;
     }

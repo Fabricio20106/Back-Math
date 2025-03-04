@@ -32,7 +32,7 @@ public class BMDefaultBiomeFeatures {
         if (BMConfigs.COMMON_CONFIGS.wandererSophieSpawn.get()) spawns.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.WANDERER_SOPHIE.get(), 8, 4, 4));
         if (BMConfigs.COMMON_CONFIGS.archerLuciaSpawn.get()) spawns.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.ARCHER_LUCIA.get(), 8, 4, 4));
         if (BMConfigs.COMMON_CONFIGS.karateLuciaSpawn.get()) spawns.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.KARATE_LUCIA.get(), 8, 1, 6));
-        if (BMConfigs.COMMON_CONFIGS.shyFabricioSpawn.get()) spawns.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.SHY_FABRICIO.get(), 6, 1, 3));
+        if (BMConfigs.COMMON_CONFIGS.shyAlcalyteSpawn.get()) spawns.addSpawn(EntityClassification.AMBIENT, new MobSpawnInfo.Spawners(BMEntities.SHY_ALCALYTE.get(), 6, 1, 3));
     }
 
     public static void backFieldHostiles(MobSpawnInfo.Builder spawns) {

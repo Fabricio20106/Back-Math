@@ -18,9 +18,17 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.GlobalLootModifierProvider;
 import net.minecraftforge.common.loot.LootTableIdCondition;
 
+import javax.annotation.Nonnull;
+
 public class BMLootModifierProvider extends GlobalLootModifierProvider {
     public BMLootModifierProvider(DataGenerator generator) {
         super(generator, BackMath.MOD_ID);
+    }
+
+    @Override
+    @Nonnull
+    public String getName() {
+        return "Back Math - Loot Modifiers";
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.sophicreeper.backmath.entity.goal;
 
-import com.sophicreeper.backmath.entity.custom.aljamic.CollectorFabricioEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.CollectorAlcalyteEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.item.ItemEntity;
@@ -14,11 +14,11 @@ import java.util.function.Predicate;
 
 public class PickupWantedItemsGoal extends Goal {
     private Optional<ItemEntity> itemToPickup = Optional.empty();
-    private final CollectorFabricioEntity collector;
+    private final CollectorAlcalyteEntity collector;
     private final int maxWalkableDistance;
     private final Predicate<ItemStack> pickupPredicate;
 
-    public PickupWantedItemsGoal(CollectorFabricioEntity collector, int maxWalkableDistance, Predicate<ItemStack> pickupPredicate) {
+    public PickupWantedItemsGoal(CollectorAlcalyteEntity collector, int maxWalkableDistance, Predicate<ItemStack> pickupPredicate) {
         this.collector = collector;
         this.maxWalkableDistance = maxWalkableDistance;
         this.pickupPredicate = pickupPredicate;

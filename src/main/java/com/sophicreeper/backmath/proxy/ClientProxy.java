@@ -10,6 +10,7 @@ import com.sophicreeper.backmath.blockentity.renderer.WandererSophieHeadBlockEnt
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.renderer.*;
 import com.sophicreeper.backmath.entity.renderer.aljan.*;
+import com.sophicreeper.backmath.entity.renderer.layer.CrateLayer;
 import com.sophicreeper.backmath.entity.renderer.layer.OutfitLayer;
 import com.sophicreeper.backmath.entity.renderer.misc.BMBoatRenderer;
 import com.sophicreeper.backmath.entity.renderer.misc.InsomniaArrowRenderer;
@@ -277,7 +278,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.WANDERER_SOPHIE.get(), WandererSophieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ARCHER_LUCIA.get(), ArcherLuciaRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.ANGRY_SOPHIE.get(), AngrySophieRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(BMEntities.SHY_FABRICIO.get(), ShyFabricioRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BMEntities.SHY_ALCALYTE.get(), ShyAlcalyteRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.KARATE_LUCIA.get(), KarateLuciaRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_SOPHIE.get(), InsomniaSophieRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.QUEEN_LUCY.get(), QueenLucyRenderer::new);
@@ -294,7 +295,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.BACK_MATH_BOAT.get(), BMBoatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.INSOMNIA_ARROW.get(), InsomniaArrowRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BMEntities.JANTIC_BOLT.get(), JanticBoltRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(BMEntities.COLLECTOR_FABRICIO.get(), CollectorFabricioRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(BMEntities.COLLECTOR_ALCALYTE.get(), CollectorAlcalyteRenderer::new);
 
         // Aljan Sky
         DimensionRenderInfo.EFFECTS.put(BackMath.backMath("the_aljan"), new AljanDimensionRenderer());
@@ -318,6 +319,7 @@ public class ClientProxy extends CommonProxy {
         addMobOutfitLayers();
         for (PlayerRenderer renderer : Minecraft.getInstance().getEntityRenderDispatcher().getSkinMap().values()) {
             renderer.addLayer(new OutfitLayer<>(renderer, renderer.getModel().slim));
+            renderer.addLayer(new CrateLayer<>(renderer));
         }
     }
 

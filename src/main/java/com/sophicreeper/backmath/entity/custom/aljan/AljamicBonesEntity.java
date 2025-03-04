@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.custom.aljan;
 
 import com.sophicreeper.backmath.entity.custom.*;
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
@@ -18,6 +18,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class AljamicBonesEntity extends AbstractSkeletonEntity implements AljanMobUtils {
     public AljamicBonesEntity(EntityType<AljamicBonesEntity> type, World world) {
         super(type, world);
@@ -25,7 +27,7 @@ public class AljamicBonesEntity extends AbstractSkeletonEntity implements AljanM
 
     protected void registerGoals() {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WandererSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WarriorSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaSophieEntity.class, true));
@@ -44,14 +46,17 @@ public class AljamicBonesEntity extends AbstractSkeletonEntity implements AljanM
         return SoundEvents.SKELETON_AMBIENT;
     }
 
+    @Nonnull
     protected SoundEvent getHurtSound(DamageSource source) {
         return SoundEvents.SKELETON_HURT;
     }
 
+    @Nonnull
     protected SoundEvent getDeathSound() {
         return SoundEvents.SKELETON_DEATH;
     }
 
+    @Nonnull
     protected SoundEvent getStepSound() {
         return SoundEvents.SKELETON_STEP;
     }
@@ -61,7 +66,7 @@ public class AljamicBonesEntity extends AbstractSkeletonEntity implements AljanM
         return new ItemStack(AxolotlTest.ALJAMIC_BONES_SPAWN_EGG.get());
     }
 
-    // Gives armor or weapon for entity based on given DifficultyInstance.
+    /// Gives armor or weapon for entity based on given {@link DifficultyInstance}.
     protected void populateDefaultEquipmentSlots(DifficultyInstance difficulty) {
         super.populateDefaultEquipmentSlots(difficulty);
 //        EquipmentTableUtils.equipWithGear(BMResourceLocations.ALJAMIC_BONES_EQUIPMENT, this);

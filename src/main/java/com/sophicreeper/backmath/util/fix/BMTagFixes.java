@@ -1,5 +1,6 @@
 package com.sophicreeper.backmath.util.fix;
 
+import com.sophicreeper.backmath.entity.custom.aljan.ZombieFabricioEntity;
 import com.sophicreeper.backmath.misc.BMRegistries;
 import com.sophicreeper.backmath.util.TagTypes;
 import com.sophicreeper.backmath.variant.queenlucy.QueenLucyVariant;
@@ -61,6 +62,18 @@ public class BMTagFixes {
             tag.remove("wasOnGround");
         }
         return tag.getBoolean("was_on_ground");
+    }
+
+    // Updates the old "fabricio_conversion_ticks" tag of zombie fabricios to the new "shy_alcalyte_conversion_ticks" tag.
+    public static void renameFabricioConversionTicks(CompoundNBT tag, ZombieFabricioEntity zombieFabricio) {
+        if (tag.contains("fabricio_conversion_ticks", TagTypes.ANY_NUMERIC)) {
+            tag.putInt("shy_alcalyte_conversion_ticks", tag.getInt("fabricio_conversion_ticks"));
+            tag.remove("fabricio_conversion_ticks");
+        }
+
+        if (tag.contains("shy_alcalyte_conversion_ticks", TagTypes.ANY_NUMERIC) && tag.getInt("shy_alcalyte_conversion_ticks") > -1) {
+            zombieFabricio.startConversionToShyAlcalyte(tag.hasUUID("converter_uuid") ? tag.getUUID("converter_uuid") : null, tag.getInt("shy_alcalyte_conversion_ticks"));
+        }
     }
 
     public static QueenLucyVariant setQueenLucyVariant(CompoundNBT tag) {

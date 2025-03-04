@@ -64,7 +64,7 @@ public class BMRangedCrossbowAttackGoal<T extends CreatureEntity & IRangedAttack
         }
     }
 
-   // Keep ticking a continuous task that has already been started.
+   /// Keep ticking a continuous task that has already been started.
     @Override
     public void tick() {
         ItemStack activeStack = this.shooter.getUseItem();

@@ -12,7 +12,6 @@ public class BMZombieModel<T extends MonsterEntity> extends BipedModel<T> {
         super(modelSize, yOffset, textureWidth, textureHeight);
     }
 
-    // Sets this entity's model rotation angles.
     @Override
     public void setupAnim(T zombie, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         super.setupAnim(zombie, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);

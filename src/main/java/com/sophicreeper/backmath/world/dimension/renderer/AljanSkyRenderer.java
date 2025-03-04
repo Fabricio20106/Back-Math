@@ -18,6 +18,7 @@ import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.client.ISkyRenderHandler;
+import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
 
@@ -46,7 +47,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         BufferBuilder buffer = Tessellator.getInstance().getBuilder();
         RenderSystem.depthMask(false);
         RenderSystem.enableFog();
-        RenderSystem.color3f((float) vector3D.x, (float) vector3D.y, (float) vector3D.z);
+        GL11.glColor3f((float) vector3D.x, (float) vector3D.y, (float) vector3D.z);
         this.lightSkyBuffer.bind();
         this.skyVertexFormat.setupBufferState(0L);
         this.lightSkyBuffer.draw(stack.last().pose(), 7);
@@ -87,7 +88,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         stack.pushPose();
         float rainLevel = 1 - world.getRainLevel(partialTicks);
-        RenderSystem.color4f(1, 1, 1, rainLevel);
+        GL11.glColor4f(1, 1, 1, rainLevel);
         stack.mulPose(Vector3f.YP.rotationDegrees(-90));
         stack.mulPose(Vector3f.XP.rotationDegrees(world.getTimeOfDay(partialTicks) * 360));
         Matrix4f matrix4F = stack.last().pose();
@@ -105,7 +106,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
 
         float starBrightness = world.getStarBrightness(partialTicks) * rainLevel;
         if (starBrightness > 0) {
-            RenderSystem.color4f(starBrightness, starBrightness, starBrightness, starBrightness);
+            GL11.glColor4f(starBrightness, starBrightness, starBrightness, starBrightness);
             this.starsBuffer.bind();
             this.skyVertexFormat.setupBufferState(0L);
             this.starsBuffer.draw(stack.last().pose(), 7);
@@ -130,7 +131,7 @@ public class AljanSkyRenderer implements ISkyRenderHandler {
             stack.popPose();
         }
 
-        //RenderSystem.color3f(x * 0.2F + 0.04F, y * 0.2F + 0.04F, z * 0.6F + 0.1F);
+        // GL11.glColor3f(x * 0.2F + 0.04F, y * 0.2F + 0.04F, z * 0.6F + 0.1F);
 
         RenderSystem.depthMask(true);
         RenderSystem.disableBlend();

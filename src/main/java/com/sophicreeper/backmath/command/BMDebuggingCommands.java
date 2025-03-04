@@ -6,9 +6,11 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.entity.BMEntities;
+import com.sophicreeper.backmath.entity.custom.QueenLucyEntity;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
 import com.sophicreeper.backmath.misc.BMRegistries;
+import com.sophicreeper.backmath.variant.queenlucy.QueenLucyVariant;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
 import com.sophicreeper.backmath.variant.wansophie.WandererSophieVariant;
 import com.sophicreeper.backmath.world.dimension.TheAljanTeleporter;
@@ -26,6 +28,7 @@ public class BMDebuggingCommands {
     public static void register(CommandDispatcher<CommandSource> dispatcher) {
         APSPlacementCommand.register(dispatcher);
         SpawnWandererSophiesCommand.register(dispatcher);
+        SpawnQueenLuciesCommand.register(dispatcher);
         SpawnQLPs.register(dispatcher);
         WorldTimes.register(dispatcher);
     }
@@ -84,6 +87,40 @@ public class BMDebuggingCommands {
             }
             if (spawnedVariants > 0) source.sendSuccess(new StringTextComponent("Spawned " + spawnedVariants + " Wanderer Sophie variants"), false);
             else source.sendFailure(new StringTextComponent("No Wanderer Sophie variants were spawned"));
+            return 1;
+        }
+    }
+
+    public static class SpawnQueenLuciesCommand {
+        public static void register(CommandDispatcher<CommandSource> dispatcher) {
+            dispatcher.register(Commands.literal("backmath-spawn_queen_lucies").requires(source -> source.hasPermission(2))
+                    .executes(context -> spawnQueenLucies(context.getSource())));
+        }
+
+        private static int spawnQueenLucies(CommandSource source) {
+            Collection<QueenLucyVariant> variants = BMRegistries.QUEEN_LUCY_VARIANT.getValues();
+            BlockPos pos = new BlockPos(source.getPosition());
+            int spawnedVariants = 0;
+            for (QueenLucyVariant variant : variants) {
+                ServerWorld world = source.getLevel();
+
+                QueenLucyEntity queenLucy = new QueenLucyEntity(world);
+                queenLucy.setPos(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5);
+                queenLucy.setVariant(variant);
+                queenLucy.setNoAi(true);
+                queenLucy.setPersistenceRequired();
+                queenLucy.setSilent(true);
+                queenLucy.setCustomName(new StringTextComponent(variant.getAssetID().toString()));
+                queenLucy.setCustomNameVisible(true);
+                queenLucy.setCapeVisibility(false);
+                if (world.addFreshEntity(queenLucy)) ++spawnedVariants;
+                else source.sendFailure(new StringTextComponent("Failed to spawn variant '" + variant.getAssetID() + "'"));
+
+                world.setBlockAndUpdate(pos, Blocks.SEA_LANTERN.defaultBlockState());
+                pos = pos.west(2);
+            }
+            if (spawnedVariants > 0) source.sendSuccess(new StringTextComponent("Spawned " + spawnedVariants + " Queen Lucy variants"), false);
+            else source.sendFailure(new StringTextComponent("No Queen Lucy variants were spawned"));
             return 1;
         }
     }

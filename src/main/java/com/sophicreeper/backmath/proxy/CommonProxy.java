@@ -3,6 +3,8 @@ package com.sophicreeper.backmath.proxy;
 import com.sophicreeper.backmath.block.BMBlocks;
 import com.sophicreeper.backmath.block.BMFluids;
 import com.sophicreeper.backmath.blockentity.BMBlockEntities;
+import com.sophicreeper.backmath.container.BMContainers;
+import com.sophicreeper.backmath.container.screen.CrateScreen;
 import com.sophicreeper.backmath.config.BMConfigs;
 import com.sophicreeper.backmath.dispenser.CrystallizerRecipesDispenseBehavior;
 import com.sophicreeper.backmath.dispenser.EyeOfEnderDispenseBehavior;
@@ -37,6 +39,7 @@ import com.sophicreeper.backmath.world.feature.BMFeature;
 import com.sophicreeper.backmath.world.structure.BMStructures;
 import com.sophicreeper.backmath.world.surface.BMSurfaceBuilders;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.MonsterEntity;
@@ -65,7 +68,6 @@ public class CommonProxy {
         BMEntities.ENTITIES.register(eventBus);
         BMEffects.EFFECTS.register(eventBus);
         BMFluids.FLUIDS.register(eventBus);
-        new BMFeature();
         BMFeature.FEATURES.register(eventBus);
         BMWorldCarvers.WORLD_CARVERS.register(eventBus);
         BMBiomes.BIOMES.register(eventBus);
@@ -75,6 +77,7 @@ public class CommonProxy {
         BMLootModifiers.LOOT_MODIFIERS.register(eventBus);
         BMParticleTypes.PARTICLES.register(eventBus);
         BMBlockEntities.BLOCK_ENTITIES.register(eventBus);
+        BMContainers.CONTAINERS.register(eventBus);
         BMItemBehaviors.BEHAVIORS.register(eventBus);
         BMItemBehaviorEffectTypes.TYPES.register(eventBus);
         BMWandererSophieVariants.VARIANTS.register(eventBus);
@@ -123,7 +126,7 @@ public class CommonProxy {
             if (BMConfigs.COMMON_CONFIGS.groundMobSpawningBackFields.get()) {
                 EntitySpawnPlacementRegistry.register(BMEntities.WANDERER_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.ARCHER_LUCIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
-                EntitySpawnPlacementRegistry.register(BMEntities.SHY_FABRICIO.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
+                EntitySpawnPlacementRegistry.register(BMEntities.SHY_ALCALYTE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.KARATE_LUCIA.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, WandererSophieEntity::checkSophieSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.ANGRY_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MonsterEntity::checkMonsterSpawnRules);
                 EntitySpawnPlacementRegistry.register(BMEntities.INSOMNIA_SOPHIE.get(), EntitySpawnPlacementRegistry.PlacementType.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, TermianPatrollerEntity::checkMonsterSpawnRules);
@@ -135,11 +138,15 @@ public class CommonProxy {
         });
 
         // Particles
-//        Minecraft.getInstance().particleEngine.register(BMParticleTypes.HILLARY_FLAME.get(), HillaryFlameParticle.Factory::new);
-//        Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.Factory::new);
-//        Minecraft.getInstance().particleEngine.register(BMParticleTypes.WARMTERM.get(), MidTermParticle.WarmtermFactory::new);
-//        Minecraft.getInstance().particleEngine.register(BMParticleTypes.COLDTERM.get(), MidTermParticle.ColdtermFactory::new);
+        // Minecraft.getInstance().particleEngine.register(BMParticleTypes.HILLARY_FLAME.get(), HillaryFlameParticle.Factory::new);
+        // Minecraft.getInstance().particleEngine.register(BMParticleTypes.JANTICAL.get(), JanticalParticle.Factory::new);
+        // Minecraft.getInstance().particleEngine.register(BMParticleTypes.WARMTERM.get(), MidTermParticle.WarmtermFactory::new);
+        // Minecraft.getInstance().particleEngine.register(BMParticleTypes.COLDTERM.get(), MidTermParticle.ColdtermFactory::new);
 
+        // Screens
+        ScreenManager.register(BMContainers.CRATE.get(), CrateScreen::new);
+
+        // Attribute Modifiers
         MidTermLongswordItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mid-Term Longsword Reach Modifier", BMConfigs.COMMON_CONFIGS.midTermLongswordReachIncrease.get(), AttributeModifier.Operation.ADDITION));
         CarewniItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Carewni Reach Modifier", BMConfigs.COMMON_CONFIGS.carewniReachIncrease.get(),AttributeModifier.Operation.ADDITION));
         MechMechSwordItem.MODIFIERS.put(ForgeMod.REACH_DISTANCE.get(), new AttributeModifier(UUID.fromString("4925a97b-4689-4deb-9f89-8d046f480d0a"), "Mech-Mech Reach Modifier", BMConfigs.COMMON_CONFIGS.mechMechReachDecrease.get(), AttributeModifier.Operation.ADDITION));

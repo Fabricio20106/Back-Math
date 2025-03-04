@@ -428,6 +428,7 @@ public class BMItemModelProvider extends BMItemModelModels {
         blockItem("wild_carameled_wheat");
         blockItem("wild_aljamic_onions");
         block("meal_cooker");
+        block("crate");
         block("alice_toy");
         block("alan_toy");
         block("innovator_toy");

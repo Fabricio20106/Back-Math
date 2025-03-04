@@ -14,7 +14,7 @@ public class BMSetFields {
     // Helmets
     public static final BMArmors CAT_TIARA_ARMOR = new BMArmors(BackMath.MOD_ID + ":cat_tiara", 37, new int[] {3, 6, 8, 3}, 15, SoundEvents.ARMOR_EQUIP_NETHERITE, 3, 0.1F, () -> Ingredient.of(Items.LIGHT_BLUE_WOOL));
     public static final BMArmors DOG_TIARA_ARMOR = new BMArmors(BackMath.MOD_ID + ":dog_tiara", 13, new int[] {0, 0, 0, 3}, 15, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.of(Items.BROWN_WOOL));
-    public static final BMArmors YELLOW_KARATE_BAND_ARMOR = new BMArmors(BackMath.MOD_ID + ":karate_band", 4, new int[] {0, 0, 0, 1}, 63, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.of(Items.YELLOW_WOOL));
+    public static final BMArmors KARATE_HEADBAND_ARMOR = new BMArmors(BackMath.MOD_ID + ":karate_headband", 4, new int[] {0, 0, 0, 1}, 63, SoundEvents.ARMOR_EQUIP_LEATHER, 0, 0, () -> Ingredient.of(ItemTags.WOOL));
     public static final BMArmors CANDY_YELLOW_TURTLE_ARMOR = new BMArmors(BackMath.MOD_ID + ":candy_yellow_turtle", 25, new int[] {2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_TURTLE, 0, 0, () -> Ingredient.of(Items.SCUTE));
     public static final BMArmors CANDY_PINK_TURTLE_ARMOR = new BMArmors(BackMath.MOD_ID + ":candy_pink_turtle", 25, new int[] {2, 5, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_TURTLE, 0, 0, () -> Ingredient.of(Items.SCUTE));
     public static final BMArmors ALJAMIC_BONE_ARMOR = new BMArmors(BackMath.MOD_ID + ":aljamic_bone", 15, new int[] {2, 6, 5, 2}, 15, SoundEvents.ARMOR_EQUIP_IRON, 0, 0, () -> Ingredient.of(BMItemTags.INGOTS_ALJAMEED));

@@ -2,8 +2,8 @@ package com.sophicreeper.backmath.entity;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.*;
-import com.sophicreeper.backmath.entity.custom.aljamic.CollectorFabricioEntity;
-import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.CollectorAlcalyteEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.ShyAlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.misc.BMBoatEntity;
 import com.sophicreeper.backmath.entity.custom.misc.ChocoGlueEntity;
@@ -31,7 +31,7 @@ public class BMEntities {
             EntityType.Builder.of(ArcherInsomniaSophieEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(32).build(BackMath.backMath("archer_insomnia_sophie").toString()));
 
     public static final RegistryObject<EntityType<QueenLucyEntity>> QUEEN_LUCY = ENTITIES.register("queen_sophie", () ->
-            EntityType.Builder.of(QueenLucyEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.8F).fireImmune().clientTrackingRange(64).build(BackMath.backMath("queen_sophie").toString()));
+            EntityType.Builder.<QueenLucyEntity>of(QueenLucyEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.8F).fireImmune().clientTrackingRange(64).build(BackMath.backMath("queen_sophie").toString()));
 
     public static final RegistryObject<EntityType<WarriorSophieEntity>> WARRIOR_SOPHIE = ENTITIES.register("warrior_sophie", () ->
             EntityType.Builder.of(WarriorSophieEntity::new, EntityClassification.MONSTER).sized(0.6F, 1.8F).clientTrackingRange(32).build(BackMath.backMath("warrior_sophie").toString()));
@@ -42,8 +42,8 @@ public class BMEntities {
     public static final RegistryObject<EntityType<KarateLuciaEntity>> KARATE_LUCIA = ENTITIES.register("karate_lucia", () ->
             EntityType.Builder.of(KarateLuciaEntity::new, EntityClassification.AMBIENT).sized(0.6F, 1.8F).clientTrackingRange(64).build(BackMath.backMath("karate_lucia").toString()));
 
-    public static final RegistryObject<EntityType<ShyFabricioEntity>> SHY_FABRICIO = ENTITIES.register("shy_fabricio", () ->
-            EntityType.Builder.of(ShyFabricioEntity::new, EntityClassification.AMBIENT).sized(0.6F, 1.8F).clientTrackingRange(32).build(BackMath.backMath("shy_fabricio").toString()));
+    public static final RegistryObject<EntityType<ShyAlcalyteEntity>> SHY_ALCALYTE = ENTITIES.register("shy_fabricio", () ->
+            EntityType.Builder.of(ShyAlcalyteEntity::new, EntityClassification.AMBIENT).sized(0.6F, 1.8F).clientTrackingRange(32).build(BackMath.backMath("shy_fabricio").toString()));
 
     public static final RegistryObject<EntityType<QueenLucyPetEntity>> QUEEN_LUCY_PET = ENTITIES.register("queen_sophie_pet", () ->
             EntityType.Builder.of(QueenLucyPetEntity::new, EntityClassification.CREATURE).clientTrackingRange(10).fireImmune().sized(0.3F, 0.9F).build(BackMath.backMath("queen_sophie_pet").toString()));
@@ -84,6 +84,6 @@ public class BMEntities {
             EntityType.Builder.<JanticBoltEntity>of(JanticBoltEntity::new, EntityClassification.MISC).sized(0.5F, 0.5F).build(BackMath.backMath("jantic_bolt").toString()));
 
     // Aljamic Empire Members
-    public static final RegistryObject<EntityType<CollectorFabricioEntity>> COLLECTOR_FABRICIO = ENTITIES.register("collector_fabricio", () ->
-            EntityType.Builder.of(CollectorFabricioEntity::new, EntityClassification.CREATURE).sized(0.6F, 1.8F).build(BackMath.backMath("collector_fabricio").toString()));
+    public static final RegistryObject<EntityType<CollectorAlcalyteEntity>> COLLECTOR_ALCALYTE = ENTITIES.register("collector_fabricio", () ->
+            EntityType.Builder.of(CollectorAlcalyteEntity::new, EntityClassification.CREATURE).sized(0.6F, 1.8F).build(BackMath.backMath("collector_fabricio").toString()));
 }

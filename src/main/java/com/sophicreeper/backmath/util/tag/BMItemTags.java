@@ -115,7 +115,7 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> BONE_MEALS = backMath("bone_meals");
     public static final ITag.INamedTag<Item> ARCHER_LUCIA_CAN_PICKUP = backMath("archer_lucia_can_pickup");
     public static final ITag.INamedTag<Item> TERMIAN_RAIDER_CAN_PICKUP = backMath("termian_raider_can_pickup");
-    public static final ITag.INamedTag<Item> COLLECTOR_FABRICIO_CAN_PICKUP = backMath("collector_fabricio_can_pickup");
+    public static final ITag.INamedTag<Item> COLLECTOR_ALCALYTES_CAN_PICKUP = backMath("collector_alcalytes_can_pickup");
     public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TAME_ITEMS = backMath("queen_lucy_pet_tame_items");
     public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_POISONOUS_ITEMS = backMath("queen_lucy_pet_poisonous_items");
     public static final ITag.INamedTag<Item> TABU_SMELTABLES = backMath("tabu_smeltables");
@@ -126,9 +126,11 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> FULLY_LIT_ITEMS = backMath("fully_lit_items");
     public static final ITag.INamedTag<Item> JANTIC_RAILGUN_PROJECTILES = backMath("jantic_railgun_projectiles");
     public static final ITag.INamedTag<Item> RAILGUNS = backMath("railguns");
+    public static final ITag.INamedTag<Item> CRATES = backMath("crates");
     public static final ITag.INamedTag<Item> OUTFITS = backMath("outfits");
     public static final ITag.INamedTag<Item> CHESTPLATE_MINING_ITEMS = backMath("chestplate_mining_items");
     public static final ITag.INamedTag<Item> CAN_CURE_ZOMBIE_FABRICIOS = backMath("can_cure_zombie_fabricios");
+    public static final ITag.INamedTag<Item> CRATE_FRUIT_SAPLINGS = backMath("crate_fruit_saplings");
 
     // Melony Tags
     public static final ITag.INamedTag<Item> SHIELDS = melony("shields");
@@ -147,7 +149,7 @@ public class BMItemTags {
     public static final ITag.INamedTag<Item> WANDERER_SOPHIE_TEMPT_ITEMS = backMath("wanderer_sophie_tempt_items");
     public static final ITag.INamedTag<Item> QUEEN_LUCY_PET_TEMPT_ITEMS = backMath("queen_lucy_pet_tempt_items");
     public static final ITag.INamedTag<Item> ARCHER_LUCIA_TEMPT_ITEMS = backMath("archer_lucia_tempt_items");
-    public static final ITag.INamedTag<Item> SHY_FABRICIO_TEMPT_ITEMS = backMath("shy_fabricio_tempt_items");
+    public static final ITag.INamedTag<Item> SHY_ALCALYTE_TEMPT_ITEMS = backMath("shy_alcalyte_tempt_items");
 
     // Tag Migration
     public static final ITag.INamedTag<Item> ALJAN_RECIPE_STICKS = backMath("aljan_recipe_sticks");

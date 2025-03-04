@@ -25,7 +25,7 @@ public interface BMCrossbowUser extends ICrossbowUser {
     @Override
     void shootCrossbowProjectile(LivingEntity livEntity, ItemStack stack, ProjectileEntity projectile, float distanceFactor);
 
-    // Gets the active target the Task system uses for tracking.
+    /// Gets the active target the Task system uses for tracking.
     @Override
     @Nullable
     LivingEntity getTarget();

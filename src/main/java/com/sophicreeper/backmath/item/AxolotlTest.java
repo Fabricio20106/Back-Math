@@ -14,10 +14,7 @@ import com.sophicreeper.backmath.item.behavior.BMItemBehaviors;
 import com.sophicreeper.backmath.item.behavior.FoodSettings;
 import com.sophicreeper.backmath.item.behavior.ItemBehaviorParameters;
 import com.sophicreeper.backmath.item.custom.*;
-import com.sophicreeper.backmath.item.custom.armor.CrownItem;
-import com.sophicreeper.backmath.item.custom.armor.MidTermArmorItem;
-import com.sophicreeper.backmath.item.custom.armor.QueenLucyShirtItem;
-import com.sophicreeper.backmath.item.custom.armor.TurtleShellItem;
+import com.sophicreeper.backmath.item.custom.armor.*;
 import com.sophicreeper.backmath.item.custom.behavior.*;
 import com.sophicreeper.backmath.item.custom.dispenser.SleepishFertilizerItem;
 import com.sophicreeper.backmath.item.custom.food.*;
@@ -522,8 +519,9 @@ public class AxolotlTest {
     public static final RegistryObject<Item> WILD_CARAMELED_WHEAT = ITEMS.register("wild_carameled_wheat", () -> new BlockItem(BMBlocks.WILD_CARAMELED_WHEAT.get(), new Item.Properties().tab(BMBlockTab.TAB)));
     public static final RegistryObject<Item> WILD_ALJAMIC_ONIONS = ITEMS.register("wild_aljamic_onions", () -> new BlockItem(BMBlocks.WILD_ALJAMIC_ONIONS.get(), new Item.Properties().tab(BMBlockTab.TAB)));
 
-    // Meal Cooker:
+    // Utility Blocks:
     public static final RegistryObject<Item> MEAL_COOKER = ITEMS.register("meal_cooker", () -> new BlockItem(BMBlocks.MEAL_COOKER.get(), new Item.Properties().tab(BMBlockTab.TAB)));
+    public static final RegistryObject<Item> CRATE = ITEMS.register("crate", () -> new CrateItem(BMBlocks.CRATE.get(), new Item.Properties().tab(BMBlockTab.TAB)));
 
     // Plushies (Toys & Emotional Squids):
     public static final RegistryObject<Item> ALICE_TOY = ITEMS.register("alice_toy", () -> new BlockItem(BMBlocks.ALICE_TOY.get(), new Item.Properties().tab(BMBlockTab.TAB)));
@@ -736,7 +734,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> MOB_PERSONA_CARD_QUE_LUC = ITEMS.register("mob_persona_card_que_sop", () -> new Item(new Item.Properties().tab(BackLayer.TAB).rarity(Rarity.UNCOMMON).stacksTo(1)));
     public static final RegistryObject<Item> MOB_PERSONA_CARD_ARC_LUC = ITEMS.register("mob_persona_card_arc_luc", () -> new Item(new Item.Properties().tab(BackLayer.TAB).rarity(Rarity.UNCOMMON).stacksTo(1)));
     public static final RegistryObject<Item> MOB_PERSONA_CARD_KAR_LUC = ITEMS.register("mob_persona_card_kar_luc", () -> new Item(new Item.Properties().tab(BackLayer.TAB).rarity(Rarity.UNCOMMON).stacksTo(1)));
-    public static final RegistryObject<Item> MOB_PERSONA_CARD_SHY_FAB = ITEMS.register("mob_persona_card_shy_fab", () -> new Item(new Item.Properties().tab(BackLayer.TAB).rarity(Rarity.UNCOMMON).stacksTo(1)));
+    public static final RegistryObject<Item> MOB_PERSONA_CARD_SHY_ALC = ITEMS.register("mob_persona_card_shy_fab", () -> new Item(new Item.Properties().tab(BackLayer.TAB).rarity(Rarity.UNCOMMON).stacksTo(1)));
     public static final RegistryObject<Item> MOB_PERSONA_CARD_MAL = ITEMS.register("mob_persona_card_mal", () -> new Item(new Item.Properties().tab(BackLayer.TAB).rarity(Rarity.UNCOMMON).stacksTo(1)));
     public static final RegistryObject<Item> WANDERER_SOPHIE_SPAWN_EGG = ITEMS.register("friend_sophie_spawn_egg", () -> new BMSpawnEggItem(BMEntities.WANDERER_SOPHIE, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
     public static final RegistryObject<Item> ANGRY_SOPHIE_SPAWN_EGG = ITEMS.register("angry_sophie_spawn_egg", () -> new BMSpawnEggItem(BMEntities.ANGRY_SOPHIE, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
@@ -747,8 +745,8 @@ public class AxolotlTest {
     public static final RegistryObject<Item> QUEEN_LUCY_PET_SPAWN_EGG = ITEMS.register("queen_sophie_pet_spawn_egg", () -> new BMSpawnEggItem(BMEntities.QUEEN_LUCY_PET, 0xFFFFFF, 0xFFFFFF, new Item.Properties().rarity(Rarity.EPIC).fireResistant().tab(BackLayer.TAB)));
     public static final RegistryObject<Item> ARCHER_LUCIA_SPAWN_EGG = ITEMS.register("archer_lucia_spawn_egg", () -> new BMSpawnEggItem(BMEntities.ARCHER_LUCIA, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
     public static final RegistryObject<Item> KARATE_LUCIA_SPAWN_EGG = ITEMS.register("karate_lucia_spawn_egg", () -> new BMSpawnEggItem(BMEntities.KARATE_LUCIA, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
-    public static final RegistryObject<Item> SHY_FABRICIO_SPAWN_EGG = ITEMS.register("shy_fabricio_spawn_egg", () -> new BMSpawnEggItem(BMEntities.SHY_FABRICIO, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
-    public static final RegistryObject<Item> COLLECTOR_FABRICIO_SPAWN_EGG = ITEMS.register("collector_fabricio_spawn_egg", () -> new BMSpawnEggItem(BMEntities.COLLECTOR_FABRICIO, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
+    public static final RegistryObject<Item> SHY_ALCALYTE_SPAWN_EGG = ITEMS.register("shy_fabricio_spawn_egg", () -> new BMSpawnEggItem(BMEntities.SHY_ALCALYTE, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
+    public static final RegistryObject<Item> COLLECTOR_ALCALYTE_SPAWN_EGG = ITEMS.register("collector_fabricio_spawn_egg", () -> new BMSpawnEggItem(BMEntities.COLLECTOR_ALCALYTE, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
     public static final RegistryObject<Item> MALAIKA_SPAWN_EGG = ITEMS.register("malaika_spawn_egg", () -> new BMSpawnEggItem(BMEntities.MALAIKA, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
     public static final RegistryObject<Item> INSOMNIA_ZOMBIE_SPAWN_EGG = ITEMS.register("insomnia_zombie_spawn_egg", () -> new BMSpawnEggItem(BMEntities.INSOMNIA_ZOMBIE, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
     public static final RegistryObject<Item> ZOMBIE_FABRICIO_SPAWN_EGG = ITEMS.register("zombie_fabricio_spawn_egg", () -> new BMSpawnEggItem(BMEntities.ZOMBIE_FABRICIO, 0xFFFFFF, 0xFFFFFF, new Item.Properties().tab(BackLayer.TAB)));
@@ -845,7 +843,7 @@ public class AxolotlTest {
     public static final RegistryObject<Item> CANDY_PINK_TURTLE_HELMET = ITEMS.register("candy_pink_turtle_helmet", () -> new TurtleShellItem(CANDY_PINK_TURTLE_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> CAT_TIARA = ITEMS.register("tiara_de_gato", () -> new BMArmorItem(CAT_TIARA_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> DOG_TIARA = ITEMS.register("dog_tiara", () -> new BMArmorItem(DOG_TIARA_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB)));
-    public static final RegistryObject<Item> YELLOW_KARATE_BAND = ITEMS.register("yellow_karate_band", () -> new BMArmorItem(YELLOW_KARATE_BAND_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB)));
+    public static final RegistryObject<Item> KARATE_HEADBAND = ITEMS.register("yellow_karate_band", () -> new KarateHeadbandItem(KARATE_HEADBAND_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> GOLDEN_HALO = ITEMS.register("golden_halo", () -> new BMArmorItem(GOLDEN_HALO_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> RED_YELLOW_GLASSES = ITEMS.register("red_yellow_glasses", () -> new BMArmorItem(RED_YELLOW_GLASSES_ARMOR, EquipmentSlotType.HEAD, new Item.Properties().tab(BMWeaponryTab.TAB)));
     public static final RegistryObject<Item> GOLDEN_CROWN = ITEMS.register("golden_crown", () -> new CrownItem(new Item.Properties().tab(BMWeaponryTab.TAB)));

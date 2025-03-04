@@ -20,7 +20,7 @@ public class QLPOwnersTargetGoal extends TargetGoal {
         this.setFlags(EnumSet.of(Goal.Flag.TARGET));
     }
 
-    // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+    /// Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
     public boolean canUse() {
         if (this.lucyPet.isTame() && !this.lucyPet.isOrderedToSit()) {
             LivingEntity qlpOwner = this.lucyPet.getOwner();
@@ -36,7 +36,7 @@ public class QLPOwnersTargetGoal extends TargetGoal {
         }
     }
 
-    // Execute a one shot task or start executing a continuous task.
+    /// Execute a one shot task or start executing a continuous task.
     public void start() {
         this.mob.setTarget(this.attacker);
         LivingEntity qlpOwner = this.lucyPet.getOwner();

@@ -9,7 +9,8 @@ import net.minecraft.util.SoundEvent;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-// Renamed class, and added some code from SpellcastingIllagerEntity.CastingASpellGoal to match the behavior of Evokers more. - June 21/04/24 (Sunday)
+/// Renamed class, and added some code from {@link net.minecraft.entity.monster.SpellcastingIllagerEntity.CastingASpellGoal SpellcastingIllagerEntity.CastingASpellGoal} to match the behavior of Evokers more.
+/// @author June 21/04/24 (Sunday)
 public abstract class CastSpellGoal extends Goal {
     private final QueenLucyEntity queenLucy;
     protected int warmupTicks;

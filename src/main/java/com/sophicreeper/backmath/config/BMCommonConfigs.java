@@ -47,7 +47,7 @@ public class BMCommonConfigs {
     public final ForgeConfigSpec.BooleanValue angrySophieSpawn;
     public final ForgeConfigSpec.BooleanValue insomniaSophieSpawn;
     public final ForgeConfigSpec.BooleanValue archerInsomniaSophieSpawn;
-    public final ForgeConfigSpec.BooleanValue shyFabricioSpawn;
+    public final ForgeConfigSpec.BooleanValue shyAlcalyteSpawn;
     public final ForgeConfigSpec.BooleanValue insomniaZombieSpawn;
     public final ForgeConfigSpec.BooleanValue zombieFabricioSpawn;
     public final ForgeConfigSpec.BooleanValue amaracamelerSpawn;
@@ -88,6 +88,7 @@ public class BMCommonConfigs {
     public final ForgeConfigSpec.BooleanValue enableAljanFog;
     public final ForgeConfigSpec.DoubleValue aljanFogDensity;
     public final ForgeConfigSpec.BooleanValue changeAljanFogColorAtNight;
+    public final ForgeConfigSpec.BooleanValue renderBreasts;
 
     // Bows
     public final ForgeConfigSpec.BooleanValue bowDamageCounter;
@@ -166,7 +167,7 @@ public class BMCommonConfigs {
         builder.push("mobSpawning");
         this.wandererSophieSpawn = builder.comment("Allow Wanderer Sophies to spawn in Back Fields biomes?").define("wandererSophieSpawning", true);
         this.angrySophieSpawn = builder.comment("Allow Angry Sophies to spawn in Back Fields biomes?").define("angrySophieSpawn", true);
-        this.shyFabricioSpawn = builder.comment("Allow Shy Fabricios to spawn in Back Fields biomes?").define("shyFabricioSpawning", true);
+        this.shyAlcalyteSpawn = builder.comment("Allow Shy Alcalytes to spawn in Back Fields biomes?").define("shyAlcalyteSpawning", true);
         this.archerLuciaSpawn = builder.comment("Allow Archer Lucias to spawn in Back Fields biomes?").define("archerLuciaSpawning", true);
         this.karateLuciaSpawn = builder.comment("Allow Karate Lucias to spawn in Back Fields biomes?").define("karateLuciaSpawning", true);
         this.insomniaSophieSpawn = builder.comment("Allow Insomnia Sophies to spawn in Back Fields biomes?").define("insomniaSophieSpawning", true);
@@ -205,6 +206,7 @@ public class BMCommonConfigs {
         this.enableAljanFog = builder.comment("Enables a thick fog in the Aljan at all times.").define("aljanAmbience.enableAljanFog", true);
         this.aljanFogDensity = builder.comment("How thick should the Aljan fog be.").defineInRange("aljanAmbience.aljanFogDensity", 0.02, 0, 10);
         this.changeAljanFogColorAtNight = builder.comment("Should the sky/fog color change at nighttime in the Aljan? ").define("aljanAmbience.changeAljanFogColorAtNight", true);
+        this.renderBreasts = builder.comment("Whether breasts should render on mobs that have them. Will only render if Female Gender Mod is installed.").define("renderBreasts", false);
         builder.comment("Back Math Bow Configurations:");
         this.bowDamageCounter = builder.comment("Shows a damage counter when shooting an arrow above the hotbar.").define("bowDamageCounter", false);
         builder.comment("Devil Bow:");

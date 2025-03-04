@@ -1,7 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
 import com.google.common.collect.Maps;
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.BMRangedCrossbowAttackGoal;
@@ -105,7 +105,7 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBonesEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SleepishSkeletonEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AbstractSkeletonEntity.class, true));
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, true));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, AmaracamelerEntity.class, true));
     }
 
@@ -241,7 +241,7 @@ public class ArcherLuciaEntity extends TermianMemberEntity implements BMCrossbow
         return BMSounds.ENTITY_LUCIA_CELEBRATE;
     }
 
-    // Why were Back Math mobs leashable? (29/07/23)
+    /// Why were Back Math mobs leashable? (29-7-23)
     @Override
     public boolean canBeLeashed(PlayerEntity player) {
         return false;

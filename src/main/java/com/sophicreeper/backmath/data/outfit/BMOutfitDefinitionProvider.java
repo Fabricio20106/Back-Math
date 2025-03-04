@@ -22,7 +22,8 @@ public class BMOutfitDefinitionProvider extends OutfitDefinitionProvider {
         this.add("qls_current", Outfits.QUEEN_LUCY_SHIRT_CURRENT);
         this.add("qls_alt", Outfits.QUEEN_LUCY_SHIRT_ALTERNATE);
         this.add("qls_relic", Outfits.QUEEN_LUCY_SHIRT_RELIC);
-        this.add("karate_band", Outfits.KARATE_BAND);
+        this.add("crate", Outfits.CRATE);
+        this.add("karate_headband", Outfits.KARATE_HEADBAND);
         this.add("cat_tiara", Outfits.CAT_TIARA);
         this.add("dog_tiara", Outfits.DOG_TIARA);
 

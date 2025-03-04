@@ -477,6 +477,7 @@ public class BMBlocks {
     public static final RegistryObject<Block> INSOMNIA_SOPHIE_HEAD = BLOCKS.register("insomnia_sophie_head", () -> new HeadBlock(BMHeadType.INSOMNIA_SOPHIE, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1)));
     public static final RegistryObject<Block> INSOMNIA_SOPHIE_WALL_HEAD = BLOCKS.register("insomnia_sophie_wall_head", () -> new WallHeadBlock(BMHeadType.INSOMNIA_SOPHIE, AbstractBlock.Properties.of(BMMaterials.HEAD).strength(1).lootFrom(BMBlocks.INSOMNIA_SOPHIE_HEAD)));
     public static final RegistryObject<Block> EMERIOND_BLOCK = BLOCKS.register("emeriond_block", () -> new Block(AbstractBlock.Properties.copy(Blocks.DIAMOND_BLOCK)));
+    public static final RegistryObject<Block> CRATE = BLOCKS.register("crate", () -> new CrateBlock(AbstractBlock.Properties.of(Material.WOOD).strength(2, 3).harvestTool(ToolType.AXE).sound(SoundType.WOOD)));
 
     // 1.8.0: Coldterm, Warmterm and Obsiditerm Related Blocks:
     public static final RegistryObject<Block> COLDTERM_BLOCK = BLOCKS.register("coldterm_block", () -> new Block(AbstractBlock.Properties.of(Material.METAL, MaterialColor.WARPED_NYLIUM).sound(SoundType.METAL).harvestLevel(3).requiresCorrectToolForDrops().harvestTool(ToolType.PICKAXE).strength(50, 1200)));

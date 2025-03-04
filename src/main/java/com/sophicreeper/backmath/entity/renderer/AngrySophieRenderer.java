@@ -2,6 +2,7 @@ package com.sophicreeper.backmath.entity.renderer;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.custom.AngrySophieEntity;
+import com.sophicreeper.backmath.entity.renderer.layer.BreastLayer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -13,6 +14,7 @@ import javax.annotation.Nonnull;
 public class AngrySophieRenderer extends BMPlayerRenderer<AngrySophieEntity> {
     public AngrySophieRenderer(EntityRendererManager manager) {
         super(manager, 0.5F, true);
+        this.addLayer(new BreastLayer<>(this));
     }
 
     @Nonnull

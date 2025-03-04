@@ -45,8 +45,8 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class WandererSophieEntity extends TermianMemberEntity implements SophieFriendlies {
-    public static final Logger LOGGER = LogManager.getLogger();
     private static final DataParameter<String> VARIANT = EntityDataManager.defineId(WandererSophieEntity.class, DataSerializers.STRING);
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public WandererSophieEntity(EntityType<WandererSophieEntity> type, World world) {
         super(type, world);
@@ -143,6 +143,7 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.1, Ingredient.of(BMItemTags.WANDERER_SOPHIE_TEMPT_ITEMS), false));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.1, false));
         this.goalSelector.addGoal(3, new WaterAvoidingRandomWalkingGoal(this, 1));
+        this.goalSelector.addGoal(4, new LookAtGoal(this, WandererSophieEntity.class, 6));
         this.goalSelector.addGoal(4, new LookAtGoal(this, PlayerEntity.class, 6));
         this.goalSelector.addGoal(5, new LookRandomlyGoal(this));
         this.addAttackTargets();
@@ -175,6 +176,7 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
         spawnData = super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         BMUtils.randomizeWandererSophieVariant(this);
         EquipmentTableUtils.equipWithGear(BMResourceLocations.WANDERER_SOPHIE_EQUIPMENT, this);
+        if (this.getItemBySlot(EquipmentSlotType.CHEST).getItem().is(BMItemTags.CRATES)) this.setDropChance(EquipmentSlotType.CHEST, 0.5F);
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
         return spawnData;
@@ -206,18 +208,6 @@ public class WandererSophieEntity extends TermianMemberEntity implements SophieF
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
         return new ItemStack(AxolotlTest.WANDERER_SOPHIE_SPAWN_EGG.get());
-    }
-
-    @Override
-    public boolean doHurtTarget(Entity entity) {
-        if (entity instanceof LivingEntity && !entity.isInvulnerableTo(DamageSource.IN_FIRE)) {
-            ItemStack devilSword = new ItemStack(AxolotlTest.DEVIL_SWORD.get());
-            if (this.getItemBySlot(EquipmentSlotType.MAINHAND).equals(devilSword)) {
-                LivingEntity livEntity = (LivingEntity) entity;
-                livEntity.setSecondsOnFire(5);
-            }
-        }
-        return super.doHurtTarget(entity);
     }
 
     public static boolean checkSophieSpawnRules(EntityType<? extends CreatureEntity> termianFriendly, IWorld world, SpawnReason reason, BlockPos pos, Random rand) {

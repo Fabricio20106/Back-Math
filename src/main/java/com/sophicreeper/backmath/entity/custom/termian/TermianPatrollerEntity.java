@@ -2,8 +2,10 @@ package com.sophicreeper.backmath.entity.custom.termian;
 
 import com.sophicreeper.backmath.BackMath;
 import com.sophicreeper.backmath.entity.goal.termian.TermianPatrolGoal;
+import com.sophicreeper.backmath.entity.misc.HasBust;
 import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.misc.BMBreastPhysics;
 import com.sophicreeper.backmath.misc.BMSounds;
 import com.sophicreeper.backmath.util.BMUtils;
 import com.sophicreeper.backmath.util.TagTypes;
@@ -21,20 +23,24 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.*;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Random;
 
 import static net.minecraft.entity.monster.MonsterEntity.isDarkEnoughToSpawn;
 
-public abstract class TermianPatrollerEntity extends CreatureEntity implements WornOutfit {
+public abstract class TermianPatrollerEntity extends CreatureEntity implements WornOutfit, HasBust {
     private static final DataParameter<String> OUTFIT_TEXTURE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.STRING);
     private static final DataParameter<String> CAPE_TEXTURE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.STRING);
     private static final DataParameter<Boolean> CAPE_VISIBILITY = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Float> BUST_SIZE = EntityDataManager.defineId(TermianPatrollerEntity.class, DataSerializers.FLOAT);
     private BlockPos patrolTarget;
     private boolean patrolLeader;
     private boolean patrolling;
+    private boolean sneaking;
     public double prevChasingPosX;
     public double prevChasingPosY;
     public double prevChasingPosZ;
@@ -54,6 +60,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
         this.entityData.define(OUTFIT_TEXTURE, "");
         this.entityData.define(CAPE_TEXTURE, BackMath.backMath("cape/cherry_blossom").toString());
         this.entityData.define(CAPE_VISIBILITY, true);
+        this.entityData.define(BUST_SIZE, 0F);
     }
 
     @Override
@@ -74,6 +81,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
             capeTag.putBoolean("visible", this.entityData.get(CAPE_VISIBILITY));
             tag.put("cape", capeTag);
         }
+        tag.putFloat("bust_size", this.entityData.get(BUST_SIZE));
         if (!this.entityData.get(OUTFIT_TEXTURE).isEmpty()) tag.putString("outfit", this.entityData.get(OUTFIT_TEXTURE));
     }
 
@@ -87,6 +95,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
             this.entityData.set(CAPE_TEXTURE, tag.getCompound("cape").getString("texture"));
             this.entityData.set(CAPE_VISIBILITY, tag.getCompound("cape").getBoolean("visible"));
         }
+        this.setBustSize(tag.getFloat("bust_size"));
         if (tag.contains("outfit", TagTypes.STRING)) this.entityData.set(OUTFIT_TEXTURE, tag.getString("outfit"));
     }
 
@@ -94,6 +103,8 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     public void tick() {
         super.tick();
         this.updateCape();
+        this.updatePose();
+        this.getBreastPhysics().update(this, this.getBustSize());
     }
 
     @Override
@@ -106,6 +117,7 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
             f = 0;
         }
         this.cameraYaw += (f - this.cameraYaw) * 0.4F;
+        this.sneaking = !this.isSwimming() && this.canEnterPose(Pose.CROUCHING) && (this.isShiftKeyDown() || !this.isSleeping() && !this.canEnterPose(Pose.STANDING));
         super.aiStep();
     }
 
@@ -121,17 +133,76 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     }
 
     @Override
+    public void updateSwimming() {
+        if (this.isSwimming()) {
+            this.setSwimming(this.isInWater() && !this.isPassenger());
+        } else if (this.getTarget() != null && this.getTarget().isInWater() && this.isUnderWater()) {
+            this.setSwimming(true);
+        } else {
+            this.setSwimming(this.isUnderWater() && !this.isPassenger());
+        }
+    }
+
+    @Override
     public double getMyRidingOffset() {
         return -0.35D;
     }
 
     @Override
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-        return 1.62F;
+        switch (pose) {
+            case SWIMMING: case FALL_FLYING: case SPIN_ATTACK: return 0.4F;
+            case CROUCHING: return 1.27F;
+            default: return 1.62F;
+        }
     }
 
     public boolean canBePatrolLeader() {
         return true;
+    }
+
+    private void updatePose() {
+        if (this.canEnterPose(Pose.SWIMMING)) {
+            Pose pose;
+            if (this.isFallFlying()) {
+                pose = Pose.FALL_FLYING;
+            } else if (this.isSleeping()) {
+                pose = Pose.SLEEPING;
+            } else if (this.isSwimming()) {
+                pose = Pose.SWIMMING;
+            } else if (this.isAutoSpinAttack()) {
+                pose = Pose.SPIN_ATTACK;
+            } else if (this.isShiftKeyDown()) {
+                pose = Pose.CROUCHING;
+            } else {
+                pose = Pose.STANDING;
+            }
+
+            Pose pose1;
+            if (!this.isSpectator() && !this.isPassenger() && !this.canEnterPose(pose)) {
+                if (this.canEnterPose(Pose.CROUCHING)) {
+                    pose1 = Pose.CROUCHING;
+                } else {
+                    pose1 = Pose.SWIMMING;
+                }
+            } else {
+                pose1 = pose;
+            }
+
+            this.setPose(pose1);
+        }
+    }
+
+    @Override
+    @Nonnull
+    public EntitySize getDimensions(Pose pose) {
+        switch (pose) {
+            case SLEEPING: return SLEEPING_DIMENSIONS;
+            case FALL_FLYING: case SWIMMING: case SPIN_ATTACK: return EntitySize.scalable(0.6F, 0.6F);
+            case DYING: return EntitySize.scalable(0.2F, 0.2F);
+            case CROUCHING: return EntitySize.scalable(0.6F, 1.5F);
+            case STANDING: default: return super.getDimensions(pose);
+        }
     }
 
     @Override
@@ -141,6 +212,19 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
             handStack.getItem().hurtEnemy(handStack, (LivingEntity) entity, this);
         }
         return super.doHurtTarget(entity);
+    }
+
+    @Override
+    public void travel(Vector3d position) {
+        if (this.isSwimming() && !this.isPassenger()) {
+            double yLookAngle = this.getLookAngle().y;
+            double d = yLookAngle < -0.2D ? 0.085D : 0.06D;
+            if (yLookAngle <= 0 || this.jumping || !this.level.getBlockState(new BlockPos(this.getX(), this.getY() + 1 - 0.1D, this.getZ())).getFluidState().isEmpty()) {
+                Vector3d deltaMovement = this.getDeltaMovement();
+                this.setDeltaMovement(deltaMovement.add(0, (yLookAngle - deltaMovement.y) * d, 0));
+            }
+        }
+        super.travel(position);
     }
 
     @Nullable
@@ -153,6 +237,8 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
             this.setDropChance(EquipmentSlotType.HEAD, 2);
         }
         if (reason == SpawnReason.PATROL) this.patrolling = true;
+
+        this.setBustSize(this.random.nextFloat());
 
         // Capes
         this.setCapeVisibility(this.random.nextInt(16) != 0);
@@ -177,19 +263,24 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
         return !this.patrolling;
     }
 
-    @Override
+    @Nonnull
     protected SoundEvent getSwimSound() {
         return BMSounds.ENTITY_TERMIAN_SWIM;
     }
 
-    @Override
+    @Nonnull
     protected SoundEvent getSwimSplashSound() {
         return BMSounds.ENTITY_TERMIAN_SPLASH;
     }
 
-    @Override
+    @Nonnull
     protected SoundEvent getSwimHighSpeedSplashSound() {
         return BMSounds.ENTITY_TERMIAN_SPLASH_HIGH_SPEED;
+    }
+
+    @Override
+    public boolean isCrouching() {
+        return this.sneaking;
     }
 
     public void setPatrolTarget(BlockPos pos) {
@@ -261,6 +352,21 @@ public abstract class TermianPatrollerEntity extends CreatureEntity implements W
     public boolean isWearingOutfit() {
         String outfitTexture = this.entityData.get(OUTFIT_TEXTURE);
         return !outfitTexture.isEmpty() && OutfitDefinition.DATA_DRIVEN_OUTFITS.containsKey(ResourceLocation.tryParse(outfitTexture));
+    }
+
+    @Override
+    public float getBustSize() {
+        return this.entityData.get(BUST_SIZE);
+    }
+
+    @Override
+    public void setBustSize(float bustSize) {
+        this.entityData.set(BUST_SIZE, bustSize);
+    }
+
+    @Override
+    public BMBreastPhysics getBreastPhysics() {
+        return new BMBreastPhysics();
     }
 
     private void updateCape() {

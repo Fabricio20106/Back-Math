@@ -19,6 +19,7 @@ public class OutfitDefinition {
             OutfitSlot.CODEC.fieldOf("legs").forGetter(OutfitDefinition::legsSlot), OutfitSlot.CODEC.fieldOf("feet").forGetter(OutfitDefinition::feetSlot)).apply(instance, OutfitDefinition::new));
     public static Map<ResourceLocation, OutfitDefinition> DATA_DRIVEN_OUTFITS = new HashMap<>();
     public static Map<Pair<EquipmentSlotType, ResourceLocation>, ResourceLocation> TEXTURE_CACHE = new HashMap<>();
+    public static Map<Pair<EquipmentSlotType, ResourceLocation>, ResourceLocation> EMISSIVE_TEXTURE_CACHE = new HashMap<>();
     private final ResourceLocation assetID;
     @Nullable
     private final OutfitSlot headSlot;
@@ -61,10 +62,21 @@ public class OutfitDefinition {
         return this.feetSlot;
     }
 
-    // todo: make outfit emissive textures work ~isa 28-2-22
+    @Nullable
+    public static OutfitSlot byEquipmentSlot(OutfitDefinition definition, EquipmentSlotType slotType) {
+        switch (slotType) {
+            case HEAD: return definition.headSlot;
+            case CHEST: return definition.chestSlot;
+            case LEGS: return definition.legsSlot;
+            case FEET: return definition.feetSlot;
+            default: return null;
+        }
+    }
+
     public static ResourceLocation getOutfitTexture(EquipmentSlotType slotType, ResourceLocation materialName, boolean slimArms) {
         Pair<EquipmentSlotType, ResourceLocation> pair = new Pair<>(slotType, materialName);
         if (TEXTURE_CACHE.containsKey(pair)) return TEXTURE_CACHE.get(pair);
+        if (materialName.toString().equals("minecraft:")) return null;
 
         if (DATA_DRIVEN_OUTFITS.containsKey(materialName)) {
             OutfitDefinition definition = DATA_DRIVEN_OUTFITS.get(materialName);
@@ -95,6 +107,48 @@ public class OutfitDefinition {
                     if (definition.feetSlot != null) {
                         location = new ResourceLocation(definition.feetSlot.texture().getNamespace(), "textures/" + definition.feetSlot.texture().getPath() + ".png");
                         TEXTURE_CACHE.put(pair, location);
+                        return location;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public static ResourceLocation getEmissiveOutfitTexture(EquipmentSlotType slotType, ResourceLocation materialName, boolean slimArms) {
+        Pair<EquipmentSlotType, ResourceLocation> pair = new Pair<>(slotType, materialName);
+        if (EMISSIVE_TEXTURE_CACHE.containsKey(pair)) return EMISSIVE_TEXTURE_CACHE.get(pair);
+        if (materialName.toString().equals("minecraft:")) return null;
+
+        if (DATA_DRIVEN_OUTFITS.containsKey(materialName)) {
+            OutfitDefinition definition = DATA_DRIVEN_OUTFITS.get(materialName);
+            ResourceLocation location;
+            switch (slotType) {
+                case HEAD: {
+                    if (definition.headSlot != null && definition.headSlot.emissiveTexture() != null) {
+                        location = new ResourceLocation(definition.headSlot.emissiveTexture().getNamespace(), "textures/" + definition.headSlot.emissiveTexture().getPath() + ".png");
+                        EMISSIVE_TEXTURE_CACHE.put(pair, location);
+                        return location;
+                    }
+                }
+                case CHEST: {
+                    if (definition.chestSlot != null && definition.chestSlot.emissiveTexture() != null) {
+                        location = new ResourceLocation(definition.chestSlot.emissiveTexture().getNamespace(), "textures/" + definition.chestSlot.emissiveTexture().getPath() + (slimArms ? "_slim" : "_classic") + ".png");
+                        EMISSIVE_TEXTURE_CACHE.put(pair, location);
+                        return location;
+                    }
+                }
+                case LEGS: {
+                    if (definition.legsSlot != null && definition.legsSlot.emissiveTexture() != null) {
+                        location = new ResourceLocation(definition.legsSlot.emissiveTexture().getNamespace(), "textures/" + definition.legsSlot.emissiveTexture().getPath() + ".png");
+                        EMISSIVE_TEXTURE_CACHE.put(pair, location);
+                        return location;
+                    }
+                }
+                case FEET: {
+                    if (definition.feetSlot != null && definition.feetSlot.emissiveTexture() != null) {
+                        location = new ResourceLocation(definition.feetSlot.emissiveTexture().getNamespace(), "textures/" + definition.feetSlot.emissiveTexture().getPath() + ".png");
+                        EMISSIVE_TEXTURE_CACHE.put(pair, location);
                         return location;
                     }
                 }

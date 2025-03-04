@@ -76,9 +76,7 @@ public class QueenLucyPetEntity extends TameableEntity {
     public void aiStep() {
         this.updateSwingTime();
         if (this.level.getGameRules().getBoolean(GameRules.RULE_NATURAL_REGENERATION)) {
-            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) {
-                this.heal(1);
-            }
+            if (this.getHealth() < this.getMaxHealth() && this.tickCount % 20 == 0) this.heal(1);
         }
         super.aiStep();
     }
@@ -162,7 +160,7 @@ public class QueenLucyPetEntity extends TameableEntity {
             if (player.isCreative() || !this.isInvulnerable()) this.hurt(DamageSource.playerAttack(player), Float.MAX_VALUE);
             return ActionResultType.sidedSuccess(this.level.isClientSide);
         } else if (this.isOwnedBy(player) && handStack.getItem().is(BMItemTags.CLEARS_MOB_EFFECTS)) {
-            if (this.curePotionEffects(handStack)) {
+            if (BMUtils.clearMobEffects(this)) {
                 SoundEvent consumeSound = handStack.getUseAnimation() == UseAction.DRINK ? handStack.getDrinkingSound() : handStack.getEatingSound();
                 this.playSound(consumeSound, 1, 1.5F);
                 if (!player.abilities.instabuild) {
@@ -175,7 +173,7 @@ public class QueenLucyPetEntity extends TameableEntity {
         } else if (!this.isFlying() && this.isTame() && this.isOwnedBy(player)) {
             if (!this.level.isClientSide) {
                 this.setOrderedToSit(!this.isOrderedToSit());
-                displaySittingMessage(player, this.isOrderedToSit());
+                this.displaySittingMessage(player, this.isOrderedToSit());
             }
 
             return ActionResultType.sidedSuccess(this.level.isClientSide);

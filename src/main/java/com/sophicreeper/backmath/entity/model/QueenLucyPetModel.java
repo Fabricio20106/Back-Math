@@ -1,6 +1,3 @@
-// Made with Blockbench 4.5.2.
-// Exported for Minecraft version 1.15 - 1.16 with MCP mappings.
-// Paste this class into your mod and generate all required imports.
 package com.sophicreeper.backmath.entity.model;
 
 import com.google.common.collect.ImmutableList;
@@ -8,6 +5,7 @@ import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import net.minecraft.client.renderer.entity.model.BipedModel;
+import net.minecraft.client.renderer.model.ModelHelper;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
@@ -15,6 +13,9 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nonnull;
 
+/// Made with Blockbench 4.5.2. <p>
+/// Exported for Minecraft version 1.15 - 1.16 with MCP mappings. <p>
+/// Paste this class into your mod and generate all required imports. <p>
 @OnlyIn(Dist.CLIENT)
 public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 	private final ModelRenderer head;
@@ -38,7 +39,7 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 
 		this.head = new ModelRenderer(this);
 		this.head.setPos(0, 12, 0);
-		setRotationAngle(this.head, 0, 0, 0);
+		this.setRotationAngle(this.head, 0, 0, 0);
 		this.head.texOffs(0, 0).addBox(-2, -4, -2, 4, 4, 4, 0, false);
 		this.head.texOffs(0, 16).addBox(-1, -6, -1, 2, 2, 0, 0, false);
 		this.head.texOffs(15, 14).addBox(-1, -6, -1, 0, 2, 2, 0, false);
@@ -88,7 +89,7 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 		this.rightWingR1 = new ModelRenderer(this);
 		this.rightWingR1.setPos(0, 0, 0);
 		this.rightWing.addChild(this.rightWingR1);
-		setRotationAngle(this.rightWingR1, 0, 0.4363F, 0);
+		this.setRotationAngle(this.rightWingR1, 0, 0.4363F, 0);
 		this.rightWingR1.texOffs(0, 20).addBox(-7, -3, 1, 7, 6, 0, 0, false);
 
 		this.leftWing = new ModelRenderer(this);
@@ -98,7 +99,7 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 		this.leftWingR1 = new ModelRenderer(this);
 		this.leftWingR1.setPos(0, 0, 0);
 		this.leftWing.addChild(this.leftWingR1);
-		setRotationAngle(this.leftWingR1, 0, -0.4363F, 0);
+		this.setRotationAngle(this.leftWingR1, 0, -0.4363F, 0);
 		this.leftWingR1.texOffs(0, 26).addBox(0, -3, 1, 7, 6, 0, 0, true);
 	}
 
@@ -112,9 +113,10 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 		return ImmutableList.of(this.body, this.rightLeg, this.leftLeg, this.rightArm, this.leftArm, this.rightWing, this.leftWing);
 	}
 
-	// Sets this entity's model rotation angles.
-	public void setupAnim(QueenLucyPetEntity lucy, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.head.yRot = netHeadYaw * 0.017453292f;
+	/// Sets this queen lucy pet's model rotation angles.
+	@Override
+	public void setupAnim(QueenLucyPetEntity lucy, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch) {
+		this.head.yRot = headYaw * 0.017453292f;
 		this.head.xRot = headPitch * 0.017453292f;
 
 		this.body.yRot = 0;
@@ -128,12 +130,14 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 		this.rightLeg.zRot = 0;
 		this.leftLeg.zRot = 0;
 
-		ModelRenderer modelRenderer;
-		if (this.riding) {
-			modelRenderer = this.rightArm;
-			modelRenderer.xRot -= 0.62831855F;
-			modelRenderer = this.leftArm;
-			modelRenderer.xRot -= 0.62831855F;
+		ModelRenderer renderer;
+		if (this.riding || lucy.isOrderedToSit()) {
+			renderer = this.rightArm;
+			renderer.xRot -= 0.62831855F;
+			renderer = this.leftArm;
+			renderer.xRot -= 0.62831855F;
+			this.rightArm.xRot += (-(float) Math.PI / 5F);
+			this.leftArm.xRot += (-(float) Math.PI / 5F);
 			this.rightLeg.xRot = -1.4137167F;
 			this.rightLeg.yRot = 0.31415927F;
 			this.rightLeg.zRot = 0.07853982F;
@@ -142,8 +146,12 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 			this.leftLeg.zRot = -0.07853982F;
 		}
 
+		this.setupAttackAnimation(lucy, ageInTicks);
+
 		this.rightArm.yRot = 0;
 		this.leftArm.yRot = 0;
+
+		ModelHelper.bobArms(this.rightArm, this.leftArm, ageInTicks);
 
 		this.rightLeg.z = 0.1F;
 		this.leftLeg.z = 0.1F;
@@ -153,7 +161,7 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 		this.body.y = 24;
 		this.rightArm.y = 0;
 		this.leftArm.y = 0;
-		super.setupAnim(lucy, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
+		super.setupAnim(lucy, limbSwing, limbSwingAmount, ageInTicks, headYaw, headPitch);
 	}
 
 	@Override
@@ -162,9 +170,9 @@ public class QueenLucyPetModel extends BipedModel<QueenLucyPetEntity> {
 		this.body.render(stack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
 	}
 
-	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.xRot = x;
-		modelRenderer.yRot = y;
-		modelRenderer.zRot = z;
+	public void setRotationAngle(ModelRenderer renderer, float x, float y, float z) {
+		renderer.xRot = x;
+		renderer.yRot = y;
+		renderer.zRot = z;
 	}
 }

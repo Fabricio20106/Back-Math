@@ -30,7 +30,7 @@ public class BackMath {
         ForgeMod.enableMilkFluid();
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> (DistExecutor.SafeRunnable) ClientProxy::addAljanTextureUpdatePack);
         this.proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BMConfigs.COMMON_SPEC, "backmath-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BMConfigs.COMMON_SPEC, "melonystudios/backmath-common.toml");
         BMConfigs.init();
     }
 

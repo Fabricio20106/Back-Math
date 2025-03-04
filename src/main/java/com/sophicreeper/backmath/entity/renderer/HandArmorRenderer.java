@@ -43,12 +43,25 @@ public class HandArmorRenderer {
             outfitModel.swimAmount = 0;
             outfitModel.setupAnim(player, 0, 0, 0, 0, 0);
             ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(item.getSlot(), new ResourceLocation(item.getMaterial().getName()), outfitModel.slim);
-            IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));
+            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(item.getSlot(), new ResourceLocation(item.getMaterial().getName()), outfitModel.slim);
 
-            rightArm.xRot = 0;
-            rightArm.render(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0));
-            rightSleeve.xRot = 0;
-            rightSleeve.render(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0));
+            if (outfitLocation != null) {
+                IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));
+
+                rightArm.xRot = 0;
+                rightArm.render(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0));
+                rightSleeve.xRot = 0;
+                rightSleeve.render(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0));
+            }
+
+            if (emissiveLocation != null) {
+                IVertexBuilder emissiveBuffer = buffer.getBuffer(RenderType.eyes(emissiveLocation));
+
+                rightArm.xRot = 0;
+                rightArm.render(stack, emissiveBuffer, BMUtils.EMISSIVE_LIGHT_VALUE, BMUtils.getOverlayCoordinates(0));
+                rightSleeve.xRot = 0;
+                rightSleeve.render(stack, emissiveBuffer, BMUtils.EMISSIVE_LIGHT_VALUE, BMUtils.getOverlayCoordinates(0));
+            }
         }
     }
 

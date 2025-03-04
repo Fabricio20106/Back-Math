@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.entity.model.BipedModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -50,20 +51,37 @@ public class OutfitLayer<T extends LivingEntity, A extends BipedModel<T>> extend
         if (mob instanceof WornOutfit && isWearingOutfit) {
             WornOutfit outfit = (WornOutfit) mob;
             ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, new ResourceLocation(outfit.getOutfitTexture()), slimArms);
+            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(slotType, new ResourceLocation(outfit.getOutfitTexture()), slimArms);
+            float[] outfitColors = BMUtils.getOutfitColors(ResourceLocation.tryParse(outfit.getOutfitTexture()), null, slotType);
+
             if (outfitLocation != null) {
                 IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.entityTranslucent(outfitLocation));
                 float transparency = mob.isInvisible() && !mob.isInvisibleTo(Minecraft.getInstance().player) ? 0.15F : (mob.isInvisible() ? 0 : 1);
-                parentModel.renderToBuffer(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0), 1, 1, 1, transparency);
+                parentModel.renderToBuffer(stack, translucentBuffer, packedLight, BMUtils.getOverlayCoordinates(0), outfitColors[0], outfitColors[1], outfitColors[2], transparency);
             }
-        } else if (!armorStack.isEmpty() && armorStack.getItem() instanceof ArmorItem && armorStack.getItem().is(BMItemTags.OUTFITS)) {
-            ArmorItem item = (ArmorItem) mob.getItemBySlot(slotType).getItem();
-            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, new ResourceLocation(item.getMaterial().getName()), slimArms);
+
+            if (emissiveLocation != null) {
+                IVertexBuilder translucentBuffer = buffer.getBuffer(RenderType.eyes(emissiveLocation));
+                parentModel.renderToBuffer(stack, translucentBuffer, BMUtils.EMISSIVE_LIGHT_VALUE, BMUtils.getOverlayCoordinates(0), 1, 1, 1, 1);
+            }
+        } else if (!armorStack.isEmpty() && armorStack.getItem().is(BMItemTags.OUTFITS)) {
+            Item item = mob.getItemBySlot(slotType).getItem();
+            String materialName = item instanceof ArmorItem ? ((ArmorItem) item).getMaterial().getName() : (item.is(BMItemTags.CRATES) ? "backmath:crate" : "");
+            if (materialName.isEmpty()) return;
+            ResourceLocation outfitLocation = OutfitDefinition.getOutfitTexture(slotType, new ResourceLocation(materialName), slimArms);
+            ResourceLocation emissiveLocation = OutfitDefinition.getEmissiveOutfitTexture(slotType, new ResourceLocation(materialName), slimArms);
+            float[] outfitColors = BMUtils.getOutfitColors(new ResourceLocation(materialName), armorStack, slotType);
 
             if (outfitLocation != null) {
-                if (item.is(BMItemTags.FULLY_LIT_ITEMS)) packedLight = LightTexture.pack(15, 15);
+                int brightLight = item.is(BMItemTags.FULLY_LIT_ITEMS) ? LightTexture.pack(15, 15) : packedLight;
 
                 RenderType translucentType = RenderType.entityTranslucent(outfitLocation);
-                parentModel.renderToBuffer(stack, buffer.getBuffer(translucentType), packedLight, BMUtils.getOverlayCoordinates(0), 1, 1, 1, 1);
+                parentModel.renderToBuffer(stack, buffer.getBuffer(translucentType), brightLight, BMUtils.getOverlayCoordinates(0), outfitColors[0], outfitColors[1], outfitColors[2], 1);
+            }
+
+            if (emissiveLocation != null) {
+                IVertexBuilder emissiveBuffer = buffer.getBuffer(RenderType.eyes(emissiveLocation));
+                parentModel.renderToBuffer(stack, emissiveBuffer, BMUtils.EMISSIVE_LIGHT_VALUE, BMUtils.getOverlayCoordinates(0), 1, 1, 1, 1);
             }
         }
     }

@@ -85,6 +85,7 @@ public class KarateLuciaEntity extends TermianMemberEntity implements SophieFrie
     @Nullable
     @Override
     public ILivingEntityData finalizeSpawn(IServerWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData spawnData, @Nullable CompoundNBT dataTag) {
+        super.finalizeSpawn(world, difficulty, reason, spawnData, dataTag);
         EquipmentTableUtils.equipWithGear(BMResourceLocations.KARATE_LUCIA_EQUIPMENT, this);
         this.populateDefaultEquipmentEnchantments(difficulty);
         this.populateDefaultEquipmentSlots(difficulty);
@@ -111,14 +112,6 @@ public class KarateLuciaEntity extends TermianMemberEntity implements SophieFrie
             }
         }
         super.aiStep();
-    }
-
-    public void rideTick() {
-        super.rideTick();
-        if (this.getVehicle() instanceof CreatureEntity) {
-            CreatureEntity entity = (CreatureEntity) this.getVehicle();
-            this.yBodyRot = entity.yBodyRot;
-        }
     }
 
     protected SoundEvent getHurtSound(DamageSource source) {

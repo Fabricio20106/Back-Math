@@ -5,6 +5,7 @@ import com.sophicreeper.backmath.entity.misc.WornOutfit;
 import com.sophicreeper.backmath.entity.model.BMArmorModel;
 import com.sophicreeper.backmath.entity.model.BMPlayerModel;
 import com.sophicreeper.backmath.entity.renderer.layer.BMArmorLayer;
+import com.sophicreeper.backmath.entity.renderer.layer.CrateLayer;
 import com.sophicreeper.backmath.entity.renderer.layer.OutfitLayer;
 import com.sophicreeper.backmath.item.custom.tool.JanticRailgunItem;
 import com.sophicreeper.backmath.util.tag.BMItemTags;
@@ -42,6 +43,7 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
         super(manager, model, shadowSize);
         this.addLayer(new OutfitLayer<>(this, slimArms));
         this.addLayer(new BMArmorLayer<>(this, new BMArmorModel<>(0.5F, 0, 64, 32), new BMArmorModel<>(1, 0, 64, 32)));
+        this.addLayer(new CrateLayer<>(this));
         this.addLayer(new HeldItemLayer<>(this));
         this.addLayer(new HeadLayer<>(this));
         if (this.enableDefaultElytra) this.addLayer(new ElytraLayer<>(this));
@@ -143,8 +145,9 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
             }
         }
 
-        BipedModel.ArmPose mainHandPose = getArmPose(mob, Hand.MAIN_HAND);
-        BipedModel.ArmPose offHandPose = getArmPose(mob, Hand.OFF_HAND);
+        BipedModel.ArmPose mainHandPose = this.getArmPose(mob, Hand.MAIN_HAND);
+        BipedModel.ArmPose offHandPose = this.getArmPose(mob, Hand.OFF_HAND);
+        mobModel.crouching = mob.isCrouching();
 
         if (mainHandPose.isTwoHanded()) {
             offHandPose = mob.getOffhandItem().isEmpty() ? BipedModel.ArmPose.EMPTY : BipedModel.ArmPose.ITEM;
@@ -167,8 +170,7 @@ public class BMPlayerRenderer<T extends CreatureEntity> extends BipedRenderer<T,
                 mobModel.leftSleeve.visible = false;
                 break;
             }
-            case LEGS:
-            case FEET: {
+            case LEGS: case FEET: {
                 mobModel.rightPants.visible = false;
                 mobModel.leftPants.visible = false;
                 break;

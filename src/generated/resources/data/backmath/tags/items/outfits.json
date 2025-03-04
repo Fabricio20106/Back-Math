@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "#backmath:crates",
     "backmath:plateforced_mid_term_helmet",
     "backmath:plateforced_mid_term_breastplate",
     "backmath:plateforced_mid_term_leggings",

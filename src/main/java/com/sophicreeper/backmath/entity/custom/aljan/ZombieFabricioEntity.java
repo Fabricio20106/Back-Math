@@ -2,8 +2,8 @@ package com.sophicreeper.backmath.entity.custom.aljan;
 
 import com.sophicreeper.backmath.entity.BMEntities;
 import com.sophicreeper.backmath.entity.custom.*;
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
-import com.sophicreeper.backmath.entity.custom.aljamic.ShyFabricioEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
+import com.sophicreeper.backmath.entity.custom.alcalyte.ShyAlcalyteEntity;
 import com.sophicreeper.backmath.entity.goal.StompTurtleEggGoal;
 import com.sophicreeper.backmath.entity.goal.ZombieAttackGoal;
 import com.sophicreeper.backmath.entity.misc.ZombieGroupData;
@@ -59,11 +59,11 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
     private static final AttributeModifier BABY_ZOMBIE_SPEED_MODIFIER = new AttributeModifier(UUID.fromString("B9766B59-9566-4402-BC1F-2EE2A276D836"), "Baby Zombie Fabricio Speed Bonus", 0.5D, AttributeModifier.Operation.MULTIPLY_BASE);
     private static final DataParameter<Boolean> IS_BABY = EntityDataManager.defineId(ZombieFabricioEntity.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> IS_CONVERTING_TO_DROWNED = EntityDataManager.defineId(ZombieFabricioEntity.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> IS_CONVERTING_TO_FABRICIO = EntityDataManager.defineId(ZombieFabricioEntity.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> IS_CONVERTING_TO_SHY_ALCALYTE = EntityDataManager.defineId(ZombieFabricioEntity.class, DataSerializers.BOOLEAN);
     private final BreakDoorGoal breakDoorGoal = new BreakDoorGoal(this, difficulty -> difficulty == Difficulty.HARD);
     private UUID converterUUID;
     private boolean canBreakDoors;
-    private int fabricioConversionTicks;
+    private int shyAlcalyteConversionTicks;
     private int ticksSubmergedInWater;
     private int drownedConversionTicks;
 
@@ -83,7 +83,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
     protected void addAttackTargets() {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, MalaikaEntity.class, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WandererSophieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, WarriorSophieEntity.class, true));
@@ -109,14 +109,14 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         super.defineSynchedData();
         this.entityData.define(IS_BABY, false);
         this.entityData.define(IS_CONVERTING_TO_DROWNED, false);
-        this.entityData.define(IS_CONVERTING_TO_FABRICIO, false);
+        this.entityData.define(IS_CONVERTING_TO_SHY_ALCALYTE, false);
     }
 
     public boolean isConvertingToDrowned() {
         return this.entityData.get(IS_CONVERTING_TO_DROWNED);
     }
 
-    // Sets or removes EntityAIBreakDoor task.
+    /// Sets or removes the {@link BreakDoorGoal} task.
     public void setBreakDoorsAITask(boolean enabled) {
         if (this.supportsBreakDoorGoal() && GroundPathHelper.hasGroundPathNavigation(this)) {
             if (this.canBreakDoors != enabled) {
@@ -143,7 +143,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         return this.entityData.get(IS_BABY);
     }
 
-    // Get the experience points the entity currently has.
+    /// Get the experience points the entity currently has.
     protected int getExperienceReward(PlayerEntity player) {
         if (this.isBaby()) this.xpReward = (int) ((float) this.xpReward * 2.5F);
         return super.getExperienceReward(player);
@@ -171,7 +171,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
 
     @Override
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
-        return !this.isConvertingToFabricio();
+        return !this.isConvertingToShyAlcalyte();
     }
 
     @Override
@@ -183,11 +183,11 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
                 if (this.drownedConversionTicks < 0 && ForgeEventFactory.canLivingConvert(this, EntityType.DROWNED, timer -> this.drownedConversionTicks = timer)) {
                     this.convertToDrowned();
                 }
-            } else if (this.isConvertingToFabricio()) {
-                int conversionProgress = this.getConversionToFabricioProgress();
-                this.fabricioConversionTicks -= conversionProgress;
-                if (this.fabricioConversionTicks <= 0 && ForgeEventFactory.canLivingConvert(this, BMEntities.SHY_FABRICIO.get(), timer -> this.fabricioConversionTicks = timer)) {
-                    this.convertToFabricio();
+            } else if (this.isConvertingToShyAlcalyte()) {
+                int conversionProgress = this.getConversionToShyAlcalyteProgress();
+                this.shyAlcalyteConversionTicks -= conversionProgress;
+                if (this.shyAlcalyteConversionTicks <= 0 && ForgeEventFactory.canLivingConvert(this, BMEntities.SHY_ALCALYTE.get(), timer -> this.shyAlcalyteConversionTicks = timer)) {
+                    this.convertToShyAlcalyte();
                 }
             } else if (this.convertsInWater()) {
                 if (this.isEyeInFluid(FluidTags.WATER)) {
@@ -203,7 +203,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         super.tick();
     }
 
-    // Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
+    /// Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons use this to react to sunlight and start to burn.
     public void aiStep() {
         if (this.isAlive()) {
             boolean shouldBurn = this.shouldBurnInDay() && this.isSunBurnTick();
@@ -233,7 +233,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
             if (this.hasEffect(Effects.BLINDNESS)) {
                 if (!player.abilities.instabuild) handStack.shrink(1);
 
-                if (!this.level.isClientSide) this.startConversionToFabricio(player.getUUID(), this.random.nextInt(2401) + 3600);
+                if (!this.level.isClientSide) this.startConversionToShyAlcalyte(player.getUUID(), this.random.nextInt(2401) + 3600);
                 return ActionResultType.SUCCESS;
             } else {
                 return ActionResultType.CONSUME;
@@ -254,23 +254,23 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         if (drowned != null) ForgeEventFactory.onLivingConvert(this, EntityType.DROWNED.create(this.level));
     }
 
-    protected void convertToFabricio() {
-        ShyFabricioEntity shyFabricio = this.convertTo(BMEntities.SHY_FABRICIO.get(), true);
-        if (shyFabricio != null) {
-            shyFabricio.addEffect(new EffectInstance(Effects.CONFUSION, 200, 0));
+    protected void convertToShyAlcalyte() {
+        ShyAlcalyteEntity shyAlcalyte = this.convertTo(BMEntities.SHY_ALCALYTE.get(), true);
+        if (shyAlcalyte != null) {
+            shyAlcalyte.addEffect(new EffectInstance(Effects.CONFUSION, 200, 0));
             if (!this.isSilent()) this.level.playLocalSound(this.getX(), this.getY(), this.getZ(), BMSounds.ENTITY_ZOMBIE_FABRICIO_CURE, this.getSoundSource(), 2, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1, false);
-            ForgeEventFactory.onLivingConvert(this, BMEntities.SHY_FABRICIO.get().create(this.level));
+            ForgeEventFactory.onLivingConvert(this, BMEntities.SHY_ALCALYTE.get().create(this.level));
         }
     }
 
-    public boolean isConvertingToFabricio() {
-        return this.getEntityData().get(IS_CONVERTING_TO_FABRICIO);
+    public boolean isConvertingToShyAlcalyte() {
+        return this.getEntityData().get(IS_CONVERTING_TO_SHY_ALCALYTE);
     }
 
-    private void startConversionToFabricio(@Nullable UUID playerUUID, int conversionTicks) {
+    public void startConversionToShyAlcalyte(@Nullable UUID playerUUID, int conversionTicks) {
         this.converterUUID = playerUUID;
-        this.fabricioConversionTicks = conversionTicks;
-        this.entityData.set(IS_CONVERTING_TO_FABRICIO, true);
+        this.shyAlcalyteConversionTicks = conversionTicks;
+        this.entityData.set(IS_CONVERTING_TO_SHY_ALCALYTE, true);
         this.removeEffect(Effects.BLINDNESS);
         this.addEffect(new EffectInstance(Effects.DAMAGE_BOOST, conversionTicks, Math.min(this.level.getDifficulty().getId() - 1, 0)));
         this.level.broadcastEntityEvent(this, (byte) 16);
@@ -285,7 +285,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         }
     }
 
-    private int getConversionToFabricioProgress() {
+    private int getConversionToShyAlcalyteProgress() {
         int progress = 1;
         if (this.random.nextFloat() < 0.01F) {
             int area = 0;
@@ -369,11 +369,11 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         tag.putBoolean("can_break_doors", this.canBreakDoors());
         tag.putInt("ticks_submerged_in_water", this.isInWater() ? this.ticksSubmergedInWater : -1);
         tag.putInt("drowned_conversion_ticks", this.isConvertingToDrowned() ? this.drownedConversionTicks : -1);
-        tag.putInt("fabricio_conversion_ticks", this.isConvertingToFabricio() ? this.fabricioConversionTicks : -1);
+        tag.putInt("fabricio_conversion_ticks", this.isConvertingToShyAlcalyte() ? this.shyAlcalyteConversionTicks : -1);
         if (this.converterUUID != null) tag.putUUID("converter_uuid", this.converterUUID);
     }
 
-    // (abstract) Protected helper method to read subclass entity data from NBT.
+    /// (abstract) Protected helper method to read subclass entity data from NBT.
     public void readAdditionalSaveData(CompoundNBT tag) {
         super.readAdditionalSaveData(tag);
         this.setBaby(tag.getBoolean("is_baby"));
@@ -383,9 +383,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         if (tag.contains("drowned_conversion_ticks", TagTypes.ANY_NUMERIC) && tag.getInt("drowned_conversion_ticks") > -1) {
             this.startConversionToDrowned(tag.getInt("drowned_conversion_ticks"));
         }
-        if (tag.contains("fabricio_conversion_ticks", TagTypes.ANY_NUMERIC) && tag.getInt("fabricio_conversion_ticks") > -1) {
-            this.startConversionToFabricio(tag.hasUUID("converter_uuid") ? tag.getUUID("converter_uuid") : null, tag.getInt("fabricio_conversion_ticks"));
-        }
+        BMTagFixes.renameFabricioConversionTicks(tag, this);
     }
 
     protected float getStandingEyeHeight(Pose pose, EntitySize size) {
@@ -460,7 +458,7 @@ public class ZombieFabricioEntity extends MonsterEntity implements AljanMobUtils
         }
     }
 
-    // Returns the Y Offset of this entity.
+    /// Returns the Y Offset of this entity.
     public double getMyRidingOffset() {
         return this.isBaby() ? 0 : -0.45D;
     }

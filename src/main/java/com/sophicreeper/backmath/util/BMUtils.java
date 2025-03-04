@@ -6,6 +6,8 @@ import com.sophicreeper.backmath.entity.custom.QueenLucyEntity;
 import com.sophicreeper.backmath.entity.custom.QueenLucyPetEntity;
 import com.sophicreeper.backmath.entity.custom.WandererSophieEntity;
 import com.sophicreeper.backmath.entity.custom.termian.TermianPatrollerEntity;
+import com.sophicreeper.backmath.entity.outfit.OutfitDefinition;
+import com.sophicreeper.backmath.entity.outfit.OutfitSlot;
 import com.sophicreeper.backmath.item.AxolotlTest;
 import com.sophicreeper.backmath.variant.queenlucy.QueenLucyVariant;
 import com.sophicreeper.backmath.variant.queenlucypet.QueenLucyPetVariant;
@@ -17,13 +19,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.FilledMapItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
+import net.minecraft.item.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.potion.Effect;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.tileentity.BannerPattern;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
@@ -40,6 +40,7 @@ import net.minecraft.world.storage.MapData;
 import net.minecraft.world.storage.MapDecoration;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -47,6 +48,7 @@ import java.util.Random;
 /// Just generalized methods that are used more than twice throughout the code.
 public class BMUtils {
     public static final List<String> VALID_WOOD_TYPES = Lists.newArrayList("aljanwood", "aljancap", "insomnian", "avondalic_willow");
+    public static final int EMISSIVE_LIGHT_VALUE = 0xF00000;
     public static final int END_PORTAL_OPEN = 1038;
     private static final float[] FOG_COLORS = new float[3];
     private static float COLOR = 0;
@@ -175,6 +177,8 @@ public class BMUtils {
     }
 
     /// Copied from <code>teamtwilight/twilightforest</code>. Smoothly transitions the fog color in the Aljan to a light purple color at nighttime.
+    /// @param event The {@link EntityViewRenderEvent.FogColors} event.
+    /// @param shouldApplyColors Whether it should be applying or not the colors of the Aljan night sky.
     public static void transitionFogColor(EntityViewRenderEvent.FogColors event, boolean shouldApplyColors) {
         float[] baseColors = {event.getRed(), event.getGreen(), event.getBlue()};
         float[] targetColors = {0.333F, 0.231F, 0.305F};
@@ -191,5 +195,57 @@ public class BMUtils {
         event.setRed(FOG_COLORS[0]);
         event.setGreen(FOG_COLORS[1]);
         event.setBlue(FOG_COLORS[2]);
+    }
+
+    /// Alternate version of {@link LivingEntity#curePotionEffects(ItemStack)} that bypasses the curative items check. It still won't cure it if it doesn't have a curative item.
+    ///  @param livEntity The entity that it's clearing the effects from.
+    public static boolean clearMobEffects(LivingEntity livEntity) {
+        if (livEntity.level.isClientSide) return false;
+        boolean curedAny = false;
+        for (EffectInstance instance : livEntity.getActiveEffects()) {
+            if (!instance.getCurativeItems().isEmpty()) {
+                livEntity.removeEffect(instance.getEffect());
+                curedAny = true;
+            }
+        }
+        return curedAny;
+    }
+
+    /// Gets the color of an outfit slot. If the outfit slot has a color, it chooses that, if it doesn't, but the item stack does, it picks the item stack's color.
+    /// @param assetID The asset id of the outfit definition.
+    /// @param stack An optional item stack to check for colors.
+    /// @param slotType The slot being checked for the colors.
+    public static float[] getOutfitColors(ResourceLocation assetID, @Nullable ItemStack stack, EquipmentSlotType slotType) {
+        if (OutfitDefinition.DATA_DRIVEN_OUTFITS.containsKey(assetID)) {
+            OutfitDefinition definition = OutfitDefinition.DATA_DRIVEN_OUTFITS.get(assetID);
+            OutfitSlot slot = OutfitDefinition.byEquipmentSlot(definition, slotType);
+            if (slot != null && slot.color() != null) {
+                try {
+                    int color = slot.color();
+                    float red = (float) (color >> 16 & 255) / 255;
+                    float green = (float) (color >> 8 & 255) / 255;
+                    float blue = (float) (color & 255) / 255;
+                    return new float[] {red, green, blue};
+                } catch (NullPointerException exception) {
+                    return new float[] {1, 1, 1};
+                }
+            } else if (stack != null) {
+                Integer color = null;
+                CompoundNBT displayTag = stack.getTagElement("display");
+                if (displayTag != null && displayTag.contains("color", TagTypes.ANY_NUMERIC)) {
+                    color = displayTag.getInt("color");
+                } else if (stack.getItem() instanceof IDyeableArmorItem) {
+                    color = ((IDyeableArmorItem) stack.getItem()).getColor(stack);
+                }
+
+                if (color != null) {
+                    float red = (float) (color >> 16 & 255) / 255;
+                    float green = (float) (color >> 8 & 255) / 255;
+                    float blue = (float) (color & 255) / 255;
+                    return new float[] {red, green, blue};
+                }
+            }
+        }
+        return new float[] {1, 1, 1};
     }
 }

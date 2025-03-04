@@ -34,23 +34,23 @@ import java.util.Map;
 @Mixin(BipedArmorLayer.class)
 public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends BipedModel<T>, A extends BipedModel<T>> extends LayerRenderer<T, M> {
     @Shadow
-    protected abstract void setPartVisibility(A model, EquipmentSlotType slot);
-    @Shadow
     @Final
     private static Map<String, ResourceLocation> ARMOR_LOCATION_CACHE;
+    @Shadow
+    protected abstract void setPartVisibility(A model, EquipmentSlotType slot);
 
     public BMBipedArmorLayerMixin(IEntityRenderer<T, M> renderer) {
         super(renderer);
     }
 
     @Inject(method = "renderArmorPiece", at = @At("HEAD"), cancellable = true)
-    private void renderArmorPiece(MatrixStack stack, IRenderTypeBuffer buffer, T entity, EquipmentSlotType slot, int packedLight, A model, CallbackInfo ci) {
+    private void renderArmorPiece(MatrixStack stack, IRenderTypeBuffer buffer, T entity, EquipmentSlotType slot, int packedLight, A model, CallbackInfo callback) {
         ItemStack armorStack = entity.getItemBySlot(slot);
 
-        if (armorStack.getItem().is(BMItemTags.OUTFITS)) ci.cancel();
+        if (armorStack.getItem().is(BMItemTags.OUTFITS)) callback.cancel();
 
         if (armorStack.getItem() instanceof ArmorItem && armorStack.getItem().is(BMItemTags.FULLY_LIT_ITEMS) && !armorStack.getItem().is(BMItemTags.OUTFITS)) {
-            ci.cancel();
+            callback.cancel();
             ArmorItem armorItem = (ArmorItem) armorStack.getItem();
             if (armorItem.getSlot() == slot) {
                 model = ForgeHooksClient.getArmorModel(entity, armorStack, slot, model);
@@ -62,17 +62,17 @@ public abstract class BMBipedArmorLayerMixin<T extends LivingEntity, M extends B
                     float red = (float) (color >> 16 & 255) / 255;
                     float green = (float) (color >> 8 & 255) / 255;
                     float blue = (float) (color & 255) / 255;
-                    this.renderModel(stack, buffer, armorStack, enchantmentGlint, model, red, green, blue, this.getArmorResource(entity, armorStack, slot, null));
-                    this.renderModel(stack, buffer, armorStack, enchantmentGlint, model, 1, 1, 1, this.getArmorResource(entity, armorStack, slot, "overlay"));
+                    this.renderEmissiveModel(stack, buffer, armorStack, enchantmentGlint, model, red, green, blue, this.getArmorResource(entity, armorStack, slot, null));
+                    this.renderEmissiveModel(stack, buffer, armorStack, enchantmentGlint, model, 1, 1, 1, this.getArmorResource(entity, armorStack, slot, "overlay"));
                 } else {
-                    this.renderModel(stack, buffer, armorStack, enchantmentGlint, model, 1, 1, 1, this.getArmorResource(entity, armorStack, slot, null));
+                    this.renderEmissiveModel(stack, buffer, armorStack, enchantmentGlint, model, 1, 1, 1, this.getArmorResource(entity, armorStack, slot, null));
                 }
             }
         }
     }
 
     @Unique
-    private void renderModel(MatrixStack stack, IRenderTypeBuffer buffer, ItemStack handStack, boolean usesSecondLayer, A model, float red, float green, float blue, ResourceLocation armorResource) {
+    private void renderEmissiveModel(MatrixStack stack, IRenderTypeBuffer buffer, ItemStack handStack, boolean usesSecondLayer, A model, float red, float green, float blue, ResourceLocation armorResource) {
         if (handStack.getItem().is(BMItemTags.FULLY_LIT_ITEMS)) {
             IVertexBuilder builder = ItemRenderer.getArmorFoilBuffer(buffer, RenderType.armorCutoutNoCull(armorResource), false, usesSecondLayer);
             model.renderToBuffer(stack, builder, LightTexture.pack(15, 15), OverlayTexture.NO_OVERLAY, red, green, blue, 0.5F);

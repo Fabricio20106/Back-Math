@@ -12,48 +12,64 @@ import java.util.Optional;
 
 public class OutfitSlot {
     public static final Codec<OutfitSlot> CODEC = RecordCodecBuilder.create(instance -> instance.group(ResourceLocation.CODEC.fieldOf(
-            "texture").forGetter(OutfitSlot::texture), ResourceLocation.CODEC.optionalFieldOf("emissive_texture").forGetter(slot -> Optional.ofNullable(slot.emissiveTexture))).apply(instance, OutfitSlot::new));
+            "texture").forGetter(OutfitSlot::texture), ResourceLocation.CODEC.optionalFieldOf("emissive_texture").forGetter(slot -> Optional.ofNullable(slot.emissiveTexture)),
+            Codec.INT.optionalFieldOf("color").forGetter(slot -> Optional.ofNullable(slot.color))).apply(instance, OutfitSlot::new));
     private final ResourceLocation texture;
     @Nullable
     private final ResourceLocation emissiveTexture;
+    @Nullable
+    private final Integer color;
 
-    public OutfitSlot(ResourceLocation texture, @Nullable ResourceLocation emissiveTexture) {
+    public OutfitSlot(ResourceLocation texture, @Nullable ResourceLocation emissiveTexture, @Nullable Integer color) {
         this.texture = texture;
         this.emissiveTexture = emissiveTexture;
+        this.color = color;
+    }
+
+    public OutfitSlot(ResourceLocation texture, @Nullable ResourceLocation emissiveTexture) {
+        this(texture, emissiveTexture, null);
+    }
+
+    public OutfitSlot(ResourceLocation texture, Optional<ResourceLocation> emissiveTexture, Optional<Integer> color) {
+        this(texture, emissiveTexture.orElse(null), color.orElse(null));
     }
 
     public OutfitSlot(ResourceLocation texture) {
-        this(texture, (ResourceLocation) null);
-    }
-
-    public OutfitSlot(ResourceLocation texture, Optional<ResourceLocation> emissiveTexture) {
-        this(texture, emissiveTexture.orElse(null));
+        this(texture, (ResourceLocation) null, null);
     }
 
     public ResourceLocation texture() {
         return this.texture;
     }
 
+    @Nullable
     public ResourceLocation emissiveTexture() {
         return this.emissiveTexture;
+    }
+
+    @Nullable
+    public Integer color() {
+        return this.color;
     }
 
     public static OutfitSlot fromJSON(JsonObject object) {
         ResourceLocation texture = ResourceLocation.tryParse(JSONUtils.getAsString(object, "texture"));
         ResourceLocation emissiveTexture = object.has("emissive_texture") && object.get("emissive_texture").isJsonPrimitive() ? ResourceLocation.tryParse(object.get("emissive_texture").getAsString()) : null;
-        return new OutfitSlot(texture, emissiveTexture);
+        Integer color = object.has("color") && object.get("color").isJsonPrimitive() ? JSONUtils.getAsInt(object, "color") : null;
+        return new OutfitSlot(texture, emissiveTexture, color);
     }
 
     public static JsonElement toJSON(OutfitSlot slot) {
         JsonObject object = new JsonObject();
         object.addProperty("texture", slot.texture.toString());
         if (slot.emissiveTexture != null) object.addProperty("emissive_texture", slot.emissiveTexture.toString());
+        if (slot.color != null) object.addProperty("color", slot.color);
         return object;
     }
 
     @Override
     public String toString() {
-        return "OutfitSlot[texture=" + this.texture + ", emissive_texture=" + this.emissiveTexture + "]";
+        return "OutfitSlot[texture=" + this.texture + ", emissive_texture=" + this.emissiveTexture + ", color=" + this.color + "]";
     }
 
     public static class Serializer implements JsonDeserializer<OutfitSlot>, JsonSerializer<OutfitSlot> {
@@ -62,7 +78,8 @@ public class OutfitSlot {
             JsonObject object = element.getAsJsonObject();
             ResourceLocation texture = ResourceLocation.tryParse(JSONUtils.getAsString(object, "texture"));
             ResourceLocation emissiveTexture = object.has("emissive_texture") && object.get("emissive_texture").isJsonPrimitive() ? ResourceLocation.tryParse(object.get("emissive_texture").getAsString()) : null;
-            return new OutfitSlot(texture, emissiveTexture);
+            Integer color = object.has("color") && object.get("color").isJsonPrimitive() ? JSONUtils.getAsInt(object, "color") : null;
+            return new OutfitSlot(texture, emissiveTexture, color);
         }
 
         @Override
@@ -70,6 +87,7 @@ public class OutfitSlot {
             JsonObject object = new JsonObject();
             object.addProperty("texture", slot.texture.toString());
             if (slot.emissiveTexture != null) object.addProperty("emissive_texture", slot.emissiveTexture.toString());
+            if (slot.color != null) object.addProperty("color", slot.color);
             return object;
         }
     }

@@ -1,6 +1,7 @@
 package com.sophicreeper.backmath.entity.custom;
 
-import com.sophicreeper.backmath.entity.custom.aljamic.AljamicMemberEntity;
+import com.sophicreeper.backmath.entity.BMEntities;
+import com.sophicreeper.backmath.entity.custom.alcalyte.AlcalyteEntity;
 import com.sophicreeper.backmath.entity.custom.aljan.*;
 import com.sophicreeper.backmath.entity.custom.termian.TermianMemberEntity;
 import com.sophicreeper.backmath.entity.goal.termian.queenlucy.*;
@@ -47,6 +48,7 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -56,11 +58,19 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
     private final ServerBossInfo bossInfo = new ServerBossInfo(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.NOTCHED_6);
     private static final DataParameter<String> SPELL = EntityDataManager.defineId(QueenLucyEntity.class, DataSerializers.STRING);
     private static final DataParameter<String> VARIANT = EntityDataManager.defineId(QueenLucyEntity.class, DataSerializers.STRING);
+    public static final Logger LOGGER = LogManager.getLogger();
     public int spellCooldownTicks;
     public CompoundNBT lucySpellsTag;
 
     public QueenLucyEntity(EntityType<QueenLucyEntity> type, World world) {
         super(type, world);
+        this.setHealth(this.getMaxHealth());
+        this.getNavigation().setCanFloat(true);
+        this.xpReward = 450;
+    }
+
+    public QueenLucyEntity(World world) {
+        super(BMEntities.QUEEN_LUCY.get(), world);
         this.setHealth(this.getMaxHealth());
         this.getNavigation().setCanFloat(true);
         this.xpReward = 450;
@@ -88,11 +98,11 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
 
         CompoundNBT spellsTag = tag.getCompound("lucy_spells");
         if (QueenLucySpells.isValidSpell(spellsTag.getString("current_spell"))) {
-            LogManager.getLogger().debug(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("console.backmath.queen_lucy.set_spell", QueenLucySpells.setFromString(spellsTag.getString(
+            LOGGER.debug(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("console.backmath.queen_lucy.set_spell", QueenLucySpells.setFromString(spellsTag.getString(
                     "current_spell")).getName())).getString());
             this.setSpellType(QueenLucySpells.setFromString(spellsTag.getString("current_spell").toLowerCase(Locale.ROOT)));
         } else {
-            LogManager.getLogger().error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy.invalid_spell", spellsTag.getString("current_spell"))).getString());
+            LOGGER.error(new TranslationTextComponent("backmath.message_template", new TranslationTextComponent("error.backmath.queen_lucy.invalid_spell", spellsTag.getString("current_spell"))).getString());
             this.setSpellType(QueenLucySpells.NONE);
         }
 
@@ -184,7 +194,7 @@ public class QueenLucyEntity extends TermianMemberEntity implements SophieFriend
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, VexEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolemEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, SnowGolemEntity.class, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicMemberEntity.class, true));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AlcalyteEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, InsomniaZombieEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, ZombieFabricioEntity.class, true));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, AljamicBonesEntity.class, true));

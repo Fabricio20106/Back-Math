@@ -33,7 +33,7 @@ public class BMRangedBowAttackGoal<T extends TermianPatrollerEntity & IRangedAtt
         this.attackCooldown = attackCooldown;
     }
 
-    // Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
+    /// Returns whether execution should begin. You can also read and cache any state necessary for execution in this method as well.
     public boolean canUse() {
         return this.shooter.getTarget() != null && this.isHoldingBow();
     }
@@ -42,18 +42,18 @@ public class BMRangedBowAttackGoal<T extends TermianPatrollerEntity & IRangedAtt
         return this.shooter.isHolding(item -> item.is(BMItemTags.BOWS));
     }
 
-    // Returns whether an in-progress EntityAIBase should continue executing.
+    /// Returns whether an in-progress {@link Goal} should continue executing.
     public boolean canContinueToUse() {
         return this.canUse() || !this.shooter.getNavigation().isDone() && this.isHoldingBow();
     }
 
-    // Execute a one shot task or start executing a continuous task.
+    /// Execute a one shot task or start executing a continuous task.
     public void start() {
         super.start();
         this.shooter.setAggressive(true);
     }
 
-    // Reset the task's internal state. Called when this task is interrupted by another one.
+    /// Reset the task's internal state. Called when this task is interrupted by another one.
     public void stop() {
         super.stop();
         this.shooter.setAggressive(false);
@@ -62,7 +62,7 @@ public class BMRangedBowAttackGoal<T extends TermianPatrollerEntity & IRangedAtt
         this.shooter.stopUsingItem();
     }
 
-    // Keep ticking a continuous task that has already been started.
+    /// Keep ticking a continuous task that has already been started.
     public void tick() {
         LivingEntity target = this.shooter.getTarget();
         if (target != null) {

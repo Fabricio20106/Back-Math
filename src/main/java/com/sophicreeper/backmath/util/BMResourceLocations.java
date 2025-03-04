@@ -36,6 +36,7 @@ public class BMResourceLocations {
     // Miscellaneous
     public static final ResourceLocation SOPHIE_TOWER_START_POOL = BackMath.backMath("sophie_tower/start_pool");
     public static final ResourceLocation HIDEOUT_DUNGEON_START_POOL = BackMath.backMath("fabricio_hideout_dungeon/start_pool");
+    public static final ResourceLocation CONTENTS = BackMath.backMath("contents");
 
     // Loot Tables
     // Blocks
